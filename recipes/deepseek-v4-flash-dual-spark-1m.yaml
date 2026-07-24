@@ -1,17 +1,17 @@
 # Adapted from MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context.
-# SparkRun provides lifecycle, native multi-node coordination, model/image
-# distribution, and InfiniBand detection; the model/container/tuning choices
-# below follow the upstream MiaAI-Lab deployment.
+# SparkRun provides lifecycle, Ray multi-node coordination, model/image
+# distribution, and InfiniBand detection. Model and memory tuning follows the
+# upstream MiaAI-Lab deployment, adapted to SparkRun's compatible vllm-node.
 recipe_version: "2"
 name: deepseek-v4-flash-dual-spark-1m
 model: deepseek-ai/DeepSeek-V4-Flash
-runtime: vllm-distributed
+runtime: vllm-ray
 min_nodes: 2
 max_nodes: 2
-container: aidendle94/sparkrun-vllm-ds4-gb10:production-ready
+container: vllm-node
 
 metadata:
-  description: DeepSeek V4 Flash on two DGX Sparks with 1M context, FP8 KV cache, MTP, and native vLLM multi-node execution
+  description: DeepSeek V4 Flash on two DGX Sparks with 1M context, FP8 KV cache, MTP, and SparkRun Ray execution
   source: https://github.com/MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context
   hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
   context_length: 1000000
@@ -38,7 +38,9 @@ defaults:
   generation_config: '{"temperature":0.6,"top_p":0.95}'
 
 env:
+  DG_JIT_USE_NVRTC: "0"
   VLLM_ALLOW_LONG_MAX_MODEL_LEN: "1"
+  VLLM_USE_BREAKABLE_CUDAGRAPH: "0"
   VLLM_USE_B12X_MOE: "1"
   VLLM_SPARSE_INDEXER_MAX_LOGITS_MB: "256"
   TORCH_CUDA_ARCH_LIST: "12.1a"
@@ -53,13 +55,12 @@ env:
   NCCL_DEBUG: INFO
 
 command: |
-  /usr/local/bin/dsv4-vllm-entrypoint serve {model} \
+  vllm serve {model} \
     --served-model-name {model} \
     --host {host} \
     --port {port} \
     --trust-remote-code \
     --tensor-parallel-size {tensor_parallel} \
-    --pipeline-parallel-size {pipeline_parallel} \
     --kv-cache-dtype fp8 \
     --block-size {block_size} \
     --max-model-len {max_model_len} \
@@ -69,7 +70,7 @@ command: |
     --enable-prefix-caching \
     --speculative-config '{speculative_config}' \
     --tokenizer-mode deepseek_v4 \
-    --distributed-executor-backend mp \
+    --distributed-executor-backend ray \
     --tool-call-parser deepseek_v4 \
     --enable-auto-tool-choice \
     --reasoning-parser deepseek_v4 \
@@ -77,4 +78,5 @@ command: |
     --override-generation-config '{generation_config}' \
     --default-chat-template-kwargs.thinking=true \
     --default-chat-template-kwargs.reasoning_effort=high \
-    --enable-flashinfer-autotune
+    --enable-flashinfer-autotune \
+    --load-format instanttensor

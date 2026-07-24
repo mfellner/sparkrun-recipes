@@ -19,14 +19,14 @@ Recipes are then available under the `@mfellner/` namespace.
 A SparkRun adaptation of [MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context](https://github.com/MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context). It uses:
 
 - Two DGX Spark or compatible GB10 nodes
-- Native vLLM multi-node execution through SparkRun's `vllm-distributed` runtime
+- SparkRun's proven `vllm-ray` multi-node orchestration
 - Tensor parallelism across both GPUs
 - 1,000,000-token configured context
 - FP8 KV cache
 - MTP speculative decoding
 - Prefix caching and FlashInfer autotuning
 - DeepSeek V4 reasoning and tool-call parsers
-- The upstream optimized container: `aidendle94/sparkrun-vllm-ds4-gb10:production-ready`
+- The SparkRun-compatible local `vllm-node` image, while retaining MiaAI-Lab's model, FP8 KV-cache, 1M-context, MTP, and FlashInfer tuning
 
 Inspect and estimate memory:
 
@@ -64,7 +64,7 @@ sparkrun run recipes/deepseek-v4-flash-dual-spark-1m.yaml \
 
 ## Attribution
 
-The DeepSeek V4 Flash recipe is adapted from MiaAI-Lab's MIT-licensed deployment repository. SparkRun replaces its Docker Compose lifecycle and manually supplied node-rank arguments with SparkRun's native multi-node orchestration, while retaining the upstream image and model-specific optimizations.
+The DeepSeek V4 Flash recipe is adapted from MiaAI-Lab's MIT-licensed deployment repository. SparkRun replaces its Docker Compose lifecycle, custom native-multiprocessing image, and manually supplied node-rank arguments with SparkRun's compatible `vllm-node` image and Ray orchestration. The recipe retains the upstream 1M-context, FP8 KV-cache, MTP, prefix-cache, FlashInfer, reasoning, tool-calling, and generation settings.
 
 ## License
 
