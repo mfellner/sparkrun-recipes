@@ -1,0 +1,100 @@
+# Adapted from MiaAI-Lab/Unsloth-Qwen3.6-35b-NVFP4-DGX-Spark.
+# SparkRun provides lifecycle, image/model distribution, host networking, GPU,
+# IPC, shared-memory, and cache mounts. The upstream purpose-built SM121 image,
+# model, kernels, and vLLM serving configuration are retained.
+recipe_version: "2"
+name: unsloth-qwen3.6-35b-a3b-nvfp4-dgx-spark
+model: unsloth/Qwen3.6-35B-A3B-NVFP4
+runtime: vllm-ray
+min_nodes: 1
+max_nodes: 1
+solo_only: true
+container: ghcr.io/miaai-lab/unsloth-qwen3.6-35b-nvfp4-fast-dgx-spark:latest
+
+metadata:
+  description: Unsloth Qwen3.6 35B A3B NVFP4 on one DGX Spark with SM121-native FlashInfer B12X, FP8 KV cache, MTP, vision, reasoning, and tool use
+  source: https://github.com/MiaAI-Lab/Unsloth-Qwen3.6-35b-NVFP4-DGX-Spark
+  hardware: 1x NVIDIA DGX Spark or compatible GB10 system
+  context_length: 262144
+  model_dtype: nvfp4
+  kv_dtype: fp8
+  num_layers: 40
+  num_kv_heads: 2
+  head_dim: 256
+
+mods: []
+
+# The upstream image has a baked entrypoint for its standalone Docker workflow.
+# Clear it so SparkRun can own the container and execute the rendered command.
+# SparkRun defaults already provide privileged GPU access, host network/IPC,
+# and a 32 GB shared-memory allocation.
+executor_config:
+  entrypoint: ""
+  user: root
+  cap_add:
+    - IPC_LOCK
+  ulimit:
+    - memlock=-1:-1
+
+# Keep the upstream image and model externally sourced instead of rebuilding or
+# substituting SparkRun's generic vllm-node image.
+builder: docker-pull
+
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  tensor_parallel: 1
+  gpu_memory_utilization: 0.80
+  max_model_len: 262144
+  max_num_seqs: 24
+  max_num_batched_tokens: 32768
+  speculative_config: '{"method":"mtp","num_speculative_tokens":2,"moe_backend":"triton"}'
+  chat_template_kwargs: '{"enable_thinking":true,"preserve_thinking":true}'
+  generation_config: '{"temperature":0.6,"top_p":0.95,"top_k":20,"min_p":0.0,"presence_penalty":0.0,"repetition_penalty":1.0}'
+  media_limits: '{"image":4}'
+
+# Prefix caching is deliberately not enabled. The upstream project documents
+# an experimental Qwen Mamba-layer failure when prefix caching is used.
+# The image's health script defaults to a baked served name that differs from
+# upstream start.sh. Override it to match vLLM's actual Hugging Face model ID.
+env:
+  VLLM_TARGET_DEVICE: cuda
+  CUTE_DSL_ARCH: sm_121a
+  SERVED_MODEL_NAME: unsloth/Qwen3.6-35B-A3B-NVFP4
+
+# Persist first-start kernel and graph compilation through SparkRun's existing
+# host-mounted Hugging Face cache. Seed from any cache bundled in a future image
+# before replacing the in-container directories with persistent symlinks.
+pre_exec:
+  - mkdir -p /cache/huggingface/sparkrun-runtime-cache/flashinfer /cache/huggingface/sparkrun-runtime-cache/vllm /root/.cache
+  - cp -an /root/.cache/flashinfer/. /cache/huggingface/sparkrun-runtime-cache/flashinfer/ 2>/dev/null || true
+  - cp -an /root/.cache/vllm/. /cache/huggingface/sparkrun-runtime-cache/vllm/ 2>/dev/null || true
+  - rm -rf /root/.cache/flashinfer /root/.cache/vllm
+  - ln -s /cache/huggingface/sparkrun-runtime-cache/flashinfer /root/.cache/flashinfer
+  - ln -s /cache/huggingface/sparkrun-runtime-cache/vllm /root/.cache/vllm
+
+command: |
+  vllm serve {model} \
+    --served-model-name {model} \
+    --host {host} \
+    --port {port} \
+    --tensor-parallel-size {tensor_parallel} \
+    --trust-remote-code \
+    --moe-backend auto \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --linear-backend flashinfer_b12x \
+    --attention-backend flashinfer \
+    --max-model-len {max_model_len} \
+    --max-num-seqs {max_num_seqs} \
+    --max-num-batched-tokens {max_num_batched_tokens} \
+    --enable-chunked-prefill \
+    --async-scheduling \
+    --kv-cache-dtype fp8 \
+    --limit-mm-per-prompt '{media_limits}' \
+    --allowed-media-domains '*' \
+    --speculative-config '{speculative_config}' \
+    --reasoning-parser qwen3 \
+    --default-chat-template-kwargs '{chat_template_kwargs}' \
+    --tool-call-parser qwen3_coder \
+    --enable-auto-tool-choice \
+    --override-generation-config '{generation_config}'
