@@ -84,7 +84,8 @@ pre_exec:
     chown -R --reference=/cache/huggingface
     /cache/huggingface/sparkrun-runtime-cache/glm52-fp8
 
-# Environment preserved from upstream, with the validated three-node CX-7 triangle settings.
+# Effective environment combines upstream settings, SparkRun transport translation,
+# and the validated three-node CX-7 triangle tuning below.
 env:
   PATH: /opt/vllm/.venv/bin:/root/.cargo/bin:/workspace/vllm:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   VIRTUAL_ENV: /opt/vllm/.venv
@@ -127,24 +128,13 @@ env:
   NCCL_GRAPH_MIXING_SUPPORT: "1"
 
   FLASHINFER_MLA_SPARSE_SM120: "1"
-  FLASHINFER_MLA_SM120_USE_TMA: "1"
-  FLASHINFER_MLA_SM120_NUM_STAGES: "6"
-  FLASHINFER_MLA_SM120_NUM_CLUSTERS: "1"
-  FLASHINFER_MLA_SM120_QO_TILE_LEN: "32"
   FLASHINFER_DISABLE_VERSION_CHECK: "1"
-  VLLM_DISABLE_FLASHINFER_MLA: "0"
-  VLLM_FLASHINFER_MLA_DISABLE_FASTPATH: "0"
-  VLLM_FLASHINFER_MLA_CACHE_KERNEL: "1"
   VLLM_DISABLE_FLASHINFER_AUTOTUNE: "1"
-  VLLM_NVFP4_GEMM_BACKEND: flashinfer-cutlass
   VLLM_DISABLE_FP8_W8A16: "0"
   VLLM_MTP_INDEX_SHARE: "1"
   VLLM_SPARSE_INDEXER_MAX_LOGITS_MB: "192"
-  VLLM_NVFP4_MLA_KV_CACHE: "1"
-  VLLM_USE_FLASHINFER_MLA: "1"
 
-  GLM_MTP_APPLY_INDEXER: "1"
-  GLM_MOE_ENABLE_FUSED: "1"
+  GLM_SHARED_EXPERTS_DEBUG: "1"
   GLM_MOE_LANE_ROWS: "1"
   GLM_NVFP4_LUT256: "1"
   GLM_MOE_AQLM_CB: l1
@@ -219,6 +209,7 @@ metadata:
   vision: MoonViT-3d
   notes:
     - Exactly three GB10 GPUs are required; host order defines Ray head then workers.
+    - The RoCE and bootstrap interface names match the validated ASUS Ascent GX10 fleet; compatible systems with different interface names must adapt them before launch.
     - Path B uses a 12 GiB FP8 MLA KV allocation, yielding an approximately 240,640-token pool for the 235,392-token served window.
     - FP8 KV improves decode speed but may reduce accuracy relative to Path A's NVFP4 KV; validate application quality before switching production traffic.
     - mm-encoder-tp-mode=data is mandatory because the 16-head MoonViT encoder is not divisible by TP3.
