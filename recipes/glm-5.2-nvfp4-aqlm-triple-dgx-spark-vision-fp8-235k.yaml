@@ -1,12 +1,13 @@
 recipe_version: "2"
 
-name: GLM-5.2 Vision NVFP4+AQLM Triple DGX Spark 348K
+name: GLM-5.2 Vision NVFP4+AQLM Triple DGX Spark FP8 KV 235K
 
 description: >-
   SparkRun adaptation of MiaAI-Lab/GLM-5.2-NVFP4-AQLM-Triple-DGX-Sparks:
-  GLM-5.2 Vision with hybrid NVFP4+AQLM weights, 348,160-token context,
-  MTP-3 speculative decoding, and Ray tensor parallelism across exactly
-  three DGX Spark or compatible GB10 nodes.
+  Path B (coding speed) for GLM-5.2 Vision with hybrid NVFP4+AQLM weights,
+  FP8 MLA KV cache, 235,392-token context, MTP-3 speculative decoding,
+  and Ray tensor parallelism across exactly three DGX Spark or compatible
+  GB10 nodes.
 
 model: jarrelscy/GLM-5.2-NVFP4-AQLM-hybrid
 # Immutable vision-wrapper revision retained by upstream v4.5 commit 893d869.
@@ -56,13 +57,13 @@ distribution_config:
 pre_exec:
   - >-
     mkdir -p
-    /cache/huggingface/sparkrun-runtime-cache/glm52/torchinductor
-    /cache/huggingface/sparkrun-runtime-cache/glm52/vllm
-    /cache/huggingface/sparkrun-runtime-cache/glm52/flashinfer
-    /cache/huggingface/sparkrun-runtime-cache/glm52/nccl-2.30.7
+    /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/torchinductor
+    /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/vllm
+    /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/flashinfer
+    /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/nccl-2.30.7
   - |-
     set -euo pipefail
-    nccl_dir=/cache/huggingface/sparkrun-runtime-cache/glm52/nccl-2.30.7
+    nccl_dir=/cache/huggingface/sparkrun-runtime-cache/glm52-fp8/nccl-2.30.7
     nccl_lib="$nccl_dir/libnccl.so.2"
     wheel="$nccl_dir/nvidia_nccl_cu13-2.30.7-aarch64.whl"
     extract="$nccl_dir/extract"
@@ -81,7 +82,7 @@ pre_exec:
     printf '%s  %s\n' "$lib_sha" "$nccl_lib" | sha256sum -c -
   - >-
     chown -R --reference=/cache/huggingface
-    /cache/huggingface/sparkrun-runtime-cache/glm52
+    /cache/huggingface/sparkrun-runtime-cache/glm52-fp8
 
 # Environment preserved from upstream, with the validated three-node CX-7 triangle settings.
 env:
@@ -154,11 +155,11 @@ env:
   VLLM_WORKER_MULTIPROC_METHOD: spawn
   VLLM_ALLOW_LONG_MAX_MODEL_LEN: "1"
   VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS: "1800"
-  VLLM_NCCL_SO_PATH: /cache/huggingface/sparkrun-runtime-cache/glm52/nccl-2.30.7/libnccl.so.2
+  VLLM_NCCL_SO_PATH: /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/nccl-2.30.7/libnccl.so.2
 
-  TORCHINDUCTOR_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm52/torchinductor
-  VLLM_CACHE_ROOT: /cache/huggingface/sparkrun-runtime-cache/glm52/vllm
-  FLASHINFER_WORKSPACE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm52/flashinfer
+  TORCHINDUCTOR_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/torchinductor
+  VLLM_CACHE_ROOT: /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/vllm
+  FLASHINFER_WORKSPACE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm52-fp8/flashinfer
 
 # The snapshot path avoids an online HF lookup and guarantees the pinned wrapper revision.
 defaults:
@@ -167,7 +168,7 @@ defaults:
   data_parallel: 1
   served_model_name: glm-5.2
   port: 8000
-  max_model_len: 348160
+  max_model_len: 235392
   max_num_seqs: 1
   max_num_batched_tokens: 4096
 
@@ -183,8 +184,8 @@ command: >-
   --pipeline-parallel-size {pipeline_parallel}
   --decode-context-parallel-size 1
   --dcp-comm-backend ag_rs
-  --kv-cache-dtype nvfp4_ds_mla
-  --gpu-memory-utilization 0.895
+  --kv-cache-dtype fp8_ds_mla
+  --gpu-memory-utilization 0.9
   --max-model-len {max_model_len}
   --max-num-seqs {max_num_seqs}
   --max-num-batched-tokens {max_num_batched_tokens}
@@ -197,7 +198,7 @@ command: >-
   --speculative-config '{"method":"deepseek_mtp","num_speculative_tokens":3}'
   --async-scheduling
   --hf-overrides '{"num_experts_per_tok":4,"index_topk_freq":8}'
-  --kv-cache-memory-bytes 11811160064
+  --kv-cache-memory-bytes 12884901888
   --mm-encoder-tp-mode data
 
 metadata:
@@ -209,16 +210,18 @@ metadata:
   model_dtype: nvfp4
   # Actual indexed checkpoint payload is 292,491,816,312 bytes (~272.38 GiB).
   model_vram: 272.38
-  kv_dtype: nvfp4
-  kv_vram_per_token: 0.00009478400735294118
-  max_model_len: 348160
+  kv_dtype: fp8
+  kv_vram_per_token: 0.0001529363784665579
+  max_model_len: 235392
   tensor_parallel: 3
   pipeline_parallel: 1
   multimodal: true
   vision: MoonViT-3d
   notes:
     - Exactly three GB10 GPUs are required; host order defines Ray head then workers.
-    - The 11 GiB NVFP4 KV allocation yields an approximately 354,496-token pool for the 348,160-token served window.
+    - Path B uses a 12 GiB FP8 MLA KV allocation, yielding an approximately 240,640-token pool for the 235,392-token served window.
+    - FP8 KV improves decode speed but may reduce accuracy relative to Path A's NVFP4 KV; validate application quality before switching production traffic.
     - mm-encoder-tp-mode=data is mandatory because the 16-head MoonViT encoder is not divisible by TP3.
+    - Default chat-template thinking is disabled for coding speed; clients can opt in per request.
     - Temporarily stop earlyoom on every node before launch because it can kill Ray workers during graph capture; restore it only after unloading the model and confirming RAM/swap headroom.
     - The runtime is privileged, host-networked, executes pinned remote model code, and exposes unauthenticated inference plus Ray/NCCL ports; every node must remain on a trusted, firewalled private network.
