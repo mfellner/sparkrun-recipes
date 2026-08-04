@@ -1,19 +1,22 @@
 # Adapted from MiaAI-Lab/Unsloth-Qwen3.6-35b-NVFP4-DGX-Spark.
 # SparkRun provides lifecycle, image/model distribution, host networking, GPU,
 # IPC, shared-memory, and cache mounts. The upstream purpose-built SM121 image,
-# model, kernels, and vLLM serving configuration are retained.
+# model, patched mixed-quant kernels, and vLLM serving configuration are retained.
 recipe_version: "2"
 name: unsloth-qwen3.6-35b-a3b-nvfp4-dgx-spark
 model: unsloth/Qwen3.6-35B-A3B-NVFP4
+model_revision: 739af1e7aac320af1682ed1e0cce369af4c5265d
 runtime: vllm-ray
+runtime_version: v0.26.0-gb10.2
 min_nodes: 1
 max_nodes: 1
 solo_only: true
-container: ghcr.io/miaai-lab/unsloth-qwen3.6-35b-nvfp4-fast-dgx-spark:latest
+container: ghcr.io/miaai-lab/mia-vllm-gb10-linear-b12x@sha256:19627342e1da2607f4db50745dca30e57d7dd0ebff06062f03fd69b43a252931
 
 metadata:
-  description: Unsloth Qwen3.6 35B A3B NVFP4 on one DGX Spark with SM121-native FlashInfer B12X, FP8 KV cache, MTP, vision, reasoning, and tool use
+  description: Unsloth Qwen3.6 35B A3B NVFP4 on one DGX Spark with SM121-native FlashInfer B12X and mixed-quant soft fallback, FP8 KV cache, MTP, vision, reasoning, and tool use
   source: https://github.com/MiaAI-Lab/Unsloth-Qwen3.6-35b-NVFP4-DGX-Spark
+  source_revision: 79c9e6f359f6101cdacd0dfd6fe9861ae2493a4d
   hardware: 1x NVIDIA DGX Spark or compatible GB10 system
   context_length: 262144
   model_dtype: nvfp4
@@ -24,10 +27,19 @@ metadata:
 
 mods: []
 
-# The upstream image has a baked entrypoint for its standalone Docker workflow.
-# Clear it so SparkRun can own the container and execute the rendered command.
-# SparkRun defaults already provide privileged GPU access, host network/IPC,
-# and a 32 GB shared-memory allocation.
+# Pin the exact checkpoint and remote model code fetched from Hugging Face.
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: unsloth/Qwen3.6-35B-A3B-NVFP4
+        revision: 739af1e7aac320af1682ed1e0cce369af4c5265d
+        target: [-1]
+
+# The current upstream image has no baked entrypoint. Keep the explicit clear so
+# SparkRun owns the container even if the image defaults change in a future build.
+# SparkRun 0.3.1's rootless Docker path provides GPU access, host network/IPC,
+# a 32 GB shared-memory allocation, and no-new-privileges without privileged mode.
 executor_config:
   entrypoint: ""
   user: root
@@ -55,12 +67,9 @@ defaults:
 
 # Prefix caching is deliberately not enabled. The upstream project documents
 # an experimental Qwen Mamba-layer failure when prefix caching is used.
-# The image's health script defaults to a baked served name that differs from
-# upstream start.sh. Override it to match vLLM's actual Hugging Face model ID.
 env:
   VLLM_TARGET_DEVICE: cuda
   CUTE_DSL_ARCH: sm_121a
-  SERVED_MODEL_NAME: unsloth/Qwen3.6-35B-A3B-NVFP4
 
 # Persist first-start kernel and graph compilation through SparkRun's existing
 # host-mounted Hugging Face cache. Seed from any cache bundled in a future image
@@ -74,7 +83,7 @@ pre_exec:
   - ln -s /cache/huggingface/sparkrun-runtime-cache/vllm /root/.cache/vllm
 
 command: |
-  vllm serve {model} \
+  vllm serve /cache/huggingface/hub/models--unsloth--Qwen3.6-35B-A3B-NVFP4/snapshots/739af1e7aac320af1682ed1e0cce369af4c5265d \
     --served-model-name {model} \
     --host {host} \
     --port {port} \

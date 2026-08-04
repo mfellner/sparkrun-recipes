@@ -5,6 +5,7 @@
 recipe_version: "2"
 name: deepseek-v4-flash-dual-spark-1m
 model: deepseek-ai/DeepSeek-V4-Flash
+model_revision: 60d8d70770c6776ff598c94bb586a859a38244f1
 runtime: vllm-ray
 min_nodes: 2
 max_nodes: 2
@@ -13,6 +14,7 @@ container: vllm-node
 metadata:
   description: DeepSeek V4 Flash on two DGX Sparks with 1M context, FP8 KV cache, MTP, and SparkRun Ray execution
   source: https://github.com/MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context
+  source_revision: ffa38f9e1bea5c06a6195fca9bff17c04f4785da
   hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
   context_length: 1000000
   model_dtype: fp8
@@ -22,6 +24,15 @@ metadata:
   head_dim: 512
 
 mods: []
+
+# Pin the exact checkpoint and remote model code fetched from Hugging Face.
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: deepseek-ai/DeepSeek-V4-Flash
+        revision: 60d8d70770c6776ff598c94bb586a859a38244f1
+        target: [-1]
 
 defaults:
   port: 8000
@@ -55,7 +66,7 @@ env:
   NCCL_DEBUG: INFO
 
 command: |
-  vllm serve {model} \
+  vllm serve /cache/huggingface/hub/models--deepseek-ai--DeepSeek-V4-Flash/snapshots/60d8d70770c6776ff598c94bb586a859a38244f1 \
     --served-model-name {model} \
     --host {host} \
     --port {port} \

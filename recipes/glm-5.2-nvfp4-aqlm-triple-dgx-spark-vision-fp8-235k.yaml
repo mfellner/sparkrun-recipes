@@ -10,7 +10,7 @@ description: >-
   GB10 nodes.
 
 model: jarrelscy/GLM-5.2-NVFP4-AQLM-hybrid
-# Immutable vision-wrapper revision retained by upstream v4.5 commit 893d869.
+# Immutable vision-wrapper revision retained by latest upstream commit 5c85163.
 model_revision: 53e0082eedebd806b63e19779c47905937d768ca
 
 runtime: vllm-ray
@@ -194,7 +194,7 @@ command: >-
 metadata:
   maintainer: mfellner
   source: https://github.com/MiaAI-Lab/GLM-5.2-NVFP4-AQLM-Triple-DGX-Sparks
-  source_revision: 893d869ecdf002f127f44da66b71d53b157254aa
+  source_revision: 5c85163ccb8d98d395880e71e2dbd03976a3f4ad
   architecture: Glm5vForConditionalGeneration
   model_params: 744B
   model_dtype: nvfp4

@@ -18,6 +18,8 @@ Recipes are then available under the `@mfellner/` namespace.
 
 A SparkRun adaptation of [MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context](https://github.com/MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context). It uses:
 
+Upstream synchronization: `ffa38f9e1bea5c06a6195fca9bff17c04f4785da` (latest `main` fetched 2026-08-04).
+
 - Two DGX Spark or compatible GB10 nodes
 - SparkRun's proven `vllm-ray` multi-node orchestration
 - Tensor parallelism across both GPUs
@@ -27,6 +29,7 @@ A SparkRun adaptation of [MiaAI-Lab/DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context]
 - Prefix caching and FlashInfer autotuning
 - DeepSeek V4 reasoning and tool-call parsers
 - The SparkRun-compatible local `vllm-node` image, while retaining MiaAI-Lab's model, FP8 KV-cache, 1M-context, MTP, and FlashInfer tuning
+- Hugging Face checkpoint and remote-code revision `60d8d70770c6776ff598c94bb586a859a38244f1`, used in distribution and the served snapshot path
 
 Inspect and estimate memory:
 
@@ -51,16 +54,23 @@ sparkrun run @mfellner/deepseek-v4-flash-dual-spark-1m \
   --no-follow
 ```
 
+#### Security
+
+The DeepSeek endpoint binds to `0.0.0.0:8000` without API authentication and executes the pinned model revision's remote code via `--trust-remote-code`. With the validated SparkRun 0.3.1 rootless Docker path, its containers run non-privileged as the host user with `no-new-privileges`, while still using host networking and host IPC on both nodes. **Run it only on a trusted, firewalled private network; do not expose inference, Ray, or NCCL ports to the public Internet.** Review a new Hugging Face revision before changing the recipe's `model_revision`, distribution revision, and served snapshot path together, and re-check effective container security settings after a SparkRun upgrade.
+
 ### Unsloth Qwen3.6 35B A3B NVFP4 — single Spark, 256K context
 
 `@mfellner/unsloth-qwen3.6-35b-a3b-nvfp4-dgx-spark`
 
 A SparkRun adaptation of [MiaAI-Lab/Unsloth-Qwen3.6-35b-NVFP4-DGX-Spark](https://github.com/MiaAI-Lab/Unsloth-Qwen3.6-35b-NVFP4-DGX-Spark). It uses:
 
+Upstream synchronization: `79c9e6f359f6101cdacd0dfd6fe9861ae2493a4d` (latest `main` fetched 2026-08-04).
+
 - One DGX Spark or compatible GB10 node
 - `unsloth/Qwen3.6-35B-A3B-NVFP4`
-- MiaAI-Lab's purpose-built vLLM 0.24.1-dev / FlashInfer image
-- SM121-native FlashInfer B12X linear kernels
+- MiaAI-Lab's image with OCI version label `v0.26.0-gb10.2` (not a published image tag), pinned at manifest digest `sha256:19627342e1da2607f4db50745dca30e57d7dd0ebff06062f03fd69b43a252931`
+- SM121-native FlashInfer B12X linear kernels with MiaAI-Lab's soft fallback to automatic kernel selection for unsupported FP8 and other non-NVFP4 layers
+- Hugging Face checkpoint and remote-code revision `739af1e7aac320af1682ed1e0cce369af4c5265d`, used in distribution and the served snapshot path
 - 262,144-token configured context and FP8 KV cache
 - MTP speculative decoding with two draft tokens
 - Async scheduling and chunked prefill
@@ -75,17 +85,19 @@ sparkrun run @mfellner/unsloth-qwen3.6-35b-a3b-nvfp4-dgx-spark \
   --no-follow
 ```
 
-The recipe clears the image's standalone entrypoint so SparkRun controls the container lifecycle, while retaining the upstream image, model, kernels, and vLLM flags. It also aligns the image's baked Docker healthcheck with the actual served model ID and persists FlashInfer/vLLM compilation caches through SparkRun's host cache mount, avoiding a full kernel rebuild after normal recipe restarts.
+The recipe explicitly clears the entrypoint so SparkRun controls the container lifecycle, while retaining the upstream image, model, patched mixed-quant kernel selection, and vLLM flags. It persists FlashInfer/vLLM compilation caches through SparkRun's host cache mount, avoiding a full kernel rebuild after normal recipe restarts. The pinned current image has no baked entrypoint or Docker healthcheck.
 
 #### Security
 
-This upstream-compatible recipe binds vLLM to `0.0.0.0`, does not configure API authentication, and permits URL-based vision input from any media domain. **Run it only on a trusted, firewalled private network. Do not expose port 8000 to the public Internet.** In untrusted or multi-tenant environments, restrict ingress with a host firewall or reverse proxy, add authentication, and replace `--allowed-media-domains '*'` with an explicit allowlist before deployment.
+This upstream-compatible recipe binds vLLM to `0.0.0.0`, does not configure API authentication, permits URL-based vision input from any media domain, and executes the pinned model revision's remote code via `--trust-remote-code`. The recipe explicitly requests user `root` inside the container, but the validated SparkRun 0.3.1 rootless Docker path remains non-privileged with `no-new-privileges`; it still uses host networking and host IPC. **Run it only on a trusted, firewalled private network. Do not expose port 8000 to the public Internet.** In untrusted or multi-tenant environments, restrict ingress with a host firewall or reverse proxy, add authentication, and replace `--allowed-media-domains '*'` with an explicit allowlist before deployment. Review a new Hugging Face revision before changing the recipe's `model_revision`, distribution revision, and served snapshot path together, and re-check effective container security settings after a SparkRun upgrade.
 
 ### GLM-5.2 Vision NVFP4+AQLM — Path A, maximum context
 
 `@mfellner/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-348k`
 
 A SparkRun adaptation of [MiaAI-Lab/GLM-5.2-NVFP4-AQLM-Triple-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.2-NVFP4-AQLM-Triple-DGX-Sparks). It uses:
+
+Upstream synchronization for both GLM profiles: `5c85163ccb8d98d395880e71e2dbd03976a3f4ad` (latest `main` fetched 2026-08-04). The latest upstream change adds a fail-closed guard against moving Hugging Face refs; these SparkRun recipes already use the exact vision checkpoint revision in `model_revision`, distribution, and the served snapshot path.
 
 - Exactly three DGX Spark or compatible GB10 nodes
 - `jarrelscy/GLM-5.2-NVFP4-AQLM-hybrid` with the MoonViT-3d vision tower and PatchMerger projector
@@ -112,7 +124,7 @@ The recipe directly preserves MiaAI-Lab's immutable Hugging Face vision-wrapper 
 
 `@mfellner/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k`
 
-Path B is the coding-speed profile added by MiaAI-Lab v4.5 at upstream commit `893d869ecdf002f127f44da66b71d53b157254aa`. It keeps the same immutable Vision image and checkpoint, hybrid NVFP4+AQLM weights, TP3 topology, MTP-3, FULL CUDA graphs, async scheduling, MoonViT data-parallel encoder, top-4 expert override, and validated RoCE/NCCL configuration as Path A. Its deliberate tradeoff is:
+Path B is the coding-speed profile added by MiaAI-Lab v4.5 and retained by the latest upstream commit `5c85163ccb8d98d395880e71e2dbd03976a3f4ad`. It keeps the same immutable Vision image and checkpoint, hybrid NVFP4+AQLM weights, TP3 topology, MTP-3, FULL CUDA graphs, async scheduling, MoonViT data-parallel encoder, top-4 expert override, and validated RoCE/NCCL configuration as Path A. Its deliberate tradeoff is:
 
 - `fp8_ds_mla` KV cache instead of `nvfp4_ds_mla`
 - 12 GiB KV allocation per rank
@@ -180,7 +192,7 @@ sparkrun run recipes/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k.yaml \
 
 The DeepSeek V4 Flash recipe is adapted from MiaAI-Lab's MIT-licensed deployment repository. SparkRun replaces its Docker Compose lifecycle, custom native-multiprocessing image, and manually supplied node-rank arguments with SparkRun's compatible `vllm-node` image and Ray orchestration. The recipe retains the upstream 1M-context, FP8 KV-cache, MTP, prefix-cache, FlashInfer, reasoning, tool-calling, and generation settings.
 
-The Unsloth Qwen3.6 recipe is adapted from MiaAI-Lab's MIT-licensed deployment repository. SparkRun replaces its standalone shell lifecycle, readiness loop, cache management, and direct `docker run` invocation. The adaptation retains MiaAI-Lab's purpose-built SM121 image, Unsloth model, FlashInfer B12X/attention kernels, FP8 KV cache, 256K context, MTP, async scheduling, multimodal limits, reasoning, tool-calling, and generation settings.
+The Unsloth Qwen3.6 recipe is adapted from MiaAI-Lab's MIT-licensed deployment repository. SparkRun replaces its standalone shell lifecycle, readiness loop, cache management, and direct `docker run` invocation. The adaptation retains MiaAI-Lab's purpose-built SM121 v0.26 image, mixed-quant B12X soft-fallback patch, Unsloth model, FlashInfer B12X/attention kernels, FP8 KV cache, 256K context, MTP, async scheduling, multimodal limits, reasoning, tool-calling, and generation settings.
 
 The GLM-5.2 Vision recipes are adapted from MiaAI-Lab's MIT-licensed triple-Spark deployment repository. SparkRun replaces its `.env` files, SSH helper, manual Ray lifecycle, resource synchronization, container startup, and readiness loop. Both adaptations retain the purpose-built vision image, hybrid NVFP4+AQLM checkpoint, TP3/DCP1 topology, MTP-3, FULL CUDA graphs, MoonViT data-parallel encoder mode, tool/reasoning parsers, and kernel tuning. Path A preserves the fixed NVFP4 MLA KV allocation and 348K context; Path B preserves v4.5's FP8 MLA coding-speed profile and 235K context. SparkRun supplies model/image distribution, lifecycle tracking, persistent cache mounts, and LiteLLM discovery; both recipes explicitly select the validated two-HCA cross-connected RoCE triangle.
 
