@@ -1,0 +1,164 @@
+# Adapted from MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark.
+# SparkRun provides pinned model/image distribution, native vLLM multi-node
+# orchestration, per-host fabric detection, lifecycle, and cache mounts. The
+# upstream 0731 checkpoint, Anemll DSpark runtime, NVFP4 DS-MLA KV path, MTP-5,
+# SM121 kernels, encoder compatibility patch, and serving profile are retained.
+recipe_version: "2"
+name: deepseek-v4-flash-0731-dspark-dual-spark-1m
+model: deepseek-ai/DeepSeek-V4-Flash-0731
+model_revision: 9e165c30e2704aec5d9d593cce3eebd58bbef1cb
+runtime: vllm-distributed
+runtime_version: anemll-dspark-vllm-gx10-0.1.1
+min_nodes: 2
+max_nodes: 2
+container: ghcr.io/anemll/dspark-vllm-gx10@sha256:a83948492cf13df455170fb42885f5ef4db54fefe0feff0f841ecbff464ac9d8
+
+metadata:
+  description: DeepSeek V4 Flash 0731 on two DGX Sparks with native DSpark MTP-5, NVFP4 DS-MLA KV cache, SM121 FlashInfer B12X MoE, and 1,048,576-token context
+  source: https://github.com/MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark
+  source_revision: a4ce87a2f47f1be8fe64c297a0cf33a9a5e509aa
+  hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
+  context_length: 1048576
+  model_dtype: fp8
+  kv_dtype: nvfp4
+  num_layers: 43
+  num_kv_heads: 1
+  head_dim: 512
+  notes: Port 8000 deliberately preserves the SparkRun recipe-registry and existing LiteLLM route convention; upstream uses 8888, which does not affect inference behavior or benchmark methodology
+
+mods: []
+
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: deepseek-ai/DeepSeek-V4-Flash-0731
+        revision: 9e165c30e2704aec5d9d593cce3eebd58bbef1cb
+        target: [-1]
+
+# The upstream image clears its entrypoint and runs as root so the checkpoint's
+# 0731 encoder can be installed into vLLM on both ranks before startup.
+# SparkRun remains non-privileged with no-new-privileges and host network/IPC.
+executor_config:
+  entrypoint: ""
+  user: root
+  shm_size: 64gb
+  cap_add:
+    - IPC_LOCK
+  ulimit:
+    - memlock=-1:-1
+    - stack=67108864:67108864
+    - nofile=65535:65535
+  volumes:
+    - /tmp/sparkrun-dspark-vllm:/tmp
+
+builder: docker-pull
+
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  served_model_name: deepseek-v4-flash-0731
+  tensor_parallel: 2
+  pipeline_parallel: 1
+  gpu_memory_utilization: 0.80
+  max_model_len: 1048576
+  block_size: 256
+  max_num_seqs: 6
+  max_num_batched_tokens: 8192
+  max_cudagraph_capture_size: 36
+  speculative_config: '{"method":"dspark","num_speculative_tokens":5,"draft_sample_method":"probabilistic"}'
+  reasoning_config: '{"reasoning_parser":"deepseek_v4","reasoning_start_str":"<think>","reasoning_end_str":"</think>"}'
+  chat_template_kwargs: '{"thinking":true,"reasoning_effort":"max"}'
+
+env:
+  HF_HUB_OFFLINE: "1"
+  TRANSFORMERS_OFFLINE: "1"
+  HF_HUB_DISABLE_XET: "1"
+  VLLM_CACHE_ROOT: /cache/huggingface/vllm-cache
+  VLLM_ALLOW_LONG_MAX_MODEL_LEN: "1"
+  VLLM_SPARSE_INDEXER_MAX_LOGITS_MB: "256"
+  VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS: "0"
+  VLLM_USE_FLASHINFER_SAMPLER: "1"
+  VLLM_USE_BREAKABLE_CUDAGRAPH: "0"
+  VLLM_USE_B12X_MOE: "1"
+  VLLM_B12X_W4A16_FORCE_BLOCKS_PER_SM: "0"
+  VLLM_B12X_W4A16_FORCE_BLOCKS_MAX_M: "16"
+  CUTE_DSL_ARCH: sm_121a
+  TORCH_CUDA_ARCH_LIST: 12.1a
+  FLASHINFER_CUDA_ARCH_LIST: 12.1a
+  FLASHINFER_DISABLE_VERSION_CHECK: "1"
+  FLASHINFER_WORKSPACE_BASE: /cache/huggingface/flashinfer
+  TMPDIR: /cache/huggingface/dspark-tmp
+  CUDA_HOME: /usr/local/cuda
+  CUDA_PATH: /usr/local/cuda
+  CUDAToolkit_ROOT: /usr/local/cuda
+  TILELANG_CLEANUP_TEMP_FILES: "1"
+  DG_JIT_USE_NVRTC: "0"
+  DG_JIT_NVCC_COMPILER: /usr/local/cuda/bin/nvcc
+  PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+  NCCL_NET: IB
+  NCCL_IB_DISABLE: "0"
+  NCCL_IB_ADDR_FAMILY: AF_INET
+  NCCL_IB_ROCE_VERSION_NUM: "2"
+  NCCL_CROSS_NIC: "1"
+  NCCL_CUMEM_ENABLE: "0"
+  NCCL_IGNORE_CPU_AFFINITY: "1"
+  NCCL_DEBUG: WARN
+  NCCL_NVLS_ENABLE: "0"
+
+# Install the pinned checkpoint's encoder and preserve low/high/max reasoning
+# semantics in the Anemll tokenizer wrapper. Native runtime hooks execute this
+# on every rank before either vLLM process starts.
+pre_exec:
+  - mkdir -p /cache/huggingface/dspark-tmp /cache/huggingface/vllm-cache /cache/huggingface/flashinfer
+  - echo 'abc0d26120250dda0ae077dc64aa28836026e61e970854aaeb792445e6a0dde6 /cache/huggingface/hub/models--deepseek-ai--DeepSeek-V4-Flash-0731/snapshots/9e165c30e2704aec5d9d593cce3eebd58bbef1cb/encoding/encoding_dsv4.py' | sha256sum -c -
+  - cp /cache/huggingface/hub/models--deepseek-ai--DeepSeek-V4-Flash-0731/snapshots/9e165c30e2704aec5d9d593cce3eebd58bbef1cb/encoding/encoding_dsv4.py /usr/local/lib/python3.12/dist-packages/vllm/tokenizers/deepseek_v4_encoding.py
+  - >-
+    python3 -c 'from pathlib import Path; p=Path("/usr/local/lib/python3.12/dist-packages/vllm/tokenizers/deepseek_v4.py"); s=p.read_text(); old="elif reasoning_effort in (\"max\", \"xhigh\"):\n                reasoning_effort = \"max\"\n            else:\n                reasoning_effort = \"high\""; new="elif reasoning_effort in (\"max\", \"xhigh\"):\n                reasoning_effort = \"max\"\n            elif reasoning_effort == \"high\":\n                reasoning_effort = \"high\"\n            else:\n                reasoning_effort = \"low\""; updated=s.replace(old,new); assert new in updated; p.write_text(updated)'
+
+command: |
+  export PATH="/usr/local/cuda/bin:/usr/local/bin:${PATH:-}";
+  export CUDA_HOME="${CUDA_HOME:-/usr/local/cuda}";
+  export CUDA_PATH="${CUDA_PATH:-${CUDA_HOME}}";
+  export CUDAToolkit_ROOT="${CUDAToolkit_ROOT:-${CUDA_HOME}}";
+  export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH:-}";
+  export VLLM_HOST_IP="${NODE_IP}";
+  exec /usr/local/bin/vllm serve /cache/huggingface/hub/models--deepseek-ai--DeepSeek-V4-Flash-0731/snapshots/9e165c30e2704aec5d9d593cce3eebd58bbef1cb \
+    --served-model-name {served_model_name} \
+    --host {host} \
+    --port {port} \
+    --trust-remote-code \
+    --tensor-parallel-size {tensor_parallel} \
+    --pipeline-parallel-size {pipeline_parallel} \
+    --kv-cache-dtype nvfp4_ds_mla \
+    --block-size {block_size} \
+    --max-model-len {max_model_len} \
+    --max-num-seqs {max_num_seqs} \
+    --max-num-batched-tokens {max_num_batched_tokens} \
+    --max-cudagraph-capture-size {max_cudagraph_capture_size} \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --enable-prefix-caching \
+    --enable-prompt-tokens-details \
+    --async-scheduling \
+    --enable-chunked-prefill \
+    --speculative-config '{speculative_config}' \
+    --tokenizer-mode deepseek_v4 \
+    --distributed-executor-backend mp \
+    --moe-backend flashinfer_b12x \
+    --tool-call-parser deepseek_v4 \
+    --enable-auto-tool-choice \
+    --reasoning-parser deepseek_v4 \
+    --reasoning-config '{reasoning_config}' \
+    --default-chat-template-kwargs '{chat_template_kwargs}' \
+    --generation-config vllm \
+    --enable-flashinfer-autotune
+
+# SparkRun waits for HTTP readiness before these head-container hooks. The
+# second hook upgrades readiness to a semantic completion gate.
+post_exec:
+  - curl -fsS --max-time 10 http://127.0.0.1:{port}/v1/models >/dev/null
+  - >-
+    curl -fsS --max-time 120 http://127.0.0.1:{port}/v1/chat/completions
+    -H 'Content-Type: application/json'
+    -d '{"model":"deepseek-v4-flash-0731","messages":[{"role":"user","content":"Reply with exactly: DS0731_OK"}],"temperature":0,"max_tokens":32,"chat_template_kwargs":{"thinking":false}}'
+    | python3 -c 'import json,sys; x=json.load(sys.stdin); assert x["choices"][0]["message"].get("content", "").strip() == "DS0731_OK"'

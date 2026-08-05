@@ -12,7 +12,59 @@ Recipes are then available under the `@mfellner/` namespace.
 
 ## Recipes
 
-### DeepSeek V4 Flash — dual Spark, 1M context
+### DeepSeek V4 Flash 0731 DSpark — dual Spark, 1M context (recommended)
+
+`@mfellner/deepseek-v4-flash-0731-dspark-dual-spark-1m`
+
+An immutable SparkRun adaptation of [MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark](https://github.com/MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark). The effective serving stack was audited against upstream commit `a4ce87a2f47f1be8fe64c297a0cf33a9a5e509aa`.
+
+- Two DGX Spark or compatible GB10 nodes using SparkRun's native `vllm-distributed` runtime
+- `deepseek-ai/DeepSeek-V4-Flash-0731` at revision `9e165c30e2704aec5d9d593cce3eebd58bbef1cb`
+- Anemll DSpark image `0.1.1`, pinned at manifest digest `sha256:a83948492cf13df455170fb42885f5ef4db54fefe0feff0f841ecbff464ac9d8`
+- Tensor parallelism 2, 1,048,576-token configured context, and NVFP4 DS-MLA KV cache
+- Native DSpark speculative decoding with five probabilistically sampled draft tokens
+- FlashInfer B12X MXFP4 MoE, SM121 kernels, async scheduling, chunked prefill, prefix caching, and FlashInfer autotuning
+- DeepSeek V4 reasoning and tool-call parsers, with reasoning effort `max` by default as in the pinned upstream revision; clients can disable thinking per request for low-latency decode benchmarking
+- Encoder compatibility patch copied from the pinned model snapshot only after SHA-256 verification
+- 64 GiB shared memory, persistent runtime/autotune caches, RoCE v2/NCCL environment, and readiness plus semantic-completion post-launch gates
+
+Port `8000` is an intentional operational adaptation from upstream's `8888`, preserving SparkRun registry discovery and existing proxy conventions. It does not change model execution or benchmark methodology. The served model name remains upstream-compatible: `deepseek-v4-flash-0731`.
+
+Run it on a saved two-node cluster:
+
+```bash
+sparkrun run @mfellner/deepseek-v4-flash-0731-dspark-dual-spark-1m \
+  --cluster YOUR_CLUSTER \
+  --no-follow
+```
+
+Or specify the two hosts directly:
+
+```bash
+sparkrun run @mfellner/deepseek-v4-flash-0731-dspark-dual-spark-1m \
+  --hosts HEAD_IP,WORKER_IP \
+  --no-follow
+```
+
+#### Reproduced performance
+
+Acceptance testing on two ASUS Ascent GX10 systems used 2,048-token structured-output streams, temperature 0, `ignore_eos=true`, and thinking disabled. Five warmed single-stream HTML runs produced:
+
+- median TTFT: **239.5 ms** (range **182.8–280.9 ms**)
+- median streamed decode: **81.96 tok/s** (range **81.62–83.39 tok/s**)
+- median end-to-end output rate: **81.27 tok/s**
+
+This reproduces MiaAI-Lab's published `80+ tok/s` performance class; their screenshot reports 82.4 tok/s for its selected structured-output stream. Decode performance is output-dependent because DSpark acceptance varies with generated content: the same local four-prompt suite ranged from 70.78 to 81.71 tok/s at concurrency 1. A warmed thinking-disabled concurrency sweep measured **101.32 aggregate tok/s at C2** and **142.25 aggregate tok/s at C4**. Keep decode TPS, TTFT, end-to-end output rate, and aggregate concurrent throughput separate when comparing results.
+
+The configured 1,048,576-token limit and approximately 1.9M-token KV pool are configured capabilities. Empirical semantic validation reached 62,032 prompt tokens and returned the requested sentinel; a near-1M prompt was not part of this acceptance run.
+
+#### Security and operational notes
+
+The endpoint binds to `0.0.0.0:8000` without API authentication and executes pinned model remote code via `--trust-remote-code`. The validated SparkRun 0.3.1 rootless Docker path is non-privileged with `no-new-privileges`, but uses host networking, host IPC, GPU CDI, and `/dev/infiniband`. **Run it only on a trusted, firewalled private network; never expose inference or NCCL/bootstrap ports directly to the public Internet.**
+
+During first-time/lazy CUDA graph and kernel-shape warmup, the GB10 driver can emit recoverable `NV_ERR_NO_MEMORY` allocation notices even when vLLM completes graph capture and remains healthy. Treat an API failure, Xid, worker exit, or recurring post-warmup allocation failure as a fault; do not treat the kernel notice alone as a successful or failed stress test.
+
+### DeepSeek V4 Flash base checkpoint — dual Spark, 1M context (legacy)
 
 `@mfellner/deepseek-v4-flash-dual-spark-1m`
 
@@ -167,6 +219,11 @@ The GLM endpoint binds to `0.0.0.0:8000` without API authentication, executes pi
 Validate a recipe before publishing or running it:
 
 ```bash
+sparkrun recipe validate recipes/deepseek-v4-flash-0731-dspark-dual-spark-1m.yaml
+sparkrun run recipes/deepseek-v4-flash-0731-dspark-dual-spark-1m.yaml \
+  --hosts HEAD_IP,WORKER_IP \
+  --dry-run
+
 sparkrun recipe validate recipes/deepseek-v4-flash-dual-spark-1m.yaml
 sparkrun run recipes/deepseek-v4-flash-dual-spark-1m.yaml \
   --hosts HEAD_IP,WORKER_IP \
@@ -190,7 +247,7 @@ sparkrun run recipes/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k.yaml \
 
 ## Attribution
 
-The DeepSeek V4 Flash recipe is adapted from MiaAI-Lab's MIT-licensed deployment repository. SparkRun replaces its Docker Compose lifecycle, custom native-multiprocessing image, and manually supplied node-rank arguments with SparkRun's compatible `vllm-node` image and Ray orchestration. The recipe retains the upstream 1M-context, FP8 KV-cache, MTP, prefix-cache, FlashInfer, reasoning, tool-calling, and generation settings.
+The recommended DeepSeek V4 Flash 0731 recipe is adapted from MiaAI-Lab's MIT-licensed DSpark deployment repository. SparkRun replaces Docker Compose and manually supplied node-rank lifecycle with native `vllm-distributed` orchestration while retaining the pinned Anemll image, checkpoint, DSpark MTP-5 path, NVFP4 DS-MLA KV cache, FlashInfer B12X MoE, 1M context, parser, and generation settings. The older base-checkpoint recipe remains available for compatibility and uses SparkRun's Ray-based runtime rather than the optimized 0731 DSpark stack.
 
 The Unsloth Qwen3.6 recipe is adapted from MiaAI-Lab's MIT-licensed deployment repository. SparkRun replaces its standalone shell lifecycle, readiness loop, cache management, and direct `docker run` invocation. The adaptation retains MiaAI-Lab's purpose-built SM121 v0.26 image, mixed-quant B12X soft-fallback patch, Unsloth model, FlashInfer B12X/attention kernels, FP8 KV cache, 256K context, MTP, async scheduling, multimodal limits, reasoning, tool-calling, and generation settings.
 
