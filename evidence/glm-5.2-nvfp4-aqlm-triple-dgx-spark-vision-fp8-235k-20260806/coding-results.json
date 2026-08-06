@@ -1,0 +1,33 @@
+{
+  "runs": [
+    {
+      "prompt_tokens": 49,
+      "completion_tokens": 512,
+      "ttft_ms": 900.1017840055283,
+      "decode_tps": 20.399190895583402,
+      "e2e_output_tps": 19.730059409559722,
+      "duration_s": 25.950251308007864,
+      "output_prefix": "import http, { IncomingMessage, ServerResponse, Server } from 'http';\nimport { z, ZodError } from 'zod';\nimport { zxcvbn"
+    },
+    {
+      "prompt_tokens": 49,
+      "completion_tokens": 512,
+      "ttft_ms": 1020.8968929946423,
+      "decode_tps": 20.389034911800554,
+      "e2e_output_tps": 19.62927445533653,
+      "duration_s": 26.083490816992708,
+      "output_prefix": "import http, { IncomingMessage, ServerResponse, Server } from 'http';\nimport { z, ZodError } from 'zod';\nimport { zxcvbn"
+    },
+    {
+      "prompt_tokens": 49,
+      "completion_tokens": 512,
+      "ttft_ms": 1023.6480480089085,
+      "decode_tps": 20.374664189452147,
+      "e2e_output_tps": 19.6138781484805,
+      "duration_s": 26.103965576010523,
+      "output_prefix": "import http, { IncomingMessage, ServerResponse, Server } from 'http';\nimport { z, ZodError } from 'zod';\nimport { zxcvbn"
+    }
+  ],
+  "median_decode_tps": 20.389034911800554,
+  "median_ttft_ms": 1020.8968929946423
+}

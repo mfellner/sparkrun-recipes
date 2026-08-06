@@ -10,11 +10,15 @@ description: >-
   GB10 nodes.
 
 model: jarrelscy/GLM-5.2-NVFP4-AQLM-hybrid
-# Immutable vision-wrapper revision retained by latest upstream commit 5c85163.
+# Immutable latest weight/config checkpoint retained by upstream commit 5c85163.
+# HF head c5d9356 only adds README/Terminal-Bench traces; serving payload is unchanged.
 model_revision: 53e0082eedebd806b63e19779c47905937d768ca
 
 runtime: vllm-ray
 runtime_version: k12l1-vision
+runtime_config:
+  # Match upstream's `ray start --include-dashboard=false` and save UMA memory.
+  dashboard: false
 mode: cluster
 cluster_only: true
 min_nodes: 3
@@ -72,7 +76,7 @@ pre_exec:
     lib_sha='fc7ea66334edbc934aa25959b9907dbb2b91a1d2485beff18839afc45cbc08d0'
     if ! printf '%s  %s\n' "$lib_sha" "$nccl_lib" | sha256sum -c - >/dev/null 2>&1; then
       rm -f "$nccl_lib"
-      curl -fL --retry 3 "$url" -o "$wheel"
+      curl -fL --retry 8 --retry-all-errors --retry-delay 2 "$url" -o "$wheel"
       printf '%s  %s\n' "$wheel_sha" "$wheel" | sha256sum -c -
       rm -rf "$extract"
       /opt/vllm/.venv/bin/python -m zipfile -e "$wheel" "$extract"
@@ -92,6 +96,8 @@ env:
   HF_HUB_OFFLINE: "1"
   TRANSFORMERS_OFFLINE: "1"
   HF_HUB_DISABLE_TELEMETRY: "1"
+  # Match upstream's model-directory environment while serving the immutable snapshot.
+  MODEL_DIR: /cache/huggingface/hub/models--jarrelscy--GLM-5.2-NVFP4-AQLM-hybrid/snapshots/53e0082eedebd806b63e19779c47905937d768ca
 
   RAY_memory_usage_threshold: "0.99"
   RAY_memory_monitor_refresh_ms: "0"
@@ -114,16 +120,20 @@ env:
   NCCL_BUFFSIZE: "1048576"
   NCCL_PROTO: LL,LL128,Simple
   NCCL_CROSS_NIC: "1"
+  NCCL_IB_DISABLE: "0"
+  NCCL_NET: IB
   # Preserve upstream's two-HCA selection. The physical triangle must cross
   # port 0/f0 to port 1/f1 on every cable so each rank can reach both peers.
   NCCL_IB_HCA: rocep1s0f0,rocep1s0f1
   NCCL_IB_MERGE_NICS: "0"
   NCCL_IB_SUBNET_AWARE_ROUTING: "1"
+  NCCL_IB_GID_INDEX: "3"
   NCCL_GIN_ENABLE: "0"
   NCCL_CUMEM_ENABLE: "0"
   NCCL_IGNORE_CPU_AFFINITY: "1"
   # Bootstrap over the common LAN; model traffic uses the selected RoCE HCAs.
   NCCL_SOCKET_IFNAME: enP7s7
+  GLOO_SOCKET_IFNAME: enP7s7
   NCCL_DEBUG: WARN
   NCCL_GRAPH_MIXING_SUPPORT: "1"
 
@@ -131,8 +141,11 @@ env:
   FLASHINFER_DISABLE_VERSION_CHECK: "1"
   VLLM_DISABLE_FLASHINFER_AUTOTUNE: "1"
   VLLM_DISABLE_FP8_W8A16: "0"
+  VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS: "0"
   VLLM_MTP_INDEX_SHARE: "1"
   VLLM_SPARSE_INDEXER_MAX_LOGITS_MB: "192"
+  # Required by the fork's backend-gated TP3 head/MoE padding path.
+  VLLM_GLM_TP_PAD: "1"
 
   GLM_SHARED_EXPERTS_DEBUG: "1"
   GLM_MOE_LANE_ROWS: "1"
@@ -191,6 +204,23 @@ command: >-
   --kv-cache-memory-bytes 12884901888
   --mm-encoder-tp-mode data
 
+# Fail closed after SparkRun's HTTP readiness check. Use control-plane hooks
+# because SparkRun 0.3.1's post_exec lifecycle misnames vllm-ray head containers.
+post_commands:
+  - >-
+    python3 -c
+    'import json,urllib.request;
+    d=json.load(urllib.request.urlopen("http://{head_ip}:{port}/v1/models",timeout=30));
+    assert any(m.get("id")=="glm-5.2" for m in d.get("data",[])), d'
+  - >-
+    python3 -c
+    'import json,urllib.request;
+    b=json.dumps({"model":"glm-5.2","messages":[{"role":"user","content":"Reply with exactly GLM52_OK and nothing else."}],"temperature":0,"max_tokens":16,"chat_template_kwargs":{"enable_thinking":False}}).encode();
+    r=urllib.request.Request("http://{head_ip}:{port}/v1/chat/completions",data=b,headers={"Content-Type":"application/json"});
+    d=json.load(urllib.request.urlopen(r,timeout=300));
+    c=d["choices"][0]["message"]["content"].strip();
+    assert c=="GLM52_OK",repr(c)'
+
 metadata:
   maintainer: mfellner
   source: https://github.com/MiaAI-Lab/GLM-5.2-NVFP4-AQLM-Triple-DGX-Sparks
@@ -198,8 +228,8 @@ metadata:
   architecture: Glm5vForConditionalGeneration
   model_params: 744B
   model_dtype: nvfp4
-  # Actual indexed checkpoint payload is 292,491,816,312 bytes (~272.38 GiB).
-  model_vram: 272.38
+  # Actual indexed checkpoint payload is 292,492,465,080 bytes (~272.40 GiB).
+  model_vram: 272.40
   kv_dtype: fp8
   kv_vram_per_token: 0.0001529363784665579
   max_model_len: 235392
@@ -211,6 +241,7 @@ metadata:
     - Exactly three GB10 GPUs are required; host order defines Ray head then workers.
     - The RoCE and bootstrap interface names match the validated ASUS Ascent GX10 fleet; compatible systems with different interface names must adapt them before launch.
     - Path B uses a 12 GiB FP8 MLA KV allocation, yielding an approximately 240,640-token pool for the 235,392-token served window.
+    - HF repository head c5d9356 was audited on 2026-08-06; changes after 53e0082 are documentation and Terminal-Bench traces only, so 53e0082 remains the latest immutable serving checkpoint and avoids downloading benchmark artifacts.
     - FP8 KV improves decode speed but may reduce accuracy relative to Path A's NVFP4 KV; validate application quality before switching production traffic.
     - mm-encoder-tp-mode=data is mandatory because the 16-head MoonViT encoder is not divisible by TP3.
     - Default chat-template thinking is disabled for coding speed; clients can opt in per request.

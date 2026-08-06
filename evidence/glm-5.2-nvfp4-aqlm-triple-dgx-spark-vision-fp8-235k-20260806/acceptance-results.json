@@ -1,0 +1,51 @@
+{
+  "models": [
+    "glm-5.2"
+  ],
+  "semantic": {
+    "content": "GLM52_SEMANTIC_OK",
+    "usage": {
+      "prompt_tokens": 21,
+      "total_tokens": 30,
+      "completion_tokens": 9,
+      "prompt_tokens_details": null
+    }
+  },
+  "tool_call": {
+    "name": "get_weather",
+    "arguments": {
+      "city": "Berlin"
+    },
+    "usage": {
+      "prompt_tokens": 161,
+      "total_tokens": 172,
+      "completion_tokens": 11,
+      "prompt_tokens_details": null
+    }
+  },
+  "vision": {
+    "content": "The background is a large red square, and the centered shape is a white circle.",
+    "usage": {
+      "prompt_tokens": 124,
+      "total_tokens": 142,
+      "completion_tokens": 18,
+      "prompt_tokens_details": null
+    }
+  },
+  "long_context": {
+    "content": "ALPHA_MARKER_7319|OMEGA_MARKER_2846",
+    "usage": {
+      "prompt_tokens": 71537,
+      "total_tokens": 71553,
+      "completion_tokens": 16,
+      "prompt_tokens_details": null
+    }
+  },
+  "anthropic": {
+    "content": "4",
+    "usage": {
+      "input_tokens": 20,
+      "output_tokens": 2
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "base_url": "http://192.168.0.184:8000/v1",
+  "model": "glm-5.2",
+  "method": {
+    "streaming": true,
+    "thinking": false,
+    "temperature": 0,
+    "ignore_eos": true,
+    "warmups": 5,
+    "warmup_tokens": 256,
+    "measured_runs": 5,
+    "measured_tokens": 1024,
+    "mixed_runs": 3,
+    "mixed_tokens": 512,
+    "ttft_definition": "request submission to first non-empty content delta",
+    "decode_definition": "(completion_tokens - 1) / (last non-empty content delta - first non-empty content delta)"
+  },
+  "structured": {
+    "runs": [
+      {
+        "prompt_tokens": 70,
+        "completion_tokens": 1024,
+        "ttft_ms": 1063.15141300729,
+        "decode_tps": 25.36496694104505,
+        "e2e_output_tps": 24.737581182315665,
+        "duration_s": 41.39450791300624,
+        "output_prefix": "{\"items\":[{\"id\":1,\"name\":\"Alpha\",\"category\":\"A\",\"active\":true,\"score\":3.14,\"code\":\"a1\"},{\"id\":2,\"name\":\"Beta\",\"category\""
+      },
+      {
+        "prompt_tokens": 70,
+        "completion_tokens": 1024,
+        "ttft_ms": 1047.5228069990408,
+        "decode_tps": 25.459895364328784,
+        "e2e_output_tps": 24.83721289489691,
+        "duration_s": 41.22845845599659,
+        "output_prefix": "{\"items\":[{\"id\":1,\"name\":\"Alpha\",\"category\":\"A\",\"active\":true,\"score\":3.14,\"code\":\"a1\"},{\"id\":2,\"name\":\"Beta\",\"category\""
+      },
+      {
+        "prompt_tokens": 70,
+        "completion_tokens": 1024,
+        "ttft_ms": 1067.9869139858056,
+        "decode_tps": 25.426501723394836,
+        "e2e_output_tps": 24.793157330968437,
+        "duration_s": 41.30171830600011,
+        "output_prefix": "{\"items\":[{\"id\":1,\"name\":\"Alpha\",\"category\":\"A\",\"active\":true,\"score\":3.14,\"code\":\"a1\"},{\"id\":2,\"name\":\"Beta\",\"category\""
+      },
+      {
+        "prompt_tokens": 70,
+        "completion_tokens": 1024,
+        "ttft_ms": 1145.9649880125653,
+        "decode_tps": 25.37885886557575,
+        "e2e_output_tps": 24.70132165228426,
+        "duration_s": 41.45527168200351,
+        "output_prefix": "{\"items\":[{\"id\":1,\"name\":\"Alpha\",\"category\":\"A\",\"active\":true,\"score\":3.14,\"code\":\"a1\"},{\"id\":2,\"name\":\"Beta\",\"category\""
+      },
+      {
+        "prompt_tokens": 70,
+        "completion_tokens": 1024,
+        "ttft_ms": 1062.3910310096107,
+        "decode_tps": 25.46870580492912,
+        "e2e_output_tps": 24.836619646160656,
+        "duration_s": 41.22944324101263,
+        "output_prefix": "{\"items\":[{\"id\":1,\"name\":\"Alpha\",\"category\":\"A\",\"active\":true,\"score\":3.14,\"code\":\"a1\"},{\"id\":2,\"name\":\"Beta\",\"category\""
+      }
+    ],
+    "ttft_ms": {
+      "median": 1063.15141300729,
+      "min": 1047.5228069990408,
+      "max": 1145.9649880125653
+    },
+    "decode_tps": {
+      "median": 25.426501723394836,
+      "min": 25.36496694104505,
+      "max": 25.46870580492912
+    },
+    "e2e_output_tps": {
+      "median": 24.793157330968437,
+      "min": 24.70132165228426,
+      "max": 24.83721289489691
+    },
+    "duration_s": {
+      "median": 41.30171830600011,
+      "min": 41.22845845599659,
+      "max": 41.45527168200351
+    }
+  },
+  "mixed": {
+    "runs": [
+      {
+        "prompt_tokens": 59,
+        "completion_tokens": 512,
+        "ttft_ms": 1107.1562220022315,
+        "decode_tps": 14.2579507639353,
+        "e2e_output_tps": 13.857726603989892,
+        "duration_s": 36.94689718099835,
+        "output_prefix": "Building a reliable distributed service with a small engineering team requires a pragmatic approach that balances ambiti"
+      },
+      {
+        "prompt_tokens": 59,
+        "completion_tokens": 512,
+        "ttft_ms": 1218.611828997382,
+        "decode_tps": 14.233489648472121,
+        "e2e_output_tps": 13.79310250409022,
+        "duration_s": 37.12000254099257,
+        "output_prefix": "Building a reliable distributed service with a small engineering team requires a pragmatic approach that balances ambiti"
+      },
+      {
+        "prompt_tokens": 59,
+        "completion_tokens": 512,
+        "ttft_ms": 1233.3114159991965,
+        "decode_tps": 14.235503817158055,
+        "e2e_output_tps": 13.789538116392668,
+        "duration_s": 37.12959750198934,
+        "output_prefix": "Building a reliable distributed service with a small engineering team requires a pragmatic approach that balances ambiti"
+      }
+    ],
+    "ttft_ms": {
+      "median": 1218.611828997382,
+      "min": 1107.1562220022315,
+      "max": 1233.3114159991965
+    },
+    "decode_tps": {
+      "median": 14.235503817158055,
+      "min": 14.233489648472121,
+      "max": 14.2579507639353
+    },
+    "e2e_output_tps": {
+      "median": 13.79310250409022,
+      "min": 13.789538116392668,
+      "max": 13.857726603989892
+    },
+    "duration_s": {
+      "median": 37.12000254099257,
+      "min": 36.94689718099835,
+      "max": 37.12959750198934
+    }
+  }
+}

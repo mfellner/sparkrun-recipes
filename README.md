@@ -5,10 +5,10 @@ Custom [SparkRun](https://sparkrun.dev/) recipe registry for NVIDIA DGX Spark an
 ## Add the registry
 
 ```bash
-sparkrun registry add https://github.com/mfellner/sparkrun-recipes.git
+sparkrun registry add --trust https://github.com/mfellner/sparkrun-recipes.git
 ```
 
-Recipes are then available under the `@mfellner/` namespace.
+Recipes are then available under the `@mfellner/` namespace. Review the repository before granting trust: several recipes intentionally require custom images, host networking/IPC, device access, capabilities, or lifecycle hooks. If the registry was already added without trust, run `sparkrun registry trust mfellner` after auditing it, or add `--trust` explicitly to a local-file launch.
 
 ## Recipes
 
@@ -149,7 +149,7 @@ This upstream-compatible recipe binds vLLM to `0.0.0.0`, does not configure API 
 
 A SparkRun adaptation of [MiaAI-Lab/GLM-5.2-NVFP4-AQLM-Triple-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.2-NVFP4-AQLM-Triple-DGX-Sparks). It uses:
 
-Upstream synchronization for both GLM profiles: `5c85163ccb8d98d395880e71e2dbd03976a3f4ad` (latest `main` fetched 2026-08-04). The latest upstream change adds a fail-closed guard against moving Hugging Face refs; these SparkRun recipes already use the exact vision checkpoint revision in `model_revision`, distribution, and the served snapshot path.
+Upstream synchronization for both GLM profiles: `5c85163ccb8d98d395880e71e2dbd03976a3f4ad` (latest `main` fetched 2026-08-06). The upstream launcher fail-closes if `HF_REVISION` falls back to mutable Hugging Face `main`. Hugging Face head `c5d93567f1ff2de4dbba6018b58a653654c1309a` was also audited: everything after `53e0082eedebd806b63e19779c47905937d768ca` is README and Terminal-Bench trace material, with no serving weight, index, config, tokenizer, template, or remote-code change. These SparkRun recipes therefore pin `53e0082…` as the latest serving checkpoint in `model_revision`, distribution, and the served snapshot path, avoiding irrelevant benchmark-artifact downloads.
 
 - Exactly three DGX Spark or compatible GB10 nodes
 - `jarrelscy/GLM-5.2-NVFP4-AQLM-hybrid` with the MoonViT-3d vision tower and PatchMerger projector
@@ -167,6 +167,7 @@ Run it with the Ray head listed first:
 ```bash
 sparkrun run @mfellner/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-348k \
   --hosts HEAD_IP,WORKER1_IP,WORKER2_IP \
+  --trust \
   --no-follow
 ```
 
@@ -185,7 +186,7 @@ Path B is the coding-speed profile added by MiaAI-Lab v4.5 and retained by the l
 - `GPU_MEM_UTIL=0.9`
 - Thinking disabled by default for lower-latency coding and agent use; clients can opt in per request
 
-Upstream reports approximately 25–26 structured decode tokens/s on its three-Spark fleet, about 20% faster than Path A, in exchange for reducing context from 348,160 to 235,392 tokens. Treat those values as upstream expectations until reproduced on the target cluster.
+Upstream reports approximately 25–26 structured decode tokens/s on its three-Spark fleet, about 20% faster than Path A, in exchange for reducing context from 348,160 to 235,392 tokens. This was reproduced on the `dgx03`/`dgx04`/`gx10` ASUS Ascent GX10 cluster on 2026-08-06: after five discarded 256-token warm-ups, five deterministic 1,024-token structured-JSON runs at concurrency 1, thinking disabled, and `ignore_eos=true` delivered a **25.427 tok/s median** (25.365–25.469) with 1.063 s median client-observed TTFT. Three 512-token TypeScript coding runs delivered a **20.389 tok/s median** (20.375–20.399), within upstream's reported 15.5–21 tok/s mixed-output band. A deliberately high-entropy natural-prose prompt measured 14.236 tok/s, so decode rate remains output-dependent. A separate GPU load capture from the same acceptance session recorded busy samples in P0 at 93–96% utilization, approximately 2.44–2.50 GHz SM clocks, and 46.8–50.9 W median power; because the result JSON lacks wall-clock timestamps, this telemetry is not attributed to individual measured runs. The committed [acceptance evidence](evidence/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k-20260806/) includes the exact measured-workload harnesses and prompts, measured-run result JSON, raw per-node telemetry, recipe checksum, host/rank provenance, and artifact checksums.
 
 FP8 KV can also reduce accuracy relative to Path A's NVFP4 KV cache. Benchmark application quality as well as speed before switching production traffic.
 
@@ -194,6 +195,7 @@ Run Path B with the Ray head listed first:
 ```bash
 sparkrun run @mfellner/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k \
   --hosts HEAD_IP,WORKER1_IP,WORKER2_IP \
+  --trust \
   --no-follow
 ```
 
@@ -205,6 +207,7 @@ Clients must advertise a context window of **235392** while Path B is active. Fo
 - Path B's `GPU_MEM_UTIL=0.9` startup gate requires about 109.46 GiB free per rank. When replacing another memory-saturated model, stop it first and check available memory on every node. MiaAI-Lab provides optional `DROP_CACHES` handling; SparkRun recipes cannot safely encode that host-wide operation, so if clean model file pages keep free memory below the gate, explicitly run `sync` and drop filesystem page cache on all three hosts before retrying. This affects host I/O cache and must not be automated without operator consent.
 - Host order is significant: the first host is the Ray head and serves the OpenAI-compatible API on port 8000.
 - The recipe caps Ray's object store at 128 MiB, matching upstream, via Ray's environment-based defaults.
+- SparkRun 0.3.1 has two vllm-ray lifecycle defects that must be fixed locally (or superseded by a later release): finalize each host communication environment so `NODE_IP` becomes per-host `VLLM_HOST_IP`, and use `runtime.get_head_container_name(...)` for readiness/post-hook checks instead of assuming `_node_0`. Without the latter correction, SparkRun can report a false launch failure while the real `_head` container continues loading normally.
 - On first launch, each node needs HTTPS access to `files.pythonhosted.org` to fetch the pinned NCCL 2.30.7 wheel. The recipe verifies wheel SHA-256 `ca786ffa5a647c75d4d1f5cc72a6c4f537947e2ba8823d7c8aaf768e7a7b9f77` and extracted-library SHA-256 `fc7ea66334edbc934aa25959b9907dbb2b91a1d2485beff18839afc45cbc08d0`. Subsequent launches revalidate the persistent cached library and refetch it if verification fails.
 - SparkRun 0.2.40 can exit a `docker save | ssh docker load` transfer of this 35.56 GB image before registering its manifest, then continue without reporting the failed worker image. If a worker does not show image ID `sha256:6b00d3a3…` after distribution, run `docker pull ghcr.io/miaai-lab/glm-5.2-nvfp4-triple-dgx-sparks@sha256:f8f350d46b33858eda4f0c0a5c39a7f0b27005111d393098baaaacae18c10fdb` on that worker and rerun SparkRun. The exact pull reuses already-transferred layers.
 - Cable the three CX-7 links as a cross-connected triangle: every cable must join port 0/f0 on one node to port 1/f1 on another. The recipe selects `rocep1s0f0,rocep1s0f1` for RoCE and `enP7s7` for NCCL bootstrap, matching the validated ASUS Ascent GX10/DGX Spark layout. Hosts with different interface names must adapt these three recipe values.
