@@ -1,0 +1,18 @@
+{
+  "model": "deepseek-v4-flash-0731",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "seed": 42,
+  "cases": [
+    {
+      "task": "sniah(key=prairie)",
+      "target": 262144,
+      "actual_tokens": 262168,
+      "ok": true,
+      "prediction": "24592",
+      "gold": [
+        "24592"
+      ],
+      "secs": 201.7
+    }
+  ]
+}

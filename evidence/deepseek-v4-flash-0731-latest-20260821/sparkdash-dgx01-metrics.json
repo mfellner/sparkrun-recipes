@@ -1,0 +1,209 @@
+{
+  "comfyMonitoring": false,
+  "comfyPort": 8188,
+  "disabledDevices": [],
+  "disabledInterfaces": [],
+  "hardware": {
+    "cpuCores": 20,
+    "cpuModel": "GB10",
+    "cudaDriver": null,
+    "device": "NVIDIA DGX Spark",
+    "gpuChip": "GB10",
+    "storageModel": null,
+    "totalMemoryGB": 128
+  },
+  "hermes": {
+    "behindCommits": null,
+    "checkedAt": null,
+    "error": null,
+    "finishedAt": null,
+    "installed": null,
+    "monitoring": false,
+    "startedAt": null,
+    "status": "idle",
+    "updateAvailable": null,
+    "version": null
+  },
+  "id": "dgx01",
+  "isLocal": true,
+  "kind": "spark",
+  "lanIp": "192.168.1.95",
+  "llmApiKeyPorts": [],
+  "llmMonitoring": true,
+  "llmPort": 8000,
+  "llmPorts": [
+    8000
+  ],
+  "metrics": {
+    "comfy": null,
+    "cpu": {
+      "draw": 6.1,
+      "tdp": 65,
+      "temperature": 61.6,
+      "usage": 1
+    },
+    "gpu": {
+      "power": {
+        "draw": 11.98,
+        "limit": 120,
+        "systemDraw": 38
+      },
+      "processes": [
+        {
+          "name": "VLLM::Worker_TP0",
+          "pid": 1450647,
+          "vramMB": 102365
+        }
+      ],
+      "temperature": 58,
+      "throttle": {
+        "active": false,
+        "detail": "Clocks not limited",
+        "hwSlowdown": false,
+        "powerCap": false,
+        "reason": "ok",
+        "smClockMHz": 2411,
+        "smClockMaxMHz": 3003,
+        "smClockPct": 80.3,
+        "thermal": false
+      },
+      "usage": 0,
+      "vram": {
+        "available": 7235,
+        "percentage": 82,
+        "total": 124546,
+        "used": 102365
+      }
+    },
+    "llm": [
+      {
+        "available": true,
+        "backend": "vllm",
+        "cachedPrefillTps": null,
+        "contextLength": 1048576,
+        "e2eP95Seconds": 96,
+        "error": null,
+        "generationTps": 0,
+        "gpuMemoryUtilization": 1,
+        "itlP95Seconds": 0.075,
+        "kvCacheUsage": 0,
+        "modelId": "deepseek-v4-flash-0731",
+        "modelPath": null,
+        "mtpAcceptanceRate": 0.7163,
+        "posture": {
+          "auth": "open",
+          "detail": "Unauthenticated \u00b7 loopback target (127.0.0.1). Based on the configured probe host, not the process bind address.",
+          "label": "Open \u00b7 Local",
+          "level": "ok",
+          "scope": "local"
+        },
+        "preemptionsTotal": 0,
+        "prefillTps": 0,
+        "prefixCacheHitRate": 0.0149,
+        "requestsRunning": 0,
+        "requestsWaiting": 0,
+        "slotsActive": 0,
+        "slotsTotal": 0,
+        "totalOutputTokens": 3114,
+        "ttftP95Seconds": 64,
+        "uncachedPrefillTps": null
+      }
+    ],
+    "network": {
+      "interfaces": [
+        {
+          "disabled": false,
+          "ip": "192.168.1.95",
+          "name": "enP7s7",
+          "operstate": "up",
+          "rxSpeed": 33110,
+          "txSpeed": 28740
+        },
+        {
+          "disabled": false,
+          "ip": null,
+          "name": "enp1s0f0np0",
+          "operstate": "down",
+          "rxSpeed": 0,
+          "txSpeed": 0
+        },
+        {
+          "disabled": false,
+          "ip": "192.168.3.72",
+          "name": "enp1s0f1np1",
+          "operstate": "up",
+          "rxSpeed": 0,
+          "txSpeed": 0
+        },
+        {
+          "disabled": false,
+          "ip": null,
+          "name": "enP2p1s0f0np0",
+          "operstate": "down",
+          "rxSpeed": 0,
+          "txSpeed": 0
+        },
+        {
+          "disabled": false,
+          "ip": "192.168.2.72",
+          "name": "enP2p1s0f1np1",
+          "operstate": "up",
+          "rxSpeed": 0,
+          "txSpeed": 0
+        },
+        {
+          "disabled": false,
+          "ip": null,
+          "name": "wlP9s9",
+          "operstate": "down",
+          "rxSpeed": 0,
+          "txSpeed": 0
+        }
+      ],
+      "linkSpeedMbps": 1000,
+      "primaryInterface": "enP7s7",
+      "wolMac": "30:c5:99:c0:72:94"
+    },
+    "ram": {
+      "percentage": 94,
+      "total": 124546,
+      "used": 117304
+    },
+    "storage": [
+      {
+        "available": 1277435,
+        "device": "nvme0n1p2",
+        "disabled": false,
+        "label": "/",
+        "percentage": 28,
+        "readSpeed": 13946,
+        "total": 1876179,
+        "used": 503368,
+        "writeSpeed": 131256
+      }
+    ],
+    "tailscale": null,
+    "unifiedMemory": {
+      "available": 7242,
+      "bandwidth": {
+        "current": 0,
+        "peak": 400
+      },
+      "cpuUsed": 14939,
+      "gpuUsed": 102365,
+      "oomRisk": "high",
+      "percentage": 94,
+      "total": 124546,
+      "used": 117304
+    }
+  },
+  "name": "dgx01 \u2014 spark-pair2 Head",
+  "online": true,
+  "role": "head",
+  "storagePollDisabled": false,
+  "tailscaleMonitoring": false,
+  "uptime": 899216,
+  "workerHeadId": null,
+  "workerLabel": null,
+  "workerNode": false
+}

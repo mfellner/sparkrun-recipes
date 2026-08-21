@@ -1,0 +1,19 @@
+=== Tool-calling battery: deepseek-v4-flash-0731 ===
+1. single_call      PASS finish=tool_calls ['get_weather:VALID_JSON'] (1.8s)
+2. complex_schema   PASS finish=tool_calls ['complex_query:VALID_JSON'] (2.9s)
+3. multiturn        PASS content='Based on the current weather in Paris (22°C, partly cloudy),' (5.4s)
+4. parallel         PASS finish=tool_calls ['get_weather:VALID_JSON', 'get_weather:VALID_JSON'] (1.7s)
+5. thinking+tool    PASS finish=tool_calls ['search_web:VALID_JSON'] reas='The user wants me to search th' (1.3s)
+6. issue55_trunc    PASS finish=length n_tool_calls=0 broken_json=False (0.8s)
+7. forced_choice    PASS finish=stop ['get_weather:VALID_JSON'] (1.6s)
+
+=== SUMMARY ===
+  single_call     PASS  ['get_weather:VALID_JSON']
+  complex_schema  PASS  ['complex_query:VALID_JSON']
+  multiturn       PASS  ['Based on the current weather in Paris (22°C, partly cloudy),']
+  parallel        PASS  ['get_weather:VALID_JSON', 'get_weather:VALID_JSON']
+  thinking_tool   PASS  ['search_web:VALID_JSON']
+  issue55_trunc   PASS  ['0 tool_calls, broken=False']
+  forced_choice   PASS  ['get_weather:VALID_JSON']
+
+7/7 tool-calling checks PASSED

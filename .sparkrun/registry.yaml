@@ -2,5 +2,6 @@ registries:
   - name: mfellner
     description: Custom SparkRun recipes for DGX Spark-class systems
     recipes: recipes
+    mods: mods
     enabled: true
     visible: true

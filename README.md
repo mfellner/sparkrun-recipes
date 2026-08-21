@@ -16,7 +16,7 @@ Recipes are then available under the `@mfellner/` namespace. Review the reposito
 
 `@mfellner/deepseek-v4-flash-0731-dspark-dual-spark-1m`
 
-An immutable SparkRun adaptation of [MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark](https://github.com/MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark). The effective serving stack was audited against upstream commit `a4ce87a2f47f1be8fe64c297a0cf33a9a5e509aa`.
+An immutable SparkRun adaptation of [MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark](https://github.com/MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark). The effective text-serving stack and vendored hotfix bundle were audited against upstream commit `a462a9e541c684b58c7f380bbd92c7d851557f31`.
 
 - Two DGX Spark or compatible GB10 nodes using SparkRun's native `vllm-distributed` runtime
 - `deepseek-ai/DeepSeek-V4-Flash-0731` at revision `9e165c30e2704aec5d9d593cce3eebd58bbef1cb`
@@ -24,11 +24,18 @@ An immutable SparkRun adaptation of [MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-S
 - Tensor parallelism 2, 1,048,576-token configured context, and NVFP4 DS-MLA KV cache
 - Native DSpark speculative decoding with five probabilistically sampled draft tokens
 - FlashInfer B12X MXFP4 MoE, SM121 kernels, async scheduling, chunked prefill, prefix caching, and FlashInfer autotuning
-- DeepSeek V4 reasoning and tool-call parsers, with reasoning effort `max` by default as in the pinned upstream revision; clients can disable thinking per request for low-latency decode benchmarking
+- DeepSeek V4 reasoning and tool-call parsers, with reasoning effort `max` by default; clients can disable thinking per request
+- Exact upstream default hotfixes for long-context NVFP4 dispatch, MTP memory, scheduler fairness/concurrent prefills, prefix-cache retention, structured-output reasoning boundaries, tool truncation, stop handling, TileLang JIT resilience, and lower GB10 IPC spin load
+- A checksum-pinned adjacent SparkRun mod copies and applies those hotfixes checksum-verified and fail-closed on both ranks before vLLM starts
 - Encoder compatibility patch copied from the pinned model snapshot only after SHA-256 verification
-- 64 GiB shared memory, persistent runtime/autotune caches, RoCE v2/NCCL environment, and readiness plus semantic-completion post-launch gates
+- Upstream's current text profile: GPU utilization `0.835`, 1,024-token long-prefill chunks, two in-flight partial prefills, persistent TileLang/runtime caches, and a 1,800-second model-execution timeout for lazy JIT
+- 64 GiB shared memory, RoCE v2/NCCL environment, and readiness plus semantic-completion post-launch gates
 
-Port `8000` is an intentional operational adaptation from upstream's `8888`, preserving SparkRun registry discovery and existing proxy conventions. It does not change model execution or benchmark methodology. The served model name remains upstream-compatible: `deepseek-v4-flash-0731`.
+SparkRun starts vLLM through a detached container exec, so Docker restart policy cannot reconstruct serving after a daemon or host reboot. Relaunch this workload through SparkRun after reboot rather than treating a restored `sleep infinity` container as healthy.
+
+Port `8000` is an intentional operational adaptation from upstream's `8888`, preserving SparkRun registry discovery, sparkDash, and existing proxy conventions. It does not change model execution or benchmark methodology. The served model name remains upstream-compatible: `deepseek-v4-flash-0731`.
+
+The latest upstream repository also contains optional alternatives that this recipe does not enable by default: an abliterated checkpoint, experimental VL sidecar/MCP path, assistant-final continuation patch, and GPU `thinking_token_budget` extension. API-key modes are not implemented by this recipe; use trusted-network controls or add and independently audit secret-backed authentication before exposure. The published recipe remains the official text-only checkpoint and matches upstream's default-off gates for the included optional patches.
 
 Run it on a saved two-node cluster:
 
@@ -46,17 +53,18 @@ sparkrun run @mfellner/deepseek-v4-flash-0731-dspark-dual-spark-1m \
   --no-follow
 ```
 
-#### Reproduced performance
+#### Live acceptance
 
-Acceptance testing on two ASUS Ascent GX10 systems used 2,048-token structured-output streams, temperature 0, `ignore_eos=true`, and thinking disabled. Five warmed single-stream HTML runs produced:
+The refreshed recipe passed direct exact-response inference, all 7 tool-calling cases, semantic context checks at 8K/32K/64K/131K, two C4 concurrent 32K soak rounds, and a RULER-lite single-needle retrieval at **262,168 prompt tokens**. The configured context is 1,048,576 tokens; 262,168 prompt tokens is the largest empirically completed semantic request in this refresh, and near-1M validation was not performed.
 
-- median TTFT: **239.5 ms** (range **182.8–280.9 ms**)
-- median streamed decode: **81.96 tok/s** (range **81.62–83.39 tok/s**)
-- median end-to-end output rate: **81.27 tok/s**
+The committed [latest-upstream acceptance evidence](evidence/deepseek-v4-flash-0731-latest-20260821/) contains the exact functional harnesses and machine-readable results, plus structured and rendered sparkDash snapshots. Performance output retained in that directory is exploratory session data, not a published parity claim.
 
-This reproduces MiaAI-Lab's published `80+ tok/s` performance class; their screenshot reports 82.4 tok/s for its selected structured-output stream. Decode performance is output-dependent because DSpark acceptance varies with generated content: the same local four-prompt suite ranged from 70.78 to 81.71 tok/s at concurrency 1. A warmed thinking-disabled concurrency sweep measured **101.32 aggregate tok/s at C2** and **142.25 aggregate tok/s at C4**. Keep decode TPS, TTFT, end-to-end output rate, and aggregate concurrent throughput separate when comparing results.
+#### Operational requirements
 
-The configured 1,048,576-token limit and approximately 1.9M-token KV pool are configured capabilities. Empirical semantic validation reached 62,032 prompt tokens and returned the requested sentinel; a near-1M prompt was not part of this acceptance run.
+- Temporarily stop `earlyoom` on both nodes before launch. This memory-saturated workload can otherwise lose a rank during model load or CUDA-graph capture. Keep it inactive while the model remains loaded; restore it after unloading and confirming safe memory/swap headroom.
+- The head must be listed first and serves the API on port `8000`. SparkRun supplies per-rank `VLLM_HOST_IP` plus auto-detected HCA, socket interface, and RoCEv2 GID values; validate every intended fabric path before launch.
+- First startup or a new request shape can spend minutes in CUDA/TileLang/FlashInfer compilation. The recipe persists these caches and extends the model-execution timeout to 1,800 seconds; active compilation is forward progress, not a readiness failure.
+- Stock SparkRun 0.3.1 gives the initial API-port gate only 240 seconds, while upstream allows 1,500 seconds. Cold startup of this profile exceeded the stock gate but continued and became healthy. Use a SparkRun release with a configurable/1,500-second readiness budget or apply the equivalent local `wait_for_port` budget correction before relying on the launcher exit code; always inspect the live process and logs before stopping an actively loading model.
 
 #### Security and operational notes
 
