@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "cluster_id": "sparkrun_73f38a238771a1ea_f80511f7c8ce",
+  "recipe_sha256": "add8d048335618b0d0f9be221bb7038e7e968c2c6f5ce0606e0c4d3332070aff",
+  "model": "GLM-5.3-Flash-EXL3",
+  "endpoint": "http://127.0.0.1:8000",
+  "proxy_endpoint": "http://192.168.1.95:4000",
+  "image_digest": "sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58",
+  "image_id_both_hosts": "sha256:ad0cdd86d1ddd15ee758f519d16da15ac237f7f0648a5c52fbc20f9554944263",
+  "runtime": {
+    "vllm": "0.1.dev20051+g487ecf187",
+    "cuda": "13.0",
+    "nccl": "2.30.7",
+    "kv_pool_tokens": 1056593,
+    "configured_context_tokens": 900000,
+    "graph_mode": "FULL_AND_PIECEWISE",
+    "dflash_speculative_tokens": 7,
+    "fused_exl3_moe": true,
+    "kv_format": "fp8_ds_mla"
+  },
+  "executor_both_hosts": {
+    "privileged": false,
+    "user": "root",
+    "network": "host",
+    "ipc": "host",
+    "shm_bytes": 34359738368,
+    "security_opt": ["no-new-privileges", "label=disable"],
+    "cap_add": ["CAP_IPC_LOCK"],
+    "infiniband_device": "/dev/infiniband",
+    "gpu_device": "nvidia.com/gpu=all"
+  },
+  "per_host_environment": {
+    "192.168.1.95": {
+      "NODE_IP": "192.168.1.95",
+      "VLLM_HOST_IP": "192.168.1.95",
+      "GLOO_SOCKET_IFNAME": "enP7s7",
+      "NCCL_SOCKET_IFNAME": "enP7s7,enp1s0f1np1,enP2p1s0f1np1",
+      "NCCL_IB_HCA": "rocep1s0f1,roceP2p1s0f1",
+      "NCCL_IB_GID_INDEX": "3",
+      "NCCL_IB_ROCE_VERSION_NUM": "2",
+      "NCCL_CROSS_NIC": "0"
+    },
+    "192.168.1.111": {
+      "NODE_IP": "192.168.1.111",
+      "VLLM_HOST_IP": "192.168.1.111",
+      "GLOO_SOCKET_IFNAME": "enP7s7",
+      "NCCL_SOCKET_IFNAME": "enP7s7,enp1s0f1np1,enP2p1s0f1np1",
+      "NCCL_IB_HCA": "rocep1s0f1,roceP2p1s0f1",
+      "NCCL_IB_GID_INDEX": "3",
+      "NCCL_IB_ROCE_VERSION_NUM": "2",
+      "NCCL_CROSS_NIC": "0"
+    }
+  },
+  "post_ready_checks": {
+    "direct_models": true,
+    "proxy_models": true,
+    "fatal_runtime_log_matches": {
+      "192.168.1.95": 0,
+      "192.168.1.111": 0
+    },
+    "kernel_xid_matches": {
+      "192.168.1.95": 0,
+      "192.168.1.111": 0
+    },
+    "kernel_oom_kill_matches": {
+      "192.168.1.95": 0,
+      "192.168.1.111": 0
+    },
+    "bounded_graph_probe_nv_err_no_memory": {
+      "192.168.1.95": {
+        "count": 28,
+        "first": "2026-08-28T18:25:01+02:00",
+        "last": "2026-08-28T18:25:03+02:00"
+      },
+      "192.168.1.111": {
+        "count": 182,
+        "first": "2026-08-28T18:25:01+02:00",
+        "last": "2026-08-28T18:25:16+02:00"
+      },
+      "continued_after_readiness": false,
+      "interpretation": "Bounded CUDA-graph probing pressure; engine reached readiness and passed performance plus semantic acceptance afterward."
+    }
+  },
+  "source_artifacts": [
+    "acceptance.json",
+    "benchmark-structured.json",
+    "benchmark-code.json",
+    "benchmark-prose.json",
+    "telemetry-parity.jsonl",
+    "raw/runtime-success.json"
+  ]
+}

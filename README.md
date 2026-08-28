@@ -12,6 +12,71 @@ Recipes are then available under the `@mfellner/` namespace. Review the reposito
 
 ## Recipes
 
+### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 900K context
+
+`@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-900k`
+
+An immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `4676496e8d4622aaeb0675d79eb15ee1f26c1950`.
+
+- Exactly two DGX Spark or compatible GB10 nodes using SparkRun's native `vllm-distributed` runtime (`mp`, TP2, one rank per node)
+- `brandonmusic/GLM-5.3-Flash-tr3-4bpw` pinned to revision `5ab363a8dcf6405955fd5f99671e01a1c9fb124b`
+- DFlash2 draft `incoai/GLM-5.3-Flash-DFlash2` independently pinned to revision `7d74cdd881ed7e32c31175984a67823127b66cfe`
+- MiaAI-Lab's arm64 CUDA 13 EXL3 overlay image pinned at manifest digest `sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58`
+- EXL3/TR3 4-bpw routed experts, fused `exllamav3_ext.exl3_moe`, and the upstream NoPE sparse-MLA SM121 patches
+- FP8 `fp8_ds_mla` KV cache, 900,000-token configured context, GPU utilization `0.87`, four sequences, and 1,024-token prefill chunks
+- DFlash2 k=7 with probabilistic draft sampling, standard rejection sampling, BF16/automatic draft KV, and draft TP1
+- CUDA graphs with upstream capture sizes `1 2 4 8 16 24 32`, prefix caching, and FlashInfer autotuning disabled
+- Image input was empirically validated; video limits/template and the upstream video-placeholder installer are configured but the video request path was not empirically tested
+- Fail-closed GPU overlay self-checks on every rank before vLLM starts; video patch installation runs at launch but its deferred runtime hook is not advertised as fail-closed
+- Persistent TorchInductor, vLLM, FlashInfer, and temporary compilation caches under SparkRun's per-host cache mount
+
+Port `8000` is an intentional operational adaptation from upstream's `8888`, preserving this registry's SparkRun discovery, sparkDash, and LiteLLM conventions. It does not change the model execution profile or benchmark accounting. The served model alias remains upstream-compatible: `GLM-5.3-Flash-EXL3`.
+
+#### Live acceptance
+
+The recipe was launched on the `dgx01`/`dgx02` ASUS GX10 pair with SparkRun ID `sparkrun_73f38a238771a1ea_f80511f7c8ce`. The live stack used vLLM `0.1.dev20051+g487ecf187`, CUDA 13.0, NCCL 2.30.7, both 200 Gb/s CX-7 rails, fused EXL3 MoE, DFlash2 k=7, FP8 sparse-MLA KV, and captured target/speculator graphs. The measured KV pool was **1,056,593 tokens** for the configured 900,000-token context.
+
+Five measured structured waves after a preserved warm-up at each shape delivered:
+
+| Concurrency | Stream median | Aggregate median | Upstream-reported aggregate | Ratio |
+|---:|---:|---:|---:|---:|
+| C1 | 65.763 tok/s | 65.763 tok/s | 62.9 tok/s | 1.046× |
+| C2 | 49.868 tok/s | 99.352 tok/s | 103.3 tok/s | 0.962× |
+| C4 | 39.447 tok/s | 155.363 tok/s | 146.5 tok/s | 1.060× |
+
+All three concurrency shapes passed the predeclared 95% parity floor for both mean-stream and aggregate medians. Code C4 reached 145.692 aggregate tok/s; the deliberately less predictable prose workload measured 28.093 tok/s versus upstream's reported 26.9.
+
+Direct and LiteLLM-proxied exact completion, C4 semantic concurrency, GLM tool calling, deterministic image understanding, and a **110,035-prompt-token** needle retrieval all passed. The configured context is 900,000 tokens; 110,035 prompt tokens is the largest empirically completed semantic request, and near-900K validation was not performed. The committed [acceptance evidence](evidence/glm-5.3-flash-exl3-dflash2-dual-spark-900k-20260828/) preserves every warm-up and measured row, submitted acceptance requests, raw API responses, correlated all-rank telemetry, successful-runtime captures, recipe checksums, and the workload-to-artifact manifest.
+
+Run it on a saved two-node cluster:
+
+```bash
+sparkrun run @mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-900k \
+  --cluster YOUR_CLUSTER \
+  --no-follow
+```
+
+Or specify the two hosts directly, with the API head first:
+
+```bash
+sparkrun run @mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-900k \
+  --hosts HEAD_IP,WORKER_IP \
+  --no-follow
+```
+
+#### Operational requirements
+
+- This profile needs most of each GB10's unified memory. Stop unrelated GPU workloads first and verify free memory on both ranks. Keep `earlyoom` inactive while the loaded model remains inside its kill threshold; restore it only after unloading and confirming safe RAM/swap headroom.
+- Validate management reachability, MTU 9000, and bidirectional jumbo traffic on every intended CX-7 path before launch. SparkRun supplies per-host `NODE_IP`/`VLLM_HOST_IP`, socket interfaces, HCA selection, and RoCE GID values instead of copying upstream's kit-specific interface names.
+- SparkRun auto-selects an available native-distributed rendezvous port, preferring `25000`, instead of upstream's fixed `29521`. This changes only rank coordination; it does not change the model execution profile.
+- The first launch downloads approximately 164 GiB of target weights plus a 2.3 GiB draft and distributes the pinned 9.8 GB compressed image. Weight loading, CUDA-graph capture, and lazy kernel compilation can take substantial time; active compiler processes and growing caches are progress, not a readiness failure.
+- If GitHub Container Registry blob delivery is unusually slow, pre-pull the pinned base on the head before launching: `docker pull vllm/vllm-openai:glm53-flash-arm64-cu130@sha256:905c02933be6021301db2dc284e24e3727467aa3a0f63b41d609885778a07bce`. The final pinned GHCR image reuses 30 shared base layers (9.68 GB compressed) and then needs only its approximately 108 MB of non-base layers; SparkRun can ship the completed final image to the worker over CX-7.
+- The DFlash2 checkpoint is licensed CC BY-NC-ND 4.0 for research/evaluation. The EXL3 checkpoint uses ShapleyMCG License 1.0. Review both before deployment.
+
+#### Security
+
+The endpoint binds to `0.0.0.0:8000` without API authentication and supports image/video requests, including URL media accepted by vLLM. The validated SparkRun 0.3.1 rootless Docker path is non-privileged with `no-new-privileges`, but this recipe explicitly runs as container user `root` and uses host networking, host IPC, GPU CDI, `/dev/infiniband`, and `IPC_LOCK`. **Run it only on a trusted, firewalled private network; never expose inference, native-distributed rendezvous, or NCCL ports directly to the public Internet.** Prefer inline `data:` media and place authenticated ingress plus an outbound media allowlist/filter in front of vLLM for untrusted clients.
+
 ### DeepSeek V4 Flash 0731 DSpark — dual Spark, 1M context (recommended)
 
 `@mfellner/deepseek-v4-flash-0731-dspark-dual-spark-1m`
@@ -230,6 +295,11 @@ The GLM endpoint binds to `0.0.0.0:8000` without API authentication, executes pi
 Validate a recipe before publishing or running it:
 
 ```bash
+sparkrun recipe validate recipes/glm-5.3-flash-exl3-dflash2-dual-spark-900k.yaml
+sparkrun run recipes/glm-5.3-flash-exl3-dflash2-dual-spark-900k.yaml \
+  --hosts HEAD_IP,WORKER_IP \
+  --dry-run
+
 sparkrun recipe validate recipes/deepseek-v4-flash-0731-dspark-dual-spark-1m.yaml
 sparkrun run recipes/deepseek-v4-flash-0731-dspark-dual-spark-1m.yaml \
   --hosts HEAD_IP,WORKER_IP \
@@ -257,6 +327,8 @@ sparkrun run recipes/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k.yaml \
 ```
 
 ## Attribution
+
+The GLM 5.3 Flash EXL3 recipe is adapted from MiaAI-Lab's deployment repository. SparkRun replaces its `.env`, SSH/rsync helpers, mutable tag pull, manually ranked `docker run` lifecycle, and readiness loop. The adaptation retains MiaAI-Lab's immutable EXL3 overlay image, brandonmusic's EXL3/TR3 checkpoint, the independently pinned IncoAI DFlash2 draft, TP2 native vLLM topology, fused EXL3 MoE, FP8 sparse-MLA KV, DFlash2-7, CUDA graphs, 900K context, multimodal template and patch, prefix caching, and parser settings. SparkRun supplies immutable model/image distribution, per-host fabric detection, lifecycle tracking, persistent caches, and registry/proxy discovery.
 
 The recommended DeepSeek V4 Flash 0731 recipe is adapted from MiaAI-Lab's MIT-licensed DSpark deployment repository. SparkRun replaces Docker Compose and manually supplied node-rank lifecycle with native `vllm-distributed` orchestration while retaining the pinned Anemll image, checkpoint, DSpark MTP-5 path, NVFP4 DS-MLA KV cache, FlashInfer B12X MoE, 1M context, parser, and generation settings. The older base-checkpoint recipe remains available for compatibility and uses SparkRun's Ray-based runtime rather than the optimized 0731 DSpark stack.
 
