@@ -1,0 +1,102 @@
+{
+  "schema": 2,
+  "cluster_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+  "recipe_sha256": "55526841b848320c66bb631f569e70a972f9261512b2cb4f05c79cc7286ec7f3",
+  "runtime_capture": "raw/runtime-success.json",
+  "processes": {
+    "sparkrun_88b110d8c27f0455_73f56777180a": {
+      "role": "precursor_performance_long_stress",
+      "recipe_sha256": "da5c462d2322daf42449ac1996079f9af3f3bd9d1491bf819c718ac67789b1a6"
+    },
+    "sparkrun_d56463b6b176dd58_009b8bd44277": {
+      "role": "exact_final",
+      "recipe_sha256": "55526841b848320c66bb631f569e70a972f9261512b2cb4f05c79cc7286ec7f3"
+    }
+  },
+  "artifacts": {
+    "benchmark-structured.json": {
+      "sha256": "4370f839db80a0d93be24a9d2507ca79d5bd6a49039c3679ec680bd0db0a2466",
+      "run_id": "5c1b43c5222c2261",
+      "started_at": 1787986569.3331206,
+      "completed_at": 1787986721.7469788,
+      "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_role": "precursor_performance_long_stress"
+    },
+    "benchmark-code.json": {
+      "sha256": "86fe2e91de8df89d097e254e14086f3f97774fc290a389812b07baea00d96ae2",
+      "run_id": "80af28c8e6cb50fc",
+      "started_at": 1787986737.5843434,
+      "completed_at": 1787986900.2938435,
+      "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_role": "precursor_performance_long_stress"
+    },
+    "benchmark-prose.json": {
+      "sha256": "f9549df0148feacd40d81808fa426acddffe047ac7e2f6c8b3138efa6f26d5ab",
+      "run_id": "463d583bbecfa06e",
+      "started_at": 1787986900.3728404,
+      "completed_at": 1787986992.3524678,
+      "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_role": "precursor_performance_long_stress"
+    },
+    "acceptance-basic-precursor.json": {
+      "sha256": "3032800a94bdcfe6d1eb2024091b7ddfc0206493ee69249c033ff46aa127c8b9",
+      "run_id": "07a7cd72afefbca4",
+      "started_at": 1787987021.7346256,
+      "completed_at": 1787987148.721058,
+      "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_role": "precursor_performance_long_stress"
+    },
+    "acceptance-1m-features.json": {
+      "sha256": "2afc37679027e17b220f98f3c47c71305dbd79b3038f23914dd4f040bf157526",
+      "run_id": "bf5fee41c3cc1401",
+      "started_at": 1787987257.225229,
+      "completed_at": 1787989201.9320788,
+      "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_role": "precursor_performance_long_stress"
+    },
+    "acceptance-basic-final.json": {
+      "sha256": "f0349cb8e767a6a1c449f1addda609c28daae3aa2eeda4b7cd8ab618336b1fe8",
+      "run_id": "317143e6a59f2b26",
+      "started_at": 1788016641.1540427,
+      "completed_at": 1788016756.9767282,
+      "cluster_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+      "process_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+      "process_role": "exact_final"
+    },
+    "acceptance-final-compact.json": {
+      "sha256": "0a0d30bec0fc4ba2f379410f20cbf2cf23858ee0661aacef8702afb976d06d8a",
+      "started_at": 1788016561.4342973,
+      "completed_at": 1788016599.230194,
+      "cluster_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+      "process_id": "sparkrun_d56463b6b176dd58_009b8bd44277"
+    },
+    "acceptance-xgrammar.json": {
+      "sha256": "6574afe5ccd85e92a6ac8683ff366129113003ccd4c60ba07dd7adcffc7d411d",
+      "started_at": 1788016757.0544071,
+      "completed_at": 1788016773.1203148,
+      "cluster_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+      "process_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+      "process_role": "exact_final"
+    },
+    "telemetry-parity.jsonl": {
+      "sha256": "7bb0fa2877733a25bb4541759ff1cafa01b2220966e748177520b810fc95b6f3",
+      "process_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+      "process_role": "precursor_performance_long_stress"
+    },
+    "runtime-health.json": {
+      "sha256": "f19dc01821b545284a463ede7053dd13a2ccb9a6827b507ce8ea09eb0cc1703e",
+      "cluster_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+      "process_id": "sparkrun_d56463b6b176dd58_009b8bd44277"
+    },
+    "raw/runtime-success.json": {
+      "sha256": "6a98b7d4655174ca3b1a1f6425af90604aeefb9293b24ae8c8aa83892a96f9c4",
+      "cluster_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+      "process_id": "sparkrun_d56463b6b176dd58_009b8bd44277"
+    }
+  }
+}

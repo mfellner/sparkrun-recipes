@@ -1,0 +1,597 @@
+{
+  "schema": 1,
+  "run_id": "463d583bbecfa06e",
+  "started_at": 1787986900.3728404,
+  "base_url": "http://127.0.0.1:8000",
+  "model": "GLM-5.3-Flash-EXL3",
+  "prompt_type": "prose",
+  "max_tokens": 400,
+  "concurrencies": [
+    1
+  ],
+  "warmups_per_shape": 1,
+  "measured_waves_per_shape": 5,
+  "protocol": {
+    "temperature": 0,
+    "top_p": 1,
+    "thinking": false,
+    "min_tokens_equals_max_tokens": true,
+    "ignore_eos": true,
+    "stream": true,
+    "usage_source": "stream_options.include_usage",
+    "per_stream_decode_formula": "(completion_tokens - 1) / (last_visible - first_visible)",
+    "aggregate_decode_formula": "sum(decode_tokens) / (latest_last_visible - earliest_first_visible)",
+    "upstream_sparkdash_revision": "e93fc87d54c8699e98b63a764ab260bf9d446c52",
+    "upstream_glm_revision": "4676496e8d4622aaeb0675d79eb15ee1f26c1950"
+  },
+  "script_sha256": "1d9a473437ccba7b08e89470b6f7be608c89a93557a4ba9e79d36dfad566de55",
+  "recipe_sha256": "da5c462d2322daf42449ac1996079f9af3f3bd9d1491bf819c718ac67789b1a6",
+  "models_response": {
+    "object": "list",
+    "data": [
+      {
+        "id": "GLM-5.3-Flash-EXL3",
+        "object": "model",
+        "created": 1787986900,
+        "owned_by": "vllm",
+        "root": "/cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/25a44fdbf16862a46b7cc9921142c6c81350af2f",
+        "parent": null,
+        "max_model_len": 1000000,
+        "permission": [
+          {
+            "id": "modelperm-9c066a148cf627e2",
+            "object": "model_permission",
+            "created": 1787986900,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "warmups": [
+    {
+      "concurrency": 1,
+      "prompt_type": "prose",
+      "prompts": [
+        "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+      ],
+      "wave_start": 1787986900.3773446,
+      "wave_end": 1787986914.974683,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 27.88494059648208,
+      "median_stream_decode_tps": 27.88494059648208,
+      "aggregate_decode_tps": 27.88494029837516,
+      "mean_ttft_s": 0.2864375140052289,
+      "median_ttft_s": 0.2864375140052289,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 94.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 66.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 48.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 39.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 21.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 12.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 8.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 288.0,
+          "vllm:spec_decode_num_draft_tokens_total": 805.0,
+          "vllm:spec_decode_num_drafts_total": 115.0
+        },
+        "drafts": 115.0,
+        "draft_tokens": 805.0,
+        "accepted_tokens": 288.0,
+        "acceptance_rate": 0.3577639751552795,
+        "accepted_per_draft": 2.5043478260869567
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-ac8e913f8345dc60",
+          "finish_reason": "length",
+          "prompt_tokens": 33,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.2864375140052289,
+          "decode_s": 14.308798637008294,
+          "decode_tps": 27.88494059648208,
+          "end_to_end_output_tps": 27.40597839531952,
+          "wall_start": 1787986900.3788688,
+          "first_visible_wall": 1787986900.665309,
+          "last_visible_wall": 1787986914.9741077,
+          "wall_end": 1787986914.974226,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 33,
+            "total_tokens": 433,
+            "completion_tokens": 400
+          },
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides near-constant-time lookup, insertion, and deletion. Let's build up an understanding from the ground up.\n\n---\n\n## 1. The Core Idea\n\nA hash map lets you associate values with keys and retrieve them later:\n\n```\nmap.put(\"apple\", 3)\nmap.get(\"apple\")  \u2192  3\n```\n\nThe naive alternatives are slow:\n- **Unsorted array**: lookup requires scanning every element \u2014 O(n)\n- **Sorted array**: lookup is O(log n) via binary search, but insertion is O(n)\n- **Balanced tree**: O(log n) for everything, but more overhead\n\nA hash map aims for **O(1) average time** by computing *directly* where a key should be stored.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **A backing array** (also called the \"bucket array\" or \"table\") of fixed size, e.g., 16 slots.\n2. **A hash function** that converts a key into an integer.\n3. **An index-mapping step** that converts that integer into a valid array index.\n4. **A collision-resolution strategy** for when two keys map to the same index.\n5. **A load factor and resizing mechanism** to keep performance stable as the map grows.\n\n---\n\n## 3. Step-by-Step: Insertion (`put(key, value)`)\n\n### Step 1: Hash the key\n\nThe hash function converts the key into an integer (the \"hash code\"). For a string like `\"apple\"`, a common approach (similar to Java's `String.hashCode()`) is polynomial accumulation:\n\n```\nhash = 0\nfor each character c in \"apple\":\n    hash = 31 * hash + c\n```\n\nFor `\"apple",
+          "text_sha256": "8b670781a4c10285c67fba4af8b9dbb72bc9e15a66189536a01e33daddd08163"
+        }
+      ],
+      "kind": "warmup"
+    }
+  ],
+  "measured": [
+    {
+      "concurrency": 1,
+      "prompt_type": "prose",
+      "prompts": [
+        "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+      ],
+      "wave_start": 1787986914.9844103,
+      "wave_end": 1787986928.8851051,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 29.202560466748615,
+      "median_stream_decode_tps": 29.202560466748615,
+      "aggregate_decode_tps": 29.202559697408134,
+      "mean_ttft_s": 0.23634486598894,
+      "median_ttft_s": 0.23634486598894,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 90.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 62.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 48.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 39.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 27.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 18.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 9.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 293.0,
+          "vllm:spec_decode_num_draft_tokens_total": 770.0,
+          "vllm:spec_decode_num_drafts_total": 110.0
+        },
+        "drafts": 110.0,
+        "draft_tokens": 770.0,
+        "accepted_tokens": 293.0,
+        "acceptance_rate": 0.38051948051948054,
+        "accepted_per_draft": 2.6636363636363636
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b8a13e399c7b62f1",
+          "finish_reason": "length",
+          "prompt_tokens": 33,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.23634486598894,
+          "decode_s": 13.663185474928468,
+          "decode_tps": 29.202560466748615,
+          "end_to_end_output_tps": 28.777758114310043,
+          "wall_start": 1787986914.9851956,
+          "first_visible_wall": 1787986915.2215416,
+          "last_visible_wall": 1787986928.8847275,
+          "wall_end": 1787986928.88482,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 33,
+            "total_tokens": 433,
+            "completion_tokens": 400
+          },
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides near-constant-time lookup, insertion, and deletion. Let's build up an understanding from the ground up.\n\n---\n\n## 1. The Core Idea\n\nA hash map lets you associate values with keys and retrieve them efficiently. Instead of searching through data linearly (like an array scan) or traversing a tree, a hash map computes *where* a value should be stored directly from its key.\n\nThe key components are:\n\n- **The key**: The identifier you use to look up data (e.g., a username).\n- **The value**: The data being stored (e.g., the user's profile).\n- **The bucket array**: An underlying array where entries are stored.\n- **The hash function**: A function that converts a key into an array index.\n- **The load factor**: A measure of how full the table is, used to trigger resizing.\n\n---\n\n## 2. Step-by-Step: Storing a Value (Insertion)\n\nSuppose we insert `put(\"apple\", 5)` into a hash map with a bucket array of size 16.\n\n**Step 1: Hash the key.**\nThe hash function converts the key into a large integer called a hash code. For a string like `\"apple\"`, a common approach (similar to Java's `String.hashCode()`) is polynomial accumulation:\n\n```\nhash = 0\nfor each character c in \"apple\":\n    hash = 31 * hash + code(c)\n```\n\nThis produces a large integer, e.g., `93029210`.\n\n**Step 2: Map the hash to a bucket index.**\nThe hash code is typically larger than the array size, so we compress it into a valid index. The most common method is the modulo operation:\n\n```\nindex = hash % array_size\nindex =",
+          "text_sha256": "f52b8878cba82653e8e949e417564d79e650a753057374be680c033159ef483b"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "prose",
+      "prompts": [
+        "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+      ],
+      "wave_start": 1787986928.899314,
+      "wave_end": 1787986944.897103,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 25.484734573682257,
+      "median_stream_decode_tps": 25.484734573682257,
+      "aggregate_decode_tps": 25.48473421553694,
+      "mean_ttft_s": 0.3403769261203706,
+      "median_ttft_s": 0.3403769261203706,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 94.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 68.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 30.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 18.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 12.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 6.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 273.0,
+          "vllm:spec_decode_num_draft_tokens_total": 882.0,
+          "vllm:spec_decode_num_drafts_total": 126.0
+        },
+        "drafts": 126.0,
+        "draft_tokens": 882.0,
+        "accepted_tokens": 273.0,
+        "acceptance_rate": 0.30952380952380953,
+        "accepted_per_draft": 2.1666666666666665
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-aea31e04a9fc13db",
+          "finish_reason": "length",
+          "prompt_tokens": 33,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3403769261203706,
+          "decode_s": 15.656431454932317,
+          "decode_tps": 25.484734573682257,
+          "end_to_end_output_tps": 25.004689809009953,
+          "wall_start": 1787986928.8996844,
+          "first_visible_wall": 1787986929.2400634,
+          "last_visible_wall": 1787986944.896495,
+          "wall_end": 1787986944.896684,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 33,
+            "total_tokens": 433,
+            "completion_tokens": 400
+          },
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides near-constant-time lookup, insertion, and deletion. Let's build up an understanding from the ground up.\n\n---\n\n## 1. The Core Idea\n\nA hash map lets you associate **values** with **keys** (e.g., mapping a username to an email address) and retrieve the value later using only the key \u2014 without searching through all the data.\n\nThe central trick: instead of searching, we **compute** where a key's value should live. We use a **hash function** to convert the key into an integer, then use that integer as an index into an array.\n\n```\nkey \u2192 hash function \u2192 index \u2192 array slot \u2192 value\n```\n\n---\n\n## 2. The Components\n\n### 2.1 The Backing Array\n\nA hash map is fundamentally an **array** (often called \"buckets\" or \"slots\"). Arrays give us O(1) access by index \u2014 that's the property we're exploiting.\n\n### 2.2 The Hash Function\n\nA hash function takes a key of any type (string, number, object) and produces an integer. A good hash function has these properties:\n\n- **Deterministic**: the same key always produces the same hash.\n- **Uniform distribution**: outputs are spread evenly across the possible range, so keys don't cluster in a few slots.\n- **Fast to compute**: ideally O(1) with respect to key length (or O(k) for a key of length k, which is effectively constant for practical keys).\n- **Avalanche effect**: changing one bit of the input changes roughly half the output bits.\n\nExample for a string key:\n\n```\nhash(\"cat\") = (99 \u00d7 31\u00b2 + 97 \u00d7 31\u00b9 + 116 \u00d7 31\u2070) mod table_size\n            = (95",
+          "text_sha256": "a88c48978338ce3f6096cef57030e5b509b1a60f1a99fec44c22bc463c341406"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "prose",
+      "prompts": [
+        "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+      ],
+      "wave_start": 1787986944.9074492,
+      "wave_end": 1787986961.3529804,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 24.7630513608323,
+      "median_stream_decode_tps": 24.7630513608323,
+      "aggregate_decode_tps": 24.763048730073617,
+      "mean_ttft_s": 0.332026933087036,
+      "median_ttft_s": 0.332026933087036,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 61.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 41.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 30.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 19.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 9.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 5.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 269.0,
+          "vllm:spec_decode_num_draft_tokens_total": 910.0,
+          "vllm:spec_decode_num_drafts_total": 130.0
+        },
+        "drafts": 130.0,
+        "draft_tokens": 910.0,
+        "accepted_tokens": 269.0,
+        "acceptance_rate": 0.2956043956043956,
+        "accepted_per_draft": 2.0692307692307694
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-aa58b62afd5c1eb4",
+          "finish_reason": "length",
+          "prompt_tokens": 33,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.332026933087036,
+          "decode_s": 16.112715439870954,
+          "decode_tps": 24.7630513608323,
+          "end_to_end_output_tps": 24.323671526132205,
+          "wall_start": 1787986944.9077823,
+          "first_visible_wall": 1787986945.2398098,
+          "last_visible_wall": 1787986961.352527,
+          "wall_end": 1787986961.352668,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 33,
+            "total_tokens": 433,
+            "completion_tokens": 400
+          },
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides near-constant-time lookup, insertion, and deletion. Let's build up an understanding from the ground up.\n\n---\n\n## 1. The Core Idea\n\nA hash map lets you associate values with keys and retrieve them efficiently. Instead of searching through data linearly (like an array scan) or following comparisons (like a binary search tree), a hash map computes *where* a value should live directly from its key.\n\nThe two essential components are:\n\n1. **A hash function** \u2014 converts a key into an integer.\n2. **An array of \"buckets\"** \u2014 the storage locations where entries live.\n\nThe pipeline looks like this:\n\n```\nkey \u2192 hash function \u2192 hash code \u2192 index into array \u2192 bucket \u2192 value\n```\n\n---\n\n## 2. Step-by-Step: Storing a Value\n\nSuppose we want to execute `put(\"apple\", 5)` on a hash map with 16 buckets.\n\n**Step 1: Hash the key.**\nThe hash function processes the key `\"apple\"` and produces an integer, called the *hash code*. For example, a simple polynomial hash might produce `93029210`. A good hash function:\n- Is deterministic (same key \u2192 same hash every run).\n- Distributes keys uniformly across the possible hash values.\n- Is fast to compute.\n\n**Step 2: Map the hash code to a bucket index.**\nThe hash code can be any 32- or 64-bit integer, but our array has only 16 slots. We compress the hash into a valid index. The most common technique:\n\n```\nindex = hash_code & (bucket_count - 1)     // bitwise AND\n// or equivalently, when bucket_count is a power of two:\nindex = hash_code % bucket_count\n```\n\nIf `9",
+          "text_sha256": "f106bf98c262a06d87325db3b2f6e19b1aa0c4b718123b7ffb7f2d1a9c696501"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "prose",
+      "prompts": [
+        "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+      ],
+      "wave_start": 1787986961.368327,
+      "wave_end": 1787986977.2442281,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 25.68301503025105,
+      "median_stream_decode_tps": 25.68301503025105,
+      "aggregate_decode_tps": 25.683015827784704,
+      "mean_ttft_s": 0.3394749900326133,
+      "median_ttft_s": 0.3394749900326133,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 97.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 64.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 27.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 17.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 14.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 10.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 274.0,
+          "vllm:spec_decode_num_draft_tokens_total": 875.0,
+          "vllm:spec_decode_num_drafts_total": 125.0
+        },
+        "drafts": 125.0,
+        "draft_tokens": 875.0,
+        "accepted_tokens": 274.0,
+        "acceptance_rate": 0.31314285714285717,
+        "accepted_per_draft": 2.192
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8f792ff9bc52371f",
+          "finish_reason": "length",
+          "prompt_tokens": 33,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3394749900326133,
+          "decode_s": 15.535559182986617,
+          "decode_tps": 25.68301503025105,
+          "end_to_end_output_tps": 25.196535069526906,
+          "wall_start": 1787986961.368708,
+          "first_visible_wall": 1787986961.7081842,
+          "last_visible_wall": 1787986977.243743,
+          "wall_end": 1787986977.2439065,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 33,
+            "total_tokens": 433,
+            "completion_tokens": 400
+          },
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides near-constant-time lookup, insertion, and deletion. Let's build up an understanding from the ground up.\n\n---\n\n## 1. The Core Idea\n\nA hash map lets you associate values with keys and retrieve them efficiently. Instead of searching through data linearly (like an array scan) or traversing a tree, a hash map computes *where* a value should live directly from its key.\n\nThe key components are:\n\n- **An array of \"buckets\"** \u2014 the underlying storage, typically a fixed-size array.\n- **A hash function** \u2014 converts a key into an integer.\n- **An index-mapping step** \u2014 converts that integer into a valid array index.\n- **A collision-resolution strategy** \u2014 handles the case when two keys map to the same index.\n\n---\n\n## 2. Step-by-Step: Insertion\n\nHere's what happens when you call `put(key, value)`:\n\n**Step 1: Hash the key.**\nThe hash function takes the key and produces an integer, called the hash code. For a string like `\"apple\"`, this might involve summing character codes, multiplying by primes, or using a more sophisticated algorithm. A good hash function:\n\n- Is deterministic (same key \u2192 same hash every time).\n- Distributes keys uniformly across the possible hash values.\n- Is fast to compute.\n\n**Step 2: Map the hash to an index.**\nThe hash code can be any integer (possibly huge or negative), but the bucket array has a fixed size, say `n = 16`. The most common mapping is:\n\n```\nindex = hash(key) mod n\n```\n\n(In practice, implementations often use `hash & (n - 1)` with a power-of-two size, which is equivalent but faster, since bitwise AND is cheaper than modulo",
+          "text_sha256": "bad2e384ca2c32601d487d872639c2f23f7a6e8c92b43c5447bca6d1006ed754"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "prose",
+      "prompts": [
+        "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+      ],
+      "wave_start": 1787986977.2563264,
+      "wave_end": 1787986992.3458636,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 27.07895660596451,
+      "median_stream_decode_tps": 27.07895660596451,
+      "aggregate_decode_tps": 27.07895633725024,
+      "mean_ttft_s": 0.3538383231498301,
+      "median_ttft_s": 0.3538383231498301,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 95.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 70.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 46.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 28.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 22.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 12.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 9.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 282.0,
+          "vllm:spec_decode_num_draft_tokens_total": 833.0,
+          "vllm:spec_decode_num_drafts_total": 119.0
+        },
+        "drafts": 119.0,
+        "draft_tokens": 833.0,
+        "accepted_tokens": 282.0,
+        "acceptance_rate": 0.3385354141656663,
+        "accepted_per_draft": 2.369747899159664
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9cdddc1bd4a4a73f",
+          "finish_reason": "length",
+          "prompt_tokens": 33,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3538383231498301,
+          "decode_s": 14.734688851051033,
+          "decode_tps": 27.07895660596451,
+          "end_to_end_output_tps": 26.5100108438161,
+          "wall_start": 1787986977.2567186,
+          "first_visible_wall": 1787986977.6105587,
+          "last_visible_wall": 1787986992.3452477,
+          "wall_end": 1787986992.3453584,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 33,
+            "total_tokens": 433,
+            "completion_tokens": 400
+          },
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up an understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., `\"username\"`), and the map retrieves the associated value (e.g., `\"alice\"`).\n\nThe fundamental challenge: how do we find a value instantly without searching through all entries? The answer is to compute, in advance, *where* the value should live in memory. This is what hashing accomplishes.\n\n**The key insight:** Instead of searching, we *calculate* the location directly from the key.\n\n---\n\n## 2. The Anatomy of a Hash Map\n\nA hash map consists of:\n\n1. **An array (the \"bucket array\")** \u2014 the underlying storage, typically a fixed-size array of slots called *buckets*.\n2. **A hash function** \u2014 converts a key into an integer.\n3. **An index computation** \u2014 maps that integer to a valid array index.\n4. **A collision resolution strategy** \u2014 what to do when two keys map to the same index.\n5. **A size/count tracker** \u2014 how many entries are stored.\n6. **A load factor threshold** \u2014 when to resize.\n\n---\n\n## 3. Step-by-Step: Insertion\n\nLet's walk through inserting `put(\"apple\", 5)` into a hash map with an array of size 8.\n\n### Step 1: Hash the key\nApply the hash function to the key to get an integer.\n\n```\nhash(\"apple\") \u2192 927401823\n```\n\nA good hash function:\n- Is **deterministic** \u2014 the same key always produces the same hash.\n- **Distributes uniformly** \u2014 similar keys",
+          "text_sha256": "b2661b2b20db4b264d6d0784069695f2548674d7282cb6a313fd07b40c793ee0"
+        }
+      ],
+      "kind": "measured"
+    }
+  ],
+  "summary": {
+    "1": {
+      "measured_waves": 5,
+      "all_streams_succeeded": true,
+      "mean_stream_decode_tps_median": 25.68301503025105,
+      "mean_stream_decode_tps_range": [
+        24.7630513608323,
+        29.202560466748615
+      ],
+      "aggregate_decode_tps_median": 25.683015827784704,
+      "aggregate_decode_tps_range": [
+        24.763048730073617,
+        29.202559697408134
+      ],
+      "mean_ttft_s_median": 0.3394749900326133,
+      "mean_ttft_s_range": [
+        0.23634486598894,
+        0.3538383231498301
+      ]
+    }
+  },
+  "completed_at": 1787986992.3524678,
+  "passed": true,
+  "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+  "process_role": "precursor_performance_long_stress",
+  "provenance_annotation": {
+    "added_at": "2026-08-29T09:45:34.763138+00:00",
+    "method": "post-run provenance annotation; measured request/response rows unchanged",
+    "basis": "single uninterrupted precursor workload; acceptance-1m-features.json records this cluster ID and its window follows the benchmark/telemetry window on the same launched process"
+  }
+}

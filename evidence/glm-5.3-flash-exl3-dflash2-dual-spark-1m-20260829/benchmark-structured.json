@@ -1,0 +1,2773 @@
+{
+  "schema": 1,
+  "run_id": "5c1b43c5222c2261",
+  "started_at": 1787986569.3331206,
+  "base_url": "http://127.0.0.1:8000",
+  "model": "GLM-5.3-Flash-EXL3",
+  "prompt_type": "structured",
+  "max_tokens": 400,
+  "concurrencies": [
+    1,
+    2,
+    4
+  ],
+  "warmups_per_shape": 1,
+  "measured_waves_per_shape": 5,
+  "protocol": {
+    "temperature": 0,
+    "top_p": 1,
+    "thinking": false,
+    "min_tokens_equals_max_tokens": true,
+    "ignore_eos": true,
+    "stream": true,
+    "usage_source": "stream_options.include_usage",
+    "per_stream_decode_formula": "(completion_tokens - 1) / (last_visible - first_visible)",
+    "aggregate_decode_formula": "sum(decode_tokens) / (latest_last_visible - earliest_first_visible)",
+    "upstream_sparkdash_revision": "e93fc87d54c8699e98b63a764ab260bf9d446c52",
+    "upstream_glm_revision": "4676496e8d4622aaeb0675d79eb15ee1f26c1950"
+  },
+  "script_sha256": "1d9a473437ccba7b08e89470b6f7be608c89a93557a4ba9e79d36dfad566de55",
+  "recipe_sha256": "da5c462d2322daf42449ac1996079f9af3f3bd9d1491bf819c718ac67789b1a6",
+  "models_response": {
+    "object": "list",
+    "data": [
+      {
+        "id": "GLM-5.3-Flash-EXL3",
+        "object": "model",
+        "created": 1787986569,
+        "owned_by": "vllm",
+        "root": "/cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/25a44fdbf16862a46b7cc9921142c6c81350af2f",
+        "parent": null,
+        "max_model_len": 1000000,
+        "permission": [
+          {
+            "id": "modelperm-8f9bd4a4604dffaa",
+            "object": "model_permission",
+            "created": 1787986569,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "warmups": [
+    {
+      "concurrency": 1,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+      ],
+      "wave_start": 1787986569.339096,
+      "wave_end": 1787986576.3415208,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 61.462163121496125,
+      "median_stream_decode_tps": 61.462163121496125,
+      "aggregate_decode_tps": 61.462165136283105,
+      "mean_ttft_s": 0.5094943749718368,
+      "median_ttft_s": 0.5094943749718368,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 46.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 349.0,
+          "vllm:spec_decode_num_draft_tokens_total": 364.0,
+          "vllm:spec_decode_num_drafts_total": 52.0
+        },
+        "drafts": 52.0,
+        "draft_tokens": 364.0,
+        "accepted_tokens": 349.0,
+        "acceptance_rate": 0.9587912087912088,
+        "accepted_per_draft": 6.711538461538462
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-bac3289aee1f25cd",
+          "finish_reason": "length",
+          "prompt_tokens": 27,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5094943749718368,
+          "decode_s": 6.491798852104694,
+          "decode_tps": 61.462163121496125,
+          "end_to_end_output_tps": 57.13180403945086,
+          "wall_start": 1787986569.3400366,
+          "first_visible_wall": 1787986569.8495326,
+          "last_visible_wall": 1787986576.3413312,
+          "wall_end": 1787986576.3413913,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 27,
+            "total_tokens": 427,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "warmup"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986609.4565022,
+      "wave_end": 1787986617.8392968,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 49.93284031204257,
+      "median_stream_decode_tps": 49.93284031204257,
+      "aggregate_decode_tps": 99.86213736157556,
+      "mean_ttft_s": 0.39077922247815877,
+      "median_ttft_s": 0.39077922247815877,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 106.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 106.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 106.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 102.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 101.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 89.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 86.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 696.0,
+          "vllm:spec_decode_num_draft_tokens_total": 742.0,
+          "vllm:spec_decode_num_drafts_total": 106.0
+        },
+        "drafts": 106.0,
+        "draft_tokens": 742.0,
+        "accepted_tokens": 696.0,
+        "acceptance_rate": 0.9380053908355795,
+        "accepted_per_draft": 6.566037735849057
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-97a158b637162c71",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.39059290289878845,
+          "decode_s": 7.990711102960631,
+          "decode_tps": 49.93297778619063,
+          "end_to_end_output_tps": 47.72467110023015,
+          "wall_start": 1787986609.457219,
+          "first_visible_wall": 1787986609.8478127,
+          "last_visible_wall": 1787986617.8385234,
+          "wall_end": 1787986617.8386283,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-84071a86e1ac3f61",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3909655420575291,
+          "decode_s": 7.990755102830008,
+          "decode_tps": 49.93270283789452,
+          "end_to_end_output_tps": 47.72232898229404,
+          "wall_start": 1787986609.457108,
+          "first_visible_wall": 1787986609.848075,
+          "last_visible_wall": 1787986617.8388293,
+          "wall_end": 1787986617.838929,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "warmup"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986659.3073735,
+      "wave_end": 1787986669.8416975,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 40.34177104305752,
+      "median_stream_decode_tps": 40.553917975293416,
+      "aggregate_decode_tps": 158.80930134750128,
+      "mean_ttft_s": 0.48269217199413106,
+      "median_ttft_s": 0.48271022003609687,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 209.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 209.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 209.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 204.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 183.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 176.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1392.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1463.0,
+          "vllm:spec_decode_num_drafts_total": 209.0
+        },
+        "drafts": 209.0,
+        "draft_tokens": 1463.0,
+        "accepted_tokens": 1392.0,
+        "acceptance_rate": 0.9514695830485305,
+        "accepted_per_draft": 6.660287081339713
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-91aeba021b504837",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4825178680475801,
+          "decode_s": 9.838713600998744,
+          "decode_tps": 40.554082188091826,
+          "end_to_end_output_tps": 38.754040615975164,
+          "wall_start": 1787986659.308577,
+          "first_visible_wall": 1787986659.7910962,
+          "last_visible_wall": 1787986669.62981,
+          "wall_end": 1787986669.630081,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-bf9d33a27e970714",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4823819319717586,
+          "decode_s": 9.838793280068785,
+          "decode_tps": 40.553753762495,
+          "end_to_end_output_tps": 38.75467418140794,
+          "wall_start": 1787986659.3090906,
+          "first_visible_wall": 1787986659.7914736,
+          "last_visible_wall": 1787986669.6302664,
+          "wall_end": 1787986669.6304266,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-99728144610d002f",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4829663159325719,
+          "decode_s": 10.04926202306524,
+          "decode_tps": 39.70440805346784,
+          "end_to_end_output_tps": 37.97825793152275,
+          "wall_start": 1787986659.3086567,
+          "first_visible_wall": 1787986659.7916234,
+          "last_visible_wall": 1787986669.8408854,
+          "wall_end": 1787986669.8409986,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b61b4b680678bacc",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4829025720246136,
+          "decode_s": 9.838529712986201,
+          "decode_tps": 40.5548401681754,
+          "end_to_end_output_tps": 38.75276436781108,
+          "wall_start": 1787986659.3084702,
+          "first_visible_wall": 1787986659.7913737,
+          "last_visible_wall": 1787986669.629903,
+          "wall_end": 1787986669.6303146,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "warmup"
+    }
+  ],
+  "measured": [
+    {
+      "concurrency": 1,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+      ],
+      "wave_start": 1787986576.3513415,
+      "wave_end": 1787986582.8434684,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 64.81021231243776,
+      "median_stream_decode_tps": 64.81021231243776,
+      "aggregate_decode_tps": 64.81020740051176,
+      "mean_ttft_s": 0.33469427516683936,
+      "median_ttft_s": 0.33469427516683936,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 46.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 349.0,
+          "vllm:spec_decode_num_draft_tokens_total": 364.0,
+          "vllm:spec_decode_num_drafts_total": 52.0
+        },
+        "drafts": 52.0,
+        "draft_tokens": 364.0,
+        "accepted_tokens": 349.0,
+        "acceptance_rate": 0.9587912087912088,
+        "accepted_per_draft": 6.711538461538462
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9639c1e2957a8184",
+          "finish_reason": "length",
+          "prompt_tokens": 27,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.33469427516683936,
+          "decode_s": 6.156437168829143,
+          "decode_tps": 64.81021231243776,
+          "end_to_end_output_tps": 61.62145319750539,
+          "wall_start": 1787986576.351673,
+          "first_visible_wall": 1787986576.6863682,
+          "last_visible_wall": 1787986582.8428059,
+          "wall_end": 1787986582.8429189,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 27,
+            "total_tokens": 427,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+      ],
+      "wave_start": 1787986582.8540127,
+      "wave_end": 1787986589.661016,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 61.6877044442228,
+      "median_stream_decode_tps": 61.6877044442228,
+      "aggregate_decode_tps": 61.68770290536785,
+      "mean_ttft_s": 0.33792137703858316,
+      "median_ttft_s": 0.33792137703858316,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 46.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 349.0,
+          "vllm:spec_decode_num_draft_tokens_total": 364.0,
+          "vllm:spec_decode_num_drafts_total": 52.0
+        },
+        "drafts": 52.0,
+        "draft_tokens": 364.0,
+        "accepted_tokens": 349.0,
+        "acceptance_rate": 0.9587912087912088,
+        "accepted_per_draft": 6.711538461538462
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b9f43a854700d946",
+          "finish_reason": "length",
+          "prompt_tokens": 27,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.33792137703858316,
+          "decode_s": 6.46806366997771,
+          "decode_tps": 61.6877044442228,
+          "end_to_end_output_tps": 58.77074506265248,
+          "wall_start": 1787986582.854465,
+          "first_visible_wall": 1787986583.1923878,
+          "last_visible_wall": 1787986589.6604517,
+          "wall_end": 1787986589.6605725,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 27,
+            "total_tokens": 427,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+      ],
+      "wave_start": 1787986589.6759188,
+      "wave_end": 1787986596.1463265,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 65.077228982413,
+      "median_stream_decode_tps": 65.077228982413,
+      "aggregate_decode_tps": 65.0772279691803,
+      "mean_ttft_s": 0.338461552048102,
+      "median_ttft_s": 0.338461552048102,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 52.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 46.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 349.0,
+          "vllm:spec_decode_num_draft_tokens_total": 364.0,
+          "vllm:spec_decode_num_drafts_total": 52.0
+        },
+        "drafts": 52.0,
+        "draft_tokens": 364.0,
+        "accepted_tokens": 349.0,
+        "acceptance_rate": 0.9587912087912088,
+        "accepted_per_draft": 6.711538461538462
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-85977250dfae7f93",
+          "finish_reason": "length",
+          "prompt_tokens": 27,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.338461552048102,
+          "decode_s": 6.131176853086799,
+          "decode_tps": 65.077228982413,
+          "end_to_end_output_tps": 61.82624397519771,
+          "wall_start": 1787986589.6764052,
+          "first_visible_wall": 1787986590.0148678,
+          "last_visible_wall": 1787986596.1460447,
+          "wall_end": 1787986596.1461499,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 27,
+            "total_tokens": 427,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+      ],
+      "wave_start": 1787986596.165798,
+      "wave_end": 1787986602.799409,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 63.26373286530646,
+      "median_stream_decode_tps": 63.26373286530646,
+      "aggregate_decode_tps": 63.263737779164885,
+      "mean_ttft_s": 0.3257762340363115,
+      "median_ttft_s": 0.3257762340363115,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 53.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 53.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 53.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 44.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 348.0,
+          "vllm:spec_decode_num_draft_tokens_total": 371.0,
+          "vllm:spec_decode_num_drafts_total": 53.0
+        },
+        "drafts": 53.0,
+        "draft_tokens": 371.0,
+        "accepted_tokens": 348.0,
+        "acceptance_rate": 0.9380053908355795,
+        "accepted_per_draft": 6.566037735849057
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9d65dca73e8bf7ef",
+          "finish_reason": "length",
+          "prompt_tokens": 27,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3257762340363115,
+          "decode_s": 6.306931031867862,
+          "decode_tps": 63.26373286530646,
+          "end_to_end_output_tps": 60.30590253999256,
+          "wall_start": 1787986596.1662576,
+          "first_visible_wall": 1787986596.4920352,
+          "last_visible_wall": 1787986602.7989657,
+          "wall_end": 1787986602.7991073,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 27,
+            "total_tokens": 427,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+      ],
+      "wave_start": 1787986602.8153827,
+      "wave_end": 1787986609.4405107,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 63.42836855243726,
+      "median_stream_decode_tps": 63.42836855243726,
+      "aggregate_decode_tps": 63.42837033665532,
+      "mean_ttft_s": 0.3337206761352718,
+      "median_ttft_s": 0.3337206761352718,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 53.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 53.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 53.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 45.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 44.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 348.0,
+          "vllm:spec_decode_num_draft_tokens_total": 371.0,
+          "vllm:spec_decode_num_drafts_total": 53.0
+        },
+        "drafts": 53.0,
+        "draft_tokens": 371.0,
+        "accepted_tokens": 348.0,
+        "acceptance_rate": 0.9380053908355795,
+        "accepted_per_draft": 6.566037735849057
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a279a78012f01264",
+          "finish_reason": "length",
+          "prompt_tokens": 27,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3337206761352718,
+          "decode_s": 6.290560660883784,
+          "decode_tps": 63.42836855243726,
+          "end_to_end_output_tps": 60.38275018135252,
+          "wall_start": 1787986602.8158739,
+          "first_visible_wall": 1787986603.1495957,
+          "last_visible_wall": 1787986609.4401562,
+          "wall_end": 1787986609.440282,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 27,
+            "total_tokens": 427,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986617.8553343,
+      "wave_end": 1787986626.4001842,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 49.45686144964226,
+      "median_stream_decode_tps": 49.45686144964226,
+      "aggregate_decode_tps": 97.95089863289172,
+      "mean_ttft_s": 0.3966638649581,
+      "median_ttft_s": 0.3966638649581,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 105.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 105.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 105.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 101.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 101.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 91.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 88.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 696.0,
+          "vllm:spec_decode_num_draft_tokens_total": 735.0,
+          "vllm:spec_decode_num_drafts_total": 105.0
+        },
+        "drafts": 105.0,
+        "draft_tokens": 735.0,
+        "accepted_tokens": 696.0,
+        "acceptance_rate": 0.9469387755102041,
+        "accepted_per_draft": 6.628571428571429
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8a615efc728559a7",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3965732008218765,
+          "decode_s": 7.989960095146671,
+          "decode_tps": 49.93767118340978,
+          "end_to_end_output_tps": 47.69485491187187,
+          "wall_start": 1787986617.8560648,
+          "first_visible_wall": 1787986618.2526388,
+          "last_visible_wall": 1787986626.2425992,
+          "wall_end": 1787986626.2427137,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b3f465bd8ff16236",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3967545290943235,
+          "decode_s": 8.146838832879439,
+          "decode_tps": 48.97605171587474,
+          "end_to_end_output_tps": 46.817719971718596,
+          "wall_start": 1787986617.855983,
+          "first_visible_wall": 1787986618.252738,
+          "last_visible_wall": 1787986626.3995779,
+          "wall_end": 1787986626.3997562,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986626.4166303,
+      "wave_end": 1787986634.5467277,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 51.47147000937045,
+      "median_stream_decode_tps": 51.47147000937045,
+      "aggregate_decode_tps": 102.94055469076034,
+      "mean_ttft_s": 0.3771710970904678,
+      "median_ttft_s": 0.3771710970904678,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 102.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 101.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 92.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 91.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 698.0,
+          "vllm:spec_decode_num_draft_tokens_total": 728.0,
+          "vllm:spec_decode_num_drafts_total": 104.0
+        },
+        "drafts": 104.0,
+        "draft_tokens": 728.0,
+        "accepted_tokens": 698.0,
+        "acceptance_rate": 0.9587912087912088,
+        "accepted_per_draft": 6.711538461538462
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-bd0dffb7e687f37a",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3772732331417501,
+          "decode_s": 7.75178193487227,
+          "decode_tps": 51.47203615275261,
+          "end_to_end_output_tps": 49.205462767011085,
+          "wall_start": 1787986626.4171486,
+          "first_visible_wall": 1787986626.794423,
+          "last_visible_wall": 1787986634.546204,
+          "wall_end": 1787986634.5463276,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8565b58426887e89",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3770689610391855,
+          "decode_s": 7.75195246306248,
+          "decode_tps": 51.470903865988284,
+          "end_to_end_output_tps": 49.205528914513025,
+          "wall_start": 1787986626.417087,
+          "first_visible_wall": 1787986626.7941573,
+          "last_visible_wall": 1787986634.5461094,
+          "wall_end": 1787986634.546255,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986634.5627255,
+      "wave_end": 1787986642.813712,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 50.835942366488595,
+      "median_stream_decode_tps": 50.835942366488595,
+      "aggregate_decode_tps": 101.66793418926598,
+      "mean_ttft_s": 0.401193822035566,
+      "median_ttft_s": 0.401193822035566,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 106.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 106.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 106.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 101.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 89.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 88.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 696.0,
+          "vllm:spec_decode_num_draft_tokens_total": 742.0,
+          "vllm:spec_decode_num_drafts_total": 106.0
+        },
+        "drafts": 106.0,
+        "draft_tokens": 742.0,
+        "accepted_tokens": 696.0,
+        "acceptance_rate": 0.9380053908355795,
+        "accepted_per_draft": 6.566037735849057
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-afb33c1c9c631f50",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4012655820697546,
+          "decode_s": 7.848841903964058,
+          "decode_tps": 50.83552514906499,
+          "end_to_end_output_tps": 48.48361860512615,
+          "wall_start": 1787986634.5632217,
+          "first_visible_wall": 1787986634.9644883,
+          "last_visible_wall": 1787986642.8133295,
+          "wall_end": 1787986642.813431,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8d773e9cf4d7a399",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.40112206200137734,
+          "decode_s": 7.848713072016835,
+          "decode_tps": 50.8363595839122,
+          "end_to_end_output_tps": 48.48516209269252,
+          "wall_start": 1787986634.5631235,
+          "first_visible_wall": 1787986634.964247,
+          "last_visible_wall": 1787986642.8129592,
+          "wall_end": 1787986642.81307,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986642.8294926,
+      "wave_end": 1787986650.9743474,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 51.38801660906467,
+      "median_stream_decode_tps": 51.38801660906467,
+      "aggregate_decode_tps": 102.77355072619521,
+      "mean_ttft_s": 0.37909966346342117,
+      "median_ttft_s": 0.37909966346342117,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 102.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 102.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 93.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 89.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 698.0,
+          "vllm:spec_decode_num_draft_tokens_total": 728.0,
+          "vllm:spec_decode_num_drafts_total": 104.0
+        },
+        "drafts": 104.0,
+        "draft_tokens": 728.0,
+        "accepted_tokens": 698.0,
+        "acceptance_rate": 0.9587912087912088,
+        "accepted_per_draft": 6.711538461538462
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8245149da666ce9e",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3789242720231414,
+          "decode_s": 7.76464369893074,
+          "decode_tps": 51.38677516586444,
+          "end_to_end_output_tps": 49.11753210011838,
+          "wall_start": 1787986642.8301997,
+          "first_visible_wall": 1787986643.2091248,
+          "last_visible_wall": 1787986650.9737685,
+          "wall_end": 1787986650.9739316,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8195ce6a8a3b1f49",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.37927505490370095,
+          "decode_s": 7.764268547995016,
+          "decode_tps": 51.3892580522649,
+          "end_to_end_output_tps": 49.11728447933539,
+          "wall_start": 1787986642.830063,
+          "first_visible_wall": 1787986643.209339,
+          "last_visible_wall": 1787986650.9736087,
+          "wall_end": 1787986650.973836,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986650.9906943,
+      "wave_end": 1787986659.2906592,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 50.4639412416592,
+      "median_stream_decode_tps": 50.4639412416592,
+      "aggregate_decode_tps": 100.92579108231602,
+      "mean_ttft_s": 0.39244873297866434,
+      "median_ttft_s": 0.39244873297866434,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 104.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 103.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 102.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 91.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 89.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 697.0,
+          "vllm:spec_decode_num_draft_tokens_total": 728.0,
+          "vllm:spec_decode_num_drafts_total": 104.0
+        },
+        "drafts": 104.0,
+        "draft_tokens": 728.0,
+        "accepted_tokens": 697.0,
+        "acceptance_rate": 0.9574175824175825,
+        "accepted_per_draft": 6.701923076923077
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a83ab54666753b23",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.39243350899778306,
+          "decode_s": 7.906718096928671,
+          "decode_tps": 50.4634154283292,
+          "end_to_end_output_tps": 48.19708607737772,
+          "wall_start": 1787986650.9912157,
+          "first_visible_wall": 1787986651.3836496,
+          "last_visible_wall": 1787986659.2903676,
+          "wall_end": 1787986659.2904725,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-80d779c9c3c30e92",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.3924639569595456,
+          "decode_s": 7.906553329201415,
+          "decode_tps": 50.4644670549892,
+          "end_to_end_output_tps": 48.197749702031906,
+          "wall_start": 1787986650.9911027,
+          "first_visible_wall": 1787986651.383568,
+          "last_visible_wall": 1787986659.2901227,
+          "wall_end": 1787986659.2902458,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986669.8539872,
+      "wave_end": 1787986680.0746746,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 41.15858059660069,
+      "median_stream_decode_tps": 40.947549864737184,
+      "aggregate_decode_tps": 163.77701469905315,
+      "mean_ttft_s": 0.4742000353289768,
+      "median_ttft_s": 0.4742338750511408,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 207.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 207.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 207.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 187.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 184.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1394.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1449.0,
+          "vllm:spec_decode_num_drafts_total": 207.0
+        },
+        "drafts": 207.0,
+        "draft_tokens": 1449.0,
+        "accepted_tokens": 1394.0,
+        "acceptance_rate": 0.9620427881297446,
+        "accepted_per_draft": 6.734299516908212
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9c444b77813b21fc",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4746404830366373,
+          "decode_s": 9.743990123970434,
+          "decode_tps": 40.948317365229165,
+          "end_to_end_output_tps": 39.14371225824055,
+          "wall_start": 1787986669.8547947,
+          "first_visible_wall": 1787986670.3294358,
+          "last_visible_wall": 1787986680.073427,
+          "wall_end": 1787986680.07355,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b6aff33d67dbb4aa",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.47400360298343003,
+          "decode_s": 9.546603243099526,
+          "decode_tps": 41.79497040357314,
+          "end_to_end_output_tps": 39.91715613329396,
+          "wall_start": 1787986669.8552508,
+          "first_visible_wall": 1787986670.329255,
+          "last_visible_wall": 1787986679.8758585,
+          "wall_end": 1787986679.876005,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8a2a739286453714",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.47369190817698836,
+          "decode_s": 9.74435540381819,
+          "decode_tps": 40.946782364245195,
+          "end_to_end_output_tps": 39.14472625314953,
+          "wall_start": 1787986669.8556595,
+          "first_visible_wall": 1787986670.329352,
+          "last_visible_wall": 1787986680.0737076,
+          "wall_end": 1787986680.0741496,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-80cd64b481c7c255",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.47446414711885154,
+          "decode_s": 9.744957546936348,
+          "decode_tps": 40.944252253355266,
+          "end_to_end_output_tps": 39.14070239696045,
+          "wall_start": 1787986669.8546822,
+          "first_visible_wall": 1787986670.329147,
+          "last_visible_wall": 1787986680.0741043,
+          "wall_end": 1787986680.0742228,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986680.0925307,
+      "wave_end": 1787986690.6120336,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 40.36620581378666,
+      "median_stream_decode_tps": 40.366170234607004,
+      "aggregate_decode_tps": 159.72676298044516,
+      "mean_ttft_s": 0.5259612849913538,
+      "median_ttft_s": 0.5260111689567566,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 210.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 209.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 209.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 204.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 181.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 178.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1391.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1470.0,
+          "vllm:spec_decode_num_drafts_total": 210.0
+        },
+        "drafts": 210.0,
+        "draft_tokens": 1470.0,
+        "accepted_tokens": 1391.0,
+        "acceptance_rate": 0.9462585034013605,
+        "accepted_per_draft": 6.623809523809523
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8e024705a4cba5fb",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5260212570428848,
+          "decode_s": 9.991846820805222,
+          "decode_tps": 39.93255772988776,
+          "end_to_end_output_tps": 38.02998259317231,
+          "wall_start": 1787986680.0932493,
+          "first_visible_wall": 1787986680.6192708,
+          "last_visible_wall": 1787986690.611118,
+          "wall_end": 1787986690.6112661,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-950eede99223d5fc",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5261017850134522,
+          "decode_s": 9.991774869151413,
+          "decode_tps": 39.93284528776482,
+          "end_to_end_output_tps": 38.02929463852153,
+          "wall_start": 1787986680.09334,
+          "first_visible_wall": 1787986680.6194425,
+          "last_visible_wall": 1787986690.6112175,
+          "wall_end": 1787986690.6115475,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-aceb8bc70d5c4aca",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5257210170384496,
+          "decode_s": 9.779532766900957,
+          "decode_tps": 40.79949518144919,
+          "end_to_end_output_tps": 38.814557489124944,
+          "wall_start": 1787986680.0936606,
+          "first_visible_wall": 1787986680.619382,
+          "last_visible_wall": 1787986690.398915,
+          "wall_end": 1787986690.3990722,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8e7e6669d999bac9",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5260010808706284,
+          "decode_s": 9.779429728165269,
+          "decode_tps": 40.79992505604485,
+          "end_to_end_output_tps": 38.812985115985,
+          "wall_start": 1787986680.093152,
+          "first_visible_wall": 1787986680.6191537,
+          "last_visible_wall": 1787986690.3985837,
+          "wall_end": 1787986690.398981,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986690.6300895,
+      "wave_end": 1787986700.920182,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 41.097640098826,
+      "median_stream_decode_tps": 41.09684514042806,
+      "aggregate_decode_tps": 162.71935693114452,
+      "mean_ttft_s": 0.48036967794178054,
+      "median_ttft_s": 0.4804437899729237,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 210.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 208.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 208.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 203.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 185.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 182.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1397.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1470.0,
+          "vllm:spec_decode_num_drafts_total": 210.0
+        },
+        "drafts": 210.0,
+        "draft_tokens": 1470.0,
+        "accepted_tokens": 1397.0,
+        "acceptance_rate": 0.9503401360544218,
+        "accepted_per_draft": 6.652380952380953
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-ae2026263d5630e1",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4804037739522755,
+          "decode_s": 9.61157874087803,
+          "decode_tps": 41.5124310747259,
+          "end_to_end_output_tps": 39.634979708256914,
+          "wall_start": 1787986690.63126,
+          "first_visible_wall": 1787986691.1116643,
+          "last_visible_wall": 1787986700.723243,
+          "wall_end": 1787986700.7233555,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-935b52d820535dd0",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.48048471799120307,
+          "decode_s": 9.8079924560152,
+          "decode_tps": 40.68110796264887,
+          "end_to_end_output_tps": 38.878052594462744,
+          "wall_start": 1787986690.6310601,
+          "first_visible_wall": 1787986691.1115456,
+          "last_visible_wall": 1787986700.9195378,
+          "wall_end": 1787986700.919641,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9cc250190a24e624",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4801064138300717,
+          "decode_s": 9.807955992175266,
+          "decode_tps": 40.68125920613021,
+          "end_to_end_output_tps": 38.879624983280834,
+          "wall_start": 1787986690.6311316,
+          "first_visible_wall": 1787986691.1112394,
+          "last_visible_wall": 1787986700.9191952,
+          "wall_end": 1787986700.919297,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b51d51c5ce541b60",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4804838059935719,
+          "decode_s": 9.610807541990653,
+          "decode_tps": 41.51576215179901,
+          "end_to_end_output_tps": 39.63756286171584,
+          "wall_start": 1787986690.630961,
+          "first_visible_wall": 1787986691.1114454,
+          "last_visible_wall": 1787986700.7222538,
+          "wall_end": 1787986700.722399,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986700.937624,
+      "wave_end": 1787986711.287324,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 41.11904605870276,
+      "median_stream_decode_tps": 41.07616366858636,
+      "aggregate_decode_tps": 161.26180665781177,
+      "mean_ttft_s": 0.4509017739328556,
+      "median_ttft_s": 0.45101993391290307,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 208.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 207.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 207.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 204.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 203.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 186.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 180.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1395.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1456.0,
+          "vllm:spec_decode_num_drafts_total": 208.0
+        },
+        "drafts": 208.0,
+        "draft_tokens": 1456.0,
+        "accepted_tokens": 1395.0,
+        "acceptance_rate": 0.9581043956043956,
+        "accepted_per_draft": 6.706730769230769
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a37ecaedf81ddcbb",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4510180219076574,
+          "decode_s": 9.498353567905724,
+          "decode_tps": 42.00728022466896,
+          "end_to_end_output_tps": 40.20270348646406,
+          "wall_start": 1787986700.9387045,
+          "first_visible_wall": 1787986701.3897228,
+          "last_visible_wall": 1787986710.8880775,
+          "wall_end": 1787986710.888284,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b5f151de127e3a79",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.45102184591814876,
+          "decode_s": 9.896673599956557,
+          "decode_tps": 40.31657667296933,
+          "end_to_end_output_tps": 38.65532627255743,
+          "wall_start": 1787986700.9387665,
+          "first_visible_wall": 1787986701.3897889,
+          "last_visible_wall": 1787986711.2864635,
+          "wall_end": 1787986711.2866292,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-aac049807a5a6db9",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4505095260683447,
+          "decode_s": 9.71346832299605,
+          "decode_tps": 41.07698576165545,
+          "end_to_end_output_tps": 39.35423233567206,
+          "wall_start": 1787986700.9390023,
+          "first_visible_wall": 1787986701.3895137,
+          "last_visible_wall": 1787986711.1029813,
+          "wall_end": 1787986711.1030939,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-87d9595ab15e9477",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.45105770183727145,
+          "decode_s": 9.713857138995081,
+          "decode_tps": 41.07534157551728,
+          "end_to_end_output_tps": 39.350672007300126,
+          "wall_start": 1787986700.9385724,
+          "first_visible_wall": 1787986701.3896306,
+          "last_visible_wall": 1787986711.1034877,
+          "wall_end": 1787986711.1035829,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "structured",
+      "prompts": [
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)",
+        "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986711.30412,
+      "wave_end": 1787986721.7348216,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 40.52738371275758,
+      "median_stream_decode_tps": 40.71114792620237,
+      "aggregate_decode_tps": 159.89136698153334,
+      "mean_ttft_s": 0.44724324851995334,
+      "median_ttft_s": 0.44733235251624137,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 209.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 207.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 207.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 206.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 204.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 185.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 179.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1397.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1463.0,
+          "vllm:spec_decode_num_drafts_total": 209.0
+        },
+        "drafts": 209.0,
+        "draft_tokens": 1463.0,
+        "accepted_tokens": 1397.0,
+        "acceptance_rate": 0.9548872180451128,
+        "accepted_per_draft": 6.684210526315789
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a6445dc94848a9e8",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.446644569048658,
+          "decode_s": 9.800943532958627,
+          "decode_tps": 40.71036616609842,
+          "end_to_end_output_tps": 39.03315661833197,
+          "wall_start": 1787986711.3058422,
+          "first_visible_wall": 1787986711.7524877,
+          "last_visible_wall": 1787986721.5534308,
+          "wall_end": 1787986721.55354,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-869cf25a8e975f20",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4470676251221448,
+          "decode_s": 9.800533803878352,
+          "decode_tps": 40.71206813674825,
+          "end_to_end_output_tps": 39.03264665391134,
+          "wall_start": 1787986711.3051996,
+          "first_visible_wall": 1787986711.7522686,
+          "last_visible_wall": 1787986721.5528026,
+          "wall_end": 1787986721.5530312,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a709abf9559d16d8",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4475970799103379,
+          "decode_s": 9.98119561211206,
+          "decode_tps": 39.97517086187734,
+          "end_to_end_output_tps": 38.35482676238703,
+          "wall_start": 1787986711.3052511,
+          "first_visible_wall": 1787986711.7528486,
+          "last_visible_wall": 1787986721.7340457,
+          "wall_end": 1787986721.734186,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-aecc66915c25f241",
+          "finish_reason": "length",
+          "prompt_tokens": 34,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.4476637199986726,
+          "decode_s": 9.8005671328865,
+          "decode_tps": 40.711929686306334,
+          "end_to_end_output_tps": 39.03063250629348,
+          "wall_start": 1787986711.305105,
+          "first_visible_wall": 1787986711.7527695,
+          "last_visible_wall": 1787986721.5533364,
+          "wall_end": 1787986721.5534658,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Count from 1 to 200. Output only the numbers, separated by spaces. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 34,
+            "total_tokens": 434,
+            "completion_tokens": 400
+          },
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 ",
+          "text_sha256": "0436adfad85df21cc0d591e5d2d3ab0092539d2a0e3de326b3944c66bfa6193a"
+        }
+      ],
+      "kind": "measured"
+    }
+  ],
+  "summary": {
+    "1": {
+      "measured_waves": 5,
+      "all_streams_succeeded": true,
+      "mean_stream_decode_tps_median": 63.42836855243726,
+      "mean_stream_decode_tps_range": [
+        61.6877044442228,
+        65.077228982413
+      ],
+      "aggregate_decode_tps_median": 63.42837033665532,
+      "aggregate_decode_tps_range": [
+        61.68770290536785,
+        65.0772279691803
+      ],
+      "mean_ttft_s_median": 0.33469427516683936,
+      "mean_ttft_s_range": [
+        0.3257762340363115,
+        0.338461552048102
+      ]
+    },
+    "2": {
+      "measured_waves": 5,
+      "all_streams_succeeded": true,
+      "mean_stream_decode_tps_median": 50.835942366488595,
+      "mean_stream_decode_tps_range": [
+        49.45686144964226,
+        51.47147000937045
+      ],
+      "aggregate_decode_tps_median": 101.66793418926598,
+      "aggregate_decode_tps_range": [
+        97.95089863289172,
+        102.94055469076034
+      ],
+      "mean_ttft_s_median": 0.39244873297866434,
+      "mean_ttft_s_range": [
+        0.3771710970904678,
+        0.401193822035566
+      ]
+    },
+    "4": {
+      "measured_waves": 5,
+      "all_streams_succeeded": true,
+      "mean_stream_decode_tps_median": 41.097640098826,
+      "mean_stream_decode_tps_range": [
+        40.36620581378666,
+        41.15858059660069
+      ],
+      "aggregate_decode_tps_median": 161.26180665781177,
+      "aggregate_decode_tps_range": [
+        159.72676298044516,
+        163.77701469905315
+      ],
+      "mean_ttft_s_median": 0.4742000353289768,
+      "mean_ttft_s_range": [
+        0.44724324851995334,
+        0.5259612849913538
+      ]
+    }
+  },
+  "completed_at": 1787986721.7469788,
+  "passed": true,
+  "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+  "process_role": "precursor_performance_long_stress",
+  "provenance_annotation": {
+    "added_at": "2026-08-29T09:45:34.763138+00:00",
+    "method": "post-run provenance annotation; measured request/response rows unchanged",
+    "basis": "single uninterrupted precursor workload; acceptance-1m-features.json records this cluster ID and its window follows the benchmark/telemetry window on the same launched process"
+  }
+}

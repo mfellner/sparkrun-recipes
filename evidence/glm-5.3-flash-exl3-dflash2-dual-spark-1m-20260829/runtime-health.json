@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "cluster_id": "sparkrun_d56463b6b176dd58_009b8bd44277",
+  "recipe_sha256": "55526841b848320c66bb631f569e70a972f9261512b2cb4f05c79cc7286ec7f3",
+  "source_revision": "32db610d9207a42e2688a6994d3bfaf7af96eecb",
+  "source_artifacts": [
+    "raw/runtime-success.json",
+    "acceptance-basic-final.json",
+    "acceptance-final-compact.json",
+    "acceptance-xgrammar.json"
+  ],
+  "runtime": {
+    "sparkrun": "0.3.6",
+    "image": "ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58",
+    "model_revision": "25a44fdbf16862a46b7cc9921142c6c81350af2f",
+    "draft_revision": "dc77ff1c99eeb2df044ee3d4f0094eb033fee410",
+    "vllm": "0.1.dev20051+g487ecf187",
+    "cuda": "13.0",
+    "nccl": "2.30.7",
+    "max_model_len": 1000000,
+    "kv_cache_tokens": 1814136,
+    "max_concurrency_at_1m": 1.81,
+    "features_observed": [
+      "EXL3 MCG fused MoE",
+      "fp8_ds_mla",
+      "DFlash2 padded slot-share block=64",
+      "hybrid APC eagle_group_ids=[6]",
+      "target and dflash2 CUDA graphs",
+      "application startup complete",
+      "rank-0 postready gate complete",
+      "XGrammar reasoning C4 acceptance"
+    ]
+  },
+  "hosts": {
+    "192.168.1.95": {
+      "container": "sparkrun_d56463b6b176dd58_009b8bd44277_node_0",
+      "running": true,
+      "final_process_nv_err_no_memory_count": 94,
+      "first_final_process_nv_err_no_memory": "2026-08-29T17:10:48+02:00",
+      "last_final_process_nv_err_no_memory": "2026-08-29T17:11:01+02:00",
+      "xid_count": 0,
+      "oom_kill_count": 0,
+      "fatal_serve_log_count": 0,
+      "active_200_gbps_hcas": ["rocep1s0f1", "roceP2p1s0f1"]
+    },
+    "192.168.1.111": {
+      "container": "sparkrun_d56463b6b176dd58_009b8bd44277_node_1",
+      "running": true,
+      "final_process_nv_err_no_memory_count": 145,
+      "first_final_process_nv_err_no_memory": "2026-08-29T17:11:11+02:00",
+      "last_final_process_nv_err_no_memory": "2026-08-29T17:11:21+02:00",
+      "xid_count": 0,
+      "oom_kill_count": 0,
+      "fatal_serve_log_count": 0,
+      "active_200_gbps_hcas": ["rocep1s0f1", "roceP2p1s0f1"]
+    }
+  },
+  "security": {
+    "user": "root",
+    "privileged": false,
+    "security_opt": ["no-new-privileges", "label=disable"],
+    "network_mode": "host",
+    "ipc_mode": "host",
+    "shm_bytes": 34359738368,
+    "cap_add": ["CAP_IPC_LOCK"],
+    "api_authentication": "none",
+    "scope_requirement": "trusted firewalled private network"
+  },
+  "health_boundary": "NV_ERR_NO_MEMORY events were bounded to pre-ready graph probing and stopped before the 17:12:00+02:00 hybrid-APC/readiness phase; the rank-0 gate then passed 20/20 warmups and exact semantic completion, followed by process-joined direct/proxy, C4, 110K, tool, image, video, APC, exact final-line stop-policy, and XGrammar checks."
+}

@@ -1,0 +1,163 @@
+# Adapted from MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks.
+# SparkRun provides immutable image/model distribution, native vLLM multi-node
+# orchestration, per-host fabric detection, lifecycle, and persistent caches.
+# The upstream EXL3 overlay, NoPE sparse-MLA patches, fused EXL3 MoE, FP8 MLA
+# KV path, DFlash2-7 speculator, latest runtime overlays, and 1M profile remain.
+recipe_version: "2"
+name: glm-5.3-flash-exl3-dflash2-dual-spark-1m
+model: Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
+model_revision: 25a44fdbf16862a46b7cc9921142c6c81350af2f
+runtime: vllm-distributed
+min_nodes: 2
+max_nodes: 2
+container: ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58
+builder: docker-pull
+
+metadata:
+  description: GLM 5.3 Flash EXL3 4bpw on two DGX Sparks with MiaAI-Lab's latest padded DFlash2 slot-share, hybrid APC and scheduler overlays, fused EXL3 MoE, FP8 sparse-MLA KV, multimodal support, and 1,000,000-token context
+  maintainer: mfellner
+  source: https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
+  source_revision: 32db610d9207a42e2688a6994d3bfaf7af96eecb
+  hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
+  architecture: Glm5NextForConditionalGeneration
+  model_params: 320B
+  model_dtype: int4
+  model_vram: 164
+  kv_dtype: fp8
+  context_length: 1000000
+  multimodal: true
+  notes:
+    - The main mirror is pinned to 25a44fdbf16862a46b7cc9921142c6c81350af2f and is byte-identical in serving payload to brandonmusic snapshot 5ab363a8; the updated DFlash2 draft is independently pinned to dc77ff1c99eeb2df044ee3d4f0094eb033fee410.
+    - The public upstream image tag resolved on 2026-08-28 to the pinned arm64 manifest digest. Its OCI version label is only local/vllm-openai:dev, so this recipe does not advertise a nonexistent version tag.
+    - Port 8000 deliberately preserves this registry's SparkRun, sparkDash, and LiteLLM convention; upstream uses 8888. The endpoint translation does not alter model execution or benchmark accounting.
+    - SparkRun replaces upstream's fixed single-HCA interface names with per-host fabric detection. Validate every intended CX-7 path before launch; the serving profile and shared RoCE controls remain upstream-compatible.
+    - SparkRun 0.3.6's optional post-hook lifecycle waits only 240 seconds for the API. This recipe defines no post_exec; rank 0 starts a fail-closed in-container 3,600-second readiness/warmup/semantic gate that terminates vLLM on failure.
+    - The DFlash2 checkpoint is CC BY-NC-ND 4.0 for research/evaluation. Review its license and the EXL3 checkpoint's ShapleyMCG License 1.0 before use.
+    - The API is unauthenticated, host-networked, multimodal, and may fetch URL media. Keep inference and distributed-runtime ports on a trusted firewalled private network only.
+
+# Both immutable snapshots are needed on every rank, matching upstream's cache
+# synchronization of the target and the DFlash2 draft to the worker.
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
+        revision: 25a44fdbf16862a46b7cc9921142c6c81350af2f
+        target: [-1]
+      - name: incoai/GLM-5.3-Flash-DFlash2
+        revision: dc77ff1c99eeb2df044ee3d4f0094eb033fee410
+        target: [-1]
+
+mods:
+  - ../mods/glm-5.3-flash-exl3-upstream-1m
+
+# Clear the image's `vllm serve` entrypoint so SparkRun can launch a persistent
+# container, run fail-closed overlay checks on each rank, and then exec the
+# rendered native-distributed command. This is root user but non-privileged in
+# SparkRun 0.3.6's rootless Docker path; host networking/IPC and IB remain.
+executor_config:
+  entrypoint: ""
+  user: root
+  shm_size: 32gb
+  cap_add:
+    - IPC_LOCK
+  ulimit:
+    - memlock=-1:-1
+    - stack=67108864:67108864
+    - nofile=65535:65535
+
+# Persist vLLM/runtime caches in SparkRun's standard per-host Hugging Face mount.
+env:
+  HF_HOME: /cache/huggingface
+  HF_HUB_OFFLINE: "1"
+  TRANSFORMERS_OFFLINE: "1"
+  HF_HUB_DISABLE_TELEMETRY: "1"
+  VLLM_CACHE_ROOT: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/vllm
+  TORCHINDUCTOR_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/torchinductor
+  FLASHINFER_WORKSPACE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/flashinfer
+  TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/triton
+  TILELANG_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/tilelang
+  TMPDIR: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/tmp
+
+  TORCH_CUDA_ARCH_LIST: 12.1a
+  FLASHINFER_CUDA_ARCH_LIST: 12.1a
+  FLASHINFER_DISABLE_VERSION_CHECK: "1"
+  PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+  VLLM_ENGINE_READY_TIMEOUT_S: "3600"
+  VLLM_NO_USAGE_STATS: "1"
+  DO_NOT_TRACK: "1"
+  EXL3_FUSED_MOE: "1"
+  GLM53_SUPPRESS_STOPS_IN_REASONING: "1"
+  GLM53_MIXED_PREFILL_CHUNK: skip
+  GLM53_WARMUP_TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/triton
+  VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS: "1800"
+  VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS: "1"
+
+  # Shared upstream RoCE/NCCL controls. SparkRun supplies each host's detected
+  # NODE_IP/VLLM_HOST_IP, socket interfaces, and HCA list at container launch.
+  NCCL_IB_DISABLE: "0"
+  NCCL_IB_ROCE_VERSION_NUM: "2"
+  NCCL_NET: IB
+  NCCL_NET_PLUGIN: none
+  NCCL_NVLS_ENABLE: "0"
+  NCCL_CUMEM_ENABLE: "0"
+  NCCL_IB_MERGE_NICS: "0"
+  NCCL_CROSS_NIC: "0"
+  NCCL_IGNORE_CPU_AFFINITY: "1"
+  NCCL_DEBUG: WARN
+
+pre_exec:
+  - >-
+    mkdir -p
+    /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/vllm
+    /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/torchinductor
+    /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/flashinfer
+    /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/triton
+    /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/tilelang
+    /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/tmp
+
+
+# Defaults reproduce upstream's DFlash2 k=7, graph, memory, batching, API, and
+# multimodal profile. dflash_speculative_config intentionally uses a distinct
+# key so SparkRun does not mistake the pinned container snapshot path for a Hub
+# model ID during automatic draft-model discovery.
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  served_model_name: GLM-5.3-Flash-EXL3
+  tensor_parallel: 2
+  pipeline_parallel: 1
+  gpu_memory_utilization: 0.87
+  max_model_len: 1000000
+  max_num_seqs: 4
+  max_num_batched_tokens: 1024
+  dflash_speculative_config: '{"method":"dflash","model":"/cache/huggingface/hub/models--incoai--GLM-5.3-Flash-DFlash2/snapshots/dc77ff1c99eeb2df044ee3d4f0094eb033fee410","num_speculative_tokens":7,"kv_cache_dtype":"auto","draft_sample_method":"probabilistic","rejection_sample_method":"standard","draft_tensor_parallel_size":1}'
+  limit_mm: '{"image":4,"video":1}'
+
+command: |
+  export PATH="/usr/local/cuda/bin:/usr/local/bin:${PATH:-}";
+  export GLM53_SERVE_PORT={port};
+  export GLM53_SERVED_MODEL={served_model_name};
+  exec bash /workspace/mods/glm-5.3-flash-exl3-upstream-1m/serve_wrapper.sh /cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/25a44fdbf16862a46b7cc9921142c6c81350af2f \
+    --served-model-name {served_model_name} \
+    --host {host} \
+    --port {port} \
+    --distributed-executor-backend mp \
+    --tensor-parallel-size {tensor_parallel} \
+    --pipeline-parallel-size {pipeline_parallel} \
+    --quantization exl3 \
+    --kv-cache-dtype fp8 \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --max-model-len {max_model_len} \
+    --max-num-seqs {max_num_seqs} \
+    --max-num-batched-tokens {max_num_batched_tokens} \
+    --speculative-config '{dflash_speculative_config}' \
+    --cudagraph-capture-sizes 1 2 4 8 16 24 32 \
+    --enable-prefix-caching \
+    --no-enable-flashinfer-autotune \
+    --tool-call-parser glm47 \
+    --enable-auto-tool-choice \
+    --reasoning-parser glm45 \
+    --chat-template /opt/glm53/chat_template.jinja \
+    --limit-mm-per-prompt '{limit_mm}' \
+    --skip-mm-profiling

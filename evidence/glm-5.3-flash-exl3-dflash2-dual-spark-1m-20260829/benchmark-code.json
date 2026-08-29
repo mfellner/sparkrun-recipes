@@ -1,0 +1,2773 @@
+{
+  "schema": 1,
+  "run_id": "80af28c8e6cb50fc",
+  "started_at": 1787986737.5843434,
+  "base_url": "http://127.0.0.1:8000",
+  "model": "GLM-5.3-Flash-EXL3",
+  "prompt_type": "code",
+  "max_tokens": 400,
+  "concurrencies": [
+    1,
+    2,
+    4
+  ],
+  "warmups_per_shape": 1,
+  "measured_waves_per_shape": 5,
+  "protocol": {
+    "temperature": 0,
+    "top_p": 1,
+    "thinking": false,
+    "min_tokens_equals_max_tokens": true,
+    "ignore_eos": true,
+    "stream": true,
+    "usage_source": "stream_options.include_usage",
+    "per_stream_decode_formula": "(completion_tokens - 1) / (last_visible - first_visible)",
+    "aggregate_decode_formula": "sum(decode_tokens) / (latest_last_visible - earliest_first_visible)",
+    "upstream_sparkdash_revision": "e93fc87d54c8699e98b63a764ab260bf9d446c52",
+    "upstream_glm_revision": "4676496e8d4622aaeb0675d79eb15ee1f26c1950"
+  },
+  "script_sha256": "1d9a473437ccba7b08e89470b6f7be608c89a93557a4ba9e79d36dfad566de55",
+  "recipe_sha256": "da5c462d2322daf42449ac1996079f9af3f3bd9d1491bf819c718ac67789b1a6",
+  "models_response": {
+    "object": "list",
+    "data": [
+      {
+        "id": "GLM-5.3-Flash-EXL3",
+        "object": "model",
+        "created": 1787986737,
+        "owned_by": "vllm",
+        "root": "/cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/25a44fdbf16862a46b7cc9921142c6c81350af2f",
+        "parent": null,
+        "max_model_len": 1000000,
+        "permission": [
+          {
+            "id": "modelperm-97437a93bcd9b2cb",
+            "object": "model_permission",
+            "created": 1787986737,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "warmups": [
+    {
+      "concurrency": 1,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+      ],
+      "wave_start": 1787986737.590511,
+      "wave_end": 1787986744.7012942,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 59.83662818110788,
+      "median_stream_decode_tps": 59.83662818110788,
+      "aggregate_decode_tps": 59.836629037722204,
+      "mean_ttft_s": 0.44102814118377864,
+      "median_ttft_s": 0.44102814118377864,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 49.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 354.0,
+          "vllm:spec_decode_num_draft_tokens_total": 357.0,
+          "vllm:spec_decode_num_drafts_total": 51.0
+        },
+        "drafts": 51.0,
+        "draft_tokens": 357.0,
+        "accepted_tokens": 354.0,
+        "acceptance_rate": 0.9915966386554622,
+        "accepted_per_draft": 6.9411764705882355
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-90496bece7f8a3ee",
+          "finish_reason": "length",
+          "prompt_tokens": 102,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.44102814118377864,
+          "decode_s": 6.668156480882317,
+          "decode_tps": 59.83662818110788,
+          "end_to_end_output_tps": 56.26407417764727,
+          "wall_start": 1787986737.5914965,
+          "first_visible_wall": 1787986738.0325258,
+          "last_visible_wall": 1787986744.7006822,
+          "wall_end": 1787986744.7008283,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 102,
+            "total_tokens": 502,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "warmup"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986779.7110224,
+      "wave_end": 1787986788.7744942,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 47.78191552859339,
+      "median_stream_decode_tps": 47.78191552859339,
+      "aggregate_decode_tps": 94.56757799939123,
+      "mean_ttft_s": 0.6238158979685977,
+      "median_ttft_s": 0.6238158979685977,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 101.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 98.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 699.0,
+          "vllm:spec_decode_num_draft_tokens_total": 707.0,
+          "vllm:spec_decode_num_drafts_total": 101.0
+        },
+        "drafts": 101.0,
+        "draft_tokens": 707.0,
+        "accepted_tokens": 699.0,
+        "acceptance_rate": 0.9886845827439887,
+        "accepted_per_draft": 6.920792079207921
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-80f75e0745edea84",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.6238798820413649,
+          "decode_s": 8.264283276861534,
+          "decode_tps": 48.280048811628504,
+          "end_to_end_output_tps": 45.002872372505465,
+          "wall_start": 1787986779.7119226,
+          "first_visible_wall": 1787986780.335803,
+          "last_visible_wall": 1787986788.600086,
+          "wall_end": 1787986788.6002443,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8c59b8b206d67a2c",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.6237519138958305,
+          "decode_s": 8.438411249080673,
+          "decode_tps": 47.28378224555828,
+          "end_to_end_output_tps": 44.13906857840132,
+          "wall_start": 1787986779.7118294,
+          "first_visible_wall": 1787986780.335583,
+          "last_visible_wall": 1787986788.773993,
+          "wall_end": 1787986788.7740958,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "warmup"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986831.0101697,
+      "wave_end": 1787986848.015599,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 40.20574813342375,
+      "median_stream_decode_tps": 40.20551010253003,
+      "aggregate_decode_tps": 159.2905680272304,
+      "mean_ttft_s": 6.984036116744392,
+      "median_ttft_s": 6.984136144514196,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 196.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1398.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1414.0,
+          "vllm:spec_decode_num_drafts_total": 202.0
+        },
+        "drafts": 202.0,
+        "draft_tokens": 1414.0,
+        "accepted_tokens": 1398.0,
+        "acceptance_rate": 0.9886845827439887,
+        "accepted_per_draft": 6.920792079207921
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a3580f2c04b15654",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 6.984224368119612,
+          "decode_s": 10.019055032869801,
+          "decode_tps": 39.82411501793226,
+          "end_to_end_output_tps": 23.524714359467744,
+          "wall_start": 1787986831.011685,
+          "first_visible_wall": 1787986837.99591,
+          "last_visible_wall": 1787986848.0149646,
+          "wall_end": 1787986848.0150793,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-bc16f713f2f5f932",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 6.984047920908779,
+          "decode_s": 9.830458064097911,
+          "decode_tps": 40.588139168936486,
+          "end_to_end_output_tps": 23.7887402880381,
+          "wall_start": 1787986831.0119598,
+          "first_visible_wall": 1787986837.9960084,
+          "last_visible_wall": 1787986847.8264666,
+          "wall_end": 1787986847.8266373,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9951066713d4d36c",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 6.983646258013323,
+          "decode_s": 10.019125944003463,
+          "decode_tps": 39.82383315969844,
+          "end_to_end_output_tps": 23.525372516254116,
+          "wall_start": 1787986831.011892,
+          "first_visible_wall": 1787986837.995539,
+          "last_visible_wall": 1787986848.0146658,
+          "wall_end": 1787986848.0148108,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a3d32ee302194eed",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 6.984225919935852,
+          "decode_s": 9.830756943905726,
+          "decode_tps": 40.586905187127805,
+          "end_to_end_output_tps": 23.788014052986526,
+          "wall_start": 1787986831.011588,
+          "first_visible_wall": 1787986837.9958146,
+          "last_visible_wall": 1787986847.8265712,
+          "wall_end": 1787986847.8267791,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "warmup"
+    }
+  ],
+  "measured": [
+    {
+      "concurrency": 1,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+      ],
+      "wave_start": 1787986744.715494,
+      "wave_end": 1787986751.7063189,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 61.622013452432505,
+      "median_stream_decode_tps": 61.622013452432505,
+      "aggregate_decode_tps": 61.62201052973555,
+      "mean_ttft_s": 0.514939570100978,
+      "median_ttft_s": 0.514939570100978,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 350.0,
+          "vllm:spec_decode_num_draft_tokens_total": 350.0,
+          "vllm:spec_decode_num_drafts_total": 50.0
+        },
+        "drafts": 50.0,
+        "draft_tokens": 350.0,
+        "accepted_tokens": 350.0,
+        "acceptance_rate": 1.0,
+        "accepted_per_draft": 7.0
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-87bbd44928395f36",
+          "finish_reason": "length",
+          "prompt_tokens": 102,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.514939570100978,
+          "decode_s": 6.474958827951923,
+          "decode_tps": 61.622013452432505,
+          "end_to_end_output_tps": 57.224403963148056,
+          "wall_start": 1787986744.715852,
+          "first_visible_wall": 1787986745.2307935,
+          "last_visible_wall": 1787986751.7057526,
+          "wall_end": 1787986751.7058773,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 102,
+            "total_tokens": 502,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+      ],
+      "wave_start": 1787986751.7210376,
+      "wave_end": 1787986758.665612,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 62.13538249963508,
+      "median_stream_decode_tps": 62.13538249963508,
+      "aggregate_decode_tps": 62.135382305884214,
+      "mean_ttft_s": 0.5222309399396181,
+      "median_ttft_s": 0.5222309399396181,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 350.0,
+          "vllm:spec_decode_num_draft_tokens_total": 350.0,
+          "vllm:spec_decode_num_drafts_total": 50.0
+        },
+        "drafts": 50.0,
+        "draft_tokens": 350.0,
+        "accepted_tokens": 350.0,
+        "acceptance_rate": 1.0,
+        "accepted_per_draft": 7.0
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9c40316075910886",
+          "finish_reason": "length",
+          "prompt_tokens": 102,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5222309399396181,
+          "decode_s": 6.421462038997561,
+          "decode_tps": 62.13538249963508,
+          "end_to_end_output_tps": 57.60523000693365,
+          "wall_start": 1787986751.7213845,
+          "first_visible_wall": 1787986752.2436168,
+          "last_visible_wall": 1787986758.6650789,
+          "wall_end": 1787986758.6651986,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 102,
+            "total_tokens": 502,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+      ],
+      "wave_start": 1787986758.6746533,
+      "wave_end": 1787986765.6470482,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 62.01543304034239,
+      "median_stream_decode_tps": 62.01543304034239,
+      "aggregate_decode_tps": 62.015429528127164,
+      "mean_ttft_s": 0.5378981600515544,
+      "median_ttft_s": 0.5378981600515544,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 350.0,
+          "vllm:spec_decode_num_draft_tokens_total": 350.0,
+          "vllm:spec_decode_num_drafts_total": 50.0
+        },
+        "drafts": 50.0,
+        "draft_tokens": 350.0,
+        "accepted_tokens": 350.0,
+        "acceptance_rate": 1.0,
+        "accepted_per_draft": 7.0
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-864be4ad40bfd226",
+          "finish_reason": "length",
+          "prompt_tokens": 102,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5378981600515544,
+          "decode_s": 6.433882348937914,
+          "decode_tps": 62.01543304034239,
+          "end_to_end_output_tps": 57.37316577386753,
+          "wall_start": 1787986758.6749754,
+          "first_visible_wall": 1787986759.2128744,
+          "last_visible_wall": 1787986765.6467571,
+          "wall_end": 1787986765.6468759,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 102,
+            "total_tokens": 502,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+      ],
+      "wave_start": 1787986765.6613054,
+      "wave_end": 1787986772.6190305,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 61.93414398996511,
+      "median_stream_decode_tps": 61.93414398996511,
+      "aggregate_decode_tps": 61.93414481591537,
+      "mean_ttft_s": 0.5147425779141486,
+      "median_ttft_s": 0.5147425779141486,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 350.0,
+          "vllm:spec_decode_num_draft_tokens_total": 350.0,
+          "vllm:spec_decode_num_drafts_total": 50.0
+        },
+        "drafts": 50.0,
+        "draft_tokens": 350.0,
+        "accepted_tokens": 350.0,
+        "acceptance_rate": 1.0,
+        "accepted_per_draft": 7.0
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8d703e18bc5c504d",
+          "finish_reason": "length",
+          "prompt_tokens": 102,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5147425779141486,
+          "decode_s": 6.442326870048419,
+          "decode_tps": 61.93414398996511,
+          "end_to_end_output_tps": 57.494216654542036,
+          "wall_start": 1787986765.661594,
+          "first_visible_wall": 1787986766.176338,
+          "last_visible_wall": 1787986772.6186647,
+          "wall_end": 1787986772.6188157,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 102,
+            "total_tokens": 502,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 1,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+      ],
+      "wave_start": 1787986772.6348183,
+      "wave_end": 1787986779.69604,
+      "streams_ok": 1,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 61.05669490519695,
+      "median_stream_decode_tps": 61.05669490519695,
+      "aggregate_decode_tps": 61.05670322165082,
+      "mean_ttft_s": 0.5257030169013888,
+      "median_ttft_s": 0.5257030169013888,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 51.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 50.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 49.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 354.0,
+          "vllm:spec_decode_num_draft_tokens_total": 357.0,
+          "vllm:spec_decode_num_drafts_total": 51.0
+        },
+        "drafts": 51.0,
+        "draft_tokens": 357.0,
+        "accepted_tokens": 354.0,
+        "acceptance_rate": 0.9915966386554622,
+        "accepted_per_draft": 6.9411764705882355
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-975f8dbb14db2125",
+          "finish_reason": "length",
+          "prompt_tokens": 102,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5257030169013888,
+          "decode_s": 6.534909900045022,
+          "decode_tps": 61.05669490519695,
+          "end_to_end_output_tps": 56.65143343308377,
+          "wall_start": 1787986772.635108,
+          "first_visible_wall": 1787986773.1608126,
+          "last_visible_wall": 1787986779.6957216,
+          "wall_end": 1787986779.69583,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text."
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 102,
+            "total_tokens": 502,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986788.7896247,
+      "wave_end": 1787986797.0365334,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 52.126557121860074,
+      "median_stream_decode_tps": 52.126557121860074,
+      "aggregate_decode_tps": 104.25191661390564,
+      "mean_ttft_s": 0.5915901170810685,
+      "median_ttft_s": 0.5915901170810685,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 98.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 698.0,
+          "vllm:spec_decode_num_draft_tokens_total": 700.0,
+          "vllm:spec_decode_num_drafts_total": 100.0
+        },
+        "drafts": 100.0,
+        "draft_tokens": 700.0,
+        "accepted_tokens": 698.0,
+        "acceptance_rate": 0.9971428571428571,
+        "accepted_per_draft": 6.98
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-987260a879b8f2f7",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.591585525078699,
+          "decode_s": 7.654424198903143,
+          "decode_tps": 52.12671647557442,
+          "end_to_end_output_tps": 48.50760288997194,
+          "wall_start": 1787986788.7901926,
+          "first_visible_wall": 1787986789.3817787,
+          "last_visible_wall": 1787986797.0362027,
+          "wall_end": 1787986797.0363228,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8d0de5e91732a0b3",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5915947090834379,
+          "decode_s": 7.654470999026671,
+          "decode_tps": 52.12639776814572,
+          "end_to_end_output_tps": 48.507402510060416,
+          "wall_start": 1787986788.7900705,
+          "first_visible_wall": 1787986789.3816671,
+          "last_visible_wall": 1787986797.036137,
+          "wall_end": 1787986797.0362349,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986797.0524855,
+      "wave_end": 1787986806.2038295,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 47.48504366739909,
+      "median_stream_decode_tps": 47.48504366739909,
+      "aggregate_decode_tps": 93.31275427101708,
+      "mean_ttft_s": 0.598132150946185,
+      "median_ttft_s": 0.598132150946185,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 102.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 98.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 700.0,
+          "vllm:spec_decode_num_draft_tokens_total": 714.0,
+          "vllm:spec_decode_num_drafts_total": 102.0
+        },
+        "drafts": 102.0,
+        "draft_tokens": 714.0,
+        "accepted_tokens": 700.0,
+        "acceptance_rate": 0.9803921568627451,
+        "accepted_per_draft": 6.862745098039215
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8269e425bf5854a0",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5981360629666597,
+          "decode_s": 8.258525504963472,
+          "decode_tps": 48.313709240250724,
+          "end_to_end_output_tps": 45.16318673310905,
+          "wall_start": 1787986797.0532577,
+          "first_visible_wall": 1787986797.6513946,
+          "last_visible_wall": 1787986805.9099202,
+          "wall_end": 1787986805.9100285,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-adeb548612259da9",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.5981282389257103,
+          "decode_s": 8.551885429071262,
+          "decode_tps": 46.656378094547456,
+          "end_to_end_output_tps": 43.715226572588165,
+          "wall_start": 1787986797.0531728,
+          "first_visible_wall": 1787986797.6513019,
+          "last_visible_wall": 1787986806.2031875,
+          "wall_end": 1787986806.2033029,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986806.2204752,
+      "wave_end": 1787986814.4873245,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 52.15970485656234,
+      "median_stream_decode_tps": 52.15970485656234,
+      "aggregate_decode_tps": 104.3179669479819,
+      "mean_ttft_s": 0.6162257689284161,
+      "median_ttft_s": 0.6162257689284161,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 98.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 698.0,
+          "vllm:spec_decode_num_draft_tokens_total": 700.0,
+          "vllm:spec_decode_num_drafts_total": 100.0
+        },
+        "drafts": 100.0,
+        "draft_tokens": 700.0,
+        "accepted_tokens": 698.0,
+        "acceptance_rate": 0.9971428571428571,
+        "accepted_per_draft": 6.98
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8526407814472ab8",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.6162218889221549,
+          "decode_s": 7.64959911396727,
+          "decode_tps": 52.15959608543052,
+          "end_to_end_output_tps": 48.39133894493319,
+          "wall_start": 1787986806.221142,
+          "first_visible_wall": 1787986806.837365,
+          "last_visible_wall": 1787986814.4869637,
+          "wall_end": 1787986814.4870842,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a0105a59099ef8c4",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.6162296489346772,
+          "decode_s": 7.649567209882662,
+          "decode_tps": 52.159813627694156,
+          "end_to_end_output_tps": 48.391259794812235,
+          "wall_start": 1787986806.2210438,
+          "first_visible_wall": 1787986806.8372748,
+          "last_visible_wall": 1787986814.4868424,
+          "wall_end": 1787986814.4869993,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986814.5035305,
+      "wave_end": 1787986822.7259355,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 52.67213299549341,
+      "median_stream_decode_tps": 52.67213299549341,
+      "aggregate_decode_tps": 105.3391669781103,
+      "mean_ttft_s": 0.6459805769845843,
+      "median_ttft_s": 0.6459805769845843,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 98.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 698.0,
+          "vllm:spec_decode_num_draft_tokens_total": 700.0,
+          "vllm:spec_decode_num_drafts_total": 100.0
+        },
+        "drafts": 100.0,
+        "draft_tokens": 700.0,
+        "accepted_tokens": 698.0,
+        "acceptance_rate": 0.9971428571428571,
+        "accepted_per_draft": 6.98
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8cda1bd6c47c81ac",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.6457773689180613,
+          "decode_s": 7.575067174155265,
+          "decode_tps": 52.672800230909445,
+          "end_to_end_output_tps": 48.65601764799258,
+          "wall_start": 1787986814.5041974,
+          "first_visible_wall": 1787986815.1499758,
+          "last_visible_wall": 1787986822.7250423,
+          "wall_end": 1787986822.7251742,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-892f38505f2f3a1f",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.6461837850511074,
+          "decode_s": 7.5752590941265225,
+          "decode_tps": 52.67146576007739,
+          "end_to_end_output_tps": 48.652878199871104,
+          "wall_start": 1787986814.504062,
+          "first_visible_wall": 1787986815.1502469,
+          "last_visible_wall": 1787986822.7255056,
+          "wall_end": 1787986822.7255697,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 2,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+      ],
+      "wave_start": 1787986822.742124,
+      "wave_end": 1787986830.9940748,
+      "streams_ok": 2,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 52.18554782330851,
+      "median_stream_decode_tps": 52.18554782330851,
+      "aggregate_decode_tps": 104.36638483109385,
+      "mean_ttft_s": 0.6046910890145227,
+      "median_ttft_s": 0.6046910890145227,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 100.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 99.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 699.0,
+          "vllm:spec_decode_num_draft_tokens_total": 700.0,
+          "vllm:spec_decode_num_drafts_total": 100.0
+        },
+        "drafts": 100.0,
+        "draft_tokens": 700.0,
+        "accepted_tokens": 699.0,
+        "acceptance_rate": 0.9985714285714286,
+        "accepted_per_draft": 6.99
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8dbd25925cec6c8c",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.604502152884379,
+          "decode_s": 7.6456909261178225,
+          "decode_tps": 52.18625809696395,
+          "end_to_end_output_tps": 48.4827620809306,
+          "wall_start": 1787986822.7429605,
+          "first_visible_wall": 1787986823.3474648,
+          "last_visible_wall": 1787986830.9931548,
+          "wall_end": 1787986830.9933152,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-911abb65b4b67bf7",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.6048800251446664,
+          "decode_s": 7.645899052964523,
+          "decode_tps": 52.18483754965308,
+          "end_to_end_output_tps": 48.47971733210935,
+          "wall_start": 1787986822.7428253,
+          "first_visible_wall": 1787986823.3477058,
+          "last_visible_wall": 1787986830.993605,
+          "wall_end": 1787986830.9936986,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/2)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986848.0325434,
+      "wave_end": 1787986857.9909818,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 43.52082499429671,
+      "median_stream_decode_tps": 43.52076354863706,
+      "aggregate_decode_tps": 174.07166975954786,
+      "mean_ttft_s": 0.7882877143565565,
+      "median_ttft_s": 0.7883241100935265,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 197.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1397.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1400.0,
+          "vllm:spec_decode_num_drafts_total": 200.0
+        },
+        "drafts": 200.0,
+        "draft_tokens": 1400.0,
+        "accepted_tokens": 1397.0,
+        "acceptance_rate": 0.9978571428571429,
+        "accepted_per_draft": 6.985
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9227c0c3d39e8c6f",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7882304380182177,
+          "decode_s": 9.167565315961838,
+          "decode_tps": 43.523005972511896,
+          "end_to_end_output_tps": 40.17706071561136,
+          "wall_start": 1787986848.0336738,
+          "first_visible_wall": 1787986848.821905,
+          "last_visible_wall": 1787986857.9894702,
+          "wall_end": 1787986857.9896033,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-94c44c29b4581257",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7884177821688354,
+          "decode_s": 9.167809315957129,
+          "decode_tps": 43.52184761364051,
+          "end_to_end_output_tps": 40.17546059510089,
+          "wall_start": 1787986848.0337417,
+          "first_visible_wall": 1787986848.8221598,
+          "last_visible_wall": 1787986857.9899695,
+          "wall_end": 1787986857.9900682,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b3cac05795bb16e1",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7880037510767579,
+          "decode_s": 9.168266051914543,
+          "decode_tps": 43.519679483633624,
+          "end_to_end_output_tps": 40.17527071330605,
+          "wall_start": 1787986848.0339956,
+          "first_visible_wall": 1787986848.8219998,
+          "last_visible_wall": 1787986857.990266,
+          "wall_end": 1787986857.9903688,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-87d7b540ff8ebd15",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7884988861624151,
+          "decode_s": 9.16845830786042,
+          "decode_tps": 43.5187669074008,
+          "end_to_end_output_tps": 40.172613064831765,
+          "wall_start": 1787986848.0335844,
+          "first_visible_wall": 1787986848.822084,
+          "last_visible_wall": 1787986857.9905422,
+          "wall_end": 1787986857.9906158,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986858.009042,
+      "wave_end": 1787986868.2257757,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 42.908113148048386,
+      "median_stream_decode_tps": 42.90850441628825,
+      "aggregate_decode_tps": 169.94053305520475,
+      "mean_ttft_s": 0.8242409892845899,
+      "median_ttft_s": 0.824150737025775,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 202.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 199.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 195.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1404.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1414.0,
+          "vllm:spec_decode_num_drafts_total": 202.0
+        },
+        "drafts": 202.0,
+        "draft_tokens": 1414.0,
+        "accepted_tokens": 1404.0,
+        "acceptance_rate": 0.9929278642149929,
+        "accepted_per_draft": 6.9504950495049505
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-ab097eb83ccd6f2c",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.8239780100993812,
+          "decode_s": 9.39141718391329,
+          "decode_tps": 42.48560064858513,
+          "end_to_end_output_tps": 39.15605552496024,
+          "wall_start": 1787986858.009823,
+          "first_visible_wall": 1787986858.8338025,
+          "last_visible_wall": 1787986868.2252192,
+          "wall_end": 1787986868.2253568,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-98ff467f21160138",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.8241523769684136,
+          "decode_s": 9.208592019975185,
+          "decode_tps": 43.32909951211794,
+          "end_to_end_output_tps": 39.86877363360734,
+          "wall_start": 1787986858.0099077,
+          "first_visible_wall": 1787986858.834061,
+          "last_visible_wall": 1787986868.0426521,
+          "wall_end": 1787986868.0428221,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8d4135ace72f3cfa",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.8241490970831364,
+          "decode_s": 9.20843398803845,
+          "decode_tps": 43.32984311103191,
+          "end_to_end_output_tps": 39.86948288987126,
+          "wall_start": 1787986858.009984,
+          "first_visible_wall": 1787986858.8341348,
+          "last_visible_wall": 1787986868.042568,
+          "wall_end": 1787986868.04272,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9eae86138c626aea",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.8246844729874283,
+          "decode_s": 9.390906881075352,
+          "decode_tps": 42.48790932045857,
+          "end_to_end_output_tps": 39.15531868495773,
+          "wall_start": 1787986858.009731,
+          "first_visible_wall": 1787986858.8344169,
+          "last_visible_wall": 1787986868.225323,
+          "wall_end": 1787986868.225457,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986868.2441092,
+      "wave_end": 1787986878.9522614,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 40.86105336976058,
+      "median_stream_decode_tps": 41.059321741028796,
+      "aggregate_decode_tps": 161.04066814380298,
+      "mean_ttft_s": 0.7959630637778901,
+      "median_ttft_s": 0.7959962955210358,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 196.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1397.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1407.0,
+          "vllm:spec_decode_num_drafts_total": 201.0
+        },
+        "drafts": 201.0,
+        "draft_tokens": 1407.0,
+        "accepted_tokens": 1397.0,
+        "acceptance_rate": 0.9928926794598436,
+        "accepted_per_draft": 6.9502487562189055
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-9c35f4fa6a0f0379",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7962414550129324,
+          "decode_s": 9.716498730937019,
+          "decode_tps": 41.064174560080666,
+          "end_to_end_output_tps": 38.04849120480007,
+          "wall_start": 1787986868.2454183,
+          "first_visible_wall": 1787986869.0416608,
+          "last_visible_wall": 1787986878.7581604,
+          "wall_end": 1787986878.7583187,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-90b53035cbafeaea",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.795576784061268,
+          "decode_s": 9.717764409957454,
+          "decode_tps": 41.05882620401444,
+          "end_to_end_output_tps": 38.046178982020656,
+          "wall_start": 1787986868.2451491,
+          "first_visible_wall": 1787986869.0407271,
+          "last_visible_wall": 1787986878.758491,
+          "wall_end": 1787986878.7586887,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b4a1fc4862db1757",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7957511360291392,
+          "decode_s": 9.91023772698827,
+          "decode_tps": 40.26139543690406,
+          "end_to_end_output_tps": 37.36161365155131,
+          "wall_start": 1787986868.2452774,
+          "first_visible_wall": 1787986869.0410297,
+          "last_visible_wall": 1787986878.9512672,
+          "wall_end": 1787986878.9514534,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8c967acbd0821c04",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7962828800082207,
+          "decode_s": 9.717529849149287,
+          "decode_tps": 41.059817278043155,
+          "end_to_end_output_tps": 38.0446956913272,
+          "wall_start": 1787986868.245043,
+          "first_visible_wall": 1787986869.0413275,
+          "last_visible_wall": 1787986878.7588563,
+          "wall_end": 1787986878.7589924,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986878.9664865,
+      "wave_end": 1787986889.554749,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 42.502601684231976,
+      "median_stream_decode_tps": 42.70493906459406,
+      "aggregate_decode_tps": 167.5394858648936,
+      "mean_ttft_s": 1.0610826344927773,
+      "median_ttft_s": 1.061076890444383,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 196.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1401.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1407.0,
+          "vllm:spec_decode_num_drafts_total": 201.0
+        },
+        "drafts": 201.0,
+        "draft_tokens": 1407.0,
+        "accepted_tokens": 1401.0,
+        "acceptance_rate": 0.9957356076759062,
+        "accepted_per_draft": 6.970149253731344
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b5403a49e44594e7",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 1.060820170911029,
+          "decode_s": 9.343012326164171,
+          "decode_tps": 42.705712683546444,
+          "end_to_end_output_tps": 38.446742022254476,
+          "wall_start": 1787986878.9673212,
+          "first_visible_wall": 1787986880.0281417,
+          "last_visible_wall": 1787986889.3711538,
+          "wall_end": 1787986889.3713233,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-95dc9c86a8112e09",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 1.0617723460309207,
+          "decode_s": 9.341402567923069,
+          "decode_tps": 42.71307195025555,
+          "end_to_end_output_tps": 38.44906995365802,
+          "wall_start": 1787986878.967254,
+          "first_visible_wall": 1787986880.0290267,
+          "last_visible_wall": 1787986889.37043,
+          "wall_end": 1787986889.370626,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-a21a5eb93108113e",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 1.0604044110514224,
+          "decode_s": 9.343350837938488,
+          "decode_tps": 42.70416544564168,
+          "end_to_end_output_tps": 38.447056101810965,
+          "wall_start": 1787986878.9675012,
+          "first_visible_wall": 1787986880.0279078,
+          "last_visible_wall": 1787986889.371257,
+          "wall_end": 1787986889.3714187,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-97d4347fc0b035ea",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 1.061333609977737,
+          "decode_s": 9.525524628115818,
+          "decode_tps": 41.887456657484236,
+          "end_to_end_output_tps": 37.78201166747309,
+          "wall_start": 1787986878.9671612,
+          "first_visible_wall": 1787986880.0284953,
+          "last_visible_wall": 1787986889.5540204,
+          "wall_end": 1787986889.5542095,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    },
+    {
+      "concurrency": 4,
+      "prompt_type": "code",
+      "prompts": [
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)",
+        "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+      ],
+      "wave_start": 1787986889.5747013,
+      "wave_end": 1787986900.2836866,
+      "streams_ok": 4,
+      "streams_failed": 0,
+      "mean_stream_decode_tps": 40.69818302700627,
+      "median_stream_decode_tps": 40.910348168394535,
+      "aggregate_decode_tps": 160.23510621147457,
+      "mean_ttft_s": 0.7470888230018318,
+      "median_ttft_s": 0.7470849110977724,
+      "speculative_metrics": {
+        "raw": {
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=0": 201.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=1": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=2": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=3": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=4": 200.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=5": 199.0,
+          "vllm:spec_decode_num_accepted_tokens_per_pos_total:position=6": 195.0,
+          "vllm:spec_decode_num_accepted_tokens_total": 1395.0,
+          "vllm:spec_decode_num_draft_tokens_total": 1407.0,
+          "vllm:spec_decode_num_drafts_total": 201.0
+        },
+        "drafts": 201.0,
+        "draft_tokens": 1407.0,
+        "accepted_tokens": 1395.0,
+        "acceptance_rate": 0.9914712153518124,
+        "accepted_per_draft": 6.940298507462686
+      },
+      "streams": [
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8d2de7adc6eafa53",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7473979908972979,
+          "decode_s": 9.75250724516809,
+          "decode_tps": 40.912556122189585,
+          "end_to_end_output_tps": 38.09405738291193,
+          "wall_start": 1787986889.5754879,
+          "first_visible_wall": 1787986890.3228867,
+          "last_visible_wall": 1787986900.0753937,
+          "wall_end": 1787986900.0758133,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 1/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8f6fabc1e5585c02",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7468750311527401,
+          "decode_s": 9.752703516976908,
+          "decode_tps": 40.91173276265861,
+          "end_to_end_output_tps": 38.09578039034091,
+          "wall_start": 1787986889.575713,
+          "first_visible_wall": 1787986890.3225892,
+          "last_visible_wall": 1787986900.0752926,
+          "wall_end": 1787986900.0755637,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 2/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-8b9550ada5408319",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7467874789144844,
+          "decode_s": 9.960189285920933,
+          "decode_tps": 40.05947964904644,
+          "end_to_end_output_tps": 37.3582697958472,
+          "wall_start": 1787986889.575976,
+          "first_visible_wall": 1787986890.3227637,
+          "last_visible_wall": 1787986900.2829533,
+          "wall_end": 1787986900.28311,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 3/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        },
+        {
+          "ok": true,
+          "http": 200,
+          "completion_id": "chatcmpl-b566adaeef7ba589",
+          "finish_reason": "length",
+          "prompt_tokens": 109,
+          "completion_tokens": 400,
+          "decode_tokens": 399,
+          "ttft_s": 0.7472947910428047,
+          "decode_s": 9.753363691968843,
+          "decode_tps": 40.90896357413046,
+          "end_to_end_output_tps": 38.092418229662414,
+          "wall_start": 1787986889.575382,
+          "first_visible_wall": 1787986890.3226779,
+          "last_visible_wall": 1787986900.0760412,
+          "wall_end": 1787986900.0761597,
+          "request": {
+            "model": "GLM-5.3-Flash-EXL3",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Output only Python source code. No comments, no docstrings, no markdown fences. Write functions clamp_00 through clamp_49. Each function is exactly:\ndef clamp_NN(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\nChange only the function name suffix (00, 01, \u2026 49). One blank line between functions. No other text. (stream 4/4)"
+              }
+            ],
+            "max_tokens": 400,
+            "min_tokens": 400,
+            "ignore_eos": true,
+            "stop": [],
+            "temperature": 0,
+            "top_p": 1,
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            },
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "usage": {
+            "prompt_tokens": 109,
+            "total_tokens": 509,
+            "completion_tokens": 400
+          },
+          "text": "def clamp_00(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_01(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_02(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_03(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_04(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_05(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_06(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_07(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_08(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_09(x, lo=0, hi=1):\n    if x < lo:\n        return lo\n    if x > hi:\n        return hi\n    return x\n\ndef clamp_10(x, lo=0, hi=1):\n    if x < lo:\n",
+          "text_sha256": "3fa628a683fc8376e9843d4abc630c87f3b241b6085f39e50c5aa33022ba8479"
+        }
+      ],
+      "kind": "measured"
+    }
+  ],
+  "summary": {
+    "1": {
+      "measured_waves": 5,
+      "all_streams_succeeded": true,
+      "mean_stream_decode_tps_median": 61.93414398996511,
+      "mean_stream_decode_tps_range": [
+        61.05669490519695,
+        62.13538249963508
+      ],
+      "aggregate_decode_tps_median": 61.93414481591537,
+      "aggregate_decode_tps_range": [
+        61.05670322165082,
+        62.135382305884214
+      ],
+      "mean_ttft_s_median": 0.5222309399396181,
+      "mean_ttft_s_range": [
+        0.5147425779141486,
+        0.5378981600515544
+      ]
+    },
+    "2": {
+      "measured_waves": 5,
+      "all_streams_succeeded": true,
+      "mean_stream_decode_tps_median": 52.15970485656234,
+      "mean_stream_decode_tps_range": [
+        47.48504366739909,
+        52.67213299549341
+      ],
+      "aggregate_decode_tps_median": 104.3179669479819,
+      "aggregate_decode_tps_range": [
+        93.31275427101708,
+        105.3391669781103
+      ],
+      "mean_ttft_s_median": 0.6046910890145227,
+      "mean_ttft_s_range": [
+        0.5915901170810685,
+        0.6459805769845843
+      ]
+    },
+    "4": {
+      "measured_waves": 5,
+      "all_streams_succeeded": true,
+      "mean_stream_decode_tps_median": 42.502601684231976,
+      "mean_stream_decode_tps_range": [
+        40.69818302700627,
+        43.52082499429671
+      ],
+      "aggregate_decode_tps_median": 167.5394858648936,
+      "aggregate_decode_tps_range": [
+        160.23510621147457,
+        174.07166975954786
+      ],
+      "mean_ttft_s_median": 0.7959630637778901,
+      "mean_ttft_s_range": [
+        0.7470888230018318,
+        1.0610826344927773
+      ]
+    }
+  },
+  "completed_at": 1787986900.2938435,
+  "passed": true,
+  "cluster_id": "sparkrun_88b110d8c27f0455_73f56777180a",
+  "process_role": "precursor_performance_long_stress",
+  "provenance_annotation": {
+    "added_at": "2026-08-29T09:45:34.763138+00:00",
+    "method": "post-run provenance annotation; measured request/response rows unchanged",
+    "basis": "single uninterrupted precursor workload; acceptance-1m-features.json records this cluster ID and its window follows the benchmark/telemetry window on the same launched process"
+  }
+}
