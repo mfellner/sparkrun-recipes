@@ -3,10 +3,10 @@
 This SparkRun mod vendors the exact runtime overlay set from:
 
 - Repository: `MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks`
-- Commit: `32db610d9207a42e2688a6994d3bfaf7af96eecb`
-- Pinned image expected by the recipe: `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58`
+- Commit: `c190db1ae17ba8dff20129ed1f308d10c63cf37d`
+- Pinned image expected by the recipe: `ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:4f30fba4248ed7d78dddda37d9ffc0fea5cc8c567c5dd98042ad808efdde9791`
 
-`run.sh` executes inside every rank container before vLLM starts. It verifies every vendored file against `SHA256SUMS`, validates the selected GID on every SparkRun-selected HCA, installs the latest stderr-only video overlay, upgrades the image's older GLM KV layout to padded DFlash2 slot-sharing, applies the mixed-prefill decode floor, reasoning-stop guard, hybrid APC correction, and XGrammar termination/reasoning backport in upstream order, then runs the upstream warm-restart, inline `MAX_NUM_SEQS` override, XGrammar, GPU, and CPU gates fail-closed. The upstream `python3 -S` launcher fix is retained and tested in `upstream/start.sh`; SparkRun's actual serve command uses static recipe JSON and never executes that shell command substitution.
+`run.sh` executes inside every rank container before vLLM starts. It verifies every vendored file against `SHA256SUMS`, validates the selected GID on every SparkRun-selected HCA, checks the compiled E2 symbols, installs the matching EXL3 Python overlay/chat template, and applies the video, DFlash2, mixed-prefill, reasoning-stop, APC, XGrammar, K-pool, spinwait, guarded indexer-workspace, and optional-off ABLIT corrections in upstream order. Every patcher is idempotent and fails on source-anchor drift. The complete source/static suite runs separately against the exact bundle; live per-rank diagnostics prove kernel-tier TP2 execution. Avoiding repeated test-framework imports inside every pre-serve container preserves vLLM's startup-free unified-memory margin. The effective profile sets `EXL3_FAT_KERNEL=1`, `MAX_NUM_BATCHED_TOKENS=7168`, `GLM53_INDEXER_WORKSPACE=rightsize`, and `GLM53_SPINWAIT_MS=stock`; rightsize is upstream's opt-in legal-maximum formula and is covered by its exhaustive chunk-equivalence gate.
 
 The adjacent `patch_suppress_stops_multitoken.py` makes stop handling deterministic for this default-thinking profile: while the recipe guard is enabled, client-provided stop strings are ignored and EOS/`max_tokens` govern completion. `GLM53_SUPPRESS_STOPS_IN_REASONING=0` restores stock stop behavior for deployments that require client stops. Its regression gate covers the patched stop-check seam plus enabled and opt-out paths.
 

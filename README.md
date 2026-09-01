@@ -16,21 +16,33 @@ Recipes are then available under the `@mfellner/` namespace. Review the reposito
 
 `@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-1m`
 
-Latest immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `32db610d9207a42e2688a6994d3bfaf7af96eecb`.
+Latest immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `c190db1ae17ba8dff20129ed1f308d10c63cf37d`.
 
 - Exactly two DGX Spark or compatible GB10 nodes using native `vllm-distributed` TP2/MP
-- `Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw` pinned to `25a44fdbf16862a46b7cc9921142c6c81350af2f`; its 133 serving files are byte-identical to the original `brandonmusic` 5ab snapshot
-- Updated DFlash2 draft pinned independently to `dc77ff1c99eeb2df044ee3d4f0094eb033fee410`
-- The tested arm64 CUDA 13 image remains pinned at `sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58`
-- Checksum-pinned mod validates every selected RoCE GID and applies/tests upstream's latest stderr-only video, padded DFlash2 slot-sharing, hybrid APC, mixed-prefill, reasoning-stop and XGrammar termination/reasoning backports on every rank before serve
+- `Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw` pinned to `024db9f7e9871e8efdf21538ba55af7442be3cd5`; deterministic maps prove its serving payload is unchanged from the prior 25a44fdb mirror pin and byte-identical to the original `brandonmusic` 5ab logical serving payload
+- Updated DFlash2 draft payload pinned independently to `bf582e4eacc1810f76656d1811693ff6c6737d2a`
+- Public arm64 CUDA 13 image built from the exact upstream commit and pinned at `ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:4f30fba4248ed7d78dddda37d9ffc0fea5cc8c567c5dd98042ad808efdde9791`
+- Checksum-pinned mod validates every selected RoCE GID and compiled E2 symbol, then applies each fail-closed overlay on every rank before serve; the complete source/static suite runs separately against the exact staged bundle
 - A fail-closed local follow-up ignores client-provided stop strings for this default-thinking profile so EOS/`max_tokens` govern completion; an environment opt-out restores stock stop behavior
 - Persistent Triton, TileLang, TorchInductor, FlashInfer, and vLLM caches plus a post-readiness DFlash2/sampler shape sweep
-- FP8 `fp8_ds_mla` target KV, DFlash2 k=7, fused EXL3 MoE, CUDA graphs, prefix caching, image/video, GLM 4.7 tools, and GLM 4.5 reasoning
-- `MAX_MODEL_LEN=1000000`, `MAX_NUM_SEQS=4`, `MAX_NUM_BATCHED_TOKENS=1024`, and upstream `GPU_MEM_UTIL=0.87`
+- FP8 `fp8_ds_mla` target KV, TP2-sharded DFlash2 k=7, fused EXL3 MoE, CUDA graphs, prefix caching, image/video, GLM 4.7 tools, and GLM 4.5 reasoning
+- `MAX_MODEL_LEN=1000000`, `MAX_NUM_SEQS=4`, upstream E2 `MAX_NUM_BATCHED_TOKENS=7168`, and SparkRun `GPU_MEM_UTIL=0.86`; the one-point memory adjustment keeps vLLM's admission gate fail-closed after per-rank overlay checks while retaining a rendered KV estimate above 1M tokens
 
 Port `8000` is the intentional SparkRun/sparkDash/LiteLLM adaptation from upstream `8888`; the served alias remains `GLM-5.3-Flash-EXL3`.
 
-#### Live 1M acceptance
+The published profile runs as root with host networking/IPC, `no-new-privileges`, `CAP_IPC_LOCK`, and `/dev/infiniband`; Docker privileged mode is off. Its unauthenticated multimodal API and distributed-runtime ports must remain on a trusted firewalled private network.
+
+#### Latest refresh acceptance (2026-09-01)
+
+The exact refreshed recipe launched under SparkRun 0.3.6 as `sparkrun_9000d029f34ee753_fe02508ba745`. The rank-0 post-readiness gate completed with `rc=0`, and final live receipts confirmed the c190db1 image/source pin, main/draft snapshots, TP2 DFlash2, 7,168-token prefill, right-sized guarded indexer workspace, unconditional Reasoning-Effort template, E2 kernel tier with positive direct/scatter counters on both ranks, ABLIT disabled, loaded NCCL 2.30.7, and two active 200 Gb/s RDMA links per host.
+
+Direct and LiteLLM-proxied discovery/completions, C4 exact concurrency, C4 thinking-enabled JSON Schema plus a non-thinking control, tool calling, still-image and video understanding, APC reuse, the forced reasoning-stop case, and a **110,042-prompt-token** retrieval all passed. A forced **2,300-completion-token** request exercised the corrected K-pool tail path. Three bounded head-side allocation notices occurred during post-ready acceptance pressure, but none occurred after final acceptance; both ranks remained running with no selected fatal, Xid, or host OOM-kill signatures. The committed [latest-refresh evidence](evidence/glm-5.3-flash-exl3-dflash2-dual-spark-latest-20260901/) contains raw requests/responses, per-rank E2/NCCL/process joins, deterministic model maps, public-image provenance, checksums, a semantics-recomputing verifier, and adversarial negative controls.
+
+The configured context is 1,000,000 tokens; 110,042 prompt tokens is the largest semantic request rerun for this refresh. Historical 950K and throughput results below were not rerun on the c190db1 process and are not claimed for it.
+
+#### Previous 1M acceptance (2026-08-29 profile)
+
+The measurements below predate the c190db1 E2 kernel, 7,168-token prefill, right-sized indexer workspace, latest DFlash2 payload, and template/spinwait refresh. They remain historical evidence for the prior pinned process, not performance evidence for the current recipe.
 
 The exact final recipe launched under SparkRun 0.3.6 as `sparkrun_d56463b6b176dd58_009b8bd44277`. Logs proved padded slot-share, hybrid APC with only the drafter SWA group marked EAGLE, fused EXL3 MoE, FP8 sparse-MLA KV, updated DFlash weights, captured target/speculator graphs, and NCCL 2.30.7 over both CX-7 rails. The final live KV pool was **1,814,136 tokens**, providing **1.81×** maximum concurrency for a 1,000,000-token request.
 

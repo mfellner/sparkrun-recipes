@@ -1,0 +1,56 @@
+{
+  "schema": 2,
+  "passed": true,
+  "verification_mode": "semantics-recomputed",
+  "cluster_id": "sparkrun_9000d029f34ee753_fe02508ba745",
+  "recipe_sha256": "7f6d1d0958b640ad45e0baad1d64168db114f58309b4a2a130289766152fd009",
+  "source_revision": "c190db1ae17ba8dff20129ed1f308d10c63cf37d",
+  "main_revision": "024db9f7e9871e8efdf21538ba55af7442be3cd5",
+  "draft_revision": "bf582e4eacc1810f76656d1811693ff6c6737d2a",
+  "image_digest": "sha256:4f30fba4248ed7d78dddda37d9ffc0fea5cc8c567c5dd98042ad808efdde9791",
+  "main_serving_payload_equal_to_prior_pin": true,
+  "basic_checks": {
+    "direct_concurrency_c4": true,
+    "direct_exact": true,
+    "direct_long_context": true,
+    "direct_models": true,
+    "direct_tool_call": true,
+    "direct_vision": true,
+    "proxy_exact": true,
+    "proxy_models": true,
+    "proxy_vision": true
+  },
+  "long_context_prompt_tokens": 110042,
+  "xgrammar_reasoning_c4": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "xgrammar_nonthinking_control": true,
+  "apc_hit_delta": 7168.0,
+  "reasoning_stop_passed": true,
+  "video_passed_direct_and_proxy": true,
+  "kpool_long_generation_tokens": 2300,
+  "postready_gate_rc": 0,
+  "hosts": {
+    "192.168.178.47": {
+      "container_running": true,
+      "hca_200g_links": 2,
+      "nccl_version": "2.30.7",
+      "postready_allocation_notices": 3,
+      "post_acceptance_allocation_notices": 0,
+      "fatal_log_patterns": 0,
+      "xid_or_oom_patterns": 0
+    },
+    "192.168.178.46": {
+      "container_running": true,
+      "hca_200g_links": 2,
+      "nccl_version": "2.30.7",
+      "postready_allocation_notices": 0,
+      "post_acceptance_allocation_notices": 0,
+      "fatal_log_patterns": 0,
+      "xid_or_oom_patterns": 0
+    }
+  }
+}

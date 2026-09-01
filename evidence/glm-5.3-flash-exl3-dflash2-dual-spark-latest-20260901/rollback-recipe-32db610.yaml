@@ -2,23 +2,22 @@
 # SparkRun provides immutable image/model distribution, native vLLM multi-node
 # orchestration, per-host fabric detection, lifecycle, and persistent caches.
 # The upstream EXL3 overlay, NoPE sparse-MLA patches, fused EXL3 MoE, FP8 MLA
-# KV path, TP2-sharded DFlash2-7 speculator, latest runtime overlays, and 1M
-# profile remain.
+# KV path, DFlash2-7 speculator, latest runtime overlays, and 1M profile remain.
 recipe_version: "2"
 name: glm-5.3-flash-exl3-dflash2-dual-spark-1m
 model: Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
-model_revision: 024db9f7e9871e8efdf21538ba55af7442be3cd5
+model_revision: 25a44fdbf16862a46b7cc9921142c6c81350af2f
 runtime: vllm-distributed
 min_nodes: 2
 max_nodes: 2
-container: ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:4f30fba4248ed7d78dddda37d9ffc0fea5cc8c567c5dd98042ad808efdde9791
+container: ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58
 builder: docker-pull
 
 metadata:
-  description: GLM 5.3 Flash EXL3 4bpw on two DGX Sparks with MiaAI-Lab's E2 fat-expert kernel, TP2 DFlash2, K-pool tail safety, hybrid APC, fused EXL3 MoE, FP8 sparse-MLA KV, multimodal support, and 1,000,000-token context
+  description: GLM 5.3 Flash EXL3 4bpw on two DGX Sparks with MiaAI-Lab's latest padded DFlash2 slot-share, hybrid APC and scheduler overlays, fused EXL3 MoE, FP8 sparse-MLA KV, multimodal support, and 1,000,000-token context
   maintainer: mfellner
   source: https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
-  source_revision: c190db1ae17ba8dff20129ed1f308d10c63cf37d
+  source_revision: 32db610d9207a42e2688a6994d3bfaf7af96eecb
   hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
   architecture: Glm5NextForConditionalGeneration
   model_params: 320B
@@ -28,10 +27,8 @@ metadata:
   context_length: 1000000
   multimodal: true
   notes:
-    - The main mirror is pinned to 024db9f7e9871e8efdf21538ba55af7442be3cd5; its serving payload is byte-identical to the prior 25a44fdb snapshot and brandonmusic snapshot 5ab363a8. The updated DFlash2 draft payload is independently pinned to bf582e4eacc1810f76656d1811693ff6c6737d2a.
-    - Upstream c190db1 requires a rebuild because the public exl3 tag still lacks the compiled E2 fat-expert symbols. This recipe pins the exact arm64 image built from that commit and independently verifies the loaded extension symbols, E2 diagnostics, chat-template prefix, indexer-workspace guard, and spinwait source on both ranks.
-    - SparkRun uses GPU_MEM_UTIL=0.86 instead of upstream's 0.87 because the fail-closed per-rank overlay gates leave roughly 0.6 GiB less startup-free unified memory than vLLM's 0.87 admission threshold. The rendered KV estimate still exceeds the configured 1,000,000-token context.
-    - GLM53_INDEXER_WORKSPACE=rightsize opts into upstream's fail-closed legal-maximum workspace formula. Its exhaustive gate proves identical prefill chunking while returning roughly 4.4 GiB per rank to KV, which preserves the 1M context at the guarded 0.86 admission profile.
+    - The main mirror is pinned to 25a44fdbf16862a46b7cc9921142c6c81350af2f and is byte-identical in serving payload to brandonmusic snapshot 5ab363a8; the updated DFlash2 draft is independently pinned to dc77ff1c99eeb2df044ee3d4f0094eb033fee410.
+    - The public upstream image tag resolved on 2026-08-28 to the pinned arm64 manifest digest. Its OCI version label is only local/vllm-openai:dev, so this recipe does not advertise a nonexistent version tag.
     - Port 8000 deliberately preserves this registry's SparkRun, sparkDash, and LiteLLM convention; upstream uses 8888. The endpoint translation does not alter model execution or benchmark accounting.
     - SparkRun replaces upstream's fixed single-HCA interface names with per-host fabric detection. Validate every intended CX-7 path before launch; the serving profile and shared RoCE controls remain upstream-compatible.
     - SparkRun 0.3.6's optional post-hook lifecycle waits only 240 seconds for the API. This recipe defines no post_exec; rank 0 starts a fail-closed in-container 3,600-second readiness/warmup/semantic gate that terminates vLLM on failure.
@@ -45,10 +42,10 @@ distribution_config:
     enabled: true
     entries:
       - name: Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
-        revision: 024db9f7e9871e8efdf21538ba55af7442be3cd5
+        revision: 25a44fdbf16862a46b7cc9921142c6c81350af2f
         target: [-1]
       - name: incoai/GLM-5.3-Flash-DFlash2
-        revision: bf582e4eacc1810f76656d1811693ff6c6737d2a
+        revision: dc77ff1c99eeb2df044ee3d4f0094eb033fee410
         target: [-1]
 
 mods:
@@ -90,21 +87,8 @@ env:
   VLLM_NO_USAGE_STATS: "1"
   DO_NOT_TRACK: "1"
   EXL3_FUSED_MOE: "1"
-  EXL3_MOE_ROW_TILE: "0"
-  EXL3_TEMP_ROWS_FUSED: "128"
-  EXL3_FAT_SORTED: "0"
-  EXL3_FAT_BATCHED: "0"
-  EXL3_FAT_KERNEL: "1"
-  ABLIT: "0"
-  ABLIT_METHOD: auto
-  ABLIT_DIRECTION: dealign
-  ABLIT_LAYERS: 15-45
-  ABLIT_ALPHA: "3.0"
-  ABLIT_INCLUDE_MTP: "1"
   GLM53_SUPPRESS_STOPS_IN_REASONING: "1"
   GLM53_MIXED_PREFILL_CHUNK: skip
-  GLM53_INDEXER_WORKSPACE: rightsize
-  GLM53_SPINWAIT_MS: stock
   GLM53_WARMUP_TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-exl3-1m/triton
   VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS: "1800"
   VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS: "1"
@@ -143,18 +127,18 @@ defaults:
   served_model_name: GLM-5.3-Flash-EXL3
   tensor_parallel: 2
   pipeline_parallel: 1
-  gpu_memory_utilization: 0.86
+  gpu_memory_utilization: 0.87
   max_model_len: 1000000
   max_num_seqs: 4
-  max_num_batched_tokens: 7168
-  dflash_speculative_config: '{"method":"dflash","model":"/cache/huggingface/hub/models--incoai--GLM-5.3-Flash-DFlash2/snapshots/bf582e4eacc1810f76656d1811693ff6c6737d2a","num_speculative_tokens":7,"kv_cache_dtype":"auto","draft_sample_method":"probabilistic","rejection_sample_method":"standard","draft_tensor_parallel_size":2}'
+  max_num_batched_tokens: 1024
+  dflash_speculative_config: '{"method":"dflash","model":"/cache/huggingface/hub/models--incoai--GLM-5.3-Flash-DFlash2/snapshots/dc77ff1c99eeb2df044ee3d4f0094eb033fee410","num_speculative_tokens":7,"kv_cache_dtype":"auto","draft_sample_method":"probabilistic","rejection_sample_method":"standard","draft_tensor_parallel_size":1}'
   limit_mm: '{"image":4,"video":1}'
 
 command: |
   export PATH="/usr/local/cuda/bin:/usr/local/bin:${PATH:-}";
   export GLM53_SERVE_PORT={port};
   export GLM53_SERVED_MODEL={served_model_name};
-  exec bash /workspace/mods/glm-5.3-flash-exl3-upstream-1m/serve_wrapper.sh /cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/024db9f7e9871e8efdf21538ba55af7442be3cd5 \
+  exec bash /workspace/mods/glm-5.3-flash-exl3-upstream-1m/serve_wrapper.sh /cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/25a44fdbf16862a46b7cc9921142c6c81350af2f \
     --served-model-name {served_model_name} \
     --host {host} \
     --port {port} \

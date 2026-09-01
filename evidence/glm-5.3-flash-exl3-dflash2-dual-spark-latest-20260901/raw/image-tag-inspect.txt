@@ -1,0 +1,5 @@
+Name:      ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks:c190db1
+MediaType: application/vnd.docker.distribution.manifest.v2+json
+Digest:    sha256:4f30fba4248ed7d78dddda37d9ffc0fea5cc8c567c5dd98042ad808efdde9791
+ImageID:   sha256:16d9b26d541c42ba3a7a02d51f738414066026dbc87f9e62d259c25c6d2ced6a
+Source:    c190db1ae17ba8dff20129ed1f308d10c63cf37d

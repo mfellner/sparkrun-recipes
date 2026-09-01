@@ -1,0 +1,442 @@
+{
+  "schema": 1,
+  "cluster_id": "sparkrun_9000d029f34ee753_fe02508ba745",
+  "process_role": "exact_final",
+  "recipe_sha256": "7f6d1d0958b640ad45e0baad1d64168db114f58309b4a2a130289766152fd009",
+  "script_sha256": "750087fbb045fa58fc443adeb6de94d114099defd844ab3c723a3ad1cb1a7eca",
+  "started_at": 1788272698.031049,
+  "reasoning_c4": [
+    {
+      "ok": true,
+      "http": 200,
+      "started_at": 1788272698.03281,
+      "completed_at": 1788272701.7955136,
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Case 0: think briefly, then return the required JSON object with answer 42 and case 0."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 1024,
+        "chat_template_kwargs": {
+          "enable_thinking": true
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "case_0",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "integer",
+                  "const": 42
+                },
+                "case": {
+                  "type": "integer",
+                  "const": 0
+                }
+              },
+              "required": [
+                "answer",
+                "case"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "request_sha256": "1121003893e2aab9812ef858126ef3e4f3be232cea568839669101fcba139acd",
+      "response": {
+        "id": "chatcmpl-afad35f54f1aff1b",
+        "object": "chat.completion",
+        "created": 1788272698,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"answer\": 42, \"case\": 0}",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": "The user wants me to return a JSON object with answer 42 and case 0. They said \"think briefly, then return the required JSON object.\" So I should just output the JSON object.\n\nThe required JSON object should have answer 42 and case 0. Let me format it properly."
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c2bae583",
+        "usage": {
+          "prompt_tokens": 34,
+          "total_tokens": 108,
+          "completion_tokens": 74,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "passed": true
+    },
+    {
+      "ok": true,
+      "http": 200,
+      "started_at": 1788272698.033448,
+      "completed_at": 1788272701.342086,
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Case 1: think briefly, then return the required JSON object with answer 42 and case 1."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 1024,
+        "chat_template_kwargs": {
+          "enable_thinking": true
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "case_1",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "integer",
+                  "const": 42
+                },
+                "case": {
+                  "type": "integer",
+                  "const": 1
+                }
+              },
+              "required": [
+                "answer",
+                "case"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "request_sha256": "dd73e48f21fcfeffc306a952679824676c7e7e82f1b4c0886a864a81ba109f21",
+      "response": {
+        "id": "chatcmpl-8389d88a98dad4c4",
+        "object": "chat.completion",
+        "created": 1788272698,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"answer\": 42, \"case\": 1}",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": "The user is asking me to think briefly and return a JSON object with answer 42 and case 1. This seems like a simple test or exercise. Let me provide the JSON object as requested."
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c2bae583",
+        "usage": {
+          "prompt_tokens": 34,
+          "total_tokens": 88,
+          "completion_tokens": 54,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "passed": true
+    },
+    {
+      "ok": true,
+      "http": 200,
+      "started_at": 1788272698.0336668,
+      "completed_at": 1788272704.99454,
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Case 2: think briefly, then return the required JSON object with answer 42 and case 2."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 1024,
+        "chat_template_kwargs": {
+          "enable_thinking": true
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "case_2",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "integer",
+                  "const": 42
+                },
+                "case": {
+                  "type": "integer",
+                  "const": 2
+                }
+              },
+              "required": [
+                "answer",
+                "case"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "request_sha256": "7fe437be415c6802f0db1203e123300bc815340e9ba9224de626e3fa552fd649",
+      "response": {
+        "id": "chatcmpl-8ba723e0d2698d9b",
+        "object": "chat.completion",
+        "created": 1788272698,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"answer\":42,\"case\":2}",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": "We need answer to user. Need parse. User: \"Case 2: think briefly, then return the required JSON object with answer 42 and case 2.\" They ask think briefly, then return required JSON object with answer 42 and case 2. Need output JSON object likely fields answer and case. Need maybe no extra. We can comply. Need maybe \"case\": 2, \"answer\": 42. They mention \"Case 2\" maybe required JSON object. Need final only JSON. Ensure valid JSON. Could include no markdown."
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c2bae583",
+        "usage": {
+          "prompt_tokens": 34,
+          "total_tokens": 157,
+          "completion_tokens": 123,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "passed": true
+    },
+    {
+      "ok": true,
+      "http": 200,
+      "started_at": 1788272698.033849,
+      "completed_at": 1788272707.408833,
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Case 3: think briefly, then return the required JSON object with answer 42 and case 3."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 1024,
+        "chat_template_kwargs": {
+          "enable_thinking": true
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "case_3",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "integer",
+                  "const": 42
+                },
+                "case": {
+                  "type": "integer",
+                  "const": 3
+                }
+              },
+              "required": [
+                "answer",
+                "case"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "request_sha256": "79250ea45d74c26b71c7b7c664c70c6d144596d43080df8380680a8469d47502",
+      "response": {
+        "id": "chatcmpl-9dfa4cf044377784",
+        "object": "chat.completion",
+        "created": 1788272698,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": 42,\n  \"case\": 3\n}",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": "The user is asking me to think briefly and return a JSON object with answer 42 and case 3. This seems like a test case or a simple instruction-following task. There's nothing harmful here \u2014 it's just asking for a specific JSON output format.\n\nThe instruction says \"think briefly, then return the required JSON object with answer 42 and case 3.\"\n\nSo I should produce a JSON object like:\n```json\n{\n  \"answer\": 42,\n  \"case\": 3\n}\n```\n\nThe user says \"think briefly\" \u2014 so I shouldn't overthink this. The request is clear and benign. I'll just provide the JSON object. Should I include any explanation? The user asked to \"return the required JSON object\" \u2014 probably best to just return the JSON, possibly in a code block for clarity. Minimal preamble is fine.\n\nFormat: A JSON code block would be appropriate. Keep it short."
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c2bae583",
+        "usage": {
+          "prompt_tokens": 34,
+          "total_tokens": 241,
+          "completion_tokens": 207,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "passed": true
+    }
+  ],
+  "nonthinking_control": {
+    "ok": true,
+    "http": 200,
+    "started_at": 1788272707.409948,
+    "completed_at": 1788272708.127303,
+    "request": {
+      "model": "GLM-5.3-Flash-EXL3",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Case 9: think briefly, then return the required JSON object with answer 42 and case 9."
+        }
+      ],
+      "temperature": 0,
+      "max_tokens": 1024,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "case_9",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "answer": {
+                "type": "integer",
+                "const": 42
+              },
+              "case": {
+                "type": "integer",
+                "const": 9
+              }
+            },
+            "required": [
+              "answer",
+              "case"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "request_sha256": "c8c5a2f863a0f3872e1050b9a62c7ce3bb1f6d9e1cb99872411c47c537389f19",
+    "response": {
+      "id": "chatcmpl-8e39086ce6c5bde1",
+      "object": "chat.completion",
+      "created": 1788272707,
+      "model": "GLM-5.3-Flash-EXL3",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"answer\": 42, \"case\": 9}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 154827,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c2bae583",
+      "usage": {
+        "prompt_tokens": 35,
+        "total_tokens": 48,
+        "completion_tokens": 13,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    },
+    "passed": true
+  },
+  "completed_at": 1788272708.1274905,
+  "passed": true
+}

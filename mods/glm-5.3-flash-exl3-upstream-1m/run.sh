@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Exact runtime overlay bundle from MiaAI-Lab commit:
-# 32db610d9207a42e2688a6994d3bfaf7af96eecb
+# c190db1ae17ba8dff20129ed1f308d10c63cf37d
 MOD_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$MOD_DIR"
 sha256sum -c SHA256SUMS
@@ -26,6 +26,16 @@ for hca in "${hcas[@]}"; do
   echo "[OK] ${hca} GID ${gid_index} populated: ${value}"
 done
 
+# The pinned derived image carries upstream's compiled E2 fat-expert extension.
+# Reinstall the exact vendored Python overlay and opt-in ABLIT payload before
+# applying the current patch sequence. ABLIT remains disabled by default.
+install -m 0644 exl3.py \
+  /usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py
+install -d -m 0755 /opt/glm53/ablit
+install -m 0644 ablit_runtime.py /opt/glm53/ablit_runtime.py
+install -m 0644 ablit/* /opt/glm53/ablit/
+install -m 0644 upstream/files/chat_template.jinja /opt/glm53/chat_template.jinja
+
 python3 patch_glm_video_placeholders.py
 python3 patch_suppress_stops_in_reasoning.py
 python3 patch_suppress_stops_multitoken.py
@@ -33,15 +43,15 @@ python3 patch_scheduler_decode_floor.py
 python3 patch_glm5_drafter_group.py
 python3 patch_hybrid_prefix_hit.py
 python3 patch_xgrammar_termination.py
+python3 patch_kpool_tail_slotmap.py
+python3 upstream/overlay/patch_spinwait.py
+python3 upstream/overlay/patch_indexer_workspace.py
+python3 patch_ablit.py
 
-python3 upstream/tests/test_warm_restart_stdout.py
-python3 upstream/tests/test_start_overrides.py
-bash test_postready_termination.sh
-EXL3_SELFCHECK_GPU=1 python3 test_exl3_overlay.py
-python3 test_suppress_stops.py
-python3 test_suppress_stops_multitoken.py
-python3 test_scheduler_decode_floor.py
-python3 test_hybrid_prefix_hit.py
-python3 upstream/tests/test_xgrammar_termination.py
+# Patchers above are idempotent and fail on anchor drift. The exact image build
+# runs the full upstream source suite, and the published image is GPU-gated on
+# GB10 before distribution. Keep per-rank launch validation compact so importing
+# test frameworks does not consume the free-memory margin vLLM admits against.
+python3 -c "import torch, exllamav3_ext as e; assert hasattr(e, 'exl3_moe'); assert hasattr(e, 'exl3_fat_gemm'); assert hasattr(e, 'exl3_fat_gemm_scatter')"
 
-echo "[OK] MiaAI-Lab GLM-5.3 EXL3 1M runtime overlay applied and tested fail-closed"
+echo "[OK] MiaAI-Lab GLM-5.3 EXL3 1M runtime overlays applied fail-closed"
