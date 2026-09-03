@@ -1,0 +1,49 @@
+{
+  "captured_unix": 1788428479.1567583,
+  "completions": {
+    "direct_glm": {
+      "content": "GLM_DIRECT_REGRESSION_OK",
+      "expected": "GLM_DIRECT_REGRESSION_OK",
+      "passed": true,
+      "status": 200
+    },
+    "direct_qwen": {
+      "content": "Q38_DIRECT_REGRESSION_OK",
+      "expected": "Q38_DIRECT_REGRESSION_OK",
+      "passed": true,
+      "status": 200
+    },
+    "proxy_glm": {
+      "content": "GLM_PROXY_REGRESSION_OK",
+      "expected": "GLM_PROXY_REGRESSION_OK",
+      "passed": true,
+      "status": 200
+    },
+    "proxy_qwen": {
+      "content": "Q38_PROXY_REGRESSION_OK",
+      "expected": "Q38_PROXY_REGRESSION_OK",
+      "passed": true,
+      "status": 200
+    }
+  },
+  "criteria": {
+    "all_completions": true,
+    "models_exact": true,
+    "proxy_health": true,
+    "sparkdash_five": true
+  },
+  "passed": true,
+  "proxy_health": {
+    "healthy_count": 2,
+    "status": 200,
+    "unhealthy_count": 0
+  },
+  "proxy_models": [
+    "GLM-5.3-Flash-EXL3",
+    "qwen3.8-flash-next"
+  ],
+  "sparkdash": {
+    "count": 5,
+    "status": 200
+  }
+}

@@ -1,0 +1,69 @@
+sparkrun v0.3.6
+
+Runtime:   vllm-distributed
+Image:     ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:4f30fba4248ed7d78dddda37d9ffc0fea5cc8c567c5dd98042ad808efdde9791
+Model:     Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
+Mode:      cluster (2 nodes)
+Platform:  DGX Spark (NVIDIA GB10, NCCL)
+Scheduler: occupancy-sparse
+
+VRAM Estimation:
+  Model dtype:      int4
+  Model params:     320,000,000,000
+  KV cache dtype:   fp8
+  Architecture:     MLA (compressed latent KV cache)
+  Model weights:    164.00 GB
+  KV cache:         21.46 GB (max_model_len=1,000,000) — replicated per rank
+  Tensor parallel:  2
+  Per-GPU total:    103.46 GB
+  DGX Spark fit:    YES
+
+  GPU Memory Budget:
+    gpu_memory_utilization: 85%
+    Usable GPU memory:     102.8 GB (121 GB x 85%)
+    Available for KV:      20.8 GB
+    Max context tokens:    971,680
+    Context multiplier:    1.0x (vs max_model_len=1,000,000)
+    WARNING: max_model_len exceeds available KV budget (97.2% fits)
+  Warning: MLA sizing inferred from kv_lora_rank alone; the RoPE tail (qk_rope_head_dim) is not counted. Pin metadata.qk_rope_head_dim if this model caches the tail alongside the latent
+  Warning: MLA estimate covers the compressed latent cache only; the sparse-indexer cache is not included
+
+  Per-host fit:
+    192.168.178.47: ranks=1, accelerator memory unknown
+    192.168.178.46: ranks=1, accelerator memory unknown
+  Warning: 192.168.178.47: no memory_gb declared on host hardware; fit not verified
+  Warning: 192.168.178.46: no memory_gb declared on host hardware; fit not verified
+
+Hosts:     cluster 'spark-pair2'
+  Head:    192.168.178.47
+  Workers: 192.168.178.46
+
+Cluster:   sparkrun_9000d029f34ee753_8eb2883b865e
+
+Serve command:
+  export PATH="/usr/local/cuda/bin:/usr/local/bin:${PATH:-}";
+  export GLM53_SERVE_PORT=8000;
+  export GLM53_SERVED_MODEL=GLM-5.3-Flash-EXL3;
+  exec bash /workspace/mods/glm-5.3-flash-exl3-upstream-1m/serve_wrapper.sh /cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/024db9f7e9871e8efdf21538ba55af7442be3cd5 \
+    --served-model-name GLM-5.3-Flash-EXL3 \
+    --host 0.0.0.0 \
+    --port 8000 \
+    --distributed-executor-backend mp \
+    --tensor-parallel-size 2 \
+    --pipeline-parallel-size 1 \
+    --quantization exl3 \
+    --kv-cache-dtype fp8 \
+    --gpu-memory-utilization 0.85 \
+    --max-model-len 1000000 \
+    --max-num-seqs 4 \
+    --max-num-batched-tokens 7168 \
+    --speculative-config '{"method":"dflash","model":"/cache/huggingface/hub/models--incoai--GLM-5.3-Flash-DFlash2/snapshots/bf582e4eacc1810f76656d1811693ff6c6737d2a","num_speculative_tokens":7,"kv_cache_dtype":"auto","draft_sample_method":"probabilistic","rejection_sample_method":"standard","draft_tensor_parallel_size":2}' \
+    --cudagraph-capture-sizes 1 2 4 8 16 24 32 \
+    --enable-prefix-caching \
+    --no-enable-flashinfer-autotune \
+    --tool-call-parser glm47 \
+    --enable-auto-tool-choice \
+    --reasoning-parser glm45 \
+    --chat-template /opt/glm53/chat_template.jinja \
+    --limit-mm-per-prompt '{"image":4,"video":1}' \
+    --skip-mm-profiling

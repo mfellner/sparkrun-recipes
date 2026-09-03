@@ -1,0 +1,127 @@
+{
+  "base": "http://192.168.178.48:8000",
+  "concurrency": {
+    "passed": 4,
+    "requested": 4,
+    "rows": [
+      {
+        "content": "Q38_C0_OK",
+        "elapsed_s": 0.41094252199400216,
+        "token": "Q38_C0_OK",
+        "usage": {
+          "completion_tokens": 7,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens": 25,
+          "prompt_tokens_details": null,
+          "total_tokens": 32
+        }
+      },
+      {
+        "content": "Q38_C1_OK",
+        "elapsed_s": 0.4097140090307221,
+        "token": "Q38_C1_OK",
+        "usage": {
+          "completion_tokens": 7,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens": 25,
+          "prompt_tokens_details": null,
+          "total_tokens": 32
+        }
+      },
+      {
+        "content": "Q38_C2_OK",
+        "elapsed_s": 0.40958631300600246,
+        "token": "Q38_C2_OK",
+        "usage": {
+          "completion_tokens": 7,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens": 25,
+          "prompt_tokens_details": null,
+          "total_tokens": 32
+        }
+      },
+      {
+        "content": "Q38_C3_OK",
+        "elapsed_s": 0.40974538604496047,
+        "token": "Q38_C3_OK",
+        "usage": {
+          "completion_tokens": 7,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens": 25,
+          "prompt_tokens_details": null,
+          "total_tokens": 32
+        }
+      }
+    ]
+  },
+  "deterministic_chat": {
+    "content": "QWEN38_DIRECT_OK",
+    "elapsed_s": 0.2772468830225989,
+    "token": "QWEN38_DIRECT_OK",
+    "usage": {
+      "completion_tokens": 8,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens": 26,
+      "prompt_tokens_details": null,
+      "total_tokens": 34
+    }
+  },
+  "finished_unix": 1788390699.1520674,
+  "long_context": {
+    "content": "NEEDLE_QWEN38_LONG_CONTEXT_92MZ",
+    "elapsed_s": 541.7640683999634,
+    "needle": "NEEDLE_QWEN38_LONG_CONTEXT_92MZ",
+    "repetitions": 128000,
+    "request_characters": 4096062,
+    "usage": {
+      "completion_tokens": 15,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens": 896051,
+      "prompt_tokens_details": null,
+      "total_tokens": 896066
+    }
+  },
+  "model": "qwen3.8-flash-next",
+  "models": {
+    "ids": [
+      "qwen3.8-flash-next"
+    ],
+    "max_model_len": 1000000
+  },
+  "passed": true,
+  "started_unix": 1788390154.5037937,
+  "tool_call": {
+    "arguments": {
+      "code": "q38",
+      "count": 8
+    },
+    "elapsed_s": 0.9676314750104211,
+    "name": "report_code"
+  },
+  "vision": {
+    "content": "Based on the image provided:\n\n- **Code**: VISION CODE 7K4P\n- **Shape 1**: A blue circle\n- **Shape 2**: A red square",
+    "elapsed_s": 1.1728725589928217,
+    "fixture_sha256": "e99d8528b96fb562701a586fd1bfcc48a8368c6a1f54f9a4237af74886f31cc4",
+    "usage": {
+      "completion_tokens": 40,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens": 321,
+      "prompt_tokens_details": null,
+      "total_tokens": 361
+    }
+  }
+}

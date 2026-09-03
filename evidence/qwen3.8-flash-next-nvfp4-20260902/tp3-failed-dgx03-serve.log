@@ -1,0 +1,963 @@
+(APIServer pid=109) INFO 09-02 22:47:41 [api_utils.py:333]
+(APIServer pid=109) INFO 09-02 22:47:41 [api_utils.py:333]        █     █     █▄   ▄█
+(APIServer pid=109) INFO 09-02 22:47:41 [api_utils.py:333]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.1.dev20073+g8e685d198
+(APIServer pid=109) INFO 09-02 22:47:41 [api_utils.py:333]   █▄█▀ █     █     █     █  model   /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594
+(APIServer pid=109) INFO 09-02 22:47:41 [api_utils.py:333]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=109) INFO 09-02 22:47:41 [api_utils.py:333]
+(APIServer pid=109) INFO 09-02 22:47:41 [api_utils.py:272] non-default args: {'model_tag': '/cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'host': '0.0.0.0', 'model': '/cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594', 'max_model_len': 1000000, 'served_model_name': ['qwen3.8-flash-next'], 'hf_overrides': {'rope_parameters': {'rope_type': 'yarn', 'factor': 4.0, 'original_max_position_embeddings': 262144}}, 'load_format': 'safetensors', 'safetensors_load_strategy': 'lazy', 'reasoning_parser': 'qwen3', 'distributed_executor_backend': 'mp', 'master_addr': '192.168.178.48', 'master_port': 25000, 'nnodes': 3, 'tensor_parallel_size': 3, 'enable_expert_parallel': True, 'gpu_memory_utilization': 0.835, 'max_num_batched_tokens': 8192, 'max_num_seqs': 8, 'enable_chunked_prefill': True, 'speculative_config': {'method': 'mtp', 'num_speculative_tokens': 3}, 'compilation_config': {'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) INFO 09-02 22:47:41 [model.py:672] Resolved architecture: Qwen4ExpForConditionalGeneration
+(APIServer pid=109) WARNING 09-02 22:47:41 [model.py:2459] User-specified max_model_len (1000000) is greater than the derived max_model_len (max_position_embeddings=262144.0 or model_max_length=None in model's config.json). VLLM_ALLOW_LONG_MAX_MODEL_LEN must be used with extreme caution. If the model uses relative position encoding (RoPE), positions exceeding derived_max_model_len lead to nan. If the model uses absolute position encoding, positions exceeding derived_max_model_len will cause a CUDA array out-of-bounds error.
+(APIServer pid=109) INFO 09-02 22:47:41 [model.py:1965] Using max model len 1000000
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(APIServer pid=109) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(APIServer pid=109) INFO 09-02 22:47:46 [arg_utils.py:2180] Inferred data_parallel_rank 0 from node_rank 0
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) INFO 09-02 22:47:46 [model.py:672] Resolved architecture: Qwen3_8FlashNextMTP
+(APIServer pid=109) INFO 09-02 22:47:46 [model.py:1965] Using max model len 262144
+(APIServer pid=109) WARNING 09-02 22:47:46 [speculative.py:1010] Enabling num_speculative_tokens > 1 will run multiple times of forward on same MTP layer,which may result in lower acceptance rate
+(APIServer pid=109) INFO 09-02 22:47:46 [scheduler.py:246] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(APIServer pid=109) INFO 09-02 22:47:46 [config.py:605] Mamba cache mode is set to 'align' for Qwen4ExpForConditionalGeneration by default when prefix caching is enabled
+(APIServer pid=109) WARNING 09-02 22:47:46 [modelopt.py:1011] Detected ModelOpt NVFP4 checkpoint (quant_algo=NVFP4). Please note that the format is experimental and could change in future.
+(APIServer pid=109) WARNING 09-02 22:47:46 [vllm.py:1341] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=109) INFO 09-02 22:47:46 [kernel.py:308] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(APIServer pid=109) INFO 09-02 22:47:46 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] The `use_fast` parameter is deprecated and will be removed in a future version. Use `backend="torchvision"` instead of `use_fast=True`, or `backend="pil"` instead of `use_fast=False`.
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(APIServer pid=109) [transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+(EngineCore pid=202) INFO 09-02 22:47:57 [core.py:122] Initializing a V1 LLM engine (v0.1.dev20073+g8e685d198) with config: model='/cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594', speculative_config=SpeculativeConfig(method='mtp', model='/cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594', num_spec_tokens=3), tokenizer='/cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=1000000, download_dir=None, load_format=safetensors, tensor_parallel_size=3, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=modelopt_fp4, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='qwen3', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=qwen3.8-flash-next, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 64, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=202) INFO 09-02 22:47:57 [multiproc_executor.py:150] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=192.168.178.48, mq_connect_ip=192.168.178.48 (local), world_size=3, local_world_size=1
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='default': {'mrope_interleaved', 'mrope_section'}
+[ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+[ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /usr/local/lib/python3.12/dist-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(Worker pid=226) INFO 09-02 22:48:03 [parallel_state.py:1638] world_size=3 rank=0 local_rank=0 distributed_init_method=tcp://192.168.178.48:25000 backend=nccl
+(Worker pid=226) INFO 09-02 22:48:43 [pynccl.py:113] vLLM is using nccl==2.30.7
+dgx03:226:226 [0] NCCL INFO ncclOsDlopen(libnccl-env.so) failed: libnccl-env.so: cannot open shared object file: No such file or directory
+dgx03:226:226 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+dgx03:226:226 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enP7s7,enp1s0f0np0,enp1s0f1np1,enP2p1s0f0np0,enP2p1s0f1np1
+dgx03:226:226 [0] NCCL INFO Bootstrap: Using enP7s7:192.168.178.48<0>
+dgx03:226:327 [0] NCCL INFO Socket handshake magic 0x564ab9f2fc4b9d6c (built-in default)
+dgx03:226:226 [0] NCCL INFO cudaDriverVersion 13000
+dgx03:226:226 [0] NCCL INFO NCCL version 2.30.7+cuda13.3
+dgx03:226:226 [0] NCCL INFO NCCL git version HEAD a5187fa2e
+dgx03:226:226 [0] NCCL INFO NCCL_NET_PLUGIN set by environment to none
+dgx03:226:226 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+dgx03:226:226 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enP7s7,enp1s0f0np0,enp1s0f1np1,enP2p1s0f0np0,enP2p1s0f1np1
+dgx03:226:226 [0] NCCL INFO NCCL_IB_HCA set to rocep1s0f0,rocep1s0f1,roceP2p1s0f0,roceP2p1s0f1
+dgx03:226:226 [0] NCCL INFO NCCL_IB_MERGE_NICS set by environment to 1.
+dgx03:226:226 [0] NCCL INFO NET/IB : Using [0]rocep1s0f0:1/RoCE [1]rocep1s0f1:1/RoCE [2]roceP2p1s0f0:1/RoCE [3]roceP2p1s0f1:1/RoCE [RO]; OOB enP7s7:192.168.178.48<0>
+dgx03:226:226 [0] NCCL INFO Initialized NET plugin IB
+dgx03:226:226 [0] NCCL INFO Assigned NET plugin IB to comm
+dgx03:226:226 [0] NCCL INFO ncclOsDlopen(libnccl-rma.so) failed: libnccl-rma.so: cannot open shared object file: No such file or directory
+dgx03:226:226 [0] NCCL INFO RMA/Plugin: Could not find: libnccl-rma.so
+dgx03:226:226 [0] NCCL INFO RMA/Plugin: Failed to load external plugin libnccl-rma.so, dlHandle: (nil), ncclRma: (nil)
+dgx03:226:226 [0] NCCL INFO RMA/Plugin: Assigned plugin RMA_IB_PROXY to comm
+dgx03:226:226 [0] NCCL INFO ncclOsDlopen(libnccl-gin.so) failed: libnccl-gin.so: cannot open shared object file: No such file or directory
+dgx03:226:226 [0] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
+dgx03:226:226 [0] NCCL INFO GIN/Plugin: Failed to load external plugin libnccl-gin.so, dlHandle: (nil), ncclGin: (nil)
+dgx03:226:226 [0] NCCL INFO GIN/Plugin: Assigned plugin GIN_IB_GDAKI type 3 to comm
+dgx03:226:226 [0] NCCL INFO Using network IB
+dgx03:226:226 [0] NCCL INFO Loaded NVML from libnvidia-ml.so.1
+dgx03:226:226 [0] NCCL INFO [Rank 0] ncclCommInitRank comm 0x3ba09710 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId f01000 commId 0xdbfe025fd1ed0069 - Init START
+dgx03:226:226 [0] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+dgx03:226:226 [0] NCCL INFO Bootstrap timings total 0.005207 (create 0.000029, send 0.000105, recv 0.001391, ring 0.002608, delay 0.000000)
+dgx03:226:226 [0] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
+dgx03:226:226 [0] NCCL INFO NCCL_CROSS_NIC set by environment to 1.
+dgx03:226:226 [0] NCCL INFO NCCL_IGNORE_CPU_AFFINITY set by environment to 1.
+dgx03:226:226 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is empty, ignoring. (GPU affinity = ).
+dgx03:226:226 [0] NCCL INFO NCCL_NVLS_ENABLE set by environment to 0.
+dgx03:226:226 [0] NCCL INFO Rank 0: 6 Net devices
+dgx03:226:226 [0] NCCL INFO Rank 0: 0 CollNet devices
+dgx03:226:226 [0] NCCL INFO Local Net device counts across ranks: min 6 max 6
+dgx03:226:226 [0] NCCL INFO Local CollNet device counts across ranks: min 0 max 0
+dgx03:226:226 [0] NCCL INFO comm 0x3ba09710 rank 0 nRanks 3 nNodes 3 localRanks 1 localRank 0 MNNVL 0
+dgx03:226:226 [0] NCCL INFO Channel 00/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 01/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 02/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 03/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 04/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 05/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 06/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 07/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 08/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 09/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 10/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 11/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 12/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 13/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 14/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 15/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 16/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 17/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 18/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 19/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 20/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 21/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 22/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 23/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 24/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 25/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 26/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 27/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 28/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 29/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 30/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 31/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 32/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 33/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 34/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 35/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 36/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 37/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 38/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 39/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 40/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 41/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 42/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 43/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 44/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 45/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 46/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 47/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 48/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 49/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 50/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 51/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 52/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 53/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 54/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 55/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 56/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 57/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 58/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 59/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 60/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 61/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 62/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 63/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Trees [0] 2/-1/-1->0->-1 [1] 2/-1/-1->0->-1 [2] 2/-1/-1->0->-1 [3] 2/-1/-1->0->-1 [4] 2/-1/-1->0->-1 [5] 2/-1/-1->0->-1 [6] 2/-1/-1->0->-1 [7] 2/-1/-1->0->-1 [8] 2/-1/-1->0->-1 [9] 2/-1/-1->0->-1 [10] 2/-1/-1->0->-1 [11] 2/-1/-1->0->-1 [12] 2/-1/-1->0->-1 [13] 2/-1/-1->0->-1 [14] 2/-1/-1->0->-1 [15] 2/-1/-1->0->-1 [16] 2/-1/-1->0->-1 [17] 2/-1/-1->0->-1 [18] 2/-1/-1->0->-1 [19] 2/-1/-1->0->-1 [20] 2/-1/-1->0->-1 [21] 2/-1/-1->0->-1 [22] 2/-1/-1->0->-1 [23] 2/-1/-1->0->-1 [24] 2/-1/-1->0->-1 [25] 2/-1/-1->0->-1 [26] 2/-1/-1->0->-1 [27] 2/-1/-1->0->-1 [28] 2/-1/-1->0->-1 [29] 2/-1/-1->0->-1 [30] 2/-1/-1->0->-1 [31] 2/-1/-1->0->-1 [32] 2/-1/-1->0->1 [33] 2/-1/-1->0->1 [34] 2/-1/-1->0->1 [35] 2/-1/-1->0->1 [36] 2/-1/-1->0->1 [37] 2/-1/-1->0->1 [38] 2/-1/-1->0->1 [39] 2/-1/-1->0->1 [40] 2/-1/-1->0->1 [41] 2/-1/-1->0->1 [42] 2/-1/-1->0->1 [43] 2/-1/-1->0->1 [44] 2/-1/-1->0->1 [45] 2/-1/-1->0->1 [46] 2/-1/-1->0->1 [47] 2/-1/-1->0->1 [48] 2/-1/-1->0->1 [49] 2/-1/-1->0->1 [50] 2/-1/-1->0->1 [51] 2/-1/-1->0->1 [52] 2/-1/-
+dgx03:226:226 [0] NCCL INFO P2P Chunksize set to 262144
+dgx03:226:226 [0] NCCL INFO Tuning P2P operations with maxP2pPeers = 3
+dgx03:226:226 [0] NCCL INFO ncclOsDlopen(libnccl-profiler.so) failed: libnccl-profiler.so: cannot open shared object file: No such file or directory
+dgx03:226:226 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+dgx03:226:226 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+dgx03:226:335 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 18
+dgx03:226:334 [0] NCCL INFO [Proxy Service] Device 0 CPU core 7
+dgx03:226:334 [0] NCCL INFO proxy listening socket at 192.168.178.48<58867>
+dgx03:226:334 [0] NCCL INFO NCCL_IB_SUBNET_AWARE_ROUTING set by environment to 1.
+dgx03:226:334 [0] NCCL INFO NCCL_IB_ROCE_VERSION_NUM set by environment to 2.
+dgx03:226:336 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 0
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 0
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Connected all trees
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Connected binomial trees
+dgx03:226:226 [0] NCCL INFO ncclOsDlopen(libnccl-tuner.so) failed: libnccl-tuner.s(Worker pid=226) WARNING 09-02 22:48:49 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.1 not supported, communicator is not available.
+(Worker pid=226) WARNING 09-02 22:48:49 [custom_all_reduce.py:133] Custom allreduce is disabled due to an unsupported world size: 3. Supported world sizes: [2, 4, 6, 8, 16]. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=226) INFO 09-02 22:48:49 [cuda_communicator.py:266] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'tp:0' out of potential backends: ['NCCL_SYMM_MEM', 'QUICK_REDUCE', 'FLASHINFER', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+o: cannot open shared object file: No such file or directory
+dgx03:226:226 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+dgx03:226:226 [0] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+dgx03:226:226 [0] NCCL INFO 64 coll channels, 64 collnet channels, 0 nvls channels, 64 p2p channels, 2 p2p channels per peer
+dgx03:226:226 [0] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, cuMemGdrSupport 0
+dgx03:226:226 [0] NCCL INFO CC Off, workFifoBytes 1048576
+dgx03:226:226 [0] NCCL INFO ncclCommInitRank comm 0x3ba09710 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId f01000 commId 0xdbfe025fd1ed0069 - Init COMPLETE
+dgx03:226:226 [0] NCCL INFO Init timings - ncclCommInitRank: rank 0 nranks 3 total 5.27 (kernels 0.19, alloc 0.03, bootstrap 0.01, allgathers 0.00, topo 0.01, graphs 0.00, connections 5.03, rest 0.00)
+dgx03:226:226 [0] NCCL INFO Initialized NET plugin IB
+dgx03:226:226 [0] NCCL INFO Assigned NET plugin IB to comm
+dgx03:226:226 [0] NCCL INFO RMA/Plugin: Assigned plugin RMA_IB_PROXY to comm
+dgx03:226:226 [0] NCCL INFO GIN/Plugin: Assigned plugin GIN_IB_GDAKI type 3 to comm
+dgx03:226:226 [0] NCCL INFO Using network IB
+dgx03:226:226 [0] NCCL INFO [Rank 0] ncclCommInitRank comm 0x428834a0 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId f01000 commId 0x9c1470b0fa8d042b - Init START
+dgx03:226:226 [0] NCCL INFO Bootstrap timings total 0.001052 (create 0.000026, send 0.000110, recv 0.000240, ring 0.000299, delay 0.000000)
+dgx03:226:226 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is empty, ignoring. (GPU affinity = ).
+dgx03:226:226 [0] NCCL INFO Rank 0: 6 Net devices
+dgx03:226:226 [0] NCCL INFO Rank 0: 0 CollNet devices
+dgx03:226:226 [0] NCCL INFO Local Net device counts across ranks: min 6 max 6
+dgx03:226:226 [0] NCCL INFO Local CollNet device counts across ranks: min 0 max 0
+dgx03:226:226 [0] NCCL INFO comm 0x428834a0 rank 0 nRanks 3 nNodes 3 localRanks 1 localRank 0 MNNVL 0
+dgx03:226:226 [0] NCCL INFO Channel 00/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 01/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 02/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 03/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 04/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 05/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 06/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 07/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 08/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 09/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 10/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 11/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 12/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 13/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 14/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 15/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 16/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 17/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 18/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 19/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 20/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 21/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 22/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 23/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 24/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 25/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 26/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 27/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 28/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 29/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 30/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 31/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 32/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 33/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 34/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 35/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 36/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 37/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 38/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 39/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 40/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 41/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 42/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 43/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 44/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 45/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 46/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 47/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 48/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 49/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 50/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 51/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 52/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 53/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 54/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 55/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 56/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 57/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 58/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 59/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 60/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 61/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 62/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Channel 63/64 : 0 1 2
+dgx03:226:226 [0] NCCL INFO Trees [0] 2/-1/-1->0->-1 [1] 2/-1/-1->0->-1 [2] 2/-1/-1->0->-1 [3] 2/-1/-1->0->-1 [4] 2/-1/-1->0->-1 [5] 2/-1/-1->0->-1 [6] 2/-1/-1->0->-1 [7] 2/-1/-1->0->-1 [8] 2/-1/-1->0->-1 [9] 2/-1/-1->0->-1 [10] 2/-1/-1->0->-1 [11] 2/-1/-1->0->-1 [12] 2/-1/-1->0->-1 [13] 2/-1/-1->0->-1 [14] 2/-1/-1->0->-1 [15] 2/-1/-1->0->-1 [16] 2/-1/-1->0->-1 [17] 2/-1/-1->0->-1 [18] 2/-1/-1->0->-1 [19] 2/-1/-1->0->-1 [20] 2/-1/-1->0->-1 [21] 2/-1/-1->0->-1 [22] 2/-1/-1->0->-1 [23] 2/-1/-1->0->-1 [24] 2/-1/-1->0->-1 [25] 2/-1/-1->0->-1 [26] 2/-1/-1->0->-1 [27] 2/-1/-1->0->-1 [28] 2/-1/-1->0->-1 [29] 2/-1/-1->0->-1 [30] 2/-1/-1->0->-1 [31] 2/-1/-1->0->-1 [32] 2/-1/-1->0->1 [33] 2/-1/-1->0->1 [34] 2/-1/-1->0->1 [35] 2/-1/-1->0->1 [36] 2/-1/-1->0->1 [37] 2/-1/-1->0->1 [38] 2/-1/-1->0->1 [39] 2/-1/-1->0->1 [40] 2/-1/-1->0->1 [41] 2/-1/-1->0->1 [42] 2/-1/-1->0->1 [43] 2/-1/-1->0->1 [44] 2/-1/-1->0->1 [45] 2/-1/-1->0->1 [46] 2/-1/-1->0->1 [47] 2/-1/-1->0->1 [48] 2/-1/-1->0->1 [49] 2/-1/-1->0->1 [50] 2/-1/-1->0->1 [51] 2/-1/-1->0->1 [52] 2/-1/-
+dgx03:226:226 [0] NCCL INFO P2P Chunksize set to 262144
+dgx03:226:226 [0] NCCL INFO Tuning P2P operations with maxP2pPeers = 3
+dgx03:226:226 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+dgx03:226:367 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 9
+dgx03:226:366 [0] NCCL INFO [Proxy Service] Device 0 CPU core 4
+dgx03:226:366 [0] NCCL INFO proxy listening socket at 192.168.178.48<56417>
+dgx03:226:368 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 13
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 2[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 2[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 0[0] -> 1[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 0[0] -> 1[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 0
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 32/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 33/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 34/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 35/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 36/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 37/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 38/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 39/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 40/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 41/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 42/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 43/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 44/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 45/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 46/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 47/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 48/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 49/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 50/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 51/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 52/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 53/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 54/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 55/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 56/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 57/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 58/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 59/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 60/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 61/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 62/0 : 0[0] -> 2[0] [send] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 63/0 : 0[0] -> 2[0] [send] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Connected all trees
+dgx03:226:226 [0] NCCL INFO Channel 00/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 01/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 02/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 03/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 04/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 05/0 : 1[0] -> (Worker pid=226) INFO 09-02 22:48:54 [cuda_communicator.py:266] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'ep:0' out of potential backends: ['NCCL_SYMM_MEM', 'QUICK_REDUCE', 'FLASHINFER', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=226) INFO 09-02 22:48:54 [parallel_state.py:1982] rank 0 in world size 3 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A
+(Worker pid=226) INFO 09-02 22:48:54 [gpu_worker.py:500] Using V2 Model Runner
+(Worker_TP0_EP0 pid=226) INFO 09-02 22:48:54 [model_runner.py:385] Loading model from scratch...
+(Worker_TP0_EP0 pid=226) INFO 09-02 22:48:54 [cuda.py:545] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945] WorkerProc failed to start.
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945] Traceback (most recent call last):
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 912, in worker_main
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     worker = WorkerProc(*args, **kwargs)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     return func(*args, **kwargs)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 679, in __init__
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     self.worker.load_model()
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 561, in load_model
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py", line 387, in load_model
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     self.model = model_loader.load_model(
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]                  ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     return func(*args, **kwargs)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/model_loader/base_loader.py", line 55, in load_model
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     model = initialize_model(
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]             ^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     return func(*args, **kwargs)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/model_loader/utils.py", line 58, in initialize_model
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     model = model_class(vllm_config=vllm_config, prefix=prefix)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/models/qwen3_8_flash_next/nvidia/model.py", line 871, in __init__
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     self.visual = Qwen3_VisionTransformer(
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]                   ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/models/qwen3_vl.py", line 654, in __init__
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     Qwen3_VisionBlock(
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/compilation/decorators.py", line 383, in __init__
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     old_init(self, *args, **kwargs)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/models/qwen3_vl.py", line 464, in __init__
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     self.attn = Qwen2_5_VisionAttention(
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]                 ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/models/qwen2_5_vl.py", line 368, in __init__
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     self.num_attention_heads_per_partition = dist_utils.divide(
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]                                              ^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/utils.py", line 63, in divide
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     ensure_divisibility(numerator, denominator)
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]   File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/utils.py", line 55, in ensure_divisibility
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]     assert numerator % denominator == 0, "{} is not divisible by {}".format(
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0_EP0 pid=226) ERROR 09-02 22:48:55 [multiproc_executor.py:945] AssertionError: 16 is not divisible by 3
+0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 06/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 07/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 08/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 09/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 10/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 11/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 12/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 13/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 14/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 15/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 16/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 17/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 18/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 19/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 20/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 21/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 22/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 23/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 24/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 25/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 26/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 27/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 28/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 29/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Channel 30/0 : 1[0] -> 0[0] [receive] via NET/IB/4
+dgx03:226:226 [0] NCCL INFO Channel 31/0 : 1[0] -> 0[0] [receive] via NET/IB/5
+dgx03:226:226 [0] NCCL INFO Connected binomial trees
+dgx03:226:226 [0] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+dgx03:226:226 [0] NCCL INFO 64 coll channels, 64 collnet channels, 0 nvls channels, 64 p2p channels, 2 p2p channels per peer
+dgx03:226:226 [0] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, cuMemGdrSupport 0
+dgx03:226:226 [0] NCCL INFO CC Off, workFifoBytes 1048576
+dgx03:226:226 [0] NCCL INFO ncclCommInitRank comm 0x428834a0 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId f01000 commId 0x9c1470b0fa8d042b - Init COMPLETE
+dgx03:226:226 [0] NCCL INFO Init timings - ncclCommInitRank: rank 0 nranks 3 total 4.86 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.01, graphs 0.00, connections 4.85, rest 0.00)
+(EngineCore pid=202) INFO 09-02 22:48:55 [multiproc_executor.py:469] [shutdown] Executor: waiting for worker exit count=1
+[rank0]:[W902 22:48:55.422139809 ProcessGroupNCCL.cpp:1624] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(EngineCore pid=202) INFO 09-02 22:48:58 [multiproc_executor.py:476] [shutdown] Executor: all workers exited gracefully
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346] EngineCore failed to start.
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346] Traceback (most recent call last):
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1315, in run_engine_core
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     return func(*args, **kwargs)
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1073, in __init__
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     super().__init__(
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 133, in __init__
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 116, in __init__
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     super().__init__(vllm_config)
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     return func(*args, **kwargs)
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 110, in __init__
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     self._init_executor()
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 211, in _init_executor
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     self.workers = WorkerProc.wait_for_ready(unready_workers)
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 809, in wait_for_ready
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346]     raise e from None
+(EngineCore pid=202) ERROR 09-02 22:48:58 [core.py:1346] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+(EngineCore pid=202) Process EngineCore:
+(EngineCore pid=202) Traceback (most recent call last):
+(EngineCore pid=202)   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=202)     self.run()
+(EngineCore pid=202)   File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=202)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1350, in run_engine_core
+(EngineCore pid=202)     raise e
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1315, in run_engine_core
+(EngineCore pid=202)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=202)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=202)     return func(*args, **kwargs)
+(EngineCore pid=202)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1073, in __init__
+(EngineCore pid=202)     super().__init__(
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 133, in __init__
+(EngineCore pid=202)     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=202)                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 116, in __init__
+(EngineCore pid=202)     super().__init__(vllm_config)
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=202)     return func(*args, **kwargs)
+(EngineCore pid=202)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 110, in __init__
+(EngineCore pid=202)     self._init_executor()
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 211, in _init_executor
+(EngineCore pid=202)     self.workers = WorkerProc.wait_for_ready(unready_workers)
+(EngineCore pid=202)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=202)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/multiproc_executor.py", line 809, in wait_for_ready
+(EngineCore pid=202)     raise e from None
+(EngineCore pid=202) Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+(APIServer pid=109) INFO 09-02 22:48:59 [utils.py:615] [shutdown] Process manager: send sigterm to process EngineCore
+(APIServer pid=109) Traceback (most recent call last):
+(APIServer pid=109)   File "/usr/local/bin/vllm", line 10, in <module>
+(APIServer pid=109)     sys.exit(main())
+(APIServer pid=109)              ^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/main.py", line 97, in main
+(APIServer pid=109)     args.dispatch_function(args)
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/serve.py", line 152, in cmd
+(APIServer pid=109)     uvloop.run(run_server(args))
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=109)     return __asyncio.run(
+(APIServer pid=109)            ^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+(APIServer pid=109)     return runner.run(main)
+(APIServer pid=109)            ^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=109)     return self._loop.run_until_complete(task)
+(APIServer pid=109)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=109)     return await main
+(APIServer pid=109)            ^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 739, in run_server
+(APIServer pid=109)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 753, in run_server_worker
+(APIServer pid=109)     async with build_async_engine_client(
+(APIServer pid=109)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=109)     return await anext(self.gen)
+(APIServer pid=109)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 127, in build_async_engine_client
+(APIServer pid=109)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=109)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=109)     return await anext(self.gen)
+(APIServer pid=109)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 163, in build_async_engine_client_from_engine_args
+(APIServer pid=109)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=109)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 220, in from_vllm_config
+(APIServer pid=109)     return cls(
+(APIServer pid=109)            ^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 149, in __init__
+(APIServer pid=109)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=109)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=109)     return func(*args, **kwargs)
+(APIServer pid=109)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 139, in make_async_mp_client
+(APIServer pid=109)     return AsyncMPClient(*client_args)
+(APIServer pid=109)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=109)     return func(*args, **kwargs)
+(APIServer pid=109)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 990, in __init__
+(APIServer pid=109)     super().__init__(
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 609, in __init__
+(APIServer pid=109)     with launch_core_engines(
+(APIServer pid=109)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=109)     next(self.gen)
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1206, in launch_core_engines
+(APIServer pid=109)     wait_for_engine_startup(
+(APIServer pid=109)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1286, in wait_for_engine_startup
+(APIServer pid=109)     raise RuntimeError(
+(APIServer pid=109) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

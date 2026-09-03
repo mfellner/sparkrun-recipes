@@ -1,0 +1,30 @@
+=== dgx03 ===
+image_id=sha256:d464f3b466fa9c45ddbff8a812e80564503b6879a9fd95c1a47514f3f0df5a4a repo_digests=["vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e"] architecture=arm64 size=20629124565
+ple_layer_patched.py: OK
+postready_gate.py: OK
+serve_wrapper.sh: OK
+run.sh: OK
+README.md: OK
+[OK] PLE FP8 resolver override installed and statically verified
+ecb7b554f565ca4fb9fc89f3d7fa583bf6bed89b624398e38c9c34872d5746d5  /usr/local/lib/python3.12/dist-packages/vllm/models/qwen3_8_flash_next/nvidia/ple_layer.py
+Qwen3_8FlashNextPLEFp8EmbeddingMethod
+=== dgx04 ===
+image_id=sha256:d464f3b466fa9c45ddbff8a812e80564503b6879a9fd95c1a47514f3f0df5a4a repo_digests=["vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e"] architecture=arm64 size=20629124565
+ple_layer_patched.py: OK
+postready_gate.py: OK
+serve_wrapper.sh: OK
+run.sh: OK
+README.md: OK
+[OK] PLE FP8 resolver override installed and statically verified
+ecb7b554f565ca4fb9fc89f3d7fa583bf6bed89b624398e38c9c34872d5746d5  /usr/local/lib/python3.12/dist-packages/vllm/models/qwen3_8_flash_next/nvidia/ple_layer.py
+Qwen3_8FlashNextPLEFp8EmbeddingMethod
+=== gx10 ===
+image_id=sha256:d464f3b466fa9c45ddbff8a812e80564503b6879a9fd95c1a47514f3f0df5a4a repo_digests=["vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e"] architecture=arm64 size=20629124565
+ple_layer_patched.py: OK
+postready_gate.py: OK
+serve_wrapper.sh: OK
+run.sh: OK
+README.md: OK
+[OK] PLE FP8 resolver override installed and statically verified
+ecb7b554f565ca4fb9fc89f3d7fa583bf6bed89b624398e38c9c34872d5746d5  /usr/local/lib/python3.12/dist-packages/vllm/models/qwen3_8_flash_next/nvidia/ple_layer.py
+Qwen3_8FlashNextPLEFp8EmbeddingMethod

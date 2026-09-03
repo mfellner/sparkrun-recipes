@@ -1,0 +1,410 @@
+host=dgx04
+captured=2026-09-03T11:41:39+02:00
+container=/sparkrun_763b8e94b6d2bf09_27aa44aef83a_node_1 id=c117d8fe5b008b6646cf86e06f39c5b98adf2ed1bf92294de445e44b9a69305f running=True status=running image=sha256:d464f3b466fa9c45ddbff8a812e80564503b6879a9fd95c1a47514f3f0df5a4a network=host ipc=host privileged=False user=root health=none
+
+environment
+GLOO_SOCKET_IFNAME=enP7s7
+HF_HOME=/cache/huggingface
+HF_HUB_OFFLINE=1
+NCCL_CROSS_NIC=1
+NCCL_CUMEM_ENABLE=0
+NCCL_DEBUG=INFO
+NCCL_IB_DISABLE=0
+NCCL_IB_HCA=rocep1s0f0,rocep1s0f1,roceP2p1s0f0,roceP2p1s0f1
+NCCL_IB_MERGE_NICS=1
+NCCL_IB_ROCE_VERSION_NUM=2
+NCCL_IB_SUBNET_AWARE_ROUTING=1
+NCCL_IGNORE_CPU_AFFINITY=1
+NCCL_NET=IB
+NCCL_NET_PLUGIN=none
+NCCL_NVLS_ENABLE=0
+NCCL_SOCKET_IFNAME=enP7s7,enp1s0f0np0,enp1s0f1np1,enP2p1s0f0np0,enP2p1s0f1np1
+PLE_QUANT_OVERRIDE=fp8
+QWEN38_ENGINE_READY_TIMEOUT_S=3600
+TRANSFORMERS_OFFLINE=1
+VLLM_ALLOW_LONG_MAX_MODEL_LEN=1
+VLLM_BUILD_COMMIT=unknown
+VLLM_BUILD_PIPELINE=local
+VLLM_BUILD_URL=
+VLLM_CACHE_ROOT=/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm
+VLLM_ENABLE_CUDA_COMPATIBILITY=0
+VLLM_HOST_IP=192.168.178.45
+VLLM_IMAGE_TAG=local/vllm-openai:dev
+VLLM_USAGE_SOURCE=production-docker-image
+
+processes
+PID                 PPID                STAT                ELAPSED             %CPU                %MEM                COMMAND             COMMAND
+60267               60236               Ss                  11:41               0.0                 0.0                 bash                bash -c printf %s c2xlZXAgaW5maW5pdHk= | base64 -d -- | bash --noprofile --norc
+60502               60267               S                   11:40               0.0                 0.0                 bash                bash --noprofile --norc
+60503               60502               S                   11:40               0.0                 0.0                 sleep               sleep infinity
+86802               60236               SLsl                11:01               2.2                 0.0                 vllm                /usr/bin/python3 /usr/local/bin/vllm serve /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594 --served-model-name qwen3.8-flash-next --host 192.168.178.45 --port 8000 --distributed-executor-backend mp --tensor-parallel-size 2 --pipeline-parallel-size 1 --enable-expert-parallel --all2all-backend allgather_reducescatter --gpu-memory-utilization 0.835 --max-num-seqs 8 --max-num-batched-tokens 8192 --max-model-len 1000000 --kv-cache-dtype auto --load-format safetensors --safetensors-load-strategy lazy --enable-chunked-prefill --reasoning-parser qwen3 --enable-auto-tool-choice --tool-call-parser qwen3_coder --allowed-media-domains inline-media.invalid --speculative-config {"method":"mtp","num_speculative_tokens":3} --compilation-config {"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY"} --hf-overrides {"rope_parameters":{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":262144}} --nnodes 2 --node-rank 1 --master-addr 192.168.178.48 --master-port 25000 --headless
+89621               60236               Ss                  10:58               0.0                 0.0                 bash                bash -c SERVE_PID=$(cat /tmp/sparkrun_serve.pid); while kill -0 $SERVE_PID 2>/dev/null; do sleep 5; done; kill 1
+99227               86802               S                   10:44               0.0                 0.0                 python3             /usr/bin/python3 -c from multiprocessing.resource_tracker import main;main(41)
+99228               86802               SLl                 10:44               84.2                2.1                 VLLM::Worker_TP     VLLM::Worker_TP1_EP1
+552773              89621               S                   00:03               0.0                 0.0                 sleep               sleep 5
+
+selected_serve_log
+dgx04:191:191 [0] NCCL INFO NET/IB : Using [0]rocep1s0f0:1/RoCE [1]rocep1s0f1:1/RoCE [2]roceP2p1s0f0:1/RoCE [3]roceP2p1s0f1:1/RoCE [RO]; OOB enP7s7:192.168.178.45<0>
+dgx04:191:191 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 24/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 25/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 26/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 27/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 28/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 29/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 30/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 31/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 32/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 33/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 34/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 35/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 36/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 37/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 38/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 39/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 40/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 41/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 42/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 43/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 44/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 45/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 46/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 47/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 48/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 49/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 50/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 51/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 52/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 53/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 54/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 55/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 56/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 57/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 58/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 59/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 60/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 61/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 62/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 63/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 00/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 01/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 02/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 03/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 04/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 05/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 06/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 07/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 08/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 09/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 10/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 11/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 12/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 13/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 14/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 15/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 16/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 17/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 18/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 19/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 20/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 21/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 22/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 23/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 24/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 25/0 : 1[0] -> 0[0] [send] via NET/IB/5
+6/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 27/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 28/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 29/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 30/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 31/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 32/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 33/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 34/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 35/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 36/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 37/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 38/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 39/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 40/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 41/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 42/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 43/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 44/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 45/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 46/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 47/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 48/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 49/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 50/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 51/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 52/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 53/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 54/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 55/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 56/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 57/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 58/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 59/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 60/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 61/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 62/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 63/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 0
+dgx04:191:191 [0] NCCL INFO ncclCommInitRank comm 0x4e1ae290 rank 1 nranks 2 cudaDev 0 nvmlDev 0 busId f01000 commId 0x922a68056a07aab3 - Init COMPLETE
+dgx04:191:191 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 24/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 25/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 26/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 27/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 28/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 29/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 30/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 31/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 32/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 33/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 34/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 35/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 36/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 37/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 38/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 39/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 40/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 41/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 42/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 43/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 44/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 45/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 46/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 47/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 48/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 49/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 50/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 51/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 52/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 53/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 54/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 55/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 56/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 57/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 58/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 59/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 60/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 61/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 62/0 : 0[0] -> 1[0] [receive] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 63/0 : 0[0] -> 1[0] [receive] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 00/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 01/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 02/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 03/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 04/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 05/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 06/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 07/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 08/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 09/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 10/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 11/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 12/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 13/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 14/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 15/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 16/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 17/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 18/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 19/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 20/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 21/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 22/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 23/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 24/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 25/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 26/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 27/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 28/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 29/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 30/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 31/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 32/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 33/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 34/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 35/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 36/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 37/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 38/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 39/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 40/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 41/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 42/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 43/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 44/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 45/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 46/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 47/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 48/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 49/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 50/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 51/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 52/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 53/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 54/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 55/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 56/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 57/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 58/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 59/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 60/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 61/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Channel 62/0 : 1[0] -> 0[0] [send] via NET/IB/4
+dgx04:191:191 [0] NCCL INFO Channel 63/0 : 1[0] -> 0[0] [send] via NET/IB/5
+dgx04:191:191 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 0
+(Worker_TP1_EP1 pid=191) INFO 09-03 09:38:44 [model_runner.py:407] Model loading took 64.79 GiB memory and 458.762948 seconds
+(Worker_TP1_EP1 pid=191) INFO 09-03 09:39:07 [gpu_worker.py:693] Available KV cache memory: 31.83 GiB
+
+selected_kernel_log
+Sep 03 11:39:07 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:07 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:10 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:11 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:12 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:17 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:39:18 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:40:22 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+Sep 03 11:40:22 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359
+
+gpu
+NVIDIA GB10, P0, 57, 0 %, 2398 MHz, 12.92 W

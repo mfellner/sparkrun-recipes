@@ -12,6 +12,36 @@ Recipes are then available under the `@mfellner/` namespace. Review the reposito
 
 ## Recipes
 
+### Qwen3.8 Flash Next NVFP4 — dual Spark, 1M context
+
+`@mfellner/qwen3.8-flash-next-nvfp4-dual-spark-1m`
+
+SparkRun adaptation of [MiaAI-Lab/Qwen3.8-Flash-Next-Dual-DGX-Sparks](https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Dual-DGX-Sparks), pinned to source commit `169fbad266f2791335a3102f0d3d625e7c295563`.
+
+- Two DGX Spark or compatible GB10 nodes using native `vllm-distributed` TP2/MP with expert parallelism, matching the upstream topology
+- `RadixArk/Qwen3.8-Flash-Next-NVFP4` pinned to `7b719225242aacd3dbd3f9407468c2ee9a9d2594`
+- Public arm64 day-zero image pinned at `vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e`
+- MiaAI-Lab's exact FP8 PLE resolver module, vendored and checksum-verified against the pinned image before installation on every rank
+- BF16 hybrid QSA/GDN KV cache, `GPU_MEMORY_UTILIZATION=0.835`, eight sequences, and 8,192 batched tokens
+- MTP-3 speculative decoding, `FULL_DECODE_ONLY` CUDA graphs, lazy safetensor loading, chunked prefill, Qwen3 reasoning, and Qwen3-coder tool parsing
+- Text, image, and video input
+- 1,000,000-token configured context through YaRN factor 4.0 over the native 262,144 positions
+- A fail-closed rank-0 readiness and exact semantic-completion gate with a 3,600-second cold-start budget
+
+TP3 was tested and rejected fail-closed: the vision tower has 16 attention heads and cannot be divided across three tensor-parallel ranks in the pinned runtime. Launching through the saved three-host ring therefore selects two hosts and leaves one idle. SparkRun 0.3.6 can otherwise downgrade an explicit one-host request to solo mode, so the wrapper rejects missing, duplicate, or non-two-node `--nnodes` arguments and invalid node ranks before vLLM starts:
+
+```bash
+sparkrun run @mfellner/qwen3.8-flash-next-nvfp4-dual-spark-1m \
+  --cluster YOUR_CLUSTER \
+  --no-follow --trust
+```
+
+Port `8000` is the intentional registry convention replacing upstream port `8888`; the served alias remains `qwen3.8-flash-next`. The checkpoint is described by its publisher as a private candidate release and inherits the source model's Qwen Community 1.0 license terms. Review those terms before use.
+
+The endpoint is unauthenticated, root-user, host-networked/IPC, and multimodal. By default it binds to SparkRun's selected per-host address instead of every interface. Remote URL media is restricted to the reserved `inline-media.invalid` domain, so use inline `data:` media. Keep inference, native-distributed, and RDMA ports on a trusted firewalled private network only.
+
+Live validation on 2026-09-03 passed deterministic chat, four-way concurrency, vision/OCR, structured tool calling, and retrieval from an 896,051-prompt-token request. After readiness-supervision and LAN-binding hardening, the exact final recipe was relaunched and passed its fail-closed post-readiness gate plus a fresh direct/proxied regression matrix, including C4, inline-data vision/OCR, tools, GLM non-regression, and a 70,051-prompt-token retrieval. The expensive 896,051-token result belongs to the preceding process and was not rerun after hardening. Both accepted runs used `dgx03` and `dgx04` through `spark-ring3`; the rejected TP3 trial and TP2 evidence are preserved under [`evidence/qwen3.8-flash-next-nvfp4-20260902/`](evidence/qwen3.8-flash-next-nvfp4-20260902/).
+
 ### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 1M context (recommended)
 
 `@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-1m`
@@ -26,11 +56,15 @@ Latest immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Spa
 - A fail-closed local follow-up ignores client-provided stop strings for this default-thinking profile so EOS/`max_tokens` govern completion; an environment opt-out restores stock stop behavior
 - Persistent Triton, TileLang, TorchInductor, FlashInfer, and vLLM caches plus a post-readiness DFlash2/sampler shape sweep
 - FP8 `fp8_ds_mla` target KV, TP2-sharded DFlash2 k=7, fused EXL3 MoE, CUDA graphs, prefix caching, image/video, GLM 4.7 tools, and GLM 4.5 reasoning
-- `MAX_MODEL_LEN=1000000`, `MAX_NUM_SEQS=4`, upstream E2 `MAX_NUM_BATCHED_TOKENS=7168`, and SparkRun `GPU_MEM_UTIL=0.86`; the one-point memory adjustment keeps vLLM's admission gate fail-closed after per-rank overlay checks while retaining a rendered KV estimate above 1M tokens
+- `MAX_MODEL_LEN=1000000`, `MAX_NUM_SEQS=4`, upstream E2 `MAX_NUM_BATCHED_TOKENS=7168`, and SparkRun `GPU_MEM_UTIL=0.85`; live 0.86 launches missed the worker's vLLM admission gate by about 0.53 GiB, while the unchanged 0.85 profile completed readiness and direct acceptance
 
 Port `8000` is the intentional SparkRun/sparkDash/LiteLLM adaptation from upstream `8888`; the served alias remains `GLM-5.3-Flash-EXL3`.
 
 The published profile runs as root with host networking/IPC, `no-new-privileges`, `CAP_IPC_LOCK`, and `/dev/infiniband`; Docker privileged mode is off. Its unauthenticated multimodal API and distributed-runtime ports must remain on a trusted firewalled private network.
+
+#### Pair validation (2026-09-03)
+
+The durable 0.85 profile matches live workload `sparkrun_9000d029f34ee753_9ad9c868473b` on `dgx01` and `dgx02`. The rank-0 post-readiness gate returned `rc=0`. Direct discovery, exact completion, C4 exact concurrency, 30,042-prompt-token retrieval, structured tool calling, and deterministic image understanding passed. SparkRun's LiteLLM proxy then advertised both this GLM route and Qwen3.8 Flash Next, reported both endpoints healthy, and returned semantically exact completions through both routes. The [pair evidence](evidence/glm53-pair-20260903/) preserves the direct acceptance result and deterministic image fixture; the sanitized final proxy and host-health receipts are [the final regression](evidence/qwen3.8-flash-next-nvfp4-20260902/final-secure-proxy-regression.json) and [final cross-service audit](evidence/final-secure-audit-20260903.json).
 
 #### Latest refresh acceptance (2026-09-01)
 
@@ -359,6 +393,11 @@ The GLM endpoint binds to `0.0.0.0:8000` without API authentication, executes pi
 Validate a recipe before publishing or running it:
 
 ```bash
+sparkrun recipe validate recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml
+sparkrun run recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml \
+  --cluster YOUR_CLUSTER \
+  --dry-run --trust
+
 sparkrun recipe validate recipes/glm-5.3-flash-exl3-dflash2-dual-spark-1m.yaml
 sparkrun run recipes/glm-5.3-flash-exl3-dflash2-dual-spark-1m.yaml \
   --hosts HEAD_IP,WORKER_IP \
@@ -396,6 +435,8 @@ sparkrun run recipes/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k.yaml \
 ```
 
 ## Attribution
+
+The Qwen3.8 Flash Next recipe is adapted from MiaAI-Lab's dual-Spark launcher. SparkRun replaces `.env`, unsafe host-key bypasses, manual Hugging Face rsync, mutable image-tag pulls, and hand-ranked Docker lifecycle while retaining the exact checkpoint, pinned arm64 image, upstream FP8 PLE resolver shim, BF16 hybrid KV, MTP-3, YaRN 1M profile, multimodal processing, parsers, graph mode, and memory/batching settings. TP3 was tested and rejected because the 16-head vision tower is not divisible by three; the published recipe therefore remains upstream-faithful TP2 even when launched through the three-host `spark-ring3` cluster.
 
 The recommended GLM 5.3 Flash EXL3 1M recipe is adapted from MiaAI-Lab's deployment repository at the exact source revision documented above. It retains the immutable EXL3 overlay image, Mia-AiLab mirror checkpoint, updated independently pinned IncoAI DFlash2 draft, TP2 native vLLM topology, fused EXL3 MoE, FP8 sparse-MLA KV, DFlash2-7, CUDA graphs, 1M context, multimodal processing, XGrammar backports, prefix caching, and parser settings. SparkRun replaces `.env`, SSH/rsync helpers, mutable tag pulls, manually ranked Docker lifecycle, and the kit-specific readiness loop with immutable distribution, per-host fabric/GID validation, native orchestration, persistent caches, and the fail-closed rank-0 gate.
 

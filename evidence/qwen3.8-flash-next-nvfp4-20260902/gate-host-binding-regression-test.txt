@@ -1,0 +1,25 @@
+Qwen post-readiness host-binding regression control
+Date: 2026-09-03
+
+Purpose
+- Prevent a regression where the API binds to SparkRun's LAN-selected NODE_IP while the in-container readiness gate probes only 127.0.0.1.
+
+Fixture
+- HTTP server bound only to 127.0.0.2:18882.
+- QWEN38_SERVE_HOST=127.0.0.2
+- QWEN38_SERVE_PORT=18882
+- QWEN38_SERVED_MODEL=qwen3.8-flash-next
+- Gate: mods/qwen3.8-flash-next-nvfp4-upstream-ple/postready_gate.py
+
+Observed output
+[QWEN38 GATE] PASS: model discovery and exact semantic completion
+host_override_gate=PASS
+
+Assertions
+- gate exit code was 0;
+- receipt parsed as JSON;
+- receipt field ok was exactly true;
+- completion content was exactly QWEN38_OK;
+- the stand-in server exited and was reaped.
+
+Result: PASS
