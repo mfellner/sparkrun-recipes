@@ -1,0 +1,93 @@
+==VALIDATE==
+{"recipe": "recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml", "valid": true, "issues": []}
+==DRY_RUN==
+Note: 2 nodes required, using 2 of 3 hosts
+sparkrun v0.3.6
+
+Runtime:   vllm-distributed
+Image:     vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e
+Model:     RadixArk/Qwen3.8-Flash-Next-NVFP4
+Mode:      cluster (2 nodes)
+Platform:  DGX Spark (NVIDIA GB10, NCCL)
+Scheduler: greedy
+
+VRAM Estimation:
+  Model dtype:      nvfp4
+  KV cache dtype:   bfloat16
+  Architecture:     13 layers, 2 KV heads, 256 head_dim
+  Model weights:    125.91 GB
+  KV cache:         28.30 GB (max_model_len=1,000,000)
+  Tensor parallel:  2
+  Per-GPU total:    77.10 GB
+  DGX Spark fit:    YES
+
+  GPU Memory Budget:
+    gpu_memory_utilization: 84%
+    Usable GPU memory:     101.0 GB (121 GB x 84%)
+    Available for KV:      38.1 GB
+    Max context tokens:    2,691,406
+    Context multiplier:    2.7x (vs max_model_len=1,000,000)
+
+  Per-host fit:
+    192.168.178.48: ranks=1, accelerator memory unknown
+    192.168.178.45: ranks=1, accelerator memory unknown
+  Warning: 192.168.178.48: no memory_gb declared on host hardware; fit not verified
+  Warning: 192.168.178.45: no memory_gb declared on host hardware; fit not verified
+
+Hosts:     cluster 'spark-ring3'
+  Head:    192.168.178.48
+  Workers: 192.168.178.45
+
+[1/6] Preparing
+  done (0.0s)
+[2/6] Building
+  done (0.0s)
+[3/6] Distributing resources
+  Distributing image vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e to 2 host(s)
+  Distributing model RadixArk/Qwen3.8-Flash-Next-NVFP4 to 2 host(s)
+  Model synced to 2 host(s)
+  done (0.0s)
+[4/6] Syncing tuning configs
+  done (0.0s)
+[5/6] Launching vllm runtime
+  Step 1/7: Cleaning up existing containers
+  Step 2/7: Detecting InfiniBand
+  Step 3/7: Detecting head node IP
+  Step 4/7: Launching containers
+  Step 5/7: Running pre-serve hooks
+  Step 6/7: Starting head node serve
+  Step 7/7: Starting worker nodes
+  done (0.0s)
+Cluster:   sparkrun_763b8e94b6d2bf09_27aa44aef83a
+
+Serve command:
+  if [ -z "$NODE_IP" ]; then echo "FATAL: SparkRun must supply NODE_IP" >&2; exit 64; fi;
+  export QWEN38_SERVE_PORT=8000;
+  export QWEN38_SERVE_HOST=$NODE_IP;
+  export QWEN38_SERVED_MODEL=qwen3.8-flash-next;
+  exec bash /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple/serve_wrapper.sh /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594 \
+    --served-model-name qwen3.8-flash-next \
+    --host $NODE_IP \
+    --port 8000 \
+    --distributed-executor-backend mp \
+    --tensor-parallel-size 2 \
+    --pipeline-parallel-size 1 \
+    --enable-expert-parallel \
+    --all2all-backend allgather_reducescatter \
+    --gpu-memory-utilization 0.835 \
+    --max-num-seqs 8 \
+    --max-num-batched-tokens 8192 \
+    --max-model-len 1000000 \
+    --kv-cache-dtype auto \
+    --load-format safetensors \
+    --safetensors-load-strategy lazy \
+    --enable-chunked-prefill \
+    --reasoning-parser qwen3 \
+    --enable-auto-tool-choice \
+    --tool-call-parser qwen3_coder \
+    --allowed-media-domains inline-media.invalid \
+    --speculative-config '{"method":"mtp","num_speculative_tokens":3}' \
+    --compilation-config '{"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY"}' \
+    --hf-overrides '{"rope_parameters":{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":262144}}'
+
+[6/6] Post-launch hooks — skipped

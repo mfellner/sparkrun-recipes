@@ -1,0 +1,236 @@
+00:47:09 [INFO] sparkrun.orchestration.ssh:   Running script in parallel on 3 hosts: 192.168.178.48, 192.168.178.45, 192.168.178.51
+00:47:09 [INFO] sparkrun.orchestration.ssh:   Parallel execution done: 3/3 OK (0.7s total)
+sparkrun v0.3.6
+
+Runtime:   vllm-distributed
+Image:     vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e
+Model:     RadixArk/Qwen3.8-Flash-Next-NVFP4
+Mode:      cluster (3 nodes)
+Platform:  DGX Spark (NVIDIA GB10, NCCL)
+Scheduler: greedy
+
+VRAM Estimation:
+  Model dtype:      nvfp4
+  KV cache dtype:   bfloat16
+  Architecture:     13 layers, 2 KV heads, 256 head_dim
+  Model weights:    125.91 GB
+  KV cache:         28.30 GB (max_model_len=1,000,000)
+  Tensor parallel:  3
+  Per-GPU total:    51.40 GB
+  DGX Spark fit:    YES
+
+  GPU Memory Budget:
+    gpu_memory_utilization: 84%
+    Usable GPU memory:     101.0 GB (121 GB x 84%)
+    Available for KV:      59.1 GB
+    Max context tokens:    6,261,888
+    Context multiplier:    6.3x (vs max_model_len=1,000,000)
+
+  Per-host fit:
+    192.168.178.48: ranks=1, accelerator memory unknown
+    192.168.178.45: ranks=1, accelerator memory unknown
+    192.168.178.51: ranks=1, accelerator memory unknown
+  Warning: 192.168.178.48: no memory_gb declared on host hardware; fit not verified
+  Warning: 192.168.178.45: no memory_gb declared on host hardware; fit not verified
+  Warning: 192.168.178.51: no memory_gb declared on host hardware; fit not verified
+
+Hosts:     cluster 'spark-ring3'
+  Head:    192.168.178.48
+  Workers: 192.168.178.45, 192.168.178.51
+
+00:47:09 [PROGRESS] sparkrun.progress: [1/6] Preparing
+00:47:09 [INFO] sparkrun.orchestration.distribution: Auto-detected transfer mode: local (control is cluster member)
+00:47:09 [INFO] sparkrun.core.mods: Resolved 1 mod(s) into pre_exec entries
+00:47:09 [PROGRESS] sparkrun.progress:   done (0.0s)
+00:47:09 [PROGRESS] sparkrun.progress: [2/6] Building
+00:47:09 [PROGRESS] sparkrun.progress:   done (0.0s)
+00:47:09 [PROGRESS] sparkrun.progress: [3/6] Distributing resources
+00:47:09 [INFO] sparkrun.orchestration.infiniband: Detecting InfiniBand on 3 host(s)...
+00:47:09 [INFO] sparkrun.orchestration.ssh:   Running script in parallel on 3 hosts: 192.168.178.48, 192.168.178.45, 192.168.178.51
+00:47:10 [INFO] sparkrun.orchestration.ssh:   Parallel execution done: 3/3 OK (0.6s total)
+00:47:10 [INFO] sparkrun.orchestration.infiniband:   InfiniBand detected on 192.168.178.48, comm env configured
+00:47:10 [INFO] sparkrun.orchestration.infiniband:   IB transfer IPs resolved for 3/3 host(s)
+00:47:10 [INFO] sparkrun.orchestration.infiniband: Verifying IB network reachability from control machine...
+00:47:15 [WARNING] sparkrun.orchestration.ssh:   SSH cmd <- 10.200.0.1 FAILED rc=255 (5.0s): ssh: connect to host 10.200.0.1 port 22: Connection timed out
+00:47:15 [WARNING] sparkrun.orchestration.ssh:   SSH cmd <- 10.200.1.1 FAILED rc=255 (5.0s): ssh: connect to host 10.200.1.1 port 22: Connection timed out
+00:47:15 [WARNING] sparkrun.orchestration.ssh:   SSH cmd <- 10.200.1.2 FAILED rc=255 (5.0s): ssh: connect to host 10.200.1.2 port 22: Connection timed out
+00:47:15 [WARNING] sparkrun.orchestration.ssh:   SSH cmd <- 10.200.0.2 FAILED rc=255 (5.0s): ssh: connect to host 10.200.0.2 port 22: Connection timed out
+00:47:15 [INFO] sparkrun.orchestration.infiniband:   192.168.178.48 reachable via 10.200.2.2
+00:47:15 [INFO] sparkrun.orchestration.infiniband:   192.168.178.51 reachable via 10.200.2.1
+00:47:15 [INFO] sparkrun.orchestration.infiniband:   192.168.178.45 reachable via 10.200.4.1
+00:47:15 [INFO] sparkrun.orchestration.infiniband:   IB network reachable — will use IB IPs for transfers
+00:47:15 [PROGRESS] sparkrun.orchestration.distribution:   Distributing image vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e to 3 host(s)
+00:47:15 [INFO] sparkrun.containers.registry: Image already available: vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e
+00:47:15 [INFO] sparkrun.containers.distribute:   10.200.2.2: image up-to-date (digest match), skipping
+00:47:15 [INFO] sparkrun.containers.distribute:   10.200.4.1: image up-to-date (digest match), skipping
+00:47:15 [INFO] sparkrun.containers.distribute:   10.200.2.1: image up-to-date (digest match), skipping
+00:47:15 [PROGRESS] sparkrun.containers.distribute:   Container image up-to-date on all 3 host(s)
+00:47:15 [PROGRESS] sparkrun.orchestration.distribution:   Distributing model RadixArk/Qwen3.8-Flash-Next-NVFP4 to 3 host(s)
+00:47:15 [INFO] sparkrun.models.download: Model RadixArk/Qwen3.8-Flash-Next-NVFP4 appears cached — verifying completeness...
+
+Fetching 419 files:   0%|          | 0/419 [00:00<?, ?it/s]
+Fetching 419 files: 100%|██████████| 419/419 [00:00<00:00, 15078.49it/s]
+00:47:16 [INFO] sparkrun.models.download: Model downloaded successfully: RadixArk/Qwen3.8-Flash-Next-NVFP4
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Running script in parallel on 3 hosts: 192.168.178.48, 192.168.178.45, 192.168.178.51
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Parallel execution done: 3/3 OK (0.3s total)
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Running rsync in parallel to 3 hosts: 10.200.2.2, 10.200.4.1, 10.200.2.1
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Rsync -> 10.200.2.2 [timeout=7200s]
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Rsync -> 10.200.4.1 [timeout=7200s]
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Rsync -> 10.200.2.1 [timeout=7200s]
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Rsync -> 10.200.2.1 OK
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Rsync -> 10.200.2.2 OK
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Rsync -> 10.200.4.1 OK
+00:47:16 [INFO] sparkrun.orchestration.ssh:   Parallel rsync done: 3/3 OK (0.4s total)
+00:47:16 [PROGRESS] sparkrun.models.distribute:   Model synced to 3 host(s)
+00:47:16 [INFO] sparkrun.orchestration.distribution: Distribution complete.
+00:47:16 [PROGRESS] sparkrun.progress:   done (7.0s)
+00:47:16 [PROGRESS] sparkrun.progress: [4/6] Syncing tuning configs
+00:47:16 [PROGRESS] sparkrun.progress:   done (0.0s)
+00:47:17 [INFO] sparkrun.orchestration.ssh:   Running script in parallel on 2 hosts: 192.168.178.45, 192.168.178.51
+00:47:21 [INFO] sparkrun.orchestration.ssh:   Parallel execution done: 2/2 OK (3.9s total)
+00:47:21 [PROGRESS] sparkrun.progress: [5/6] Launching vllm runtime
+00:47:21 [INFO] sparkrun.orchestration.ssh:   Running script in parallel on 3 hosts: 192.168.178.48, 192.168.178.45, 192.168.178.51
+00:47:21 [INFO] sparkrun.orchestration.ssh:   Parallel execution done: 3/3 OK (0.4s total)
+00:47:21 [INFO] sparkrun.orchestration.ssh:   Running script in parallel on 3 hosts: 192.168.178.48, 192.168.178.45, 192.168.178.51
+00:47:22 [INFO] sparkrun.orchestration.ssh:   Parallel execution done: 3/3 OK (0.3s total)
+00:47:22 [PROGRESS] sparkrun.progress:   Step 1/7: Cleaning up existing containers
+00:47:22 [INFO] sparkrun.runtimes._cluster_ops: Step 1/7: Cleanup done (0.3s)
+00:47:22 [PROGRESS] sparkrun.progress:   Step 2/7: Detecting InfiniBand
+00:47:22 [INFO] sparkrun.runtimes._cluster_ops: Using pre-detected comm env (15 vars)
+00:47:22 [INFO] sparkrun.runtimes._cluster_ops:   Pre-detected IB IPs for 3 host(s)
+00:47:22 [INFO] sparkrun.runtimes._cluster_ops: Step 2/7: IB step done (0.0s)
+00:47:22 [PROGRESS] sparkrun.progress:   Step 3/7: Detecting head node IP
+00:47:23 [INFO] sparkrun.runtimes._init_network:   Init network: management (head=192.168.178.48)
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:   Head IP: 192.168.178.48
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops: Step 3/7: IP detection done (0.6s)
+00:47:23 [INFO] sparkrun.runtimes.base: ============================================================
+00:47:23 [INFO] sparkrun.runtimes.base: sparkrun vLLM Distributed Cluster Launcher
+00:47:23 [INFO] sparkrun.runtimes.base: ============================================================
+00:47:23 [INFO] sparkrun.runtimes.base: Cluster ID:     sparkrun_8f9345c75f4ae084_27aa44aef83a
+00:47:23 [INFO] sparkrun.runtimes.base: Image:          vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e
+00:47:23 [INFO] sparkrun.runtimes.base: Head Node:      192.168.178.48
+00:47:23 [INFO] sparkrun.runtimes.base: Worker Nodes:   192.168.178.45, 192.168.178.51
+00:47:23 [INFO] sparkrun.runtimes.base: Master Port:    25000
+00:47:23 [INFO] sparkrun.runtimes.base: Mode:           LIVE
+00:47:23 [INFO] sparkrun.runtimes.base: ============================================================
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops: Serve command (head, rank 0):
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:   export QWEN38_SERVE_PORT=8000;
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:   export QWEN38_SERVED_MODEL=qwen3.8-flash-next;
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:   exec bash /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple/serve_wrapper.sh /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --served-model-name qwen3.8-flash-next \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --host 0.0.0.0 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --port 8000 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --distributed-executor-backend mp \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --tensor-parallel-size 3 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --pipeline-parallel-size 1 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --enable-expert-parallel \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --all2all-backend allgather_reducescatter \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --gpu-memory-utilization 0.835 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --max-num-seqs 8 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --max-num-batched-tokens 8192 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --max-model-len 1000000 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --kv-cache-dtype auto \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --load-format safetensors \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --safetensors-load-strategy lazy \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --enable-chunked-prefill \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --reasoning-parser qwen3 \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --enable-auto-tool-choice \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --tool-call-parser qwen3_coder \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --speculative-config '{"method":"mtp","num_speculative_tokens":3}' \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --compilation-config '{"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY"}' \
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops:     --hf-overrides '{"rope_parameters":{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":262144}}' --nnodes 3 --node-rank 0 --master-addr 192.168.178.48 --master-port 25000
+00:47:23 [PROGRESS] sparkrun.progress:   Step 4/7: Launching containers
+00:47:23 [INFO] sparkrun.runtimes._cluster_ops: Step 4/7: All containers launched (0.9s)
+00:47:23 [PROGRESS] sparkrun.progress:   Step 5/7: Running pre-serve hooks
+00:47:23 [INFO] sparkrun.orchestration.hooks: Running 3 pre_exec command(s) on 3 container(s)...
+00:47:23 [INFO] sparkrun.orchestration.hooks:   pre_exec[1] on 192.168.178.48/sparkrun_8f9345c75f4ae084_27aa44aef83a_node_0: mkdir -p /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp
+00:47:23 [INFO] sparkrun.orchestration.hooks:   pre_exec[2] copy /home/max/sparkrun-recipes-qwen38-staging/mods/qwen3.8-flash-next-nvfp4-upstream-ple -> sparkrun_8f9345c75f4ae084_27aa44aef83a_node_0:/workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple on 192.168.178.48
+00:47:24 [INFO] sparkrun.orchestration.hooks:   pre_exec[3] on 192.168.178.48/sparkrun_8f9345c75f4ae084_27aa44aef83a_node_0: export WORKSPACE_DIR=$PWD && cd /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple && chmod +x run.sh && ./run.sh
+00:47:24 [INFO] sparkrun.orchestration.hooks:   pre_exec[1] on 192.168.178.45/sparkrun_8f9345c75f4ae084_27aa44aef83a_node_1: mkdir -p /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp
+00:47:24 [INFO] sparkrun.orchestration.hooks:   pre_exec[2] copy /home/max/sparkrun-recipes-qwen38-staging/mods/qwen3.8-flash-next-nvfp4-upstream-ple -> sparkrun_8f9345c75f4ae084_27aa44aef83a_node_1:/workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple on 192.168.178.45
+00:47:24 [INFO] sparkrun.orchestration.ssh:   Running rsync in parallel to 1 hosts: 192.168.178.45
+00:47:24 [INFO] sparkrun.orchestration.ssh:   Rsync -> 192.168.178.45
+00:47:25 [INFO] sparkrun.orchestration.ssh:   Rsync -> 192.168.178.45 OK
+00:47:25 [INFO] sparkrun.orchestration.ssh:   Parallel rsync done: 1/1 OK (0.4s total)
+00:47:25 [INFO] sparkrun.orchestration.hooks:   pre_exec[3] on 192.168.178.45/sparkrun_8f9345c75f4ae084_27aa44aef83a_node_1: export WORKSPACE_DIR=$PWD && cd /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple && chmod +x run.sh && ./run.sh
+00:47:26 [INFO] sparkrun.orchestration.hooks:   pre_exec[1] on 192.168.178.51/sparkrun_8f9345c75f4ae084_27aa44aef83a_node_2: mkdir -p /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp
+00:47:26 [INFO] sparkrun.orchestration.hooks:   pre_exec[2] copy /home/max/sparkrun-recipes-qwen38-staging/mods/qwen3.8-flash-next-nvfp4-upstream-ple -> sparkrun_8f9345c75f4ae084_27aa44aef83a_node_2:/workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple on 192.168.178.51
+00:47:26 [INFO] sparkrun.orchestration.ssh:   Running rsync in parallel to 1 hosts: 192.168.178.51
+00:47:26 [INFO] sparkrun.orchestration.ssh:   Rsync -> 192.168.178.51
+00:47:27 [INFO] sparkrun.orchestration.ssh:   Rsync -> 192.168.178.51 OK
+00:47:27 [INFO] sparkrun.orchestration.ssh:   Parallel rsync done: 1/1 OK (0.4s total)
+00:47:27 [INFO] sparkrun.orchestration.hooks:   pre_exec[3] on 192.168.178.51/sparkrun_8f9345c75f4ae084_27aa44aef83a_node_2: export WORKSPACE_DIR=$PWD && cd /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple && chmod +x run.sh && ./run.sh
+00:47:28 [INFO] sparkrun.runtimes._cluster_ops: Step 5/7: Pre-serve hooks done (4.4s)
+00:47:28 [PROGRESS] sparkrun.progress:   Step 6/7: Starting head node serve
+00:47:31 [INFO] sparkrun.runtimes._cluster_ops:   Waiting for head node master port 192.168.178.48:25000...
+00:47:50 [INFO] sparkrun.orchestration.health:   Still waiting for port 25000 (20s elapsed)...
+00:48:04 [INFO] sparkrun.orchestration.health:   Port 25000 ready after 34s
+00:48:04 [INFO] sparkrun.runtimes._cluster_ops: Step 6/7: Head node ready (36.2s)
+00:48:04 [PROGRESS] sparkrun.progress:   Step 7/7: Starting worker nodes
+00:48:08 [INFO] sparkrun.runtimes.base: ============================================================
+00:48:08 [INFO] sparkrun.runtimes.base: Cluster launched successfully. Nodes: 3
+00:48:08 [INFO] sparkrun.runtimes.base:
+00:48:08 [INFO] sparkrun.runtimes.base: To view logs:    sparkrun logs <recipe> --hosts 192.168.178.48,192.168.178.45,192.168.178.51
+00:48:08 [INFO] sparkrun.runtimes.base: To stop cluster: sparkrun stop <recipe> --hosts 192.168.178.48,192.168.178.45,192.168.178.51
+00:48:08 [INFO] sparkrun.runtimes.base:
+00:48:08 [INFO] sparkrun.runtimes.base:   Node 0: ssh 192.168.178.48 'docker logs sparkrun_8f9345c75f4ae084_27aa44aef83a_node_0'
+00:48:08 [INFO] sparkrun.runtimes.base:   Node 1: ssh 192.168.178.45 'docker logs sparkrun_8f9345c75f4ae084_27aa44aef83a_node_1'
+00:48:08 [INFO] sparkrun.runtimes.base:   Node 2: ssh 192.168.178.51 'docker logs sparkrun_8f9345c75f4ae084_27aa44aef83a_node_2'
+00:48:08 [INFO] sparkrun.runtimes.base: ============================================================
+00:48:08 [PROGRESS] sparkrun.progress:   done (47.1s)
+Cluster:   sparkrun_8f9345c75f4ae084_27aa44aef83a
+
+Serve command:
+  export QWEN38_SERVE_PORT=8000;
+  export QWEN38_SERVED_MODEL=qwen3.8-flash-next;
+  exec bash /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple/serve_wrapper.sh /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594 \
+    --served-model-name qwen3.8-flash-next \
+    --host 0.0.0.0 \
+    --port 8000 \
+    --distributed-executor-backend mp \
+    --tensor-parallel-size 3 \
+    --pipeline-parallel-size 1 \
+    --enable-expert-parallel \
+    --all2all-backend allgather_reducescatter \
+    --gpu-memory-utilization 0.835 \
+    --max-num-seqs 8 \
+    --max-num-batched-tokens 8192 \
+    --max-model-len 1000000 \
+    --kv-cache-dtype auto \
+    --load-format safetensors \
+    --safetensors-load-strategy lazy \
+    --enable-chunked-prefill \
+    --reasoning-parser qwen3 \
+    --enable-auto-tool-choice \
+    --tool-call-parser qwen3_coder \
+    --speculative-config '{"method":"mtp","num_speculative_tokens":3}' \
+    --compilation-config '{"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY"}' \
+    --hf-overrides '{"rope_parameters":{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":262144}}'
+
+Runtime versions:
+  container_ai_vllm_build_commit: unknown
+  container_ai_vllm_build_pipeline: local
+  container_ai_vllm_build_url:
+  container_ai_vllm_image_tag: local/vllm-openai:dev
+  container_maintainer: NVIDIA CORPORATION <cudatools@nvidia.com>
+  container_org_opencontainers_image_ref_name: ubuntu
+  container_org_opencontainers_image_revision: unknown
+  container_org_opencontainers_image_source: https://github.com/vllm-project/vllm
+  container_org_opencontainers_image_url:
+  container_org_opencontainers_image_version: local/vllm-openai:dev
+  container_sparkrun_cluster_id: sparkrun_8f9345c75f4ae084_27aa44aef83a
+  container_sparkrun_intent_id: 8f9345c75f4ae084
+  container_sparkrun_model: RadixArk/Qwen3.8-Flash-Next-NVFP4
+  container_sparkrun_rank: 0
+  container_sparkrun_recipe: recipes/qwen3.8-flash-next-nvfp4-triple-spark-1m.yaml
+  container_sparkrun_runtime: vllm-distributed
+  container_sparkrun_served_model_name: qwen3.8-flash-next
+  cuda:      13.0
+  nccl:      (2, 29, 7)
+  python:    3.12.3
+  torch:     2.13.0+cu130
+  vllm:      0.1.dev20073+g8e685d198
+
+00:48:13 [PROGRESS] sparkrun.progress: [6/6] Post-launch hooks — skipped
+00:48:18 [INFO] sparkrun.orchestration.ssh:   Running script in parallel on 3 hosts: 192.168.178.48, 192.168.178.45, 192.168.178.51
+00:48:19 [INFO] sparkrun.orchestration.ssh:   Parallel execution done: 3/3 OK (0.8s total)

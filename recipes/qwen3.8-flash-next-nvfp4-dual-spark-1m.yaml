@@ -1,0 +1,155 @@
+# Adapted from MiaAI-Lab/Qwen3.8-Flash-Next-Dual-DGX-Sparks.
+# SparkRun replaces the upstream SSH/rsync/manual rank lifecycle with immutable
+# model/image distribution, per-host fabric detection, native vLLM distributed
+# orchestration, persistent caches, and a fail-closed rank-0 semantic gate.
+recipe_version: "2"
+name: qwen3.8-flash-next-nvfp4-dual-spark-1m
+model: RadixArk/Qwen3.8-Flash-Next-NVFP4
+model_revision: 7b719225242aacd3dbd3f9407468c2ee9a9d2594
+runtime: vllm-distributed
+runtime_version: v0.1.dev20073+g8e685d198
+cluster_only: true
+min_nodes: 2
+max_nodes: 2
+container: vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e
+builder: docker-pull
+
+metadata:
+  description: Qwen3.8 Flash Next NVFP4 adapted to two DGX Sparks with FP8 PLE, TP2 expert parallelism, MTP-3, multimodal input, BF16 hybrid KV cache, YaRN, and 1,000,000-token context
+  maintainer: mfellner
+  source: https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Dual-DGX-Sparks
+  source_revision: 169fbad266f2791335a3102f0d3d625e7c295563
+  hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
+  architecture: Qwen4ExpForConditionalGeneration
+  model_dtype: nvfp4
+  model_vram: 125.91043845843524
+  kv_dtype: bfloat16
+  kv_vram_per_token: 0.0000282973051071167
+  num_layers: 13
+  num_kv_heads: 2
+  head_dim: 256
+  context_length: 1000000
+  multimodal: true
+  notes:
+    - Exactly two GB10 nodes participate as TP2 ranks. Launching through a larger saved cluster selects two hosts and leaves the remaining host idle. Because SparkRun 0.3.6 can downgrade an explicit one-host invocation to solo mode, the serving wrapper also rejects any execution that lacks exactly one `--nnodes 2` and one valid `--node-rank`.
+    - TP3 was tested and rejected fail-closed. The vision tower has 16 attention heads, and this pinned vLLM image requires that count to be divisible by tensor parallel size; the upstream-faithful TP2 topology is therefore mandatory.
+    - The checkpoint has 135,195,303,851 indexed serving bytes across 206 safetensor shards. The PLE resolver patch is required because the model's NVFP4 config excludes PLE while the checkpoint stores the PLE table as FP8 shards plus one global scale.
+    - The 1,000,000-token profile extends the model's native 262,144 positions with YaRN factor 4.0. Quality near 1M is outside the checkpoint's trained range and must be validated for the target workload.
+    - BF16/automatic KV is deliberate. Upstream states that this checkpoint does not currently support FP8 KV on its hybrid QSA/GDN cache path.
+    - Port 8000 is the registry's SparkRun, LiteLLM, and sparkDash convention; upstream uses 8888. This endpoint translation does not change model execution.
+    - The public image is pinned by its immutable ARM64 manifest and treated as the executable identity. Its OCI labels report an unknown source revision and local build pipeline, so this binary is not independently source-reproducible from its labels.
+    - The checkpoint is described by its publisher as a private candidate release and inherits Qwen Community 1.0 terms from the source model; review those terms before use.
+    - The API is unauthenticated and host-networked, but binds by default to SparkRun's selected per-host address rather than every interface. Remote URL media is restricted to the reserved .invalid domain; use inline data media. Keep inference and native-distributed/RDMA ports on a trusted firewalled private network.
+
+# Pin and stage the exact public checkpoint on both ranks.
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: RadixArk/Qwen3.8-Flash-Next-NVFP4
+        revision: 7b719225242aacd3dbd3f9407468c2ee9a9d2594
+        target: [-1]
+
+# The mod checksum-verifies and installs MiaAI-Lab's exact PLE module on every
+# rank, then wraps rank 0 with a long readiness and semantic-completion gate.
+mods:
+  - ../mods/qwen3.8-flash-next-nvfp4-upstream-ple
+
+# Clear the image's baked `vllm serve` entrypoint so SparkRun can own the
+# container and append the native --nnodes/--node-rank coordination flags.
+executor_config:
+  entrypoint: ""
+  user: root
+  gpu_access_mode: gpus
+  shm_size: 32gb
+  cap_add:
+    - SYS_NICE
+    - IPC_LOCK
+  ulimit:
+    - memlock=-1:-1
+    - stack=67108864:67108864
+    - nofile=65535:65535
+
+# SparkRun supplies per-host NODE_IP/VLLM_HOST_IP, socket-interface names,
+# reachable RoCE HCA selection. Shared controls below retain the
+# upstream RoCE path while adding the validated private-fabric safeguards.
+env:
+  HF_HOME: /cache/huggingface
+  HF_HUB_OFFLINE: "1"
+  TRANSFORMERS_OFFLINE: "1"
+  HF_HUB_DISABLE_TELEMETRY: "1"
+  PLE_QUANT_OVERRIDE: fp8
+  VLLM_ALLOW_LONG_MAX_MODEL_LEN: "1"
+  VLLM_CACHE_ROOT: /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm
+  FLASHINFER_WORKSPACE_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer
+  TORCHINDUCTOR_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor
+  TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton
+  TMPDIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp
+  QWEN38_ENGINE_READY_TIMEOUT_S: "3600"
+
+  NCCL_IB_DISABLE: "0"
+  NCCL_IB_ROCE_VERSION_NUM: "2"
+  NCCL_NET: IB
+  NCCL_NET_PLUGIN: none
+  NCCL_CUMEM_ENABLE: "0"
+  NCCL_NVLS_ENABLE: "0"
+  NCCL_IGNORE_CPU_AFFINITY: "1"
+  NCCL_IB_SUBNET_AWARE_ROUTING: "1"
+  NCCL_IB_MERGE_NICS: "1"
+  NCCL_DEBUG: INFO
+
+pre_exec:
+  - >-
+    mkdir -p
+    /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm
+    /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer
+    /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor
+    /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton
+    /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp
+
+# These defaults retain upstream's EP, MTP-3, BF16 KV, YaRN, memory, batching,
+# parser, load strategy, and FULL_DECODE_ONLY graph profile.
+defaults:
+  port: 8000
+  host: '$NODE_IP'
+  served_model_name: qwen3.8-flash-next
+  tensor_parallel: 2
+  pipeline_parallel: 1
+  gpu_memory_utilization: 0.835
+  max_model_len: 1000000
+  max_num_seqs: 8
+  max_num_batched_tokens: 8192
+  speculative_config: '{"method":"mtp","num_speculative_tokens":3}'
+  compilation_config: '{"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY"}'
+  rope_overrides: '{"rope_parameters":{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":262144}}'
+  allowed_media_domains: inline-media.invalid
+
+command: |
+  if [ -z "$NODE_IP" ]; then echo "FATAL: SparkRun must supply NODE_IP" >&2; exit 64; fi;
+  export QWEN38_SERVE_PORT={port};
+  export QWEN38_SERVE_HOST={host};
+  export QWEN38_SERVED_MODEL={served_model_name};
+  exec bash /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple/serve_wrapper.sh /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594 \
+    --served-model-name {served_model_name} \
+    --host {host} \
+    --port {port} \
+    --distributed-executor-backend mp \
+    --tensor-parallel-size {tensor_parallel} \
+    --pipeline-parallel-size {pipeline_parallel} \
+    --enable-expert-parallel \
+    --all2all-backend allgather_reducescatter \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --max-num-seqs {max_num_seqs} \
+    --max-num-batched-tokens {max_num_batched_tokens} \
+    --max-model-len {max_model_len} \
+    --kv-cache-dtype auto \
+    --load-format safetensors \
+    --safetensors-load-strategy lazy \
+    --enable-chunked-prefill \
+    --reasoning-parser qwen3 \
+    --enable-auto-tool-choice \
+    --tool-call-parser qwen3_coder \
+    --allowed-media-domains {allowed_media_domains} \
+    --speculative-config '{speculative_config}' \
+    --compilation-config '{compilation_config}' \
+    --hf-overrides '{rope_overrides}'

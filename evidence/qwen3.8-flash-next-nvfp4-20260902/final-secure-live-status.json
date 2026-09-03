@@ -1,0 +1,366 @@
+{
+  "errors": {},
+  "groups": {
+    "sparkrun_763b8e94b6d2bf09_27aa44aef83a": {
+      "containers": [
+        {
+          "host": "192.168.178.48",
+          "image": "vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e",
+          "role": "node_0",
+          "status": "Up 11 minutes"
+        },
+        {
+          "host": "192.168.178.45",
+          "image": "vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e",
+          "role": "node_1",
+          "status": "Up 11 minutes"
+        }
+      ],
+      "label": "recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml  (tp=2, pp=1)  [763b8e94b6d2bf09_27aa44aef83a]",
+      "meta": {
+        "backends": {
+          "192.168.178.45": {
+            "backend": "nccl",
+            "vendor": "nvidia"
+          },
+          "192.168.178.48": {
+            "backend": "nccl",
+            "vendor": "nvidia"
+          }
+        },
+        "cluster_id": "sparkrun_763b8e94b6d2bf09_27aa44aef83a",
+        "effective_container_image": "vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e",
+        "executor_config": {
+          "cap_add": [
+            "SYS_NICE",
+            "IPC_LOCK"
+          ],
+          "entrypoint": "",
+          "gpu_access_mode": "gpus",
+          "shm_size": "32gb",
+          "ulimit": [
+            "memlock=-1:-1",
+            "stack=67108864:67108864",
+            "nofile=65535:65535"
+          ],
+          "user": "root"
+        },
+        "hosts": [
+          "192.168.178.48",
+          "192.168.178.45"
+        ],
+        "intent_id": "763b8e94b6d2bf09",
+        "model": "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+        "pipeline_parallel": 1,
+        "placement_token": "27aa44aef83a",
+        "port": 8000,
+        "recipe": "recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml",
+        "recipe_state": {
+          "_applied_overrides": {},
+          "_qualified_name_override": null,
+          "_raw": {
+            "builder": "docker-pull",
+            "cluster_only": true,
+            "command": "if [ -z \"$NODE_IP\" ]; then echo \"FATAL: SparkRun must supply NODE_IP\" >&2; exit 64; fi;\nexport QWEN38_SERVE_PORT={port};\nexport QWEN38_SERVE_HOST={host};\nexport QWEN38_SERVED_MODEL={served_model_name};\nexec bash /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple/serve_wrapper.sh /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594 \\\n  --served-model-name {served_model_name} \\\n  --host {host} \\\n  --port {port} \\\n  --distributed-executor-backend mp \\\n  --tensor-parallel-size {tensor_parallel} \\\n  --pipeline-parallel-size {pipeline_parallel} \\\n  --enable-expert-parallel \\\n  --all2all-backend allgather_reducescatter \\\n  --gpu-memory-utilization {gpu_memory_utilization} \\\n  --max-num-seqs {max_num_seqs} \\\n  --max-num-batched-tokens {max_num_batched_tokens} \\\n  --max-model-len {max_model_len} \\\n  --kv-cache-dtype auto \\\n  --load-format safetensors \\\n  --safetensors-load-strategy lazy \\\n  --enable-chunked-prefill \\\n  --reasoning-parser qwen3 \\\n  --enable-auto-tool-choice \\\n  --tool-call-parser qwen3_coder \\\n  --allowed-media-domains {allowed_media_domains} \\\n  --speculative-config '{speculative_config}' \\\n  --compilation-config '{compilation_config}' \\\n  --hf-overrides '{rope_overrides}'\n",
+            "container": "vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e",
+            "defaults": {
+              "allowed_media_domains": "inline-media.invalid",
+              "compilation_config": "{\"mode\":0,\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}",
+              "gpu_memory_utilization": 0.835,
+              "host": "$NODE_IP",
+              "max_model_len": 1000000,
+              "max_num_batched_tokens": 8192,
+              "max_num_seqs": 8,
+              "pipeline_parallel": 1,
+              "port": 8000,
+              "rope_overrides": "{\"rope_parameters\":{\"rope_type\":\"yarn\",\"factor\":4.0,\"original_max_position_embeddings\":262144}}",
+              "served_model_name": "qwen3.8-flash-next",
+              "speculative_config": "{\"method\":\"mtp\",\"num_speculative_tokens\":3}",
+              "tensor_parallel": 2
+            },
+            "distribution_config": {
+              "models": {
+                "enabled": true,
+                "entries": [
+                  {
+                    "name": "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+                    "revision": "7b719225242aacd3dbd3f9407468c2ee9a9d2594",
+                    "target": [
+                      -1
+                    ]
+                  }
+                ]
+              }
+            },
+            "env": {
+              "FLASHINFER_WORKSPACE_DIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer",
+              "HF_HOME": "/cache/huggingface",
+              "HF_HUB_DISABLE_TELEMETRY": "1",
+              "HF_HUB_OFFLINE": "1",
+              "NCCL_CUMEM_ENABLE": "0",
+              "NCCL_DEBUG": "INFO",
+              "NCCL_IB_DISABLE": "0",
+              "NCCL_IB_MERGE_NICS": "1",
+              "NCCL_IB_ROCE_VERSION_NUM": "2",
+              "NCCL_IB_SUBNET_AWARE_ROUTING": "1",
+              "NCCL_IGNORE_CPU_AFFINITY": "1",
+              "NCCL_NET": "IB",
+              "NCCL_NET_PLUGIN": "none",
+              "NCCL_NVLS_ENABLE": "0",
+              "PLE_QUANT_OVERRIDE": "fp8",
+              "QWEN38_ENGINE_READY_TIMEOUT_S": "3600",
+              "TMPDIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp",
+              "TORCHINDUCTOR_CACHE_DIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor",
+              "TRANSFORMERS_OFFLINE": "1",
+              "TRITON_CACHE_DIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton",
+              "VLLM_ALLOW_LONG_MAX_MODEL_LEN": "1",
+              "VLLM_CACHE_ROOT": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm"
+            },
+            "executor_config": {
+              "cap_add": [
+                "SYS_NICE",
+                "IPC_LOCK"
+              ],
+              "entrypoint": "",
+              "gpu_access_mode": "gpus",
+              "shm_size": "32gb",
+              "ulimit": [
+                "memlock=-1:-1",
+                "stack=67108864:67108864",
+                "nofile=65535:65535"
+              ],
+              "user": "root"
+            },
+            "max_nodes": 2,
+            "metadata": {
+              "architecture": "Qwen4ExpForConditionalGeneration",
+              "context_length": 1000000,
+              "description": "Qwen3.8 Flash Next NVFP4 adapted to two DGX Sparks with FP8 PLE, TP2 expert parallelism, MTP-3, multimodal input, BF16 hybrid KV cache, YaRN, and 1,000,000-token context",
+              "hardware": "2x NVIDIA DGX Spark or compatible GB10 systems",
+              "head_dim": 256,
+              "kv_dtype": "bfloat16",
+              "kv_vram_per_token": 2.82973051071167e-05,
+              "maintainer": "mfellner",
+              "model_dtype": "nvfp4",
+              "model_vram": 125.91043845843524,
+              "multimodal": true,
+              "notes": [
+                "Exactly two GB10 nodes participate as TP2 ranks. Launching through a larger saved cluster selects two hosts and leaves the remaining host idle. Because SparkRun 0.3.6 can downgrade an explicit one-host invocation to solo mode, the serving wrapper also rejects any execution that lacks exactly one `--nnodes 2` and one valid `--node-rank`.",
+                "TP3 was tested and rejected fail-closed. The vision tower has 16 attention heads, and this pinned vLLM image requires that count to be divisible by tensor parallel size; the upstream-faithful TP2 topology is therefore mandatory.",
+                "The checkpoint has 135,195,303,851 indexed serving bytes across 206 safetensor shards. The PLE resolver patch is required because the model's NVFP4 config excludes PLE while the checkpoint stores the PLE table as FP8 shards plus one global scale.",
+                "The 1,000,000-token profile extends the model's native 262,144 positions with YaRN factor 4.0. Quality near 1M is outside the checkpoint's trained range and must be validated for the target workload.",
+                "BF16/automatic KV is deliberate. Upstream states that this checkpoint does not currently support FP8 KV on its hybrid QSA/GDN cache path.",
+                "Port 8000 is the registry's SparkRun, LiteLLM, and sparkDash convention; upstream uses 8888. This endpoint translation does not change model execution.",
+                "The public image is pinned by its immutable ARM64 manifest and treated as the executable identity. Its OCI labels report an unknown source revision and local build pipeline, so this binary is not independently source-reproducible from its labels.",
+                "The checkpoint is described by its publisher as a private candidate release and inherits Qwen Community 1.0 terms from the source model; review those terms before use.",
+                "The API is unauthenticated and host-networked, but binds by default to SparkRun's selected per-host address rather than every interface. Remote URL media is restricted to the reserved .invalid domain; use inline data media. Keep inference and native-distributed/RDMA ports on a trusted firewalled private network."
+              ],
+              "num_kv_heads": 2,
+              "num_layers": 13,
+              "source": "https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Dual-DGX-Sparks",
+              "source_revision": "169fbad266f2791335a3102f0d3d625e7c295563"
+            },
+            "min_nodes": 2,
+            "model": "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+            "model_revision": "7b719225242aacd3dbd3f9407468c2ee9a9d2594",
+            "mods": [
+              "../mods/qwen3.8-flash-next-nvfp4-upstream-ple"
+            ],
+            "name": "qwen3.8-flash-next-nvfp4-dual-spark-1m",
+            "pre_exec": [
+              "mkdir -p /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp"
+            ],
+            "recipe_version": "2",
+            "runtime": "vllm-distributed",
+            "runtime_version": "v0.1.dev20073+g8e685d198"
+          },
+          "_serialization_version": 1,
+          "builder": "docker-pull",
+          "builder_config": {},
+          "cluster_config": null,
+          "command": "if [ -z \"$NODE_IP\" ]; then echo \"FATAL: SparkRun must supply NODE_IP\" >&2; exit 64; fi;\nexport QWEN38_SERVE_PORT={port};\nexport QWEN38_SERVE_HOST={host};\nexport QWEN38_SERVED_MODEL={served_model_name};\nexec bash /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple/serve_wrapper.sh /cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594 \\\n  --served-model-name {served_model_name} \\\n  --host {host} \\\n  --port {port} \\\n  --distributed-executor-backend mp \\\n  --tensor-parallel-size {tensor_parallel} \\\n  --pipeline-parallel-size {pipeline_parallel} \\\n  --enable-expert-parallel \\\n  --all2all-backend allgather_reducescatter \\\n  --gpu-memory-utilization {gpu_memory_utilization} \\\n  --max-num-seqs {max_num_seqs} \\\n  --max-num-batched-tokens {max_num_batched_tokens} \\\n  --max-model-len {max_model_len} \\\n  --kv-cache-dtype auto \\\n  --load-format safetensors \\\n  --safetensors-load-strategy lazy \\\n  --enable-chunked-prefill \\\n  --reasoning-parser qwen3 \\\n  --enable-auto-tool-choice \\\n  --tool-call-parser qwen3_coder \\\n  --allowed-media-domains {allowed_media_domains} \\\n  --speculative-config '{speculative_config}' \\\n  --compilation-config '{compilation_config}' \\\n  --hf-overrides '{rope_overrides}'\n",
+          "container": "vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e",
+          "defaults": {
+            "allowed_media_domains": "inline-media.invalid",
+            "compilation_config": "{\"mode\":0,\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}",
+            "gpu_memory_utilization": 0.835,
+            "host": "$NODE_IP",
+            "max_model_len": 1000000,
+            "max_num_batched_tokens": 8192,
+            "max_num_seqs": 8,
+            "pipeline_parallel": 1,
+            "port": 8000,
+            "rope_overrides": "{\"rope_parameters\":{\"rope_type\":\"yarn\",\"factor\":4.0,\"original_max_position_embeddings\":262144}}",
+            "served_model_name": "qwen3.8-flash-next",
+            "speculative_config": "{\"method\":\"mtp\",\"num_speculative_tokens\":3}",
+            "tensor_parallel": 2
+          },
+          "description": "Qwen3.8 Flash Next NVFP4 adapted to two DGX Sparks with FP8 PLE, TP2 expert parallelism, MTP-3, multimodal input, BF16 hybrid KV cache, YaRN, and 1,000,000-token context",
+          "distribution_config": {
+            "containers": {
+              "enabled": true,
+              "entries": [
+                {
+                  "name": "vllm/vllm-openai@sha256:3b0e188ffceb3d07e09c3cb5215433a0020eacf02d7f882ed3a8bfd15454477e",
+                  "target": []
+                }
+              ]
+            },
+            "externally_provided": true,
+            "models": {
+              "enabled": true,
+              "entries": [
+                {
+                  "name": "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+                  "revision": "7b719225242aacd3dbd3f9407468c2ee9a9d2594",
+                  "target": [
+                    -1
+                  ]
+                }
+              ]
+            }
+          },
+          "env": {
+            "FLASHINFER_WORKSPACE_DIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer",
+            "HF_HOME": "/cache/huggingface",
+            "HF_HUB_DISABLE_TELEMETRY": "1",
+            "HF_HUB_OFFLINE": "1",
+            "NCCL_CUMEM_ENABLE": "0",
+            "NCCL_DEBUG": "INFO",
+            "NCCL_IB_DISABLE": "0",
+            "NCCL_IB_MERGE_NICS": "1",
+            "NCCL_IB_ROCE_VERSION_NUM": "2",
+            "NCCL_IB_SUBNET_AWARE_ROUTING": "1",
+            "NCCL_IGNORE_CPU_AFFINITY": "1",
+            "NCCL_NET": "IB",
+            "NCCL_NET_PLUGIN": "none",
+            "NCCL_NVLS_ENABLE": "0",
+            "PLE_QUANT_OVERRIDE": "fp8",
+            "QWEN38_ENGINE_READY_TIMEOUT_S": "3600",
+            "TMPDIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp",
+            "TORCHINDUCTOR_CACHE_DIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor",
+            "TRANSFORMERS_OFFLINE": "1",
+            "TRITON_CACHE_DIR": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton",
+            "VLLM_ALLOW_LONG_MAX_MODEL_LEN": "1",
+            "VLLM_CACHE_ROOT": "/cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm"
+          },
+          "executor": "",
+          "executor_config": {
+            "cap_add": [
+              "SYS_NICE",
+              "IPC_LOCK"
+            ],
+            "entrypoint": "",
+            "gpu_access_mode": "gpus",
+            "shm_size": "32gb",
+            "ulimit": [
+              "memlock=-1:-1",
+              "stack=67108864:67108864",
+              "nofile=65535:65535"
+            ],
+            "user": "root"
+          },
+          "is_url_sourced": false,
+          "layout": null,
+          "maintainer": "mfellner",
+          "max_nodes": 2,
+          "metadata": {
+            "architecture": "Qwen4ExpForConditionalGeneration",
+            "context_length": 1000000,
+            "description": "Qwen3.8 Flash Next NVFP4 adapted to two DGX Sparks with FP8 PLE, TP2 expert parallelism, MTP-3, multimodal input, BF16 hybrid KV cache, YaRN, and 1,000,000-token context",
+            "hardware": "2x NVIDIA DGX Spark or compatible GB10 systems",
+            "head_dim": 256,
+            "kv_dtype": "bfloat16",
+            "kv_vram_per_token": 2.82973051071167e-05,
+            "maintainer": "mfellner",
+            "model_dtype": "nvfp4",
+            "model_type": "qwen4_exp",
+            "model_vram": 125.91043845843524,
+            "multimodal": true,
+            "notes": [
+              "Exactly two GB10 nodes participate as TP2 ranks. Launching through a larger saved cluster selects two hosts and leaves the remaining host idle. Because SparkRun 0.3.6 can downgrade an explicit one-host invocation to solo mode, the serving wrapper also rejects any execution that lacks exactly one `--nnodes 2` and one valid `--node-rank`.",
+              "TP3 was tested and rejected fail-closed. The vision tower has 16 attention heads, and this pinned vLLM image requires that count to be divisible by tensor parallel size; the upstream-faithful TP2 topology is therefore mandatory.",
+              "The checkpoint has 135,195,303,851 indexed serving bytes across 206 safetensor shards. The PLE resolver patch is required because the model's NVFP4 config excludes PLE while the checkpoint stores the PLE table as FP8 shards plus one global scale.",
+              "The 1,000,000-token profile extends the model's native 262,144 positions with YaRN factor 4.0. Quality near 1M is outside the checkpoint's trained range and must be validated for the target workload.",
+              "BF16/automatic KV is deliberate. Upstream states that this checkpoint does not currently support FP8 KV on its hybrid QSA/GDN cache path.",
+              "Port 8000 is the registry's SparkRun, LiteLLM, and sparkDash convention; upstream uses 8888. This endpoint translation does not change model execution.",
+              "The public image is pinned by its immutable ARM64 manifest and treated as the executable identity. Its OCI labels report an unknown source revision and local build pipeline, so this binary is not independently source-reproducible from its labels.",
+              "The checkpoint is described by its publisher as a private candidate release and inherits Qwen Community 1.0 terms from the source model; review those terms before use.",
+              "The API is unauthenticated and host-networked, but binds by default to SparkRun's selected per-host address rather than every interface. Remote URL media is restricted to the reserved .invalid domain; use inline data media. Keep inference and native-distributed/RDMA ports on a trusted firewalled private network."
+            ],
+            "num_kv_heads": 2,
+            "num_layers": 13,
+            "quant_bits": 4,
+            "quantization": "nvfp4",
+            "source": "https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Dual-DGX-Sparks",
+            "source_revision": "169fbad266f2791335a3102f0d3d625e7c295563"
+          },
+          "min_nodes": 2,
+          "mode": "cluster",
+          "model": "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+          "model_revision": "7b719225242aacd3dbd3f9407468c2ee9a9d2594",
+          "mods": [
+            "../mods/qwen3.8-flash-next-nvfp4-upstream-ple"
+          ],
+          "name": "qwen3.8-flash-next-nvfp4-dual-spark-1m",
+          "post_commands": [],
+          "post_exec": [],
+          "pre_exec": [
+            "mkdir -p /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/vllm /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/flashinfer /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/torchinductor /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/triton /cache/huggingface/sparkrun-runtime-cache/qwen38-flash-next/tmp",
+            {
+              "copy": "/home/max/sparkrun-recipes-final-staging/mods/qwen3.8-flash-next-nvfp4-upstream-ple",
+              "dest": "/workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple"
+            },
+            "export WORKSPACE_DIR=$PWD && cd /workspace/mods/qwen3.8-flash-next-nvfp4-upstream-ple && chmod +x run.sh && ./run.sh"
+          ],
+          "recipe_version": "2",
+          "runtime": "vllm-distributed",
+          "runtime_cache": {},
+          "runtime_config": {},
+          "runtime_version": "v0.1.dev20073+g8e685d198",
+          "scheduler": "",
+          "source_path": "recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml",
+          "source_registry": null,
+          "source_registry_url": null,
+          "stop_after_post": false
+        },
+        "runtime": "vllm-distributed",
+        "runtime_info": {
+          "container_ai_vllm_build_commit": "unknown",
+          "container_ai_vllm_build_pipeline": "local",
+          "container_ai_vllm_build_url": "",
+          "container_ai_vllm_image_tag": "local/vllm-openai:dev",
+          "container_maintainer": "NVIDIA CORPORATION <cudatools@nvidia.com>",
+          "container_org_opencontainers_image_ref_name": "ubuntu",
+          "container_org_opencontainers_image_revision": "unknown",
+          "container_org_opencontainers_image_source": "https://github.com/vllm-project/vllm",
+          "container_org_opencontainers_image_url": "",
+          "container_org_opencontainers_image_version": "local/vllm-openai:dev",
+          "container_sparkrun_cluster_id": "sparkrun_763b8e94b6d2bf09_27aa44aef83a",
+          "container_sparkrun_intent_id": "763b8e94b6d2bf09",
+          "container_sparkrun_model": "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+          "container_sparkrun_rank": "0",
+          "container_sparkrun_recipe": "recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml",
+          "container_sparkrun_runtime": "vllm-distributed",
+          "container_sparkrun_served_model_name": "qwen3.8-flash-next",
+          "cuda": "13.0",
+          "nccl": "(2, 29, 7)",
+          "python": "3.12.3",
+          "torch": "2.13.0+cu130",
+          "vllm": "0.1.dev20073+g8e685d198"
+        },
+        "served_model_name": "qwen3.8-flash-next",
+        "sparkrun_version": "0.3.6",
+        "started_at": 1788427844.8912983,
+        "tensor_parallel": 2
+      }
+    }
+  },
+  "host_count": 3,
+  "idle_hosts": [
+    "192.168.178.51"
+  ],
+  "pending_ops": [],
+  "solo_entries": [],
+  "total_containers": 2
+}

@@ -1,0 +1,258 @@
+{
+  "artifacts": {
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/final-secure-acceptance.json": {
+      "bytes": 3411,
+      "sha256": "deaaec8373ffd4a68f552d1f105662d06652a440ab1284150f992ab88a911db7"
+    },
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/final-secure-live-status.json": {
+      "bytes": 22216,
+      "sha256": "7a7cc9ff8e0566cc44e3232a21b675b1d95b25174f5dbba35f890d62aac6d29e"
+    },
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/final-secure-postready.txt": {
+      "bytes": 4170,
+      "sha256": "6c50f4759f157cc5f81f4ab63959d5d7837a53eb1db275288ee27a648d06063b"
+    },
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/final-secure-proxy-regression.json": {
+      "bytes": 1073,
+      "sha256": "2dda1926f09ba5c5ce0d24b6161245a10e041369fabf700a89e53df6562fad4c"
+    },
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/final-secure-rank-dgx03.txt": {
+      "bytes": 41633,
+      "sha256": "faca0240abc8b4e9f30bf3e9dfac24c9f2b2c3596dd8c94b87075d2bf75c3ccd"
+    },
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/final-secure-rank-dgx04.txt": {
+      "bytes": 42092,
+      "sha256": "65e45fb9b53c8d88daafd8e428c8f70128140a3a969c4ef4248e1de6d33a9bd4"
+    },
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/supervision-negative-test.txt": {
+      "bytes": 1238,
+      "sha256": "64f2f8a6d1bacdf5d8b4956da52e996a64c581bf0979cccfb9c46119b88bd984"
+    },
+    "evidence/qwen3.8-flash-next-nvfp4-20260902/topology-negative-test.txt": {
+      "bytes": 3505,
+      "sha256": "0dfd5fd31a4168494a0cdc893b0c8f7c9f0686e7f46b3cc2b2a1bd6182d3a651"
+    },
+    "mods/qwen3.8-flash-next-nvfp4-upstream-ple/SHA256SUMS": {
+      "bytes": 403,
+      "sha256": "1ddf88a44cf7133a1074274a7d66a3f3b38f8c4f50cc9a8cefbff34f52606af3"
+    },
+    "mods/qwen3.8-flash-next-nvfp4-upstream-ple/postready_gate.py": {
+      "bytes": 4645,
+      "sha256": "d3f1e4d2b7c5de860acd2df1a327cdad30f180e686b3409c908db7a22d562efd"
+    },
+    "mods/qwen3.8-flash-next-nvfp4-upstream-ple/serve_wrapper.sh": {
+      "bytes": 2412,
+      "sha256": "f5984b2293d4f97db4691b024402290565d3f853fb5e56fbddabe3b85df828d3"
+    },
+    "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-1m.yaml": {
+      "bytes": 9099,
+      "sha256": "73c27c2e9201798782d63883f2a4d56545eee96b9f1a087c30ccdcca20fc0882"
+    },
+    "recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml": {
+      "bytes": 7832,
+      "sha256": "01bfd527f128170e52ada9a97b48c346a86c23479bb750e741e4ba8909262062"
+    }
+  },
+  "captured_at": "2026-09-03T09:42:43.797299+00:00",
+  "criteria": {
+    "all_containers_running": true,
+    "direct_acceptance_passed": true,
+    "exact_mod_hashes": true,
+    "head_bound_to_lan": true,
+    "nccl_ready_all_ranks": true,
+    "no_kernel_fatals": true,
+    "no_postacceptance_allocation_pressure": true,
+    "no_serve_log_fatals": true,
+    "proxy_regression_passed": true,
+    "receipt_ok": true,
+    "security_modes": true,
+    "serve_env_correct": true
+  },
+  "live": {
+    "captured_at": "2026-09-03T09:42:43.797299+00:00",
+    "hosts": {
+      "dgx03": {
+        "container": "sparkrun_763b8e94b6d2bf09_27aa44aef83a_node_0",
+        "container_id": "7a315ebd47bc99dad2461364bec8ac8bfa9a6214398b01147cc0149e68f682d3",
+        "distributed_mod_hashes": {
+          "postready_gate.py": "d3f1e4d2b7c5de860acd2df1a327cdad30f180e686b3409c908db7a22d562efd",
+          "serve_wrapper.sh": "f5984b2293d4f97db4691b024402290565d3f853fb5e56fbddabe3b85df828d3"
+        },
+        "host": "192.168.178.48",
+        "image": "sha256:d464f3b466fa9c45ddbff8a812e80564503b6879a9fd95c1a47514f3f0df5a4a",
+        "ipc_mode": "host",
+        "kernel_fatal_count": 0,
+        "kernel_pressure_count": 65,
+        "kernel_pressure_first": "Sep 03 11:39:10 dgx03 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359",
+        "kernel_pressure_last": "Sep 03 11:40:23 dgx03 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359",
+        "listeners": [
+          "LISTEN 0      2048   192.168.178.48:8000       0.0.0.0:*",
+          "LISTEN 0      4096                *:25000            *:*"
+        ],
+        "log_error_counts": {
+          "CUDA error": 0,
+          "EngineCore encountered": 0,
+          "NCCL WARN": 0,
+          "NCCL error": 0,
+          "OutOfMemory": 0,
+          "Traceback": 0
+        },
+        "nccl_connected_all_rings": 1,
+        "nccl_init_complete": 1,
+        "network_mode": "host",
+        "postacceptance_pressure_count": 0,
+        "postready_pressure_count": 4,
+        "privileged": false,
+        "running": true,
+        "security_opt": [
+          "no-new-privileges",
+          "label=disable"
+        ],
+        "serve_env": {
+          "QWEN38_SERVED_MODEL": "qwen3.8-flash-next",
+          "QWEN38_SERVE_HOST": "192.168.178.48",
+          "QWEN38_SERVE_PORT": "8000"
+        },
+        "started_at": "2026-09-03T09:29:58.652861368Z"
+      },
+      "dgx04": {
+        "container": "sparkrun_763b8e94b6d2bf09_27aa44aef83a_node_1",
+        "container_id": "c117d8fe5b008b6646cf86e06f39c5b98adf2ed1bf92294de445e44b9a69305f",
+        "distributed_mod_hashes": {
+          "postready_gate.py": "d3f1e4d2b7c5de860acd2df1a327cdad30f180e686b3409c908db7a22d562efd",
+          "serve_wrapper.sh": "f5984b2293d4f97db4691b024402290565d3f853fb5e56fbddabe3b85df828d3"
+        },
+        "host": "192.168.178.45",
+        "image": "sha256:d464f3b466fa9c45ddbff8a812e80564503b6879a9fd95c1a47514f3f0df5a4a",
+        "ipc_mode": "host",
+        "kernel_fatal_count": 0,
+        "kernel_pressure_count": 97,
+        "kernel_pressure_first": "Sep 03 11:39:07 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359",
+        "kernel_pressure_last": "Sep 03 11:40:22 dgx04 kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1359",
+        "listeners": [],
+        "log_error_counts": {
+          "CUDA error": 0,
+          "EngineCore encountered": 0,
+          "NCCL WARN": 0,
+          "NCCL error": 0,
+          "OutOfMemory": 0,
+          "Traceback": 0
+        },
+        "nccl_connected_all_rings": 2,
+        "nccl_init_complete": 1,
+        "network_mode": "host",
+        "postacceptance_pressure_count": 0,
+        "postready_pressure_count": 2,
+        "privileged": false,
+        "running": true,
+        "security_opt": [
+          "no-new-privileges",
+          "label=disable"
+        ],
+        "serve_env": {},
+        "started_at": "2026-09-03T09:29:58.694771558Z"
+      }
+    },
+    "receipt": {
+      "completion": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "QWEN38_OK",
+              "function_call": null,
+              "reasoning": null,
+              "refusal": null,
+              "role": "assistant"
+            },
+            "routed_experts": null,
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1788428396,
+        "ec_transfer_params": null,
+        "id": "chatcmpl-bdd3fa6832666757",
+        "kv_transfer_params": null,
+        "metrics": null,
+        "model": "qwen3.8-flash-next",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_text": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20073+g8e685d198-tp2-ep-3d35fb24",
+        "usage": {
+          "completion_tokens": 7,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens": 25,
+          "prompt_tokens_details": null,
+          "total_tokens": 32
+        }
+      },
+      "finished_unix": 1788428397.137934,
+      "model": "qwen3.8-flash-next",
+      "models": {
+        "data": [
+          {
+            "created": 1788428396,
+            "id": "qwen3.8-flash-next",
+            "max_model_len": 1000000,
+            "object": "model",
+            "owned_by": "vllm",
+            "parent": null,
+            "permission": [
+              {
+                "allow_create_engine": false,
+                "allow_fine_tuning": false,
+                "allow_logprobs": true,
+                "allow_sampling": true,
+                "allow_search_indices": false,
+                "allow_view": true,
+                "created": 1788428396,
+                "group": null,
+                "id": "modelperm-abc5b9f970629ec9",
+                "is_blocking": false,
+                "object": "model_permission",
+                "organization": "*"
+              }
+            ],
+            "root": "/cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594"
+          }
+        ],
+        "object": "list"
+      },
+      "ok": true,
+      "port": 8000,
+      "request": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "max_tokens": 256,
+        "messages": [
+          {
+            "content": "Reply with exactly QWEN38_OK and nothing else.",
+            "role": "user"
+          }
+        ],
+        "model": "qwen3.8-flash-next",
+        "temperature": 0
+      },
+      "started_unix": 1788427801.7176125
+    }
+  },
+  "notes": [
+    "Bounded NV_ERR_NO_MEMORY notices continued briefly after semantic readiness while the first accepted C4/vision/tool/70,051-token workload exercised fresh graph shapes, but stopped before that acceptance matrix completed; zero recurred afterward and no Xid, OOM kill, reset, or serving fatal was observed.",
+    "The historical 896,051-token result belongs to the preceding pre-hardening process; the final guarded process reran the 70,051-token representative long-context tier.",
+    "SparkRun 0.3.6 can render a one-host solo fallback despite min_nodes=2; the final wrapper independently requires exactly one --nnodes 2 and one --node-rank 0/1 before vLLM starts."
+  ],
+  "passed": true,
+  "scope": "final exact-two-node Qwen relaunch after execution-boundary topology guard plus cross-service regressions",
+  "workload": "sparkrun_763b8e94b6d2bf09_27aa44aef83a"
+}

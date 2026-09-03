@@ -1,0 +1,40 @@
+captured=2026-09-03T11:28:48+02:00
+serve_wrapper_sha256=f5984b2293d4f97db4691b024402290565d3f853fb5e56fbddabe3b85df828d3
+postready_gate_sha256=d3f1e4d2b7c5de860acd2df1a327cdad30f180e686b3409c908db7a22d562efd
+
+malformed/stale-receipt control:
+  fixture: vLLM stand-in returned a list where /v1/models requires an object
+  stale_success_seeded=true
+  wrapper_rc=1
+  elapsed_s=0.07
+  receipt_ok=false
+  receipt_message=unhandled post-readiness gate exception
+  serve_listener_remaining=false
+  temporary_receipt_files_remaining=0
+
+TERM-resistant serve control:
+  fixture: vLLM stand-in ignored SIGTERM and returned malformed /v1/models
+  wrapper_rc=1
+  elapsed_s=5.09
+  receipt_ok=false
+  receipt_message=unhandled post-readiness gate exception
+  escalation=SIGTERM_then_SIGKILL
+  serve_listener_remaining=false
+  temporary_receipt_files_remaining=0
+
+successful gate control:
+  fixture: API bound only to 127.0.0.2:18882
+  args=--nnodes 2 --node-rank 0
+  wrapper_rc=0
+  elapsed_s=0.06
+  receipt_ok=true
+  temporary_receipt_files_remaining=0
+
+unremovable stale-receipt control:
+  fixture: /tmp/qwen38-postready.json was a directory
+  gate_rc=1
+  elapsed_s=0.03
+  serve_child_returncode=-15
+  receipt_path_remained_directory=true
+
+result=PASS

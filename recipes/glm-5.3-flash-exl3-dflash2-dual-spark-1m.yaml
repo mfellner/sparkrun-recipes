@@ -30,8 +30,8 @@ metadata:
   notes:
     - The main mirror is pinned to 024db9f7e9871e8efdf21538ba55af7442be3cd5; its serving payload is byte-identical to the prior 25a44fdb snapshot and brandonmusic snapshot 5ab363a8. The updated DFlash2 draft payload is independently pinned to bf582e4eacc1810f76656d1811693ff6c6737d2a.
     - Upstream c190db1 requires a rebuild because the public exl3 tag still lacks the compiled E2 fat-expert symbols. This recipe pins the exact arm64 image built from that commit and independently verifies the loaded extension symbols, E2 diagnostics, chat-template prefix, indexer-workspace guard, and spinwait source on both ranks.
-    - SparkRun uses GPU_MEM_UTIL=0.86 instead of upstream's 0.87 because the fail-closed per-rank overlay gates leave roughly 0.6 GiB less startup-free unified memory than vLLM's 0.87 admission threshold. The rendered KV estimate still exceeds the configured 1,000,000-token context.
-    - GLM53_INDEXER_WORKSPACE=rightsize opts into upstream's fail-closed legal-maximum workspace formula. Its exhaustive gate proves identical prefill chunking while returning roughly 4.4 GiB per rank to KV, which preserves the 1M context at the guarded 0.86 admission profile.
+    - SparkRun uses GPU_MEM_UTIL=0.85 instead of upstream's 0.87. Live 0.86 launches failed vLLM's startup admission gate on the worker with 104.07 GiB free versus 104.6 GiB required; the unchanged 0.85 profile completed the rank-0 readiness gate and direct acceptance while advertising 1,000,000-token context.
+    - GLM53_INDEXER_WORKSPACE=rightsize opts into upstream's fail-closed legal-maximum workspace formula. Its exhaustive gate proves identical prefill chunking while returning roughly 4.4 GiB per rank to KV, which helps preserve the 1M configured context at the guarded 0.85 admission profile.
     - Port 8000 deliberately preserves this registry's SparkRun, sparkDash, and LiteLLM convention; upstream uses 8888. The endpoint translation does not alter model execution or benchmark accounting.
     - SparkRun replaces upstream's fixed single-HCA interface names with per-host fabric detection. Validate every intended CX-7 path before launch; the serving profile and shared RoCE controls remain upstream-compatible.
     - SparkRun 0.3.6's optional post-hook lifecycle waits only 240 seconds for the API. This recipe defines no post_exec; rank 0 starts a fail-closed in-container 3,600-second readiness/warmup/semantic gate that terminates vLLM on failure.
@@ -143,7 +143,7 @@ defaults:
   served_model_name: GLM-5.3-Flash-EXL3
   tensor_parallel: 2
   pipeline_parallel: 1
-  gpu_memory_utilization: 0.86
+  gpu_memory_utilization: 0.85
   max_model_len: 1000000
   max_num_seqs: 4
   max_num_batched_tokens: 7168

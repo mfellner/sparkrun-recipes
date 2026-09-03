@@ -1,0 +1,128 @@
+2026-09-03T11:31:02+02:00 attempt=1 running=true
+2026-09-03T11:31:18+02:00 attempt=2 running=true
+2026-09-03T11:31:34+02:00 attempt=3 running=true
+2026-09-03T11:31:50+02:00 attempt=4 running=true
+2026-09-03T11:32:06+02:00 attempt=5 running=true
+2026-09-03T11:32:22+02:00 attempt=6 running=true
+2026-09-03T11:32:38+02:00 attempt=7 running=true
+2026-09-03T11:32:54+02:00 attempt=8 running=true
+2026-09-03T11:33:10+02:00 attempt=9 running=true
+2026-09-03T11:33:26+02:00 attempt=10 running=true
+2026-09-03T11:33:42+02:00 attempt=11 running=true
+2026-09-03T11:33:58+02:00 attempt=12 running=true
+2026-09-03T11:34:14+02:00 attempt=13 running=true
+2026-09-03T11:34:30+02:00 attempt=14 running=true
+2026-09-03T11:34:46+02:00 attempt=15 running=true
+2026-09-03T11:35:02+02:00 attempt=16 running=true
+2026-09-03T11:35:18+02:00 attempt=17 running=true
+2026-09-03T11:35:34+02:00 attempt=18 running=true
+2026-09-03T11:35:50+02:00 attempt=19 running=true
+2026-09-03T11:36:06+02:00 attempt=20 running=true
+2026-09-03T11:36:22+02:00 attempt=21 running=true
+2026-09-03T11:36:39+02:00 attempt=22 running=true
+2026-09-03T11:36:55+02:00 attempt=23 running=true
+2026-09-03T11:37:11+02:00 attempt=24 running=true
+2026-09-03T11:37:27+02:00 attempt=25 running=true
+2026-09-03T11:37:43+02:00 attempt=26 running=true
+2026-09-03T11:37:59+02:00 attempt=27 running=true
+2026-09-03T11:38:15+02:00 attempt=28 running=true
+2026-09-03T11:38:31+02:00 attempt=29 running=true
+2026-09-03T11:38:47+02:00 attempt=30 running=true
+2026-09-03T11:39:03+02:00 attempt=31 running=true
+2026-09-03T11:39:19+02:00 attempt=32 running=true
+2026-09-03T11:39:35+02:00 attempt=33 running=true
+2026-09-03T11:39:51+02:00 attempt=34 running=true
+2026-09-03T11:40:08+02:00 attempt=35 running=true
+{
+  "completion": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "annotations": null,
+          "audio": null,
+          "content": "QWEN38_OK",
+          "function_call": null,
+          "reasoning": null,
+          "refusal": null,
+          "role": "assistant"
+        },
+        "routed_experts": null,
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1788428396,
+    "ec_transfer_params": null,
+    "id": "chatcmpl-bdd3fa6832666757",
+    "kv_transfer_params": null,
+    "metrics": null,
+    "model": "qwen3.8-flash-next",
+    "object": "chat.completion",
+    "prompt_logprobs": null,
+    "prompt_text": null,
+    "prompt_token_ids": null,
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev20073+g8e685d198-tp2-ep-3d35fb24",
+    "usage": {
+      "completion_tokens": 7,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens": 25,
+      "prompt_tokens_details": null,
+      "total_tokens": 32
+    }
+  },
+  "finished_unix": 1788428397.137934,
+  "model": "qwen3.8-flash-next",
+  "models": {
+    "data": [
+      {
+        "created": 1788428396,
+        "id": "qwen3.8-flash-next",
+        "max_model_len": 1000000,
+        "object": "model",
+        "owned_by": "vllm",
+        "parent": null,
+        "permission": [
+          {
+            "allow_create_engine": false,
+            "allow_fine_tuning": false,
+            "allow_logprobs": true,
+            "allow_sampling": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "created": 1788428396,
+            "group": null,
+            "id": "modelperm-abc5b9f970629ec9",
+            "is_blocking": false,
+            "object": "model_permission",
+            "organization": "*"
+          }
+        ],
+        "root": "/cache/huggingface/hub/models--RadixArk--Qwen3.8-Flash-Next-NVFP4/snapshots/7b719225242aacd3dbd3f9407468c2ee9a9d2594"
+      }
+    ],
+    "object": "list"
+  },
+  "ok": true,
+  "port": 8000,
+  "request": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Reply with exactly QWEN38_OK and nothing else.",
+        "role": "user"
+      }
+    ],
+    "model": "qwen3.8-flash-next",
+    "temperature": 0
+  },
+  "started_unix": 1788427801.7176125
+}

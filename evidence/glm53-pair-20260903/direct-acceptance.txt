@@ -1,0 +1,9 @@
+{
+  "direct_models": true,
+  "direct_exact": true,
+  "direct_concurrency_c4": true,
+  "direct_long_context": true,
+  "direct_tool_call": true,
+  "direct_vision": true
+}
+wrote evidence/glm53-pair-20260903/direct-acceptance.json
