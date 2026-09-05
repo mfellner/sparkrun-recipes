@@ -12,6 +12,31 @@ Recipes are then available under the `@mfellner/` namespace. Review the reposito
 
 ## Recipes
 
+### Qwen3-VL-Embedding-8B — single Spark, multimodal retrieval
+
+`@mfellner/qwen3-vl-embedding-8b-dgx-spark`
+
+A hardened derivative of SparkRun's official Qwen3-VL embedding recipe. It runs the Apache-2.0 `Qwen/Qwen3-VL-Embedding-8B` checkpoint on one DGX Spark-class GB10 while a separate two-node Qwen3.8 workload stays online.
+
+- 8B-class BF16 checkpoint pinned to `2c4565515e0f265c6511776e7193b22c0968ddc7`; all four manifest-referenced safetensor shards were present
+- ARM64 CUDA 13 image pinned to `ghcr.io/spark-arena/dgx-vllm-eugr-nightly-tf5@sha256:f92b4a1a476fd1e235e97df2a623c04c24b69d607a78a91f5084627ec7bd4266`
+- vLLM `0.28.1rc1.dev441+g2902ca17e.d20260905`, pooling runner, 32,768-token context, and 4,096-dimensional normalized vectors
+- Text and inline-image inputs passed the extended OpenAI-compatible embeddings API; the checkpoint advertises screenshot, video, and mixed-modal inputs, which were not exercised by this acceptance
+- Persistent writable vLLM, TorchInductor, and Triton caches
+- Remote URL media restricted to `inline-media.invalid`; inline `data:` images remain supported
+
+Live acceptance on 2026-09-05 used the spare `gx10` node alongside the existing Qwen3.8 `dgx03`/`dgx04` workload, with SparkRun ID `sparkrun_7d7b52c2c9174082_15b33f409193`. Four-text batching, four concurrent requests, deterministic inline-image retrieval, controlled OCR retrieval, and a 26,442-prompt-token needle retrieval passed. The visual two-query/two-image cosine matrix was `[[0.7165, 0.1103], [0.1529, 0.7245]]`; a separate pair of visually identical cards differing only in rendered code produced `[[0.7147, 0.1936], [0.1938, 0.7225]]`. Both correctly ranked each matching image. Direct and proxied GLM-5.3 Flash and Qwen3.8 regression completions also passed. The current pinned vLLM build returns HTTP 400 for the OpenAI `dimensions` field despite the checkpoint's advertised Matryoshka training; this recipe therefore exposes full 4,096-dimensional vectors only. Receipts and the rerunnable, fail-closed evidence verifier are under [`evidence/qwen3-vl-embedding-8b-20260905/`](evidence/qwen3-vl-embedding-8b-20260905/).
+
+Run it on an idle node in the same cluster as Qwen3.8:
+
+```bash
+sparkrun run @mfellner/qwen3-vl-embedding-8b-dgx-spark \
+  --hosts GX10_LAN_IP \
+  --no-follow
+```
+
+The API is unauthenticated and host-networked. The recipe enables `--trust-remote-code`, which executes code from the immutably pinned model revision. Under the validated SparkRun 0.3.6 Docker path, the effective container was non-privileged and ran as UID/GID `1002:1002` with `no-new-privileges`, host networking/IPC, `CAP_SYS_PTRACE`, 32 GiB shared memory, all-GPU access, `/dev/infiniband` `rwm` access, and host cache bind mounts; re-inspect these resolved defaults after any SparkRun or executor upgrade. Keep the service on a trusted firewalled private network and use inline media for untrusted-origin documents.
+
 ### Qwen3.8 Flash Next NVFP4 — dual Spark, 1M context
 
 `@mfellner/qwen3.8-flash-next-nvfp4-dual-spark-1m`

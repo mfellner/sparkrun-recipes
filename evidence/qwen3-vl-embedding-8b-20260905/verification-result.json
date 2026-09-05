@@ -1,0 +1,25 @@
+{
+  "baseline_failures": {
+    "acceptance": [],
+    "non_regression": [],
+    "runtime": [],
+    "runtime_audit": [],
+    "artifact_manifest": []
+  },
+  "negative_controls": {
+    "reject_metric_substitution": true,
+    "reject_raw_vector_substitution": true,
+    "reject_failed_cross_modal_request": true,
+    "reject_response_model_substitution": true,
+    "reject_raw_request_substitution": true,
+    "reject_false_concurrency": true,
+    "reject_non_exact_completion": true,
+    "reject_privileged_container": true,
+    "reject_security_surface_substitution": true,
+    "reject_run_relabeling": true,
+    "reject_predated_runtime": true,
+    "reject_required_raw_deletion": true,
+    "reject_artifact_relabeling": true
+  },
+  "pass": true
+}

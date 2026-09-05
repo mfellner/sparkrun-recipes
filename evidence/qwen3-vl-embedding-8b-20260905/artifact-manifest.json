@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5253,
+      "sha256": "e77b292ae91493bf3aa83853c7ba0be81eeb7e8abcc60c81e0518a11a2d265d7"
+    },
+    {
+      "path": "acceptance.py",
+      "bytes": 16643,
+      "sha256": "e29707ae79aef287a2642f64c94610812c4c187e771744f7d88dd73e1ff12824"
+    },
+    {
+      "path": "acceptance-result.json",
+      "bytes": 6574,
+      "sha256": "b1c3be99fbd2f033409181186b6c23e0cb0d192f53f71d4a07930e19bc6209ea"
+    },
+    {
+      "path": "acceptance-raw.json.gz",
+      "bytes": 406051,
+      "sha256": "27eaa2e3787136f3825ad47bb128f5f90b4404f2b7a941d2d8fbd368fce8f53b"
+    },
+    {
+      "path": "red-circle-EMBER-742.png",
+      "bytes": 8167,
+      "sha256": "d1dc4e6a7e4e5ec3c0737ffcabbd3e6a69885f01d1fcbeaec5f0038f1f67bfd5"
+    },
+    {
+      "path": "blue-square-OCEAN-319.png",
+      "bytes": 10818,
+      "sha256": "d640cd314d32a64e9bfd648d1226c85fb0d1e3b834bfd4faeb0627632e4cf71f"
+    },
+    {
+      "path": "ocr-card-EMBER-742.png",
+      "bytes": 10565,
+      "sha256": "12e25e7f5a1ff1e708eef6d93f0b0a2c510c50a0fc30a1ea0a7bd82b7a2f840b"
+    },
+    {
+      "path": "ocr-card-OCEAN-319.png",
+      "bytes": 12628,
+      "sha256": "5395afb729a0b5225f0c624592bf74fdd807bc00161e648f0d656b4c8b7020c0"
+    },
+    {
+      "path": "non-regression.py",
+      "bytes": 2705,
+      "sha256": "057bfa23d012ea0844cf4d6617d90b163ae137821904fe3a9c47c1932fd22514"
+    },
+    {
+      "path": "non-regression-result.json",
+      "bytes": 1613,
+      "sha256": "33a9fbe5faa39fd8cffa5aef538b5bc22cc71a11091bd7b398b48284b8b55602"
+    },
+    {
+      "path": "capture-runtime.py",
+      "bytes": 6976,
+      "sha256": "994cff07acfd8a0f78cf7c1eff7d296b068ed0a296b96814d95f615f24a3daa5"
+    },
+    {
+      "path": "runtime-receipt.json",
+      "bytes": 96588,
+      "sha256": "79ae008a6dd1910b9f4a6aa197484799a390f43c06579659bb22d0f0da3651ff"
+    },
+    {
+      "path": "runtime-audit.json",
+      "bytes": 2777,
+      "sha256": "c0f0597d7117aca7168b0c654c636b40664d64ccdced3693babf19a568231601"
+    },
+    {
+      "path": "refresh-derived.py",
+      "bytes": 5186,
+      "sha256": "6afb38dac9dc994454ba64244dbc369d4c74610ba0e37f0e000426e41a298710"
+    },
+    {
+      "path": "verify-evidence.py",
+      "bytes": 36352,
+      "sha256": "02eeafe418d38e97d59b1788f3070293bf5ba2d0d2c485189942c4a449d97b57"
+    },
+    {
+      "path": "../../recipes/qwen3-vl-embedding-8b-dgx-spark.yaml",
+      "bytes": 4613,
+      "sha256": "320c53936ae2849d8fe30193cc3c3842b7ccff35029d6c7e9a1c3ebd7c8f3b26"
+    }
+  ]
+}

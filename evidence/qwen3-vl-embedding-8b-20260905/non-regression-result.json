@@ -1,0 +1,64 @@
+{
+  "timestamp_utc": "2026-09-05T17:35:23.474463+00:00",
+  "run_id": "45aae7fc-325e-4c81-a65c-e39b37735645",
+  "checks": {
+    "glm_direct": {
+      "status": 200,
+      "content": "GLM-ALIVE-531",
+      "exact_match": true,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 28,
+        "total_tokens": 37,
+        "completion_tokens": 9,
+        "prompt_tokens_details": null
+      },
+      "elapsed_s": 0.3699473830056377
+    },
+    "qwen_direct": {
+      "status": 200,
+      "content": "QWEN-ALIVE-381",
+      "exact_match": true,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 29,
+        "total_tokens": 40,
+        "completion_tokens": 11,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "elapsed_s": 0.3665412089903839
+    },
+    "glm_proxy": {
+      "status": 200,
+      "content": "GLM-PROXY-531",
+      "exact_match": true,
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 9,
+        "prompt_tokens": 28,
+        "total_tokens": 37
+      },
+      "elapsed_s": 0.35631234402535483
+    },
+    "qwen_proxy": {
+      "status": 200,
+      "content": "QWEN-PROXY-381",
+      "exact_match": true,
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 11,
+        "prompt_tokens": 29,
+        "total_tokens": 40,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "elapsed_s": 0.3574321470223367
+    }
+  },
+  "pass": true,
+  "finished_utc": "2026-09-05T17:35:24.925122+00:00"
+}

@@ -1,0 +1,216 @@
+{
+  "timestamp_utc": "2026-09-05T17:30:16.159448+00:00",
+  "run_id": "65238243-96be-4f59-a687-d9196ec5d5bc",
+  "base_url": "http://192.168.178.51:8000",
+  "model": "qwen3-vl-embedding-8b",
+  "fixtures": {
+    "red-circle-EMBER-742.png": "d1dc4e6a7e4e5ec3c0737ffcabbd3e6a69885f01d1fcbeaec5f0038f1f67bfd5",
+    "blue-square-OCEAN-319.png": "d640cd314d32a64e9bfd648d1226c85fb0d1e3b834bfd4faeb0627632e4cf71f",
+    "ocr-card-EMBER-742.png": "12e25e7f5a1ff1e708eef6d93f0b0a2c510c50a0fc30a1ea0a7bd82b7a2f840b",
+    "ocr-card-OCEAN-319.png": "5395afb729a0b5225f0c624592bf74fdd807bc00161e648f0d656b4c8b7020c0"
+  },
+  "request_controls": {
+    "instruction": "Retrieve images or text relevant to the user's query.",
+    "text_batch": [
+      "A red circle marked EMBER-742.",
+      "A blue square marked OCEAN-319.",
+      "A golden retriever running on a beach.",
+      "A database migration using PostgreSQL."
+    ],
+    "mrl_input": "A compact vector dimension check.",
+    "visual_queries": [
+      "Retrieve the image with a red circle on the left and code EMBER-742.",
+      "Retrieve the image with a blue square on the right and code OCEAN-319."
+    ],
+    "controlled_ocr_queries": [
+      "Retrieve the image displaying token EMBER-742.",
+      "Retrieve the image displaying token OCEAN-319."
+    ],
+    "concurrency_inputs": [
+      "Concurrent embedding request 0: cobalt archive.",
+      "Concurrent embedding request 1: cobalt archive.",
+      "Concurrent embedding request 2: cobalt archive.",
+      "Concurrent embedding request 3: cobalt archive."
+    ],
+    "boilerplate_unit": "Telemetry nominal. Cooling stable. Power rails stable. ",
+    "boilerplate_repeats_per_side": 1200,
+    "long_query": "Retrieve the report containing maintenance token ORBIT-991 and a replaced coolant valve.",
+    "long_positive_needle": " Maintenance token ORBIT-991 confirms the coolant valve was replaced. ",
+    "long_negative_needle": " Maintenance token LUNAR-224 confirms the intake filter was inspected. "
+  },
+  "checks": {
+    "text_batch": {
+      "status": 200,
+      "count": 4,
+      "dimensions": [
+        4096
+      ],
+      "norm_range": [
+        0.9999999905788971,
+        1.0000000494914054
+      ],
+      "elapsed_s": 0.10938102699583396,
+      "usage": {
+        "prompt_tokens": 42,
+        "total_tokens": 42,
+        "completion_tokens": 0,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      }
+    },
+    "mrl_1024": {
+      "status": 400,
+      "supported": false,
+      "expected_vllm_limitation": true,
+      "error": "Model 'qwen3-vl-embedding-8b' does not support Matryoshka embeddings; dimensions must be unset (received dimensions=1024).",
+      "elapsed_s": 0.0028851869865320623
+    },
+    "cross_modal": {
+      "similarity_matrix_query_rows_red_blue_image_cols_red_blue": [
+        [
+          0.7164912752769994,
+          0.11031755751269662
+        ],
+        [
+          0.15288969625803184,
+          0.7244530259870834
+        ]
+      ],
+      "diagonal_retrieval_pass": true,
+      "dimensions": [
+        4096
+      ],
+      "norm_range": [
+        0.9999999404985582,
+        1.0000000135530238
+      ],
+      "usage": [
+        {
+          "prompt_tokens": 44,
+          "total_tokens": 44,
+          "completion_tokens": 0,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        {
+          "prompt_tokens": 45,
+          "total_tokens": 45,
+          "completion_tokens": 0,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        {
+          "prompt_tokens": 287,
+          "total_tokens": 287,
+          "completion_tokens": 0,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        {
+          "prompt_tokens": 287,
+          "total_tokens": 287,
+          "completion_tokens": 0,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        }
+      ],
+      "elapsed_s": [
+        0.07578494300832972,
+        0.07515699096256867,
+        0.08039142895722762,
+        0.08192002202849835
+      ]
+    },
+    "controlled_ocr": {
+      "similarity_matrix_query_rows_ember_ocean_image_cols_ember_ocean": [
+        [
+          0.7147443386546986,
+          0.19362787697587966
+        ],
+        [
+          0.1938110607251533,
+          0.7224678120013951
+        ]
+      ],
+      "diagonal_retrieval_pass": true,
+      "dimensions": [
+        4096
+      ],
+      "norm_range": [
+        0.9999999800809463,
+        1.0000000549278691
+      ],
+      "image_usage": [
+        {
+          "prompt_tokens": 287,
+          "total_tokens": 287,
+          "completion_tokens": 0,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        {
+          "prompt_tokens": 287,
+          "total_tokens": 287,
+          "completion_tokens": 0,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        }
+      ]
+    },
+    "concurrency_4": [
+      {
+        "status": 200,
+        "dimensions": 4096,
+        "norm": 0.9999999637624952,
+        "elapsed_s": 0.07585494400700554
+      },
+      {
+        "status": 200,
+        "dimensions": 4096,
+        "norm": 1.0000000522471941,
+        "elapsed_s": 0.14724567398661748
+      },
+      {
+        "status": 200,
+        "dimensions": 4096,
+        "norm": 1.0000000155478905,
+        "elapsed_s": 0.14863271598005667
+      },
+      {
+        "status": 200,
+        "dimensions": 4096,
+        "norm": 0.9999999673557216,
+        "elapsed_s": 0.14743031503167003
+      }
+    ],
+    "long_context_retrieval": {
+      "positive_similarity": 0.6110935042467974,
+      "negative_similarity": 0.40677653465763874,
+      "needle_retrieval_pass": true,
+      "positive_usage": {
+        "prompt_tokens": 26442,
+        "total_tokens": 26442,
+        "completion_tokens": 0,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "negative_usage": {
+        "prompt_tokens": 26443,
+        "total_tokens": 26443,
+        "completion_tokens": 0,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "elapsed_s": [
+        0.14870868402067572,
+        0.1470427950262092
+      ]
+    }
+  },
+  "pass": true,
+  "failures": [],
+  "finished_utc": "2026-09-05T17:30:17.430269+00:00",
+  "raw_artifact": "acceptance-raw.json.gz",
+  "raw_bytes": 406051,
+  "raw_sha256": "27eaa2e3787136f3825ad47bb128f5f90b4404f2b7a941d2d8fbd368fce8f53b"
+}

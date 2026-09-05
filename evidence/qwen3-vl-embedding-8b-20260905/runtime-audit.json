@@ -1,0 +1,93 @@
+{
+  "captured_at_utc": "2026-09-05T17:48:13.592410+00:00",
+  "host": "gx10",
+  "host_ip": "192.168.178.51",
+  "sparkrun_id": "sparkrun_7d7b52c2c9174082_15b33f409193",
+  "container": "sparkrun_7d7b52c2c9174082_15b33f409193_solo",
+  "acceptance_run_id": "65238243-96be-4f59-a687-d9196ec5d5bc",
+  "non_regression_run_id": "45aae7fc-325e-4c81-a65c-e39b37735645",
+  "container_status": "running",
+  "container_healthcheck": null,
+  "api_health_http_status": 200,
+  "models_http_status": 200,
+  "served_model": "qwen3-vl-embedding-8b",
+  "max_model_len": 32768,
+  "model_repo": "Qwen/Qwen3-VL-Embedding-8B",
+  "model_revision": "2c4565515e0f265c6511776e7193b22c0968ddc7",
+  "model_snapshot": {
+    "shard_count": 4,
+    "shard_bytes": 16289679624,
+    "missing_shards": [],
+    "broken_symlinks": []
+  },
+  "image": {
+    "reference": "ghcr.io/spark-arena/dgx-vllm-eugr-nightly-tf5@sha256:f92b4a1a476fd1e235e97df2a623c04c24b69d607a78a91f5084627ec7bd4266",
+    "config_id": "sha256:afff73b9148a454dec9188f0b366c64f33bdccf5b15c57060724ba16ef666549",
+    "architecture": "arm64",
+    "os": "linux",
+    "vllm": "0.28.1rc1.dev441+g2902ca17e.d20260905",
+    "vllm_source_revision": "2902ca17e335457a0fa214638936d154907a2e18",
+    "cuda": "13.0",
+    "torch": "2.13.0+cu130",
+    "nccl": "2.29.7"
+  },
+  "security": {
+    "container_user": "1002:1002",
+    "privileged": false,
+    "security_opt": [
+      "no-new-privileges",
+      "label=disable"
+    ],
+    "network_mode": "host",
+    "ipc_mode": "host",
+    "cap_add": [
+      "CAP_SYS_PTRACE"
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/infiniband",
+        "PathInContainer": "/dev/infiniband",
+        "CgroupPermissions": "rwm"
+      }
+    ],
+    "device_requests": [
+      {
+        "Driver": "",
+        "Count": -1,
+        "DeviceIDs": null,
+        "Capabilities": [
+          [
+            "gpu"
+          ]
+        ],
+        "Options": {}
+      }
+    ],
+    "binds": [
+      "/etc/group:/etc/group:ro",
+      "/home/max/.cache/huggingface:/cache/huggingface",
+      "/home/max/.cache/sparkrun/runtime-cache/vllm/Qwen__Qwen3-VL-Embedding-8B-9a3f8dcc:/cache/runtime",
+      "/etc/passwd:/etc/passwd:ro"
+    ],
+    "shm_size_bytes": 34359738368,
+    "api_authentication": false,
+    "remote_media_allowlist": [
+      "inline-media.invalid"
+    ]
+  },
+  "final_log_scan": {
+    "bytes": 49050,
+    "sha256": "485c96f6d688b6c783b881db9e3794b3cf54d29127fddc927916410b5ba8afed",
+    "traceback": 0,
+    "error_level": 0,
+    "permission_denied": 0,
+    "cuda_fatal": 0,
+    "nccl_fatal": 0
+  },
+  "kernel_scan": {
+    "patterns": "NVRM|Xid|oom-kill",
+    "since_utc": "2026-09-05T17:30:16.159448+00:00",
+    "matches": 0
+  },
+  "recipe_sha256": "320c53936ae2849d8fe30193cc3c3842b7ccff35029d6c7e9a1c3ebd7c8f3b26"
+}

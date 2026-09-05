@@ -1,0 +1,88 @@
+# Hardened from the official SparkRun qwen3-vl-embedding-8b-vllm recipe.
+# The public model and ARM64 runtime are pinned immutably; SparkRun owns
+# distribution and lifecycle on one otherwise-idle DGX Spark-class node.
+recipe_version: "2"
+name: qwen3-vl-embedding-8b-dgx-spark
+model: Qwen/Qwen3-VL-Embedding-8B
+model_revision: 2c4565515e0f265c6511776e7193b22c0968ddc7
+runtime: vllm
+runtime_version: 0.28.1rc1.dev441+g2902ca17e.d20260905
+max_nodes: 1
+container: ghcr.io/spark-arena/dgx-vllm-eugr-nightly-tf5@sha256:f92b4a1a476fd1e235e97df2a623c04c24b69d607a78a91f5084627ec7bd4266
+builder: docker-pull
+
+metadata:
+  description: Qwen3-VL-Embedding-8B multimodal text, image, screenshot, and video embeddings on one DGX Spark-class GB10 node
+  maintainer: mfellner
+  source: https://github.com/spark-arena/recipe-registry/blob/93dd0c5a26adbf3ccd11e561fa1428f594ccd717/official-recipes/qwen3-vl/vllm/qwen3-vl-embedding-8b-vllm.yaml
+  source_revision: 93dd0c5a26adbf3ccd11e561fa1428f594ccd717
+  hardware: NVIDIA DGX Spark or compatible GB10 system
+  architecture: Qwen3VLForConditionalGeneration
+  model_dtype: bfloat16
+  model_params: 8B
+  model_vram: 15.17
+  context_length: 32768
+  multimodal: true
+  notes:
+    - The checkpoint is pinned to Hugging Face revision 2c4565515e0f265c6511776e7193b22c0968ddc7 and is Apache-2.0 licensed.
+    - The ARM64 CUDA 13 image manifest is pinned immutably. Its OCI labels identify vLLM 0.28.1rc1.dev441+g2902ca17e.d20260905 at source commit 2902ca17e335457a0fa214638936d154907a2e18 and SparkRun image source commit 94b3c3060133de8f2714e9429f3f8e9154ac83cc.
+    - The model emits 4096-dimensional normalized embeddings and accepts task instructions in English. The checkpoint advertises Matryoshka dimensions from 64 through 4096, but the pinned vLLM server currently rejects the OpenAI `dimensions` field; use full 4096-dimensional vectors on this serving profile.
+    - Remote URL media is restricted to the reserved .invalid domain. Use inline data media for images or videos.
+    - The API is unauthenticated and host-networked. Keep it on a trusted firewalled private network.
+    - The pinned launch enables --trust-remote-code. This executes code from the immutably pinned model revision; audit that revision before use and re-audit before changing it.
+    - Under the validated SparkRun 0.3.6 Docker path, the effective container ran non-privileged as UID/GID 1002 with no-new-privileges, host networking/IPC, CAP_SYS_PTRACE, 32 GiB shared memory, all-GPU access, /dev/infiniband rwm access, and host cache bind mounts. These are resolved executor properties rather than portable recipe guarantees; re-inspect them after SparkRun or executor changes.
+
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: Qwen/Qwen3-VL-Embedding-8B
+        revision: 2c4565515e0f265c6511776e7193b22c0968ddc7
+        target: [-1]
+
+env:
+  HF_HOME: /cache/huggingface
+  HF_HUB_OFFLINE: "1"
+  TRANSFORMERS_OFFLINE: "1"
+  HF_HUB_DISABLE_TELEMETRY: "1"
+  VLLM_NO_USAGE_STATS: "1"
+  VLLM_CACHE_ROOT: /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/vllm
+  TORCHINDUCTOR_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/torchinductor
+  TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/triton
+  TMPDIR: /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/tmp
+
+pre_exec:
+  - >-
+    mkdir -p
+    /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/vllm
+    /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/torchinductor
+    /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/triton
+    /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b/tmp
+  - >-
+    chown -R --reference=/cache/huggingface
+    /cache/huggingface/sparkrun-runtime-cache/qwen3-vl-embedding-8b
+
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  served_model_name: qwen3-vl-embedding-8b
+  tensor_parallel: 1
+  gpu_memory_utilization: 0.3
+  max_model_len: 32768
+  load_format: safetensors
+  allowed_media_domains: inline-media.invalid
+
+command: |
+  exec vllm serve /cache/huggingface/hub/models--Qwen--Qwen3-VL-Embedding-8B/snapshots/2c4565515e0f265c6511776e7193b22c0968ddc7 \
+    --served-model-name {served_model_name} \
+    --runner pooling \
+    --convert embed \
+    --dtype bfloat16 \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --tensor-parallel-size {tensor_parallel} \
+    --host {host} \
+    --port {port} \
+    --max-model-len {max_model_len} \
+    --load-format {load_format} \
+    --allowed-media-domains {allowed_media_domains} \
+    --trust-remote-code
