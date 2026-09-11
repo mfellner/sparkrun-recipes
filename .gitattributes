@@ -1,0 +1,2 @@
+# Preserve byte-exact vendored upstream files, including their EOF layout.
+mods/glm-5.3-flash-exl3-upstream-850k/upstream/** whitespace=-blank-at-eof

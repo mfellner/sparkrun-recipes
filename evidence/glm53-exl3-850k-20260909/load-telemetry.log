@@ -1,0 +1,138 @@
+sample=before time=2026-09-10T15:06:07.602082+02:00
+vllm:num_requests_running{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.0
+vllm:num_requests_waiting{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.0
+vllm:num_requests_waiting_by_reason{engine="0",model_name="GLM-5.3-Flash-EXL3",reason="capacity"} 0.0
+vllm:num_requests_waiting_by_reason{engine="0",model_name="GLM-5.3-Flash-EXL3",reason="deferred"} 0.0
+vllm:kv_cache_usage_perc{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.0
+host=192.168.178.47 acquisition_started_at=2026-09-10T15:06:07.602096+02:00
+P0, 0 %, 2405 MHz, 10.88 W
+P0, 0 %, 2405 MHz, 10.88 W
+P0, 0 %, 2405 MHz, 10.89 W
+P0, 0 %, 2405 MHz, 10.88 W
+P0, 0 %, 2405 MHz, 10.98 W
+P0, 0 %, 2405 MHz, 10.97 W
+P0, 0 %, 2405 MHz, 10.98 W
+P0, 0 %, 2405 MHz, 10.98 W
+P0, 0 %, 2405 MHz, 10.94 W
+P0, 0 %, 2405 MHz, 10.91 W
+rocep1s0f1 rate=200 Gb/sec (4X HDR)
+rocep1s0f1 state=4: ACTIVE
+rocep1s0f1 xmit=685389901899
+rocep1s0f1 rcv=685341756614
+roceP2p1s0f1 rate=200 Gb/sec (4X HDR)
+roceP2p1s0f1 state=4: ACTIVE
+roceP2p1s0f1 xmit=677268219106
+roceP2p1s0f1 rcv=677220769104
+host=192.168.178.47 acquisition_completed_at=2026-09-10T15:06:10.531188+02:00
+host=192.168.178.46 acquisition_started_at=2026-09-10T15:06:10.531219+02:00
+P0, 0 %, 2398 MHz, 13.50 W
+P0, 0 %, 2398 MHz, 13.52 W
+P0, 0 %, 2398 MHz, 13.55 W
+P0, 0 %, 2398 MHz, 13.66 W
+P0, 0 %, 2398 MHz, 13.68 W
+P0, 0 %, 2398 MHz, 13.67 W
+P0, 0 %, 2398 MHz, 13.64 W
+P0, 0 %, 2398 MHz, 13.54 W
+P0, 0 %, 2398 MHz, 13.53 W
+P0, 0 %, 2398 MHz, 13.51 W
+rocep1s0f1 rate=200 Gb/sec (4X HDR)
+rocep1s0f1 state=4: ACTIVE
+rocep1s0f1 xmit=685341756614
+rocep1s0f1 rcv=685389901899
+roceP2p1s0f1 rate=200 Gb/sec (4X HDR)
+roceP2p1s0f1 state=4: ACTIVE
+roceP2p1s0f1 xmit=677220769104
+roceP2p1s0f1 rcv=677268219106
+host=192.168.178.46 acquisition_completed_at=2026-09-10T15:06:13.192106+02:00
+sample=during time=2026-09-10T15:07:17.561550+02:00
+vllm:num_requests_running{engine="0",model_name="GLM-5.3-Flash-EXL3"} 1.0
+vllm:num_requests_waiting{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.0
+vllm:num_requests_waiting_by_reason{engine="0",model_name="GLM-5.3-Flash-EXL3",reason="capacity"} 0.0
+vllm:num_requests_waiting_by_reason{engine="0",model_name="GLM-5.3-Flash-EXL3",reason="deferred"} 0.0
+vllm:kv_cache_usage_perc{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.06034482758620685
+host=192.168.178.47 acquisition_started_at=2026-09-10T15:07:17.561591+02:00
+P0, 96 %, 2509 MHz, 48.51 W
+P0, 96 %, 2509 MHz, 48.85 W
+P0, 96 %, 2509 MHz, 47.65 W
+P0, 96 %, 2509 MHz, 47.61 W
+P0, 96 %, 2509 MHz, 47.31 W
+P0, 96 %, 2509 MHz, 47.55 W
+P0, 96 %, 2509 MHz, 46.98 W
+P0, 96 %, 2509 MHz, 46.88 W
+P0, 96 %, 2509 MHz, 47.16 W
+P0, 96 %, 2509 MHz, 47.14 W
+rocep1s0f1 rate=200 Gb/sec (4X HDR)
+rocep1s0f1 state=4: ACTIVE
+rocep1s0f1 xmit=696043775429
+rocep1s0f1 rcv=695994012502
+roceP2p1s0f1 rate=200 Gb/sec (4X HDR)
+roceP2p1s0f1 state=4: ACTIVE
+roceP2p1s0f1 xmit=687731181126
+roceP2p1s0f1 rcv=687682106104
+host=192.168.178.47 acquisition_completed_at=2026-09-10T15:07:20.742828+02:00
+host=192.168.178.46 acquisition_started_at=2026-09-10T15:07:20.742889+02:00
+P0, 96 %, 2476 MHz, 48.64 W
+P0, 96 %, 2476 MHz, 48.56 W
+P0, 96 %, 2476 MHz, 47.94 W
+P0, 96 %, 2476 MHz, 47.72 W
+P0, 96 %, 2476 MHz, 47.88 W
+P0, 96 %, 2476 MHz, 47.46 W
+P0, 95 %, 2476 MHz, 48.35 W
+P0, 95 %, 2476 MHz, 48.62 W
+P0, 95 %, 2476 MHz, 48.36 W
+P0, 95 %, 2476 MHz, 48.01 W
+rocep1s0f1 rate=200 Gb/sec (4X HDR)
+rocep1s0f1 state=4: ACTIVE
+rocep1s0f1 xmit=696050296159
+rocep1s0f1 rcv=696100078410
+roceP2p1s0f1 rate=200 Gb/sec (4X HDR)
+roceP2p1s0f1 state=4: ACTIVE
+roceP2p1s0f1 xmit=687738136740
+roceP2p1s0f1 rcv=687787248715
+host=192.168.178.46 acquisition_completed_at=2026-09-10T15:07:23.666171+02:00
+sample=after time=2026-09-10T15:07:39.626732+02:00
+vllm:num_requests_running{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.0
+vllm:num_requests_waiting{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.0
+vllm:num_requests_waiting_by_reason{engine="0",model_name="GLM-5.3-Flash-EXL3",reason="capacity"} 0.0
+vllm:num_requests_waiting_by_reason{engine="0",model_name="GLM-5.3-Flash-EXL3",reason="deferred"} 0.0
+vllm:kv_cache_usage_perc{engine="0",model_name="GLM-5.3-Flash-EXL3"} 0.0
+host=192.168.178.47 acquisition_started_at=2026-09-10T15:07:39.626771+02:00
+P0, 0 %, 2528 MHz, 41.95 W
+P0, 0 %, 2528 MHz, 30.94 W
+P0, 0 %, 2528 MHz, 22.12 W
+P0, 0 %, 2528 MHz, 13.57 W
+P0, 0 %, 2528 MHz, 13.43 W
+P0, 0 %, 2528 MHz, 13.41 W
+P0, 0 %, 2528 MHz, 13.37 W
+P0, 0 %, 2528 MHz, 13.31 W
+P0, 0 %, 2528 MHz, 13.27 W
+P0, 0 %, 2528 MHz, 13.25 W
+rocep1s0f1 rate=200 Gb/sec (4X HDR)
+rocep1s0f1 state=4: ACTIVE
+rocep1s0f1 xmit=696308392839
+rocep1s0f1 rcv=696258625603
+roceP2p1s0f1 rate=200 Gb/sec (4X HDR)
+roceP2p1s0f1 state=4: ACTIVE
+roceP2p1s0f1 xmit=687993325361
+roceP2p1s0f1 rcv=687944230670
+host=192.168.178.47 acquisition_completed_at=2026-09-10T15:07:42.270174+02:00
+host=192.168.178.46 acquisition_started_at=2026-09-10T15:07:42.270210+02:00
+P0, 0 %, 2411 MHz, 15.79 W
+P0, 0 %, 2411 MHz, 15.78 W
+P0, 0 %, 2411 MHz, 15.79 W
+P0, 0 %, 2411 MHz, 15.83 W
+P0, 0 %, 2411 MHz, 15.90 W
+P0, 0 %, 2411 MHz, 15.91 W
+P0, 0 %, 2411 MHz, 15.91 W
+P0, 0 %, 2411 MHz, 15.90 W
+P0, 0 %, 2411 MHz, 15.85 W
+P0, 0 %, 2411 MHz, 15.76 W
+rocep1s0f1 rate=200 Gb/sec (4X HDR)
+rocep1s0f1 state=4: ACTIVE
+rocep1s0f1 xmit=696258625603
+rocep1s0f1 rcv=696308392839
+roceP2p1s0f1 rate=200 Gb/sec (4X HDR)
+roceP2p1s0f1 state=4: ACTIVE
+roceP2p1s0f1 xmit=687944230670
+roceP2p1s0f1 rcv=687993325361
+host=192.168.178.46 acquisition_completed_at=2026-09-10T15:07:44.913989+02:00

@@ -1,0 +1,73 @@
+{
+  "candidate_phase": "final-static-candidate",
+  "canonical_prefinal": {
+    "expected_only_failures": [
+      "final artifact bindings pending for regenerated sanitizer/runtime/static artifacts",
+      "stale SHA256SUMS rows for regenerated final artifacts"
+    ],
+    "passed": false
+  },
+  "credential_sanitizer_focused": "26 passed",
+  "detect_secrets": {
+    "adjudicated_false_positives": 627,
+    "all_files": true,
+    "occurrence_manifest": ".secrets.occurrences.json",
+    "passed": true,
+    "raw_occurrences": 1249,
+    "unadjudicated": 0,
+    "verifier": "scripts/verify_detect_secrets.py"
+  },
+  "deterministic_container_name": "sparkrun_3d13e8eba3fa512a_38acb2ac0fc5",
+  "dry_run_pair": "byte-identical with explicit deterministic --container-name",
+  "evidence_manifest_entries": 19,
+  "evidence_state": "LIVE_CAPTURE_PASSED; PUBLICATION_PENDING",
+  "exact_upstream_commit": "1caea9a10b26ae93b88d08e82d1e7abb0dc45a42",
+  "exact_upstream_files": 94,
+  "finalization_note": "This log is a hash-bound static candidate input. Final canonical verification, repository tests, evidence checksums, mutation controls, source parity, compatibility, staged secret scan, and exact-tree review run after immutable hashes and SHA256SUMS are finalized.",
+  "launch_argv_bound": true,
+  "launch_container_name": "sparkrun_3d13e8eba3fa512a_38acb2ac0fc5",
+  "launch_receipt_bound": true,
+  "mod_manifest_entries": 110,
+  "mod_manifest_sha256": "6ea2a5ae515b76604e52918c3feb8e75cf563556df235ff73e1ae96cdda8f87c",
+  "negative_controls": {
+    "passed": true,
+    "rejected": 268,
+    "sanitizer_controls": [
+      "percent-encoded mapping and nested header names",
+      "encoded URI userinfo/query/assignment delimiters",
+      "export-, env-, declare-, readonly-prefixed and whitespace-separated environment assignments",
+      "mixed raw and encoded credential fragments",
+      "nested, direct, singular, flat, embedded, complete multi-token, and RFC tchar header representations",
+      "encoded structural containers/discriminators and ambiguous or extended header representations",
+      "headerList/argvList aliases, nested wrapper propagation, self-describing header objects, and exact hash-bound proxy command preservation",
+      "malformed and over-depth argv option records plus attached raw/encoded curl header arguments",
+      "150 nested argv structural cases and 540 inner-serialized argv cases with true over-depth percent encoding",
+      "540 individually serialized argv option cases, 30 singleton fragments, and 120 nested wrapper fragments",
+      "40 nested structural argv fragments carrying option state to outer values",
+      "sensitive mappings with raw/value/raw_value/data sibling payloads",
+      "duplicate secret-finding cardinality and fail-closed scanner stderr handling",
+      "encoded and extended separate-value argv option names, including structured values",
+      "compact-infix and generic connection credential keys plus standard environment mappings",
+      "setenv, printf, curl user/attached-user, and embedded authentication-header forms",
+      "bounded direct-structure recursion",
+      "serialized structure beyond parser recursion limit",
+      "percent-encoded serialized JSON",
+      "non-convergent and malformed percent encoding",
+      "contextual CLI credential names in mappings, URI queries, and serialized values"
+    ]
+  },
+  "recipe_validation": "PASS",
+  "readme_runtime_completion_binding": "PASS",
+  "repository_suite_collected": 93,
+  "runtime_sanitizer_idempotence": "PASS",
+  "rollback_1m_blob": "085132d5ce0388268e82a392c3f444f857303d28",
+  "rollback_1m_unchanged": true,
+  "runtime_patch_mutations_rejected": 98,
+  "runtime_patch_self_test": "PASS",
+  "serve_wrapper_controls": "PASS",
+  "source_parity": "PASS",
+  "trusted_dry_run": "PASS",
+  "upstream_compatibility": "87 passed; no deselections",
+  "upstream_main_at_refresh": "1caea9a10b26ae93b88d08e82d1e7abb0dc45a42",
+  "workflow_count": 0
+}

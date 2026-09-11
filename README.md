@@ -67,7 +67,46 @@ The endpoint is unauthenticated, root-user, host-networked/IPC, and multimodal. 
 
 Live validation on 2026-09-03 passed deterministic chat, four-way concurrency, vision/OCR, structured tool calling, and retrieval from an 896,051-prompt-token request. After readiness-supervision and LAN-binding hardening, the exact final recipe was relaunched and passed its fail-closed post-readiness gate plus a fresh direct/proxied regression matrix, including C4, inline-data vision/OCR, tools, GLM non-regression, and a 70,051-prompt-token retrieval. The expensive 896,051-token result belongs to the preceding process and was not rerun after hardening. Both accepted runs used `dgx03` and `dgx04` through `spark-ring3`; the rejected TP3 trial and TP2 evidence are preserved under [`evidence/qwen3.8-flash-next-nvfp4-20260902/`](evidence/qwen3.8-flash-next-nvfp4-20260902/).
 
-### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 1M context (recommended)
+### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 850K context (recommended)
+
+`@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k`
+
+Immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `1caea9a10b26ae93b88d08e82d1e7abb0dc45a42`.
+
+- Exactly two DGX Spark or compatible GB10 nodes using native `vllm-distributed` TP2/MP
+- Main model pinned to `024db9f7e9871e8efdf21538ba55af7442be3cd5` and DFlash2 pinned independently to `dc77ff1c99eeb2df044ee3d4f0094eb033fee410`
+- MiaAI-Lab's public arm64 E3 image pinned at `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:eecb36e14dc34c92d46827fde7b09f7e0bf27e27c426ece126376c02dea6cd2f`
+- The complete mod tree, including archival vendored source, is covered by its SHA-256 manifest; only the named runtime subset selected by `run.sh` is applied fail-closed on both ranks
+- E3 grouped fat-expert kernels, FP8 MLA KV, TP2-sharded DFlash2 k=7, hybrid APC, CUDA graphs, text plus still-image input, tool calling, and reasoning parsing; the literal vLLM command configures supported per-prompt limits as `{"image":4,"video":0}`
+- Mia's source-revision `GPU_MEM_UTIL=0.85`, `MAX_MODEL_LEN=850000`, `MAX_NUM_SEQS=4`, `MAX_NUM_BATCHED_TOKENS=7168`, and right-sized indexer workspace profile
+- Optional adaptive-k, dense-FP8, and ABLIT paths are installed but disabled, matching upstream defaults
+
+Port `8000` is the intentional SparkRun/sparkDash/LiteLLM adaptation from upstream `8888`; the served alias remains `GLM-5.3-Flash-EXL3`. Rank 0 runs a bounded post-readiness warmup and semantic gate before acceptance.
+
+Run it on the saved pair:
+
+```bash
+sparkrun run @mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k \
+  --cluster YOUR_CLUSTER \
+  --no-follow --trust
+```
+
+The endpoint is unauthenticated, root-user, host-networked/IPC, configured for still-image input with video limited to zero, LAN-only, and trust-gated. Keep inference, native-distributed, NCCL, and proxy port `4000` on a trusted firewalled private network; all are untrusted-client boundaries. The fixed `--allowed-media-domains media.invalid` sentinel denies arbitrary remote URL media; deterministic inline `data:` images remain supported. Deploy authentication and an explicit real-domain allowlist before any use outside this trusted private boundary. Keep `earlyoom` inactive while the model remains loaded; restore it only after unloading and verifying safe memory headroom.
+
+Fresh live validation: **PASSED** for deterministic workload `sparkrun_3d13e8eba3fa512a_38acb2ac0fc5` and acceptance run `1941bd91758d28de`. The exact launch, direct/proxy functional matrix, synchronized telemetry, dual-rank runtime topology, rank-0 positive/rank-1 negative listener proofs, and deterministic video-zero receipts are preserved in the [850K evidence](evidence/glm53-exl3-850k-20260909/). The recommended GLM 5.3 Flash EXL3 850K recipe remains the release target. Post-publication GitHub and registry round-trip verification is performed against the resulting exact commit.
+
+#### Maintainer-approved publication exception
+
+Publication proceeds by explicit maintainer decision despite an independent audit returning `passed=false`. The existing canonical, repository, mutation, parity, compatibility, manifest, and detect-secrets gates pass, and the current hash-pinned receipts remain internally consistent. The following hardening gaps are accepted for this publication and remain unresolved:
+
+- nested argv and header state is not always propagated across malformed, over-depth, or multi-key structural/serialization boundaries;
+- some scheme-relative URI userinfo and curl `-p` forms are not redacted;
+- dangling sensitive argv options and lone-surrogate JSON can raise sanitizer exceptions;
+- benign Python `-u` argv can be over-redacted;
+- the evidence verifier does not reject every undeclared artifact, duplicate key/field, contradictory text record, extra cardinality, or unchecked fatal-log composition;
+- these gaps weaken future capture and repackaging verification but do not alter the preserved live recipe, launch, runtime, or acceptance bytes in the evidence package.
+
+### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 1M context (legacy rollback)
 
 `@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-1m`
 
@@ -75,7 +114,7 @@ Latest immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Spa
 
 - Exactly two DGX Spark or compatible GB10 nodes using native `vllm-distributed` TP2/MP
 - `Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw` pinned to `024db9f7e9871e8efdf21538ba55af7442be3cd5`; deterministic maps prove its serving payload is unchanged from the prior 25a44fdb mirror pin and byte-identical to the original `brandonmusic` 5ab logical serving payload
-- Updated DFlash2 draft payload pinned independently to `bf582e4eacc1810f76656d1811693ff6c6737d2a`
+- Current reviewed DFlash2 draft payload pinned independently to `dc77ff1c99eeb2df044ee3d4f0094eb033fee410`
 - Public arm64 CUDA 13 image built from the exact upstream commit and pinned at `ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:4f30fba4248ed7d78dddda37d9ffc0fea5cc8c567c5dd98042ad808efdde9791`
 - Checksum-pinned mod validates every selected RoCE GID and compiled E2 symbol, then applies each fail-closed overlay on every rank before serve; the complete source/static suite runs separately against the exact staged bundle
 - A fail-closed local follow-up ignores client-provided stop strings for this default-thinking profile so EOS/`max_tokens` govern completion; an environment opt-out restores stock stop behavior
@@ -418,6 +457,11 @@ The GLM endpoint binds to `0.0.0.0:8000` without API authentication, executes pi
 Validate a recipe before publishing or running it:
 
 ```bash
+sparkrun recipe validate recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml
+sparkrun run recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml \
+  --cluster YOUR_CLUSTER \
+  --dry-run --trust
+
 sparkrun recipe validate recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml
 sparkrun run recipes/qwen3.8-flash-next-nvfp4-dual-spark-1m.yaml \
   --cluster YOUR_CLUSTER \
@@ -463,7 +507,7 @@ sparkrun run recipes/glm-5.2-nvfp4-aqlm-triple-dgx-spark-vision-fp8-235k.yaml \
 
 The Qwen3.8 Flash Next recipe is adapted from MiaAI-Lab's dual-Spark launcher. SparkRun replaces `.env`, unsafe host-key bypasses, manual Hugging Face rsync, mutable image-tag pulls, and hand-ranked Docker lifecycle while retaining the exact checkpoint, pinned arm64 image, upstream FP8 PLE resolver shim, BF16 hybrid KV, MTP-3, YaRN 1M profile, multimodal processing, parsers, graph mode, and memory/batching settings. TP3 was tested and rejected because the 16-head vision tower is not divisible by three; the published recipe therefore remains upstream-faithful TP2 even when launched through the three-host `spark-ring3` cluster.
 
-The recommended GLM 5.3 Flash EXL3 1M recipe is adapted from MiaAI-Lab's deployment repository at the exact source revision documented above. It retains the immutable EXL3 overlay image, Mia-AiLab mirror checkpoint, updated independently pinned IncoAI DFlash2 draft, TP2 native vLLM topology, fused EXL3 MoE, FP8 sparse-MLA KV, DFlash2-7, CUDA graphs, 1M context, multimodal processing, XGrammar backports, prefix caching, and parser settings. SparkRun replaces `.env`, SSH/rsync helpers, mutable tag pulls, manually ranked Docker lifecycle, and the kit-specific readiness loop with immutable distribution, per-host fabric/GID validation, native orchestration, persistent caches, and the fail-closed rank-0 gate.
+The recommended GLM 5.3 Flash EXL3 850K recipe is adapted from MiaAI-Lab's deployment repository at the exact source revision documented above. It retains the immutable EXL3 overlay image, Mia-AiLab mirror checkpoint, updated independently pinned IncoAI DFlash2 draft, TP2 native vLLM topology, fused EXL3 MoE, FP8 sparse-MLA KV, DFlash2-7, CUDA graphs, an 850K context, still-image processing with video disabled, XGrammar backports, prefix caching, and parser settings. SparkRun replaces `.env`, SSH/rsync helpers, mutable tag pulls, manually ranked Docker lifecycle, and the kit-specific readiness loop with immutable distribution, per-host fabric/GID validation, native orchestration, persistent caches, and the fail-closed rank-0 gate. The protected 1M/E2 recipe remains the legacy rollback profile.
 
 The legacy GLM 5.3 Flash EXL3 900K rollback recipe remains separately pinned to the `brandonmusic/GLM-5.3-Flash-tr3-4bpw` snapshot and the older IncoAI draft revision. It preserves the previously validated 900,000-token profile and evidence; it is not presented as the current recommended upstream adaptation.
 
@@ -475,4 +519,11 @@ The GLM-5.2 Vision recipes are adapted from MiaAI-Lab's MIT-licensed triple-Spar
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT applies only to repository-authored files covered by the root
+[LICENSE](LICENSE). It does not apply to the vendored 850K source/mod at
+`mods/glm-5.3-flash-exl3-upstream-850k/`, including
+`mods/glm-5.3-flash-exl3-upstream-850k/upstream`, which remains under its
+separate AGPL-3.0 terms. The model checkpoints are not relicensed by this
+repository: the GLM-5.3 EXL3 checkpoint remains under ShapleyMCG License 1.0,
+and the DFlash2 checkpoint remains under CC BY-NC-ND 4.0. Review each
+upstream, image, and checkpoint license before use.
