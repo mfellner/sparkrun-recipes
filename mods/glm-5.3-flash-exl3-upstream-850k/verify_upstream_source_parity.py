@@ -8,7 +8,7 @@ import tarfile
 import urllib.request
 from pathlib import Path, PurePosixPath
 
-REVISION = "1caea9a10b26ae93b88d08e82d1e7abb0dc45a42"
+REVISION = "f906ee990596486e10ddbe381efa6f0e496f77e3"
 REPOSITORY = "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks"
 ARCHIVE_URL = f"https://github.com/{REPOSITORY}/archive/{REVISION}.tar.gz"
 UPSTREAM = Path(__file__).resolve().parent / "upstream"
@@ -46,7 +46,13 @@ def main() -> int:
         expected = archive_files(response.read())
     actual = local_files()
     if set(actual) != set(expected):
-        print("source parity FAIL: relative file set mismatch", file=sys.stderr)
+        missing = sorted(set(expected) - set(actual))
+        extra = sorted(set(actual) - set(expected))
+        print(
+            "source parity FAIL: relative file set mismatch; "
+            f"missing={missing[:10]!r} extra={extra[:10]!r}",
+            file=sys.stderr,
+        )
         return 1
     mismatches = [name for name in sorted(actual) if actual[name] != expected[name]]
     if mismatches:

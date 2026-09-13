@@ -55,13 +55,40 @@ GLM53_WARMUP_DFLASH_K=7 \
 GLM53_WARMUP_TRITON_CACHE_DIR="${GLM53_WARMUP_TRITON_CACHE_DIR:-${TRITON_CACHE_DIR:-}}" \
   bash "$MOD_DIR/upstream/scripts/boot-shape-warmup.sh" "$BASE" "$MODEL" || fail 92 "boot shape warmup failed"
 python3 - "$BASE" "$MODEL" <<'PY' || fail 93 "semantic completion gate failed"
-import json,sys,urllib.request
+import concurrent.futures,json,sys,threading,urllib.request
 base,model=sys.argv[1:3]
-body=json.dumps({"model":model,"messages":[{"role":"user","content":"Reply with exactly GLM53_EXL3_OK and nothing else."}],"temperature":0,"max_tokens":32,"chat_template_kwargs":{"enable_thinking":False}}).encode()
+
+def exact(marker, barrier=None):
+    body=json.dumps({"model":model,"messages":[{"role":"user","content":f"Reply with exactly {marker} and nothing else."}],"temperature":0,"max_tokens":32,"chat_template_kwargs":{"enable_thinking":False}}).encode()
+    req=urllib.request.Request(base+"/v1/chat/completions",data=body,headers={"Content-Type":"application/json"})
+    if barrier is not None:
+        barrier.wait(timeout=30)
+    data=json.load(urllib.request.urlopen(req,timeout=300))
+    content=(data["choices"][0]["message"].get("content") or "").strip()
+    assert content==marker,(marker,content)
+
+exact("GLM53_EXL3_OK")
+# Match acceptance's first allocation-sensitive wave before publishing readiness:
+# four simultaneous deterministic chat requests, each with max_tokens=32.
+barrier=threading.Barrier(4)
+markers=[f"GLM53_GATE_C4_{i}_OK" for i in range(4)]
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+    futures=[pool.submit(exact,marker,barrier) for marker in markers]
+    for future in futures:
+        future.result()
+
+# Prime the allocation-sensitive 110,035-token acceptance shape before the
+# readiness timestamp. This is intentionally the same deterministic retrieval
+# fixture used by acceptance.py so the later readiness-to-acceptance interval
+# is a warm-serving interval rather than a first-allocation interval.
+needle="NEEDLE_GL53_842917"
+filler="alpha "*55000
+prompt=filler+f"\nHidden retrieval code: {needle}\n"+filler+f"\nReply with exactly {needle}."
+body=json.dumps({"model":model,"messages":[{"role":"user","content":prompt}],"temperature":0,"max_tokens":32,"chat_template_kwargs":{"enable_thinking":False}}).encode()
 req=urllib.request.Request(base+"/v1/chat/completions",data=body,headers={"Content-Type":"application/json"})
-data=json.load(urllib.request.urlopen(req,timeout=300))
+data=json.load(urllib.request.urlopen(req,timeout=1800))
 content=(data["choices"][0]["message"].get("content") or "").strip()
-assert content=="GLM53_EXL3_OK",repr(content)
+assert content==needle,(needle,content)
 PY
 printf '0\n' > "$RC"
 date --iso-8601=seconds > "$OK"

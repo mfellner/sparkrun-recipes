@@ -1,5 +1,5 @@
 {
-  "candidate_phase": "final-static-candidate",
+  "candidate_phase": "historical-superseded",
   "canonical_prefinal": {
     "expected_only_failures": [
       "final artifact bindings pending for regenerated sanitizer/runtime/static artifacts",
@@ -20,10 +20,10 @@
   "deterministic_container_name": "sparkrun_3d13e8eba3fa512a_38acb2ac0fc5",
   "dry_run_pair": "byte-identical with explicit deterministic --container-name",
   "evidence_manifest_entries": 19,
-  "evidence_state": "LIVE_CAPTURE_PASSED; PUBLICATION_PENDING",
+  "evidence_state": "SUPERSEDED; HISTORICAL LIVE_CAPTURE_PASSED",
   "exact_upstream_commit": "1caea9a10b26ae93b88d08e82d1e7abb0dc45a42",
   "exact_upstream_files": 94,
-  "finalization_note": "This log is a hash-bound static candidate input. Final canonical verification, repository tests, evidence checksums, mutation controls, source parity, compatibility, staged secret scan, and exact-tree review run after immutable hashes and SHA256SUMS are finalized.",
+  "finalization_note": "Historical result recorded for the superseded candidate. The archived verifier and negative controls depend on repository-level recipe/mod paths that now identify the newer candidate; they are not runnable release gates in the current checkout.",
   "launch_argv_bound": true,
   "launch_container_name": "sparkrun_3d13e8eba3fa512a_38acb2ac0fc5",
   "launch_receipt_bound": true,

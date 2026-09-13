@@ -71,15 +71,15 @@ Live validation on 2026-09-03 passed deterministic chat, four-way concurrency, v
 
 `@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k`
 
-Immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `1caea9a10b26ae93b88d08e82d1e7abb0dc45a42`.
+Immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `f906ee990596486e10ddbe381efa6f0e496f77e3`.
 
 - Exactly two DGX Spark or compatible GB10 nodes using native `vllm-distributed` TP2/MP
 - Main model pinned to `024db9f7e9871e8efdf21538ba55af7442be3cd5` and DFlash2 pinned independently to `dc77ff1c99eeb2df044ee3d4f0094eb033fee410`
 - MiaAI-Lab's public arm64 E3 image pinned at `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:eecb36e14dc34c92d46827fde7b09f7e0bf27e27c426ece126376c02dea6cd2f`
 - The complete mod tree, including archival vendored source, is covered by its SHA-256 manifest; only the named runtime subset selected by `run.sh` is applied fail-closed on both ranks
-- E3 grouped fat-expert kernels, FP8 MLA KV, TP2-sharded DFlash2 k=7, hybrid APC, CUDA graphs, text plus still-image input, tool calling, and reasoning parsing; the literal vLLM command configures supported per-prompt limits as `{"image":4,"video":0}`
+- E3 grouped fat-expert kernels, FP8 MLA KV, TP2-sharded DFlash2 k=7, replay-safe hybrid APC, optional per-group sparse retention, CUDA graphs, text plus still-image input, tool calling, and reasoning parsing; the literal vLLM command configures supported per-prompt limits as `{"image":4,"video":0}`
 - Mia's source-revision `GPU_MEM_UTIL=0.85`, `MAX_MODEL_LEN=850000`, `MAX_NUM_SEQS=4`, `MAX_NUM_BATCHED_TOKENS=7168`, and right-sized indexer workspace profile
-- Optional adaptive-k, dense-FP8, and ABLIT paths are installed but disabled, matching upstream defaults
+- Optional per-group sparse retention, adaptive-k, dense-FP8, and ABLIT paths are installed but disabled, matching upstream defaults
 
 Port `8000` is the intentional SparkRun/sparkDash/LiteLLM adaptation from upstream `8888`; the served alias remains `GLM-5.3-Flash-EXL3`. Rank 0 runs a bounded post-readiness warmup and semantic gate before acceptance.
 
@@ -93,18 +93,7 @@ sparkrun run @mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k \
 
 The endpoint is unauthenticated, root-user, host-networked/IPC, configured for still-image input with video limited to zero, LAN-only, and trust-gated. Keep inference, native-distributed, NCCL, and proxy port `4000` on a trusted firewalled private network; all are untrusted-client boundaries. The fixed `--allowed-media-domains media.invalid` sentinel denies arbitrary remote URL media; deterministic inline `data:` images remain supported. Deploy authentication and an explicit real-domain allowlist before any use outside this trusted private boundary. Keep `earlyoom` inactive while the model remains loaded; restore it only after unloading and verifying safe memory headroom.
 
-Fresh live validation: **PASSED** for deterministic workload `sparkrun_3d13e8eba3fa512a_38acb2ac0fc5` and acceptance run `1941bd91758d28de`. The exact launch, direct/proxy functional matrix, synchronized telemetry, dual-rank runtime topology, rank-0 positive/rank-1 negative listener proofs, and deterministic video-zero receipts are preserved in the [850K evidence](evidence/glm53-exl3-850k-20260909/). The recommended GLM 5.3 Flash EXL3 850K recipe remains the release target. Post-publication GitHub and registry round-trip verification is performed against the resulting exact commit.
-
-#### Maintainer-approved publication exception
-
-Publication proceeds by explicit maintainer decision despite an independent audit returning `passed=false`. The existing canonical, repository, mutation, parity, compatibility, manifest, and detect-secrets gates pass, and the current hash-pinned receipts remain internally consistent. The following hardening gaps are accepted for this publication and remain unresolved:
-
-- nested argv and header state is not always propagated across malformed, over-depth, or multi-key structural/serialization boundaries;
-- some scheme-relative URI userinfo and curl `-p` forms are not redacted;
-- dangling sensitive argv options and lone-surrogate JSON can raise sanitizer exceptions;
-- benign Python `-u` argv can be over-redacted;
-- the evidence verifier does not reject every undeclared artifact, duplicate key/field, contradictory text record, extra cardinality, or unchecked fatal-log composition;
-- these gaps weaken future capture and repackaging verification but do not alter the preserved live recipe, launch, runtime, or acceptance bytes in the evidence package.
+Fresh live validation: **PASSED** for deterministic workload `sparkrun_f906ee990596486e_20260913c411` and acceptance run `f906c41120260913`. The exact launch, direct/proxy functional matrix, synchronized telemetry, dual-rank runtime topology, rank-0 positive/rank-1 negative listener proofs, latest hybrid-DFlash/per-group-APC runtime state, and deterministic video-zero receipts are preserved in the [850K evidence](evidence/glm53-exl3-850k-20260913/). The recommended GLM 5.3 Flash EXL3 850K recipe remains the release target. Post-publication GitHub raw-byte and registry-resolution checks remain pending.
 
 ### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 1M context (legacy rollback)
 

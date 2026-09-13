@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "argv": [
+    "sparkrun",
+    "run",
+    "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml",
+    "--cluster",
+    "vacation-pair2",
+    "--trust",
+    "--no-follow",
+    "--container-name",
+    "sparkrun_f906ee990596486e_20260913c411"
+  ],
+  "cluster_id": "sparkrun_f906ee990596486e_20260913c411",
+  "launch_epoch": 1789311859,
+  "recorded_at": "2026-09-13T17:04:19+02:00",
+  "recipe_sha256": "03b5fe957c71632463dbd7b982d6b234251a6da7f2d18af6c9316a84dcaaf614",
+  "recipe_command": "export PATH=\"/usr/local/cuda/bin:/usr/local/bin:${PATH:-}\";\nexport GLM53_SERVE_PORT=8000;\nexport GLM53_SERVED_MODEL=GLM-5.3-Flash-EXL3;\nexec bash /workspace/mods/glm-5.3-flash-exl3-upstream-850k/serve_wrapper.sh /cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/024db9f7e9871e8efdf21538ba55af7442be3cd5 \\\n  --served-model-name GLM-5.3-Flash-EXL3 \\\n  --host 0.0.0.0 \\\n  --port 8000 \\\n  --distributed-executor-backend mp \\\n  --tensor-parallel-size 2 \\\n  --pipeline-parallel-size 1 \\\n  --quantization exl3 \\\n  --kv-cache-dtype fp8 \\\n  --gpu-memory-utilization 0.85 \\\n  --max-model-len 850000 \\\n  --max-num-seqs 4 \\\n  --max-num-batched-tokens 7168 \\\n  --speculative-config '{\"method\":\"dflash\",\"model\":\"/cache/huggingface/hub/models--incoai--GLM-5.3-Flash-DFlash2/snapshots/dc77ff1c99eeb2df044ee3d4f0094eb033fee410\",\"num_speculative_tokens\":7,\"kv_cache_dtype\":\"auto\",\"draft_sample_method\":\"probabilistic\",\"rejection_sample_method\":\"standard\",\"draft_tensor_parallel_size\":2}' \\\n  --cudagraph-capture-sizes 1 2 4 8 16 24 32 \\\n  --enable-prefix-caching \\\n  --no-enable-flashinfer-autotune \\\n  --tool-call-parser glm47 \\\n  --enable-auto-tool-choice \\\n  --reasoning-parser glm45 \\\n  --chat-template /opt/glm53/chat_template.jinja \\\n  --allowed-media-domains media.invalid \\\n  --limit-mm-per-prompt '{\"image\":4,\"video\":0}' \\\n  --skip-mm-profiling\n",
+  "mod_manifest_sha256": "4492c3862e7f38fe38505ab4e9e9d5acd7d53ff680be759542c1200aac1f4811"
+}

@@ -3,7 +3,8 @@
 # orchestration, per-host fabric detection, lifecycle, and persistent caches.
 # The upstream EXL3 overlay, NoPE sparse-MLA patches, E3 grouped fat-expert MoE,
 # FP8 MLA KV path, TP2-sharded DFlash2-7 speculator, and reviewed default 850K
-# profile remain. Optional adaptive-k and dense-FP8 overlays are installed off.
+# profile remain. DFlash replay-safe hybrid APC and per-group retention support
+# are installed; optional retention, adaptive-k, and dense-FP8 modes remain off.
 recipe_version: "2"
 name: glm-5.3-flash-exl3-dflash2-dual-spark-850k
 model: Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
@@ -15,10 +16,10 @@ container: ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:eecb36e14dc34c92
 builder: docker-pull
 
 metadata:
-  description: GLM 5.3 Flash EXL3 4bpw on two DGX Sparks with MiaAI-Lab's E3 grouped fat-expert kernel, TP2 DFlash2, optional adaptive-k and dense FP8, hybrid APC, image input, and 850,000-token context
+  description: GLM 5.3 Flash EXL3 4bpw on two DGX Sparks with MiaAI-Lab's E3 grouped fat-expert kernel, TP2 DFlash2, replay-safe hybrid APC, optional per-group retention, image input, and 850,000-token context
   maintainer: mfellner
   source: https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
-  source_revision: 1caea9a10b26ae93b88d08e82d1e7abb0dc45a42
+  source_revision: f906ee990596486e10ddbe381efa6f0e496f77e3
   hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
   architecture: Glm5NextForConditionalGeneration
   model_params: 320B
@@ -28,9 +29,9 @@ metadata:
   context_length: 850000
   multimodal: true
   notes:
-    - The main mirror is pinned to 024db9f7e9871e8efdf21538ba55af7442be3cd5; its serving payload is byte-identical to the prior 25a44fdb snapshot and brandonmusic snapshot 5ab363a8. The DFlash2 draft payload selected by source revision 1caea9a is independently pinned to dc77ff1c99eeb2df044ee3d4f0094eb033fee410.
-    - The pinned public arm64 image contains upstream's compiled E3 grouped fat-expert symbols. The exact 1caea9a runtime overlays are checksum-pinned in the adjacent AGPL-3.0 mod and applied on both ranks; adaptive verification and dense FP8 are installed but explicitly disabled, matching upstream defaults.
-    - The reviewed Mia profile at source revision 1caea9a uses GPU_MEM_UTIL=0.85 and 850,000-token context. Upstream documents that E3's persistent scratch no longer fits 1M at utilization at or below 0.87 on this two-Spark geometry; the prior 1M/E2 recipe remains unchanged for rollback.
+    - The main mirror is pinned to 024db9f7e9871e8efdf21538ba55af7442be3cd5; its serving payload is byte-identical to the prior 25a44fdb snapshot and brandonmusic snapshot 5ab363a8. The DFlash2 draft payload selected by source revision f906ee9 is independently pinned to dc77ff1c99eeb2df044ee3d4f0094eb033fee410.
+    - The pinned public arm64 image contains upstream's compiled E3 grouped fat-expert symbols. The exact f906ee9 runtime overlays are checksum-pinned in the adjacent AGPL-3.0 mod and applied on both ranks. Replay-safe DFlash hybrid APC is active; optional per-group retention, adaptive verification, and dense FP8 remain disabled, matching upstream defaults.
+    - The reviewed Mia profile at source revision f906ee9 uses GPU_MEM_UTIL=0.85 and 850,000-token context. Upstream documents that E3's persistent scratch no longer fits 1M at utilization at or below 0.87 on this two-Spark geometry; the prior 1M/E2 recipe remains unchanged for rollback.
     - GLM53_INDEXER_WORKSPACE=rightsize uses upstream's fail-closed legal-maximum workspace formula. Its exhaustive gate proves equivalent prefill chunking while returning memory to KV.
     - Port 8000 deliberately preserves this registry's SparkRun, sparkDash, and LiteLLM convention; upstream uses 8888. The endpoint translation does not alter model execution or benchmark accounting.
     - SparkRun replaces upstream's fixed single-HCA interface names with per-host fabric detection. Validate every intended CX-7 path before launch; the serving profile and shared RoCE controls remain upstream-compatible.

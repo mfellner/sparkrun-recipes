@@ -173,12 +173,59 @@ def verify_runtime(site: Path) -> list[str]:
     )
 
     hybrid = load_script(OVERLAY / "patch_hybrid_prefix_hit.py")
+    per_group = load_script(OVERLAY / "patch_apc_per_group_retention.py")
     failures.extend(
         check_file(
             site / "v1/core/kv_cache_coordinator.py",
-            "hybrid APC",
-            [hybrid["HELPER"], hybrid["EAGLE_NEW"], hybrid["MIN_NEW"], hybrid["LOG_NEW"]],
-            [hybrid["EAGLE_OLD"], hybrid["MIN_OLD"], hybrid["LOG_OLD"]],
+            "hybrid APC and per-group retention",
+            [
+                hybrid["BASE_HELPER"],
+                hybrid["DFLASH_REPLAY_HELPER"],
+                hybrid["EAGLE_NEW"],
+                # The per-group overlay replaces MIN_NEW with HYBRID_LOOP_NEW;
+                # HYBRID_LOOP_NEW below is the exact final composed state.
+                hybrid["LOG_NEW"],
+                hybrid["INIT_NEW"],
+                hybrid["CONVERGE_FINAL"],
+                per_group["IMPORT_NEW"],
+                per_group["RETENTION_HELPER"],
+                per_group["DFLASH_PRIOR_HELPER"],
+                per_group["INIT_FINAL"],
+                per_group["BASE_CACHE_NEW"],
+                per_group["HYBRID_LOOP_NEW"],
+                per_group["HYBRID_CACHE_NEW"],
+                per_group["FREE_METHOD_NEW"],
+            ],
+            [
+                hybrid["EAGLE_OLD"],
+                hybrid["MIN_OLD"],
+                hybrid["LOG_OLD"],
+                hybrid["INIT_OLD"],
+                hybrid["CONVERGE_OLD"],
+                per_group["IMPORT_OLD"],
+                per_group["INIT_OLD"],
+                per_group["BASE_CACHE_OLD"],
+                per_group["HYBRID_LOOP_OLD"],
+                per_group["HYBRID_CACHE_OLD"],
+                per_group["FREE_OLD"],
+                per_group["REMOVE_SKIPPED_OLD"],
+            ],
+        )
+    )
+    failures.extend(
+        check_file(
+            site / "v1/core/block_pool.py",
+            "per-group APC block priority",
+            [per_group["BP_INIT_NEW"], per_group["BP_FREE_NEW"]],
+            [per_group["BP_INIT_OLD"], per_group["BP_FREE_OLD"]],
+        )
+    )
+    failures.extend(
+        check_file(
+            site / "v1/core/single_type_kv_cache_manager.py",
+            "DFlash replay prior retention",
+            [per_group["STM_REACHABLE_NEW"]],
+            [per_group["STM_REACHABLE_OLD"]],
         )
     )
 
@@ -278,6 +325,7 @@ def self_test() -> int:
     floor = load_script(OVERLAY / "patch_scheduler_decode_floor.py")
     adaptive = load_script(OVERLAY / "patch_adaptive_k.py")
     hybrid = load_script(OVERLAY / "patch_hybrid_prefix_hit.py")
+    per_group = load_script(OVERLAY / "patch_apc_per_group_retention.py")
     drafter_script = load_script(OVERLAY / "patch_glm5_drafter_group.py")
     dense = load_script(OVERLAY / "patch_dense_fp8.py")
     e3_marker = load_script(MOD / "patch_e3_execution_marker.py")
@@ -302,9 +350,55 @@ def self_test() -> int:
             [e3_marker["CALL_OLD"]],
         ),
         (
-            "hybrid APC",
-            [hybrid["HELPER"], hybrid["EAGLE_NEW"], hybrid["MIN_NEW"], hybrid["LOG_NEW"]],
-            [hybrid["EAGLE_OLD"], hybrid["MIN_OLD"], hybrid["LOG_OLD"]],
+            "hybrid APC and DFlash replay",
+            [
+                hybrid["BASE_HELPER"],
+                hybrid["DFLASH_REPLAY_HELPER"],
+                hybrid["EAGLE_NEW"],
+                hybrid["MIN_NEW"],
+                hybrid["LOG_NEW"],
+                hybrid["INIT_NEW"],
+                hybrid["CONVERGE_FINAL"],
+            ],
+            [
+                hybrid["EAGLE_OLD"],
+                hybrid["MIN_OLD"],
+                hybrid["LOG_OLD"],
+                hybrid["INIT_OLD"],
+                hybrid["CONVERGE_OLD"],
+            ],
+        ),
+        (
+            "per-group APC coordinator",
+            [
+                per_group["IMPORT_NEW"],
+                per_group["RETENTION_HELPER"],
+                per_group["DFLASH_PRIOR_HELPER"],
+                per_group["INIT_FINAL"],
+                per_group["BASE_CACHE_NEW"],
+                per_group["HYBRID_LOOP_NEW"],
+                per_group["HYBRID_CACHE_NEW"],
+                per_group["FREE_METHOD_NEW"],
+            ],
+            [
+                per_group["IMPORT_OLD"],
+                per_group["INIT_OLD"],
+                per_group["BASE_CACHE_OLD"],
+                per_group["HYBRID_LOOP_OLD"],
+                per_group["HYBRID_CACHE_OLD"],
+                per_group["FREE_OLD"],
+                per_group["REMOVE_SKIPPED_OLD"],
+            ],
+        ),
+        (
+            "per-group APC block priority",
+            [per_group["BP_INIT_NEW"], per_group["BP_FREE_NEW"]],
+            [per_group["BP_INIT_OLD"], per_group["BP_FREE_OLD"]],
+        ),
+        (
+            "DFlash replay prior retention",
+            [per_group["STM_REACHABLE_NEW"]],
+            [per_group["STM_REACHABLE_OLD"]],
         ),
         (
             "DFlash2 drafter group",

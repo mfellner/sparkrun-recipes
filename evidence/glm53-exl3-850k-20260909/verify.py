@@ -198,8 +198,8 @@ FINAL_ARTIFACT_SHA256 = {
     "vision-quadrants.png": "8b2fc0401dba5a125ac114d6e98c610fe10128a0d0a405ef8744931eea6c0e86",
     "vision-ocr.png": "75bb474d713ec5d4a951a6dd51b5b6ce59adbb043f9252536bc0e3a567e3cdc5",
     "video-tiny.gif": "b89ebcdbedac896cc0ee9645f92000a1780d2095cfe76aa7a0b2cd38ef93b5f0",
-    "README.md": "bc4521d4cff13d4a75a68fb85032772ea90a0774edf9d411436ba92e5dbd506e",
-    "static-validation.log": "039dba8d9e205d27df43551204aef1680406bab7a77db1b72fa818a34ab22a2e",
+    "README.md": "d7f4711c7e024c14a7ccf5f788dacd2afe5d09c6cf2b2a388f39c8c817b818e8",
+    "static-validation.log": "42a98415a83848bbcc2335db9f96147363bed2389934ab5bb7326a3058f83cf4",
 }
 
 

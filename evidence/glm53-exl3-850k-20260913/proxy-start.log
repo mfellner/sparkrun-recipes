@@ -1,0 +1,17 @@
+captured_at=2026-09-13T17:19:11+02:00
+Proxy status: running
+  PID:     1299055
+  Gateway: litellm
+  Host:    0.0.0.0
+  Port:    4000
+  Start:   2026-09-13T15:15:45.160055+00:00
+  Auto-discover: running (PID 418854)
+
+Registered models (1):
+  GLM-5.3-Flash-EXL3
+    -> http://192.168.178.47:8000/v1
+
+processes:
+ 418854 Wed Sep  9 09:40:00 2026 /home/max/.local/share/uv/tools/sparkrun/bin/python -m sparkrun.proxy.autodiscover /home/max/.cache/sparkrun/proxy/autodiscover.yaml
+1299055 Sun Sep 13 17:15:43 2026 /home/max/.local/bin/uv tool uvx --from litellm[proxy]==1.82.6 litellm --config /home/max/.cache/sparkrun/proxy/litellm_config.yaml --host 0.0.0.0 --port 4000
+1299077 Sun Sep 13 17:15:43 2026 /home/max/.cache/uv/archive-v0/gAMzycQijXwmV-CL/bin/python /home/max/.cache/uv/archive-v0/gAMzycQijXwmV-CL/bin/litellm --config /home/max/.cache/sparkrun/proxy/litellm_config.yaml --host 0.0.0.0 --port 4000

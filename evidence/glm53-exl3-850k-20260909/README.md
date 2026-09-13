@@ -1,11 +1,14 @@
 # GLM-5.3 Flash EXL3 850K live validation
 
-Evidence state: **LIVE_CAPTURE_PASSED; PUBLICATION_PENDING**.
+Evidence state: **SUPERSEDED; HISTORICAL LIVE_CAPTURE_PASSED**.
 
-This package binds the reviewed 850K recipe to one deterministic SparkRun
-launch, a fresh direct/proxy acceptance run, synchronized load telemetry, and a
-dual-rank runtime capture. It does not treat serving health alone as release
-approval.
+Superseded by [`../glm53-exl3-850k-20260913/`](../glm53-exl3-850k-20260913/),
+which binds Mia upstream revision `f906ee990596486e10ddbe381efa6f0e496f77e3`.
+
+At the time it was captured, this package bound the then-reviewed 850K recipe
+to one deterministic SparkRun launch, a direct/proxy acceptance run,
+synchronized load telemetry, and a dual-rank runtime capture. It is retained
+only as a historical receipt set and is not a current release candidate.
 
 - SparkRun workload: `sparkrun_3d13e8eba3fa512a_38acb2ac0fc5`
 - Acceptance run ID: `1941bd91758d28de`
@@ -18,8 +21,10 @@ approval.
 - Configured context: 850,000 tokens
 - Largest completed semantic request: 110,035 prompt tokens
 - Acceptance checks: 18 of 18 passed
-- Secret scan: 627 reviewed false-positive identities covering 1,249 raw occurrences, with zero unadjudicated findings;
-  reproduce with `python3 scripts/verify_detect_secrets.py --root .`
+- Historical secret-scan result: 627 reviewed false-positive identities covering
+  1,249 raw occurrences, with zero unadjudicated findings at that candidate.
+  The repository baseline has since changed; do not present a current scan as a
+  reproduction of this historical count.
 
 ## What the live receipts prove
 
@@ -62,15 +67,15 @@ and proxy routes. The command's explicit video limit is tested with
 - Direct route: exact HTTP 400 rejection envelope
 - Proxy route: exact HTTP 400 rejection envelope
 
-## Reproduction and binding
+## Historical binding record
 
-A replacement acceptance must use a new 16-hex identifier with
-`acceptance.py --run-id <RUN_ID>`. A replacement runtime capture must use the
-same identifier with `capture_runtime.py --acceptance-run-id <RUN_ID>` and the
-immutable launch epoch/receipt. `verify.py` pins that identifier in
-`EXPECTED_ACCEPTANCE_RUN_ID`. Receipts must be generated live; listener,
-process, video, telemetry, and proxy results must never be inferred or
-synthesized.
+The archived scripts show how this candidate was captured and checked.
+`verify.py` and `test_negative_controls.py` resolve repository-level recipe and
+mod paths which now identify the newer `20260913` candidate. They therefore do
+not reproduce this superseded candidate from the current checkout. They are not runnable release gates.
+Use the `20260913` package for current verification.
+Receipts must always be generated live; listener, process, video, telemetry,
+and proxy results must never be inferred or synthesized.
 
 The recipe keeps SparkRun defaults only for estimation, status, labels, and
 proxy discovery. Its executable command contains literal values and does not
@@ -90,16 +95,12 @@ behavior is limited to the checksum-pinned paths called by `run.sh`,
 mod-manifest digest must match both independently captured rank manifests and
 complete `sha256sum -c` results.
 
-## Remaining release gates
+## Archival limitations
 
-Exact artifact hashes, `SHA256SUMS`, and `static-validation.log` must match one
-immutable candidate. That candidate must pass the canonical verifier, every
-adversarial negative control, repository pytest, compatibility/source-parity
-and lifecycle suites, recipe validation, trusted dry-run, diff checks, and the
-credential/private-key scan.
-
-Publication then requires two independent fail-closed approvals and explicit
-owner approval of the identical staged-tree hash. Any byte changed after
-staging invalidates the tests and both approvals. Commit and push are followed
-by exact-commit GitHub raw-byte, registry-resolution, trusted namespaced
-dry-run parity, zero-workflow, live-health, and clean-tree checks.
+This candidate has no remaining release gates because it is permanently
+superseded and must not be published. `sha256sum -c SHA256SUMS` verifies only
+the preserved package bytes. The archived verifier and adversarial suite depend
+on recipe/mod files outside this directory that were replaced by the newer
+candidate, so failures against the current checkout are expected and must not
+be repaired by rebinding old live receipts to new source. Any future recapture
+must use a new evidence directory and a new immutable staged-tree review.

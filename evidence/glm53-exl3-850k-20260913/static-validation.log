@@ -1,0 +1,51 @@
+{
+  "candidate_phase": "final-static-validation",
+  "canonical_prefinal": {
+    "checks": 18,
+    "passed": true,
+    "prompt_tokens": 110035
+  },
+  "credential_sanitizer_focused": "PASS",
+  "detect_secrets": {
+    "adjudicated_false_positives": 711,
+    "all_files": true,
+    "occurrence_manifest": ".secrets.occurrences.json",
+    "passed": true,
+    "raw_occurrences": 1357,
+    "unadjudicated": 0,
+    "verifier": "scripts/verify_detect_secrets.py"
+  },
+  "deterministic_container_name": "sparkrun_f906ee990596486e_20260913c411",
+  "dry_run_pair": "PASS before launch; post-launch rerender intentionally blocked by occupied target pair",
+  "evidence_manifest_entries": 19,
+  "evidence_state": "LIVE_CAPTURE_PASSED; PUBLICATION_PENDING",
+  "exact_upstream_commit": "f906ee990596486e10ddbe381efa6f0e496f77e3",
+  "exact_upstream_files": 105,
+  "finalization_note": "Canonical evidence verification, repository tests, evidence checksums, mutation controls, source parity, compatibility, secret scanning, and exact readiness-to-acceptance kernel safety passed on the finalized pre-review worktree. Independent-review findings for journal stderr completeness, sanitizer aliases, fail-open publication text, and stale historical status were remediated; a new exact-tree review, commit, push, and post-publish round trip remain publication gates.",
+  "kernel_readiness_to_acceptance": "PASS on both ranks; no NV_ERR_NO_MEMORY, NVRM Xid, or kernel OOM-kill signature",
+  "launch_argv_bound": true,
+  "launch_container_name": "sparkrun_f906ee990596486e_20260913c411",
+  "launch_receipt_bound": true,
+  "live_acceptance": "18 of 18 passed",
+  "mod_manifest_entries": 121,
+  "mod_manifest_sha256": "4492c3862e7f38fe38505ab4e9e9d5acd7d53ff680be759542c1200aac1f4811",
+  "negative_controls": {
+    "passed": true,
+    "rejected": 275
+  },
+  "recipe_validation": "PASS",
+  "readme_runtime_completion_binding": "PASS",
+  "repository_suite_collected": 94,
+  "repository_suite_passed": 94,
+  "runtime_sanitizer_idempotence": "PASS",
+  "rollback_1m_blob": "085132d5ce0388268e82a392c3f444f857303d28",
+  "rollback_1m_unchanged": true,
+  "runtime_patch_mutations_rejected": 138,
+  "runtime_patch_self_test": "PASS",
+  "serve_wrapper_controls": "PASS",
+  "source_parity": "PASS",
+  "trusted_dry_run": "PASS before launch",
+  "upstream_compatibility": "114 passed, 13 subtests passed; standalone APC composition gate PASS",
+  "upstream_main_at_refresh": "f906ee990596486e10ddbe381efa6f0e496f77e3",
+  "workflow_count": 0
+}

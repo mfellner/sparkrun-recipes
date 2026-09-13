@@ -1,2 +1,3 @@
-# Preserve byte-exact vendored upstream files, including their EOF layout.
-mods/glm-5.3-flash-exl3-upstream-850k/upstream/** whitespace=-blank-at-eof
+# These paths preserve byte-exact upstream and live evidence artifacts.
+mods/glm-5.3-flash-exl3-upstream-850k/upstream/** -whitespace
+evidence/glm53-exl3-850k-20260913/launch.log -whitespace

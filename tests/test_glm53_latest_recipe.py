@@ -20,8 +20,8 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 RECIPE = ROOT / "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml"
 MOD = ROOT / "mods/glm-5.3-flash-exl3-upstream-850k"
-EVIDENCE = ROOT / "evidence/glm53-exl3-850k-20260909"
-SOURCE_REVISION = "1caea9a10b26ae93b88d08e82d1e7abb0dc45a42"
+EVIDENCE = ROOT / "evidence/glm53-exl3-850k-20260913"
+SOURCE_REVISION = "f906ee990596486e10ddbe381efa6f0e496f77e3"
 IMAGE = (
     "ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@"
     "sha256:eecb36e14dc34c92d46827fde7b09f7e0bf27e27c426ece126376c02dea6cd2f"
@@ -39,6 +39,9 @@ def test_publication_docs_mark_850k_live_capture_and_preserve_provenance() -> No
     root_readme = (ROOT / "README.md").read_text()
     evidence_index = (ROOT / "evidence/README.md").read_text()
     evidence_readme = (EVIDENCE / "README.md").read_text()
+    superseded_readme = (
+        ROOT / "evidence/glm53-exl3-850k-20260909/README.md"
+    ).read_text()
     recipe_notes = "\n".join(load_recipe()["metadata"]["notes"])
     assert "850K context (recommended)" in root_readme
     assert "1M context (legacy rollback)" in root_readme
@@ -77,8 +80,8 @@ def test_publication_docs_mark_850k_live_capture_and_preserve_provenance() -> No
     assert "no repository CI workflows" in gate
     for stale in ("qwen3.8", "dual-spark-1m", "spark-pair2"):
         assert stale not in gate
-    assert "sparkrun_3d13e8eba3fa512a_38acb2ac0fc5" in evidence_readme
-    assert "Acceptance run ID: `1941bd91758d28de`" in evidence_readme
+    assert "sparkrun_f906ee990596486e_20260913c411" in evidence_readme
+    assert "Acceptance run ID: `f906c41120260913`" in evidence_readme
     assert "Evidence state: **LIVE_CAPTURE_PASSED; PUBLICATION_PENDING**" in evidence_readme
     assert "--run-id" in evidence_readme and "--acceptance-run-id" in evidence_readme
     assert "EXPECTED_ACCEPTANCE_RUN_ID" in evidence_readme
@@ -86,7 +89,14 @@ def test_publication_docs_mark_850k_live_capture_and_preserve_provenance() -> No
     assert re.search(r"two independent\s+fail-closed approvals", gates)
     assert "Exact artifact hashes" in gates
     assert "Fresh live validation: **PASSED**" in root_readme
+    assert "Maintainer-approved publication exception" not in root_readme
+    assert "despite an independent audit returning" not in root_readme
     assert "**LIVE_CAPTURE_PASSED**" in evidence_index
+    assert "SUPERSEDED; HISTORICAL LIVE_CAPTURE_PASSED" in superseded_readme
+    assert "../glm53-exl3-850k-20260913/" in superseded_readme
+    assert "not runnable release gates" in superseded_readme
+    assert "## Remaining release gates" not in superseded_readme
+    assert "must not be published" in superseded_readme
     assert "proxy port `4000`" in root_readme
     assert "untrusted" in root_readme.lower()
     assert "proxy port `4000`" in recipe_notes
@@ -126,9 +136,9 @@ def test_root_license_excludes_vendored_upstream_and_model_checkpoints() -> None
 def test_mod_readme_separates_launch_and_full_upstream_gates() -> None:
     readme = (MOD / "README.md").read_text()
     assert "does not run the complete upstream test suite during pre-launch" in readme
-    assert "full vendored upstream suite passes" in readme
-    assert "87 passed" in readme
-    assert "no deselections" in readme
+    assert "all pytest-compatible upstream checks pass" in readme
+    assert "114 passed and 13 subtests passed" in readme
+    assert "standalone APC composition gate" in readme
     assert "stale upstream assertion" not in readme
     assert "expected RED" not in readme
     assert "every applicable vendored source/static gate run separately before launch" not in readme
@@ -361,6 +371,8 @@ def test_runtime_mod_applies_latest_pure_python_overlays_and_checks_e3() -> None
     run = (MOD / "run.sh").read_text()
     assert SOURCE_REVISION in run
     expected_order = [
+        "python3 upstream/overlay/patch_hybrid_prefix_hit.py",
+        "python3 upstream/overlay/patch_apc_per_group_retention.py",
         "python3 upstream/overlay/patch_spinwait.py",
         "python3 upstream/overlay/patch_adaptive_k.py",
         "python3 patch_e3_execution_marker.py",
@@ -407,8 +419,8 @@ def test_runtime_mod_verifies_complete_patched_state_after_application() -> None
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert "runtime patch verifier self-test: PASS" in result.stdout
-    assert "contracts=9" in result.stdout
-    assert "embedded_forbidden=5" in result.stdout
+    assert "contracts=12" in result.stdout
+    assert "embedded_forbidden=10" in result.stdout
     mutations = int(result.stdout.rsplit("mutations=", 1)[1].split()[0])
     assert mutations >= 40
 
@@ -567,6 +579,27 @@ def test_archival_boot_candidate_is_not_in_the_runtime_call_graph() -> None:
     assert "not invoked" in readme
 
 
+def test_postready_gate_warms_exact_acceptance_concurrency_shape() -> None:
+    gate = (MOD / "postready_gate.sh").read_text()
+    assert "threading.Barrier(4)" in gate
+    assert "ThreadPoolExecutor(max_workers=4)" in gate
+    assert '"max_tokens":32' in gate
+    assert "GLM53_GATE_C4_" in gate
+    assert 'filler="alpha "*55000' in gate
+    assert 'needle="NEEDLE_GL53_842917"' in gate
+    assert "timeout=1800" in gate
+    readiness_marker = gate.index('date --iso-8601=seconds > "$OK"')
+    assert gate.index("ThreadPoolExecutor(max_workers=4)") < readiness_marker
+    assert gate.index('filler="alpha "*55000') < readiness_marker
+    capture = (EVIDENCE / "capture_runtime.py").read_text()
+    verifier = (EVIDENCE / "verify.py").read_text()
+    assert "kernel_readiness_to_acceptance" in capture
+    assert "kernel_readiness_to_acceptance" in verifier
+    assert "NV_ERR_NO_MEMORY" in verifier
+    assert "capture was incomplete" in capture
+    assert 'f"{host} {kernel_name} stderr"' in verifier
+
+
 def test_acceptance_binds_remote_error_scoped_stops_and_telemetry_signal() -> None:
     acceptance = (EVIDENCE / "acceptance.py").read_text()
     verifier = (EVIDENCE / "verify.py").read_text()
@@ -692,7 +725,7 @@ def test_evidence_verifier_has_exact_command_and_final_artifact_bindings() -> No
             assert hashlib.sha256((EVIDENCE / rel).read_bytes()).hexdigest() == expected
     assert "verify.py" not in verifier_ns["FINAL_ARTIFACT_SHA256"]
     assert "reviewed git tree and this verifier are the external trust root" in verifier
-    assert verifier_ns["CLUSTER"] == "sparkrun_3d13e8eba3fa512a_38acb2ac0fc5"
+    assert verifier_ns["CLUSTER"] == "sparkrun_f906ee990596486e_20260913c411"
     assert "artifact_binding_failures" in verifier
     controls = (EVIDENCE / "test_negative_controls.py").read_text()
     assert 'names = tuple(verify["FINAL_ARTIFACT_SHA256"])' in controls
@@ -2341,9 +2374,9 @@ def test_publication_docs_record_live_recapture_and_recommend_850k() -> None:
     assert "release evidence must include exact direct and proxy rejection receipts" in recipe
     assert "recommended GLM 5.3 Flash EXL3 850K recipe" in root_readme
     assert "recommended GLM 5.3 Flash EXL3 1M recipe" not in root_readme
-    assert "Maintainer-approved publication exception" in root_readme
-    assert "independent audit returning `passed=false`" in root_readme
-    assert "remain unresolved" in root_readme
+    assert "Maintainer-approved publication exception" not in root_readme
+    assert "independent audit returning `passed=false`" not in root_readme
+    assert "remain unresolved" not in root_readme
     assert "post-publication verification remains pending" in evidence_readme.lower()
 
 
@@ -2683,7 +2716,9 @@ def test_upstream_compatibility_suite_and_exact_source_parity_gate_are_explicit(
     compatibility_text = compatibility.read_text()
     assert "set -euo pipefail" in compatibility_text
     assert "uv run --with pytest --with torch --with Jinja2 --with numpy" in compatibility_text
-    assert "python -m pytest -q upstream/tests" in compatibility_text
+    assert "python -m pytest -q" in compatibility_text
+    assert "--ignore=upstream/tests/test_apc_per_group_retention.py" in compatibility_text
+    assert "python3 /upstream/tests/test_apc_per_group_retention.py" in compatibility_text
     assert "--deselect" not in compatibility_text
     parity_text = parity.read_text()
     assert SOURCE_REVISION in parity_text
@@ -2691,8 +2726,8 @@ def test_upstream_compatibility_suite_and_exact_source_parity_gate_are_explicit(
     assert "relative file set" in parity_text and "byte mismatch" in parity_text
     readme = (MOD / "README.md").read_text()
     assert "upstream compatibility suite" in readme
-    assert "87 passed" in readme and "1 failed" not in readme
-    assert "full vendored upstream suite passes" in readme
+    assert "114 passed and 13 subtests passed" in readme and "1 failed" not in readme
+    assert "all pytest-compatible upstream checks pass" in readme
     assert "verify_upstream_source_parity.py" in readme
     assert "run_upstream_compatibility_suite.sh" in readme
 

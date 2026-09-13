@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Exact runtime overlay bundle from MiaAI-Lab commit:
-# 1caea9a10b26ae93b88d08e82d1e7abb0dc45a42
+# f906ee990596486e10ddbe381efa6f0e496f77e3
 MOD_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$MOD_DIR"
 sha256sum -c SHA256SUMS
@@ -15,8 +15,9 @@ python3 verify_roce_gid.py --gid-index "$gid_index" "${hcas[@]}"
 
 # The pinned public image contains Mia's compiled E3 grouped fat-expert
 # extension. Install the exact latest pure-Python overlay and ABLIT payload,
-# then apply Mia's runtime patch sequence. Optional adaptive-k, dense FP8, and
-# ABLIT paths are installed but remain disabled by the recipe.
+# then apply Mia's runtime patch sequence. Replay-safe DFlash hybrid APC is
+# active; optional per-group retention, adaptive-k, dense FP8, and ABLIT paths
+# are installed but remain disabled by the recipe.
 install -d -m 0755 /opt/glm53/ablit
 install -m 0644 upstream/overlay/exl3.py /opt/glm53/exl3.py
 install -m 0644 upstream/overlay/ablit_runtime.py /opt/glm53/ablit_runtime.py
@@ -29,6 +30,7 @@ python3 patch_suppress_stops_multitoken.py
 python3 upstream/overlay/patch_scheduler_decode_floor.py
 python3 upstream/overlay/patch_glm5_drafter_group.py
 python3 upstream/overlay/patch_hybrid_prefix_hit.py
+python3 upstream/overlay/patch_apc_per_group_retention.py
 python3 upstream/overlay/patch_xgrammar_termination.py
 python3 upstream/overlay/patch_kpool_tail_slotmap.py
 python3 upstream/overlay/patch_spinwait.py

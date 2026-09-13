@@ -12,7 +12,7 @@ Acceptance claims are limited to the exact artifacts, topology, model revisions,
 
 ## GLM-5.3 EXL3 850K refresh
 
-`glm53-exl3-850k-20260909/` is **LIVE_CAPTURE_PASSED** for deterministic workload `sparkrun_3d13e8eba3fa512a_38acb2ac0fc5` and acceptance run `1941bd91758d28de`. Its exact command chain, direct/proxy functional matrix, synchronized load telemetry, process/PID-namespace joins, external shim lineage, rank-0 positive and rank-1 negative listener receipts, NCCL/RDMA identity, and deterministic direct/proxy video-zero rejections are bound by the canonical verifier and adversarial controls.
+`glm53-exl3-850k-20260913/` is **LIVE_CAPTURE_PASSED** for deterministic workload `sparkrun_f906ee990596486e_20260913c411` and acceptance run `f906c41120260913`. Its exact command chain, direct/proxy functional matrix, synchronized load telemetry, process/PID-namespace joins, external shim lineage, rank-0 positive and rank-1 negative listener receipts, latest hybrid-DFlash/per-group-APC source state, NCCL/RDMA identity, and deterministic direct/proxy video-zero rejections are bound by the canonical verifier and adversarial controls.
 
 Publication remains pending until the exact staged tree passes all local gates, receives two independent fail-closed approvals and explicit owner approval, and is committed and pushed. Post-publication verification remains pending until that approved exact commit is checked through GitHub raw bytes and registry resolution.
 
