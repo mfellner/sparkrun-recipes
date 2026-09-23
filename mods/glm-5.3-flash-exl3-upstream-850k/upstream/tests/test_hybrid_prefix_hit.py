@@ -40,6 +40,10 @@ def main() -> int:
         assert text.count("[glm53-hybrid-apc]") >= 3
         assert "def _glm53_is_draft_swa_spec(" in text
         assert "swa_ids or set(" in text
+        assert "[glm53-dflash-boundary-lookup-v1]" in text
+        assert "def _glm53_dflash_boundary_lookup_enabled(" in text
+        assert "and not _glm53_boundary_lookup" in text
+        assert text.count("\nimport os") == 1
         subprocess.check_call([sys.executable, str(PATCH)], env=env)
         assert dst.read_text().count("[glm53-hybrid-apc]") == text.count(
             "[glm53-hybrid-apc]"

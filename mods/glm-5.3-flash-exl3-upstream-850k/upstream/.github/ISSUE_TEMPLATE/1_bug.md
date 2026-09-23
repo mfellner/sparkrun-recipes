@@ -23,7 +23,7 @@ assignees: ""
 
 - Hardware / nodes: <!-- e.g. 2x DGX Spark (GB10, 128 GB unified memory), 4x via start-tp4.sh, ... -->
 - Interconnect: <!-- e.g. ConnectX RoCE/IB, 10GbE, ... -->
-- Image: <!-- `docker images | grep glm` — the kit image is ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks:exl3 -->
+- Image: <!-- `docker images | grep glm` — the kit image is ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks:exl3-instanttensor -->
 - Model (`MODEL` + `MODEL_REVISION`): <!-- e.g. Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw @ 25a44fd -->
 - Served name (`SERVED_MODEL_NAME`): <!-- e.g. GLM-5.3-Flash-EXL3 -->
 - How you started the serve: <!-- e.g. ./start.sh, ./start.sh restart, ABLIT=1 ./start.sh, custom compose -->

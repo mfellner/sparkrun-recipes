@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "config_sha256": "1c618c666764d88ee7a0ab1a84f327f1bc208b2ecee0220ee978a1a7687ef66e",
+  "launch_id": "sparkrun_3f2be18c41effca0_3c117fdabdf9",
+  "run_id": "7f3c61585b88ff37",
+  "argv": [
+    "sparkrun",
+    "run",
+    "/home/max/sparkrun-recipes/recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml",
+    "--cluster",
+    "vacation-pair2",
+    "--trust",
+    "--no-follow",
+    "--container-name",
+    "sparkrun_3f2be18c41effca0_3c117fdabdf9"
+  ],
+  "pins": {
+    "recipe_sha256": "dedaa98a1e415c71d10205b8d72dc0b0bce25112747a47950c8c8eabe9b0faa9",
+    "mod_manifest_sha256": "47c2297791def3f81a7e7e4829e18deeb26d490604dc606fab146a083d3b742a",
+    "source_revision": "3f2be18c41effca0b4b2c6a65f0b24a7a9f39567",
+    "image": "ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d",
+    "image_id": "sha256:ef9f5013c41adf93a5171abb809283be0f202b88fd14098e4434337715614c62",
+    "nccl_path": "/usr/local/lib/python3.12/dist-packages/nvidia/nccl/lib/libnccl.so.2",
+    "nccl_version": "2.30.7",
+    "nccl_sha256": "fc7ea66334edbc934aa25959b9907dbb2b91a1d2485beff18839afc45cbc08d0",
+    "instanttensor_version": "0.2.0"
+  },
+  "started_at": 1790157010.5861926,
+  "returncode": 0,
+  "completed_at": 1790157364.3757372,
+  "launch_log_sha256": "473e33264d709aa0bd1e775ca3691b16078ad867bed41d9628fabbf99721a1fc"
+}

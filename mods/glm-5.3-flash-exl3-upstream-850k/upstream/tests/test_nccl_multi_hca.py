@@ -31,11 +31,23 @@ nvidia-smi() { printf 'GPU 0: GB10\n'; }
 hostname() { printf 'fake-head\n'; }
 check_port_free() { return 0; }
 df() { printf 'Filesystem 1024-blocks Used Available Capacity Mounted\nfake 999999999 0 999999999 0%% /\n'; }
+awk() {
+    local arg
+    local -a args=()
+    for arg in "$@"; do
+        [[ "$arg" != /proc/meminfo ]] || arg="$FAKE_MEMINFO"
+        args+=("$arg")
+    done
+    command awk "${args[@]}"
+}
 cat() {
-    # Never fall through to real sysfs (or any other host file).
+    # Never fall through to real sysfs (or any other host file). The worker's
+    # meminfo read is a fixture too: this test models NIC selection, not the
+    # MemAvailable gate (test_preflight_memory.py owns that contract).
     case "$1" in
         /sys/class/infiniband/*)
             command cat "$FAKE_SYSFS/$FAKE_NODE/${1#/sys/class/infiniband/}" ;;
+        /proc/meminfo) command cat "$FAKE_MEMINFO" ;;
         *) printf 'unexpected cat: %s\n' "$*" >&2; return 1 ;;
     esac
 }
@@ -46,6 +58,21 @@ worker_ssh() {
 }
 export -f cat docker nvidia-smi df
 """
+
+
+def memory_guard_source() -> str:
+    """The real MemAvailable helpers ``preflight`` calls.
+
+    ``read_meminfo_kib`` and ``preflight_memory`` live in their own marked block
+    (the one test_preflight_memory.py extracts). Loading them keeps the NIC
+    checks inside a preflight body that runs to completion instead of dying on
+    a missing function.
+    """
+    source = (ROOT / "start.sh").read_text()
+    begin = source.index("# GLM53 preflight memory guard (begin)")
+    end_marker = "# GLM53 preflight memory guard (end)"
+    end = source.index(end_marker, begin) + len(end_marker)
+    return source[begin:end]
 
 
 def run_preflight(tmp_path, head_count=2, worker_count=2, broken=None):
@@ -81,10 +108,20 @@ def run_preflight(tmp_path, head_count=2, worker_count=2, broken=None):
         path.touch()
     placeholder = tmp_path / "overlay-placeholder"
     placeholder.touch()
+    # Both nodes use the same healthy memory fixture, independent of host RAM.
+    # The real memory guard still runs; its failure cases have their own suite.
+    meminfo = tmp_path / "meminfo"
+    meminfo.write_text(
+        "MemTotal:       131072000 kB\n"
+        "MemFree:             1024 kB\n"
+        "MemAvailable:   120000000 kB\n"
+    )
     env = {
         "PATH": "/usr/bin:/bin", "LC_ALL": "C", "HOME": str(tmp_path),
         "USER": "fake-user", "FAKE_SYSFS": str(tmp_path / "sysfs"),
-        "FAKE_NODE": "head", "HEAD_IP": "192.0.2.1", "WORKER_SSH": "fake-worker",
+        "FAKE_NODE": "head", "FAKE_MEMINFO": str(meminfo),
+        "GPU_MEM_UTIL": "0.87", "GLM53_PREFLIGHT_MEMORY_HEADROOM_KIB": "0",
+        "HEAD_IP": "192.0.2.1", "WORKER_SSH": "fake-worker",
         "HEAD_CX7_IB": ",".join(HCAS["head"][:head_count]),
         "WORKER_CX7_IB": ",".join(HCAS["worker"][:worker_count]),
         "HEAD_GID": GIDS["head"], "WORKER_GID": GIDS["worker"],
@@ -94,12 +131,15 @@ def run_preflight(tmp_path, head_count=2, worker_count=2, broken=None):
         "WORKER_HOME": str(tmp_path), "WORKER_CACHE_DIR": str(tmp_path / "worker-cache"),
     }
     for key in ("STOP_PATCH_HOST", "SCHED_PATCH_HOST", "DRAFTER_PATCH_HOST",
-                "APC_PATCH_HOST", "PERGROUP_PATCH_HOST", "XGRAMMAR_PATCH_HOST",
-                "KPOOL_TAIL_PATCH_HOST", "SPINWAIT_PATCH_HOST", "ADAPTIVE_K_PATCH_HOST",
-                "DENSE_FP8_PATCH_HOST", "EXL3_OVERLAY_HOST"):
+                "APC_PATCH_HOST", "PERGROUP_PATCH_HOST", "NOSTORE_PATCH_HOST",
+                "KVCAP_PATCH_HOST", "TOOLCHOICE_PATCH_HOST", "XGRAMMAR_PATCH_HOST",
+                "CACHE_RESET_PATCH_HOST", "KPOOL_TAIL_PATCH_HOST",
+                "SPINWAIT_PATCH_HOST", "ADAPTIVE_K_PATCH_HOST",
+                "DENSE_FP8_PATCH_HOST", "DEFAULT_TOKENS_PATCH_HOST",
+                "EXL3_OVERLAY_HOST"):
         env[key] = str(placeholder)
     return subprocess.run(
-        ["bash", "-c", STUBS + source[begin:end] + "\npreflight\n"],
+        ["bash", "-c", STUBS + memory_guard_source() + "\n" + source[begin:end] + "\npreflight\n"],
         env=env, cwd=tmp_path, capture_output=True, text=True, timeout=15,
     )
 

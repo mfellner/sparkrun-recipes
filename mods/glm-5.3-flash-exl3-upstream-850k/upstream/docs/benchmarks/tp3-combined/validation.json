@@ -1,0 +1,34 @@
+{
+  "scope": "CPU checks on upstream-based contribution; historical GPU evidence is separate",
+  "passed": {
+    "focused_pytest": {
+      "tests": 30,
+      "subtests": 8
+    },
+    "tp3_dispatch_stub_checks": 90,
+    "tp3_torch_cpu_contract_tests": 6,
+    "tp3_torch_cpu_contract_tests_optimized_python": 6,
+    "synthetic_ablit_tp3_tests": 3,
+    "vendored_source_hash_verification": true,
+    "shell_syntax": true,
+    "python_compile": true,
+    "synthetic_sse_runner_tests": 3
+  },
+  "pending": [
+    "Native CUDA rebuild of this branch",
+    "Three-rank boot of this branch",
+    "GPU parity/graphs/sanitizers on rebuilt artifacts",
+    "Full-model quality/performance and long soak on this branch"
+  ],
+  "upstream_or_host_failures": [
+    {
+      "test": "tests/test_numeric_config.py",
+      "detail": "Existing test_tp4_rejects_retention_override expects SWA=0 rejection; unchanged upstream 6961fa0 and this branch both accept it after the latest upstream feature."
+    },
+    {
+      "test": "tests/test_launcher_rank_parity.py",
+      "detail": "TP2 launcher tests encounter cluster-lock/log-directory failures on the macOS test host. start.sh is unchanged by this contribution; this suite is not claimed passed."
+    }
+  ],
+  "inference_or_service_actions": false
+}

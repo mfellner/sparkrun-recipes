@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Fail-closed static contract for the latest Mia GLM-5.3 recipe."""
+"""Historical f906ee9 / 20260913 contracts and fail-closed unit regressions.
+
+The filename is retained for existing test commands. Recipe/mod assertions use
+the immutable fixture, never the active 850K recipe. Historical receipts remain
+in their original evidence directory, with their original hashes and run IDs;
+passing these CPU regressions does not validate the refreshed deployment.
+Repository-wide pytest and credential-scan checks intentionally stay current.
+"""
 from __future__ import annotations
 
 import hashlib
@@ -7,19 +14,25 @@ import json
 import re
 import runpy
 import shlex
+import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import urllib.parse
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
+import pytest
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-RECIPE = ROOT / "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml"
-MOD = ROOT / "mods/glm-5.3-flash-exl3-upstream-850k"
+SNAPSHOT = ROOT / "tests/fixtures/glm53-f906ee9/recipe-mod.tar.gz"
+SNAPSHOT_SHA256 = "8243a2b4caae1f8a6621a4fc7355379db7832e710f6c4b871cd30964ad0a0b2f"
+# Bound by the module fixture before tests execute; no active-tree fallback.
+RECIPE: Path
+MOD: Path
 EVIDENCE = ROOT / "evidence/glm53-exl3-850k-20260913"
 SOURCE_REVISION = "f906ee990596486e10ddbe381efa6f0e496f77e3"
 IMAGE = (
@@ -30,56 +43,46 @@ MODEL_REVISION = "024db9f7e9871e8efdf21538ba55af7442be3cd5"
 DRAFT_REVISION = "dc77ff1c99eeb2df044ee3d4f0094eb033fee410"
 
 
+@pytest.fixture(scope="module", autouse=True)
+def historical_recipe_tree(tmp_path_factory: pytest.TempPathFactory):
+    """Unpack authenticated historical inputs without git/network dependencies."""
+    assert hashlib.sha256(SNAPSHOT.read_bytes()).hexdigest() == SNAPSHOT_SHA256
+    tree = tmp_path_factory.mktemp("glm53-f906ee9")
+    with tarfile.open(SNAPSHOT, "r:gz") as archive:
+        archive.extractall(tree, filter="data")
+    # Historical collectors resolve their adjacent mod via __file__; preserve
+    # that layout too, rather than letting them read the active mod manifest.
+    historical_evidence = tree / "evidence/glm53-exl3-850k-20260913"
+    shutil.copytree(EVIDENCE, historical_evidence)
+    with pytest.MonkeyPatch.context() as patch:
+        patch.setitem(globals(), "EVIDENCE", historical_evidence)
+        patch.setitem(globals(), "RECIPE", tree / "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml")
+        patch.setitem(globals(), "MOD", tree / "mods/glm-5.3-flash-exl3-upstream-850k")
+        yield tree
+
+
+def test_historical_snapshot_is_self_contained() -> None:
+    archive = ROOT / "tests/fixtures/glm53-f906ee9/recipe-mod.tar.gz"
+    assert archive.is_file(), "historical regression requires a committed snapshot, not git history"
+    assert RECIPE != ROOT / "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml"
+    assert MOD != ROOT / "mods/glm-5.3-flash-exl3-upstream-850k"
+    receipt = json.loads((EVIDENCE / "launch-receipt.json").read_text())
+    assert hashlib.sha256(RECIPE.read_bytes()).hexdigest() == receipt["recipe_sha256"]
+    assert hashlib.sha256((MOD / "SHA256SUMS").read_bytes()).hexdigest() == receipt["mod_manifest_sha256"]
+
+
 def load_recipe() -> dict:
     assert RECIPE.is_file(), RECIPE
     return yaml.safe_load(RECIPE.read_text())
 
 
-def test_publication_docs_mark_850k_live_capture_and_preserve_provenance() -> None:
-    root_readme = (ROOT / "README.md").read_text()
-    evidence_index = (ROOT / "evidence/README.md").read_text()
+def test_historical_evidence_docs_preserve_capture_provenance() -> None:
     evidence_readme = (EVIDENCE / "README.md").read_text()
     superseded_readme = (
         ROOT / "evidence/glm53-exl3-850k-20260909/README.md"
     ).read_text()
     recipe_notes = "\n".join(load_recipe()["metadata"]["notes"])
-    assert "850K context (recommended)" in root_readme
-    assert "1M context (legacy rollback)" in root_readme
-    assert "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks" in root_readme
-    assert SOURCE_REVISION in root_readme
-    assert "complete mod tree" in root_readme and "named runtime subset" in root_readme
-    assert "850K" in evidence_index and "LIVE_CAPTURE_PASSED" in evidence_index
-    gate = evidence_index.split("## Required post-publish round-trip", 1)[1]
-    assert "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml" in gate
-    assert "raw.githubusercontent.com/mfellner/sparkrun-recipes/$PUBLISH_SHA" in gate
-    assert 'PUBLISHED_TREE="$(mktemp -d)"' in gate
-    assert 'git archive "$PUBLISH_SHA" -- "$RECIPE" "$MOD_TREE"' in gate
-    assert 'tar -x -C "$PUBLISHED_TREE"' in gate
-    assert '"$PUBLISHED_TREE/$RECIPE"' in gate
-    assert '"$PUBLISHED_TREE/$MOD_TREE"' in gate
-    assert "cmp" in gate and "sparkrun recipe validate" in gate
-    validation = root_readme.split("## Validation", 1)[1]
-    assert (
-        "sparkrun recipe validate recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml"
-        in validation
-    )
-    assert "APPROVED_TREE=" in gate
-    assert 'git rev-parse "$PUBLISH_SHA^{tree}"' in gate
-    assert 'CONTAINER_NAME="sparkrun_postpublish_glm53_850k"' in gate
-    assert gate.count('--container-name "$CONTAINER_NAME"') == 2
-    assert "http://127.0.0.1:8000/v1/models" in gate
-    assert "http://127.0.0.1:4000/v1/models" in gate
-    assert "git status --porcelain" in gate
-    assert "sparkrun registry update mfellner" in gate
-    assert "@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k" in gate
-    assert "vacation-pair2" in gate
-    assert "--dry-run --trust" in gate
-    assert "trusted namespaced dry-run" in gate
-    assert "approved push" in gate and "PENDING" in gate
-    assert "Optional destructive live validation" not in gate
-    assert "no repository CI workflows" in gate
-    for stale in ("qwen3.8", "dual-spark-1m", "spark-pair2"):
-        assert stale not in gate
+    assert SOURCE_REVISION in evidence_readme
     assert "sparkrun_f906ee990596486e_20260913c411" in evidence_readme
     assert "Acceptance run ID: `f906c41120260913`" in evidence_readme
     assert "Evidence state: **LIVE_CAPTURE_PASSED; PUBLICATION_PENDING**" in evidence_readme
@@ -88,19 +91,14 @@ def test_publication_docs_mark_850k_live_capture_and_preserve_provenance() -> No
     gates = evidence_readme.split("## Remaining release gates", 1)[1]
     assert re.search(r"two independent\s+fail-closed approvals", gates)
     assert "Exact artifact hashes" in gates
-    assert "Fresh live validation: **PASSED**" in root_readme
-    assert "Maintainer-approved publication exception" not in root_readme
-    assert "despite an independent audit returning" not in root_readme
-    assert "**LIVE_CAPTURE_PASSED**" in evidence_index
     assert "SUPERSEDED; HISTORICAL LIVE_CAPTURE_PASSED" in superseded_readme
     assert "../glm53-exl3-850k-20260913/" in superseded_readme
     assert "not runnable release gates" in superseded_readme
     assert "## Remaining release gates" not in superseded_readme
     assert "must not be published" in superseded_readme
-    assert "proxy port `4000`" in root_readme
-    assert "untrusted" in root_readme.lower()
-    assert "proxy port `4000`" in recipe_notes
-    assert "untrusted" in recipe_notes.lower()
+    for text in (evidence_readme, recipe_notes):
+        assert "proxy port `4000`" in text
+        assert "untrusted" in text.lower()
 
 
 def test_evidence_readme_runtime_completion_matches_runtime_receipt() -> None:
@@ -122,15 +120,10 @@ def test_verifier_binds_readme_runtime_completion_to_receipt() -> None:
     assert check(EVIDENCE, mutated) == ["README runtime capture completion"]
 
 
-def test_root_license_excludes_vendored_upstream_and_model_checkpoints() -> None:
-    license_section = (ROOT / "README.md").read_text().split("## License", 1)[1]
-    assert "MIT applies only" in license_section
-    assert "does not apply" in license_section
-    assert "mods/glm-5.3-flash-exl3-upstream-850k/upstream" in license_section
-    assert "AGPL-3.0" in license_section
-    assert "model checkpoints" in license_section
-    assert "ShapleyMCG License 1.0" in license_section
-    assert "CC BY-NC-ND 4.0" in license_section
+def test_historical_snapshot_preserves_upstream_license() -> None:
+    license_text = (MOD / "upstream/LICENSE").read_text()
+    assert "GNU AFFERO GENERAL PUBLIC LICENSE" in license_text
+    assert "Version 3, 19 November 2007" in license_text
 
 
 def test_mod_readme_separates_launch_and_full_upstream_gates() -> None:
@@ -150,7 +143,7 @@ def test_root_pytest_config_excludes_vendored_duplicate_modules() -> None:
     assert "upstream" not in config
 
 
-def test_recipe_pins_latest_source_image_and_weights() -> None:
+def test_historical_recipe_pins_source_image_and_weights() -> None:
     recipe = load_recipe()
     assert recipe["name"] == "glm-5.3-flash-exl3-dflash2-dual-spark-850k"
     assert recipe["metadata"]["source_revision"] == SOURCE_REVISION
@@ -163,7 +156,7 @@ def test_recipe_pins_latest_source_image_and_weights() -> None:
     assert f"snapshots/{DRAFT_REVISION}" in recipe["command"]
 
 
-def test_refreshed_upstream_gates_reasoning_effort_on_thinking() -> None:
+def test_historical_upstream_gates_reasoning_effort_on_thinking() -> None:
     template = (MOD / "upstream/files/chat_template.jinja").read_text()
     assert (
         "if thinking_enabled and effective_reasoning_effort is not none"
@@ -177,7 +170,7 @@ def test_refreshed_upstream_gates_reasoning_effort_on_thinking() -> None:
     )
 
 
-def test_recipe_matches_latest_safe_upstream_defaults() -> None:
+def test_historical_recipe_matches_reviewed_upstream_defaults() -> None:
     recipe = load_recipe()
     assert recipe["min_nodes"] == recipe["max_nodes"] == 2
     assert recipe["metadata"]["context_length"] == 850_000
@@ -367,7 +360,7 @@ def test_run_invokes_per_hca_rocev2_ipv4_gate() -> None:
     assert "tr -d ':0'" not in run
 
 
-def test_runtime_mod_applies_latest_pure_python_overlays_and_checks_e3() -> None:
+def test_historical_runtime_mod_applies_reviewed_overlays_and_checks_e3() -> None:
     run = (MOD / "run.sh").read_text()
     assert SOURCE_REVISION in run
     expected_order = [
@@ -2363,21 +2356,16 @@ def test_successful_chat_receipt_rejects_contradictory_inner_verdict() -> None:
     assert "direct_exact verdict" in failures
 
 
-def test_publication_docs_record_live_recapture_and_recommend_850k() -> None:
-    root_readme = (ROOT / "README.md").read_text()
-    evidence_readme = (ROOT / "evidence" / "README.md").read_text()
-    bundle_readme = (EVIDENCE / "README.md").read_text()
-    recipe = RECIPE.read_text()
-    assert "Fresh live validation: **PASSED**" in root_readme
-    assert "**LIVE_CAPTURE_PASSED**" in evidence_readme
-    assert "Evidence state: **LIVE_CAPTURE_PASSED; PUBLICATION_PENDING**" in bundle_readme
-    assert "release evidence must include exact direct and proxy rejection receipts" in recipe
-    assert "recommended GLM 5.3 Flash EXL3 850K recipe" in root_readme
-    assert "recommended GLM 5.3 Flash EXL3 1M recipe" not in root_readme
-    assert "Maintainer-approved publication exception" not in root_readme
-    assert "independent audit returning `passed=false`" not in root_readme
-    assert "remain unresolved" not in root_readme
-    assert "post-publication verification remains pending" in evidence_readme.lower()
+def test_historical_receipts_verify_against_their_exact_recipe_and_mod() -> None:
+    # Run the unmodified verifier with explicit historical inputs. Its default
+    # active-tree paths must not be used to reinterpret these old receipts.
+    result = subprocess.run(
+        [sys.executable, str(EVIDENCE / "verify.py"),
+         "--root", str(EVIDENCE), "--recipe", str(RECIPE), "--mod-dir", str(MOD)],
+        text=True, capture_output=True, timeout=180,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert json.loads(result.stdout)["passed"] is True
 
 
 def test_multitoken_stop_gate_runs_on_host_and_runtime_keeps_production_path() -> None:

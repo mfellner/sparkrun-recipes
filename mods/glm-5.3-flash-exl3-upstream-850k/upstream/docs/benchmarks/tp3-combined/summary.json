@@ -1,0 +1,124 @@
+{
+  "scope": "Historical combined recipe measurements; not measurements of this rebased PR branch.",
+  "matched_c1": {
+    "legacy_coding": {
+      "repetitions": 5,
+      "baseline_median": 41.45749531163475,
+      "combined_median": 48.87930132887177,
+      "gain_percent": 17.902205527486693
+    },
+    "legacy_technical_prose": {
+      "repetitions": 5,
+      "baseline_median": 32.11218545404092,
+      "combined_median": 38.801484982700494,
+      "gain_percent": 20.831031691173195
+    }
+  },
+  "historical_comparisons": [
+    {
+      "test": "LRU coding",
+      "unit": "tok/s",
+      "baseline": 58.88356,
+      "combined": 68.43408
+    },
+    {
+      "test": "history essay",
+      "unit": "tok/s",
+      "baseline": 32.43245,
+      "combined": 37.54028
+    },
+    {
+      "test": "C4 aggregate",
+      "unit": "tok/s",
+      "baseline": 75.7799,
+      "combined": 77.43411
+    },
+    {
+      "test": "C8 aggregate",
+      "unit": "tok/s",
+      "baseline": 76.41321,
+      "combined": 123.05544
+    },
+    {
+      "test": "C8 median TTFT",
+      "unit": "seconds",
+      "baseline": 10.62767,
+      "combined": 0.51891
+    },
+    {
+      "test": "C8 batch completion",
+      "unit": "seconds",
+      "baseline": 53.6033,
+      "combined": 33.2858
+    },
+    {
+      "test": "C8 per-stream decode",
+      "unit": "tok/s",
+      "baseline": 21.5802,
+      "combined": 17.7965
+    },
+    {
+      "test": "7.6K effective cold prefill",
+      "unit": "prompt tok/s",
+      "baseline": 1549.9,
+      "combined": 1411.6
+    },
+    {
+      "test": "95K effective cold prefill",
+      "unit": "prompt tok/s",
+      "baseline": 1647.7,
+      "combined": 1704.9
+    }
+  ],
+  "boot": {
+    "target_weight_load_seconds": {
+      "baseline": [
+        324.4,
+        371.56,
+        364.56
+      ],
+      "combined": [
+        55.49,
+        55.56,
+        55.57
+      ]
+    },
+    "native_ready_seconds": {
+      "baseline": 601.3,
+      "combined_first_observation": 321.5
+    },
+    "launcher_ready_seconds": {
+      "baseline": 656.32,
+      "combined_observed_by": 412
+    },
+    "qualification": "Single observations, not matched repeated cold boots; graph/artifact work differs."
+  },
+  "context": {
+    "max_request_tokens": 1000000,
+    "shared_kv_logical_tokens": 3005093,
+    "kv_gib_per_rank": 32,
+    "retrieval_actual_prompt_tokens": 999485,
+    "retrieval_pass": true,
+    "cache_reuse": [
+      {
+        "prompt_tokens": 131059,
+        "cached_tokens": 130560,
+        "ttft_s": 1.124
+      },
+      {
+        "prompt_tokens": 524283,
+        "cached_tokens": 522240,
+        "ttft_s": 3.409
+      }
+    ]
+  },
+  "limitations": [
+    "Customized abliterated baseline, not pristine upstream",
+    "C8 active slots changed 4 to 8",
+    "No closing baseline repeat",
+    "No isolated component attribution",
+    "No full-hour soak or p95/p99 qualification",
+    "New upstream SWA eviction priority not included",
+    "No execution-based code-quality score"
+  ]
+}

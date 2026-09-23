@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_gpu_adapter_changes_only_obsolete_assertion_block (test_upstream_fixture_adapter.AdapterTests.test_gpu_adapter_changes_only_obsolete_assertion_block)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/max/sparkrun-recipes/mods/glm-5.3-flash-exl3-upstream-850k/test_upstream_fixture_adapter.py", line 13, in test_gpu_adapter_changes_only_obsolete_assertion_block
+    self.assertTrue(path.is_file(), "local GPU adapter is required")
+AssertionError: False is not true : local GPU adapter is required
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)

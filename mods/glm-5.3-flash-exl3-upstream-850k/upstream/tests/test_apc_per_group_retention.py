@@ -7,13 +7,22 @@ any problem exits non-zero.
 
     GLM53_KV_COORDINATOR_PY_SRC=/path/to/fork/kv_cache_coordinator.py \\
     GLM53_BLOCK_POOL_PY_SRC=/path/to/fork/block_pool.py \\
+    GLM53_SINGLE_TYPE_KV_CACHE_MANAGER_PY_SRC=/path/to/fork/single_type_kv_cache_manager.py \\
         python3 test_apc_per_group_retention.py
+
+`python3 -m pytest tests/test_apc_per_group_retention.py` runs the same suite
+through the single entry point `test_apc_per_group_retention`. The script form
+still fails closed (non-zero exit) when the sources are unusable; pytest reports
+absent sources as a skip that names the exact files and variables, because a
+host without a clean pinned checkout has nothing to validate against.
 
 `..._SRC` may already carry overlay/patch_hybrid_prefix_hit.py. The overlay
 *composition* case additionally needs a pristine (unpatched) copy of the same
 file; it is taken from `GLM53_KV_COORDINATOR_PY_PRISTINE`, else from `..._SRC`
 itself when that is unpatched, else from /tmp/kv_cache_coordinator_pristine.py.
-Default source is the in-container path.
+Default source is the in-container path, which already carries every overlay --
+point the variables at a clean pinned checkout of the same vLLM revision (see
+docs/DESIGN-apc-per-group-retention.md section 8.1) to exercise the real cases.
 """
 
 from __future__ import annotations
@@ -57,6 +66,17 @@ DEFAULT_STM_SRC = Path(
 )
 FALLBACK_PRISTINE = Path("/tmp/kv_cache_coordinator_pristine.py")
 
+
+class PrerequisitesMissing(RuntimeError):
+    """No clean pinned vLLM source is staged on this host.
+
+    The deployed image's `v1/core/{kv_cache_coordinator,block_pool,
+    single_type_kv_cache_manager}.py` are already patched, so the source-driven
+    cases need the `GLM53_*_PY_SRC` variables pointed at a pristine checkout.
+    `main()` reports this as a non-zero exit; the pytest entry point reports it
+    as a skip naming the missing files and variables.
+    """
+
 MARKER = "# [glm53-apc-per-group]"
 MIA_MARKER = "# [glm53-hybrid-apc]"
 PRIORITY_MARKER = "# [glm53-apc-drafter-priority]"
@@ -79,6 +99,7 @@ HELPERS = (
 COMPOSED_HELPERS = HELPERS + (
     "_glm53_dflash_swa_replay_tokens",
     "_glm53_dflash_replay_safe_hit",
+    "_glm53_dflash_boundary_lookup_enabled",
 )
 
 ALIGN = 3584  # scheduler_block_size on this kit
@@ -257,7 +278,7 @@ def apply_patch(
 # ------------------------------------------------------------------- cases --
 
 
-def test_min_exemption(ns):
+def case_min_exemption(ns):
     """Min-exemption is derived from coordinator state, not from a class name."""
     fn = ns["_glm53_min_exempt_group_ids"]
     groups = live_layout()
@@ -280,7 +301,7 @@ def test_min_exemption(ns):
     print("  min-exemption derivation OK")
 
 
-def test_routing(ns):
+def case_routing(ns):
     """The per-group routing matrix."""
     fn = ns["_glm53_retention_for_group"]
     drafter = uniform(SlidingWindowSpec())
@@ -319,7 +340,7 @@ def test_routing(ns):
     print("  routing matrix OK")
 
 
-def test_resolve(ns):
+def case_resolve(ns):
     """The resolved vector, and the fail-closed override guard (Codex #4/#6)."""
     fn = ns["_glm53_resolve_retention_by_group"]
     fmt = ns["_glm53_format_retention_vector"]
@@ -376,7 +397,7 @@ def test_resolve(ns):
     print("  resolved vector + fail-closed override OK")
 
 
-def test_dflash_prior_groups(ns):
+def case_dflash_prior_groups(ns):
     """Only sparse Mamba groups in a hybrid DFlash layout get the extra state."""
     fn = ns["_glm53_dflash_prior_mamba_group_ids"]
     groups = live_layout()
@@ -398,7 +419,7 @@ def test_dflash_prior_groups(ns):
     print("  DFlash prior-Mamba group selection OK")
 
 
-def test_env(ns):
+def case_env(ns):
     """Codex #5: the raw env value is validated unconditionally."""
     fn = ns["_glm53_swa_retention_env"]
     saved = os.environ.pop(SWA_ENV, None)
@@ -437,7 +458,7 @@ def test_env(ns):
     print("  env parsing + unconditional validation OK")
 
 
-def test_validator(ns):
+def case_validator(ns):
     fn = ns["_glm53_validate_retention_intervals"]
     fn((None, 0, 3584, 14336, None), ALIGN)  # all legal
     for bad in ((3000,), (-3584,), (None, 5000), (1,)):
@@ -445,7 +466,7 @@ def test_validator(ns):
     print("  per-group validator OK")
 
 
-def test_id_cost():
+def case_id_cost():
     """The arithmetic the whole design rests on (DESIGN §2 / §4)."""
     need = contiguous_blocks_for_hit(DRAFT_WINDOW, DRAFT_BLOCK, use_eagle=True)
     check(need == 33, f"need should be 33, got {need}")
@@ -498,7 +519,7 @@ def test_id_cost():
     print("  id-cost + capacity arithmetic OK")
 
 
-def test_call_sites(pristine: str, text: str):
+def case_call_sites(pristine: str, text: str):
     loop = "for i, manager in enumerate(self.single_type_managers):"
     check(pristine.count("retention_interval=self.retention_interval,") == 2,
           "expected exactly two global-interval cache_blocks call sites before the patch")
@@ -518,7 +539,7 @@ def test_call_sites(pristine: str, text: str):
     print("  call sites + boot log line OK")
 
 
-def test_drafter_priority(block_pool_text: str, coordinator_text: str):
+def case_drafter_priority(block_pool_text: str, coordinator_text: str):
     """Exercise one-batch policy and real per-manager free call ordering."""
     tree = ast.parse(block_pool_text)
     block_pool_class = next(
@@ -655,7 +676,7 @@ def test_drafter_priority(block_pool_text: str, coordinator_text: str):
     print("  drafter priority + global per-manager free ordering OK")
 
 
-def test_prior_boundary_cache_call(single_type_text: str):
+def case_prior_boundary_cache_call(single_type_text: str):
     """Execute cache_blocks and inspect the boundaries passed to Mamba masking."""
     tree = ast.parse(single_type_text)
     manager_class = next(
@@ -737,7 +758,7 @@ def _method_from_source(text: str, class_name: str, method_name: str):
     return method.name, module
 
 
-def test_composed_runtime_paths(
+def case_composed_runtime_paths(
     coordinator_text: str,
     block_pool_text: str,
     single_type_text: str,
@@ -1083,12 +1104,12 @@ def test_composed_runtime_paths(
         f"tail on a later pass: hit={hit} uncached={uncached}",
     )
 
-    test_prior_boundary_cache_call(single_type_text)
-    test_drafter_priority(block_pool_text, coordinator_text)
+    case_prior_boundary_cache_call(single_type_text)
+    case_drafter_priority(block_pool_text, coordinator_text)
     print("  exact composed init/cache/hit/free execution OK")
 
 
-def test_composition(
+def case_composition(
     pristine_src: Path,
     pristine_bp_src: Path,
     pristine_stm_src: Path,
@@ -1129,7 +1150,9 @@ def test_composition(
               f"{label}: shared helper duplicated")
         check(text.count("def _glm53_is_draft_swa_spec(") == 1,
               f"{label}: shared discriminator duplicated")
-        check(text.count("import os  # [glm53-apc-per-group]") == 1,
+        # Either overlay may add the module-level ``import os`` (the hybrid
+        # overlay's boundary lookup reads GLM53_DRAFT_KV_COMPACT); exactly one.
+        check(sum(line.startswith("import os") for line in text.splitlines()) == 1,
               f"{label}: os import missing or duplicated")
         # Re-applying either patch in either order must be a no-op.
         for patch in order + tuple(reversed(order)):
@@ -1150,8 +1173,8 @@ def test_composition(
               f"{label}: Mia's hybrid-min skip is missing")
         check("swa_ids or set(" in text,
               f"{label}: Mia's eagle_group_ids narrowing is missing")
-        test_prior_boundary_cache_call(stm_text)
-        test_composed_runtime_paths(text, bp_text, stm_text)
+        case_prior_boundary_cache_call(stm_text)
+        case_composed_runtime_paths(text, bp_text, stm_text)
         results[label] = text
 
     import ast
@@ -1187,41 +1210,74 @@ def resolve_pristine(src: Path) -> Path:
         return src
     if FALLBACK_PRISTINE.is_file():
         return FALLBACK_PRISTINE
-    raise SystemExit(
+    raise PrerequisitesMissing(
         f"{src} already carries an overlay; the composition test needs a pristine "
         "copy of the same file. Set GLM53_KV_COORDINATOR_PY_PRISTINE (or drop one "
         f"at {FALLBACK_PRISTINE})."
     )
 
 
-def main() -> int:
-    if PATCH is None:
-        raise SystemExit("missing patch_apc_per_group_retention.py")
-    src = Path(os.environ.get("GLM53_KV_COORDINATOR_PY_SRC", DEFAULT_SRC))
-    bp_src = Path(os.environ.get("GLM53_BLOCK_POOL_PY_SRC", DEFAULT_BP_SRC))
-    stm_src = Path(
-        os.environ.get("GLM53_SINGLE_TYPE_KV_CACHE_MANAGER_PY_SRC", DEFAULT_STM_SRC)
+def prerequisites_message() -> str:
+    """The exact files and variables the source-driven cases read."""
+    return (
+        "no clean pinned vLLM source is staged (the deployed image's copies are "
+        "already patched); point these at one:\n"
+        f"  GLM53_KV_COORDINATOR_PY_SRC=<kv_cache_coordinator.py>   "
+        f"(default {DEFAULT_SRC})\n"
+        f"  GLM53_BLOCK_POOL_PY_SRC=<block_pool.py>   "
+        f"(default {DEFAULT_BP_SRC})\n"
+        f"  GLM53_SINGLE_TYPE_KV_CACHE_MANAGER_PY_SRC="
+        f"<single_type_kv_cache_manager.py>\n"
+        f"      (default {DEFAULT_STM_SRC})\n"
+        f"  GLM53_KV_COORDINATOR_PY_PRISTINE=<unpatched kv_cache_coordinator.py>   "
+        f"(optional; needed when ..._SRC already carries an overlay, else "
+        f"{FALLBACK_PRISTINE})\n"
+        "Source revision and invocation: "
+        "docs/DESIGN-apc-per-group-retention.md section 8.1."
     )
-    if not src.is_file():
-        raise SystemExit(
-            f"missing kv_cache_coordinator.py at {src}; "
-            "set GLM53_KV_COORDINATOR_PY_SRC to a copy of the fork's file"
-        )
-    if not bp_src.is_file():
-        raise SystemExit(
-            f"missing block_pool.py at {bp_src}; "
-            "set GLM53_BLOCK_POOL_PY_SRC to a copy of the fork's file"
-        )
-    if not stm_src.is_file():
-        raise SystemExit(
-            f"missing single_type_kv_cache_manager.py at {stm_src}; "
-            "set GLM53_SINGLE_TYPE_KV_CACHE_MANAGER_PY_SRC to the fork source copy"
-        )
+
+
+def source_file(env: str, default: Path) -> Path:
+    """One staged source; an explicit path that is absent is a hard error."""
+    raw = os.environ.get(env, "").strip()
+    if raw:
+        path = Path(raw)
+        if not path.is_file():
+            raise SystemExit(f"{env} points at nothing: {path}")
+        return path
+    if default.is_file():
+        return default
+    raise PrerequisitesMissing(prerequisites_message())
+
+
+def resolve_sources() -> tuple[Path, Path, Path, Path]:
+    """(coordinator, block pool, single-type manager, pristine coordinator)."""
+    src = source_file("GLM53_KV_COORDINATOR_PY_SRC", DEFAULT_SRC)
+    bp_src = source_file("GLM53_BLOCK_POOL_PY_SRC", DEFAULT_BP_SRC)
+    stm_src = source_file(
+        "GLM53_SINGLE_TYPE_KV_CACHE_MANAGER_PY_SRC", DEFAULT_STM_SRC
+    )
     if PRIORITY_MARKER in bp_src.read_text():
-        raise SystemExit(f"{bp_src} already carries {PRIORITY_MARKER}; use a pristine copy")
+        message = (
+            f"{bp_src} already carries {PRIORITY_MARKER}; use a pristine copy.\n"
+            + prerequisites_message()
+        )
+        if os.environ.get("GLM53_BLOCK_POOL_PY_SRC", "").strip():
+            raise SystemExit(message)
+        raise PrerequisitesMissing(message)
     pristine_src = resolve_pristine(src)
     if MIA_MARKER in pristine_src.read_text() or MARKER in pristine_src.read_text():
         raise SystemExit(f"{pristine_src} is not pristine (it carries an overlay MARK)")
+    return src, bp_src, stm_src, pristine_src
+
+
+def main() -> int:
+    if PATCH is None:
+        raise SystemExit("missing patch_apc_per_group_retention.py")
+    try:
+        src, bp_src, stm_src, pristine_src = resolve_sources()
+    except PrerequisitesMissing as exc:
+        raise SystemExit(str(exc)) from exc
     print(
         f"  source: {src}\n  pristine: {pristine_src}\n"
         f"  block pool: {bp_src}\n  single-type manager: {stm_src}"
@@ -1258,21 +1314,38 @@ def main() -> int:
         check(stm_dst.read_text() == stm_text, "single-type patch is not idempotent")
         print("  idempotent OK")
 
-        test_call_sites(pristine, text)
+        case_call_sites(pristine, text)
         ns = load_helpers(text)
-        test_min_exemption(ns)
-        test_routing(ns)
-        test_resolve(ns)
-        test_dflash_prior_groups(ns)
-        test_env(ns)
-        test_validator(ns)
-        test_drafter_priority(bp_text, text)
-        test_prior_boundary_cache_call(stm_text)
-        test_composition(pristine_src, bp_src, stm_src, tmp)
+        case_min_exemption(ns)
+        case_routing(ns)
+        case_resolve(ns)
+        case_dflash_prior_groups(ns)
+        case_env(ns)
+        case_validator(ns)
+        case_drafter_priority(bp_text, text)
+        case_prior_boundary_cache_call(stm_text)
+        case_composition(pristine_src, bp_src, stm_src, tmp)
 
-    test_id_cost()
+    case_id_cost()
     print("drafter-retention patch OK")
     return 0
+
+
+def test_apc_per_group_retention() -> None:
+    """pytest entry point: the script form's whole suite, once its sources exist.
+
+    Every case above is exercised through `main()` against the real pinned
+    sources. Absent sources are reported as a skip naming the files and
+    variables; a path that is set but unusable stays a hard error, so a broken
+    configuration can never masquerade as an unrun check.
+    """
+    import pytest
+
+    try:
+        resolve_sources()
+    except PrerequisitesMissing as exc:
+        pytest.skip(str(exc))
+    assert main() == 0
 
 
 if __name__ == "__main__":

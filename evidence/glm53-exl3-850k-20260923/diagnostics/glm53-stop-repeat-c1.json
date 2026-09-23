@@ -1,0 +1,652 @@
+[
+  {
+    "started_at": 1790168051.3433805,
+    "completed_at": 1790168051.7251573,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-94cf58deb8ed7c63",
+        "object": "chat.completion",
+        "created": 1790168051,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE ",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": "Question:",
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 19,
+          "completion_tokens": 6,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": null
+  },
+  {
+    "started_at": 1790168051.7251947,
+    "completed_at": 1790168052.1165326,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-a702307143582010",
+        "object": "chat.completion",
+        "created": 1790168051,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 16,
+          "completion_tokens": 3,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": "direct_thinking_disabled_stop: literal stop"
+  },
+  {
+    "started_at": 1790168052.1165476,
+    "completed_at": 1790168052.6256268,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-a498425d98cd5cdd",
+        "object": "chat.completion",
+        "created": 1790168052,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE ",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": "Question:",
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 19,
+          "completion_tokens": 6,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": null
+  },
+  {
+    "started_at": 1790168052.6257155,
+    "completed_at": 1790168053.0283911,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-8d548bc7883db8a3",
+        "object": "chat.completion",
+        "created": 1790168052,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 16,
+          "completion_tokens": 3,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": "direct_thinking_disabled_stop: literal stop"
+  },
+  {
+    "started_at": 1790168053.0284245,
+    "completed_at": 1790168053.5339508,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-a9076539c8285639",
+        "object": "chat.completion",
+        "created": 1790168053,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE ",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": "Question:",
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 19,
+          "completion_tokens": 6,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": null
+  },
+  {
+    "started_at": 1790168053.5339825,
+    "completed_at": 1790168054.0171099,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-885817265e52e47c",
+        "object": "chat.completion",
+        "created": 1790168053,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE ",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": "Question:",
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 19,
+          "completion_tokens": 6,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": null
+  },
+  {
+    "started_at": 1790168054.0171335,
+    "completed_at": 1790168054.5185182,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-b3148fde2f8fd368",
+        "object": "chat.completion",
+        "created": 1790168054,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE ",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": "Question:",
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 19,
+          "completion_tokens": 6,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": null
+  },
+  {
+    "started_at": 1790168054.518556,
+    "completed_at": 1790168055.0349913,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-890bc33ba3f28f9d",
+        "object": "chat.completion",
+        "created": 1790168054,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE ",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": "Question:",
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 19,
+          "completion_tokens": 6,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": null
+  },
+  {
+    "started_at": 1790168055.0350294,
+    "completed_at": 1790168055.425704,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-90498c1e23de8baa",
+        "object": "chat.completion",
+        "created": 1790168055,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE ",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": "Question:",
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 18,
+          "completion_tokens": 5,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": null
+  },
+  {
+    "started_at": 1790168055.4257221,
+    "completed_at": 1790168055.9088142,
+    "receipt": {
+      "request": {
+        "model": "GLM-5.3-Flash-EXL3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly: BEFORE Question: AFTER"
+          }
+        ],
+        "stop": [
+          "Question:"
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "request_sha256": "c6e8719a52650f5c9618049511018f134861490f3b1ee3b6ac0d2be62932f715",
+      "response": {
+        "id": "chatcmpl-b2d9b57d17db1a6b",
+        "object": "chat.completion",
+        "created": 1790168055,
+        "model": "GLM-5.3-Flash-EXL3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "BEFORE",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev20051+g487ecf187-tp2-c9097fa8",
+        "usage": {
+          "prompt_tokens": 13,
+          "total_tokens": 16,
+          "completion_tokens": 3,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "http": 200
+    },
+    "error": "direct_thinking_disabled_stop: literal stop"
+  }
+]

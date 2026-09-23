@@ -1,0 +1,68 @@
+FFFF.........                                                            [100%]
+=================================== FAILURES ===================================
+__________________ test_literal_nic_lists_on_both_nodes[1-1] ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_literal_nic_lists_on_both0')
+head_count = 1, worker_count = 1
+
+    @pytest.mark.parametrize("head_count,worker_count", [(1, 1), (1, 2), (2, 1), (2, 2)])
+    def test_literal_nic_lists_on_both_nodes(tmp_path, head_count, worker_count):
+        result = run_preflight(tmp_path, head_count, worker_count)
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['bash', '-c', '\nset -euo pipefail\nwarn() { printf \'%s\\n\' "$*" >&2; }\ndie() { warn "$*"; e...quest=108.75 GiB plus 0.00 GiB headroom\n', stderr='environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable\n').returncode
+
+tests/test_nccl_multi_hca.py:150: AssertionError
+__________________ test_literal_nic_lists_on_both_nodes[1-2] ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_literal_nic_lists_on_both1')
+head_count = 1, worker_count = 2
+
+    @pytest.mark.parametrize("head_count,worker_count", [(1, 1), (1, 2), (2, 1), (2, 2)])
+    def test_literal_nic_lists_on_both_nodes(tmp_path, head_count, worker_count):
+        result = run_preflight(tmp_path, head_count, worker_count)
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['bash', '-c', '\nset -euo pipefail\nwarn() { printf \'%s\\n\' "$*" >&2; }\ndie() { warn "$*"; e...quest=108.75 GiB plus 0.00 GiB headroom\n', stderr='environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable\n').returncode
+
+tests/test_nccl_multi_hca.py:150: AssertionError
+__________________ test_literal_nic_lists_on_both_nodes[2-1] ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_literal_nic_lists_on_both2')
+head_count = 2, worker_count = 1
+
+    @pytest.mark.parametrize("head_count,worker_count", [(1, 1), (1, 2), (2, 1), (2, 2)])
+    def test_literal_nic_lists_on_both_nodes(tmp_path, head_count, worker_count):
+        result = run_preflight(tmp_path, head_count, worker_count)
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['bash', '-c', '\nset -euo pipefail\nwarn() { printf \'%s\\n\' "$*" >&2; }\ndie() { warn "$*"; e...quest=108.75 GiB plus 0.00 GiB headroom\n', stderr='environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable\n').returncode
+
+tests/test_nccl_multi_hca.py:150: AssertionError
+__________________ test_literal_nic_lists_on_both_nodes[2-2] ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_literal_nic_lists_on_both3')
+head_count = 2, worker_count = 2
+
+    @pytest.mark.parametrize("head_count,worker_count", [(1, 1), (1, 2), (2, 1), (2, 2)])
+    def test_literal_nic_lists_on_both_nodes(tmp_path, head_count, worker_count):
+        result = run_preflight(tmp_path, head_count, worker_count)
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['bash', '-c', '\nset -euo pipefail\nwarn() { printf \'%s\\n\' "$*" >&2; }\ndie() { warn "$*"; e...quest=108.75 GiB plus 0.00 GiB headroom\n', stderr='environment: line 192: MAMBA_STATE_PATCH_HOST: unbound variable\n').returncode
+
+tests/test_nccl_multi_hca.py:150: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_nccl_multi_hca.py::test_literal_nic_lists_on_both_nodes[1-1]
+FAILED tests/test_nccl_multi_hca.py::test_literal_nic_lists_on_both_nodes[1-2]
+FAILED tests/test_nccl_multi_hca.py::test_literal_nic_lists_on_both_nodes[2-1]
+FAILED tests/test_nccl_multi_hca.py::test_literal_nic_lists_on_both_nodes[2-2]
+4 failed, 9 passed in 1.27s

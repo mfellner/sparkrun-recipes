@@ -1,0 +1,5 @@
+sparkrun_3f2be18c41effca0_20260923a1_node_1 Up 10 minutes
+Error response from daemon: No such container: sparkrun_3f2be18c41effca0_20260923a1_node_0
+               total        used        free      shared  buff/cache   available
+Mem:           121Gi        10Gi       109Gi       6.2Mi       2.0Gi       110Gi
+Swap:           15Gi       5.1Gi        10Gi

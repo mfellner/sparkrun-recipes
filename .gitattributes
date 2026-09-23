@@ -1,3 +1,7 @@
 # These paths preserve byte-exact upstream and live evidence artifacts.
 mods/glm-5.3-flash-exl3-upstream-850k/upstream/** -whitespace
 evidence/glm53-exl3-850k-20260913/launch.log -whitespace
+# Preserve new raw command receipts byte-for-byte; do not trim captured output.
+evidence/glm53-exl3-850k-20260923/**/*.log -whitespace
+evidence/glm53-exl3-850k-20260923/diagnostics/**/failure/*.txt -whitespace
+evidence/glm53-exl3-850k-20260923/qualification/final-dry-run.txt -whitespace

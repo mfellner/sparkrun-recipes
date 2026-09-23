@@ -1,0 +1,9 @@
+{
+  "source_commit": "3f2be18c41effca0b4b2c6a65f0b24a7a9f39567",
+  "kind": "CPU AST-extracted real build_exl3_fused_state with fake tensor storage; not GPU proof",
+  "env": {
+    "GLM53_EXL3_MOE_FAST": "0"
+  },
+  "extension_has_glm53_fast_moe_version": false,
+  "result": "PASS: stock state built without optional native symbol; gate/up pointers remain distinct"
+}

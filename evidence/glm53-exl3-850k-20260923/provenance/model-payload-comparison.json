@@ -1,0 +1,91 @@
+[
+  {
+    "model": "Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw",
+    "old": "25a44fdbf16862a46b7cc9921142c6c81350af2f",
+    "new": "024db9f7e9871e8efdf21538ba55af7442be3cd5",
+    "differences": {
+      "README.md": {
+        "old": {
+          "blobId": "fee1e0da7f442e3df7adec75608191ac0bfb4f63",
+          "size": 3357,
+          "lfs": null
+        },
+        "new": {
+          "blobId": "cb88ddfec8389cdffb566020107eebd1f6065bb6",
+          "size": 3364,
+          "lfs": null
+        }
+      }
+    }
+  },
+  {
+    "model": "Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw",
+    "old": "024db9f7e9871e8efdf21538ba55af7442be3cd5",
+    "new": "main",
+    "differences": {
+      "README.md": {
+        "old": {
+          "blobId": "cb88ddfec8389cdffb566020107eebd1f6065bb6",
+          "size": 3364,
+          "lfs": null
+        },
+        "new": {
+          "blobId": "a43c1f79075aa7d8fb1eaab02ce378bf14eace38",
+          "size": 3018,
+          "lfs": null
+        }
+      }
+    }
+  },
+  {
+    "model": "incoai/GLM-5.3-Flash-DFlash2",
+    "old": "dc77ff1c99eeb2df044ee3d4f0094eb033fee410",
+    "new": "main",
+    "differences": {
+      "README.md": {
+        "old": {
+          "blobId": "7b22c057e4056b541d94611248de7dce8e4753a3",
+          "size": 4666,
+          "lfs": null
+        },
+        "new": {
+          "blobId": "d70cae7d03c8c28861b97eec1f34a4d04b0849fb",
+          "size": 2619,
+          "lfs": null
+        }
+      },
+      "assets/dflash2-figure.png": {
+        "old": null,
+        "new": {
+          "blobId": "193b679a468160fbbd79815634125c46fd6fd403",
+          "size": 286889,
+          "lfs": {
+            "sha256": "6d8dcc9a9472bddb644c881fe83050b5343d09bf5ffb0912e5598e55fe671e99",
+            "size": 286889,
+            "pointerSize": 131
+          }
+        }
+      },
+      "model.safetensors": {
+        "old": {
+          "blobId": "eb41c39150c5f9ccc9ec0f48086491ce7c0002b2",
+          "size": 2342169800,
+          "lfs": {
+            "sha256": "b33c03475ba7322cf398828f2d8d1be376df30dc05c6b40c28c8ea8da23e410b",
+            "size": 2342169800,
+            "pointerSize": 135
+          }
+        },
+        "new": {
+          "blobId": "2bdb4b540022a22871adb94ef0bc5c74833447d4",
+          "size": 2342169800,
+          "lfs": {
+            "sha256": "b038e1d9d1e7833fa3880c2c0135ba9b673013f03da1b29fb831931584759dac",
+            "size": 2342169800,
+            "pointerSize": 135
+          }
+        }
+      }
+    }
+  }
+]

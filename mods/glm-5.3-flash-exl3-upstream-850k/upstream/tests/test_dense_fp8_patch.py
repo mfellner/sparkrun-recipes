@@ -2,6 +2,7 @@
 """overlay/patch_dense_fp8.py on copies of kda.py / model.py, plus the allow-list classifier."""
 from __future__ import annotations
 
+import ast
 import importlib.util
 import os
 import shutil
@@ -17,13 +18,28 @@ SITE = Path("/usr/local/lib/python3.12/dist-packages/vllm")
 KDA_SRC = Path(os.environ.get("GLM53_KDA_PY_SRC", SITE / "models/glm5next/nvidia/kda.py"))
 MODEL_SRC = Path(os.environ.get("GLM53_GLM5_MODEL_PY_SRC", SITE / "models/glm5next/nvidia/model.py"))
 
+def _load_helpers(names: set[str]) -> dict[str, object]:
+    source = ROOT / "overlay" / "exl3.py"
+    tree = ast.parse(source.read_text())
+    body = [
+        node for node in tree.body
+        if (isinstance(node, ast.FunctionDef) and node.name in names)
+        or (isinstance(node, ast.Assign) and any(
+            isinstance(target, ast.Name) and target.id in names
+            for target in node.targets
+        ))
+    ]
+    ns = {"os": os, "re": __import__("re")}
+    exec(compile(ast.Module(body=body, type_ignores=[]), str(source), "exec"), ns)
+    return ns
+
+
 
 def classifier_tests() -> None:
-    text = (ROOT / "overlay" / "exl3.py").read_text()
-    start = text.index("_GLM53_DENSE_FP8_SUFFIXES = {")
-    end = text.index("class Glm53DenseFp8Method(")
-    ns = {"os": os, "re": __import__("re")}
-    exec(text[start:end], ns)
+    ns = _load_helpers({
+        "_GLM53_DENSE_FP8_SUFFIXES", "_glm53_dense_fp8_groups",
+        "_glm53_layer_types", "_glm53_dense_fp8_group",
+    })
     f = ns["_glm53_dense_fp8_group"]
     lt = ["linear_attention"] * 3 + ["deepseek_sparse_attention"] + ["linear_attention"] * 41
     all_g = {"shared", "dense", "kda", "mla"}
@@ -44,8 +60,21 @@ def classifier_tests() -> None:
     assert f("draft_model.layers.0.mlp.gate_up_proj", all_g, lt) is None
 
 
+def marlin_tp3_compatibility_tests() -> None:
+    ns = _load_helpers({
+        "_GLM53_TP3_UNALIGNED_KDA_SUFFIXES", "_glm53_use_marlin",
+    })
+    use_marlin = ns["_glm53_use_marlin"]
+    assert not use_marlin("kda", "model.layers.0.self_attn.f_b_proj", 3)
+    assert not use_marlin("kda", "model.layers.0.self_attn.g_b_proj", 3)
+    assert use_marlin("kda", "model.layers.0.self_attn.f_b_proj", 2)
+    assert use_marlin("kda", "model.layers.0.self_attn.o_proj", 3)
+    assert use_marlin("dense", "model.layers.0.mlp.down_proj", 3)
+
+
 def main() -> int:
     classifier_tests()
+    marlin_tp3_compatibility_tests()
     for src in (KDA_SRC, MODEL_SRC):
         if not src.is_file():
             raise SystemExit(f"missing {src}")

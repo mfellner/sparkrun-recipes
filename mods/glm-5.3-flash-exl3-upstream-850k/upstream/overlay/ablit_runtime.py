@@ -351,10 +351,24 @@ def apply_transplant(
             raise AblitError(f"ablit transplant: {name} has no 2-D .weight")
         full_in = donor.shape[1]
         local_in = weight.shape[1]
-        if donor.shape[0] != weight.shape[0] or full_in != local_in * world:
+        padded_in = local_in * world
+        # TP=3 (overlay/tp3/patch_tp3_glm.py) pads the head count to a multiple
+        # of the world size (64->66, linear 32->33) by zero-padding the END of
+        # the checkpoint's o_proj input dim before vLLM shards it. The donor is
+        # the unpadded full-width tensor, so mirror that pad here; the padded
+        # columns land on the last rank's dummy heads, which are zero in the
+        # stock weights too. Padding of a full rank width or more is a real
+        # mismatch, not head padding.
+        if (donor.shape[0] != weight.shape[0]
+                or not (full_in == padded_in or (world == 3 and full_in < padded_in < full_in + local_in))):
             raise AblitError(
                 f"ablit transplant: {name} shape {tuple(weight.shape)} does not "
                 f"match donor {tuple(donor.shape)} at TP={world}")
+        if padded_in != full_in:
+            donor = torch.nn.functional.pad(donor, (0, padded_in - full_in))
+            logger.info(
+                "ablit: transplant %s donor padded %d -> %d input columns for TP=%d head padding",
+                name, full_in, padded_in, world)
         shard = donor if world == 1 else donor[:, rank * local_in:(rank + 1) * local_in]
         # Donors come from torch.frombuffer on CPU; o_proj is already on the
         # worker GPU. Compare and copy on weight's device (proj path already

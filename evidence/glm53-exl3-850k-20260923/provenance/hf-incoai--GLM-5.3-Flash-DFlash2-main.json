@@ -1,0 +1,122 @@
+{
+  "_id": "6a90af09d7d95ea3eeaf76ff",
+  "id": "incoai/GLM-5.3-Flash-DFlash2",
+  "private": false,
+  "pipeline_tag": "text-generation",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "safetensors",
+    "qwen3",
+    "dflash",
+    "dflash2",
+    "speculative-decoding",
+    "block-diffusion",
+    "draft-model",
+    "sglang",
+    "text-generation",
+    "base_model:zai-org/GLM-5.3-Flash",
+    "base_model:finetune:zai-org/GLM-5.3-Flash",
+    "license:cc-by-nc-nd-4.0",
+    "text-generation-inference",
+    "region:us"
+  ],
+  "downloads": 46678,
+  "likes": 115,
+  "modelId": "incoai/GLM-5.3-Flash-DFlash2",
+  "author": "incoai",
+  "sha": "bf582e4eacc1810f76656d1811693ff6c6737d2a",
+  "lastModified": "2026-08-31T00:44:54.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "Hi, what can you help me with?"
+    },
+    {
+      "text": "What is 84 * 3 / 2?"
+    },
+    {
+      "text": "Tell me an interesting fact about the universe!"
+    },
+    {
+      "text": "Explain quantum computing in simple terms."
+    }
+  ],
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "DFlash2DraftModel"
+    ],
+    "model_type": "qwen3"
+  },
+  "cardData": {
+    "license": "cc-by-nc-nd-4.0",
+    "library_name": "transformers",
+    "pipeline_tag": "text-generation",
+    "base_model": [
+      "zai-org/GLM-5.3-Flash"
+    ],
+    "inference": false,
+    "tags": [
+      "dflash",
+      "dflash2",
+      "speculative-decoding",
+      "block-diffusion",
+      "draft-model",
+      "sglang"
+    ]
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModel",
+    "processor": "AutoTokenizer"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "e404a01e1f3116ff0744366d088c8fc2ba4ab735",
+      "size": 116
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "d70cae7d03c8c28861b97eec1f34a4d04b0849fb",
+      "size": 2619
+    },
+    {
+      "rfilename": "assets/dflash2-figure.png",
+      "blobId": "193b679a468160fbbd79815634125c46fd6fd403",
+      "size": 286889,
+      "lfs": {
+        "sha256": "6d8dcc9a9472bddb644c881fe83050b5343d09bf5ffb0912e5598e55fe671e99",
+        "size": 286889,
+        "pointerSize": 131
+      }
+    },
+    {
+      "rfilename": "config.json",
+      "blobId": "083085aaf95d59bad59c58f1160865683460254e",
+      "size": 1273
+    },
+    {
+      "rfilename": "model.safetensors",
+      "blobId": "2bdb4b540022a22871adb94ef0bc5c74833447d4",
+      "size": 2342169800,
+      "lfs": {
+        "sha256": "b038e1d9d1e7833fa3880c2c0135ba9b673013f03da1b29fb831931584759dac",
+        "size": 2342169800,
+        "pointerSize": 135
+      }
+    }
+  ],
+  "spaces": [
+    "embedl/hfviewer"
+  ],
+  "createdAt": "2026-08-27T21:41:29.000Z",
+  "safetensors": {
+    "parameters": {
+      "BF16": 1171080448
+    },
+    "total": 1171080448
+  },
+  "usedStorage": 7026796289
+}

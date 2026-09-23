@@ -27,6 +27,10 @@ BENCH_PROMPT = (
 STRUCTURED_PROMPT = (
     "Count from 1 to 200. Output only the numbers, separated by spaces. No other text."
 )
+CODING_PROMPT = (
+    "Write a Python function named clamp_range that takes a list of ints and "
+    "returns a new list with each value clamped to [0, 50]. Include a short docstring."
+)
 NAN_RE = re.compile(r"\bnan\b|locklock", re.I)
 SPEC_RE = re.compile(
     r"^(vllm:spec_decode_[a-zA-Z0-9_]+)\{([^}]*)\}\s+(\S+)$"
@@ -118,6 +122,7 @@ def spec_delta(before: dict[str, float], after: dict[str, float]) -> dict:
         "accepted": int(acc),
         "accept_ratio": round(acc / draft_tok, 4) if draft_tok else None,
         "accepted_per_step": round(acc / drafts, 3) if drafts else None,
+        "mean_draft_tokens_per_step": round(draft_tok / drafts, 3) if drafts else None,
         "pos": pos,
     }
 
@@ -256,7 +261,18 @@ def main() -> int:
         action="store_true",
         help="Warmed count-1-to-200 decode (temp 0, thinking off). Reports median tok/s + DFlash2 accept.",
     )
+    ap.add_argument(
+        "--coding",
+        action="store_true",
+        help="Warmed coding-prompt decode (temp 0, thinking off).",
+    )
+    ap.add_argument("--concurrency", type=int, default=1)
+    ap.add_argument("--warmup-tokens", type=int, default=32)
     args = ap.parse_args()
+    if args.structured and args.coding:
+        ap.error("use only one of --structured or --coding")
+    if args.concurrency < 1:
+        ap.error("--concurrency must be >= 1")
     h_code, h_body = health()
     rec: dict = {
         "phase": args.phase,
@@ -269,31 +285,86 @@ def main() -> int:
         Path(args.out).write_text(json.dumps(rec, indent=2))
         print(json.dumps(rec, indent=2))
         return 2
-    prompt = STRUCTURED_PROMPT if args.structured else BENCH_PROMPT
-    rec["prompt"] = "structured-count-1-200" if args.structured else "hashmap-prose"
+    if args.structured:
+        prompt = STRUCTURED_PROMPT
+        rec["prompt"] = "structured-count-1-200"
+    elif args.coding:
+        prompt = CODING_PROMPT
+        rec["prompt"] = "coding-clamp-range"
+    else:
+        prompt = BENCH_PROMPT
+        rec["prompt"] = "hashmap-prose"
     rec["thinking"] = False
     rec["temperature"] = 0
-    if args.structured:
-        print("[bench] warmup (32 tokens)", flush=True)
-        warm = stream_bench(32, prompt=prompt)
+    rec["concurrency"] = args.concurrency
+    rec["note"] = (
+        "decode_ms_per_draft_step is a serving-cycle ratio, not a kernel timing"
+    )
+    if args.structured or args.coding or args.concurrency > 1:
+        print(f"[bench] warmup ({args.warmup_tokens} tokens)", flush=True)
+        warm = stream_bench(args.warmup_tokens, prompt=prompt)
         rec["warmup"] = {k: warm[k] for k in ("tok_s", "ttft_s", "completion_tokens")}
         print(json.dumps(rec["warmup"]), flush=True)
         args.skip_coherence = True
     for i in range(args.runs):
-        print(f"[bench] run {i+1}/{args.runs} phase={args.phase}", flush=True)
+        print(
+            f"[bench] run {i+1}/{args.runs} phase={args.phase} conc={args.concurrency}",
+            flush=True,
+        )
         before = spec_snapshot()
-        r = stream_bench(args.max_tokens, prompt=prompt)
-        r["spec"] = spec_delta(before, spec_snapshot())
-        rec["runs"].append(r)
+        if args.concurrency == 1:
+            r = stream_bench(args.max_tokens, prompt=prompt)
+            r["spec"] = spec_delta(before, spec_snapshot())
+            rec["runs"].append(r)
+        else:
+            import concurrent.futures
+
+            wall0 = time.perf_counter()
+            with concurrent.futures.ThreadPoolExecutor(
+                max_workers=args.concurrency
+            ) as pool:
+                futs = [
+                    pool.submit(stream_bench, args.max_tokens, prompt)
+                    for _ in range(args.concurrency)
+                ]
+                parts = [f.result() for f in futs]
+            wall = time.perf_counter() - wall0
+            after = spec_snapshot()
+            spec = spec_delta(before, after)
+            tokens = sum(p["completion_tokens"] for p in parts)
+            r = {
+                "concurrency": args.concurrency,
+                "parts": parts,
+                "wall_s": wall,
+                "tok_s": median([p["tok_s"] for p in parts]),
+                "ttft_s": median([p["ttft_s"] for p in parts]),
+                "decode_s": median([p["decode_s"] for p in parts]),
+                "completion_tokens": tokens,
+                "aggregate_tok_s": tokens / wall if wall else None,
+                "finish_reason": [p["finish_reason"] for p in parts],
+                "nan": any(p["nan"] for p in parts),
+                "spec": spec,
+            }
+            rec["runs"].append(r)
         print(
             json.dumps(
                 {
                     "tok_s": r["tok_s"],
                     "ttft_s": r["ttft_s"],
                     "completion_tokens": r["completion_tokens"],
+                    "aggregate_tok_s": r.get("aggregate_tok_s"),
                     "finish_reason": r["finish_reason"],
                     "nan": r["nan"],
-                    **{k: r["spec"][k] for k in ("accept_ratio", "accepted_per_step", "pos")},
+                    **{
+                        k: r["spec"][k]
+                        for k in (
+                            "accept_ratio",
+                            "accepted_per_step",
+                            "mean_draft_tokens_per_step",
+                            "pos",
+                        )
+                        if k in r["spec"]
+                    },
                 }
             ),
             flush=True,
@@ -308,6 +379,19 @@ def main() -> int:
     )
     rec["accepted_per_step_median"] = median(
         [r.get("spec", {}).get("accepted_per_step") for r in rec["runs"]]
+    )
+    rec["mean_draft_tokens_per_step_median"] = median(
+        [r.get("spec", {}).get("mean_draft_tokens_per_step") for r in rec["runs"]]
+    )
+    rec["aggregate_tok_s_median"] = median(
+        [r.get("aggregate_tok_s") for r in rec["runs"]]
+    )
+    rec["decode_ms_per_draft_step_median"] = median(
+        [
+            1000.0 * r["decode_s"] / r["spec"]["drafts"]
+            for r in rec["runs"]
+            if r.get("decode_s") and r.get("spec", {}).get("drafts")
+        ]
     )
     rec["any_nan"] = any(r["nan"] for r in rec["runs"])
     if not args.skip_coherence:

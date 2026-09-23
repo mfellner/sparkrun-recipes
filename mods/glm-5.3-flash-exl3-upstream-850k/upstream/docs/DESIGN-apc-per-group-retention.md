@@ -243,8 +243,9 @@ With `t = 3` turns (`floor` of the bound; the table's `2b − b_d` is 0 dense, 4
 | R=28672 | 5.625 | 4.125 | 37 | 33 | `(642−123) / 7.125` ⇒ **S ≤ 72** | 258K | 56K 98 %, 80K 96 % ✓ (no gain over 14336, as predicted) |
 | **proposed**: MLA+mamba dense, drafter boundary-only | **5** | 0 | 33 | 33 | `(642−99) / 10` ⇒ **S ≤ 54** | **193.5K** | to be measured |
 
-(These five numbers are asserted by `tests/test_apc_per_group_retention.py::test_id_cost`, so the table
-and the test cannot drift apart.)
+(These five numbers are asserted by `tests/test_apc_per_group_retention.py` (`case_id_cost`, exercised
+by both the script form and the `test_apc_per_group_retention` pytest node), so the table and the test
+cannot drift apart.)
 
 **The `R=7168` row is a miss, and a material one.** An 80K pair needs `cdiv(80000, 3584) = 23` segments
 per conversation — exactly the bound, i.e. zero headroom — and it measured **0 %**, not "marginal". The
@@ -450,7 +451,8 @@ GLM53_APC_RETENTION_INTERVAL_SWA=0       # drafter: replay/junction boundaries o
 
 ### 8.1 Host test — `tests/test_apc_per_group_retention.py`
 
-Runs anywhere with a copy of `kv_cache_coordinator.py`; no GPU, no vLLM import.
+Runs with copies of `kv_cache_coordinator.py`, `block_pool.py`, and
+`single_type_kv_cache_manager.py`; no GPU or vLLM import.
 
 1. Apply the patch to a copy of the fork's file; assert MARK present, anchors consumed, `py_compile`
    clean. Re-apply; assert byte-identical (idempotence).
@@ -493,9 +495,10 @@ Exit non-zero on any failure (validators must fail closed).
 
 **Status: green.** Run:
 
-```
-GLM53_KV_COORDINATOR_PY_SRC=<copy of the fork's kv_cache_coordinator.py> \
-GLM53_KV_COORDINATOR_PY_PRISTINE=<pristine copy of the same file> \
+```sh
+GLM53_KV_COORDINATOR_PY_SRC=<pristine kv_cache_coordinator.py> \
+GLM53_BLOCK_POOL_PY_SRC=<pristine block_pool.py> \
+GLM53_SINGLE_TYPE_KV_CACHE_MANAGER_PY_SRC=<pristine single_type_kv_cache_manager.py> \
     python3 tests/test_apc_per_group_retention.py
 ```
 
@@ -503,6 +506,17 @@ GLM53_KV_COORDINATOR_PY_PRISTINE=<pristine copy of the same file> \
 `/tmp/kv_cache_coordinator_pristine.py`; the composition case **fails closed** rather than skipping if
 neither is available. Verified 2026-08-31 against a copy of the live container file (which already
 carries `patch_hybrid_prefix_hit`) plus a pinned pristine copy of the same fork source.
+
+For the pinned runtime revision `0.1.dev20051+g487ecf187`, use the three files from
+[`vllm/v1/core` at commit `487ecf187d3dfe74d2cf6119a92881dba403c219`](https://github.com/vllm-project/vllm/tree/487ecf187d3dfe74d2cf6119a92881dba403c219/vllm/v1/core).
+Keep these pristine test inputs outside the repository; the test patches temporary copies.
+
+The same suite runs under pytest through the single node
+`tests/test_apc_per_group_retention.py::test_apc_per_group_retention`, reading the same variables (all
+three `..._SRC` files plus the optional `..._PRISTINE`). pytest reports **absent** pinned sources as a
+skip that names the files and variables — the deployed image's copies are already patched, so a host
+without a clean checkout has nothing to check — while an explicit path that is set and unusable stays a
+hard error. The script form above keeps exiting non-zero in every one of those cases.
 
 ### 8.2 Live plan (after the current sweep finishes; the server must be idle and past the boot warm-up burst)
 

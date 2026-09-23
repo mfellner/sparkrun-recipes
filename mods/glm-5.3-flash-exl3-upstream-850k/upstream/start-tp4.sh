@@ -35,6 +35,8 @@
 # never reads that file. Shared tokens/IPs can stay in .env.
 # ============================================================================
 set -euo pipefail
+# Non-login environments (cron, some service managers) may omit USER; default to the effective account. #197
+USER="${USER:-$(id -un)}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
@@ -79,13 +81,47 @@ _cli_ablit_mtp="${ABLIT_INCLUDE_MTP-}"
 # must reach validate_numeric_config, not be swallowed by a .env value.
 _cli_indexer_workspace_set="${GLM53_INDEXER_WORKSPACE+1}"
 _cli_indexer_workspace="${GLM53_INDEXER_WORKSPACE-}"
+_cli_draft_kv_compact_set="${GLM53_DRAFT_KV_COMPACT+1}"
+_cli_draft_kv_compact="${GLM53_DRAFT_KV_COMPACT-}"
 _cli_spinwait_ms_set="${GLM53_SPINWAIT_MS+1}"
 _cli_spinwait_ms="${GLM53_SPINWAIT_MS-}"
 _cli_apc_swa_set="${GLM53_APC_RETENTION_INTERVAL_SWA+1}"
+_cli_sparse_slice_set="${VLLM_SM120_SPARSE_MLA_SLICE_TOKENS+1}"
+_cli_sparse_slice="${VLLM_SM120_SPARSE_MLA_SLICE_TOKENS-}"
 _cli_apc_swa="${GLM53_APC_RETENTION_INTERVAL_SWA-}"
+# Caller EXTRA_ARGS is captured here (setness + value, explicit empty included) and restored
+# verbatim after the topology overlay, so the TP2-cap strip below acts on the file-derived
+# value only. #204 / PR #242 review.
+_cli_extra_args_set="${EXTRA_ARGS+1}"
+_cli_extra_args="${EXTRA_ARGS-}"
 set -a
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/.env"
+# TP=4 does not inherit the 2-node KV cap from .env (#204): .env.example ships
+# EXTRA_ARGS="--kv-cache-memory-bytes 15032385536", sized for TP=2 at 850k, and 14 GiB does
+# not hold one 1,000,000-token request. Drop that token (either spelling) and keep the rest;
+# set a TP=4 value in .env.tp4 if you want to pin the pool. This acts on the file-derived
+# value only: the caller's EXTRA_ARGS was captured above and is restored below untouched.
+if [ -n "${EXTRA_ARGS:-}" ]; then
+    _kept=""; _skip=0; _dropped=0
+    # shellcheck disable=SC2086
+    for _tok in $EXTRA_ARGS; do
+        if [ "$_skip" = 1 ]; then _skip=0; continue; fi
+        case "$_tok" in
+            --kv-cache-memory-bytes) _skip=1; _dropped=1; continue ;;
+            --kv-cache-memory-bytes=*) _dropped=1; continue ;;
+        esac
+        _kept="${_kept:+$_kept }$_tok"
+    done
+    EXTRA_ARGS="$_kept"
+    # Say so when the shared .env value really loses its cap. Caller-supplied EXTRA_ARGS is
+    # restored verbatim below, so it is never reported here; no argument contents are echoed.
+    # warn() is defined further down, so this prints in warn()'s own format directly.
+    if [ "$_dropped" = 1 ] && [ -z "${_cli_extra_args_set}" ]; then
+        printf '\033[1;33m[glm53-exl3-tp4]\033[0m %s\n' "NOTE: dropped the shared .env --kv-cache-memory-bytes reservation (TP=4 does not inherit it); set a TP=4 value in ${SCRIPT_DIR}/.env.tp4. #204" >&2
+    fi
+    unset _kept _skip _tok _dropped
+fi
 # TP=4 overlay wins over the 2× knobs in .env.
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/.env.tp4"
@@ -111,8 +147,11 @@ set +a
 [ -n "${_cli_ablit_alpha}" ] && ABLIT_ALPHA="$_cli_ablit_alpha"
 [ -n "${_cli_ablit_mtp}" ] && ABLIT_INCLUDE_MTP="$_cli_ablit_mtp"
 [ -n "${_cli_indexer_workspace_set}" ] && GLM53_INDEXER_WORKSPACE="$_cli_indexer_workspace"
+[ -n "${_cli_draft_kv_compact_set}" ] && GLM53_DRAFT_KV_COMPACT="$_cli_draft_kv_compact"
 [ -n "${_cli_spinwait_ms_set}" ] && GLM53_SPINWAIT_MS="$_cli_spinwait_ms"
 [ -n "${_cli_apc_swa_set}" ] && GLM53_APC_RETENTION_INTERVAL_SWA="$_cli_apc_swa"
+[ -n "${_cli_sparse_slice_set}" ] && VLLM_SM120_SPARSE_MLA_SLICE_TOKENS="$_cli_sparse_slice"
+[ -n "${_cli_extra_args_set}" ] && EXTRA_ARGS="$_cli_extra_args"
 
 # ----------------------------- configuration -------------------------------
 MODEL="${MODEL:-Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw}"
@@ -122,7 +161,7 @@ MODEL_CACHE_NAME="${MODEL_CACHE_NAME:-models--${MODEL//\//--}}"
 MODEL_FALLBACK_CACHE_NAME="${MODEL_FALLBACK_CACHE_NAME:-models--${MODEL_FALLBACK//\//--}}"
 # Hub commit on the Mia-AiLab mirror (the 5ab363a8-byte-identical upload).
 MODEL_REVISION="${MODEL_REVISION:-25a44fdbf16862a46b7cc9921142c6c81350af2f}"
-IMAGE="${IMAGE:-ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks:exl3}"
+IMAGE="${IMAGE:-ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks:exl3-instanttensor}"
 SERVED_MODEL_NAME="${SERVED_MODEL_NAME:-GLM-5.3-Flash-EXL3}"
 GHCR_USER="${GHCR_USER:-MiaAI-Lab}"
 
@@ -164,6 +203,9 @@ WORKER2_CX7_IB="${WORKER2_CX7_IB:-$WORKER_CX7_IB}"
 WORKER3_CX7_IF="${WORKER3_CX7_IF:-$WORKER_CX7_IF}"
 WORKER3_CX7_IB="${WORKER3_CX7_IB:-$WORKER_CX7_IB}"
 NCCL_DEBUG="${NCCL_DEBUG:-WARN}"
+# Empty = let NCCL pick the channel count. A positive integer pins both
+# NCCL_MIN_NCHANNELS and NCCL_MAX_NCHANNELS on all ranks (same knob as start.sh).
+NCCL_NCHANNELS="${NCCL_NCHANNELS:-}"
 NCCL_IB_GID_INDEX="${NCCL_IB_GID_INDEX:-3}"
 # The RoCEv2 GID index is per-NIC: the usable entry is the one whose GID matches
 # that node's own fabric IP. Most pairs share a good index; some do not (this kit
@@ -216,12 +258,27 @@ CHAT_TEMPLATE="${CHAT_TEMPLATE:-/opt/glm53/chat_template.jinja}"
 VIDEO_PATCH_HOST="${VIDEO_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_glm_video_placeholders.py}"
 STOP_PATCH_HOST="${STOP_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_suppress_stops_in_reasoning.py}"
 SCHED_PATCH_HOST="${SCHED_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_scheduler_decode_floor.py}"
+MAMBA_CHUNK_PATCH_HOST="${MAMBA_CHUNK_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_mamba_align_chunking.py}"
 DRAFTER_PATCH_HOST="${DRAFTER_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_glm5_drafter_group.py}"
 APC_PATCH_HOST="${APC_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_hybrid_prefix_hit.py}"
+PERGROUP_PATCH_HOST="${PERGROUP_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_apc_per_group_retention.py}"
+MAMBA_STATE_PATCH_HOST="${MAMBA_STATE_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_mamba_align_state_free.py}"
 XGRAMMAR_PATCH_HOST="${XGRAMMAR_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_xgrammar_termination.py}"
 KPOOL_TAIL_PATCH_HOST="${KPOOL_TAIL_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_kpool_tail_slotmap.py}"
 SPINWAIT_PATCH_HOST="${SPINWAIT_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_spinwait.py}"
+SPARSE_SLICE_PATCH_HOST="${SPARSE_SLICE_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_sparse_mla_slice.py}"
 KV_CACHE_DTYPE="${KV_CACHE_DTYPE:-fp8}"
+# Direct-I/O safetensors on the published InstantTensor image. Unset follows
+# IMAGE (*instanttensor* → on). Explicit empty (LOAD_FORMAT=) is vLLM auto.
+# PREFIX_MATCH_UNIT empty = vLLM default hash grain.
+# 512 is illegal on this hybrid stack (KDA align block is 64).
+if [ -z "${LOAD_FORMAT+x}" ]; then
+    case "$IMAGE" in
+        *instanttensor*) LOAD_FORMAT=instanttensor ;;
+        *) LOAD_FORMAT= ;;
+    esac
+fi
+PREFIX_MATCH_UNIT="${PREFIX_MATCH_UNIT:-}"
 QUANTIZATION="${QUANTIZATION:-exl3}"
 LANGUAGE_MODEL_ONLY="${LANGUAGE_MODEL_ONLY:-0}"
 SKIP_MM_PROFILING="${SKIP_MM_PROFILING:-1}"
@@ -279,17 +336,30 @@ READY_TIMEOUT="${READY_TIMEOUT:-3600}"
 # 1 = suppress client stop strings until </think> (DSpark #42 class).
 GLM53_SUPPRESS_STOPS_IN_REASONING="${GLM53_SUPPRESS_STOPS_IN_REASONING:-1}"
 # Mixed-step prefill policy when a peer is already decoding (issue #6).
-# skip = do not mix; N>0 = cap tokens; 0 = off.
-GLM53_MIXED_PREFILL_CHUNK="${GLM53_MIXED_PREFILL_CHUNK:-skip}"
+# fair = time-share mixing (default since 2026-09-15, overlay v5);
+# skip = do not mix; N>0 = cap mixed prefill tokens; 0 / off = no isolation.
+# Fair knobs are forwarded on every rank even when CHUNK is not fair.
+GLM53_MIXED_PREFILL_CHUNK="${GLM53_MIXED_PREFILL_CHUNK:-fair}"
+GLM53_FAIR_PREFILL_CHUNK="${GLM53_FAIR_PREFILL_CHUNK:-256}"
+GLM53_FAIR_PREFILL_SHARE="${GLM53_FAIR_PREFILL_SHARE:-0.30}"
+GLM53_FAIR_PREFILL_MAX_INTERVAL_MS="${GLM53_FAIR_PREFILL_MAX_INTERVAL_MS:-2000}"
+GLM53_FAIR_PREFILL_MAX_STEP_MS="${GLM53_FAIR_PREFILL_MAX_STEP_MS:-2000}"
+GLM53_FAIR_PREFILL_MAX_CHUNKS="${GLM53_FAIR_PREFILL_MAX_CHUNKS:-1}"
 # Sparse-indexer prefill gather workspace (overlay/patch_indexer_workspace.py).
 # stock = max_model_len * 40 entries (5036.40 MB locked at 1M, measured);
 # rightsize = the legal per-step maximum, ~+26% KV. Default applies only
 # when UNSET: an explicitly empty value is an operator error and
 # validate_numeric_config rejects it rather than guessing a serving mode.
 GLM53_INDEXER_WORKSPACE="${GLM53_INDEXER_WORKSPACE-stock}"
+# Opt-in larger draft KV pages; no weight or cache precision changes.
+GLM53_DRAFT_KV_COMPACT="${GLM53_DRAFT_KV_COMPACT-0}"
 # SpinCondition reader busy-loop window. "stock" preserves vLLM's 1 s default;
 # 1..1000 selects milliseconds. The frozen TP=2 sweep selected 16 ms.
 GLM53_SPINWAIT_MS="${GLM53_SPINWAIT_MS-stock}"
+# Bounded final sparse-MLA attention call (overlay/patch_sparse_mla_slice.py,
+# #223 mitigation for #128/#159). 0 = stock backend, byte-identical; 64 = slice
+# the final call into <=64 query rows on every rank. Restart to apply.
+VLLM_SM120_SPARSE_MLA_SLICE_TOKENS="${VLLM_SM120_SPARSE_MLA_SLICE_TOKENS-0}"
 # EngineCore stock timeout is 300s; mid-serve Triton/TileLang JIT on TP=2 can
 # exceed that without being a true hang. NCCL watchdog is still 600s.
 VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS="${VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS:-1800}"
@@ -382,6 +452,14 @@ _glm53_validate_enum() {
     return 2
 }
 
+_glm53_validate_sparse_slice() {
+    # Empty canonicalizes to 0 so the container patch sees one spelling.
+    [ -z "${VLLM_SM120_SPARSE_MLA_SLICE_TOKENS:-}" ] && VLLM_SM120_SPARSE_MLA_SLICE_TOKENS=0
+    _glm53_validate_enum VLLM_SM120_SPARSE_MLA_SLICE_TOKENS \
+        "$VLLM_SM120_SPARSE_MLA_SLICE_TOKENS" 0 64 || return
+    export VLLM_SM120_SPARSE_MLA_SLICE_TOKENS
+}
+
 _glm53_validate_spinwait_ms() {
     if [ "$GLM53_SPINWAIT_MS" = "stock" ]; then
         export GLM53_SPINWAIT_MS
@@ -389,6 +467,69 @@ _glm53_validate_spinwait_ms() {
     fi
     _glm53_canonical_positive_int \
         GLM53_SPINWAIT_MS "$GLM53_SPINWAIT_MS" 1000
+}
+
+_glm53_validate_mixed_prefill() {
+    if [ -n "${GLM53_MIXED_PREFILL_CHUNK+x}" ]; then
+        case "$GLM53_MIXED_PREFILL_CHUNK" in
+            skip|-1|0|off|no|fair) ;;
+            *)
+                _glm53_canonical_positive_int GLM53_MIXED_PREFILL_CHUNK \
+                    "$GLM53_MIXED_PREFILL_CHUNK" "$MAX_NUM_BATCHED_TOKENS" || return
+                ;;
+        esac
+        export GLM53_MIXED_PREFILL_CHUNK
+    fi
+    if [ -n "${GLM53_FAIR_PREFILL_CHUNK:-}" ]; then
+        _glm53_canonical_positive_int GLM53_FAIR_PREFILL_CHUNK \
+            "$GLM53_FAIR_PREFILL_CHUNK" "$MAX_NUM_BATCHED_TOKENS" || return
+    fi
+    if [ -n "${GLM53_FAIR_PREFILL_MAX_INTERVAL_MS:-}" ]; then
+        _glm53_canonical_positive_int GLM53_FAIR_PREFILL_MAX_INTERVAL_MS \
+            "$GLM53_FAIR_PREFILL_MAX_INTERVAL_MS" 600000 || return
+    fi
+    if [ -n "${GLM53_FAIR_PREFILL_MAX_STEP_MS:-}" ]; then
+        _glm53_canonical_positive_int GLM53_FAIR_PREFILL_MAX_STEP_MS \
+            "$GLM53_FAIR_PREFILL_MAX_STEP_MS" 600000 || return
+    fi
+    if [ -n "${GLM53_FAIR_PREFILL_MAX_CHUNKS:-}" ]; then
+        _glm53_canonical_positive_int GLM53_FAIR_PREFILL_MAX_CHUNKS \
+            "$GLM53_FAIR_PREFILL_MAX_CHUNKS" 16 || return
+    fi
+    if [ -n "${GLM53_FAIR_PREFILL_SHARE:-}" ]; then
+        if ! [[ "$GLM53_FAIR_PREFILL_SHARE" =~ ^(0([.][0-9]+)?|[.][0-9]+|1([.]0+)?)$ ]] \
+           || ! awk -v u="$GLM53_FAIR_PREFILL_SHARE" 'BEGIN { exit !(u >= 0 && u <= 1) }'; then
+            echo "GLM53_FAIR_PREFILL_SHARE must be between 0 and 1 (got: $GLM53_FAIR_PREFILL_SHARE)" >&2
+            return 2
+        fi
+        export GLM53_FAIR_PREFILL_SHARE
+    fi
+}
+
+# Prefix-cache retention intervals: "" (unset) and 0 pass; anything else is a
+# positive multiple of 3584, at most 1e6. Same rule as start.sh / the overlay.
+GLM53_APC_BLOCK_TOKENS=3584
+GLM53_APC_RETENTION_MAX=1000000
+_glm53_validate_retention_interval() {
+    local name="$1" value="$2" canonical
+    [ -n "$value" ] || return 0
+    if ! [[ "$value" =~ ^[0-9]+$ ]]; then
+        echo "$name must be empty, 0, or a positive multiple of $GLM53_APC_BLOCK_TOKENS <= $GLM53_APC_RETENTION_MAX (got: $value)" >&2
+        return 2
+    fi
+    canonical="$value"
+    while [ "${canonical#0}" != "$canonical" ]; do canonical="${canonical#0}"; done
+    [ -n "$canonical" ] || canonical=0
+    if [ "$canonical" != 0 ] \
+       && { [ "${#canonical}" -gt "${#GLM53_APC_RETENTION_MAX}" ] \
+            || [ "$canonical" -gt "$GLM53_APC_RETENTION_MAX" ] \
+            || [ $((canonical % GLM53_APC_BLOCK_TOKENS)) -ne 0 ]; }; then
+        echo "$name must be empty, 0, or a positive multiple of $GLM53_APC_BLOCK_TOKENS <= $GLM53_APC_RETENTION_MAX (got: $value)" >&2
+        return 2
+    fi
+    printf -v "$name" '%s' "$canonical"
+    # shellcheck disable=SC2163
+    export "$name"
 }
 
 validate_numeric_config() {
@@ -402,13 +543,20 @@ validate_numeric_config() {
     _glm53_canonical_positive_int MAX_NUM_BATCHED_TOKENS "$MAX_NUM_BATCHED_TOKENS" 8388608 || return
     _glm53_validate_enum GLM53_INDEXER_WORKSPACE "${GLM53_INDEXER_WORKSPACE-stock}" \
         stock rightsize || return
-    _glm53_validate_spinwait_ms || return
-    if [ -n "${GLM53_APC_RETENTION_INTERVAL:-}" ]; then
-        echo "GLM53_APC_RETENTION_INTERVAL is supported only by start.sh (TP=2); unset it for start-tp4.sh" >&2
+    _glm53_validate_enum GLM53_DRAFT_KV_COMPACT "${GLM53_DRAFT_KV_COMPACT-0}" 0 1 || return
+    if [ "${GLM53_DRAFT_KV_COMPACT-0}" = "1" ] && [ "$SPEC_METHOD" != "dflash" ]; then
+        # Compact draft pages switch the prefix-cache coordinator to a
+        # DFlash-only boundary lookup; the allocator also refuses them in-container.
+        echo "GLM53_DRAFT_KV_COMPACT=1 requires SPEC_METHOD=dflash (got: $SPEC_METHOD)" >&2
         return 2
     fi
-    if [ -n "${GLM53_APC_RETENTION_INTERVAL_SWA:-}" ]; then
-        echo "GLM53_APC_RETENTION_INTERVAL_SWA is supported only by start.sh (TP=2); unset it for start-tp4.sh" >&2
+    _glm53_validate_spinwait_ms || return
+    _glm53_validate_sparse_slice || return
+    _glm53_validate_mixed_prefill || return
+    _glm53_validate_retention_interval GLM53_APC_RETENTION_INTERVAL "${GLM53_APC_RETENTION_INTERVAL-}" || return
+    _glm53_validate_retention_interval GLM53_APC_RETENTION_INTERVAL_SWA "${GLM53_APC_RETENTION_INTERVAL_SWA-}" || return
+    if [ -n "${GLM53_APC_RETENTION_INTERVAL_SWA:-}" ] && [ "$SPEC_METHOD" != "dflash" ]; then
+        echo "GLM53_APC_RETENTION_INTERVAL_SWA requires SPEC_METHOD=dflash (got: $SPEC_METHOD)" >&2
         return 2
     fi
 }
@@ -653,9 +801,11 @@ preflight() {
     [ -f "$SCHED_PATCH_HOST" ] || die "$SCHED_PATCH_HOST missing"
     [ -f "$DRAFTER_PATCH_HOST" ] || die "$DRAFTER_PATCH_HOST missing"
     [ -f "$APC_PATCH_HOST" ] || die "$APC_PATCH_HOST missing"
+    [ -f "$PERGROUP_PATCH_HOST" ] || die "$PERGROUP_PATCH_HOST missing"
     [ -f "$XGRAMMAR_PATCH_HOST" ] || die "$XGRAMMAR_PATCH_HOST missing"
     [ -f "$KPOOL_TAIL_PATCH_HOST" ] || die "$KPOOL_TAIL_PATCH_HOST missing"
     [ -f "$SPINWAIT_PATCH_HOST" ] || die "$SPINWAIT_PATCH_HOST missing"
+    [ -f "$SPARSE_SLICE_PATCH_HOST" ] || die "$SPARSE_SLICE_PATCH_HOST missing"
     [ -f "$SCRIPT_DIR/overlay/patch_ablit.py" ] || die "$SCRIPT_DIR/overlay/patch_ablit.py missing"
     [ -f "$SCRIPT_DIR/overlay/ablit_runtime.py" ] || die "$SCRIPT_DIR/overlay/ablit_runtime.py missing"
     [ -f "$SCRIPT_DIR/ablit/LAYER_MAP.json" ] || die "$SCRIPT_DIR/ablit/LAYER_MAP.json missing"
@@ -758,7 +908,10 @@ overlay_recipe_hash() {
             "$SCRIPT_DIR/ablit" \
             -type f \
             ! -path '*/__pycache__/*' \
+            ! -path '*/.pytest_cache/*' \
             ! -path '*/ablit/transplant/*' \
+            ! -path '*/files/nfs-server/*' \
+            ! -path '*/files/nfs-share.sh' \
             ! -name '*.pyc' \
             2>/dev/null
     } | LC_ALL=C sort | xargs -d '\n' -r sha256sum | sha256sum | awk '{print $1}'
@@ -787,7 +940,7 @@ pull_image() {
     log "pulling ${IMAGE} ..."
     docker pull "$IMAGE" && return 0
     die "docker pull ${IMAGE} failed.
-  :exl3 is a public GHCR package — check network / disk.
+  :exl3-instanttensor is a public GHCR package — check network / disk.
   If you still get 401/403: echo YOUR_PAT | docker login ghcr.io -u YOUR_GITHUB_USER --password-stdin
   Overlay rebuild: BUILD=1 ./start.sh. Recipe-stamp drift also rebuilds; SKIP_BUILD=1 keeps GHCR."
 }
@@ -815,12 +968,12 @@ ensure_image() {
     local head_ok=0 worker_ok=0 head_key="" worker_key=""
     if docker image inspect "$IMAGE" >/dev/null 2>&1; then
         head_ok=1
-        head_key="$(local_image_key)"
+        head_key="$(local_image_key || true)"
     fi
     worker_ok=1
     for r in 1 2 3; do
         if worker_ssh_n "$r" "docker image inspect '$IMAGE' >/dev/null 2>&1"; then
-            worker_key="$(worker_image_key "$r")"
+            worker_key="$(worker_image_key "$r" || true)"
             if images_match "$head_key" "$worker_key"; then
                 :
             else
@@ -848,13 +1001,13 @@ ensure_image() {
     fi
     if [ "${BUILD:-0}" = "1" ]; then
         build_image
-        head_key="$(local_image_key)"
+        head_key="$(local_image_key || true)"
         head_ok=1
         worker_ok=0
     elif image_from_registry && [ "$skip_pull" != "1" ]; then
         local before_key="$head_key"
         pull_image
-        head_key="$(local_image_key)"
+        head_key="$(local_image_key || true)"
         head_ok=1
         if [ "$head_key" != "$before_key" ]; then
             log "pulled ${IMAGE} (${before_key:-missing} -> ${head_key})"
@@ -871,7 +1024,7 @@ ensure_image() {
             die "SKIP_PULL=1 but ${IMAGE} is not on the head"
         fi
         build_image
-        head_key="$(local_image_key)"
+        head_key="$(local_image_key || true)"
         head_ok=1
         worker_ok=0
     fi
@@ -880,13 +1033,13 @@ ensure_image() {
     elif [ "$worker_ok" = "0" ]; then
         for r in 1 2 3; do
             local wok=0
-            worker_key="$(worker_image_key "$r")"
+            worker_key="$(worker_image_key "$r" || true)"
             if images_match "$head_key" "$worker_key"; then
                 continue
             fi
             if image_from_registry && [ "$skip_pull" != "1" ] && [ "${BUILD:-0}" != "1" ]; then
                 if pull_image_on_worker "$r"; then
-                    worker_key="$(worker_image_key "$r")"
+                    worker_key="$(worker_image_key "$r" || true)"
                     if images_match "$head_key" "$worker_key"; then
                         wok=1
                         log "rank ${r} pulled ${IMAGE} — matches head"
@@ -899,7 +1052,7 @@ ensure_image() {
             fi
             if [ "$wok" = "0" ]; then
                 ship_image_to_worker "$r"
-                worker_key="$(worker_image_key "$r")"
+                worker_key="$(worker_image_key "$r" || true)"
                 if images_match "$head_key" "$worker_key"; then
                     :
                 elif worker_ssh_n "$r" "docker image inspect '$IMAGE' >/dev/null 2>&1"; then
@@ -1138,6 +1291,8 @@ ARGS=(
 [ -n "${MAX_NUM_SEQS:-}" ] && ARGS+=(--max-num-seqs "${MAX_NUM_SEQS}")
 [ -n "${MAX_NUM_BATCHED_TOKENS:-}" ] && ARGS+=(--max-num-batched-tokens "${MAX_NUM_BATCHED_TOKENS}")
 [ -n "${KV_CACHE_DTYPE:-}" ] && ARGS+=(--kv-cache-dtype "${KV_CACHE_DTYPE}")
+[ -n "${LOAD_FORMAT:-}" ] && ARGS+=(--load-format "${LOAD_FORMAT}")
+[ -n "${PREFIX_MATCH_UNIT:-}" ] && ARGS+=(--prefix-match-unit "${PREFIX_MATCH_UNIT}")
 if [ "${SPEC_METHOD:-mtp}" = "dflash" ]; then
     ARGS+=(--speculative-config "$(python3 -S -c 'import json,os
 spec={"method":"dflash","model":os.environ["DFLASH_MODEL_DIR"],"num_speculative_tokens":int(os.environ.get("DFLASH_TOKENS","7")),"kv_cache_dtype":"auto","draft_sample_method":"probabilistic","rejection_sample_method":"standard"}
@@ -1177,11 +1332,20 @@ fi
 if [ -f /opt/glm53/patch_scheduler_decode_floor.py ]; then
     python3 /opt/glm53/patch_scheduler_decode_floor.py
 fi
+if [ -f /opt/glm53/patch_mamba_align_chunking.py ]; then
+    python3 /opt/glm53/patch_mamba_align_chunking.py
+fi
 if [ -f /opt/glm53/patch_glm5_drafter_group.py ]; then
     python3 /opt/glm53/patch_glm5_drafter_group.py
 fi
 if [ -f /opt/glm53/patch_hybrid_prefix_hit.py ]; then
     python3 /opt/glm53/patch_hybrid_prefix_hit.py
+fi
+if [ -f /opt/glm53/patch_apc_per_group_retention.py ]; then
+    python3 /opt/glm53/patch_apc_per_group_retention.py
+fi
+if [ -f /opt/glm53/patch_mamba_align_state_free.py ]; then
+    python3 /opt/glm53/patch_mamba_align_state_free.py
 fi
 if [ -f /opt/glm53/patch_xgrammar_termination.py ]; then
     python3 /opt/glm53/patch_xgrammar_termination.py
@@ -1191,6 +1355,9 @@ if [ -f /opt/glm53/patch_kpool_tail_slotmap.py ]; then
 fi
 if [ -f /opt/glm53/patch_spinwait.py ]; then
     python3 /opt/glm53/patch_spinwait.py
+fi
+if [ -f /opt/glm53/patch_sparse_mla_slice.py ]; then
+    python3 /opt/glm53/patch_sparse_mla_slice.py
 fi
 if [ -f /opt/glm53/patch_indexer_workspace.py ]; then
     python3 /opt/glm53/patch_indexer_workspace.py
@@ -1236,6 +1403,8 @@ ARGS=(
 [ -n "${MAX_NUM_SEQS:-}" ] && ARGS+=(--max-num-seqs "${MAX_NUM_SEQS}")
 [ -n "${MAX_NUM_BATCHED_TOKENS:-}" ] && ARGS+=(--max-num-batched-tokens "${MAX_NUM_BATCHED_TOKENS}")
 [ -n "${KV_CACHE_DTYPE:-}" ] && ARGS+=(--kv-cache-dtype "${KV_CACHE_DTYPE}")
+[ -n "${LOAD_FORMAT:-}" ] && ARGS+=(--load-format "${LOAD_FORMAT}")
+[ -n "${PREFIX_MATCH_UNIT:-}" ] && ARGS+=(--prefix-match-unit "${PREFIX_MATCH_UNIT}")
 if [ "${SPEC_METHOD:-mtp}" = "dflash" ]; then
     ARGS+=(--speculative-config "$(python3 -S -c 'import json,os
 spec={"method":"dflash","model":os.environ["DFLASH_MODEL_DIR"],"num_speculative_tokens":int(os.environ.get("DFLASH_TOKENS","7")),"kv_cache_dtype":"auto","draft_sample_method":"probabilistic","rejection_sample_method":"standard"}
@@ -1273,11 +1442,20 @@ fi
 if [ -f /opt/glm53/patch_scheduler_decode_floor.py ]; then
     python3 /opt/glm53/patch_scheduler_decode_floor.py
 fi
+if [ -f /opt/glm53/patch_mamba_align_chunking.py ]; then
+    python3 /opt/glm53/patch_mamba_align_chunking.py
+fi
 if [ -f /opt/glm53/patch_glm5_drafter_group.py ]; then
     python3 /opt/glm53/patch_glm5_drafter_group.py
 fi
 if [ -f /opt/glm53/patch_hybrid_prefix_hit.py ]; then
     python3 /opt/glm53/patch_hybrid_prefix_hit.py
+fi
+if [ -f /opt/glm53/patch_apc_per_group_retention.py ]; then
+    python3 /opt/glm53/patch_apc_per_group_retention.py
+fi
+if [ -f /opt/glm53/patch_mamba_align_state_free.py ]; then
+    python3 /opt/glm53/patch_mamba_align_state_free.py
 fi
 if [ -f /opt/glm53/patch_xgrammar_termination.py ]; then
     python3 /opt/glm53/patch_xgrammar_termination.py
@@ -1287,6 +1465,9 @@ if [ -f /opt/glm53/patch_kpool_tail_slotmap.py ]; then
 fi
 if [ -f /opt/glm53/patch_spinwait.py ]; then
     python3 /opt/glm53/patch_spinwait.py
+fi
+if [ -f /opt/glm53/patch_sparse_mla_slice.py ]; then
+    python3 /opt/glm53/patch_sparse_mla_slice.py
 fi
 if [ -f /opt/glm53/patch_indexer_workspace.py ]; then
     python3 /opt/glm53/patch_indexer_workspace.py
@@ -1315,11 +1496,15 @@ _tp4_scp_runtime() {
     scp -q -o BatchMode=yes "$VIDEO_PATCH_HOST" "${ssh_t}:/tmp/patch_glm_video_placeholders.py"
     scp -q -o BatchMode=yes "$STOP_PATCH_HOST" "${ssh_t}:/tmp/patch_suppress_stops_in_reasoning.py"
     scp -q -o BatchMode=yes "$SCHED_PATCH_HOST" "${ssh_t}:/tmp/patch_scheduler_decode_floor.py"
+    scp -q -o BatchMode=yes "$MAMBA_CHUNK_PATCH_HOST" "${ssh_t}:/tmp/patch_mamba_align_chunking.py"
     scp -q -o BatchMode=yes "$DRAFTER_PATCH_HOST" "${ssh_t}:/tmp/patch_glm5_drafter_group.py"
     scp -q -o BatchMode=yes "$APC_PATCH_HOST" "${ssh_t}:/tmp/patch_hybrid_prefix_hit.py"
+    scp -q -o BatchMode=yes "$PERGROUP_PATCH_HOST" "${ssh_t}:/tmp/patch_apc_per_group_retention.py"
+    scp -q -o BatchMode=yes "$MAMBA_STATE_PATCH_HOST" "${ssh_t}:/tmp/patch_mamba_align_state_free.py"
     scp -q -o BatchMode=yes "$XGRAMMAR_PATCH_HOST" "${ssh_t}:/tmp/patch_xgrammar_termination.py"
     scp -q -o BatchMode=yes "$KPOOL_TAIL_PATCH_HOST" "${ssh_t}:/tmp/patch_kpool_tail_slotmap.py"
     scp -q -o BatchMode=yes "$SPINWAIT_PATCH_HOST" "${ssh_t}:/tmp/patch_spinwait.py"
+    scp -q -o BatchMode=yes "$SPARSE_SLICE_PATCH_HOST" "${ssh_t}:/tmp/patch_sparse_mla_slice.py"
     worker_ssh_n "$r" "rm -rf /tmp/glm53-ablit"
     scp -q -r -o BatchMode=yes "$SCRIPT_DIR/ablit" "${ssh_t}:/tmp/glm53-ablit"
     scp -q -o BatchMode=yes "$SCRIPT_DIR/overlay/ablit_runtime.py" "${ssh_t}:/tmp/glm53-ablit_runtime.py"
@@ -1360,6 +1545,8 @@ launch_cluster() {
     scp -q -o BatchMode=yes "$KPOOL_TAIL_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_kpool_tail_slotmap.py"
     [ -f "$SPINWAIT_PATCH_HOST" ] || die "missing $SPINWAIT_PATCH_HOST"
     scp -q -o BatchMode=yes "$SPINWAIT_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_spinwait.py"
+    [ -f "$SPARSE_SLICE_PATCH_HOST" ] || die "missing $SPARSE_SLICE_PATCH_HOST"
+    scp -q -o BatchMode=yes "$SPARSE_SLICE_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_sparse_mla_slice.py"
 
     worker_ssh "rm -rf /tmp/glm53-ablit"
     scp -q -r -o BatchMode=yes "$SCRIPT_DIR/ablit" "${WORKER_SSH}:/tmp/glm53-ablit"
@@ -1384,8 +1571,15 @@ TP4_SKIP_OLD_SCP
         -e VLLM_CACHE_ROOT=/root/.cache/vllm
         -e "GLM53_SUPPRESS_STOPS_IN_REASONING=$GLM53_SUPPRESS_STOPS_IN_REASONING"
         -e "GLM53_MIXED_PREFILL_CHUNK=$GLM53_MIXED_PREFILL_CHUNK"
+        -e "GLM53_FAIR_PREFILL_CHUNK=$GLM53_FAIR_PREFILL_CHUNK"
+        -e "GLM53_FAIR_PREFILL_SHARE=$GLM53_FAIR_PREFILL_SHARE"
+        -e "GLM53_FAIR_PREFILL_MAX_INTERVAL_MS=$GLM53_FAIR_PREFILL_MAX_INTERVAL_MS"
+        -e "GLM53_FAIR_PREFILL_MAX_STEP_MS=$GLM53_FAIR_PREFILL_MAX_STEP_MS"
+        -e "GLM53_FAIR_PREFILL_MAX_CHUNKS=$GLM53_FAIR_PREFILL_MAX_CHUNKS"
         -e "GLM53_INDEXER_WORKSPACE=$GLM53_INDEXER_WORKSPACE"
+        -e "GLM53_DRAFT_KV_COMPACT=$GLM53_DRAFT_KV_COMPACT"
         -e "GLM53_SPINWAIT_MS=$GLM53_SPINWAIT_MS"
+        -e "VLLM_SM120_SPARSE_MLA_SLICE_TOKENS=$VLLM_SM120_SPARSE_MLA_SLICE_TOKENS"
         -e "TRITON_CACHE_DIR=$TRITON_CACHE_DIR"
         -e "TILELANG_CACHE_DIR=$TILELANG_CACHE_DIR"
         -e "VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=$VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS"
@@ -1400,6 +1594,22 @@ TP4_SKIP_OLD_SCP
         -e DO_NOT_TRACK=1
         -e "VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=$CG_ESTIMATE"
     )
+    if [ -n "${GLM53_APC_RETENTION_INTERVAL:-}" ]; then
+        nccl_common+=(-e "VLLM_PREFIX_CACHE_RETENTION_INTERVAL=$GLM53_APC_RETENTION_INTERVAL")
+        log "global prefix-cache retention interval: ${GLM53_APC_RETENTION_INTERVAL} (all ranks)"
+    fi
+    if [ -n "${GLM53_APC_RETENTION_INTERVAL_SWA:-}" ]; then
+        nccl_common+=(-e "VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA=$GLM53_APC_RETENTION_INTERVAL_SWA")
+        log "drafter (SWA) prefix-cache retention interval: ${GLM53_APC_RETENTION_INTERVAL_SWA} (all ranks)"
+    fi
+    if [ -n "${NCCL_NCHANNELS:-}" ]; then
+        [[ "$NCCL_NCHANNELS" =~ ^[1-9][0-9]*$ ]] || die "NCCL_NCHANNELS must be a positive integer (got ${NCCL_NCHANNELS})"
+        nccl_common+=(
+            -e "NCCL_MIN_NCHANNELS=$NCCL_NCHANNELS"
+            -e "NCCL_MAX_NCHANNELS=$NCCL_NCHANNELS"
+        )
+        log "NCCL channels pinned MIN=MAX=${NCCL_NCHANNELS} (all ranks)"
+    fi
     local worker_nccl="" e
     for e in "${nccl_common[@]}"; do
         [ "$e" = "-e" ] && continue
@@ -1420,11 +1630,12 @@ TP4_SKIP_OLD_SCP
     local v
     for v in SERVED_MODEL_NAME PORT TP NNODES HEAD_IP MASTER_PORT QUANTIZATION \
              MAX_MODEL_LEN GPU_MEM_UTIL MAX_NUM_SEQS MAX_NUM_BATCHED_TOKENS \
-             KV_CACHE_DTYPE MTP_TOKENS SPEC_METHOD DFLASH_TOKENS DFLASH_MODEL_DIR \
+             KV_CACHE_DTYPE LOAD_FORMAT PREFIX_MATCH_UNIT MTP_TOKENS SPEC_METHOD DFLASH_TOKENS DFLASH_MODEL_DIR \
              DFLASH_DRAFT_TP \
              LANGUAGE_MODEL_ONLY SKIP_MM_PROFILING \
              LIMIT_MM CHAT_TEMPLATE ENFORCE_EAGER EXL3_FUSED_MOE EXL3_MOE_ROW_TILE EXL3_TEMP_ROWS_FUSED EXL3_FAT_SORTED EXL3_FAT_BATCHED EXL3_FAT_KERNEL MODEL_DIR EXTRA_ARGS \
-             ABLIT ABLIT_METHOD ABLIT_DIRECTION ABLIT_LAYERS ABLIT_ALPHA ABLIT_INCLUDE_MTP; do
+             ABLIT ABLIT_METHOD ABLIT_DIRECTION ABLIT_LAYERS ABLIT_ALPHA ABLIT_INCLUDE_MTP \
+             VLLM_SM120_SPARSE_MLA_SLICE_TOKENS; do
         serve_env+=" -e $v='${!v:-}'"
     done
     # VLLM_API_KEY is read by the head (rank 0) API server for bearer auth; the
@@ -1461,11 +1672,15 @@ TP4_SKIP_OLD_SCP
             -v '/tmp/patch_glm_video_placeholders.py:/opt/glm53/patch_glm_video_placeholders.py:ro' \
             -v '/tmp/patch_suppress_stops_in_reasoning.py:/opt/glm53/patch_suppress_stops_in_reasoning.py:ro' \
             -v '/tmp/patch_scheduler_decode_floor.py:/opt/glm53/patch_scheduler_decode_floor.py:ro' \
+            -v '/tmp/patch_mamba_align_chunking.py:/opt/glm53/patch_mamba_align_chunking.py:ro' \
             -v '/tmp/patch_glm5_drafter_group.py:/opt/glm53/patch_glm5_drafter_group.py:ro' \
             -v '/tmp/patch_hybrid_prefix_hit.py:/opt/glm53/patch_hybrid_prefix_hit.py:ro' \
+            -v '/tmp/patch_apc_per_group_retention.py:/opt/glm53/patch_apc_per_group_retention.py:ro' \
+            -v '/tmp/patch_mamba_align_state_free.py:/opt/glm53/patch_mamba_align_state_free.py:ro' \
             -v '/tmp/patch_xgrammar_termination.py:/opt/glm53/patch_xgrammar_termination.py:ro' \
             -v '/tmp/patch_kpool_tail_slotmap.py:/opt/glm53/patch_kpool_tail_slotmap.py:ro' \
             -v '/tmp/patch_spinwait.py:/opt/glm53/patch_spinwait.py:ro' \
+            -v '/tmp/patch_sparse_mla_slice.py:/opt/glm53/patch_sparse_mla_slice.py:ro' \
             -v '/tmp/glm53-ablit:/opt/glm53/ablit:ro' \
             -v '/tmp/glm53-ablit_runtime.py:/opt/glm53/ablit_runtime.py:ro' \
             -v '/tmp/patch_ablit.py:/opt/glm53/patch_ablit.py:ro' \
@@ -1495,11 +1710,15 @@ TP4_SKIP_OLD_SCP
         -v "$VIDEO_PATCH_HOST:/opt/glm53/patch_glm_video_placeholders.py:ro" \
         -v "$STOP_PATCH_HOST:/opt/glm53/patch_suppress_stops_in_reasoning.py:ro" \
         -v "$SCHED_PATCH_HOST:/opt/glm53/patch_scheduler_decode_floor.py:ro" \
+        -v "$MAMBA_CHUNK_PATCH_HOST:/opt/glm53/patch_mamba_align_chunking.py:ro" \
         -v "$DRAFTER_PATCH_HOST:/opt/glm53/patch_glm5_drafter_group.py:ro" \
         -v "$APC_PATCH_HOST:/opt/glm53/patch_hybrid_prefix_hit.py:ro" \
+        -v "$PERGROUP_PATCH_HOST:/opt/glm53/patch_apc_per_group_retention.py:ro" \
+        -v "$MAMBA_STATE_PATCH_HOST:/opt/glm53/patch_mamba_align_state_free.py:ro" \
         -v "$XGRAMMAR_PATCH_HOST:/opt/glm53/patch_xgrammar_termination.py:ro" \
         -v "$KPOOL_TAIL_PATCH_HOST:/opt/glm53/patch_kpool_tail_slotmap.py:ro" \
         -v "$SPINWAIT_PATCH_HOST:/opt/glm53/patch_spinwait.py:ro" \
+        -v "$SPARSE_SLICE_PATCH_HOST:/opt/glm53/patch_sparse_mla_slice.py:ro" \
         -v "$SCRIPT_DIR/ablit:/opt/glm53/ablit:ro" \
         -v "$SCRIPT_DIR/overlay/ablit_runtime.py:/opt/glm53/ablit_runtime.py:ro" \
         -v "$SCRIPT_DIR/overlay/patch_ablit.py:/opt/glm53/patch_ablit.py:ro" \
@@ -1517,7 +1736,10 @@ TP4_SKIP_OLD_SCP
         -e MAX_MODEL_LEN="$MAX_MODEL_LEN" -e GPU_MEM_UTIL="$GPU_MEM_UTIL" \
         -e MAX_NUM_SEQS="$MAX_NUM_SEQS" \
         -e MAX_NUM_BATCHED_TOKENS="$MAX_NUM_BATCHED_TOKENS" \
-        -e KV_CACHE_DTYPE="$KV_CACHE_DTYPE" -e MTP_TOKENS="$MTP_TOKENS" \
+        -e KV_CACHE_DTYPE="$KV_CACHE_DTYPE" \
+        -e LOAD_FORMAT="${LOAD_FORMAT:-}" \
+        -e PREFIX_MATCH_UNIT="${PREFIX_MATCH_UNIT:-}" \
+        -e MTP_TOKENS="$MTP_TOKENS" \
         -e SPEC_METHOD="$SPEC_METHOD" \
         -e DFLASH_TOKENS="${DFLASH_TOKENS:-7}" \
         -e DFLASH_MODEL_DIR="${DFLASH_MODEL_DIR:-}" \

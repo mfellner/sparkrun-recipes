@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import importlib
 import importlib.util
+import json
 import os
 import re
 import sys
@@ -1246,9 +1247,35 @@ def apply_exl3_grouped_fat(
     _EXL3_FAT_DIAG["grouped_calls"] += 1
 
 
+def exl3_moe_fast_requested() -> bool:
+    """Opt-in SM121 K4/N256 thin-decode dispatch (default off).
+
+    Mirrors the native dispatcher's validation: anything other than 0/1
+    raises at load instead of surfacing as a native TORCH_CHECK on the
+    first decode call.
+    """
+    raw = os.environ.get("GLM53_EXL3_MOE_FAST", "0")
+    if raw not in ("0", "1"):
+        raise RuntimeError("GLM53_EXL3_MOE_FAST must be 0 or 1")
+    return raw == "1"
+
+
 def build_exl3_fused_state(layer: torch.nn.Module, inners: list[dict[str, Any]]) -> None:
     """Pointer tables + fused temps, once after load. No per-token alloc."""
     import exllamav3_ext
+
+    # Fail closed: an explicitly requested fast thin-decode path must never
+    # silently run the stock kernel on an image built without it.
+    fast = exl3_moe_fast_requested()
+    if fast:
+        if not hasattr(exllamav3_ext, "glm53_fast_moe_version"):
+            raise RuntimeError(
+                "GLM53_EXL3_MOE_FAST=1 requires the native decode-pipeline "
+                "image (exllamav3_ext.glm53_fast_moe_version); this image "
+                "was built without overlay/patch_exl3_decode_pipeline.py"
+            )
+        if exllamav3_ext.glm53_fast_moe_version() != 1:
+            raise RuntimeError("Unsupported native EXL3 decode-pipeline version")
 
     device = layer.w13_trellis.device
     n_exp = len(inners)
@@ -1273,6 +1300,17 @@ def build_exl3_fused_state(layer: torch.nn.Module, inners: list[dict[str, Any]])
         "down_suh": _ptrs("down", "suh"),
         "down_svh": _ptrs("down", "svh"),
     }
+    # Gate/up SUH equality was verified across every expert at load time
+    # (layer._exl3_shared_w13_suh, torch.equal on the packed tensors),
+    # before weights were released. Aliasing the pointer tables is what lets
+    # the native fast path prove the reuse predicate by pointer identity
+    # (gate_ptrs_suh.data_ptr() == up_ptrs_suh.data_ptr()) and skip the
+    # redundant up-input Hadamard. Only the fast path needs it, so FAST=0
+    # leaves the tables exactly as the stock path builds them; FAST=1 with an
+    # unequal checkpoint keeps both tables and takes the independent-transform
+    # fast kernel.
+    if fast and bool(getattr(layer, "_exl3_shared_w13_suh", False)):
+        layer._exl3_ptrs["up_suh"] = layer._exl3_ptrs["gate_suh"]
     idx = int(device.index) if device.index is not None else 0
     concurrency = int(exllamav3_ext.exl3_moe_max_concurrency(idx))
     if concurrency < 1:
@@ -1717,7 +1755,7 @@ class Exl3Config(QuantizationConfig):
         if isinstance(layer, LinearBase):
             group = _glm53_dense_fp8_group(prefix)  # [glm53-dense-fp8]
             if group is not None:
-                return Glm53DenseFp8Method(group)
+                return Glm53DenseFp8Method(group, prefix)
             return UnquantizedLinearMethod()
         return None
 
@@ -1794,16 +1832,140 @@ def _glm53_dense_fp8_group(prefix: str, groups: set[str] | None = None, layer_ty
     return None
 
 
+_GLM53_TP3_UNALIGNED_KDA_SUFFIXES = (
+    ".self_attn.f_b_proj",
+    ".self_attn.g_b_proj",
+)
+
+
+def _glm53_use_marlin(group: str, prefix: str, tp_size: int) -> bool:
+    """Whether this projection's activation layout satisfies Marlin."""
+    # TP=3 f_a/g_a are 128-wide views of an 8,726-wide merged KDA projection.
+    # Their row pitch is not divisible by 8, and f_a's byte offset is not
+    # 16-aligned at capture size 1. Keeping just these two small projections in
+    # BF16 avoids invalid Marlin inputs and allocations inside CUDA graphs.
+    return not (
+        tp_size == 3
+        and group == "kda"
+        and prefix.endswith(_GLM53_TP3_UNALIGNED_KDA_SUFFIXES)
+    )
+
+
+# --- KDA large-M BF16 path ------------------------------------------------
+# Stock runs FP8-Marlin W8A16 for every M. With GLM53_KDA_BF16_LARGE_M=1 the
+# KDA in_proj keeps Marlin for small M and serves large-M prefill from a
+# load-time BF16 copy of the SAME logical FP8 weight: the e4m3 tensor times
+# the stored per-output-channel scale that Marlin itself multiplies by.
+# Activations stay BF16, so there is no activation-quantization term.
+# Fixed dispatch boundary from SM121 microbenchmarks on in_proj [12576x4096]:
+# decode never exceeds M=220, prefill chunks land at M>=768, and the band
+# 221-511 is empty in every measured step, so 512 sits inside the gap and
+# keeps ordinary decode entirely on stock Marlin. Intentionally not
+# user-configurable: 512 is the boundary actually measured and qualified.
+KDA_BF16_LARGE_M_MIN_M = 512
+# TP-local in_proj_qkvbfg_a shapes. TP2 shards 64 heads; TP3 pads 64→66
+# (local 22) and concatenates q/k/v/b + replicated f_a/g_a (128 each).
+# Everything else stays Marlin by construction.
+KDA_BF16_LARGE_M_SHAPES_BY_TP = {
+    2: (12576, 4096),
+    3: (8726, 4096),
+}
+KDA_BF16_LARGE_M_SHAPES = frozenset(KDA_BF16_LARGE_M_SHAPES_BY_TP.values())
+# Rows per dequant chunk: bounds the peak fp32 intermediate to ~8 MiB at
+# K=4096 instead of one [12576,4096] fp32 allocation (~196 MiB).
+KDA_BF16_LARGE_M_CHUNK_ROWS = 512
+# BF16 is the shipped dtype: same 2 bytes/weight as an fp16 copy, no
+# activation conversion, and it matches the activation dtype exactly.
+KDA_BF16_LARGE_M_DTYPE = torch.bfloat16
+
+
+def kda_bf16_large_m_enabled() -> bool:
+    """Opt-in large-M BF16 dispatch for the KDA in_proj (default off)."""
+    raw = os.environ.get("GLM53_KDA_BF16_LARGE_M", "0")
+    if raw not in ("0", "1"):
+        raise RuntimeError("GLM53_KDA_BF16_LARGE_M must be 0 or 1")
+    return raw == "1"
+
+
+def kda_bf16_large_m_logical_weight(
+    fp8: torch.Tensor,
+    scales: torch.Tensor,
+    out_dtype: torch.dtype = KDA_BF16_LARGE_M_DTYPE,
+    chunk_rows: int = KDA_BF16_LARGE_M_CHUNK_ROWS,
+) -> torch.Tensor:
+    """Materialize the logical FP8 weight (fp8 x per-output-channel scale).
+
+    The product of an e4m3 value (<=4 significant bits) and a bf16 scale
+    (<=8 significant bits) needs at most 12 significant bits, so the fp32
+    intermediate is exact and the single cast to `out_dtype` rounds once. Row
+    chunking only bounds the temporary; it does not change the result.
+    """
+    n = int(fp8.shape[0])
+    out = torch.empty(fp8.shape, dtype=out_dtype, device=fp8.device)
+    step = max(1, int(chunk_rows))
+    for start in range(0, n, step):
+        stop = min(start + step, n)
+        block = fp8[start:stop].to(torch.float32)
+        block = block * scales[start:stop].to(torch.float32).unsqueeze(1)
+        out[start:stop] = block
+    return out
+
+
+# Observability only: `apply` is not called when a CUDA graph replays, so these
+# counters describe eager calls plus graph-capture decisions. The authoritative
+# per-step M histogram comes from the model runner.
+_KDA_LARGE_M_DISPATCH_STATS: dict[str, int] = {
+    "bf16_calls": 0, "bf16_rows": 0,
+    "marlin_calls": 0, "marlin_rows": 0,
+}
+_KDA_LARGE_M_STATS_DUMP_EVERY = 512
+
+
+def kda_large_m_dispatch_stats() -> dict[str, int]:
+    return dict(_KDA_LARGE_M_DISPATCH_STATS)
+
+
+def _kda_large_m_note(which: str, rows: int) -> None:
+    stats = _KDA_LARGE_M_DISPATCH_STATS
+    stats[which + "_calls"] += 1
+    stats[which + "_rows"] += rows
+    if stats[which + "_calls"] % _KDA_LARGE_M_STATS_DUMP_EVERY:
+        return
+    path = os.environ.get("KDA_LARGE_M_STATS_PATH", "")
+    if not path:
+        return
+    try:
+        if torch.cuda.is_current_stream_capturing():
+            return
+        tmp = path + ".tmp"
+        with open(tmp, "w") as handle:
+            json.dump(stats, handle, sort_keys=True)
+        os.replace(tmp, path)
+    except Exception:  # noqa: BLE001  (observability must never break serving)
+        pass
+
+
 class Glm53DenseFp8Method(UnquantizedLinearMethod):
     """BF16 weight at load time; per-output-channel FP8 e4m3 + Marlin at apply."""
 
-    def __init__(self, group: str) -> None:
+    def __init__(self, group: str, prefix: str) -> None:
         super().__init__()
         self.group = group
+        self.prefix = prefix
         self.ready = False
 
     def process_weights_after_loading(self, layer: torch.nn.Module) -> None:
         super().process_weights_after_loading(layer)
+        from vllm.distributed import get_tensor_model_parallel_world_size
+
+        tp_size = get_tensor_model_parallel_world_size()
+        if not _glm53_use_marlin(self.group, self.prefix, tp_size):
+            logger.warning_once(
+                "[glm53-dense-fp8] TP=3 keeps KDA f_b_proj/g_b_proj in BF16 "
+                "because their merged-projection views violate Marlin input "
+                "pitch/alignment requirements"
+            )
+            return
         from vllm.model_executor.layers.quantization.utils.marlin_utils_fp8 import (
             prepare_fp8_layer_for_marlin,
         )
@@ -1821,24 +1983,150 @@ class Glm53DenseFp8Method(UnquantizedLinearMethod):
         layer.weight = torch.nn.Parameter(fp8, requires_grad=False)
         layer.weight_scale = torch.nn.Parameter(scales.to(layer.orig_dtype), requires_grad=False)
         layer.weight_block_size = None
+        # The STORED (dtype-rounded) per-channel scale is what Marlin actually
+        # multiplies by, so it is also the scale the BF16 copy must use.
+        # Held as a local: prepare_fp8_layer_for_marlin replaces weight_scale.
+        scales_stored = layer.weight_scale.detach()
         prepare_fp8_layer_for_marlin(layer, size_k_first=False)
         layer.glm53_fp8_n, layer.glm53_fp8_k = n, k
+        self._retain_bf16_large_m_weights(
+            layer, fp8, scales_stored, n, k, tp_size)
         self.ready = True
+
+    def _retain_bf16_large_m_weights(
+        self,
+        layer: torch.nn.Module,
+        fp8: torch.Tensor,
+        scales_stored: torch.Tensor,
+        n: int,
+        k: int,
+        tp_size: int,
+    ) -> None:
+        """Load-time retention for the large-M BF16 path.
+
+        Materializes the logical weight the stock path already implements --
+        the FP8 e4m3 tensor times the STORED per-output-channel scale that
+        Marlin consumes -- as one BF16 [N,K] copy, and retains nothing else.
+        Cost when enabled: TP2 12576 x 4096 x 2 bytes = 98.25 MiB per
+        layer-rank (~3.26 GiB/rank, 34 KDA layers); TP3 8726 x 4096 x 2
+        bytes = 68.17 MiB per layer-rank (~2.26 GiB/rank).
+
+        Fail-closed: a KDA in_proj layer with the feature enabled must satisfy
+        every predicate (TP=2 or TP=3, SM121 capability, validated TP-local
+        shape, e4m3 weight with a BF16 stored scale); anything else raises at
+        load instead of silently running Marlin under a large-M label.
+        Non-candidate layers retain nothing and stay on Marlin.
+        """
+        if not kda_bf16_large_m_enabled():
+            return
+        if not (
+            self.group == "kda"
+            and self.prefix.endswith("in_proj_qkvbfg_a")
+        ):
+            return
+        expected = KDA_BF16_LARGE_M_SHAPES_BY_TP.get(tp_size)
+        if expected is None:
+            raise RuntimeError(
+                "GLM53_KDA_BF16_LARGE_M=1 requires TP=2 or TP=3 "
+                f"(got tp_size={tp_size})"
+            )
+        try:
+            cap = torch.cuda.get_device_capability(fp8.device)
+        except Exception as exc:
+            raise RuntimeError(
+                "GLM53_KDA_BF16_LARGE_M=1 requires a CUDA device "
+                f"with SM121 capability ({exc!r})"
+            )
+        if tuple(int(v) for v in cap) != (12, 1):
+            raise RuntimeError(
+                "GLM53_KDA_BF16_LARGE_M=1 is qualified for SM121/GB10 "
+                f"only (got capability {tuple(int(v) for v in cap)})"
+            )
+        if (n, k) != expected:
+            raise RuntimeError(
+                "GLM53_KDA_BF16_LARGE_M=1 is qualified for the "
+                f"TP{tp_size}-local KDA in_proj shape {expected[0]}x{expected[1]} "
+                f"(got [{n}x{k}])"
+            )
+        if fp8.dtype != torch.float8_e4m3fn:
+            raise RuntimeError(
+                "GLM53_KDA_BF16_LARGE_M=1 expects an e4m3 logical weight "
+                f"(got {fp8.dtype})"
+            )
+        # process_weights_after_loading stores scales in layer.orig_dtype.
+        # FP16 scales therefore identify an unqualified FP16 activation path.
+        if scales_stored.dtype != torch.bfloat16:
+            raise RuntimeError(
+                "GLM53_KDA_BF16_LARGE_M=1 requires BF16 weights/activations "
+                f"(stored scale dtype is {scales_stored.dtype}); FP16 is not qualified"
+            )
+        # Fixed qualified boundary: stored on the layer so capture and replay
+        # cannot disagree about the branch.
+        threshold = KDA_BF16_LARGE_M_MIN_M
+        try:
+            w_bf16 = kda_bf16_large_m_logical_weight(
+                fp8, scales_stored, KDA_BF16_LARGE_M_DTYPE)
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(
+                f"kda bf16-large-m: dequant failed ({exc!r})"
+            )
+        # Run the real GEMM once at load, at the full [N,K] width, so a broken
+        # cuBLAS path fails during load instead of on the first prefill.
+        # Deliberately tiny M: this is a launch smoke test (and a one-time
+        # cuBLAS workspace init), not a benchmark; load time stays flat.
+        probe_m = 2
+        try:
+            torch.nn.functional.linear(
+                torch.zeros((probe_m, k), dtype=KDA_BF16_LARGE_M_DTYPE,
+                              device=fp8.device),
+                w_bf16,
+            )
+            torch.cuda.synchronize(fp8.device)
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(
+                f"kda bf16-large-m: cuBLAS probe failed ({exc!r})"
+            )
+        layer.glm53_bf16_lm_w = w_bf16
+        layer.glm53_bf16_lm_n = n
+        layer.glm53_bf16_lm_k = k
+        # Resolved once: capture and replay cannot disagree about the branch.
+        layer.glm53_bf16_lm_min_m = threshold
+        logger.info(
+            "kda bf16-large-m retained for %s [%dx%d] +%.1f MiB/rank (M>%d), dtype=%s",
+            self.group, n, k, w_bf16.numel() * w_bf16.element_size() / 2**20,
+            threshold, str(KDA_BF16_LARGE_M_DTYPE).replace("torch.", ""),
+        )
 
     def apply(self, layer: torch.nn.Module, x: torch.Tensor, bias: torch.Tensor | None = None) -> torch.Tensor:
         if not self.ready:
             return super().apply(layer, x, bias)
+        # Hybrid dispatch: M is tensor metadata (no host sync). The retained
+        # BF16 copy exists only when every load-time predicate passed; small M
+        # stays Marlin (measured win), anything else falls through to Marlin.
+        # Per-capture-size CUDA graphs bake the branch taken at capture.
+        n = int(layer.glm53_fp8_n)
+        k = int(layer.glm53_fp8_k)
+        in_proj_shape = (n, k) in KDA_BF16_LARGE_M_SHAPES
+        if bias is None and x.dim() >= 2 and int(x.shape[-1]) == k:
+            m = x.numel() // k
+            wb = getattr(layer, "glm53_bf16_lm_w", None)
+            if wb is not None and m > int(layer.glm53_bf16_lm_min_m):
+                out = F.linear(x.reshape(-1, k), wb)
+                _kda_large_m_note("bf16", m)
+                return out.reshape(x.shape[:-1] + (n,))
         from vllm.model_executor.layers.quantization.utils.marlin_utils_fp8 import (
             apply_fp8_marlin_linear,
         )
 
+        if in_proj_shape and x.dim() >= 2 and int(x.shape[-1]) == k:
+            _kda_large_m_note("marlin", x.numel() // k)
         return apply_fp8_marlin_linear(
             input=x,
             weight=layer.weight,
             weight_scale=layer.weight_scale,
             workspace=layer.workspace,
-            size_n=layer.glm53_fp8_n,
-            size_k=layer.glm53_fp8_k,
+            size_n=n,
+            size_k=k,
             bias=bias,
         )
 
@@ -2061,6 +2349,16 @@ class Exl3MoEMethod(FusedMoEMethodBase):
             except Exception as exc:
                 fused_err = repr(exc)
                 layer._exl3_ptrs = None
+        if exl3_moe_fast_requested() and not fused_ok:
+            # Fail closed: an explicitly requested fast thin-decode path must
+            # never silently run the stock kernel or the Python loop. The
+            # version gate inside build_exl3_fused_state raises through the
+            # same path; this also covers fused disabled / exl3_moe missing.
+            raise RuntimeError(
+                "GLM53_EXL3_MOE_FAST=1 requires the fused exl3_moe path on an "
+                "image built with overlay/patch_exl3_decode_pipeline.py; "
+                f"load-time setup failed: {fused_err or 'EXL3_FUSED_MOE=0'}"
+            )
         if not self._logged:
             if fused_ok:
                 logger.info(

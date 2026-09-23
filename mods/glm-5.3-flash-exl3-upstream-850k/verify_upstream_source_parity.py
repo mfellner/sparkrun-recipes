@@ -8,7 +8,7 @@ import tarfile
 import urllib.request
 from pathlib import Path, PurePosixPath
 
-REVISION = "f906ee990596486e10ddbe381efa6f0e496f77e3"
+REVISION = "3f2be18c41effca0b4b2c6a65f0b24a7a9f39567"
 REPOSITORY = "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks"
 ARCHIVE_URL = f"https://github.com/{REPOSITORY}/archive/{REVISION}.tar.gz"
 UPSTREAM = Path(__file__).resolve().parent / "upstream"

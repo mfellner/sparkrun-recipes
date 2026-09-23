@@ -371,6 +371,7 @@ PY
 # rebuild exllamav3_ext. The aarch64 stub patch must stay in this layer.
 COPY overlay/patch_exl3_ext_aarch64.py /opt/glm53/patch_exl3_ext_aarch64.py
 COPY overlay/patch_exl3_fat_kernel.py /opt/glm53/patch_exl3_fat_kernel.py
+COPY overlay/patch_exl3_decode_pipeline.py /opt/glm53/patch_exl3_decode_pipeline.py
 COPY overlay/exl3_fat_gemm.cu /opt/glm53/exl3-fat-kernel/exl3_fat_gemm.cu
 COPY overlay/exl3_fat_gemm.cuh /opt/glm53/exl3-fat-kernel/exl3_fat_gemm.cuh
 COPY overlay/exl3_fat_moe.cu /opt/glm53/exl3-fat-kernel/exl3_fat_moe.cu
@@ -424,13 +425,14 @@ RUN set -eux; \
     python3 -c "from pathlib import Path; assert (Path('/tmp/exllamav3')/'exllamav3/modules/quant/exl3.py').is_file()"; \
     python3 /opt/glm53/patch_exl3_ext_aarch64.py /tmp/exllamav3/exllamav3/exllamav3_ext; \
     python3 /opt/glm53/patch_exl3_fat_kernel.py /tmp/exllamav3/exllamav3/exllamav3_ext /opt/glm53/exl3-fat-kernel; \
+    python3 /opt/glm53/patch_exl3_decode_pipeline.py /tmp/exllamav3/exllamav3/exllamav3_ext; \
     export CPATH="/usr/local/lib/python3.12/dist-packages/nvidia/cu13/include${CPATH:+:$CPATH}"; \
     export CPLUS_INCLUDE_PATH="/usr/local/lib/python3.12/dist-packages/nvidia/cu13/include${CPLUS_INCLUDE_PATH:+:$CPLUS_INCLUDE_PATH}"; \
     export C_INCLUDE_PATH="/usr/local/lib/python3.12/dist-packages/nvidia/cu13/include${C_INCLUDE_PATH:+:$C_INCLUDE_PATH}"; \
     cd /tmp/exllamav3; \
     TORCH_CUDA_ARCH_LIST=12.1a MAX_JOBS=8 \
       pip install --no-deps --no-build-isolation --no-cache-dir .; \
-    python3 -c "import torch; import exllamav3_ext; assert hasattr(exllamav3_ext, 'exl3_moe'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_gemm'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_gemm_scatter'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_gateup'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_down'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_gather'), dir(exllamav3_ext); print('exllamav3_ext', exllamav3_ext.__file__, 'exl3_moe=yes fat_gemm=yes fat_moe=yes')"; \
+    python3 -c "import torch; import exllamav3_ext; assert hasattr(exllamav3_ext, 'exl3_moe'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_gemm'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_gemm_scatter'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_gateup'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_down'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_gather'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'glm53_fast_moe_version') and exllamav3_ext.glm53_fast_moe_version() == 1; print('exllamav3_ext', exllamav3_ext.__file__, 'exl3_moe=yes fat_gemm=yes fat_moe=yes moe_fast=yes')"; \
     rm -rf /tmp/exllamav3 /root/.cache/pip
 
 # Keep this AFTER the CUDA compile layer so Python-only hook edits do not
@@ -450,18 +452,31 @@ COPY overlay/patch_suppress_stops_in_reasoning.py /opt/glm53/patch_suppress_stop
 COPY tests/test_suppress_stops.py /opt/glm53/test_suppress_stops.py
 COPY overlay/patch_scheduler_decode_floor.py /opt/glm53/patch_scheduler_decode_floor.py
 COPY tests/test_scheduler_decode_floor.py /opt/glm53/test_scheduler_decode_floor.py
+COPY tests/test_scheduler_decode_floor_restart.py /opt/glm53/test_scheduler_decode_floor_restart.py
 COPY overlay/patch_hybrid_prefix_hit.py /opt/glm53/patch_hybrid_prefix_hit.py
 COPY overlay/patch_apc_per_group_retention.py /opt/glm53/patch_apc_per_group_retention.py
 COPY tests/test_apc_per_group_retention.py /opt/glm53/test_apc_per_group_retention.py
 COPY tests/test_hybrid_prefix_hit.py /opt/glm53/test_hybrid_prefix_hit.py
+COPY overlay/patch_apc_no_store.py /opt/glm53/patch_apc_no_store.py
+COPY tests/test_apc_no_store.py /opt/glm53/test_apc_no_store.py
+COPY overlay/patch_kv_capacity_log.py /opt/glm53/patch_kv_capacity_log.py
+COPY tests/test_kv_capacity_log.py /opt/glm53/test_kv_capacity_log.py
 COPY overlay/patch_xgrammar_termination.py /opt/glm53/patch_xgrammar_termination.py
 COPY tests/test_xgrammar_termination.py /opt/glm53/test_xgrammar_termination.py
+COPY overlay/patch_cache_reset.py /opt/glm53/patch_cache_reset.py
+COPY tests/test_cache_reset_endpoint.py /opt/glm53/test_cache_reset_endpoint.py
 COPY overlay/patch_kpool_tail_slotmap.py /opt/glm53/patch_kpool_tail_slotmap.py
+COPY overlay/patch_mamba_align_state_free.py /opt/glm53/patch_mamba_align_state_free.py
+COPY overlay/patch_mamba_align_chunking.py /opt/glm53/patch_mamba_align_chunking.py
+COPY tests/test_mamba_align_state_free.py /opt/glm53/test_mamba_align_state_free.py
+COPY tests/test_mamba_align_chunking.py /opt/glm53/test_mamba_align_chunking.py
 COPY tests/test_kpool_tail_slotmap.py /opt/glm53/test_kpool_tail_slotmap.py
 COPY overlay/patch_spinwait.py /opt/glm53/patch_spinwait.py
 COPY tests/test_spinwait_patch.py /opt/glm53/test_spinwait_patch.py
 COPY overlay/patch_indexer_workspace.py /opt/glm53/patch_indexer_workspace.py
 COPY tests/test_indexer_workspace.py /opt/glm53/test_indexer_workspace.py
+COPY overlay/patch_tool_choice_none.py /opt/glm53/patch_tool_choice_none.py
+COPY tests/test_tool_choice_none.py /opt/glm53/test_tool_choice_none.py
 COPY overlay/ablit_runtime.py /opt/glm53/ablit_runtime.py
 COPY overlay/patch_ablit.py /opt/glm53/patch_ablit.py
 COPY tests/test_ablit.py /opt/glm53/test_ablit.py
@@ -472,27 +487,66 @@ RUN python3 /opt/glm53/patch_glm_eagle3.py
 RUN python3 /opt/glm53/patch_glm5_drafter_group.py
 RUN python3 /opt/glm53/patch_suppress_stops_in_reasoning.py
 RUN python3 /opt/glm53/patch_scheduler_decode_floor.py
+# Same slot as GLM53_OVERLAY_ORDER: after decode-floor v5 (whose per-request
+# cap the Mamba alignment relies on), no shared anchors.
+RUN python3 /opt/glm53/patch_mamba_align_chunking.py
 RUN GLM53_KV_COORDINATOR_PY_SRC=/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_coordinator.py \
     python3 /opt/glm53/test_apc_per_group_retention.py
 RUN python3 /opt/glm53/patch_hybrid_prefix_hit.py
 RUN python3 /opt/glm53/patch_apc_per_group_retention.py
+# Runs BEFORE the no-store patch it validates, but AFTER the hybrid and
+# per-group retention overlays: Part A still stages the pre-no-store
+# sampling_params.py / v1/request.py / v1/core/block_pool.py and applies the
+# no-store patch to copies of them (the retention overlay leaves those anchors
+# and their patch mechanics untouched), while Part C composes the exact
+# hybrid + per-group + no-store stack on the real BlockPool / KVCacheManager /
+# coordinator. Both are mandatory in-image (GLM53_REQUIRE_VLLM=1,
+# GLM53_REQUIRE_COMPOSITION=1), including the fork's seven-group KpoolTailSpec
+# layout and the env-driven SWA-retention legs.
+RUN GLM53_VLLM_SRC_ROOT=/usr/local/lib/python3.12/dist-packages/vllm GLM53_REQUIRE_VLLM=1 GLM53_REQUIRE_COMPOSITION=1 python3 /opt/glm53/test_apc_no_store.py
+RUN python3 /opt/glm53/patch_apc_no_store.py
+# Same slot as GLM53_OVERLAY_ORDER: after the coordinator/manager overlays
+# (no shared anchors); the host test replays the align-mode lifetime on
+# the real file before the patch.
+RUN GLM53_SINGLE_TYPE_KV_CACHE_MANAGER_PY=/usr/local/lib/python3.12/dist-packages/vllm/v1/core/single_type_kv_cache_manager.py \
+    GLM53_KV_CACHE_INTERFACE_PY=/usr/local/lib/python3.12/dist-packages/vllm/v1/kv_cache_interface.py \
+    python3 /opt/glm53/test_mamba_align_state_free.py
+RUN python3 /opt/glm53/patch_mamba_align_state_free.py
+# Same slot as the runtime GLM53_OVERLAY_ORDER (after per-group retention, after
+# the drafter-group patch it shares kv_cache_utils.py with): the host test
+# preflights the real file (both pinned anchors present, stock "GPU KV cache
+# size" line untouched) and replays the derivation before the log-only patch.
+RUN GLM53_KV_CACHE_UTILS_PY=/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py \
+    GLM53_REQUIRE_TARGET=1 python3 /opt/glm53/test_kv_capacity_log.py
+RUN python3 /opt/glm53/patch_kv_capacity_log.py
 RUN python3 /opt/glm53/patch_xgrammar_termination.py
 RUN python3 /opt/glm53/patch_kpool_tail_slotmap.py
 # Applied unconditionally; the injected sizing reads GLM53_INDEXER_WORKSPACE
 # at runtime and returns the stock expression unless it is "rightsize".
 RUN python3 /opt/glm53/patch_indexer_workspace.py
 RUN python3 /opt/glm53/patch_spinwait.py --preflight
+RUN python3 /opt/glm53/patch_cache_reset.py
+RUN python3 /opt/glm53/patch_tool_choice_none.py
 RUN python3 /opt/glm53/patch_ablit.py
 
 RUN EXL3_SELFCHECK_GPU=0 python3 /opt/glm53/test_exl3_overlay.py \
     && python3 /opt/glm53/test_suppress_stops.py \
     && python3 /opt/glm53/test_scheduler_decode_floor.py \
+    && python3 /opt/glm53/test_scheduler_decode_floor_restart.py \
+    && python3 /opt/glm53/test_mamba_align_chunking.py \
     && python3 /opt/glm53/test_hybrid_prefix_hit.py \
     && python3 /opt/glm53/test_xgrammar_termination.py \
     && python3 /opt/glm53/test_kpool_tail_slotmap.py \
     && python3 /opt/glm53/test_spinwait_patch.py \
     && python3 /opt/glm53/test_indexer_workspace.py \
-    && python3 /opt/glm53/test_ablit.py
+    && python3 /opt/glm53/test_tool_choice_none.py \
+    && python3 /opt/glm53/test_ablit.py \
+    && python3 /opt/glm53/test_cache_reset_endpoint.py
+
+# Direct-I/O safetensors loader. --no-deps: a normal pip install pulls
+# nvidia-nccl-cu13==2.29.7 over this image's NCCL 2.30.7.
+RUN pip install --no-deps --no-cache-dir instanttensor==0.2.0 \
+    && python3 -c "import instanttensor; print('instanttensor', instanttensor.__file__)"
 
 # Baked by start.sh --build-arg so a git pull that changes overlay/Dockerfile
 # misses this label and rebuilds once. Keep last so stamp-only rebuilds are cheap.

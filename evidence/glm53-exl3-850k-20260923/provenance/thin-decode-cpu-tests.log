@@ -1,0 +1,19 @@
+test_alias_only_in_fast_mode_and_only_when_shared (__main__.BuildStateTests.test_alias_only_in_fast_mode_and_only_when_shared) ... ok
+test_fast_mode_accepts_native_v1 (__main__.BuildStateTests.test_fast_mode_accepts_native_v1) ... ok
+test_fast_mode_fails_closed_without_native (__main__.BuildStateTests.test_fast_mode_fails_closed_without_native) ... ok
+test_fast_mode_rejects_wrong_native_version (__main__.BuildStateTests.test_fast_mode_rejects_wrong_native_version) ... ok
+test_build_rejects_bad_value (__main__.FastFlagEnvTests.test_build_rejects_bad_value) ... ok
+test_values (__main__.FastFlagEnvTests.test_values) ... ok
+test_bad_anchor_does_not_partially_write (__main__.NativePatchTests.test_bad_anchor_does_not_partially_write) ... ok
+test_patch_preserves_stock_and_refuses_reapplication (__main__.NativePatchTests.test_patch_preserves_stock_and_refuses_reapplication) ... ok
+test_fast_ok_when_build_succeeds (__main__.ProcessWeightsFailClosedTests.test_fast_ok_when_build_succeeds) ... ok
+test_fast_raises_when_build_fails (__main__.ProcessWeightsFailClosedTests.test_fast_raises_when_build_fails) ... ok
+test_fast_raises_when_fused_disabled (__main__.ProcessWeightsFailClosedTests.test_fast_raises_when_fused_disabled) ... ok
+test_fast_raises_when_symbol_missing (__main__.ProcessWeightsFailClosedTests.test_fast_raises_when_symbol_missing) ... ok
+test_stock_still_degrades_gracefully (__main__.ProcessWeightsFailClosedTests.test_stock_still_degrades_gracefully) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.113s
+
+OK
+Installed opt-in SM121 K4/N256 decode pipeline into /home/max/.hermes/cache/scratch/glm53-upstream-audit-20260923/tmp831h9rfl

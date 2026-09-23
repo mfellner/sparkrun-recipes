@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Exact runtime overlay bundle from MiaAI-Lab commit:
-# f906ee990596486e10ddbe381efa6f0e496f77e3
+# 3f2be18c41effca0b4b2c6a65f0b24a7a9f39567
 MOD_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$MOD_DIR"
 sha256sum -c SHA256SUMS
@@ -28,22 +28,31 @@ python3 upstream/overlay/patch_glm_video_placeholders.py
 python3 upstream/overlay/patch_suppress_stops_in_reasoning.py
 python3 patch_suppress_stops_multitoken.py
 python3 upstream/overlay/patch_scheduler_decode_floor.py
+python3 upstream/overlay/patch_mamba_align_chunking.py
 python3 upstream/overlay/patch_glm5_drafter_group.py
 python3 upstream/overlay/patch_hybrid_prefix_hit.py
 python3 upstream/overlay/patch_apc_per_group_retention.py
+python3 upstream/overlay/patch_apc_no_store.py
+python3 upstream/overlay/patch_mamba_align_state_free.py
+python3 upstream/overlay/patch_kv_capacity_log.py
+python3 upstream/overlay/patch_tool_choice_none.py
 python3 upstream/overlay/patch_xgrammar_termination.py
 python3 upstream/overlay/patch_kpool_tail_slotmap.py
 python3 upstream/overlay/patch_spinwait.py
 python3 upstream/overlay/patch_adaptive_k.py
 python3 patch_e3_execution_marker.py
 python3 upstream/overlay/patch_dense_fp8.py
+python3 upstream/overlay/patch_default_max_new_tokens.py
 python3 upstream/overlay/patch_indexer_workspace.py
+python3 upstream/overlay/patch_cache_reset.py
 python3 patch_ablit.py
 python3 verify_runtime_patch_state.py
 
 # Keep launch-time validation lightweight because imports consume unified-memory
 # headroom. The exact source suite and GPU self-check run separately before the
 # live launch; every rank still proves that all compiled E3 symbols are loaded.
+# The pinned public image supplies the default loader without replacing NCCL.
+python3 -c 'from importlib import metadata; assert metadata.version("instanttensor") == "0.2.0"'
 python3 -c "import torch, exllamav3_ext as e; assert hasattr(e, 'exl3_moe'); assert hasattr(e, 'exl3_fat_gemm'); assert hasattr(e, 'exl3_fat_gemm_scatter'); assert hasattr(e, 'exl3_fat_moe_gateup'); assert hasattr(e, 'exl3_fat_moe_down'); assert hasattr(e, 'exl3_fat_moe_gather')"
 
 echo "[OK] MiaAI-Lab GLM-5.3 EXL3 850K runtime overlays applied fail-closed"

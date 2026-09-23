@@ -1,0 +1,138 @@
+{
+  "script_revision": "bc68f310f8d5e941227ce5c93e95bca43b50fd6c",
+  "metric": "(completion_tokens-1)/(stream_end-first_visible)",
+  "results": {
+    "structured": {
+      "prompt": "structured-count-1-200",
+      "thinking": false,
+      "temperature": 0,
+      "concurrency": 1,
+      "tok_s_median": 101.6552631412138,
+      "ttft_median_s": 0.23527033906430006,
+      "accept_ratio_median": 0.9588,
+      "runs": [
+        {
+          "http": 200,
+          "ttft_s": 0.23056757589802146,
+          "wall_s": 4.155597994104028,
+          "decode_s": 3.9250304182060063,
+          "tok_s": 101.6552631412138,
+          "completion_tokens": 400,
+          "prompt_tokens": 27,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.22633683611638844,
+          "wall_s": 4.071376274107024,
+          "decode_s": 3.8450394379906356,
+          "tok_s": 103.77006697453066,
+          "completion_tokens": 400,
+          "prompt_tokens": 27,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.2515808781608939,
+          "wall_s": 5.546377771999687,
+          "decode_s": 5.294796893838793,
+          "tok_s": 75.3569982003068,
+          "completion_tokens": 400,
+          "prompt_tokens": 27,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.23578736907802522,
+          "wall_s": 4.156149137998,
+          "decode_s": 3.9203617689199746,
+          "tok_s": 101.77632155358994,
+          "completion_tokens": 400,
+          "prompt_tokens": 27,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.23527033906430006,
+          "wall_s": 4.181340062990785,
+          "decode_s": 3.9460697239264846,
+          "tok_s": 101.11326659554823,
+          "completion_tokens": 400,
+          "prompt_tokens": 27,
+          "finish_reason": "length",
+          "nan": false
+        }
+      ]
+    },
+    "prose": {
+      "prompt": "hashmap-prose",
+      "thinking": false,
+      "temperature": 0,
+      "concurrency": 1,
+      "tok_s_median": 44.151014163534306,
+      "ttft_median_s": 0.23820055997930467,
+      "accept_ratio_median": 0.4962,
+      "runs": [
+        {
+          "http": 200,
+          "ttft_s": 0.5498017501085997,
+          "wall_s": 9.47242291411385,
+          "decode_s": 8.92262116400525,
+          "tok_s": 44.71780126781647,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.2275763340294361,
+          "wall_s": 9.344407988945022,
+          "decode_s": 9.116831654915586,
+          "tok_s": 43.765204305913485,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.23820055997930467,
+          "wall_s": 9.216761727817357,
+          "decode_s": 8.978561167838052,
+          "tok_s": 44.439191596672636,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.2411926791537553,
+          "wall_s": 9.278357681119815,
+          "decode_s": 9.03716500196606,
+          "tok_s": 44.151014163534306,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.17647422989830375,
+          "wall_s": 9.524116632062942,
+          "decode_s": 9.347642402164638,
+          "tok_s": 42.684559681872656,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false
+        }
+      ]
+    }
+  }
+}

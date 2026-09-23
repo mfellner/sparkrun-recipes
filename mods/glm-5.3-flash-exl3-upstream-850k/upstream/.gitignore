@@ -1,5 +1,6 @@
 .env
 .env.tp4
+.env.tp3
 .glm53-exl3-*.inner.sh
 logs/
 tool-eval-bench/
@@ -16,3 +17,6 @@ __pycache__/
 
 # bench artifacts (prefix-cache runs write here)
 results/
+
+# Cooperative MoE native artifacts are staged, not committed.
+extensions/cooperative_moe/*.so

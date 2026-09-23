@@ -1,0 +1,7 @@
+sparkrun_3f2be18c41effca0_20260923a1_node_0 Up 10 minutes
+sparkDash Up 4 days
+spark-comfyui Exited (137) 4 weeks ago
+Error response from daemon: No such container: sparkrun_3f2be18c41effca0_20260923a1_node_1
+               total        used        free      shared  buff/cache   available
+Mem:           121Gi        95Gi        25Gi       2.5Gi       5.0Gi        26Gi
+Swap:           15Gi       259Mi        15Gi

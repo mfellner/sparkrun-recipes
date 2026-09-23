@@ -1,0 +1,72 @@
+[
+  {
+    "argv": [
+      "sparkrun",
+      "status"
+    ],
+    "started_at": 1790170015.373358,
+    "completed_at": 1790170015.987751,
+    "returncode": 0,
+    "stdout": "Job: /home/max/sparkrun-recipes/recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml  (tp=2, pp=1)  [3f2be18c41effca0_13351defc50c]  (2 container(s))\n  node_0     192.168.178.47                           Up 16 minutes             ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d\n  node_1     192.168.178.46                           Up 16 minutes             ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d\n  logs: sparkrun logs 3f2be18c41effca0_13351defc50c\n  stop: sparkrun stop 3f2be18c41effca0_13351defc50c\n\nTotal: 2 container(s) across 2 host(s)\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "sparkrun",
+      "proxy",
+      "status"
+    ],
+    "started_at": 1790170015.9877615,
+    "completed_at": 1790170016.1441245,
+    "returncode": 0,
+    "stdout": "Proxy status: running\n  PID:     3774364\n  Gateway: litellm\n  Host:    0.0.0.0\n  Port:    4000\n  Start:   2026-09-23T13:18:20.975641+00:00\n  Auto-discover: running (PID 48456)\n\nRegistered models (1):\n  GLM-5.3-Flash-EXL3\n    -> http://192.168.178.47:8000/v1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "sparkrun",
+      "proxy",
+      "models",
+      "--refresh"
+    ],
+    "started_at": 1790170016.1441348,
+    "completed_at": 1790170019.410468,
+    "returncode": 0,
+    "stdout": "Re-discovering endpoints...\nProxy models already in sync.\nModels (1):\n  GLM-5.3-Flash-EXL3                       -> http://192.168.178.47:8000/v1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "ls-remote",
+      "https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks.git",
+      "HEAD"
+    ],
+    "started_at": 1790170019.4104774,
+    "completed_at": 1790170019.9308062,
+    "returncode": 0,
+    "stdout": "3f2be18c41effca0b4b2c6a65f0b24a7a9f39567\tHEAD\n",
+    "stderr": ""
+  },
+  {
+    "url": "http://127.0.0.1:4000/health",
+    "started_at": 1790170019.9308178,
+    "completed_at": 1790170020.2530613,
+    "status": 200,
+    "body": "{\"healthy_endpoints\":[{\"api_base\":\"http://192.168.178.47:8000/v1\",\"use_in_pass_through\":false,\"use_litellm_proxy\":false,\"merge_reasoning_content_in_choices\":false,\"model\":\"openai/GLM-5.3-Flash-EXL3\",\"max_tokens\":1,\"litellm_metadata\":{\"tags\":[\"litellm-internal-health-check\"],\"user_api_key_hash\":\"litellm-internal-health-check\",\"user_api_key_alias\":\"litellm-internal-health-check\",\"user_api_key_spend\":0.0,\"user_api_key_max_budget\":null,\"user_api_key_team_id\":\"litellm-internal-health-check\",\"user_api_key_project_id\":null,\"user_api_key_user_id\":null,\"user_api_key_org_id\":null,\"user_api_key_team_alias\":\"litellm-internal-health-check\",\"user_api_key_end_user_id\":null,\"user_api_key_user_email\":null,\"user_api_key_request_route\":null,\"user_api_key_budget_reset_at\":null,\"user_api_key_auth_metadata\":{},\"user_api_key\":\"litellm-internal-health-check\",\"agent_id\":null,\"user_api_end_user_max_budget\":null,\"user_api_key_auth\":{\"token\":\"litellm-internal-health-check\",\"key_name\":null,\"key_alias\":\"litellm-internal-health-check\",\"spend\":0.0,\"max_budget\":null,\"expires\":null,\"models\":[],\"aliases\":{},\"config\":{},\"user_id\":null,\"team_id\":\"litellm-internal-health-check\",\"agent_id\":null,\"project_id\":null,\"max_parallel_requests\":null,\"metadata\":{},\"tpm_limit\":null,\"rpm_limit\":null,\"budget_duration\":null,\"budget_reset_at\":null,\"allowed_cache_controls\":[],\"allowed_routes\":[],\"permissions\":{},\"model_spend\":{},\"model_max_budget\":{},\"soft_budget_cooldown\":false,\"blocked\":null,\"litellm_budget_table\":null,\"org_id\":null,\"created_at\":null,\"created_by\":null,\"updated_at\":null,\"updated_by\":null,\"last_active\":null,\"object_permission_id\":null,\"object_permission\":null,\"access_group_ids\":null,\"rotation_count\":0,\"auto_rotate\":false,\"rotation_interval\":null,\"last_rotation_at\":null,\"key_rotation_at\":null,\"router_settings\":null,\"team_spend\":null,\"team_alias\":\"litellm-internal-health-check\",\"team_tpm_limit\":null,\"team_rpm_limit\":null,\"team_max_budget\":null,\"team_soft_budget\":null,\"team_models\":[],\"team_blocked\":false,\"soft_budget\":null,\"team_model_aliases\":null,\"team_member\":null,\"team_metadata\":null,\"team_object_permission_id\":null,\"team_member_spend\":null,\"team_member_tpm_limit\":null,\"team_member_rpm_limit\":null,\"end_user_id\":null,\"end_user_tpm_limit\":null,\"end_user_rpm_limit\":null,\"end_user_max_budget\":null,\"end_user_model_max_budget\":null,\"organization_max_budget\":null,\"organization_tpm_limit\":null,\"organization_rpm_limit\":null,\"organization_metadata\":null,\"project_metadata\":null,\"last_refreshed_at\":null,\"api_key\":\"litellm-internal-health-check\",\"user_role\":null,\"allowed_model_region\":null,\"parent_otel_span\":null,\"rpm_limit_per_model\":null,\"tpm_limit_per_model\":null,\"user_tpm_limit\":null,\"user_rpm_limit\":null,\"user_email\":null,\"user_spend\":null,\"user_max_budget\":null,\"request_route\":null,\"user\":null,\"created_by_user\":null,\"end_user_object_permission\":null,\"jwt_claims\":null}},\"cache\":{\"no-cache\":true}}],\"unhealthy_endpoints\":[],\"healthy_count\":1,\"unhealthy_count\":0}"
+  },
+  {
+    "url": "http://192.168.178.47:8000/v1/models",
+    "started_at": 1790170020.2530909,
+    "completed_at": 1790170020.2542753,
+    "status": 200,
+    "body": "{\"object\":\"list\",\"data\":[{\"id\":\"GLM-5.3-Flash-EXL3\",\"object\":\"model\",\"created\":1790170020,\"owned_by\":\"vllm\",\"root\":\"/cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/024db9f7e9871e8efdf21538ba55af7442be3cd5\",\"parent\":null,\"max_model_len\":850000,\"permission\":[{\"id\":\"modelperm-b5b5f981db609fca\",\"object\":\"model_permission\",\"created\":1790170020,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":true,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]}]}"
+  },
+  {
+    "url": "http://192.168.178.47:5555/api/nodes",
+    "started_at": 1790170020.2542841,
+    "completed_at": 1790170020.2758198,
+    "status": 200,
+    "body": "<!DOCTYPE html>\n<html lang=\"en\" data-theme=\"dark\" data-density=\"compact\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>sparkDash \u2014 Multi-DGX Spark Monitoring Dashboard</title>\n  <link rel=\"icon\" type=\"image/svg+xml\" href=\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8a830' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M13 2L3 14h9l-1 8 10-12h-9l1-8z'/></svg>\" />\n  <script type=\"module\" crossorigin src=\"/assets/index-D_MPajUS.js\"></script>\n  <link rel=\"stylesheet\" crossorigin href=\"/assets/index-DsNgd-Bw.css\">\n</head>\n<body>\n  <div id=\"root\"></div>\n</body>\n</html>"
+  }
+]

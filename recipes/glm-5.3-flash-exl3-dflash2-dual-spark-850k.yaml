@@ -12,14 +12,14 @@ model_revision: 024db9f7e9871e8efdf21538ba55af7442be3cd5
 runtime: vllm-distributed
 min_nodes: 2
 max_nodes: 2
-container: ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:eecb36e14dc34c92d46827fde7b09f7e0bf27e27c426ece126376c02dea6cd2f
+container: ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d
 builder: docker-pull
 
 metadata:
   description: GLM 5.3 Flash EXL3 4bpw on two DGX Sparks with MiaAI-Lab's E3 grouped fat-expert kernel, TP2 DFlash2, replay-safe hybrid APC, optional per-group retention, image input, and 850,000-token context
   maintainer: mfellner
   source: https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
-  source_revision: f906ee990596486e10ddbe381efa6f0e496f77e3
+  source_revision: 3f2be18c41effca0b4b2c6a65f0b24a7a9f39567
   hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
   architecture: Glm5NextForConditionalGeneration
   model_params: 320B
@@ -29,13 +29,15 @@ metadata:
   context_length: 850000
   multimodal: true
   notes:
-    - The main mirror is pinned to 024db9f7e9871e8efdf21538ba55af7442be3cd5; its serving payload is byte-identical to the prior 25a44fdb snapshot and brandonmusic snapshot 5ab363a8. The DFlash2 draft payload selected by source revision f906ee9 is independently pinned to dc77ff1c99eeb2df044ee3d4f0094eb033fee410.
-    - The pinned public arm64 image contains upstream's compiled E3 grouped fat-expert symbols. The exact f906ee9 runtime overlays are checksum-pinned in the adjacent AGPL-3.0 mod and applied on both ranks. Replay-safe DFlash hybrid APC is active; optional per-group retention, adaptive verification, and dense FP8 remain disabled, matching upstream defaults.
-    - The reviewed Mia profile at source revision f906ee9 uses GPU_MEM_UTIL=0.85 and 850,000-token context. Upstream documents that E3's persistent scratch no longer fits 1M at utilization at or below 0.87 on this two-Spark geometry; the prior 1M/E2 recipe remains unchanged for rollback.
+    - The main mirror is pinned to 024db9f7e9871e8efdf21538ba55af7442be3cd5; its serving payload is byte-identical to the prior 25a44fdb snapshot and brandonmusic snapshot 5ab363a8. The DFlash2 draft payload selected by source revision 3f2be18 is independently pinned to dc77ff1c99eeb2df044ee3d4f0094eb033fee410.
+    - The pinned public arm64 exl3-instanttensor image supplies InstantTensor 0.2.0 and compiled E3 grouped fat-expert symbols. Exact 3f2be18 runtime overlays are checksum-pinned in the adjacent AGPL-3.0 mod and applied on both ranks. The public image predates optional thin-decode compiled kernels; those require a separately qualified rebuilt image, not a Python-only overlay. Thin decode, compact draft KV, cooperative MoE, dense FP8, adaptive verification, runtime ABLIT, and per-group sparse retention remain off.
+    - The reviewed TP2 profile uses InstantTensor loading, an explicit 15032385536-byte (14 GiB) KV pool, GPU_MEM_UTIL=0.85, and 850,000-token context. The KV cap comes from upstream .env.example; start.sh alone only warns when it is absent. The default mixed scheduler is fair v5. Old 20260913 live evidence is historical and does not validate this refresh; fresh clean-image and dual-rank live qualification are required. The prior 1M/E2 recipe remains unchanged for rollback.
+    - DEFAULT_MAX_NEW_TOKENS=65536 changes only omitted-request output limits; explicit client limits still win subject to independent model/platform caps. Image processing uses max_image_tokens=2048 and a 1 GiB processor cache; video remains disabled locally. Cache-reset routes remain disabled.
     - GLM53_INDEXER_WORKSPACE=rightsize uses upstream's fail-closed legal-maximum workspace formula. Its exhaustive gate proves equivalent prefill chunking while returning memory to KV.
+    - Local observability adaptations preserve worker environment with SPT_NOENV=1 and expose per-request APC cached-token counts with --enable-prompt-tokens-details; neither changes the selected model or scheduler profile.
     - Port 8000 deliberately preserves this registry's SparkRun, sparkDash, and LiteLLM convention; upstream uses 8888. The endpoint translation does not alter model execution or benchmark accounting.
     - SparkRun replaces upstream's fixed single-HCA interface names with per-host fabric detection. Validate every intended CX-7 path before launch; the serving profile and shared RoCE controls remain upstream-compatible.
-    - SparkRun 0.3.6's optional post-hook lifecycle waits only 240 seconds for the API. This recipe defines no post_exec; rank 0 starts a fail-closed in-container 3,600-second readiness/warmup/semantic gate that terminates vLLM on failure.
+    - SparkRun 0.3.6's optional post-hook lifecycle waits only 240 seconds for the API. This recipe defines no post_exec; rank 0 starts a fail-closed in-container gate with up to 720 API polls (5-second request timeout and 5-second sleeps), followed by separate warmup/semantic phases; the gate terminates vLLM on failure.
     - The DFlash2 checkpoint is CC BY-NC-ND 4.0 for research/evaluation. Review its license and the EXL3 checkpoint's ShapleyMCG License 1.0 before use.
     - 'The API is unauthenticated, root-user, host-networked, and LAN-only. Keep inference, distributed-runtime, NCCL, and proxy port `4000` on a trusted firewalled private network; all are untrusted-client boundaries. Remote media is restricted to the non-resolving media.invalid sentinel; inline image data URLs remain supported. The literal supported multimodal limit is image-only: {"image": 4, "video": 0}; release evidence must include exact direct and proxy rejection receipts for that zero-video boundary.'
 
@@ -72,6 +74,9 @@ executor_config:
 
 # Persist vLLM/runtime caches in SparkRun's standard per-host Hugging Face mount.
 env:
+  # Preserve the actual worker environment in /proc after setproctitle.
+  # Local observability adaptation; does not change model execution.
+  SPT_NOENV: "1"
   HF_HOME: /cache/huggingface
   HF_HUB_OFFLINE: "1"
   TRANSFORMERS_OFFLINE: "1"
@@ -104,7 +109,20 @@ env:
   ABLIT_ALPHA: "3.0"
   ABLIT_INCLUDE_MTP: "1"
   GLM53_SUPPRESS_STOPS_IN_REASONING: "1"
-  GLM53_MIXED_PREFILL_CHUNK: skip
+  DEFAULT_MAX_NEW_TOKENS: "65536"
+  GLM53_MIXED_PREFILL_CHUNK: fair
+  GLM53_FAIR_PREFILL_CHUNK: "256"
+  GLM53_FAIR_PREFILL_SHARE: "0.30"
+  GLM53_FAIR_PREFILL_MAX_INTERVAL_MS: "2000"
+  GLM53_FAIR_PREFILL_MAX_STEP_MS: "2000"
+  GLM53_FAIR_PREFILL_MAX_CHUNKS: "1"
+  GLM53_APC_NO_STORE: "1"
+  GLM53_KV_CAPACITY_LOG: "1"
+  GLM53_EXPOSE_CACHE_RESET: "0"
+  GLM53_DRAFT_KV_COMPACT: "0"
+  GLM53_EXL3_MOE_FAST: "0"
+  GLM53_KDA_BF16_LARGE_M: "0"
+  GLM53_COOP_GEOMETRY: ""
   GLM53_ADAPTIVE_K: "off"
   GLM53_ADAPTIVE_K_SET: 2,4,7
   GLM53_ADAPTIVE_K_ALPHA: "0.25"
@@ -172,6 +190,8 @@ command: |
     --pipeline-parallel-size 1 \
     --quantization exl3 \
     --kv-cache-dtype fp8 \
+    --load-format instanttensor \
+    --kv-cache-memory-bytes 15032385536 \
     --gpu-memory-utilization 0.85 \
     --max-model-len 850000 \
     --max-num-seqs 4 \
@@ -179,6 +199,7 @@ command: |
     --speculative-config '{"method":"dflash","model":"/cache/huggingface/hub/models--incoai--GLM-5.3-Flash-DFlash2/snapshots/dc77ff1c99eeb2df044ee3d4f0094eb033fee410","num_speculative_tokens":7,"kv_cache_dtype":"auto","draft_sample_method":"probabilistic","rejection_sample_method":"standard","draft_tensor_parallel_size":2}' \
     --cudagraph-capture-sizes 1 2 4 8 16 24 32 \
     --enable-prefix-caching \
+    --enable-prompt-tokens-details \
     --no-enable-flashinfer-autotune \
     --tool-call-parser glm47 \
     --enable-auto-tool-choice \
@@ -186,4 +207,6 @@ command: |
     --chat-template /opt/glm53/chat_template.jinja \
     --allowed-media-domains media.invalid \
     --limit-mm-per-prompt '{"image":4,"video":0}' \
+    --mm-processor-kwargs '{"max_image_tokens":2048}' \
+    --mm-processor-cache-gb 1 \
     --skip-mm-profiling

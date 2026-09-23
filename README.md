@@ -71,15 +71,18 @@ Live validation on 2026-09-03 passed deterministic chat, four-way concurrency, v
 
 `@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k`
 
-Immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `f906ee990596486e10ddbe381efa6f0e496f77e3`.
+Immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `3f2be18c41effca0b4b2c6a65f0b24a7a9f39567`.
 
 - Exactly two DGX Spark or compatible GB10 nodes using native `vllm-distributed` TP2/MP
-- Main model pinned to `024db9f7e9871e8efdf21538ba55af7442be3cd5` and DFlash2 pinned independently to `dc77ff1c99eeb2df044ee3d4f0094eb033fee410`
-- MiaAI-Lab's public arm64 E3 image pinned at `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:eecb36e14dc34c92d46827fde7b09f7e0bf27e27c426ece126376c02dea6cd2f`
+- Main model pinned to `024db9f7e9871e8efdf21538ba55af7442be3cd5`, serving-payload-equivalent to upstream's `25a44fdbf16862a46b7cc9921142c6c81350af2f`; DFlash2 retains upstream's explicit `dc77ff1c99eeb2df044ee3d4f0094eb033fee410` pin rather than following changed weights on Hugging Face main
+- MiaAI-Lab's public arm64 InstantTensor image pinned at `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d`, with explicit `--load-format instanttensor` and `--kv-cache-memory-bytes 15032385536` (14 GiB)
 - The complete mod tree, including archival vendored source, is covered by its SHA-256 manifest; only the named runtime subset selected by `run.sh` is applied fail-closed on both ranks
-- E3 grouped fat-expert kernels, FP8 MLA KV, TP2-sharded DFlash2 k=7, replay-safe hybrid APC, optional per-group sparse retention, CUDA graphs, text plus still-image input, tool calling, and reasoning parsing; the literal vLLM command configures supported per-prompt limits as `{"image":4,"video":0}`
-- Mia's source-revision `GPU_MEM_UTIL=0.85`, `MAX_MODEL_LEN=850000`, `MAX_NUM_SEQS=4`, `MAX_NUM_BATCHED_TOKENS=7168`, and right-sized indexer workspace profile
-- Optional per-group sparse retention, adaptive-k, dense-FP8, and ABLIT paths are installed but disabled, matching upstream defaults
+- E3 grouped fat-expert kernels, FP8 MLA KV, TP2-sharded DFlash2 k=7, hardened hybrid APC composition, Mamba alignment/state-lifetime fixes, CUDA graphs, tool calling, reasoning parsing, and still-image input; the stricter local per-prompt limits remain `{"image":4,"video":0}`
+- Mia's default `GPU_MEM_UTIL=0.85`, `MAX_MODEL_LEN=850000`, `MAX_NUM_SEQS=4`, `MAX_NUM_BATCHED_TOKENS=7168`, right-sized indexer workspace, and fair-v5 mixed-prefill policy
+- Per-image processing capped at 2,048 tokens with a 1-GiB processor cache; `tool_choice:none` decode guard, omitted-only 65,536-token output fallback, per-request APC no-store support, and detailed KV-capacity logging
+- Optional sparse retention, compact draft KV, thin fast-decode, KDA large-M, adaptive-k, dense-FP8, ABLIT, and cache-reset exposure remain off
+
+The public image predates this launcher revision. Exact current Python overlays are installed at launch; the unchanged E3 compiled extension supports the default profile. The optional thin fast-decode kernel is not qualified or enabled by this recipe. This is not a byte-identical build of the latest upstream Dockerfile, and the optional 262K long-coding example is not selected.
 
 Port `8000` is the intentional SparkRun/sparkDash/LiteLLM adaptation from upstream `8888`; the served alias remains `GLM-5.3-Flash-EXL3`. Rank 0 runs a bounded post-readiness warmup and semantic gate before acceptance.
 
@@ -93,7 +96,7 @@ sparkrun run @mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k \
 
 The endpoint is unauthenticated, root-user, host-networked/IPC, configured for still-image input with video limited to zero, LAN-only, and trust-gated. Keep inference, native-distributed, NCCL, and proxy port `4000` on a trusted firewalled private network; all are untrusted-client boundaries. The fixed `--allowed-media-domains media.invalid` sentinel denies arbitrary remote URL media; deterministic inline `data:` images remain supported. Deploy authentication and an explicit real-domain allowlist before any use outside this trusted private boundary. Keep `earlyoom` inactive while the model remains loaded; restore it only after unloading and verifying safe memory headroom.
 
-Fresh live validation: **PASSED** for deterministic workload `sparkrun_f906ee990596486e_20260913c411` and acceptance run `f906c41120260913`. The exact launch, direct/proxy functional matrix, synchronized telemetry, dual-rank runtime topology, rank-0 positive/rank-1 negative listener proofs, latest hybrid-DFlash/per-group-APC runtime state, and deterministic video-zero receipts are preserved in the [850K evidence](evidence/glm53-exl3-850k-20260913/). The recommended GLM 5.3 Flash EXL3 850K recipe remains the release target. Post-publication GitHub raw-byte and registry-resolution checks remain pending.
+Fresh functional validation of the `3f2be18` refresh **PASSED** on 2026-09-23: all 35 checks on the final workload `sparkrun_3f2be18c41effca0_13351defc50c`, with both ranks' pinned runtime identity and unchanged serving processes verified. [Raw evidence and verifier](evidence/glm53-exl3-850k-20260923/) cover direct/proxy completions, C4, vision/OCR, tools and `tool_choice: none`, schema/reasoning, media rejection, ten constrained literal-stop probes, 4,096-token visible output, and APC replay (14,336 cached tokens). The largest completed semantic request was **110,035 prompt tokens**, not the full configured 850,000-token limit. Both readiness-to-acceptance kernel windows were clean. This is functional qualification, not a throughput, full-context, 65,536-token output-exhaustion, or general model-quality claim. Earlier failed startup and unconstrained-stop probes are retained as diagnostics; they are not passes. The [2026-09-13 evidence](evidence/glm53-exl3-850k-20260913/) remains historical.
 
 ### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 1M context (legacy rollback)
 

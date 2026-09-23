@@ -1,0 +1,706 @@
+[
+  {
+    "history": "/bin/sh -c #(nop) ADD file:b7517e9b93ca90114b86d36fa835651ac45b762e188edb92fc804391a8989e04 in / ",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 28860240,
+      "digest": "sha256:cc43ec4c13811c515d52d11a6039f3659696499c8782f5f3f601a3fdedf14082"
+    }
+  },
+  {
+    "history": "RUN |1 TARGETARCH=arm64 /bin/sh -c apt-get update && apt-get install -y --no-install-recommends     gnupg2 curl ca-certificates &&     curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/${NVARCH}/3bf863cc.pub | apt-key add - &&     echo \"deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/${NVARCH} /\" > /etc/apt/sources.list.d/cuda.list &&     apt-get purge --autoremove -y curl     && rm -rf /var/lib/apt/lists/* # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 4532539,
+      "digest": "sha256:c7ba38867e8d046b206969939a5d345ebd47819cebd0cab2ebc03588a122bdbc"
+    }
+  },
+  {
+    "history": "RUN |1 TARGETARCH=arm64 /bin/sh -c apt-get update && apt-get install -y --no-install-recommends     cuda-cudart-13-0=${NV_CUDA_CUDART_VERSION}     cuda-compat-13-0     && rm -rf /var/lib/apt/lists/* # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 99730896,
+      "digest": "sha256:c88eadd066162cb15485ec40863657a4c067ba748b3edd900c2538f45c76aeb5"
+    }
+  },
+  {
+    "history": "RUN |1 TARGETARCH=arm64 /bin/sh -c echo \"/usr/local/cuda/lib64\" >> /etc/ld.so.conf.d/nvidia.conf # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 185,
+      "digest": "sha256:fd2e70db770294d16caaf4d4d3ff37c95a6984755ba22b3bb82ffb2d54216847"
+    }
+  },
+  {
+    "history": "COPY NGC-DL-CONTAINER-LICENSE / # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 6886,
+      "digest": "sha256:c03b8ec8dd332435fbc4c1fe6eeb6f0e8e8da2dd9d5ddcb50ad14c4a7ebf8939"
+    }
+  },
+  {
+    "history": "WORKDIR /vllm-workspace",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 104,
+      "digest": "sha256:260b17650ffa7d9281d83ba003585c1e46ef19fcabb2e2c4059b30ed5841cb4d"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c PYTHON_VERSION_STR=$(echo ${PYTHON_VERSION} | sed 's/\\.//g') &&     echo \"export PYTHON_VERSION_STR=${PYTHON_VERSION_STR}\" >> /etc/environment # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 230,
+      "digest": "sha256:8b7a2d195bf66473cff87853c57c22ad94d0641d14d2c1364846e3e8acb720f7"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c apt-get update -y     && apt-get install -y --no-install-recommends         software-properties-common         curl         sudo         ffmpeg         libsm6         libxext6         libgl1     && if [ ! -z ${DEADSNAKES_MIRROR_URL} ] ; then         if [ ! -z \"${DEADSNAKES_GPGKEY_URL}\" ] ; then             mkdir -p -m 0755 /etc/apt/keyrings ;             curl -L ${DEADSNAKES_GPGKEY_URL} | gpg --dearmor > /etc/apt/keyrings/deadsnakes.gpg ;             sudo chmod 644 /etc/apt/keyrings/deadsnakes.gpg ;             echo \"deb [signed-by=/etc/apt/keyrings/deadsnakes.gpg] ${DEADSNAKES_MIRROR_URL} $(lsb_release -cs) main\" > /etc/apt/sources.list.d/deadsnakes.list ;         fi ;     else         for i in 1 2 3; do             add-apt-repository -y ppa:deadsnakes/ppa && break ||             { echo \"Attempt $i failed, retrying in 5s...\"; sleep 5; };         done ;     fi     && apt-get update -y     && apt-get install -y --no-install-recommends         python${PYTHON_VERSION}         python${PYTHON_VERSION}-dev         python${PYTHON_VERSION}-venv         libibverbs-dev     && rm -rf /var/lib/apt/lists/*     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python${PYTHON_VERSION} 1     && update-alternatives --set python3 /usr/bin/python${PYTHON_VERSION}     && ln -sf /usr/bin/python${PYTHON_VERSION}-config /usr/bin/python3-config     && rm -f /usr/lib/python${PYTHON_VERSION}/EXTERNALLY-MANAGED     && curl -sS ${GET_PIP_URL} | python${PYTHON_VERSION}     && python3 --version && python3 -m pip --version # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 226459839,
+      "digest": "sha256:9769fc4961ddf61250aefb91750d7c52bf8431cfe540b44ff7a80820a6e07918"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c CUDA_VERSION_DASH=$(echo $CUDA_VERSION | cut -d. -f1,2 | tr '.' '-') &&     apt-get update -y &&     apt-get install -y --no-install-recommends --allow-change-held-packages         cuda-nvcc-${CUDA_VERSION_DASH}         cuda-cudart-${CUDA_VERSION_DASH}         cuda-nvrtc-${CUDA_VERSION_DASH}         cuda-cuobjdump-${CUDA_VERSION_DASH}         libcurand-dev-${CUDA_VERSION_DASH}         libcublas-dev-${CUDA_VERSION_DASH}         libnuma-dev         numactl &&     rm -rf /var/lib/apt/lists/* # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1561014446,
+      "digest": "sha256:cc65ece7d0177d0ec7d21b50eb907f7d9628458fa04f0f32c3a52942304c842b"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c python3 -m pip install uv # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 45552795,
+      "digest": "sha256:c7d8d40378ecd1efd3badb577ae3bb4a16bb58dc9698eeb78a4b9c2bff9af4ab"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c mkdir -p \"${UV_PYTHON_INSTALL_DIR}\" \"${UV_CACHE_DIR}\"     && chgrp -R 0 /opt/uv     && chmod -R g+rwX,a+rX /opt/uv # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 150,
+      "digest": "sha256:fb47c64ae29e4864fe1a6726de101960f517e2fb41a6d258c8f0a84cc64abc8c"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c CUDA_MAJOR=$(echo $CUDA_VERSION | cut -d. -f1) &&     if [ -n \"$NCCL_VERSION\" ]; then         echo \"nvidia-nccl-cu${CUDA_MAJOR}==${NCCL_VERSION}\"             > /etc/uv-overrides.txt;     else         touch /etc/uv-overrides.txt;     fi # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 164,
+      "digest": "sha256:d8841b82c5c61fd0620e4d7a109f21e0c9660359e495e15de9186e6d2113e381"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c useradd --uid 2000 --gid 0 --create-home --home-dir /home/vllm         --shell /bin/bash vllm     && mkdir -p /home/vllm/.cache /home/vllm/.config     && chown -R 2000:0 /home/vllm     && chmod -R g+rwX /home/vllm     && chgrp 0 /etc/passwd /etc/group     && chmod g=u /etc/passwd /etc/group # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 3480,
+      "digest": "sha256:5675e0e5a709ecb989221b7d3f09550c8df6fed244a65e922b55a8690de09a82"
+    }
+  },
+  {
+    "history": "COPY docker/entrypoints/vllm-nonroot-entrypoint.sh /usr/local/bin/vllm-nonroot-entrypoint.sh # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2085,
+      "digest": "sha256:7b0d9b3242638684c1469fca5804ca3e745b2e6811b6ac003b04d8af2ef6d795"
+    }
+  },
+  {
+    "history": "RUN |6 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py /bin/sh -c chmod 0755 /usr/local/bin/vllm-nonroot-entrypoint.sh # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 32,
+      "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1"
+    }
+  },
+  {
+    "history": "COPY requirements/common.txt /tmp/common.txt # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1670,
+      "digest": "sha256:df379eff5c0f9447ce5fd7cecfe135842851b34ee35077c131322ae82c51b6bf"
+    }
+  },
+  {
+    "history": "COPY requirements/cuda.txt /tmp/requirements-cuda.txt # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 866,
+      "digest": "sha256:2f95f880c3e0eba6362569f86ad055975ad5e891c860bd5577a6441ec444b271"
+    }
+  },
+  {
+    "history": "RUN |7 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl /bin/sh -c if [ \"$(echo $CUDA_VERSION | cut -d. -f1)\" = \"12\" ]; then         sed -i 's/^nvidia-cutlass-dsl\\[cu13\\]/nvidia-cutlass-dsl/' /tmp/requirements-cuda.txt;         sed -i 's/^humming-kernels\\[cu13\\]/humming-kernels[cu12]/' /tmp/requirements-cuda.txt;     fi &&     uv pip install --system -r /tmp/requirements-cuda.txt         --extra-index-url ${PYTORCH_CUDA_INDEX_BASE_URL}/cu$(echo $CUDA_VERSION | cut -d. -f1,2 | tr -d '.') &&     rm /tmp/requirements-cuda.txt /tmp/common.txt # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 4717172711,
+      "digest": "sha256:c56e2a5e99d6716ffbeeef769be83a4c2ca9018b96f4f199948f15ee2bf6422e"
+    }
+  },
+  {
+    "history": "RUN |8 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl FLASHINFER_VERSION=0.6.17 /bin/sh -c uv pip install --system flashinfer-jit-cache==${FLASHINFER_VERSION}         --index-url https://flashinfer.ai/whl/cu$(echo $CUDA_VERSION | cut -d. -f1,2 | tr -d '.') # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1696456090,
+      "digest": "sha256:771f39cb44c622115cb9e33723379677651ac0effda21ed587a301974e91b18a"
+    }
+  },
+  {
+    "history": "COPY tools/install_gdrcopy.sh /tmp/install_gdrcopy.sh # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 897,
+      "digest": "sha256:657c7fe3266f2d81c32a8e1a2d124ff5bd22cb582ce03659d47fa79bd805debf"
+    }
+  },
+  {
+    "history": "RUN |11 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl FLASHINFER_VERSION=0.6.17 GDRCOPY_CUDA_VERSION=12.8 GDRCOPY_OS_VERSION=Ubuntu24_04 TARGETPLATFORM=linux/arm64 /bin/sh -c set -eux;     case \"${TARGETPLATFORM}\" in       linux/arm64) UUARCH=\"aarch64\" ;;       linux/amd64) UUARCH=\"x64\" ;;       *) echo \"Unsupported TARGETPLATFORM: ${TARGETPLATFORM}\" >&2; exit 1 ;;     esac;     /tmp/install_gdrcopy.sh \"${GDRCOPY_OS_VERSION}\" \"${GDRCOPY_CUDA_VERSION}\" \"${UUARCH}\" &&     rm /tmp/install_gdrcopy.sh # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 322604,
+      "digest": "sha256:26230523ed2739bed8b93e433394a4ae31be2844052df578bfeadadd95e7d5a3"
+    }
+  },
+  {
+    "history": "RUN |13 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl FLASHINFER_VERSION=0.6.17 GDRCOPY_CUDA_VERSION=12.8 GDRCOPY_OS_VERSION=Ubuntu24_04 TARGETPLATFORM=linux/arm64 TIMM_VERSION=>=1.0.17 RUNAI_MODEL_STREAMER_VERSION=>=0.15.7 /bin/sh -c uv pip install --system accelerate 'modelscope<1.38'         \"timm${TIMM_VERSION}\" \"runai-model-streamer[s3,gcs,azure]${RUNAI_MODEL_STREAMER_VERSION}\" # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 284198681,
+      "digest": "sha256:77ca708fb1a0f2ebd19bec775e2477b06f298799c512922e2f853e58c381786c"
+    }
+  },
+  {
+    "history": "COPY /workspace/torch_lib_versions.txt torch_lib_versions.txt # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 197,
+      "digest": "sha256:0caf9a7d9c00b3e3a504de33b5f933048d222f8703c67b035b3aad23fe9fbb68"
+    }
+  },
+  {
+    "history": "COPY /workspace/dist/wheel.sha256 /tmp/vllm-wheel.sha256 # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 239,
+      "digest": "sha256:90046874bc6e2441e1b6f0d9ecef34d5c381ac968cace8b5cf84f78509a8ecbc"
+    }
+  },
+  {
+    "history": "RUN |20 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl FLASHINFER_VERSION=0.6.17 GDRCOPY_CUDA_VERSION=12.8 GDRCOPY_OS_VERSION=Ubuntu24_04 TARGETPLATFORM=linux/arm64 TIMM_VERSION=>=1.0.17 RUNAI_MODEL_STREAMER_VERSION=>=0.15.7 PIP_INDEX_URL= UV_INDEX_URL= PIP_EXTRA_INDEX_URL= UV_EXTRA_INDEX_URL= PIP_KEYRING_PROVIDER=disabled UV_KEYRING_PROVIDER=disabled PYTORCH_NIGHTLY= /bin/sh -c if [ \"${PYTORCH_NIGHTLY}\" = \"1\" ]; then         echo \"Installing torch nightly...\"         && uv pip install --system $(cat torch_lib_versions.txt | xargs) --pre         --index-url ${PYTORCH_CUDA_INDEX_BASE_URL}/nightly/cu$(echo $CUDA_VERSION | cut -d. -f1,2 | tr -d '.')         && echo \"Installing vLLM...\"         && uv pip install --system dist/*.whl --verbose         --extra-index-url ${PYTORCH_CUDA_INDEX_BASE_URL}/nightly/cu$(echo $CUDA_VERSION | cut -d. -f1,2 | tr -d '.');     else         echo \"Installing vLLM...\"         && uv pip install --system dist/*.whl --verbose         --extra-index-url ${PYTORCH_CUDA_INDEX_BASE_URL}/cu$(echo $CUDA_VERSION | cut -d. -f1,2 | tr -d '.');     fi # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 530067200,
+      "digest": "sha256:2c55b4653d4b2c7d4497169b14edc16f44b3fc3058a9ab9cd302e365783e7cbb"
+    }
+  },
+  {
+    "history": "RUN |20 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl FLASHINFER_VERSION=0.6.17 GDRCOPY_CUDA_VERSION=12.8 GDRCOPY_OS_VERSION=Ubuntu24_04 TARGETPLATFORM=linux/arm64 TIMM_VERSION=>=1.0.17 RUNAI_MODEL_STREAMER_VERSION=>=0.15.7 PIP_INDEX_URL= UV_INDEX_URL= PIP_EXTRA_INDEX_URL= UV_EXTRA_INDEX_URL= PIP_KEYRING_PROVIDER=disabled UV_KEYRING_PROVIDER=disabled PYTORCH_NIGHTLY= /bin/sh -c . /etc/environment && uv pip list # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 32,
+      "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1"
+    }
+  },
+  {
+    "history": "COPY /tmp/ep_kernels_workspace/dist/wheels.sha256 /tmp/ep-kernels-wheels.sha256 # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 253,
+      "digest": "sha256:2347237450c8a0d816b1d5506c3727e4d83c9a82e4240aa4ec776d7ab2c19df3"
+    }
+  },
+  {
+    "history": "RUN |20 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl FLASHINFER_VERSION=0.6.17 GDRCOPY_CUDA_VERSION=12.8 GDRCOPY_OS_VERSION=Ubuntu24_04 TARGETPLATFORM=linux/arm64 TIMM_VERSION=>=1.0.17 RUNAI_MODEL_STREAMER_VERSION=>=0.15.7 PIP_INDEX_URL= UV_INDEX_URL= PIP_EXTRA_INDEX_URL= UV_EXTRA_INDEX_URL= PIP_KEYRING_PROVIDER=disabled UV_KEYRING_PROVIDER=disabled PYTORCH_NIGHTLY= /bin/sh -c uv pip install --system ep_kernels/dist/*.whl --verbose         --extra-index-url ${PYTORCH_CUDA_INDEX_BASE_URL}/cu$(echo $CUDA_VERSION | cut -d. -f1,2 | tr -d '.') # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 14310067,
+      "digest": "sha256:edb908af2bb0bddc501db6b75ab4c1389784f2f97eeab4758da2c0cb78f05d68"
+    }
+  },
+  {
+    "history": "COPY examples examples # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 267488,
+      "digest": "sha256:5e344a00c167a46eca2a49c23e40b2d5dca0afcfd3e254795a01311a77996d10"
+    }
+  },
+  {
+    "history": "COPY benchmarks benchmarks # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 286128,
+      "digest": "sha256:362e8bdcf73db53ed8358b3a599a35be9c5de60ac5d3853bfcf2e74138af6dbe"
+    }
+  },
+  {
+    "history": "COPY ./vllm/collect_env.py . # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 9839,
+      "digest": "sha256:988eb841a5d90fc1e65afa71d2ace871e4ba53b44c83e01c35923a2c8161805d"
+    }
+  },
+  {
+    "history": "RUN |26 CUDA_VERSION=13.0.1 PYTHON_VERSION=3.12 NCCL_VERSION=2.30.7 DEADSNAKES_MIRROR_URL= DEADSNAKES_GPGKEY_URL= GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py PYTORCH_CUDA_INDEX_BASE_URL=https://download.pytorch.org/whl FLASHINFER_VERSION=0.6.17 GDRCOPY_CUDA_VERSION=12.8 GDRCOPY_OS_VERSION=Ubuntu24_04 TARGETPLATFORM=linux/arm64 TIMM_VERSION=>=1.0.17 RUNAI_MODEL_STREAMER_VERSION=>=0.15.7 PIP_INDEX_URL= UV_INDEX_URL= PIP_EXTRA_INDEX_URL= UV_EXTRA_INDEX_URL= PIP_KEYRING_PROVIDER=disabled UV_KEYRING_PROVIDER=disabled PYTORCH_NIGHTLY= INSTALL_KV_CONNECTORS=true VLLM_BUILD_COMMIT= VLLM_BUILD_PIPELINE= VLLM_BUILD_URL= VLLM_IMAGE_TAG= torch_cuda_arch_list=8.0 8.7 8.9 9.0 10.0 11.0 12.0 /bin/sh -c CUDA_MAJOR=\"${CUDA_VERSION%%.*}\";     CUDA_VERSION_DASH=$(echo $CUDA_VERSION | cut -d. -f1,2 | tr '.' '-');     CUDA_HOME=/usr/local/cuda;     BUILD_PKGS=\"libcusparse-dev-${CUDA_VERSION_DASH}                 libcublas-dev-${CUDA_VERSION_DASH}                 libcusolver-dev-${CUDA_VERSION_DASH}\";     if [ \"$INSTALL_KV_CONNECTORS\" = \"true\" ]; then         uv pip install --system -r /tmp/kv_connectors.txt --no-build || (             apt-get update -y &&             apt-get install -y --no-install-recommends --allow-change-held-packages ${BUILD_PKGS} &&             uv pip install --system -r /tmp/kv_connectors.txt --no-build-isolation &&             apt-get purge -y ${BUILD_PKGS} &&             rm -rf /var/lib/apt/lists/*         );         MOONCAKE_VERSION=$(python3 -c \"import importlib.metadata as m; print(m.version('mooncake-transfer-engine'))\" 2>/dev/null || true) &&         if [ \"${CUDA_MAJOR}\" = \"13\" ] && [ -n \"${MOONCAKE_VERSION}\" ]; then             uv pip uninstall --system mooncake-transfer-engine 2>/dev/null || true;             uv pip install --system \"mooncake-transfer-engine-cuda13==${MOONCAKE_VERSION}\";         fi;     fi # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 500288238,
+      "digest": "sha256:432854b44e0e65d7dfe6acac8a2019f3295533fef7237d04de9a6ff1721f79c1"
+    }
+  },
+  {
+    "history": "RUN /bin/sh -c python3 - <<'PY'\nfrom pathlib import Path\n\ntarget = Path(\n    \"/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/\"\n    \"flashinfer_mla_sparse_sm120.py\"\n)\nsource = target.read_text()\n\n\ndef replace_once(old: str, new: str) -> None:\n    global source\n    if source.count(old) != 1:\n        raise RuntimeError(f\"expected exactly one patch target: {old!r}\")\n    source = source.replace(old, new)\n\n\nreplace_once(\n    '    \"\"\"SM120 FlashInfer sparse-MLA implementation.\"\"\"\\n\\n    is_sparse = True\\n',\n    '    \"\"\"SM120 FlashInfer sparse-MLA implementation.\"\"\"\\n\\n'\n    \"    is_sparse = True\\n\"\n    \"    supports_dense_mha_prefill = False\\n\",\n)\n\nreplace_once(\n    '        self.qk_rope_head_dim: int = mla_args[\"qk_rope_head_dim\"]\\n'\n    \"        from vllm.config import get_current_vllm_config\\n\",\n    '        self.qk_rope_head_dim: int = mla_args[\"qk_rope_head_dim\"]\\n'\n    \"        self.rope_pad = 0\\n\"\n    \"        if self.qk_rope_head_dim == 0:\\n\"\n    \"            if self.kv_lora_rank != 512:\\n\"\n    \"                raise NotImplementedError(\\n\"\n    '                    \"FLASHINFER_MLA_SPARSE_SM120 pads NoPE MLA into the \"\\n'\n    '                    \"576-wide GLM_NSA geometry, which requires \"\\n'\n    '                    f\"kv_lora_rank=512; got {self.kv_lora_rank}.\"\\n'\n    \"                )\\n\"\n    \"            self.rope_pad = 64\\n\"\n    \"        self.kernel_qk_rope_head_dim = self.qk_rope_head_dim + self.rope_pad\\n\"\n    \"        from vllm.config import get_current_vllm_config\\n\",\n)\n\nreplace_once(\n    \"        if isinstance(q, tuple):\\n\"\n    \"            q = torch.cat(q, dim=-1)\\n\"\n    \"\\n\"\n    \"        num_actual_toks = q.shape[0]\\n\",\n    \"        if isinstance(q, tuple):\\n\"\n    \"            q = torch.cat(q, dim=-1)\\n\"\n    \"        if self.rope_pad:\\n\"\n    \"            q = torch.nn.functional.pad(q, (0, self.rope_pad))\\n\"\n    \"\\n\"\n    \"        num_actual_toks = q.shape[0]\\n\",\n)\n\nreplace_once(\n    \"            qk_rope_head_dim=self.qk_rope_head_dim,\\n\",\n    \"            qk_rope_head_dim=self.kernel_qk_rope_head_dim,\\n\",\n)\n\nreplace_once(\n    \"        topk_indices_physical = cast(\\n\"\n    \"            torch.Tensor,\\n\"\n    \"            triton_convert_req_index_to_global_index(\\n\"\n    \"                attn_metadata.req_id_per_token[:num_actual_toks],\\n\"\n    \"                attn_metadata.block_table,\\n\"\n    \"                topk_indices,\\n\"\n    \"                BLOCK_SIZE=attn_metadata.block_size,\\n\"\n    \"                NUM_TOPK_TOKENS=topk_indices.shape[1],\\n\"\n    \"            ),\\n\"\n    \"        )\\n\",\n    \"        topk_indices_physical, topk_lengths = cast(\\n\"\n    \"            tuple[torch.Tensor, torch.Tensor],\\n\"\n    \"            triton_convert_req_index_to_global_index(\\n\"\n    \"                attn_metadata.req_id_per_token[:num_actual_toks],\\n\"\n    \"                attn_metadata.block_table,\\n\"\n    \"                topk_indices,\\n\"\n    \"                BLOCK_SIZE=attn_metadata.block_size,\\n\"\n    \"                NUM_TOPK_TOKENS=topk_indices.shape[1],\\n\"\n    \"                return_valid_counts=True,\\n\"\n    \"            ),\\n\"\n    \"        )\\n\"\n    \"        sparse_topk_capacity = topk_indices_physical.shape[1]\\n\"\n    \"        empty_rows = topk_lengths == 0\\n\"\n    \"        topk_indices_physical[:, 0] = topk_indices_physical[:, 0].masked_fill(\\n\"\n    \"            empty_rows, 0\\n\"\n    \"        )\\n\"\n    \"        topk_lengths = topk_lengths.clamp(min=1)\\n\",\n)\n\nreplace_once(\n    \"            seq_lens=None,\\n            max_seq_len=attn_metadata.topk_tokens,\\n\",\n    \"            seq_lens=topk_lengths,\\n            max_seq_len=sparse_topk_capacity,\\n\",\n)\n\nreplace_once(\n    \"            sparse_mla_top_k=attn_metadata.topk_tokens,\\n\",\n    \"            sparse_mla_top_k=sparse_topk_capacity,\\n\",\n)\n\nreplace_once(\n    \"        return out.squeeze(1), None\\n\",\n    \"        out = out.squeeze(1)\\n\"\n    \"        out.masked_fill_(empty_rows.view(-1, 1, 1), 0.0)\\n\"\n    \"        return out, None\\n\"\n    \"\\n\"\n    \"    def do_kv_cache_update(\\n\"\n    \"        self,\\n\"\n    \"        kv_c_normed: torch.Tensor,\\n\"\n    \"        k_pe: torch.Tensor,\\n\"\n    \"        kv_cache: torch.Tensor,\\n\"\n    \"        slot_mapping: torch.Tensor,\\n\"\n    \"        kv_cache_dtype: str,\\n\"\n    \"        k_scale: torch.Tensor,\\n\"\n    \"    ) -> None:\\n\"\n    \"        if self.rope_pad:\\n\"\n    \"            k_pe = k_pe.new_zeros((k_pe.shape[0], 1, self.rope_pad))\\n\"\n    \"        super().do_kv_cache_update(\\n\"\n    \"            kv_c_normed, k_pe, kv_cache, slot_mapping, kv_cache_dtype, k_scale\\n\"\n    \"        )\\n\",\n)\n\ntarget.write_text(source)\n\nsite = Path(\"/usr/local/lib/python3.12/dist-packages/vllm\")\nold_width = \"buffer_width = topk_tokens + (kpool - 1 if kpool > 1 else 0)\"\nfor rel in (\"models/glm5next/nvidia/model.py\", \"models/glm5next/nvidia/mtp.py\"):\n    path = site / rel\n    text = path.read_text()\n    if text.count(old_width) != 1:\n        raise RuntimeError(f\"expected one buffer_width target in {rel}\")\n    path.write_text(text.replace(old_width, \"buffer_width = topk_tokens\"))\n\nsparse_backend = site / \"v1/attention/backends/mla/flashinfer_mla_sparse.py\"\ntext = sparse_backend.read_text()\nold_block_sizes = (\n    \"    def get_supported_kernel_block_sizes() -> list[int | MultipleOf]:\\n\"\n    \"        return [64, 256]\\n\"\n)\nif text.count(old_block_sizes) != 1:\n    raise RuntimeError(\"expected one SM120 kernel-block-size target\")\nsparse_backend.write_text(\n    text.replace(\n        old_block_sizes,\n        \"    def get_supported_kernel_block_sizes() -> list[int | MultipleOf]:\\n\"\n        \"        return [64]\\n\",\n    )\n)\n\nplatform = site / \"platforms/cuda.py\"\ntext = platform.read_text()\nold_align = \"        return index_kpool * min(PAGED_MQA_PAGE_SIZES)\\n\"\nif text.count(old_align) != 1:\n    raise RuntimeError(\"expected one indexer block alignment target\")\nplatform.write_text(\n    text.replace(\n        old_align,\n        \"        page_sizes = PAGED_MQA_PAGE_SIZES\\n\"\n        \"        capability = cls.get_device_capability()\\n\"\n        \"        if capability is not None and capability.major == 12:\\n\"\n        \"            page_sizes = tuple(p for p in page_sizes if p == 64)\\n\"\n        \"        return index_kpool * min(page_sizes)\\n\",\n    )\n)\n\nindexer = site / \"model_executor/layers/sparse_attn_indexer_kpool.py\"\ntext = indexer.read_text()\nfor old, new in (\n    (\n        \"                    expanded = expand_pools_and_append_tail(\\n\"\n        \"                        pool_ids, q_seq, index_kpool\\n\"\n        \"                    )\\n\",\n        \"                    expanded = expand_pools_and_append_tail(\\n\"\n        \"                        pool_ids[:, : select_k - 1], q_seq, index_kpool\\n\"\n        \"                    )\\n\",\n    ),\n    (\n        \"            out = expand_pools_and_append_tail(pool_ids, dec_seq, index_kpool)\\n\",\n        \"            out = expand_pools_and_append_tail(\\n\"\n        \"                pool_ids[:, : select_k - 1], dec_seq, index_kpool\\n\"\n        \"            )\\n\",\n    ),\n):\n    if text.count(old) != 1:\n        raise RuntimeError(f\"expected one expand-pools target: {old!r}\")\n    text = text.replace(old, new)\nindexer.write_text(text)\n\nwarmup = site / \"model_executor/warmup/kernel_warmup.py\"\ntext = warmup.read_text()\nold_sparse_warmup = (\n    \"    flashinfer_sparse_mla_decode_autotune_warmup(worker)\\n\"\n    \"    deepseek_v4_sparse_mla_attention_warmup(worker)\\n\"\n)\nif text.count(old_sparse_warmup) != 1:\n    raise RuntimeError(\"expected one FlashInfer sparse-MLA warmup target\")\ntext = text.replace(\n    old_sparse_warmup,\n    \"    # GLM53_SKIP_FI_SPARSE_WARMUP: SM120 autotune wedges rank 0 on GB10.\\n\"\n    \"    deepseek_v4_sparse_mla_attention_warmup(worker)\\n\",\n)\nold_autotune = \"    from flashinfer.autotuner import AutoTuner, set_autotune_process_group\\n\"\nif text.count(old_autotune) != 1:\n    raise RuntimeError(\"expected one FlashInfer autotuner import\")\ntext = text.replace(\n    old_autotune,\n    \"    logger.info_once(\\\"Skipping FlashInfer autotune on SM121\\\")\\n\"\n    \"    return\\n\"\n    \"    from flashinfer.autotuner import AutoTuner, set_autotune_process_group\\n\",\n)\nwarmup.write_text(text)\n\nplatform = site / \"platforms/cuda.py\"\ntext = platform.read_text()\nold_pdl = (\n    \"            return False\\n\"\n    \"        return major >= 9\\n\"\n)\nif text.count(old_pdl) != 1:\n    raise RuntimeError(\"expected one PDL capability gate\")\nplatform.write_text(\n    text.replace(\n        old_pdl,\n        \"            return False\\n\"\n        \"        # PDL lowering races KDA state kernels on SM12x (GB10).\\n\"\n        \"        return major in (9, 10)\\n\",\n    )\n)\nPY # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 46398,
+      "digest": "sha256:caf16bd6981ad58517079915870010a1bf80bc8cf738413e9184b37d09d86ac6"
+    }
+  },
+  {
+    "history": "RUN /bin/sh -c python3 - <<'PY'\nimport inspect\n\nfrom vllm.v1.attention.backends.mla.flashinfer_mla_sparse_sm120 import (\n    FlashInferMLASparseSM120Impl as impl,\n)\n\nassert impl.supports_dense_mha_prefill is False\nassert \"do_kv_cache_update\" in impl.__dict__\ninit_src = inspect.getsource(impl.__init__)\nassert \"self.rope_pad = 64\" in init_src\nfwd_src = inspect.getsource(impl.forward_mqa)\nassert \"torch.nn.functional.pad(q, (0, self.rope_pad))\" in fwd_src\nassert \"qk_rope_head_dim=self.kernel_qk_rope_head_dim\" in fwd_src\nassert \"return_valid_counts=True\" in fwd_src\nassert \"sparse_mla_top_k=sparse_topk_capacity\" in fwd_src\nassert \"seq_lens=topk_lengths\" in fwd_src\nassert \"out.masked_fill_(empty_rows.view(-1, 1, 1), 0.0)\" in fwd_src\nassert \"attn_metadata.topk_tokens\" not in fwd_src\n\nfrom pathlib import Path\n\nsite = Path(\"/usr/local/lib/python3.12/dist-packages/vllm\")\nfor rel in (\"models/glm5next/nvidia/model.py\", \"models/glm5next/nvidia/mtp.py\"):\n    src = (site / rel).read_text()\n    compile(src, rel, \"exec\")\n    assert \"buffer_width = topk_tokens\\n\" in src\n    assert \"kpool - 1 if kpool > 1\" not in src\nkpool_src = (site / \"model_executor/layers/sparse_attn_indexer_kpool.py\").read_text()\ncompile(kpool_src, \"sparse_attn_indexer_kpool.py\", \"exec\")\nassert kpool_src.count(\"pool_ids[:, : select_k - 1]\") == 2\n\nfrom vllm.v1.attention.backends.mla.flashinfer_mla_sparse import (\n    FlashInferMLASparseSM120Backend as sm120_backend,\n)\n\nassert sm120_backend.get_supported_kernel_block_sizes() == [64]\nalign_src = (site / \"platforms/cuda.py\").read_text()\ncompile(align_src, \"cuda.py\", \"exec\")\nassert \"if capability is not None and capability.major == 12:\" in align_src\nassert \"return index_kpool * min(page_sizes)\" in align_src\nassert \"return major in (9, 10)\" in align_src\nwarmup_src = (site / \"model_executor/warmup/kernel_warmup.py\").read_text()\ncompile(warmup_src, \"kernel_warmup.py\", \"exec\")\nassert \"flashinfer_sparse_mla_decode_autotune_warmup(worker)\" not in warmup_src\nassert \"Skipping FlashInfer autotune on SM121\" in warmup_src\nprint(\"glm53 NoPE sparse-MLA overlay verify OK\")\nPY # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 33682925,
+      "digest": "sha256:e695316091225f7e73800f143dcb9ff50f3467d948c5688eae3b2b7956826d96"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_exl3_ext_aarch64.py /opt/glm53/patch_exl3_ext_aarch64.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 754,
+      "digest": "sha256:14d0fd549ae3c0c2cd0bb9fe104d262761f923fb99a7034a6717d876d731500c"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_exl3_fat_kernel.py /opt/glm53/patch_exl3_fat_kernel.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 923,
+      "digest": "sha256:71607a09b8cf019a2df25e72d2309a587366ce59b53297aafa23efd9769d87ef"
+    }
+  },
+  {
+    "history": "COPY overlay/exl3_fat_gemm.cu /opt/glm53/exl3-fat-kernel/exl3_fat_gemm.cu # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2940,
+      "digest": "sha256:0fb1ffb9e33990cf9d70dd177659dfd06624922a37a6415ab9cf987dd5dc0fcf"
+    }
+  },
+  {
+    "history": "COPY overlay/exl3_fat_gemm.cuh /opt/glm53/exl3-fat-kernel/exl3_fat_gemm.cuh # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 335,
+      "digest": "sha256:0387e54ecfd323741a2670179ba82a9b127c949e9417b9ef720ec9730b712c9c"
+    }
+  },
+  {
+    "history": "COPY overlay/exl3_fat_moe.cu /opt/glm53/exl3-fat-kernel/exl3_fat_moe.cu # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 6584,
+      "digest": "sha256:5f0f48cb2ffdf695345eb4039b20b3578a0bddf5bd41581308710f326555108b"
+    }
+  },
+  {
+    "history": "COPY overlay/exl3_fat_moe.cuh /opt/glm53/exl3-fat-kernel/exl3_fat_moe.cuh # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1043,
+      "digest": "sha256:56375a32d895e249485e4968f52f30e4503e1348f2d4413f47addaec94e6855b"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 - <<'PY'\nfrom pathlib import Path\n\ninit = Path(\"/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/__init__.py\")\ntext = init.read_text()\nold = 'QuantizationMethods = Literal[\\n    \"awq\",\\n'\nnew = 'QuantizationMethods = Literal[\\n    \"exl3\",\\n    \"awq\",\\n'\nif text.count(old) != 1:\n    raise RuntimeError(\"expected one QuantizationMethods Literal header\")\ntext = text.replace(old, new)\nlazy = (\n    \"    # Update the `method_to_config` with customized quantization methods.\\n\"\n    \"    method_to_config.update(_CUSTOMIZED_METHOD_TO_QUANT_CONFIG)\\n\"\n    \"\\n\"\n    \"    return method_to_config[quantization]\\n\"\n)\nlazy_new = (\n    \"    from .exl3 import Exl3Config\\n\"\n    \"    method_to_config[\\\"exl3\\\"] = Exl3Config\\n\"\n    \"    # Update the `method_to_config` with customized quantization methods.\\n\"\n    \"    method_to_config.update(_CUSTOMIZED_METHOD_TO_QUANT_CONFIG)\\n\"\n    \"\\n\"\n    \"    return method_to_config[quantization]\\n\"\n)\nif text.count(lazy) != 1:\n    raise RuntimeError(\"expected one get_quantization_config trailer\")\ntext = text.replace(lazy, lazy_new)\ninit.write_text(text)\nprint(\"registered exl3 in QUANTIZATION_METHODS (lazy import)\")\nPY # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2324,
+      "digest": "sha256:19d63f4139917fc357706854e56358460a92d22c051d297d7966c6530a542d74"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c set -eux;     mkdir -p /tmp/exllamav3;     curl -fsSL \"https://github.com/turboderp-org/exllamav3/archive/${EXLLAMAV3_COMMIT}.tar.gz\"       | tar -xz -C /tmp/exllamav3 --strip-components=1;     python3 -c \"from pathlib import Path; assert (Path('/tmp/exllamav3')/'exllamav3/modules/quant/exl3.py').is_file()\";     python3 /opt/glm53/patch_exl3_ext_aarch64.py /tmp/exllamav3/exllamav3/exllamav3_ext;     python3 /opt/glm53/patch_exl3_fat_kernel.py /tmp/exllamav3/exllamav3/exllamav3_ext /opt/glm53/exl3-fat-kernel;     export CPATH=\"/usr/local/lib/python3.12/dist-packages/nvidia/cu13/include${CPATH:+:$CPATH}\";     export CPLUS_INCLUDE_PATH=\"/usr/local/lib/python3.12/dist-packages/nvidia/cu13/include${CPLUS_INCLUDE_PATH:+:$CPLUS_INCLUDE_PATH}\";     export C_INCLUDE_PATH=\"/usr/local/lib/python3.12/dist-packages/nvidia/cu13/include${C_INCLUDE_PATH:+:$C_INCLUDE_PATH}\";     cd /tmp/exllamav3;     TORCH_CUDA_ARCH_LIST=12.1a MAX_JOBS=8       pip install --no-deps --no-build-isolation --no-cache-dir .;     python3 -c \"import torch; import exllamav3_ext; assert hasattr(exllamav3_ext, 'exl3_moe'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_gemm'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_gemm_scatter'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_gateup'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_down'), dir(exllamav3_ext); assert hasattr(exllamav3_ext, 'exl3_fat_moe_gather'), dir(exllamav3_ext); print('exllamav3_ext', exllamav3_ext.__file__, 'exl3_moe=yes fat_gemm=yes fat_moe=yes')\";     rm -rf /tmp/exllamav3 /root/.cache/pip # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 42947920,
+      "digest": "sha256:a0eeaa2c3ad77bfd0576a02cae62d48fd20ded5c089e90d89a20efc669a595a4"
+    }
+  },
+  {
+    "history": "COPY overlay/exl3.py /usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 22494,
+      "digest": "sha256:b415679a4f9e562017619ee988f9cc7bbc910caf78a7fc92a3a4a522345d8612"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_model_overrides.py /opt/glm53/patch_model_overrides.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 440,
+      "digest": "sha256:3246c615723dd4b462c255aa02b3ab7c2a8c57cb1462387b4e76b4a35164b4b6"
+    }
+  },
+  {
+    "history": "COPY overlay/qwen3_dflash2.py /opt/glm53/qwen3_dflash2.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2708,
+      "digest": "sha256:0d6fd738df202fa3fbecdff6e8b12ad9b37e075665c07707a6c71570354a52c9"
+    }
+  },
+  {
+    "history": "COPY overlay/dflash2_speculator.py /opt/glm53/dflash2_speculator.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2409,
+      "digest": "sha256:50a086531593ee78b92665e560d75e5da8eb37106c47e33cba1e7778cc796acc"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_dflash2.py /opt/glm53/patch_dflash2.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1995,
+      "digest": "sha256:ad6ea200f6bdd172b2210fde7004450688a4fca00fb42a99a35ff1f657d9d249"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_glm_eagle3.py /opt/glm53/patch_glm_eagle3.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1369,
+      "digest": "sha256:369c865092bf68d3600541e519e7a79ec005697badfb8365bb4ba03fa5b080cc"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_glm5_drafter_group.py /opt/glm53/patch_glm5_drafter_group.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 7657,
+      "digest": "sha256:63d37fe5a853f18419447006dd4b0b51a3598f7644d07667f38d97d49c870240"
+    }
+  },
+  {
+    "history": "COPY tests/test_exl3_overlay.py /opt/glm53/test_exl3_overlay.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 14253,
+      "digest": "sha256:ca63dd470c114830cbd486df6819470a6b6848817265d8275ec55c0a00ecc440"
+    }
+  },
+  {
+    "history": "COPY files/chat_template.jinja /opt/glm53/chat_template.jinja # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2487,
+      "digest": "sha256:73bbd43b1b6cc3d01d2d6d62203e4c9c15bc730365c7a8161aa032e8ba382ba9"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_glm_video_placeholders.py /opt/glm53/patch_glm_video_placeholders.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2317,
+      "digest": "sha256:068cf234880eb4bca5c9088d44aaeb2879572dbc13e4b4d8b6eb6f27510249a9"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_suppress_stops_in_reasoning.py /opt/glm53/patch_suppress_stops_in_reasoning.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2707,
+      "digest": "sha256:3747197b97430576e5fc7b5807bcac3bdfdefd22a8008513060d34e0f67aebec"
+    }
+  },
+  {
+    "history": "COPY tests/test_suppress_stops.py /opt/glm53/test_suppress_stops.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 951,
+      "digest": "sha256:a32268fd003380cd09931c90f4a16f4a43738f216a6c0f814f6d252ba290b417"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_scheduler_decode_floor.py /opt/glm53/patch_scheduler_decode_floor.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2028,
+      "digest": "sha256:6d273cf32d4112bf51c6d289033792fb52e3ff15543a4575498a24ed6e4f78cf"
+    }
+  },
+  {
+    "history": "COPY tests/test_scheduler_decode_floor.py /opt/glm53/test_scheduler_decode_floor.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 906,
+      "digest": "sha256:ade2a6569d9e74422797b897e59c0c83517d8d434dd2596f7239cd52757861a2"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_hybrid_prefix_hit.py /opt/glm53/patch_hybrid_prefix_hit.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2587,
+      "digest": "sha256:953aa49e52d89ee8e3d03cbcb503c0209115018537371f88434ce1dc8ebd4bb0"
+    }
+  },
+  {
+    "history": "COPY tests/test_hybrid_prefix_hit.py /opt/glm53/test_hybrid_prefix_hit.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 868,
+      "digest": "sha256:8b534825b6200b3e1b1d5ad3f8a1dc8ef808b8ff09e3ce7933c0057a693db1bd"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_xgrammar_termination.py /opt/glm53/patch_xgrammar_termination.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2912,
+      "digest": "sha256:50c16bddc941ed5ed29b9fe28ce7c8f1ef4d8e20767af8bd16fba219ea765049"
+    }
+  },
+  {
+    "history": "COPY tests/test_xgrammar_termination.py /opt/glm53/test_xgrammar_termination.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 3488,
+      "digest": "sha256:b043f963aafe0a160a3133680433af820cbe1812adf1ba27d9e24cb850f6c9da"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_kpool_tail_slotmap.py /opt/glm53/patch_kpool_tail_slotmap.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2565,
+      "digest": "sha256:70168ced675580f0017c8ceeff7456d8698a3da5da1b6b63bdaa36ad8112cd19"
+    }
+  },
+  {
+    "history": "COPY tests/test_kpool_tail_slotmap.py /opt/glm53/test_kpool_tail_slotmap.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2393,
+      "digest": "sha256:72d4974c4e38287a3d205ac35b99e1cb58cdf2f6dccdb76d2363ac518ac1ecce"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_spinwait.py /opt/glm53/patch_spinwait.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2035,
+      "digest": "sha256:3ea33b56cf9f4c109fa78a7836b05fe6ecbfb9f1695edbb2f5f54aec30ee990e"
+    }
+  },
+  {
+    "history": "COPY tests/test_spinwait_patch.py /opt/glm53/test_spinwait_patch.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 2203,
+      "digest": "sha256:6bbb661f7b552c0864b800d85b8caec5a30c4c77af734bc3d980c000ff483f4a"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_indexer_workspace.py /opt/glm53/patch_indexer_workspace.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 7682,
+      "digest": "sha256:7120b24723ba8ba2135f591475f117bce7933a5ea894ea035a03c296c8d1a697"
+    }
+  },
+  {
+    "history": "COPY tests/test_indexer_workspace.py /opt/glm53/test_indexer_workspace.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 9432,
+      "digest": "sha256:633168635e399dc9e07af9a072f74634a320e614734602f9227f330ef4c50e64"
+    }
+  },
+  {
+    "history": "COPY overlay/ablit_runtime.py /opt/glm53/ablit_runtime.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 5970,
+      "digest": "sha256:fe854803df9799a43ec4fdce5f074ccf223f08c2e6aeb147ab073bb83a590d3a"
+    }
+  },
+  {
+    "history": "COPY overlay/patch_ablit.py /opt/glm53/patch_ablit.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1205,
+      "digest": "sha256:7842ce36326540d0e3ae1ceb90098ca7be9ff77cd7e1347e3eb201c352a1ba90"
+    }
+  },
+  {
+    "history": "COPY tests/test_ablit.py /opt/glm53/test_ablit.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 5340,
+      "digest": "sha256:0014752e964b103bf5d24e4cc32892319f245995a42f0aa226e60e93777b011b"
+    }
+  },
+  {
+    "history": "COPY ablit/LAYER_MAP.json ablit/fetch_transplant.py ablit/refusal_direction_glm53_bf_oproj.pt ablit/refusal_direction_glm53_dealign_late.pt /opt/glm53/ablit/ # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 36279,
+      "digest": "sha256:a366e31902bd44e03d2b214f2c0abd30cac8f8f468661c8ba568347783f91987"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_model_overrides.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 25166,
+      "digest": "sha256:3679db743ff3617515afa25c94739ebbf922d6c3a52986f1871e21dca04be782"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_dflash2.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 26648,
+      "digest": "sha256:539d740d654457dd7c6922d116e21064b63586a892c6dac61724657101429154"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_glm_eagle3.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 12098,
+      "digest": "sha256:303b8637167ecb42ae98559e7d2cc1df524cb1773a6d43d8e55958463202f6b6"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_glm5_drafter_group.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 29428,
+      "digest": "sha256:3558d7efdd0eec1968eafcca8ccfa2773bcc9dc003270fd15d6e0e23a0529179"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_suppress_stops_in_reasoning.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 4865,
+      "digest": "sha256:58557a02cb13b0bdd58136af1e6df9d9134e4b1b9f4eaaec0094503553d64e10"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_scheduler_decode_floor.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 31586,
+      "digest": "sha256:85104c12e23b09fc9e9e9f9646c3ba30bd0194c1dfabcf258660a82a9b5e8819"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_hybrid_prefix_hit.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 9209,
+      "digest": "sha256:3b2193e26d7b5edf65da609cacea68d1cb9cc9be0fd7431bed2f2b949c296fa5"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_xgrammar_termination.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 9237,
+      "digest": "sha256:d1d4779ea42ccb808e1ca6800a70dcec25a838ec7bc04a65a52e673ac8defbdd"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_kpool_tail_slotmap.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 4392,
+      "digest": "sha256:d725ec611078956dee6055b9cfb3f5231fa697bd62ee90da1ccbb3a1eea5a23f"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_indexer_workspace.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 17325,
+      "digest": "sha256:2f93b0b26fbd6d3e8f46d4978a40cf691abad77e0c810dc4b4928b0d1a89b330"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_spinwait.py --preflight # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 32,
+      "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/patch_ablit.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 21247,
+      "digest": "sha256:21fe48f77808425e17438ca3582dec6e18f629c7d4ca75b37573a53c6664c212"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c EXL3_SELFCHECK_GPU=0 python3 /opt/glm53/test_exl3_overlay.py     && python3 /opt/glm53/test_suppress_stops.py     && python3 /opt/glm53/test_scheduler_decode_floor.py     && python3 /opt/glm53/test_hybrid_prefix_hit.py     && python3 /opt/glm53/test_xgrammar_termination.py     && python3 /opt/glm53/test_kpool_tail_slotmap.py     && python3 /opt/glm53/test_spinwait_patch.py     && python3 /opt/glm53/test_indexer_workspace.py     && python3 /opt/glm53/test_ablit.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 3174674,
+      "digest": "sha256:7eb865317dfc000a3ed21dd93d5a0abbc4f199e54298054eeb10c19a15d61170"
+    }
+  },
+  {
+    "history": "COPY overlay/exl3_mx_ptx.cuh overlay/exl3_mx_gemm.cuh overlay/exl3_mx_gemm.cu overlay/exl3_mx.py overlay/build_exl3_mx_ext.py /opt/glm53/exl3-mx/ # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 10275,
+      "digest": "sha256:ae20a1fb44a95ff64f54dce670d217011370d1d0af79192ae2ef5ffaab47803d"
+    }
+  },
+  {
+    "history": "COPY tests/test_exl3_mx.py /opt/glm53/test_exl3_mx.py # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 1606,
+      "digest": "sha256:b24e592470d4356f30f7106679e9b06a6c58f1ec12814504a0c9f31e130522b5"
+    }
+  },
+  {
+    "history": "RUN |1 EXLLAMAV3_COMMIT=c5d9c657966ffeeaa9353f0cc899f18629da4a13 /bin/sh -c python3 /opt/glm53/test_exl3_mx.py     && python3 /opt/glm53/exl3-mx/build_exl3_mx_ext.py         --src /opt/glm53/exl3-mx --out /tmp/mxbuild         --install /usr/local/lib/python3.12/dist-packages     && python3 -c \"import torch, exl3_mx_ext as m; print('exl3_mx_ext', m.__file__)\"     && rm -rf /tmp/mxbuild # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 422905,
+      "digest": "sha256:a72ce35983f680ce08a757f77ab69f8031f1c7720a755dee2c94ef5d31598280"
+    }
+  },
+  {
+    "history": "COPY instanttensor-0.2.0-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl /tmp/instanttensor-0.2.0-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 6074926,
+      "digest": "sha256:96d8a394f4acc20f3958e5be09db9549252c1e98e8db0a5fd0844edc6566e2ba"
+    }
+  },
+  {
+    "history": "RUN /bin/sh -c pip install --no-deps --no-index --no-cache-dir /tmp/instanttensor-0.2.0-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl     && python3 -c \"import instanttensor; print('instanttensor', instanttensor.__file__)\"     && rm -f /tmp/instanttensor-0.2.0-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl # buildkit",
+    "layer": {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 6312889,
+      "digest": "sha256:9bc41de63874a42609d1d1382d0631fa5b0d22f85562b446c4b5456375c80ce3"
+    }
+  }
+]

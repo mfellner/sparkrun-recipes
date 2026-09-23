@@ -1,0 +1,397 @@
+......................................................... [ 16%]
+...........................................................................................................sssss..................... [ 53%]
+.................................................................................................... [ 81%]
+.................................................................        [100%]
+=========================== short test summary info ============================
+SKIPPED [5] tests/test_instanttensor_kv_note.py:114: no comma-decimal locale installed, nothing to compare the note's boundary against; tried de_DE.UTF-8, de_DE.utf8, fr_FR.UTF-8, fr_FR.utf8, nl_NL.UTF-8, nl_NL.utf8, es_ES.UTF-8, es_ES.utf8, it_IT.UTF-8, it_IT.utf8, pt_BR.UTF-8, pt_BR.utf8
+350 passed, 5 skipped, 70 subtests passed in 131.85s (0:02:11)
+test_age_and_step_budgets_are_independent (__main__.FairTests.test_age_and_step_budgets_are_independent) ... ok
+test_age_cannot_borrow_repeatedly_without_repayment (__main__.FairTests.test_age_cannot_borrow_repeatedly_without_repayment) ... ok
+test_aggregate_reservations_bound_multiple_newcomers (__main__.FairTests.test_aggregate_reservations_bound_multiple_newcomers) ... ok
+test_cancel_and_rearrival_keep_debt_while_a_decodes (__main__.FairTests.test_cancel_and_rearrival_keep_debt_while_a_decodes) ... ok
+test_cost_feedback_can_shrink_chunks (__main__.FairTests.test_cost_feedback_can_shrink_chunks) ... ok
+test_decode_order_reserves_real_input_and_draft_capacity (__main__.FairTests.test_decode_order_reserves_real_input_and_draft_capacity) ... ok
+test_duplicate_and_unrelated_outputs_do_not_pop_records (__main__.FairTests.test_duplicate_and_unrelated_outputs_do_not_pop_records) ... ok
+test_empty_schedule_does_not_block_next_prefill_or_mint_credit (__main__.FairTests.test_empty_schedule_does_not_block_next_prefill_or_mint_credit) ... ok
+test_final_counts_override_provisional_grant (__main__.FairTests.test_final_counts_override_provisional_grant) ... ok
+test_finished_decode_does_not_hold_phantom_input_reservation (__main__.FairTests.test_finished_decode_does_not_hold_phantom_input_reservation) ... ok
+test_fixed_cost_fit_prices_large_chunks_from_small_samples (__main__.FairTests.test_fixed_cost_fit_prices_large_chunks_from_small_samples) ... ok
+test_full_prefix_hit_is_not_blocked_as_cold_prefill (__main__.FairTests.test_full_prefix_hit_is_not_blocked_as_cold_prefill) ... ok
+test_idle_time_is_not_decode_service (__main__.FairTests.test_idle_time_is_not_decode_service) ... ok
+test_ladder_climbs_back_after_small_chunks (__main__.FairTests.test_ladder_climbs_back_after_small_chunks) ... ok
+test_ladder_uses_available_credit (__main__.FairTests.test_ladder_uses_available_credit) ... ok
+test_late_solo_completion_keeps_original_classification (__main__.FairTests.test_late_solo_completion_keeps_original_classification) ... ok
+test_legacy_modes_and_alignment (__main__.FairTests.test_legacy_modes_and_alignment) ... ok
+test_never_served_newcomer_gets_prompt_step_bounded_probe (__main__.FairTests.test_never_served_newcomer_gets_prompt_step_bounded_probe) ... ok
+test_newer_open_step_cannot_contaminate_older_completion (__main__.FairTests.test_newer_open_step_cannot_contaminate_older_completion) ... ok
+test_positive_credit_does_not_override_step_latency (__main__.FairTests.test_positive_credit_does_not_override_step_latency) ... ok
+test_prefill_cannot_preempt_incumbent_for_kv (__main__.FairTests.test_prefill_cannot_preempt_incumbent_for_kv) ... ok
+test_queued_async_time_is_accounted_once (__main__.FairTests.test_queued_async_time_is_accounted_once) ... ok
+test_removed_grant_refunded_and_no_service_credited (__main__.FairTests.test_removed_grant_refunded_and_no_service_credited) ... ok
+test_saves_credit_for_target_rung_instead_of_small_chunk (__main__.FairTests.test_saves_credit_for_target_rung_instead_of_small_chunk) ... ok
+test_single_outlier_does_not_dominate_estimate (__main__.FairTests.test_single_outlier_does_not_dominate_estimate) ... ok
+test_small_remaining_tail_can_fit_when_base_chunk_cannot (__main__.FairTests.test_small_remaining_tail_can_fit_when_base_chunk_cannot) ... ok
+test_solo_prefill_then_immediate_newcomer_has_no_debt (__main__.FairTests.test_solo_prefill_then_immediate_newcomer_has_no_debt) ... ok
+test_solo_samples_alone_price_the_first_probe (__main__.FairTests.test_solo_samples_alone_price_the_first_probe) ... ok
+test_step_budget_caps_the_target_rung (__main__.FairTests.test_step_budget_caps_the_target_rung) ... ok
+test_zero_progress_promotes_next_candidate (__main__.FairTests.test_zero_progress_promotes_next_candidate) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.110s
+
+OK
+scheduler decode-floor restart idempotence OK
+patched kv_cache_coordinator.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched kv_cache_coordinator.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+hybrid prefix-hit patch OK
+patched scheduler.py (GLM53_ADAPTIVE_K=off)
+patched cudagraph_utils.py (adaptive-k graph lengths)
+scheduler.py: # [glm53-adaptive-k] already present — skipping
+cudagraph_utils.py: # [glm53-adaptive-k] already present — skipping
+[glm53-adaptive-k] enabled set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] enabled set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] enabled set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=n
+[glm53-adaptive-k] enabled set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] reloaded /review/tmp/tmpsq7mhn17/ak.json: enabled=False set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] reloaded /review/tmp/tmpsq7mhn17/ak.json: enabled=True set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] enabled set=[2, 3, 4, 5, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] reloaded /review/tmp/tmpzav45hkk/ak.json: enabled=True set=[3, 5, 7] alpha=0.25 margin=1.5 min_steps=4 saturate=max
+[glm53-adaptive-k] enabled set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] enabled set=[2, 4, 7] alpha=0.25 margin=1.0 min_steps=4 saturate=max
+[glm53-adaptive-k] uniform decode graph query lens: [3, 5, 8]
+adaptive-k patch OK
+request-state-bound reasoning stop policy synthetic host self-test OK
+E3 execution marker overlay tests OK
+INFO 09-23 09:22:11 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+INFO 09-23 09:22:11 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+W0923 09:22:11.727000 18207 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+WARNING 09-23 09:22:11 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 09-23 09:22:11 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 09-23 09:22:11 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+glm53: video placeholders aligned to encoder grid_t (Glm5Next→glm46v)
+glm53: disabled GB10 persistent_topk (use top_k_per_row_decode)
+glm53: overlay install ok aligned=True
+[suppress-stops-in-reasoning] skipped: /usr/local/lib/python3.12/dist-packages/vllm/v1/engine/detokenizer.py
+repaired request-state-bound reasoning stop policy
+patched scheduler.py (# [glm53-decode-floor:v5])
+patched scheduler.py (# [glm53-mamba-align-chunking-v1])
+[patch_glm5_drafter_group] /usr/local/lib/python3.12/dist-packages/vllm/v1/worker/utils.py
+[patch_glm5_drafter_group] /usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py
+patched kv_cache_coordinator.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched kv_cache_coordinator.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched sampling_params.py (sampling_params.py: 8 marks)
+patched request.py (request.py: 2 marks)
+patched block_pool.py (block_pool.py: 3 marks)
+patched no-store overlay (per-request GPU prefix-cache no-store via SamplingParams.skip_writing_prefix_cache / vllm_xargs; kill switch GLM53_APC_NO_STORE)
+patched single_type_kv_cache_manager.py (# [glm53-mamba-align-state-free-v1])
+patched kv_cache_interface.py (# [glm53-mamba-align-state-free-v1])
+kv_cache_utils.py: kv-capacity-log patched (GLM53_KV_CAPACITY_LOG='1 (unset)')
+[tool-choice-none] applied: /usr/local/lib/python3.12/dist-packages/vllm/parser/glm47_moe.py
+backend_xgrammar.py: termination fix already present (#52805)
+__init__.py: reasoning fix already present (#53046)
+block_table.py: kpool tail slot-map already present
+shm_broadcast.py: spinwait stock (stock)
+patched scheduler.py (GLM53_ADAPTIVE_K=off)
+patched cudagraph_utils.py (adaptive-k graph lengths)
+/opt/glm53/exl3.py: E3 execution marker patched
+installed /opt/glm53/exl3.py -> /usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py
+GLM53_DENSE_FP8=off — constructors untouched
+[glm53-default-max-new-tokens] applied: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/serve/utils/api_utils.py
+[glm53-default-max-new-tokens] applied: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/completion/serving.py
+[glm53-default-max-new-tokens] applied: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/completion/protocol.py
+indexer.py: indexer workspace already present (GLM53_INDEXER_WORKSPACE='stock (unset)')
+patched api_server.py (GLM53_EXPOSE_CACHE_RESET=1 mounts only the cache-reset dev routes)
+installed /usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/glm53_ablit.py
+model.py: ABLIT-HOOK already present — skipping
+mtp.py: ABLIT-HOOK already present — skipping
+CPU_PATCH_COMPOSITION_PASS round=1
+INFO 09-23 09:22:19 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+INFO 09-23 09:22:19 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+W0923 09:22:19.270000 18325 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+WARNING 09-23 09:22:19 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 09-23 09:22:19 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 09-23 09:22:19 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+glm53: video placeholders aligned to encoder grid_t (Glm5Next→glm46v)
+glm53: persistent_topk already disabled in kpool
+glm53: overlay install ok aligned=True
+[suppress-stops-in-reasoning] skipped: /usr/local/lib/python3.12/dist-packages/vllm/v1/engine/detokenizer.py
+skipped request-state-bound reasoning stop policy
+scheduler.py: # [glm53-decode-floor:v5] already present — verified
+patched scheduler.py (# [glm53-mamba-align-chunking-v1])
+patched kv_cache_coordinator.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched kv_cache_coordinator.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+sampling_params.py: # [glm53-apc-no-store] already present - skipping
+request.py: # [glm53-apc-no-store] already present - skipping
+block_pool.py: # [glm53-apc-no-store] already present - skipping
+no-store overlay: already applied, nothing to do
+patched single_type_kv_cache_manager.py (# [glm53-mamba-align-state-free-v1])
+patched kv_cache_interface.py (# [glm53-mamba-align-state-free-v1])
+kv_cache_utils.py: kv-capacity-log already present (GLM53_KV_CAPACITY_LOG='1 (unset)')
+[tool-choice-none] skipped: /usr/local/lib/python3.12/dist-packages/vllm/parser/glm47_moe.py
+backend_xgrammar.py: termination fix already present (#52805)
+__init__.py: reasoning fix already present (#53046)
+block_table.py: kpool tail slot-map already present
+shm_broadcast.py: spinwait stock (stock)
+scheduler.py: # [glm53-adaptive-k] already present — skipping
+cudagraph_utils.py: # [glm53-adaptive-k] already present — skipping
+/opt/glm53/exl3.py: E3 execution marker patched
+exl3.py: already current
+GLM53_DENSE_FP8=off — constructors untouched
+[glm53-default-max-new-tokens] skipped: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/serve/utils/api_utils.py
+[glm53-default-max-new-tokens] skipped: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/completion/serving.py
+[glm53-default-max-new-tokens] skipped: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/completion/protocol.py
+indexer.py: indexer workspace already present (GLM53_INDEXER_WORKSPACE='stock (unset)')
+api_server.py: cache-reset elif already present — skipping
+installed /usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/glm53_ablit.py
+model.py: ABLIT-HOOK already present — skipping
+mtp.py: ABLIT-HOOK already present — skipping
+CPU_PATCH_COMPOSITION_PASS round=2
+CPU_PATCH_IDEMPOTENCY_PASS (static source, not live imports/inference)
+INFO 09-23 09:22:34 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+INFO 09-23 09:22:34 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+W0923 09:22:34.170000 1 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+WARNING 09-23 09:22:34 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 09-23 09:22:34 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 09-23 09:22:34 [interface.py:368] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+glm53: video placeholders aligned to encoder grid_t (Glm5Next→glm46v)
+overlay: /review/mod/upstream/overlay/patch_apc_no_store.py
+sources: /usr/local/lib/python3.12/dist-packages/vllm  python: /usr/bin/python3
+Part A: patch mechanics
+  sources: vendored replicas
+  ok   A1 first application exits 0 (patched no-store overlay (per-request GPU prefix-cache no-store via SamplingParams.skip_writing_prefix_cache / vllm_xargs; kill switch GLM53_APC_NO_STORE))
+  ok   A1 sampling_params.py parses
+  ok   A1 request.py parses
+  ok   A1 block_pool.py parses
+  ok   A3 re-apply exits 0 and is byte-identical (idempotent)
+  ok   A4 drifted sampling_params.py:sampling-field -> exit 1, named in the error, nothing written
+  ok   A4 drifted sampling_params.py:sampling-helpers -> exit 1, named in the error, nothing written
+  ok   A4 drifted sampling_params.py:sampling-post-init -> exit 1, named in the error, nothing written
+  ok   A4 drifted request.py:request-resolve -> exit 1, named in the error, nothing written
+  ok   A4 drifted request.py:request-method -> exit 1, named in the error, nothing written
+  ok   A4 drifted block_pool.py:block-pool-helper -> exit 1, named in the error, nothing written
+  ok   A4 drifted block_pool.py:block-pool-full -> exit 1, named in the error, nothing written
+  ok   A4 drifted block_pool.py:block-pool-partial -> exit 1, named in the error, nothing written
+  ok   A5 partially-marked block_pool.py refused (rc=1) and the other two files stay untouched
+  ok   A5 fixture: marks intact, one snippet altered
+  ok   A5 fully-marked file with an altered snippet is refused (rc=1), not skipped as applied
+  ok   A5 truncated (already-marked) file is refused (rc=1)
+  ok   A6 missing target -> refused, nothing written
+  ok   A6 no temp-file litter left behind
+Part B: resolver semantics (helper block exec'd in a bare namespace)
+  ok   B1 accept True -> True
+  ok   B1 accept False -> False
+  ok   B1 accept '1' -> True
+  ok   B1 accept '0' -> False
+  ok   B1 reject 2
+  ok   B1 reject -1
+  ok   B1 reject 1.0
+  ok   B1 reject 0.0
+  ok   B1 reject 'true'
+  ok   B1 reject 'false'
+  ok   B1 reject 'yes'
+  ok   B1 reject 'no'
+  ok   B1 reject ' 1'
+  ok   B1 reject '1 '
+  ok   B1 reject '01'
+  ok   B1 reject ''
+  ok   B1 reject None
+  ok   B1 reject [1]
+  ok   B1 reject {'a': 1}
+  ok   B1 reject b'1'
+  ok   B1 reject 'True'
+  ok   B1 pydantic coerces a JSON boolean in the vllm_xargs type to int 1/0 (never a bool) -> {'{"skip_writing_prefix_cache": true}': 1, '{"skip_writing_prefix_cache": false}': 0, '{"skip_writing_prefix_cache": "1"}': '1', '{"skip_writing_prefix_cache": 1.0}': 1.0}
+  ok   B1 ... which the strict parser accepts with the intended meaning
+  ok   B1 ... while JSON 1.0 stays a float and is rejected
+  ok   B2 typed field normalised to bool by validation
+  ok   B2 typed 'yes' rejected at the API boundary
+  ok   B2 extra_args 1.0 rejected at the API boundary
+  ok   B3 no sampling params -> False
+  ok   B3 unset -> False
+  ok   B3 extra_args 1 -> True
+  ok   B3 extra_args '0' -> False
+  ok   B3 typed True -> True
+  ok   B3 typed False wins over extra_args 1 (precedence typed > extra_args)
+  ok   B3 typed True wins over extra_args 0
+  ok   B3 unparseable value in the engine -> False, never raises
+  ok   B3 ... and it is logged as a warning
+  ok   B3 resolution receipt logged
+  ok   B4 valid 1 under GLM53_APC_NO_STORE=None -> True
+  ok   B4 malformed value still rejected under GLM53_APC_NO_STORE=None
+  ok   B4 valid 1 under GLM53_APC_NO_STORE='1' -> True
+  ok   B4 malformed value still rejected under GLM53_APC_NO_STORE='1'
+  ok   B4 valid 1 under GLM53_APC_NO_STORE='0' -> False
+  ok   B4 malformed value still rejected under GLM53_APC_NO_STORE='0'
+  ok   B4 kill switch logs the ignore once
+  ok   B4 GLM53_APC_NO_STORE='' fails closed at import
+  ok   B4 GLM53_APC_NO_STORE=' 1' fails closed at import
+  ok   B4 GLM53_APC_NO_STORE='yes' fails closed at import
+  ok   B4 GLM53_APC_NO_STORE='2' fails closed at import
+  ok   B4 GLM53_APC_NO_STORE='true' fails closed at import
+  ok   B4 GLM53_APC_NO_STORE='01' fails closed at import
+Part C: behaviour on a real vLLM (patched copies injected via sys.modules)
+  ok   C0 the coordinator (and so KVCacheManager) uses the patched BlockPool
+       provenance: vllm=/usr/local/lib/python3.12/dist-packages/vllm/__init__.py coordinator=/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_coordinator.py retention_mark=True src_root=/usr/local/lib/python3.12/dist-packages/vllm global_retention=None -> None (dense)
+  ok   C1 normal request: every full block hashed
+  ok   C1 no-store request (distinct tokens): no block hashed
+  ok   C1 no-store hashes are not reachable in the cache map
+  ok   C1 normal hashes are reachable in the cache map
+  ok   C1 after freeing both, the next 3 blocks recycled are exactly the no-store ones (LIFO front)
+  ok   C1 the normal request's blocks are still cached after the recycle
+  ok   C1 cache_partial_block returns None and inserts nothing for a no-store request
+  ok   C1 control: cache_partial_block inserts for a normal request
+  ok   C2 [normal] cold start: 0 computed
+  ok   C2 [normal] attention-group num_cached_block advances 1,2,3,3 over the four steps (sentinel) -> [[1, 1], [2, 2], [3, 3], [3, 3]]
+  ok   C2 [normal] request is in num_cached_block after step 1 (fast path from step 2)
+  ok   C2 [nostore] cold start: 0 computed
+  ok   C2 [nostore] attention-group num_cached_block advances 1,2,3,3 over the four steps (sentinel) -> [[1, 1], [2, 2], [3, 3], [3, 3]]
+  ok   C2 [nostore] request is in num_cached_block after step 1 (fast path from step 2)
+  ok   C2 [normal] hashes present after every step
+  ok   C2 [nostore] no hash after any step
+  ok   C2 the two legs' num_cached_block traces are identical (placement invariant)
+  ok   C2 [normal] partial tail entry at 14 tokens
+  ok   C2 [nostore] no partial tail entry
+  ok   C2 [normal] same-prefix follow-up hits 14 (12 full + 2-token partial tail) -> 14
+  ok   C2 [nostore] same-prefix follow-up hits 0 -> 0
+  ok   C2 [nostore] the next allocation recycles the freed no-store block first (front of the free queue)
+  ok   C2 [normal] the next allocation does NOT touch the freed cached blocks (they sit at the back)
+  skip C2 [nostore + retention_interval]: this fork uses the env-driven retention cases below, not the upstream dataclass field
+  ok   C3a no-store producer: allocate 6 tokens (partial tail at 6)
+  ok   C3a no hashes in either group
+  ok   C3a not registered as a partial-tail producer (no _partial_hit_reqs / _producer_partial_tail_reqs entry)
+  ok   C3a num_cached_block advanced as for a normal producer ([3,1]) -> [3, 1]
+  ok   C3a partial hash not in the cache map for either group
+  ok   C3a continue-decode allocates (get_num_blocks_to_allocate / allocate_new_blocks agree, no assertion)
+  ok   C3a no CoW copy sourced from the no-store producer's blocks (move_block_hashes path unreachable)
+  ok   C3a still no hash on any of its blocks after the continue step
+  ok   C3a second decode step: still unhashed, still no partial-hit registration
+  ok   C3a control: normal producer registers the mamba partial tail
+  ok   C3a control: normal producer's continue step queues a CoW copy
+  ok   C3b[delay=False] no-store reader read-hits 6 (lookups enabled)
+  ok   C3b[delay=False] allocation ok
+  ok   C3b[delay=False] reader CoWs into a private mamba block
+  ok   C3b[delay=False] CoW copy src->private queued
+  ok   C3b[delay=False] source partial entry kept its hash (no move onto the no-store request)
+  ok   C3b[delay=False] the private CoW block is unhashed (normal reader would carry the 8-token hash)
+  ok   C3b[delay=False] every block the no-store reader allocated itself is unhashed
+  ok   C3b[delay=False] after free, the next block recycled is one of the reader's own (front of queue)
+  ok   C3b[delay=True] no-store reader read-hits 6 (lookups enabled)
+  ok   C3b[delay=True] allocation ok
+  ok   C3b[delay=True] reader CoWs into a private mamba block
+  ok   C3b[delay=True] CoW copy src->private queued
+  ok   C3b[delay=True] source partial entry kept its hash (no move onto the no-store request)
+  ok   C3b[delay=True] the private CoW block is unhashed (normal reader would carry the 8-token hash)
+  ok   C3b[delay=True] every block the no-store reader allocated itself is unhashed
+  ok   C3b[delay=True] after free, the next block recycled is one of the reader's own (front of queue)
+  ok   C3d control: normal reader's CoW block is hashed at 8 tokens
+       layout [inherit/normal]: specs=['MLAAttentionSpec', 'KpoolTailSpec', 'MambaSpec', 'MambaSpec', 'MambaSpec', 'MambaSpec', 'SlidingWindowSpec'] managers=['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager'] fork_seven_group=True eagle=[6] partial_hits=True
+  ok   C3L [inherit/normal] runtime group layout is explicit: ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager'] -> ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager']
+  ok   C3L [inherit/normal] decode step after chunked prefill
+  ok   C3L [inherit/normal] second decode step
+  ok   C3L [inherit/nostore] runtime group layout is explicit: ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager'] -> ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager']
+  ok   C3L [inherit/nostore] decode step after chunked prefill
+  ok   C3L [inherit/nostore] second decode step
+  ok   C3L [inherit] per-group num_cached_block traces identical across the normal and no-store legs -> [[1, None, 1, 1, 1, 1, 2], [2, None, 2, 2, 2, 2, 4], [3, None, 3, 3, 3, 3, 6], [3, None, 3, 3, 3, 3, 7]]
+  ok   C3L [inherit] [normal] hashes present (control)
+  ok   C3L [inherit] [nostore] no hash in ANY group after prefill + decode (full site)
+  ok   C3L [inherit] [nostore] mamba cached_blocks_this_step stays empty
+       partial-tail readers/producers on the normal leg [inherit]: none
+  ok   C3L [inherit] [nostore] no manager registered it as a partial-tail reader/producer
+  ok   C3L [inherit] same-prefix follow-up: normal hits 12, no-store hits 0
+  ok   C3L [inherit] [nostore] freed blocks are the very next ids recycled
+  ok   C3L [inherit/normal] released drafter cache lookups: old=True, boundary=True
+  ok   C3L [inherit/nostore] released drafter cache lookups: old=False, boundary=False
+       layout [SWA=0/normal]: specs=['MLAAttentionSpec', 'KpoolTailSpec', 'MambaSpec', 'MambaSpec', 'MambaSpec', 'MambaSpec', 'SlidingWindowSpec'] managers=['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager'] fork_seven_group=True eagle=[6] partial_hits=True
+  ok   C3L [SWA=0/normal] runtime group layout is explicit: ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager'] -> ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager']
+  ok   C3L [SWA=0/normal] decode step after chunked prefill
+  ok   C3L [SWA=0/normal] second decode step
+  ok   C3L [SWA=0/nostore] runtime group layout is explicit: ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager'] -> ['FullAttentionManager', 'KpoolTailManager', 'MambaManager', 'MambaManager', 'MambaManager', 'MambaManager', 'SlidingWindowManager']
+  ok   C3L [SWA=0/nostore] decode step after chunked prefill
+  ok   C3L [SWA=0/nostore] second decode step
+  ok   C3L [SWA=0] per-group num_cached_block traces identical across the normal and no-store legs -> [[1, None, 1, 1, 1, 1, 2], [2, None, 2, 2, 2, 2, 4], [3, None, 3, 3, 3, 3, 6], [3, None, 3, 3, 3, 3, 7]]
+  ok   C3L [SWA=0] [normal] hashes present (control)
+  ok   C3L [SWA=0] [nostore] no hash in ANY group after prefill + decode (full site)
+  ok   C3L [SWA=0] [nostore] mamba cached_blocks_this_step stays empty
+       partial-tail readers/producers on the normal leg [SWA=0]: none
+  ok   C3L [SWA=0] [nostore] no manager registered it as a partial-tail reader/producer
+  ok   C3L [SWA=0] same-prefix follow-up: normal hits 12, no-store hits 0
+  ok   C3L [SWA=0] [nostore] freed blocks are the very next ids recycled
+  ok   C3L [SWA=0/normal] released drafter cache lookups: old=False, boundary=True
+  ok   C3L [SWA=0/nostore] released drafter cache lookups: old=False, boundary=False
+  ok   C4 cold no-store request preempted mid-prefill resumes with 0 computed (nothing was stored)
+  ok   C4 ... and re-allocates cleanly from zero
+  ok   C4 read-hit no-store request hits the 8 cached tokens
+  ok   C4 ... and after preemption resumes from those same 8 (its own 6 were never stored)
+  ok   C5 extra_args 1 -> True on a real Request
+  ok   C5 extra_args '0' -> False
+  ok   C5 typed True -> True
+  ok   C5 default -> False
+  ok   C5 SamplingParams(extra_args={...: 'yes'}) raises ValueError naming the field (API boundary -> 400)
+  ok   C5 SamplingParams(skip_writing_prefix_cache=1.0) rejected
+  ok   C5 a value mutated after validation resolves to False without raising in Request
+  ok   C5 skip_reading + skip_writing: no read hit despite a cached prefix
+  ok   C5 skip_reading + skip_writing: nothing stored either (zero cache interaction)
+  ok   C5 kill switch off: typed True resolves to False (ignored)
+  ok   C6 resolution receipt logged exactly once for the whole run (1)
+  ok   C6 suppression receipts logged exactly once per site (full=1 partial=1)
+  ok   C6 kill-switch ignore receipt logged
+  ok   C summary: PARTC_RESULT checks=99 failures=0
+Part D: launcher knob GLM53_APC_NO_STORE (numeric config guard)
+  ok   D1 caller unset: the .env value is what the ranks get (rc=0 out='0' '')
+  ok   D1 a caller export wins over .env (rc=0 out='1' '')
+  ok   D1 an explicitly empty caller export wins, then the guard rejects it (rc=2 out='' 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: )')
+  ok   D2 GLM53_APC_NO_STORE=None accepted (rc=0 out='unset' )
+  ok   D2 GLM53_APC_NO_STORE='0' accepted (rc=0 out='0' )
+  ok   D2 GLM53_APC_NO_STORE='1' accepted (rc=0 out='1' )
+  ok   D3 GLM53_APC_NO_STORE='' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: )')
+  ok   D3 GLM53_APC_NO_STORE=' ' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got:  )')
+  ok   D3 GLM53_APC_NO_STORE='01' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: 01)')
+  ok   D3 GLM53_APC_NO_STORE='2' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: 2)')
+  ok   D3 GLM53_APC_NO_STORE='yes' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: yes)')
+  ok   D3 GLM53_APC_NO_STORE='true' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: true)')
+  ok   D3 GLM53_APC_NO_STORE='1 ' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: 1 )')
+  ok   D3 GLM53_APC_NO_STORE=' 1' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got:  1)')
+  ok   D3 GLM53_APC_NO_STORE='1\r' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: 1\n)')
+  ok   D3 GLM53_APC_NO_STORE='0x1' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: 0x1)')
+  ok   D3 GLM53_APC_NO_STORE='-1' rejected rc=2 with a named error (rc=2 'GLM53_APC_NO_STORE must be exactly 0 or 1 (got: -1)')
+
+no-store overlay OK (186 checks)
+patched kv_cache_coordinator.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched kv_cache_coordinator.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched compose_mia-then-ours.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched compose_mia-then-ours.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched compose_mia-then-ours.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched compose_mia-then-ours.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched compose_mia-then-ours.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched compose_mia-then-ours.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched compose_ours-then-mia.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched compose_ours-then-mia.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched compose_ours-then-mia.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched compose_ours-then-mia.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched compose_ours-then-mia.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched compose_ours-then-mia.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+  source: /usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_coordinator.py
+  pristine: /usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_coordinator.py
+  block pool: /usr/local/lib/python3.12/dist-packages/vllm/v1/core/block_pool.py
+  single-type manager: /usr/local/lib/python3.12/dist-packages/vllm/v1/core/single_type_kv_cache_manager.py
+  applies and compiles OK
+  idempotent OK
+  call sites + boot log line OK
+  min-exemption derivation OK
+  routing matrix OK
+  resolved vector + fail-closed override OK
+  DFlash prior-Mamba group selection OK
+  env parsing + unconditional validation OK
+  per-group validator OK
+  drafter priority + global per-manager free ordering OK
+  prior-boundary cache_blocks append/edit/junction inputs OK
+  prior-boundary cache_blocks append/edit/junction inputs OK
+  prior-boundary cache_blocks append/edit/junction inputs OK
+  drafter priority + global per-manager free ordering OK
+  exact composed init/cache/hit/free execution OK
+  prior-boundary cache_blocks append/edit/junction inputs OK
+  prior-boundary cache_blocks append/edit/junction inputs OK
+  drafter priority + global per-manager free ordering OK
+  exact composed init/cache/hit/free execution OK
+  overlay composition (both orders, AST-equal, idempotent) OK
+  id-cost + capacity arithmetic OK
+drafter-retention patch OK
