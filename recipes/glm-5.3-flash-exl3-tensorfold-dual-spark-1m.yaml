@@ -1,0 +1,125 @@
+# MiaAI-Lab TensorFold v0.6.0 -> SparkRun 0.3.6 native-cluster adapter.
+# The runtime identifier supplies SparkRun's two-node lifecycle/placement only:
+# the serve command is TensorFold, NOT vLLM. See adjacent mod and README.
+recipe_version: "2"
+name: glm-5.3-flash-exl3-tensorfold-dual-spark-1m
+model: Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
+model_revision: 9eaebb7c4e96d983dcd538e18624622ba5b820a8
+runtime: vllm-distributed
+runtime_version: tensorfold-0.6.0
+min_nodes: 2
+max_nodes: 2
+container: ghcr.io/miaai-lab/glm-5.3-flash-exl3-2x-dgx-sparks-tensorfold@sha256:22789f0cb3dc308f0b2ce52a33961b88bd624af1725e91e8aba0a74a671bb969
+builder: docker-pull
+
+metadata:
+  description: GLM-5.3-Flash EXL3 on two GB10 nodes via TensorFold 0.6.0, DFlash2, FP8 KV, four concurrent streams, image/video input and 1,048,576 configured context
+  maintainer: mfellner
+  source: https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold
+  source_revision: 978b2252059069b3b4b84f0f7eeb73bc17f28d3f
+  hardware: 2x NVIDIA DGX Spark or compatible GB10 systems with direct CX-7
+  architecture: Glm5NextForConditionalGeneration
+  model_params: 320B
+  model_dtype: int4
+  model_vram: 164
+  kv_dtype: fp8
+  context_length: 1048576
+  multimodal: true
+  notes:
+    - The vllm-distributed runtime name selects SparkRun native two-rank orchestration only. The pinned image runs TensorFold; serve.sh strictly translates SparkRun's injected rank/init flags to TensorFold's CLI.
+    - Port 8000 preserves the existing mfellner SparkRun/sparkDash/LiteLLM convention; upstream uses 8888. The upstream served model alias and all model-specific defaults remain unchanged.
+    - DFlash2 carries CC BY-NC-ND 4.0 non-commercial terms; the checkpoint has ShapleyMcg attribution terms. Review both licenses. The NVIDIA image has separate NVIDIA software terms.
+    - Unauthenticated host-network/IPC root-user API; keep API, rendezvous, and RDMA interfaces on a trusted private network. URL media fetch is disabled; inline data media remains supported.
+
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw
+        revision: 9eaebb7c4e96d983dcd538e18624622ba5b820a8
+        target: [-1]
+      - name: incoai/GLM-5.3-Flash-DFlash2
+        revision: bf582e4eacc1810f76656d1811693ff6c6737d2a
+        target: [-1]
+mods:
+  - ../mods/glm53-tensorfold-1m
+
+executor_config:
+  entrypoint: ""
+  user: root
+  shm_size: 16gb
+  cap_add:
+    - IPC_LOCK
+  ulimit:
+    - memlock=-1:-1
+    - stack=67108864:67108864
+
+env:
+  HF_HOME: /cache/huggingface
+  HF_HUB_OFFLINE: "1"
+  TENSORFOLD_NO_UPDATE_CHECK: "1"
+  TENSORFOLD_MEMORY_RESERVE_GIB: "14.5"
+  TF_GLM_CACHE_GIB: "12.5"
+  TF_GLM_MTP: auto
+  TF_GLM_KV: fp8
+  TF_GLM_DENSE: q4
+  TF_GLM_COMM: roce
+  TF_ROCE_MAX_KB: "512"
+  TF_ROCE_WAIT_S: "20"
+  TF_GLM_COPY_DRAFTS: "1"
+  TF_GLM_COPY_MAX: "15"
+  TF_GLM_DFLASH_POLICY: "fnc7:0.3"
+  TF_GLM_HC_SPLIT: "1"
+  TF_GLM_PREFILL_OVERLAP: "2"
+  TF_GLM_KDA_CHUNKED: "1"
+  TF_GLM_WIDE_GRAPHS: "16"
+  TF_GLM_COPY_REPLY_MATCH: "16"
+  TF_GLM_MULTI_LONE: "1"
+  TF_GLM_MULTI_PREFILL: "1"
+  TF_GLM_L2PF: "1"
+  TF_GLM_EXL3_LOADS: nc
+  TF_GLM_SHARED_PREFIX: "1"
+  TENSORFOLD_GLM_IMAGE_TOKENS: "2048"
+  TENSORFOLD_GLM_VIDEO_TOKENS: "16384"
+  TENSORFOLD_GLM_VIDEO_FRAMES: "128"
+  TENSORFOLD_GLM_MAX_IMAGES: "50"
+  TENSORFOLD_GLM_MAX_VIDEOS: "4"
+  TENSORFOLD_GLM_REQUEST_IMAGE_TOKENS: "16384"
+  TENSORFOLD_GLM_REQUEST_VIDEO_TOKENS: "32768"
+  TF_DRAFTER_SNAPSHOT: /cache/huggingface/hub/models--incoai--GLM-5.3-Flash-DFlash2/snapshots/bf582e4eacc1810f76656d1811693ff6c6737d2a
+  TF_CONTEXT: "1048576"
+  TF_PARALLEL: "4"
+  TF_MAX_TOKENS: "32768"
+  TF_THINKING: "1"
+  TF_VISION: "1"
+  TF_VISION_URLS: "0"
+  TF_SERVED_NAME: GLM-5.3-Flash-EXL3
+  TF_HOST: 0.0.0.0
+  TF_PORT: "8000"
+  # This deployment's two preconfigured point-to-point CX-7 addresses. The
+  # SparkRun 0.3.6 native runtime injects a management-LAN init address even
+  # when a direct link is present; TensorFold's master must use the CX-7.
+  TF_FABRIC_MASTER: 192.168.3.72
+  TF_FABRIC_WORKER: 192.168.3.183
+  # The second selected HCA is a separate 192.168.2/24 point-to-point rail.
+  TF_FABRIC_MASTER_SECONDARY: 192.168.2.72
+  TF_FABRIC_WORKER_SECONDARY: 192.168.2.183
+  TORCH_EXTENSIONS_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-tensorfold-1m/torch_extensions
+  TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/glm53-tensorfold-1m/triton
+  NCCL_MIN_NCHANNELS: "4"
+  NCCL_MAX_NCHANNELS: "4"
+  NCCL_DEBUG: WARN
+
+pre_exec:
+  - mkdir -p /cache/huggingface/sparkrun-runtime-cache/glm53-tensorfold-1m/torch_extensions /cache/huggingface/sparkrun-runtime-cache/glm53-tensorfold-1m/triton
+
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  served_model_name: GLM-5.3-Flash-EXL3
+  tensor_parallel: 2
+  pipeline_parallel: 1
+
+command: >-
+  exec bash /workspace/mods/glm53-tensorfold-1m/serve.sh
+  /cache/huggingface/hub/models--Mia-AiLab--GLM-5.3-Flash-EXL3-TR3-4bpw/snapshots/9eaebb7c4e96d983dcd538e18624622ba5b820a8

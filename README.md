@@ -67,6 +67,30 @@ The endpoint is unauthenticated, root-user, host-networked/IPC, and multimodal. 
 
 Live validation on 2026-09-03 passed deterministic chat, four-way concurrency, vision/OCR, structured tool calling, and retrieval from an 896,051-prompt-token request. After readiness-supervision and LAN-binding hardening, the exact final recipe was relaunched and passed its fail-closed post-readiness gate plus a fresh direct/proxied regression matrix, including C4, inline-data vision/OCR, tools, GLM non-regression, and a 70,051-prompt-token retrieval. The expensive 896,051-token result belongs to the preceding process and was not rerun after hardening. Both accepted runs used `dgx03` and `dgx04` through `spark-ring3`; the rejected TP3 trial and TP2 evidence are preserved under [`evidence/qwen3.8-flash-next-nvfp4-20260902/`](evidence/qwen3.8-flash-next-nvfp4-20260902/).
 
+### GLM 5.3 Flash EXL3 on TensorFold — dual Spark, 1M configured context
+
+`@mfellner/glm-5.3-flash-exl3-tensorfold-dual-spark-1m`
+
+SparkRun adaptation of [MiaAI-Lab's TensorFold dual-Spark launcher](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold) at source commit `978b2252059069b3b4b84f0f7eeb73bc17f28d3f`. The `vllm-distributed` runtime identifier is **only SparkRun's native two-rank container/orchestration shim**: the custom mod starts the pinned image's TensorFold 0.6.0 server, not vLLM. The adapter rejects unsupported ranks/arguments, verifies its own executable hashes, checks the selected RoCE interface/GID, and translates SparkRun's rendezvous into TensorFold's direct-link master.
+
+- Exactly two GB10 nodes on two preconfigured CX-7 direct rails; this installation uses `dgx01` (`192.168.178.47`, fabric `192.168.3.72`/`192.168.2.72`) and `dgx02` (`192.168.178.46`, fabric `192.168.3.183`/`192.168.2.183`). The preflight checks each selected HCA's active port, IPv4-mapped RoCEv2 GID, bound interface and source-bound peer ICMP before serving. Change and revalidate both rail address pairs for another cluster.
+- Image pinned at `ghcr.io/miaai-lab/glm-5.3-flash-exl3-2x-dgx-sparks-tensorfold@sha256:22789f0cb3dc308f0b2ce52a33961b88bd624af1725e91e8aba0a74a671bb969`; model `Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw` pinned to `9eaebb7c4e96d983dcd538e18624622ba5b820a8`; DFlash2 drafter pinned to `bf582e4eacc1810f76656d1811693ff6c6737d2a` on both nodes.
+- Default upstream TensorFold profile: 1,048,576-token **configured** context, four concurrent streams, FP8 KV, Q4 dense weights, DFlash2/copy drafts, thinking and inline image/video support. Remote URL media loading is disabled. The model alias is `GLM-5.3-Flash-EXL3`; the direct API uses port `8000` rather than upstream `8888` to preserve this registry's LAN clients.
+- The DFlash2 checkpoint carries CC BY-NC-ND 4.0 non-commercial terms; review the model attribution and NVIDIA image terms before deploying.
+
+After reviewing and trusting this registry, run only on the intended saved pair:
+
+```bash
+sparkrun run @mfellner/glm-5.3-flash-exl3-tensorfold-dual-spark-1m \
+  --cluster vacation-pair2 --no-follow --trust
+```
+
+The local-file equivalent is `sparkrun run recipes/glm-5.3-flash-exl3-tensorfold-dual-spark-1m.yaml --cluster vacation-pair2 --no-follow --trust`. The exact pinned model and drafter snapshots and image must be present on both ranks; startup requires `earlyoom` inactive on both memory-saturated hosts. Do not permanently disable it without reviewing the memory tradeoff. Stop the workload through `sparkrun stop WORKLOAD_ID` before restoring the daemon; recheck safe memory headroom first. SparkRun-managed containers are not an automatic host-reboot restart policy.
+
+Live acceptance on 2026-10-01 used SparkRun workload `sparkrun_98fa271a0dea8179_9e378c82c913` on `dgx01`/`dgx02`. [Raw HTTP and per-rank runtime evidence](evidence/glm53-tensorfold-20261001/) and its recomputing verifiers show direct and LiteLLM-proxied exact completions, four overlapping requests, inline-image color understanding, typed tool calling, and a 50,146-prompt-token needle retrieval (the separate `/tokenize` endpoint counted 50,152 tokens). Both ranks were still running with the expected pinned image and TensorFold serving processes; `/health` reported a 2,807,808-token shared pool, 1,048,576 configured context, four streams, and no request in flight at final capture. These are **not** measurements of the full 1M-context limit, video handling, throughput parity, long output, sustained uptime, or automatic restart. The proxy is at `http://192.168.178.47:4000/v1` and the direct API at `http://192.168.178.47:8000/v1`.
+
+The API and LiteLLM proxy are unauthenticated, bind beyond loopback, and use host networking/IPC with a root container user, `IPC_LOCK`, and RDMA. The observed Docker `Privileged` flag was false. Keep ports `8000`, `4000`, the distributed rendezvous, and RDMA/control surfaces on a trusted firewalled private network. Add ingress authentication before exposing either API to untrusted clients. `earlyoom` remains inactive while this large model is loaded; restore it only after unloading and verifying headroom.
+
 ### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 850K context (recommended)
 
 `@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k`
