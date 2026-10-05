@@ -67,7 +67,24 @@ The endpoint is unauthenticated, root-user, host-networked/IPC, and multimodal. 
 
 Live validation on 2026-09-03 passed deterministic chat, four-way concurrency, vision/OCR, structured tool calling, and retrieval from an 896,051-prompt-token request. After readiness-supervision and LAN-binding hardening, the exact final recipe was relaunched and passed its fail-closed post-readiness gate plus a fresh direct/proxied regression matrix, including C4, inline-data vision/OCR, tools, GLM non-regression, and a 70,051-prompt-token retrieval. The expensive 896,051-token result belongs to the preceding process and was not rerun after hardening. Both accepted runs used `dgx03` and `dgx04` through `spark-ring3`; the rejected TP3 trial and TP2 evidence are preserved under [`evidence/qwen3.8-flash-next-nvfp4-20260902/`](evidence/qwen3.8-flash-next-nvfp4-20260902/).
 
-### GLM 5.3 Flash EXL3 on TensorFold — dual Spark, 1M configured context
+### GLM 5.3 Flash EXL3 on TensorFold — upstream v1.7.1, dual Spark
+
+`@mfellner/glm-5.3-flash-exl3-tensorfold-dual-spark-1m-v171`
+
+Versioned SparkRun profile for [MiaAI-Lab's TensorFold launcher](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold) at `68ebd67b5326974b8004009e202268b1fa7c551d`. The pinned upstream v1.7.1 image is `ghcr.io/miaai-lab/glm-5.3-flash-exl3-2x-dgx-sparks-tensorfold@sha256:a8067cd7e14c14fa83d1dbed60261428f6d1737cec4554445573354af040dd7c` (`tf.patches=1692d2df78d2`). The selected public checkpoint changed from the historical TR3 model to `Mia-AiLab/GLM-5.3-Flash-EXL3-4bpw-TensorFold@078455ffe6472f9a52fbc1139f58b9db2881b25c`; DFlash2 stays at `bf582e4eacc1810f76656d1811693ff6c6737d2a`. These are immutable pins, not moving Hub `main` or an update to the old TR3 weights. Upstream's **optional** `ABLIT=1` selects different gated weights requiring a Hugging Face token; this recipe deliberately uses the published non-Ablit checkpoint with thinking on and needs no gated token.
+
+Exactly two ranks, TP2/C4, FP8 KV, Q4 dense, RoCE on both preconfigured direct rails, 1,048,576-token **configured** context, inline image/video input, tool calling, thinking and DFlash2. The selected TP2 behavior uses 32 kept prompt states, a 32-row verify window, retained earlier reasoning, smooth streaming and sliced concurrent fills; the old profile's `TF_GLM_MULTI_LONE=1` changes to upstream's `0`. The v1.7.1 image adds shared-prefix copy, queued cancellation, compact-before-evict, reply-end handling (`TF_GLM_ASSISTANT_ENDS=1`), and recency-aware eviction of shared-prefix states when the kept-state cap fills; RoCE waits up to 300 s for a late peer rather than 20 s. The optional headless-display KV reservation is explicitly off (`TF_GLM_DISPLAY_KV_MIB=0`). This SparkRun adapter intentionally fails closed rather than reproducing upstream `start.sh`'s conditional NCCL SPLIT retry or automatic context refit; a failed launch must be diagnosed before any manual fallback. Experimental TP3 and eight-request settings are **not** selected. The existing two-rail SparkRun adapter is byte-identical to the previously reviewed one; `vllm-distributed` is only SparkRun's orchestration shim, and TensorFold remains the inference engine. Port `8000` and the served alias `GLM-5.3-Flash-EXL3` preserve local proxy/dashboard routes rather than upstream's port `8888`.
+
+The pinned checkpoint card and bundled `LICENSE` say MIT (Z.AI), while the launcher's `NOTICE` calls this checkpoint Apache-2.0 (MiaAI-Lab); these publisher claims conflict and have not been reconciled. TensorFold code reports Apache-2.0; DFlash2 reports CC BY-NC-ND 4.0 (non-commercial). Check rights with the publisher before use requiring an unambiguous license grant and review NVIDIA image terms separately. The host-networked API is unauthenticated and must remain on a trusted private network. On these memory-saturated hosts, keep `earlyoom` inactive while loaded.
+
+Live acceptance of `sparkrun_ce1b4db30465bce3_85f608d441ab` on dgx01/dgx02 is preserved in [`evidence/glm53-tensorfold-20261005/`](evidence/glm53-tensorfold-20261005/). Its independent verifiers recompute the two-rank image/snapshot pins (97 files and 175,716,135,696 bytes per host), direct and LiteLLM-proxied deterministic answers, four overlapping requests, an inline color-image answer, typed tool arguments, and retrieval of a unique code from a **50,146-API-prompt-token** request (50,152 tokens in `/tokenize`). They also compare SparkRun's launch-persisted recipe state with the reviewed recipe, hash all four adapter files inside both live containers, bracket acceptance with the same port-8000 listener owner, map its container PID/start identity to the Docker-top host PID, verify non-privileged host-network/IPC state, and compare independently hashed per-rank startup logs and repeated, explicitly bounded launch-to-post-acceptance kernel queries for fatal errors. The configured 1,048,576-token context and 1,794,048-token live KV pool are **not** a completed 1M-prompt test; video, upstream benchmarks, or near-limit performance are not locally established. Historical TR3 receipts below belong only to the old deployment.
+
+```bash
+sparkrun run @mfellner/glm-5.3-flash-exl3-tensorfold-dual-spark-1m-v171 \
+  --cluster vacation-pair2 --no-follow --trust
+```
+
+### GLM 5.3 Flash EXL3 on TensorFold — historical TR3 rollback
 
 `@mfellner/glm-5.3-flash-exl3-tensorfold-dual-spark-1m`
 
@@ -539,7 +556,10 @@ MIT applies only to repository-authored files covered by the root
 [LICENSE](LICENSE). It does not apply to the vendored 850K source/mod at
 `mods/glm-5.3-flash-exl3-upstream-850k/`, including
 `mods/glm-5.3-flash-exl3-upstream-850k/upstream`, which remains under its
-separate AGPL-3.0 terms. The model checkpoints are not relicensed by this
-repository: the GLM-5.3 EXL3 checkpoint remains under ShapleyMCG License 1.0,
-and the DFlash2 checkpoint remains under CC BY-NC-ND 4.0. Review each
-upstream, image, and checkpoint license before use.
+separate AGPL-3.0 terms. Model checkpoints are not relicensed by this
+repository. The historical GLM-5.3-Flash-EXL3-TR3-4bpw checkpoint is reported
+under ShapleyMCG License 1.0; the newer public TensorFold checkpoint has
+conflicting publisher statements (MIT in its pinned card and bundled LICENSE,
+Apache-2.0 in the launcher NOTICE), as noted above. DFlash2 reports CC
+BY-NC-ND 4.0. Review each upstream, image, and checkpoint license before use;
+seek publisher clarification when an unambiguous grant is required.

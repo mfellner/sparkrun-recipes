@@ -1,0 +1,491 @@
+{
+  "files": {
+    ".gitattributes": {
+      "hash": "8c65d8d690fa0d9b53ccd41bb61691b276623f9e",
+      "hash_kind": "git-sha1",
+      "size": 1884
+    },
+    "LICENSE": {
+      "hash": "986b06fb2916b3518b82c7dcc0870723b91f2f92",
+      "hash_kind": "git-sha1",
+      "size": 1070
+    },
+    "README.md": {
+      "hash": "df5a3a15d6833df6aad36a33dd2f1d2600c18697",
+      "hash_kind": "git-sha1",
+      "size": 6573
+    },
+    "assets/confident_mistakes.png": {
+      "hash": "86e99bcabd117d439a2904c3146cf8eba5d7208638dd15d35a8570843d88b0a5",
+      "hash_kind": "sha256",
+      "size": 101203
+    },
+    "assets/kld_paired_ci.png": {
+      "hash": "a32ea6adffb5fefaf3fcabe1942d9d27e75e5e028609307c50f1bdd324ba09bf",
+      "hash_kind": "sha256",
+      "size": 120153
+    },
+    "assets/kld_reduction.png": {
+      "hash": "1c894308638039a9a12a1980bc1fce6c252df3ce2dd2dd274dd7f67ca7462456",
+      "hash_kind": "sha256",
+      "size": 114936
+    },
+    "chat_template.jinja": {
+      "hash": "15bf200ee8fb7ca3c5bdd362429aa801f4f033f6",
+      "hash_kind": "git-sha1",
+      "size": 8617
+    },
+    "config.json": {
+      "hash": "33c275f233c2076faab66fb05c6dcb500fd39340",
+      "hash_kind": "git-sha1",
+      "size": 6098
+    },
+    "generation_config.json": {
+      "hash": "637ee6afa5c6ebfba4eb24bd5b9df68550143597",
+      "hash_kind": "git-sha1",
+      "size": 194
+    },
+    "model-00001-of-00083.safetensors": {
+      "hash": "f774e1ce0cbd03410da592e9c77169a7545a46899696b1c7af2a2fa95d9ade18",
+      "hash_kind": "sha256",
+      "size": 1268777088
+    },
+    "model-00002-of-00083.safetensors": {
+      "hash": "6078a36347402206f90671d9f889cd5daa0b5485c2517ed6ac5410c8189a50e6",
+      "hash_kind": "sha256",
+      "size": 2050749656
+    },
+    "model-00003-of-00083.safetensors": {
+      "hash": "649e466d073fc67a978b88abda5a1a7554b61b9820f7a7d2c81ca9319f793b26",
+      "hash_kind": "sha256",
+      "size": 2147425192
+    },
+    "model-00004-of-00083.safetensors": {
+      "hash": "6b9d483b2a4a8899d0f10fb87bff0fd66341227a2191985681a847b792977f87",
+      "hash_kind": "sha256",
+      "size": 2145621760
+    },
+    "model-00005-of-00083.safetensors": {
+      "hash": "f4b9d0971162b0a210fa2b457fb03814466c4b0dcbaad9af819362026eb26357",
+      "hash_kind": "sha256",
+      "size": 2146827440
+    },
+    "model-00006-of-00083.safetensors": {
+      "hash": "e7026729a599b40db886ada78d0e7e3e0a6ae3b4d4134cd55c2fe3ca7391a0cd",
+      "hash_kind": "sha256",
+      "size": 2147325456
+    },
+    "model-00007-of-00083.safetensors": {
+      "hash": "a0144f8e7485814b267c2951911e50ca101e75b82bbf4b1bfc7e99970238e5c4",
+      "hash_kind": "sha256",
+      "size": 2145536992
+    },
+    "model-00008-of-00083.safetensors": {
+      "hash": "73e3d456ec75a3b70a3d1488c30a937d88571ba28a7c0c896c267f777bedfb5d",
+      "hash_kind": "sha256",
+      "size": 2147239096
+    },
+    "model-00009-of-00083.safetensors": {
+      "hash": "85b521b751ffae090f24438eb4e3300ae6d34edcac7cb950eed0be3615bf6085",
+      "hash_kind": "sha256",
+      "size": 2145620616
+    },
+    "model-00010-of-00083.safetensors": {
+      "hash": "21040ce4584e1db64d27125dcc7bf8b2b6e8ce93aba5af74f62075c910e88adc",
+      "hash_kind": "sha256",
+      "size": 2147238712
+    },
+    "model-00011-of-00083.safetensors": {
+      "hash": "747df106e6b07285549910c14a4f9e4d622a144831bc946f9a2439bb18edacf8",
+      "hash_kind": "sha256",
+      "size": 2145620992
+    },
+    "model-00012-of-00083.safetensors": {
+      "hash": "389571aee9c31eaa7ff0e190b1ed93ec7fc3bd986a5696ee5ed00c1b491b350c",
+      "hash_kind": "sha256",
+      "size": 2146827936
+    },
+    "model-00013-of-00083.safetensors": {
+      "hash": "1b49461b352711c428046f1441ecbdaeb47154cf37a8e0ae6af97fb8656b4b12",
+      "hash_kind": "sha256",
+      "size": 2145621328
+    },
+    "model-00014-of-00083.safetensors": {
+      "hash": "67d9a12c1b99afff92faefc250b43c2ef4f688f13f8dfb18431b8ea8c6f9a42a",
+      "hash_kind": "sha256",
+      "size": 2147238064
+    },
+    "model-00015-of-00083.safetensors": {
+      "hash": "13dc21ae1a0de7431d77d1fd0fd8b691ed0e6c840af08f8d5285a32a4797bc24",
+      "hash_kind": "sha256",
+      "size": 2145621640
+    },
+    "model-00016-of-00083.safetensors": {
+      "hash": "8e82548236288a972ca1f1b907f2eeacba5c72d8204771f6e3d2e3be5ef0c3f2",
+      "hash_kind": "sha256",
+      "size": 2147239184
+    },
+    "model-00017-of-00083.safetensors": {
+      "hash": "392c49510219605cbc9fc669a2c851e80b7d6c9da2e379e2f08c383119e35842",
+      "hash_kind": "sha256",
+      "size": 2145623864
+    },
+    "model-00018-of-00083.safetensors": {
+      "hash": "f2e478c1fd54aed3fc02f16188c37e1e21a3889934630dde9d9615d1b54e98ba",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00019-of-00083.safetensors": {
+      "hash": "d6f2386cba79022da0ce5a749058b78858bebdcfb4c7c479be82e4b0c9f93d4e",
+      "hash_kind": "sha256",
+      "size": 2019620824
+    },
+    "model-00020-of-00083.safetensors": {
+      "hash": "88c1ce13bde3dc9769329b80255f78bb20077662892c94913a02b2c136857477",
+      "hash_kind": "sha256",
+      "size": 2146623400
+    },
+    "model-00021-of-00083.safetensors": {
+      "hash": "2b841d85ece399413b32d27759049d6a2290045d48653fe787dfe2467b6fe6f4",
+      "hash_kind": "sha256",
+      "size": 2147240712
+    },
+    "model-00022-of-00083.safetensors": {
+      "hash": "03c5bed541263a48e6500b552580c72893bfd80ba4ddb7697d191f6c40367e74",
+      "hash_kind": "sha256",
+      "size": 2145622792
+    },
+    "model-00023-of-00083.safetensors": {
+      "hash": "70de95b2fd0f2a9c3086b7de6a4fb77047dda4977082282ee1b678aea3df3387",
+      "hash_kind": "sha256",
+      "size": 2147240400
+    },
+    "model-00024-of-00083.safetensors": {
+      "hash": "7249d51631e8f21d1b0b0fb6bf1516a16faf12c7b2008bc0a59473acd41e29aa",
+      "hash_kind": "sha256",
+      "size": 2145623104
+    },
+    "model-00025-of-00083.safetensors": {
+      "hash": "1e42ea55446d6e29f242bf40e23c327ef38a7b704ddd465a2ae3efb62c4284d7",
+      "hash_kind": "sha256",
+      "size": 2147240088
+    },
+    "model-00026-of-00083.safetensors": {
+      "hash": "5f2f9fb0ffbbfc9fa75ac1bad87c25478304a67c0545826eaa3de3dbb68ab4f4",
+      "hash_kind": "sha256",
+      "size": 2145623416
+    },
+    "model-00027-of-00083.safetensors": {
+      "hash": "09c346ad815f1647c2f718241849e826771251ae59b50f1b504f805fb80d46f5",
+      "hash_kind": "sha256",
+      "size": 2146829336
+    },
+    "model-00028-of-00083.safetensors": {
+      "hash": "1432429d6d937646740d382e18645632124dbab9616ae5377ce636aa8b0ff114",
+      "hash_kind": "sha256",
+      "size": 2145623752
+    },
+    "model-00029-of-00083.safetensors": {
+      "hash": "ebe0c87a613292d825813fde130015bdc85d5f6626cac33cabd8cf099645b607",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00030-of-00083.safetensors": {
+      "hash": "294a4f44d026d83d915150c01ef96daab6dffb06e9236f9ab93853e846cc7fcc",
+      "hash_kind": "sha256",
+      "size": 2145623864
+    },
+    "model-00031-of-00083.safetensors": {
+      "hash": "fe97a3ef3e9da76a718ac8917c1558a2c5b88ddd87950b655a304efc1f844081",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00032-of-00083.safetensors": {
+      "hash": "bf6d488226ac03c0f6a4439b93cdcaec863c8019a05fe903928c4b3d43c27620",
+      "hash_kind": "sha256",
+      "size": 2099572800
+    },
+    "model-00033-of-00083.safetensors": {
+      "hash": "b9055de2567c3192a7eaebf42116aaeb64bb39d3647371b81709b777b7f92abd",
+      "hash_kind": "sha256",
+      "size": 2147015044
+    },
+    "model-00034-of-00083.safetensors": {
+      "hash": "3496b5326621552ce881886f5b8278eb1431e4d9b9486501cb868eb9e264aeb5",
+      "hash_kind": "sha256",
+      "size": 2146830144
+    },
+    "model-00035-of-00083.safetensors": {
+      "hash": "60346bacae0f5df044e689887cfa16f620a3f99a5ac7a1b46d560dc25b5af406",
+      "hash_kind": "sha256",
+      "size": 2145622936
+    },
+    "model-00036-of-00083.safetensors": {
+      "hash": "c458581e441dc1af8d4bc9dfa508c5689facfdfde7d0c73554095344cdcdef49",
+      "hash_kind": "sha256",
+      "size": 2147240248
+    },
+    "model-00037-of-00083.safetensors": {
+      "hash": "8386bcd495a64d40769b8a23e58d30af6158e9476f2a35d9f341510bb1bef552",
+      "hash_kind": "sha256",
+      "size": 2145623248
+    },
+    "model-00038-of-00083.safetensors": {
+      "hash": "8c1832d36816e733604382d6bfa8db7f8de17030f2278fa182507e47713c0152",
+      "hash_kind": "sha256",
+      "size": 2147239936
+    },
+    "model-00039-of-00083.safetensors": {
+      "hash": "dd0d90f8e1fd0365a8b14c948931671b42c58e4a8403dfd7e9d72a6f68b63d6f",
+      "hash_kind": "sha256",
+      "size": 2145623560
+    },
+    "model-00040-of-00083.safetensors": {
+      "hash": "eec42d540964c8b4b251111ff72e0ea1d626624e7d952f3e8d55af849031ac0b",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00041-of-00083.safetensors": {
+      "hash": "a4106afc5be7c72cedd32d8f8dc1115ba58ede0bf7936ad39573d05229221b6e",
+      "hash_kind": "sha256",
+      "size": 2145623864
+    },
+    "model-00042-of-00083.safetensors": {
+      "hash": "4f4f0c1f7e2075683f45cb258af860db99c2486da69cee3520d083ad1856d6cc",
+      "hash_kind": "sha256",
+      "size": 2146829216
+    },
+    "model-00043-of-00083.safetensors": {
+      "hash": "4acfc99b17653781169315789e267068935534553d17e5f6558fdaf85b02f12d",
+      "hash_kind": "sha256",
+      "size": 2137715268
+    },
+    "model-00044-of-00083.safetensors": {
+      "hash": "9e211c39494ff57b8349d941c5333e99abad23dfe05053dee045ad702e8b59e7",
+      "hash_kind": "sha256",
+      "size": 2146738708
+    },
+    "model-00045-of-00083.safetensors": {
+      "hash": "dafc4ac0683fd2daa1665ba601305b28c067bef761813576ecfe36a25d1f3119",
+      "hash_kind": "sha256",
+      "size": 2147240712
+    },
+    "model-00046-of-00083.safetensors": {
+      "hash": "9661c215650d9d50904229ceb809524cf860d8ec268e3cbffe18a8f686240b68",
+      "hash_kind": "sha256",
+      "size": 2145622784
+    },
+    "model-00047-of-00083.safetensors": {
+      "hash": "c9d3228b5063507166f1bb928317632d9aa0f2674605fc9c821147c16c0c2e43",
+      "hash_kind": "sha256",
+      "size": 2147240400
+    },
+    "model-00048-of-00083.safetensors": {
+      "hash": "36b32413d9728d7e4e73158de569acdc95ae3ab4fe6629a24e5894fa977a4eab",
+      "hash_kind": "sha256",
+      "size": 2145623096
+    },
+    "model-00049-of-00083.safetensors": {
+      "hash": "8388585f85b9b097def490129d19c158dd309df91582467a59ec0e20dcefedad",
+      "hash_kind": "sha256",
+      "size": 2146829648
+    },
+    "model-00050-of-00083.safetensors": {
+      "hash": "80c4c216866a8bf2d248b7296cd776184def3c142db47a5940ca2617a9145cf9",
+      "hash_kind": "sha256",
+      "size": 2145623432
+    },
+    "model-00051-of-00083.safetensors": {
+      "hash": "478751946b3399b19e34119fe82022028caeacb5c5165172f22ee26f13fcba67",
+      "hash_kind": "sha256",
+      "size": 2147239752
+    },
+    "model-00052-of-00083.safetensors": {
+      "hash": "e6e2b83c6d17493097841104f871e09662a0280a0429d6d7c77712b37df3c34b",
+      "hash_kind": "sha256",
+      "size": 2145623744
+    },
+    "model-00053-of-00083.safetensors": {
+      "hash": "e85ef65a7e18688c797c581f5e9154b286ec7eb60c1a595e2e19518ffa1ad14f",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00054-of-00083.safetensors": {
+      "hash": "149fab90e2d8986e7774f8c572bb5ef3d690e78c809e04f3e41cdd65e66a803f",
+      "hash_kind": "sha256",
+      "size": 2145623864
+    },
+    "model-00055-of-00083.safetensors": {
+      "hash": "d8ef9004cd2b173d2d4b3a3dfa075e99536a8f1af37a999ec5ccfcee5e8af6bd",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00056-of-00083.safetensors": {
+      "hash": "aba03c3248ab4c136877fe9d8e8665a047aa3ce9248177217180e5c5941bd382",
+      "hash_kind": "sha256",
+      "size": 2146830536
+    },
+    "model-00057-of-00083.safetensors": {
+      "hash": "d2890017f84173d952caa1ef9420eae82d581f441e839ea23aa3d5d77828a0d5",
+      "hash_kind": "sha256",
+      "size": 2145622552
+    },
+    "model-00058-of-00083.safetensors": {
+      "hash": "8036deaf536d07c12d861b848bdb299465864308717acbe20fecc996d0b25806",
+      "hash_kind": "sha256",
+      "size": 2147240520
+    },
+    "model-00059-of-00083.safetensors": {
+      "hash": "bf2495f63d4674599d721def45ef83b3bc947c72c5c5a4fc1a5101aab9e63f65",
+      "hash_kind": "sha256",
+      "size": 2145622976
+    },
+    "model-00060-of-00083.safetensors": {
+      "hash": "bab42ad411f17394ad1a6cde7967343640f31427872a993d0fb2ca60cdd9fe02",
+      "hash_kind": "sha256",
+      "size": 2147240208
+    },
+    "model-00061-of-00083.safetensors": {
+      "hash": "210cd7a7c4b1245bc4831f08ae96ac9200e9d75c82bc8889a3f0ab9b7039e8fa",
+      "hash_kind": "sha256",
+      "size": 2145623288
+    },
+    "model-00062-of-00083.safetensors": {
+      "hash": "4e1d635f6f99fc7c417421bdcf11b02a90f4641536191be074402087a6f9551d",
+      "hash_kind": "sha256",
+      "size": 2147239896
+    },
+    "model-00063-of-00083.safetensors": {
+      "hash": "99285380431ff79898c8ad947477147cc7d7d5358186e48bb15460d3ee000bcd",
+      "hash_kind": "sha256",
+      "size": 2145623600
+    },
+    "model-00064-of-00083.safetensors": {
+      "hash": "db85472e575206520dde547d9b4953c80b9aa1c7099b745b1b368701e262b168",
+      "hash_kind": "sha256",
+      "size": 2146829216
+    },
+    "model-00065-of-00083.safetensors": {
+      "hash": "c380131c940281411fa8d87312a33c629142980a0db1d9d323d91720b4146b2e",
+      "hash_kind": "sha256",
+      "size": 2145623864
+    },
+    "model-00066-of-00083.safetensors": {
+      "hash": "d917559d51d4599b78cb83c10241d0bc7887980373513b769d27d2b5cf25a219",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00067-of-00083.safetensors": {
+      "hash": "ef2ffdbe2633a28c0c50c83c927c06cf7ca10d9bc7b52acda4ca7f12cf203b65",
+      "hash_kind": "sha256",
+      "size": 2095644084
+    },
+    "model-00068-of-00083.safetensors": {
+      "hash": "f9d4631df186452ee441fc2222ec0c58786a000f093c5dcd3617a2b7aafcc715",
+      "hash_kind": "sha256",
+      "size": 2146738708
+    },
+    "model-00069-of-00083.safetensors": {
+      "hash": "b6eb990ad41482fb0670c9b14f5e28cc9104f96a084d11b7dcb19c181ff3ed1b",
+      "hash_kind": "sha256",
+      "size": 2147240712
+    },
+    "model-00070-of-00083.safetensors": {
+      "hash": "5cc271ea8c80a4db2b3ea9abc1ff3a1dd3028cc0fa335cf0d48e1cc53938693c",
+      "hash_kind": "sha256",
+      "size": 2145622784
+    },
+    "model-00071-of-00083.safetensors": {
+      "hash": "7d5a77f01bd2d4dee138eeb2ad34be6f76a05eeb986516913d7d53194ab7429c",
+      "hash_kind": "sha256",
+      "size": 2146829960
+    },
+    "model-00072-of-00083.safetensors": {
+      "hash": "41ec9e0bf3f4e208b5834e76434c3ee8c563471fa6b9b91f01846aca3950f923",
+      "hash_kind": "sha256",
+      "size": 2145623120
+    },
+    "model-00073-of-00083.safetensors": {
+      "hash": "ba6cc2f17afdf194c546f3ea77cf8da1915acad25c1aae71d37780ce1e0333c3",
+      "hash_kind": "sha256",
+      "size": 2147240064
+    },
+    "model-00074-of-00083.safetensors": {
+      "hash": "92bab398276b9f67b3d226f1be951a9a8a4ba99b0de4e5c8ca89ae608511c9cb",
+      "hash_kind": "sha256",
+      "size": 2145623432
+    },
+    "model-00075-of-00083.safetensors": {
+      "hash": "1d45a5bec3f35ec1a014ddc27279f4186ffd0e1d080dd51e1e87a3057952c203",
+      "hash_kind": "sha256",
+      "size": 2147239752
+    },
+    "model-00076-of-00083.safetensors": {
+      "hash": "f930a4bce99f1a8dc3b87415dea44cec1c25f330c26c4710b192d8b76918429a",
+      "hash_kind": "sha256",
+      "size": 2145623744
+    },
+    "model-00077-of-00083.safetensors": {
+      "hash": "6039c7fc0629529f8c590a7694a0b21c41bf564232516c0febb326736681b5b8",
+      "hash_kind": "sha256",
+      "size": 2147239640
+    },
+    "model-00078-of-00083.safetensors": {
+      "hash": "f042a783d613bb637b9c20e9a8c6bb2269ce6238c4a57af234cd1d5e5bd0f849",
+      "hash_kind": "sha256",
+      "size": 2145623864
+    },
+    "model-00079-of-00083.safetensors": {
+      "hash": "64d4a938d9f322bf767edf2bcc5178633aafc177d4f02c542f0086ec00c3c0ea",
+      "hash_kind": "sha256",
+      "size": 2146829216
+    },
+    "model-00080-of-00083.safetensors": {
+      "hash": "3ff5446b7dcb23b85e7fc9c0372f38bdd8cf6ff1734b51486427d99d8ff902e7",
+      "hash_kind": "sha256",
+      "size": 2145646244
+    },
+    "model-00081-of-00083.safetensors": {
+      "hash": "1b3bcc129ef1585fcdf7c77b81a3d750d5a7bbc5be3797658e271e306b3f6216",
+      "hash_kind": "sha256",
+      "size": 2145457780
+    },
+    "model-00082-of-00083.safetensors": {
+      "hash": "d46c1f828cbfb1bca65d106f6b5bbc7ebc6849583cfb89f3780bf8575c7374ed",
+      "hash_kind": "sha256",
+      "size": 2144661364
+    },
+    "model-00083-of-00083.safetensors": {
+      "hash": "66eb60613cdb6b4ce4d80e1b1e88aeebfaf93cd8bcd2dc42b28cfdfff52f1bee",
+      "hash_kind": "sha256",
+      "size": 841800232
+    },
+    "model.safetensors.index.json": {
+      "hash": "62db15566324e8849eb9bcfb9872e7f1ae788680264a8cb438626ea2b9b80a04",
+      "hash_kind": "sha256",
+      "size": 15576721
+    },
+    "processor_config.json": {
+      "hash": "3ec2a058b2cdec556eca0f621e8c5164eec213c2",
+      "hash_kind": "git-sha1",
+      "size": 909
+    },
+    "quantization_config.json": {
+      "hash": "9d613d5951150e46cd1db918581c047948c9f9bc3fa160f33afda70bbcc77c41",
+      "hash_kind": "sha256",
+      "size": 37711191
+    },
+    "tokenizer.json": {
+      "hash": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+      "hash_kind": "sha256",
+      "size": 20217442
+    },
+    "tokenizer_config.json": {
+      "hash": "e375fa0a4e16660ce0e2026e39374d35dad4c079",
+      "hash_kind": "git-sha1",
+      "size": 761
+    }
+  },
+  "id": "Mia-AiLab/GLM-5.3-Flash-EXL3-4bpw-TensorFold",
+  "sha": "078455ffe6472f9a52fbc1139f58b9db2881b25c"
+}
