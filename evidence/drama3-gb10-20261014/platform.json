@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "device": "NVIDIA GB10",
+  "capability": [
+    12,
+    1
+  ],
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "triton": "3.7.1",
+  "cudnn": 92000,
+  "cudnn_enabled": true,
+  "fp8_max_abs_error": 8.835329208523035e-05,
+  "probes": [
+    "FP8 MoE",
+    "GDN chunk/recurrent parity",
+    "cuDNN Conv1d",
+    "FP8 CUDA graph",
+    "CPU rejection",
+    "missing Triton rejection"
+  ],
+  "host": "192.168.178.70",
+  "image": "ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:5da66fdde5e5efaa54abfc9b4c8bcf8517960d4a7b69b87b32e93e2b1440bdaa",
+  "command": "ssh 192.168.178.70 'docker run --rm --gpus all --entrypoint python ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:5da66fdde5e5efaa54abfc9b4c8bcf8517960d4a7b69b87b32e93e2b1440bdaa /opt/drama/probe.py'"
+}

@@ -1,0 +1,18 @@
+{
+  "host": "dgx01",
+  "baseline_epoch": 1791929894.0,
+  "sparkDash": {
+    "id": "e55f9b6d2220cb92777c3dd04bf2d160fa1f90824cfcca782be0e1a43d6891c0",
+    "image": "sha256:23d4839b5970ef840d44e4ceab8a083f0c4d1888bf343cd1c704cd79416b6d96",
+    "started_at": "2026-10-13T20:04:51.516457216Z",
+    "restart_count": 0,
+    "running": true
+  },
+  "gateway": {
+    "pid": 41422,
+    "start_ticks": 289164,
+    "started_epoch": 1791924772.64
+  },
+  "not_restarted_during_mission": true,
+  "dashboard_http_was_refused_at_baseline": true
+}

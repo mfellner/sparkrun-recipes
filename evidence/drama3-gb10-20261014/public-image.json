@@ -1,0 +1,23 @@
+{
+  "image": "ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:5da66fdde5e5efaa54abfc9b4c8bcf8517960d4a7b69b87b32e93e2b1440bdaa",
+  "anonymous": true,
+  "status": 200,
+  "manifest_digest": "sha256:5da66fdde5e5efaa54abfc9b4c8bcf8517960d4a7b69b87b32e93e2b1440bdaa",
+  "config_digest": "sha256:fcb5a54d12492f95c765e8f37504b7b4bd78304f96bb1cc1dfb8d17ba3a2853a",
+  "architecture": "arm64",
+  "os": "linux",
+  "labels": {
+    "fish.model.revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "fish.source.revision": "1ff3c3ed2f80d3106a83909dd25b83129c3d816f",
+    "maintainer": "NVIDIA CORPORATION <cudatools@nvidia.com>",
+    "org.opencontainers.image.ref.name": "ubuntu",
+    "org.opencontainers.image.source": "https://github.com/mfellner/sparkrun-recipes",
+    "org.opencontainers.image.title": "Drama 3 native GB10 runtime",
+    "org.opencontainers.image.version": "drama3-gb10-1"
+  },
+  "user": "drama",
+  "entrypoint": [
+    "/opt/drama/run.sh"
+  ],
+  "compressed_layer_bytes": 7522079814
+}

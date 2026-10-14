@@ -1,0 +1,83 @@
+{
+  "host": "192.168.178.70",
+  "hostname": "dgx02",
+  "captured_at": 1791935057.6263082,
+  "effective_env": {
+    "DRAMA_MODEL_DIR": "/cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946",
+    "OMP_NUM_THREADS": "4",
+    "TRITON_CACHE_DIR": "/cache/huggingface/drama3/triton",
+    "DRAMA_OUTPUT_DIR": "/cache/huggingface/drama3/outputs",
+    "CUDA_CACHE_PATH": "/cache/huggingface/drama3/cuda",
+    "FISH_DRAMA3_CUDA_GRAPH": "1",
+    "HF_HOME": "/cache/huggingface",
+    "FISH_DRAMA3_FP8_EXPERTS": "1"
+  },
+  "container": {
+    "id": "dc7dcfef5c76cbaa75576f85cccc9d9e1ed9c7dc94b55589eebe75593ced6ee1",
+    "image_ref": "ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:5da66fdde5e5efaa54abfc9b4c8bcf8517960d4a7b69b87b32e93e2b1440bdaa",
+    "image_id": "sha256:fcb5a54d12492f95c765e8f37504b7b4bd78304f96bb1cc1dfb8d17ba3a2853a",
+    "running": true,
+    "created_at": 1791934671.21082,
+    "started_at": "2026-10-13T23:37:51.247552141Z",
+    "privileged": false,
+    "user": "1000:1000",
+    "network": "host",
+    "ipc": "private",
+    "security_opt": [
+      "no-new-privileges"
+    ],
+    "cap_add": null,
+    "devices": [],
+    "mounts": [
+      {
+        "source": "/home/max/.cache/sparkrun/runtime-cache/vllm/fishaudio__drama-3-b005a9ca",
+        "destination": "/cache/runtime",
+        "rw": true
+      },
+      {
+        "source": "/home/max/.cache/huggingface",
+        "destination": "/cache/huggingface",
+        "rw": true
+      }
+    ]
+  },
+  "health": {
+    "status": "ok",
+    "model": "fishaudio/drama-3",
+    "revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "source_revision": "1ff3c3ed2f80d3106a83909dd25b83129c3d816f",
+    "default_reference_sha256": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+    "started_at": 1791934677.643637,
+    "pid": 64,
+    "fp8_experts": "1",
+    "cuda_graph": "1",
+    "torch": "2.13.0+cu130",
+    "cudnn_enabled": true
+  },
+  "process_join": {
+    "host_pid": 190203,
+    "namespace_pids": [
+      190203,
+      64
+    ],
+    "host_start_ticks": 1279085
+  },
+  "listener": {
+    "address": "192.168.178.70:8010",
+    "pid": 64,
+    "start_ticks": 1279085,
+    "inode": "567348"
+  },
+  "runtime_files": {
+    "contract.py": "1c67310f3713298a5e0cd3809a2eb0beea75ec1c063c0ee0cdcb64b2d29808c8",
+    "server.py": "fcac1ec545abbce5e2d8780807e71d559d2af668f732ecedd4dc59583a8aea66",
+    "run.sh": "0892b613dc8e2d8f177bd716d8be8d96fddaf57602aa0a49cb25ff7244a188da",
+    "probe.py": "b3a72f39e4de6ffc069537d7d29eb1eb23d9cc74bf5d670a5e80ef430784e54e",
+    "model-manifest.json": "55041149157a59577c6996f651949979d320e17851ef7c5134df8f57c1e24b1e",
+    "requirements-lock.txt": "f99d9403ecbb7f6638ad7c09d41e44e271948b55f834665add7770c279bcbb4b",
+    "default-reference.wav": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+    "default-reference.txt": "e0a833e71a65072dbfcc3353d33f6d7e94ec4f60cafd28087cdfdf7edee59d9e",
+    "reference-provenance.json": "76b5a94258d657463c6f3ae9923c89166c2d309f0d063ea80fa8aec196a89e6b",
+    "manifest.sha256": "f3a3c60e15d565733e64cd8ba72487a8d984859db57e808782ffc6ea699a105f"
+  }
+}

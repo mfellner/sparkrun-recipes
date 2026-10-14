@@ -1,0 +1,84 @@
+{
+  "endpoint": "http://192.168.178.70:8010",
+  "captured_at": 1791935558.0038798,
+  "rows": [
+    {
+      "case": "empty text",
+      "status": 400,
+      "response": "{\"detail\":\"text must contain 1..2000 characters\"}",
+      "expected_status": 400
+    },
+    {
+      "case": "oversized text",
+      "status": 400,
+      "response": "{\"detail\":\"text must contain 1..2000 characters\"}",
+      "expected_status": 400
+    },
+    {
+      "case": "URL input",
+      "status": 400,
+      "response": "{\"detail\":\"unknown fields; URL and path inputs are not supported\"}",
+      "expected_status": 400
+    },
+    {
+      "case": "unbounded frames",
+      "status": 400,
+      "response": "{\"detail\":\"invalid max_new_tokens\"}",
+      "expected_status": 400
+    },
+    {
+      "case": "structural token",
+      "status": 400,
+      "response": "{\"detail\":\"text: <|im_end|> is written by the prompt builder\"}",
+      "expected_status": 400
+    },
+    {
+      "case": "invalid speaker",
+      "status": 400,
+      "response": "{\"detail\":\"text: speaker tags must be <|speaker:0|> to <|speaker:15|>; got '<|speaker:99|> test'\"}",
+      "expected_status": 400
+    },
+    {
+      "case": "malformed JSON",
+      "status": 400,
+      "response": "{\"detail\":\"Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\"}",
+      "expected_status": 400
+    },
+    {
+      "case": "oversized body",
+      "status": 413,
+      "response": "{\"detail\":\"request exceeds 4 MiB\"}",
+      "expected_status": 413
+    },
+    {
+      "case": "cross-origin",
+      "status": 403,
+      "response": "{\"detail\":\"cross-origin browser requests are denied\"}",
+      "expected_status": 403
+    },
+    {
+      "case": "simple Content-Type",
+      "status": 403,
+      "response": "{\"detail\":\"JSON Content-Type required; browser simple requests are denied\"}",
+      "expected_status": 403
+    }
+  ],
+  "unintended_interfaces": [
+    {
+      "host": "192.168.3.183",
+      "port": 8010,
+      "reachable": false
+    },
+    {
+      "host": "192.168.2.183",
+      "port": 8010,
+      "reachable": false
+    },
+    {
+      "host": "target loopback 127.0.0.1",
+      "port": 8010,
+      "reachable": false
+    }
+  ],
+  "passed": true
+}

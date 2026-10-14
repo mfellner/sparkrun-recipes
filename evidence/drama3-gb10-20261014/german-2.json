@@ -1,0 +1,192 @@
+{
+  "name": "german-2",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "6280fed5eab2491d9a7232efac4520c4",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "6280fed5eab2491d9a7232efac4520c4",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "Heute gehen wir gemeinsam zum Bahnhof. Danach trinken wir einen Kaffee und lesen ein interessantes Buch."
+  },
+  "started_at": 1791936222.7712476,
+  "finished_at": 1791936235.8555884,
+  "wall_s": 13.080281463000574,
+  "first_audio_s": 13.071827687001132,
+  "chunks": [
+    {
+      "elapsed_s": 13.071825463001005,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 13.071866439000587,
+      "bytes": 6591
+    },
+    {
+      "elapsed_s": 13.071873863000292,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 13.071877079000842,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 13.072517031001553,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 13.072799543000656,
+      "bytes": 32656
+    },
+    {
+      "elapsed_s": 13.072816871001123,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.07355095100138,
+      "bytes": 54808
+    },
+    {
+      "elapsed_s": 13.073921431001509,
+      "bytes": 48584
+    },
+    {
+      "elapsed_s": 13.074214535001374,
+      "bytes": 38880
+    },
+    {
+      "elapsed_s": 13.074765335000848,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 13.07478415100013,
+      "bytes": 11208
+    },
+    {
+      "elapsed_s": 13.075083831001393,
+      "bytes": 16928
+    },
+    {
+      "elapsed_s": 13.075463719000254,
+      "bytes": 52192
+    },
+    {
+      "elapsed_s": 13.0758526790014,
+      "bytes": 48448
+    },
+    {
+      "elapsed_s": 13.076357543000995,
+      "bytes": 56472
+    },
+    {
+      "elapsed_s": 13.076647031000903,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 13.076668727000651,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.076721127001292,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 13.076750007001465,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 13.076778599001045,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.077297575000557,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 13.077318790999925,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.077739383001244,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 13.077761639000528,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.078181703000155,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 13.078204391000327,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.078699735000555,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 13.078721191001023,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.079217991000405,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 13.079238615000577,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.07936037500076,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 13.079387623000002,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.079733655000382,
+      "bytes": 41992
+    },
+    {
+      "elapsed_s": 13.0798257990009,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 13.079851271000734,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 13.080276871000024,
+      "bytes": 45236
+    }
+  ],
+  "rtf": 1.15434572817608,
+  "audio": {
+    "duration_s": 11.331337868480725,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 499712,
+    "rms": 0.05299660066717435,
+    "peak": 0.671875,
+    "finite": true
+  },
+  "audio_file": "german-2.wav",
+  "audio_sha256": "0daee2d1b4c4219f7dfec3dded8c95eae19515cf10952c369c13e546e5ff36bb"
+}

@@ -1,0 +1,22 @@
+{
+  "requests": 11,
+  "asr_passed": true,
+  "max_wer": 0.0625,
+  "median_serial_rtf": 1.1695252956143263,
+  "serial_rtf_range": [
+    1.1469076521115806,
+    1.2405086378213577
+  ],
+  "overlap_rtf_includes_queue_wait": true,
+  "streaming_first_pcm_s": 18.883913960000427,
+  "streaming_wall_s": 37.70969943399905,
+  "streaming_audio_duration_s": 32.879455782312924,
+  "peak_cuda_allocated_bytes": 46437835264,
+  "peak_gpu_util_pct": 96.0,
+  "peak_power_w": 43.06,
+  "subjective_listening_performed": false,
+  "cloning_similarity_scored": false,
+  "general_naturalness_scored": false,
+  "metric_scope": "actual eleven-case final-image HTTP suite; not broad benchmark or unconditioned synthesis",
+  "minimum_host_mem_available_bytes": 75059761152
+}

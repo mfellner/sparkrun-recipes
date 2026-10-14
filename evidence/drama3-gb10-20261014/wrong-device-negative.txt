@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/opt/drama/probe.py", line 57, in <module>
+    main()
+  File "/opt/drama/probe.py", line 10, in main
+    assert torch.cuda.is_available(), "CUDA is required; no CPU fallback"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: CUDA is required; no CPU fallback

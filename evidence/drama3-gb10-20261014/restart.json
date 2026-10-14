@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "previous_container": "6ae85413450e085a957e0079c2d75665900e2ac6e9594e75cd38bcf94e4c1b16",
+  "final_container": "dc7dcfef5c76cbaa75576f85cccc9d9e1ed9c7dc94b55589eebe75593ced6ee1",
+  "same_image": "sha256:fcb5a54d12492f95c765e8f37504b7b4bd78304f96bb1cc1dfb8d17ba3a2853a",
+  "compiler_and_output_persisted": true,
+  "witness_request_id": "af64afedff5a4d04a34ff6ff426ae0cc",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946"
+}

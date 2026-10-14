@@ -1,0 +1,322 @@
+{
+  "name": "reference",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "fb9d201165934a5cac56883b43b4d4b4",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "fb9d201165934a5cac56883b43b4d4b4",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [
+      {
+        "audio": "sha256:4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+        "text": "Printing, in the only sense with which we are at present concerned, differs from most if not from all the arts and crafts represented in the Exhibition",
+        "consent": true
+      }
+    ],
+    "text": "The art of printing has changed the way we share stories. This new sentence uses a public domain reference recording."
+  },
+  "started_at": 1791936340.2663033,
+  "finished_at": 1791936361.9088802,
+  "wall_s": 21.636750788000427,
+  "first_audio_s": 21.622570804000134,
+  "chunks": [
+    {
+      "elapsed_s": 21.622569699999076,
+      "bytes": 7888
+    },
+    {
+      "elapsed_s": 21.62258421200022,
+      "bytes": 23968
+    },
+    {
+      "elapsed_s": 21.62265621199913,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 21.622732547999476,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 21.622762323999268,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.622769636000157,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 21.622805955999866,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 21.62283880399991,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.62296473999959,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 21.622995620000438,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 21.62302427599934,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.623154724000415,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 21.62318299599974,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.62335793999955,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 21.623384611999427,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.623556803999236,
+      "bytes": 22872
+    },
+    {
+      "elapsed_s": 21.62358275599945,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.623831171998972,
+      "bytes": 23168
+    },
+    {
+      "elapsed_s": 21.62403419600014,
+      "bytes": 29256
+    },
+    {
+      "elapsed_s": 21.624529044000155,
+      "bytes": 59872
+    },
+    {
+      "elapsed_s": 21.62454560399965,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.62466957200013,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 21.62472190799963,
+      "bytes": 5792
+    },
+    {
+      "elapsed_s": 21.624749059999886,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.62520040399977,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 21.625220371999603,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.62604846799877,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 21.626107539999794,
+      "bytes": 18448
+    },
+    {
+      "elapsed_s": 21.626470084000175,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 21.626687107998805,
+      "bytes": 27512
+    },
+    {
+      "elapsed_s": 21.626983123998798,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 21.627007588000197,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.62723867599925,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 21.62726406799993,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.627683315999093,
+      "bytes": 52128
+    },
+    {
+      "elapsed_s": 21.62775326799965,
+      "bytes": 8688
+    },
+    {
+      "elapsed_s": 21.62778368399995,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 21.627813220000462,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.628038115999516,
+      "bytes": 27512
+    },
+    {
+      "elapsed_s": 21.628062628000407,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.628558852000424,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 21.628579923999496,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.628682067999762,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 21.629435236000063,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 21.62962320400038,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 21.62963989200034,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.629678436000177,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 21.63023861199872,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 21.631070227998862,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 21.631174899999678,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 21.632299315999262,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 21.63235073999931,
+      "bytes": 57544
+    },
+    {
+      "elapsed_s": 21.63248038799975,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.632701028000156,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 21.633291987998746,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 21.633505652000167,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 21.63352144399869,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.63368136399913,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 21.634327091998784,
+      "bytes": 46336
+    },
+    {
+      "elapsed_s": 21.634359379999296,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 21.63463253199916,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 21.634656915999585,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.63468968399866,
+      "bytes": 5792
+    },
+    {
+      "elapsed_s": 21.63516273999994,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 21.635184564000156,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.636153363999256,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 21.63628429199889,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 21.63674465999975,
+      "bytes": 52588
+    }
+  ],
+  "rtf": 1.1503914806988074,
+  "audio": {
+    "duration_s": 18.808163265306124,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 829440,
+    "rms": 0.05055041780261591,
+    "peak": 0.6015625,
+    "finite": true
+  },
+  "audio_file": "reference.wav",
+  "audio_sha256": "08287e5aba997f887d04cd92109cd2f805c185988dd90cc5f35debecd45c72a0"
+}

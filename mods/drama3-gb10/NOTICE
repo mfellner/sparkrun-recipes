@@ -1,0 +1,29 @@
+Built with Fish Audio.
+
+These Fish Audio Materials are licensed under the Fish Audio Community License,
+Version 1.0. Copyright © 39 AI, INC. All Rights Reserved.
+
+Native Fish source is pinned to 1ff3c3ed2f80d3106a83909dd25b83129c3d816f.
+Its full LICENSE is retained at /opt/fish-speech/LICENSE in the image and in
+FISH_LICENSE.txt in this mod. No weights are included in the image.
+
+The Fish source is unchanged. Packaging uses PyTorch 2.13 and Torchaudio 2.11
+CUDA 13 rather than upstream 2.8, and overrides Torchaudio's Torch 2.11 pin
+and audiotools' obsolete protobuf constraint. The used Python resampler and
+imports are qualified separately; general binary-extension parity is not claimed.
+A separately authored MIT adapter bounds HTTP inputs, serializes native inference,
+decodes bounded reference WAV using soundfile for Torchaudio 2.13 compatibility,
+and exposes a small LAN-only evaluation UI. It does not change Fish model kernels.
+Requests without an explicit reference use LJ Speech LJ001-0001, published as
+public domain by Keith Ito and Linda Johnson (https://keithito.com/LJ-Speech-Dataset/).
+Its immutable mirror/source revision and audio SHA-256 are in reference-provenance.json.
+Unconditioned native synthesis failed full-text ASR qualification; the released
+profile therefore uses this disclosed, checksum-pinned reference, not a claimed
+qualified unconditioned/random default voice.
+
+New packaging, adapter, probes and test code: Copyright (c) 2026 mfellner.
+SPDX-License-Identifier: MIT. See ADAPTER_LICENSE.txt. This grant does not apply
+to Fish source, weights, model documentation or other third-party dependencies.
+Review NVIDIA CUDA terms separately. Personal evaluation is the intended scope;
+Hosted Services generally require a separate Fish license. Do not clone a real
+person without consent or another legal right, or impersonate anyone deceptively.

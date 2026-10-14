@@ -1,0 +1,31 @@
+1791934089.050022 dgx02 kernel: tee (182282): drop_caches: 3
+1791934669.795384 dgx02 kernel: tee (189109): drop_caches: 3
+1791934721.234029 dgx02 kernel: docker0: port 1(veth181fd79) entered blocking state
+1791934721.234087 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934721.234106 dgx02 kernel: veth181fd79: entered allmulticast mode
+1791934721.234126 dgx02 kernel: veth181fd79: entered promiscuous mode
+1791934721.242017 dgx02 kernel: eth0: renamed from veth54d93bc
+1791934721.242041 dgx02 kernel: docker0: port 1(veth181fd79) entered blocking state
+1791934721.242048 dgx02 kernel: docker0: port 1(veth181fd79) entered forwarding state
+1791934724.902024 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934724.902072 dgx02 kernel: veth54d93bc: renamed from eth0
+1791934724.936021 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934724.936055 dgx02 kernel: veth181fd79 (unregistering): left allmulticast mode
+1791934724.936071 dgx02 kernel: veth181fd79 (unregistering): left promiscuous mode
+1791934724.936091 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934725.824103 dgx02 kernel: docker0: port 1(vethc996ade) entered blocking state
+1791934725.824138 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791934725.824149 dgx02 kernel: vethc996ade: entered allmulticast mode
+1791934725.824159 dgx02 kernel: vethc996ade: entered promiscuous mode
+1791934725.827036 dgx02 kernel: eth0: renamed from veth96dfa0a
+1791934725.827079 dgx02 kernel: docker0: port 1(vethc996ade) entered blocking state
+1791934725.827098 dgx02 kernel: docker0: port 1(vethc996ade) entered forwarding state
+1791934726.736016 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791934726.736031 dgx02 kernel: veth96dfa0a: renamed from eth0
+1791934726.780219 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791934726.780270 dgx02 kernel: vethc996ade (unregistering): left allmulticast mode
+1791934726.780305 dgx02 kernel: vethc996ade (unregistering): left promiscuous mode
+1791934726.780325 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791936288.873025 dgx02 kernel: audit: type=1400 audit(1791936288.871:190): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=200454 comm="systemd-detect-" capability=38  capname="perfmon"
+1791936288.876026 dgx02 kernel: audit: type=1400 audit(1791936288.874:191): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=200388 comm="cloud-id" capability=38  capname="perfmon"
+-- cursor: s=f85bbb3c4e344c078574b181a87ac708;i=73534d0;b=4d32c9e38f684765a2dc2567b2b737d0;m=35ac4c1e1;t=65dc1adf565fa;x=eb1240a7e4fb0c99

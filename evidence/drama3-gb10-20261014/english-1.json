@@ -1,0 +1,116 @@
+{
+  "name": "english-1",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "172c0ac245284c5ba85cd7cf2c3209d3",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "172c0ac245284c5ba85cd7cf2c3209d3",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "Hello, this is Drama three running on a single Spark. The morning test is now complete."
+  },
+  "started_at": 1791936192.87546,
+  "finished_at": 1791936201.6611025,
+  "wall_s": 8.776481281000088,
+  "first_audio_s": 8.769909566000933,
+  "chunks": [
+    {
+      "elapsed_s": 8.76990740600013,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 8.769918989999496,
+      "bytes": 5143
+    },
+    {
+      "elapsed_s": 8.770193151000058,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 8.7711889910006,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 8.77164228699985,
+      "bytes": 39096
+    },
+    {
+      "elapsed_s": 8.771663375000571,
+      "bytes": 23168
+    },
+    {
+      "elapsed_s": 8.772028239000065,
+      "bytes": 22728
+    },
+    {
+      "elapsed_s": 8.772967872000663,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 8.773003616001006,
+      "bytes": 19456
+    },
+    {
+      "elapsed_s": 8.773881967999841,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 8.773900656000478,
+      "bytes": 19456
+    },
+    {
+      "elapsed_s": 8.774926864000008,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 8.775140464000287,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 8.775375568000527,
+      "bytes": 46480
+    },
+    {
+      "elapsed_s": 8.775520495999444,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 8.77582150499984,
+      "bytes": 34480
+    },
+    {
+      "elapsed_s": 8.776356784999734,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 8.776476848999664,
+      "bytes": 11292
+    }
+  ],
+  "rtf": 1.1885896487203464,
+  "audio": {
+    "duration_s": 7.383945578231293,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 325632,
+    "rms": 0.07028234770074865,
+    "peak": 0.51953125,
+    "finite": true
+  },
+  "audio_file": "english-1.wav",
+  "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "http://192.168.178.70:8010/ui",
+  "status": "Synthetic audio ready",
+  "duration": 4.690431,
+  "ready_state": 4,
+  "bytes": 413740,
+  "content_type": "audio/wav",
+  "text": "Hello, this is Drama three running on a single Spark.",
+  "captured_at": 1791935464.289
+}

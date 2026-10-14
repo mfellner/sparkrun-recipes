@@ -1,0 +1,144 @@
+{
+  "name": "overlap-b",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "bb6f6054d5074a458014bc63ce51fce0",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "bb6f6054d5074a458014bc63ce51fce0",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "The red balloon floats above the garden. This is the second overlapping request."
+  },
+  "started_at": 1791936361.9109313,
+  "finished_at": 1791936375.2651238,
+  "wall_s": 13.349743360999128,
+  "first_audio_s": 13.341738336999697,
+  "chunks": [
+    {
+      "elapsed_s": 13.341737425000247,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 13.341789025000253,
+      "bytes": 39895
+    },
+    {
+      "elapsed_s": 13.341802848999578,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 13.34207644900016,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 13.342332000998795,
+      "bytes": 14480
+    },
+    {
+      "elapsed_s": 13.342890608999369,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 13.343182624999827,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 13.343845104998763,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 13.343951696999284,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 13.344351456998993,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 13.344646320998436,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 13.34516856099981,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 13.345196448999559,
+      "bytes": 8312
+    },
+    {
+      "elapsed_s": 13.345554736999475,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 13.346066385000086,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 13.346613904999685,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 13.347081440999318,
+      "bytes": 56472
+    },
+    {
+      "elapsed_s": 13.347243456999422,
+      "bytes": 5792
+    },
+    {
+      "elapsed_s": 13.347810129000209,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 13.348254720998739,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 13.348722032998921,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 13.349077536999175,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 13.349236224999913,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 13.349470752998968,
+      "bytes": 27512
+    },
+    {
+      "elapsed_s": 13.349739264998789,
+      "bytes": 26908
+    }
+  ],
+  "rtf": 1.187862543219068,
+  "audio": {
+    "duration_s": 11.23845804988662,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 495616,
+    "rms": 0.06898655760546357,
+    "peak": 0.69921875,
+    "finite": true
+  },
+  "audio_file": "overlap-b.wav",
+  "audio_sha256": "f2bf86f5bb9a03deeae09fee4203d2071890fdd180c443cd1cf8d63279eb2ef2"
+}

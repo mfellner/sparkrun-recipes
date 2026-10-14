@@ -1,0 +1,3336 @@
+{
+  "host": "192.168.178.70",
+  "method": "nvidia-smi+proc one-second real samples",
+  "samples": [
+    {
+      "timestamp": 1791936184.891105,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 21.88,
+      "temperature_c": 46.0,
+      "pstate": "P0",
+      "MemAvailable": 76945301504,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936185.8918393,
+      "gpu_util_pct": 92.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 35.04,
+      "temperature_c": 49.0,
+      "pstate": "P0",
+      "MemAvailable": 76937101312,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936186.8924186,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.38,
+      "temperature_c": 49.0,
+      "pstate": "P0",
+      "MemAvailable": 76934762496,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936187.893075,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2535.0,
+      "power_w": 33.4,
+      "temperature_c": 50.0,
+      "pstate": "P0",
+      "MemAvailable": 76926996480,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936188.89386,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.46,
+      "temperature_c": 50.0,
+      "pstate": "P0",
+      "MemAvailable": 76928090112,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936189.8944175,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.53,
+      "temperature_c": 50.0,
+      "pstate": "P0",
+      "MemAvailable": 76925714432,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936190.895036,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2535.0,
+      "power_w": 33.49,
+      "temperature_c": 50.0,
+      "pstate": "P0",
+      "MemAvailable": 76928950272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936191.8958538,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.54,
+      "temperature_c": 51.0,
+      "pstate": "P0",
+      "MemAvailable": 76928487424,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936192.8960843,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2535.0,
+      "power_w": 31.76,
+      "temperature_c": 51.0,
+      "pstate": "P0",
+      "MemAvailable": 76950249472,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936193.8963118,
+      "gpu_util_pct": 74.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 37.64,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 76930199552,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936194.8968203,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.68,
+      "temperature_c": 51.0,
+      "pstate": "P0",
+      "MemAvailable": 76934844416,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936195.8974154,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2535.0,
+      "power_w": 33.65,
+      "temperature_c": 51.0,
+      "pstate": "P0",
+      "MemAvailable": 76937969664,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936196.8980734,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2535.0,
+      "power_w": 33.62,
+      "temperature_c": 51.0,
+      "pstate": "P0",
+      "MemAvailable": 76934897664,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936197.898686,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.75,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 76935651328,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936198.8992307,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.68,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 76932567040,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936199.8998585,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.78,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 76932124672,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936200.9004624,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.74,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 76931080192,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936201.9012,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2489.0,
+      "power_w": 33.2,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76939898880,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936202.9018378,
+      "gpu_util_pct": 91.0,
+      "sm_clock_mhz": 2528.0,
+      "power_w": 36.08,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 76940943360,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936203.9024656,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2535.0,
+      "power_w": 33.79,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 76941946880,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936204.9031305,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2535.0,
+      "power_w": 33.82,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76941565952,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936205.9033105,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.85,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76939849728,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936206.903913,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.9,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76940304384,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936207.904522,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.92,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76940148736,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936208.9050267,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 33.94,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76941832192,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936209.9056742,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2541.0,
+      "power_w": 34.01,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76944887808,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936210.9062557,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 33.93,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76944703488,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936211.9067957,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 33.01,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 76953251840,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936212.9070673,
+      "gpu_util_pct": 75.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 38.14,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76946223104,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936213.907219,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.06,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76941733888,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936214.9078083,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.01,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76941148160,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936215.9083927,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.05,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76942635008,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936216.9089322,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.03,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76927090688,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936217.9095247,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.07,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76927397888,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936218.9101403,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.08,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76919533568,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936219.9107254,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.12,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 76930818048,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936220.911344,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.17,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76931821568,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936221.9119852,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.17,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76930043904,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936222.9127083,
+      "gpu_util_pct": 87.0,
+      "sm_clock_mhz": 2509.0,
+      "power_w": 33.54,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76942716928,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936223.9132602,
+      "gpu_util_pct": 92.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 37.13,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76931772416,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936224.913837,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.28,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76933431296,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936225.914466,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.21,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76932231168,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936226.9150877,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.33,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76939591680,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936227.9157481,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.26,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76935380992,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936228.9163435,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.3,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76934688768,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936229.9169679,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.34,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76933918720,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936230.9175515,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.32,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76933013504,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936231.9181373,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.38,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76933357568,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936232.9187572,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.36,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76934975488,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936233.9193277,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.39,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76945559552,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936234.9198413,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.41,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76942954496,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936235.9205139,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2509.0,
+      "power_w": 33.48,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 76946415616,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936236.9207587,
+      "gpu_util_pct": 70.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 37.48,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76916019200,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936237.9213376,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.41,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76907421696,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936238.9218144,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.46,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76910546944,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936239.9224255,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.47,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 76906086400,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936240.9229653,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.44,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76912844800,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936241.9231954,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 33.29,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77321740288,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936242.923513,
+      "gpu_util_pct": 18.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 38.66,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76927102976,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936243.9236295,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.55,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76924297216,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936244.923792,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.52,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76926025728,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936245.9243555,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.5,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76941484032,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936246.9249694,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.57,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76941082624,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936247.9255521,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.56,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76941672448,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936248.9260654,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.53,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76933701632,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936249.9266746,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.58,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76933890048,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936250.9273283,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.53,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76924993536,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936251.9279232,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.63,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 76920766464,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936252.9285219,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.57,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76921868288,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936253.9291167,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.64,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76922163200,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936254.929734,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.68,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76927758336,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936255.930228,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.62,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76926836736,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936256.930866,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.69,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76928708608,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936257.931492,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.7,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76935544832,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936258.9321427,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.66,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76934868992,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936259.9327133,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.78,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76926939136,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936260.9333012,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2515.0,
+      "power_w": 38.77,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 75786874880,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936261.9338887,
+      "gpu_util_pct": 91.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 41.25,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75778822144,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936262.9343987,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.77,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 75768061952,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936263.934985,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.78,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 75767689216,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936264.9356048,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.8,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 75774750720,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936265.936202,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.77,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 75772293120,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936266.9368138,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.78,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75768700928,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936267.9374275,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.76,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75769458688,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936268.9379823,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.83,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75777990656,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936269.9385574,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.86,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75776180224,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936270.9391854,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.87,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75779883008,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936271.9397933,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.85,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75779993600,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936272.940362,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.88,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75784978432,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936273.9409432,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.9,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75784155136,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936274.9415712,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.89,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75782500352,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936275.942232,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.98,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75779481600,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936276.942872,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.6,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75791052800,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936277.9434834,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.62,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75781197824,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936278.944131,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.61,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 75786276864,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936279.9448996,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2470.0,
+      "power_w": 35.51,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 76936658944,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936280.9455156,
+      "gpu_util_pct": 92.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 37.82,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 76927746048,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936281.945999,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.05,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 76928638976,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936282.9465914,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.02,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76927729664,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936283.9472466,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.02,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76932423680,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936284.9479165,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2515.0,
+      "power_w": 34.93,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76931899392,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936285.9484687,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.01,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76923785216,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936286.949095,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.04,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76930506752,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936287.9498398,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.05,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76930998272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936288.9500377,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.98,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76873273344,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936289.9508467,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.04,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76859924480,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936290.9515002,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.06,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76849631232,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936291.952185,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.06,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76852568064,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936292.9528444,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.12,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76854681600,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936293.9534693,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.09,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76856573952,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936294.9537513,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.06,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76831141888,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936295.9542286,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.03,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76794036224,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936296.9544957,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2515.0,
+      "power_w": 35.05,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76775452672,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936297.955056,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.06,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 76721926144,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936298.9555407,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.11,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 76717506560,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936299.9560041,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.15,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 76719833088,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936300.956256,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.17,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 76710907904,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936301.956453,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.1,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 76681732096,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936302.9571187,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.13,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 76679847936,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936303.957786,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2515.0,
+      "power_w": 40.22,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 75068985344,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936304.9584167,
+      "gpu_util_pct": 92.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 43.06,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75059761152,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936305.9590576,
+      "gpu_util_pct": 75.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.13,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75075502080,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936306.959893,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.19,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75079188480,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936307.9605587,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.25,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75092291584,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936308.961174,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.28,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75089956864,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936309.9614055,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.27,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75133358080,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936310.961625,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.31,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75143032832,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936311.961837,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.33,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75152740352,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936312.961924,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.32,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75134091264,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936313.9621434,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.18,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75141709824,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936314.9622765,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.76,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75156480000,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936315.9624104,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.78,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 75172319232,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936316.9626966,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.56,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75177947136,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936317.9628668,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.85,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75178057728,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936318.9630728,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.96,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75175510016,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936319.9631855,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.82,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75169435648,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936320.9633956,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.82,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75183951872,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936321.9634893,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.83,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75181268992,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936322.9637113,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.89,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75167154176,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936323.963855,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.83,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75175882752,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936324.9640815,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 34.84,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75199184896,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936325.9643066,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.12,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75190296576,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936326.9644122,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.16,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75184771072,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936327.964525,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.19,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75183050752,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936328.9646208,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2522.0,
+      "power_w": 35.14,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75187777536,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936329.9647195,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2476.0,
+      "power_w": 41.28,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 75174846464,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936330.9649518,
+      "gpu_util_pct": 92.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 42.97,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 75146870784,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936331.9654415,
+      "gpu_util_pct": 91.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 40.57,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 75165642752,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936332.965687,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.89,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 75157086208,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936333.9658403,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.88,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 75131375616,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936334.9660974,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.9,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 75124953088,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936335.966555,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.92,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 75150430208,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936336.9667766,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.94,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 75175038976,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936337.9670362,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.96,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 75170869248,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936338.967167,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.21,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 75177652224,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936339.9673755,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.88,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76561305600,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936340.9677017,
+      "gpu_util_pct": 91.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 36.51,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76774838272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936341.9678316,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.31,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76780052480,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936342.9679976,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.34,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76750319616,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936343.9682717,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.56,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76767809536,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936344.968405,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.62,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76767604736,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936345.9686596,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.56,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76778012672,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936346.96879,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.62,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76798558208,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936347.968921,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.67,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76810436608,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936348.9691572,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.69,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76808724480,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936349.969284,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.67,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76820471808,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936350.969503,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.64,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76807512064,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936351.9696333,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.47,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76815716352,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936352.9697585,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.48,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76824825856,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936353.969977,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.23,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76807294976,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936354.9701924,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.69,
+      "temperature_c": 63.0,
+      "pstate": "P0",
+      "MemAvailable": 76808794112,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936355.9703484,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.51,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76822196224,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936356.9705026,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.51,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76804796416,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936357.9709811,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.49,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76822036480,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936358.9714577,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.47,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76816117760,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936359.9716687,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.64,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76801040384,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936360.9717815,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.51,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76825247744,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936361.9721344,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.71,
+      "temperature_c": 68.0,
+      "pstate": "P0",
+      "MemAvailable": 76849750016,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936362.9726443,
+      "gpu_util_pct": 80.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 39.14,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76835778560,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936363.9728239,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.73,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76820443136,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936364.9729736,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.71,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76799172608,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936365.9731956,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.72,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76812681216,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936366.9733176,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.84,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76794318848,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936367.9738023,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.6,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76790939648,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936368.974063,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.61,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76783489024,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936369.9743056,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.57,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76808937472,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936370.9745803,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.6,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76798033920,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936371.9752455,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.53,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76810268672,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936372.975521,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.6,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76804403200,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936373.9757469,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.63,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76821213184,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936374.9763575,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.14,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76241010688,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936375.9766126,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2496.0,
+      "power_w": 38.05,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 76817797120,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936376.9768748,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.9,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76802166784,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936377.9770188,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.62,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76792868864,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936378.9774768,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.66,
+      "temperature_c": 64.0,
+      "pstate": "P0",
+      "MemAvailable": 76807622656,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936379.9776435,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.81,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 76777603072,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936380.9779203,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.81,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 76779040768,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936381.978216,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.9,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 76788494336,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936382.97861,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.93,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 76802080768,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936383.9788685,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.94,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 76817969152,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936384.9791327,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 35.94,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 76825174016,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936385.9793448,
+      "gpu_util_pct": 96.0,
+      "sm_clock_mhz": 2502.0,
+      "power_w": 34.3,
+      "temperature_c": 65.0,
+      "pstate": "P0",
+      "MemAvailable": 77237264384,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936386.9799354,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 15.28,
+      "temperature_c": 62.0,
+      "pstate": "P0",
+      "MemAvailable": 77241647104,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936387.9805038,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 15.12,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 77264244736,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936388.9811087,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.94,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 77268344832,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936389.9820492,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.86,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 77281677312,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936390.9825559,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.81,
+      "temperature_c": 61.0,
+      "pstate": "P0",
+      "MemAvailable": 77267460096,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936391.9833698,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.78,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 77278318592,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936392.983946,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.76,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 77280768000,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936393.984761,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.73,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 77272694784,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936394.9853406,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.68,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 77265891328,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936395.9861624,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.65,
+      "temperature_c": 60.0,
+      "pstate": "P0",
+      "MemAvailable": 77261836288,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936396.986742,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.64,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 77260582912,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936397.98731,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.61,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 77263175680,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936398.987422,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.6,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 77276098560,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936399.9875376,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.56,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 77276512256,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936400.9881299,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.54,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 77274324992,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936401.9885585,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.52,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 77279989760,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936402.9890754,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.49,
+      "temperature_c": 59.0,
+      "pstate": "P0",
+      "MemAvailable": 77272023040,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936403.9896088,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.5,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77277220864,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936404.9901989,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.48,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77272940544,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936405.9909465,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.48,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77276651520,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936406.9915175,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.44,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77275746304,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936407.9920871,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.42,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77274918912,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936408.9926763,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.4,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77288173568,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936409.993425,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.39,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77284712448,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936410.9940085,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.38,
+      "temperature_c": 58.0,
+      "pstate": "P0",
+      "MemAvailable": 77273001984,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936411.9945858,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.35,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77276553216,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936412.9951775,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.34,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77273935872,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936413.9957938,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.32,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77280022528,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936414.9961507,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.31,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77282824192,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936415.9967499,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.3,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77277368320,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936416.9969518,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.28,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77267673088,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936417.9975498,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.26,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77274914816,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936418.998086,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.24,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77276286976,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936419.998664,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.23,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77280161792,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936420.9992285,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.2,
+      "temperature_c": 57.0,
+      "pstate": "P0",
+      "MemAvailable": 77263937536,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936421.999748,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.19,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77276979200,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936423.0002928,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.19,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77275799552,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936424.0011487,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.19,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77272956928,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936425.0017345,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.18,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77275348992,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936426.0023503,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.14,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77279588352,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936427.0029404,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.13,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77273640960,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936428.0037026,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.12,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77275385856,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936429.0038106,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.12,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77294788608,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936430.0046358,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.12,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77292232704,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936431.005234,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.11,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77282246656,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936432.0060937,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.08,
+      "temperature_c": 56.0,
+      "pstate": "P0",
+      "MemAvailable": 77280923648,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936433.0066855,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.08,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77280579584,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936434.0075245,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.06,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77280419840,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936435.008086,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.08,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77279272960,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936436.008914,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.05,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77279948800,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936437.0095096,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.06,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77276962816,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936438.0103283,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.02,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77280051200,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936439.0110757,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.01,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77279571968,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936440.011904,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.01,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77277859840,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936441.0124223,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.01,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77276499968,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936442.0132473,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 14.0,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77273546752,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936443.0141308,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.99,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77276606464,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936444.01495,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.98,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77276270592,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936445.0155416,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.97,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77284278272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936446.0163586,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.94,
+      "temperature_c": 55.0,
+      "pstate": "P0",
+      "MemAvailable": 77289418752,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936447.0169492,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.93,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77287256064,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936448.0177772,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.89,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77286952960,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936449.0183563,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.92,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77278457856,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936450.019565,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.91,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77277929472,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936451.0201297,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.89,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77279653888,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936452.0209477,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.87,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77280116736,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936453.0215461,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.88,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77281005568,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936454.0223665,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.87,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77280653312,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936455.0229614,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.86,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77274804224,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936456.0237908,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.88,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77282676736,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936457.0243719,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.84,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77286072320,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936458.0252743,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.87,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77276278784,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936459.0258627,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.88,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77273960448,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936460.0266743,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.84,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77271662592,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936461.0272636,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.85,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77259833344,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936462.028137,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.85,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77258678272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936463.0286798,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.86,
+      "temperature_c": 54.0,
+      "pstate": "P0",
+      "MemAvailable": 77266251776,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936464.029499,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.84,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77265244160,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936465.030113,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.83,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77263478784,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936466.030928,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2411.0,
+      "power_w": 13.82,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77261918208,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936467.031518,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.52,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77268185088,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936468.0321448,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.51,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77265432576,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936469.0327413,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.52,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77261873152,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936470.0335624,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.5,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77264330752,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936471.0341554,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.49,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77266927616,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936472.0348027,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.49,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77264310272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936473.0353863,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.48,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77269401600,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936474.0362096,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77268418560,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936475.0367806,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77256355840,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936476.0376036,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77259694080,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936477.0382009,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.45,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77251305472,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936478.0390725,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77250215936,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936479.0396528,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77248421888,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936480.0404708,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77253677056,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936481.0410907,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.44,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77252366336,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936482.0419145,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.44,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77249462272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936483.042507,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.44,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77253111808,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936484.042637,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.43,
+      "temperature_c": 53.0,
+      "pstate": "P0",
+      "MemAvailable": 77253300224,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936485.0432324,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.43,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77252558848,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936486.0440936,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.42,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77245489152,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936487.0446742,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.43,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77255663616,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936488.0454874,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.43,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77269528576,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936489.0460696,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.39,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77268103168,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936490.0468915,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.37,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77268918272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936491.0474937,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.38,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77274783744,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936492.0483232,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.38,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77266722816,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936493.0489116,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.38,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77265756160,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936494.0497496,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.39,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77270011904,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936495.049844,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.38,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77268844544,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936496.0499616,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.45,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77262499840,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936497.0500715,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.45,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77253013504,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936498.0502033,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77266579456,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936499.050688,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77233664000,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936500.0514565,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.5,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77231001600,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936501.0522234,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.49,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77233930240,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936502.0527985,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.49,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77233192960,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936503.0534863,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.49,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77241143296,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936504.054119,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.48,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77226295296,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936505.0548828,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.47,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77226278912,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936506.0554583,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.47,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77220245504,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936507.0560768,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.46,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77214326784,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936508.0568235,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.47,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77210877952,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936509.0575829,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.48,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77212528640,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936510.0583422,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.48,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77225676800,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936511.059128,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.48,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77246869504,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936512.0595474,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.48,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77249515520,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936513.0598786,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.49,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77232775168,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936514.060642,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.48,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77232885760,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936515.061196,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.5,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77229494272,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936516.0615113,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.49,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77234278400,
+      "SwapFree": 17179865088
+    },
+    {
+      "timestamp": 1791936517.0617294,
+      "gpu_util_pct": 0.0,
+      "sm_clock_mhz": 2405.0,
+      "power_w": 13.47,
+      "temperature_c": 52.0,
+      "pstate": "P0",
+      "MemAvailable": 77277155328,
+      "SwapFree": 17179865088
+    }
+  ]
+}

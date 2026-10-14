@@ -12,6 +12,42 @@ Recipes are then available under the `@mfellner/` namespace. Review the reposito
 
 ## Recipes
 
+### Fish Audio Drama 3 — native TTS, single Spark
+
+`@mfellner/fish-audio-drama3-dgx-spark`
+
+Built with Fish Audio. A single-GB10 native Fish profile with block-FP8 experts,
+BF16 dense weights and GPU codec, native decode CUDA graphs, immutable Fish source
+`1ff3c3ed2f80d3106a83909dd25b83129c3d816f` and Drama 3 snapshot
+`dd64a85cd82e9521f7202610ede97b367fc83946`. No generic vLLM inference, multi-node
+sharding, NVFP4 or transferred H200 performance claim is involved. SparkRun's
+`vllm-distributed` name is only the solo container/lifecycle shim.
+
+The pinned public ARM64 image is published under a distinct Drama tag in this
+repository's existing public GHCR package; its legacy GLM package name is an
+artifact transport, not the audio engine. Weights stay outside the image. The
+default voice uses a disclosed checksum-pinned public-domain LJ Speech reference;
+unconditioned synthesis failed full-text ASR and is not qualified. Explicit legal
+reference WAVs can replace the default. Requests serialize; streaming delivers
+completed native text chunks rather than individual codec frames.
+
+The unauthenticated personal-evaluation API binds only the explicit target LAN
+IPv4 (this deployment: `http://192.168.178.70:8010`, UI at `/ui`), denies URL/path
+media inputs and ordinary cross-origin/simple browser POSTs, and bounds text,
+reference audio, frame budget and queue size. Fish Audio Community License v1.0
+applies to Fish materials; MIT applies only to newly authored adapter/packaging.
+Hosted-service and voice-consent/legal-right restrictions still apply.
+
+See [deployment, CLI/reference/streaming examples, lifecycle and limits](docs/drama3-gb10.md),
+[runtime source and attribution](mods/drama3-gb10/), and
+[machine-verifiable live evidence](evidence/drama3-gb10-20261014/).
+
+```bash
+sparkrun run @mfellner/fish-audio-drama3-dgx-spark \
+  --hosts 192.168.178.70 -o host=192.168.178.70 \
+  --transfer-mode delegated --no-follow --no-sync-tuning
+```
+
 ### Qwen3-VL-Embedding-8B — single Spark, multimodal retrieval
 
 `@mfellner/qwen3-vl-embedding-8b-dgx-spark`

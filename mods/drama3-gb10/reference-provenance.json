@@ -1,0 +1,14 @@
+{
+  "source": "https://raw.githubusercontent.com/coqui-ai/TTS/dbf1a08a0d4e47fdad6172e433eeb34bc6b13b4e/tests/data/ljspeech/wavs/LJ001-0001.wav",
+  "source_revision": "dbf1a08a0d4e47fdad6172e433eeb34bc6b13b4e",
+  "sha256": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+  "dataset": "LJ Speech 1.1",
+  "authors": [
+    "Keith Ito",
+    "Linda Johnson"
+  ],
+  "license": "public domain as stated by dataset publisher",
+  "license_url": "https://keithito.com/LJ-Speech-Dataset/",
+  "scope": "licensed public-domain evaluation sample; not personal/private recording",
+  "transcript": "Printing, in the only sense with which we are at present concerned, differs from most if not from all the arts and crafts represented in the Exhibition"
+}

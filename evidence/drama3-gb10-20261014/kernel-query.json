@@ -1,0 +1,9 @@
+{
+  "host": "192.168.178.70",
+  "command": "journalctl -k --no-pager -o short-unix --show-cursor --since 2026-10-13T23:27:51.210820+00:00 --until 2026-10-14T00:08:19.138499+00:00",
+  "since": 1791934071.21082,
+  "until": 1791936499.1384993,
+  "repeat_byte_equal": true,
+  "exit_code": 0,
+  "sha256": "df2d52ca5eef477d0ffbdc47939757e777aaebbf0f947ac1fc3ce65e578fbc70"
+}

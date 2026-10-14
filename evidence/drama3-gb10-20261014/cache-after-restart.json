@@ -1,0 +1,53 @@
+{
+  "cache_path": "/cache/huggingface/drama3/triton",
+  "cache_file_count": 65,
+  "compiler_files": [
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/__grp__quant_kernel.json",
+      "sha256": "ef4558b217e0c907599eedbcaa9e370d3a45586ad884f637dd529ad43e5aa939",
+      "size": 919
+    },
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/quant_kernel.cubin",
+      "sha256": "b182d6da5073b208ee15b06010aaf3fe665c6ec4c5566bf6877de480c0637f04",
+      "size": 13128
+    },
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/quant_kernel.json",
+      "sha256": "c72e3f2e440cabd46bfc24fd3c70c6cb308a133504e066090cefde81ddb2dc33",
+      "size": 1100
+    },
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/quant_kernel.llir",
+      "sha256": "6ba0e8936ba8950a98ea08adcfb9ef621a031fda5ae3e7cf69d577d7d127a720",
+      "size": 11066
+    },
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/quant_kernel.ptx",
+      "sha256": "f3f321eae94088ae103ef67dc7118d6295c01fc55dfe9e58b98293f8d9a1cfc3",
+      "size": 13169
+    },
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/quant_kernel.source",
+      "sha256": "a984f7485f4db2c37cf7d30359519ef362e11ceb39dbb44af4e29f674929b882",
+      "size": 10377
+    },
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/quant_kernel.ttgir",
+      "sha256": "67ebe618defad02017153a89e45c7b183ba8306a52075c2783ab6a3304bd69be",
+      "size": 8022
+    },
+    {
+      "path": "34YEIG4WSFCQWT72JXJH6FKWX5XHWRPM2OOA6Z3LWE3WUKUB2DKA/quant_kernel.ttir",
+      "sha256": "e57e375b1ccebc145b586420a52fd8a83f07337381d94db191031e0e0a56fa02",
+      "size": 7416
+    }
+  ],
+  "output_path": "/cache/huggingface/drama3/outputs/af64afedff5a4d04a34ff6ff426ae0cc.wav",
+  "output_exists": true,
+  "output_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+  "host": "192.168.178.70",
+  "captured_at": 1791935058.0913713,
+  "container_name": "sparkrun_5cdd47ca6e9209cd_b160c652d835_solo",
+  "request_id": "af64afedff5a4d04a34ff6ff426ae0cc"
+}

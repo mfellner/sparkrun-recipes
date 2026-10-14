@@ -1,0 +1,124 @@
+{
+  "name": "expression",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "694580f580934d30987d709dd7867bfd",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "694580f580934d30987d709dd7867bfd",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "[happy] What a wonderful morning! I am so excited to hear the good news."
+  },
+  "started_at": 1791936235.8570106,
+  "finished_at": 1791936241.9646728,
+  "wall_s": 6.106565513999158,
+  "first_audio_s": 6.103098633999252,
+  "chunks": [
+    {
+      "elapsed_s": 6.103095577998829,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 6.103153369998836,
+      "bytes": 10935
+    },
+    {
+      "elapsed_s": 6.103164713998922,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 6.103169770000022,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 6.10342634600056,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 6.103641977999359,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 6.103820297999846,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 6.1041202819997125,
+      "bytes": 28064
+    },
+    {
+      "elapsed_s": 6.1044581059995835,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 6.104477114000474,
+      "bytes": 22616
+    },
+    {
+      "elapsed_s": 6.104825962000177,
+      "bytes": 31968
+    },
+    {
+      "elapsed_s": 6.105124218000128,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 6.105363417998888,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 6.105657258000065,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 6.10601232999943,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 6.106027562000236,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 6.106057290000535,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 6.106325098000525,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 6.106470697999612,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 6.1065606659994955,
+      "bytes": 21428
+    }
+  ],
+  "rtf": 1.2405086378213577,
+  "audio": {
+    "duration_s": 4.922630385487528,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 217088,
+    "rms": 0.11621704678246504,
+    "peak": 0.765625,
+    "finite": true
+  },
+  "audio_file": "expression.wav",
+  "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978"
+}

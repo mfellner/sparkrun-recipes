@@ -1,0 +1,340 @@
+{
+  "name": "streaming",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "e31d830afd944acbb3ceb4673c3cca6f",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "e31d830afd944acbb3ceb4673c3cca6f",
+  "request": {
+    "format": "wav",
+    "streaming": true,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "The first part of this message is arriving as audio. We are testing native speech generation on a single Spark computer. The second part continues the story. Outside the window, the birds are singing and the sky is clear. A friendly traveler walks down the street and stops at the bakery to buy a fresh loaf of bread. We continue speaking so that more than one native text chunk is generated. This final sentence marks the end of the streaming test."
+  },
+  "started_at": 1791936241.9650323,
+  "finished_at": 1791936279.6841989,
+  "wall_s": 37.70969943399905,
+  "first_audio_s": 18.883913960000427,
+  "chunks": [
+    {
+      "elapsed_s": 18.883907335999538,
+      "bytes": 44
+    },
+    {
+      "elapsed_s": 18.88391357599903,
+      "bytes": 7827
+    },
+    {
+      "elapsed_s": 18.8839227440003,
+      "bytes": 3749
+    },
+    {
+      "elapsed_s": 18.88490023200029,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 18.8863042640005,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 18.887774728000295,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 18.88779541599979,
+      "bytes": 24240
+    },
+    {
+      "elapsed_s": 18.88963928799967,
+      "bytes": 46080
+    },
+    {
+      "elapsed_s": 18.891091847999633,
+      "bytes": 51200
+    },
+    {
+      "elapsed_s": 18.892173734999233,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.89265787899967,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.892963319000046,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 18.893063031000565,
+      "bytes": 11320
+    },
+    {
+      "elapsed_s": 18.893238230999486,
+      "bytes": 21488
+    },
+    {
+      "elapsed_s": 18.893778599000143,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.894086070999037,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 18.89442643899929,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 18.894990614999188,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 18.895010182999613,
+      "bytes": 12656
+    },
+    {
+      "elapsed_s": 18.895417510999323,
+      "bytes": 33824
+    },
+    {
+      "elapsed_s": 18.895952278999175,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.895971799000108,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 18.896457030999954,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 18.897000871000273,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 18.897020566999345,
+      "bytes": 9760
+    },
+    {
+      "elapsed_s": 18.89751560699915,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 18.897913527000128,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.89835842299908,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 18.898430166998878,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 18.899097270999846,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.89948186299989,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.899920087000282,
+      "bytes": 51840
+    },
+    {
+      "elapsed_s": 18.90046256700043,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.90095608699994,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 18.90097712699935,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 18.901520375000473,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 18.901736326999526,
+      "bytes": 26320
+    },
+    {
+      "elapsed_s": 37.58170190400051,
+      "bytes": 8184
+    },
+    {
+      "elapsed_s": 37.5817199840003,
+      "bytes": 6288
+    },
+    {
+      "elapsed_s": 37.581998831999954,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 37.58268148800016,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 37.58328287999939,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 37.58330127999943,
+      "bytes": 1072
+    },
+    {
+      "elapsed_s": 37.58375291199991,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 37.584344495999176,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 37.58457691200056,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 37.584975039999335,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 37.58499451199896,
+      "bytes": 2520
+    },
+    {
+      "elapsed_s": 37.585504512000625,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 37.58603009599938,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 37.58604817599917,
+      "bytes": 5416
+    },
+    {
+      "elapsed_s": 37.58642651199989,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 37.586955855998895,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 37.587486127999,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 37.58755847999964,
+      "bytes": 10216
+    },
+    {
+      "elapsed_s": 37.58795590400041,
+      "bytes": 46336
+    },
+    {
+      "elapsed_s": 37.5880965439992,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 37.58862105600019,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 37.588965568000276,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 37.58915632000026,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 37.58967894399939,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 37.589947840000605,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 37.590216127999156,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 37.59073921599884,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 37.590957583999625,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 37.59127375999924,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 37.59179563199905,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 37.59194137600025,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 37.59248038399892,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 37.59300478399928,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 37.59302428800038,
+      "bytes": 8312
+    },
+    {
+      "elapsed_s": 37.59354600000006,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 37.5940582559997,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 37.594078320000335,
+      "bytes": 16304
+    }
+  ],
+  "rtf": 1.1469076521115806,
+  "audio": {
+    "duration_s": 32.879455782312924,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 1449984,
+    "rms": 0.07817977421554109,
+    "peak": 0.83984375,
+    "finite": true
+  },
+  "audio_file": "streaming.wav",
+  "audio_sha256": "12c6af16682ee30df104e94657e3410b752ac54b410a1d6bd2fc5fbe795e5caa"
+}
