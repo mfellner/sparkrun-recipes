@@ -48,6 +48,26 @@ sparkrun run @mfellner/fish-audio-drama3-dgx-spark \
   --transfer-mode delegated --no-follow --no-sync-tuning
 ```
 
+### Fish Audio Drama 3 — compact-head speed profile
+
+`@mfellner/fish-audio-drama3-fast-dgx-spark`
+
+A separately pinned single-GB10 native profile preserves the original BF16 GPU
+codec, API and default public-domain reference while projecting only consumed
+semantic/EOS candidates. On the final same-image six-fixture seed42 matrix,
+median end-to-end RTF fell **1.2009 ->1.0882 (9.4%)**; all36 matched WAVs were
+byte-identical and full-text/endings ASR passed. Ten broader reference/overlap
+cases and fresh postrestart speech passed. This remains **RTF>1**, with completed-
+chunk firstPCM about17.34s rather than interactive playback. No new quantization,
+prefix/smaller-bucket/custom-kernel or per-frame streaming feature is enabled.
+
+See [exact limits, launch and rollback](docs/drama3-performance.md),
+[image/wrapper inputs](mods/drama3-gb10-release/), and
+[raw matched evidence and offline verifier](evidence/drama3-gb10-performance/).
+Original recipe above remains unchanged as rollback. Same trusted-LAN/legal-use
+restrictions apply. Use this separately named recipe in the launch example above
+only after reviewing its immutable image and evidence.
+
 ### Qwen3-VL-Embedding-8B — single Spark, multimodal retrieval
 
 `@mfellner/qwen3-vl-embedding-8b-dgx-spark`

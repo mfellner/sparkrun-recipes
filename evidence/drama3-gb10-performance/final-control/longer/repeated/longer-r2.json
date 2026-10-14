@@ -1,0 +1,621 @@
+{
+  "schema": 1,
+  "arm": "final-control",
+  "fixture": "longer",
+  "name": "longer-r2",
+  "warmup": false,
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day."
+  },
+  "request_identity": "fab4bd7a194c5b01a42355d1bb84b06ec4b844bbf3fb545ed64e19a61a082a65",
+  "runtime": {
+    "host": "192.168.178.70",
+    "hostname": "dgx02",
+    "captured_at": 1792010634.1045742,
+    "effective_env": {
+      "DRAMA_MODEL_DIR": "/cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946",
+      "FISH_DRAMA3_CUDA_GRAPH": "1",
+      "FISH_DRAMA3_FP8_EXPERTS": "1",
+      "HF_HOME": "/cache/huggingface",
+      "OMP_NUM_THREADS": "4",
+      "DRAMA_OUTPUT_DIR": "/cache/huggingface/drama3-fast/outputs",
+      "TRITON_CACHE_DIR": "/cache/huggingface/drama3/triton",
+      "CUDA_CACHE_PATH": "/cache/huggingface/drama3/cuda"
+    },
+    "container": {
+      "id": "527ea7f81e034880e0b04e4144a0f35478305d222df82d0f4a28148923e5b33c",
+      "image_ref": "ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c",
+      "image_id": "sha256:1bfb3e4f8d310d70afa9d8fe4020c544387f52567d6cb0db399589700bcba4bb",
+      "running": true,
+      "created_at": 1792009909.850104,
+      "started_at": "2026-10-14T20:31:49.878408466Z",
+      "privileged": false,
+      "user": "1000:1000",
+      "network": "host",
+      "ipc": "private",
+      "security_opt": [
+        "no-new-privileges"
+      ],
+      "cap_add": null,
+      "devices": [],
+      "mounts": [
+        {
+          "source": "/home/max/.cache/sparkrun/runtime-cache/vllm/fishaudio__drama-3-b005a9ca",
+          "destination": "/cache/runtime",
+          "rw": true
+        },
+        {
+          "source": "/home/max/.cache/huggingface",
+          "destination": "/cache/huggingface",
+          "rw": true
+        }
+      ]
+    },
+    "health": {
+      "status": "ok",
+      "model": "fishaudio/drama-3",
+      "revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+      "source_revision": "1ff3c3ed2f80d3106a83909dd25b83129c3d816f",
+      "default_reference_sha256": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "started_at": 1792009916.4287424,
+      "pid": 60,
+      "fp8_experts": "1",
+      "cuda_graph": "1",
+      "torch": "2.13.0+cu130",
+      "cudnn_enabled": true
+    },
+    "process_join": {
+      "host_pid": 1230124,
+      "namespace_pids": [
+        1230124,
+        60
+      ],
+      "host_start_ticks": 8802943
+    },
+    "listener": {
+      "address": "192.168.178.70:8010",
+      "pid": 60,
+      "start_ticks": 8802943,
+      "inode": "3349924"
+    },
+    "runtime_files": {
+      "contract.py": "1c67310f3713298a5e0cd3809a2eb0beea75ec1c063c0ee0cdcb64b2d29808c8",
+      "server.py": "fcac1ec545abbce5e2d8780807e71d559d2af668f732ecedd4dc59583a8aea66",
+      "run.sh": "0892b613dc8e2d8f177bd716d8be8d96fddaf57602aa0a49cb25ff7244a188da",
+      "probe.py": "b3a72f39e4de6ffc069537d7d29eb1eb23d9cc74bf5d670a5e80ef430784e54e",
+      "model-manifest.json": "55041149157a59577c6996f651949979d320e17851ef7c5134df8f57c1e24b1e",
+      "requirements-lock.txt": "f99d9403ecbb7f6638ad7c09d41e44e271948b55f834665add7770c279bcbb4b",
+      "default-reference.wav": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "default-reference.txt": "e0a833e71a65072dbfcc3353d33f6d7e94ec4f60cafd28087cdfdf7edee59d9e",
+      "reference-provenance.json": "76b5a94258d657463c6f3ae9923c89166c2d309f0d063ea80fa8aec196a89e6b",
+      "manifest.sha256": "f3a3c60e15d565733e64cd8ba72487a8d984859db57e808782ffc6ea699a105f"
+    },
+    "configured_profile": {
+      "configured_flags": {
+        "FISH_DRAMA3_COMPACT_HEAD": false,
+        "FISH_DRAMA3_SMALL_GRAPH_BUCKETS": false,
+        "FISH_DRAMA3_PREFIX_SNAPSHOT": false,
+        "DRAMA_NATIVE_STREAMING": false,
+        "DRAMA_PUBLIC_REFERENCE_CACHE": false,
+        "DRAMA_STATEFUL_CODEC": false
+      },
+      "kernel_options": {
+        "state": false,
+        "conv": false,
+        "fp8": false,
+        "tower_up": "off",
+        "gdn_qkv": "off"
+      },
+      "scope": "effective configuration and physical source identity; not a qualification verdict",
+      "source_files": {
+        "fish_speech/models/text2semantic/fish_omni/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fish_speech/models/text2semantic/fish_omni/backbone.py": "dd969c85df49c0ec6293b726cbc226e55ca9d2b85cce234a2acf1df340237517",
+        "fish_speech/models/text2semantic/fish_omni/chunking.py": "058d2d9cbc90e28a38ab9eba5269e9b2cc3ab651b605b9508ea9b0cf9b5bd5e2",
+        "fish_speech/models/text2semantic/fish_omni/config.py": "1e885113d269d7f7c9cd6648f393eec7bbc6974be6974719e8493f012ed0bfd7",
+        "fish_speech/models/text2semantic/fish_omni/fp8_moe.py": "c30de427f2ec31beaff7f95e8e15cdd004fcdde005f26d23e1a04593c228b40f",
+        "fish_speech/models/text2semantic/fish_omni/generate.py": "4bdfb4a141224331c79d144ba5d1483879b85175df212bc5af78c3839e581410",
+        "fish_speech/models/text2semantic/fish_omni/layers.py": "e4704b4fde7906bf021d6696c4132458b4bc52c836d22da702275252683540bc",
+        "fish_speech/models/text2semantic/fish_omni/model.py": "4e23c929b39ce325b25e806599f339e62e186571f9128c301a4ba689ac7a9eb8",
+        "fish_speech/models/text2semantic/fish_omni/moe.py": "3b3981c3fa6849942db1a58c9aa9f5085148b3d98427ca7ef1f8cd81e84e2d2c",
+        "fish_speech/models/text2semantic/fish_omni/tower.py": "6f2f2304f629f9b47a26f33c534fcaea48b928dc88d830efca43a0d6bfd22a85"
+      },
+      "package_manifest_sha256": "89eb1655ddaecf2900f2f6a5021d97852544634e98f04c9832934d40e7d1afcc"
+    }
+  },
+  "runtime_identity": "a26eb991e892d481c5c816c6301c8961189c39d3490abaf72b9309ea4c9d0d11",
+  "harness": {
+    "performance.py": "aa1f1b514390957b4199222dfbfe37e57d30f7235bb8ed4b53b8559cf1bec278",
+    "fixtures.py": "2dca375431ce9ea1f5497fa3ab4e3a09720b5353d1db009ed662287fa39dbcca",
+    "acceptance.py": "758bb0319bb3388a25568633b99ddc5ac0f8fa43e19525debba60798508976f0"
+  },
+  "complete": true,
+  "started_at": 1792010757.1948066,
+  "events": [
+    {
+      "elapsed_s": 61.2156101189903,
+      "bytes": 7888
+    },
+    {
+      "elapsed_s": 61.215628070989624,
+      "bytes": 5144
+    },
+    {
+      "elapsed_s": 61.216752230000566,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 61.217809123991174,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 61.21819401999528,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 61.218313459990895,
+      "bytes": 13160
+    },
+    {
+      "elapsed_s": 61.21872528298991,
+      "bytes": 47656
+    },
+    {
+      "elapsed_s": 61.21875376299431,
+      "bytes": 4256
+    },
+    {
+      "elapsed_s": 61.21908430699841,
+      "bytes": 39224
+    },
+    {
+      "elapsed_s": 61.21917673898861,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 61.21951309099677,
+      "bytes": 36072
+    },
+    {
+      "elapsed_s": 61.22003492999647,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.22018456200021,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 61.22041897798772,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 61.2208411689935,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 61.22120988898678,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 61.221363280987134,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 61.22138513698883,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 61.2218291679892,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 61.222197631999734,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 61.22225438398891,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 61.22265276699909,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 61.22317676698731,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.22366553399479,
+      "bytes": 58008
+    },
+    {
+      "elapsed_s": 61.2241298059962,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 61.224181821991806,
+      "bytes": 8688
+    },
+    {
+      "elapsed_s": 61.22466895698744,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 61.22519943698717,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.2257323639933,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.22621818698826,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 61.2262407149974,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 61.22677717899205,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.227207657997496,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 61.22730063399649,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 61.22784852198674,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.228219400989474,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 61.228343448994565,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 61.22890655299125,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.22920071199769,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 61.22940898399975,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 61.22996213499573,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.230201494996436,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 61.230464934997144,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 61.231021461993805,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.2311779899901,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 61.23153221399116,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 61.2320757649868,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.23217963699426,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 61.23259307698754,
+      "bytes": 46336
+    },
+    {
+      "elapsed_s": 61.23313686798792,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.233188643993344,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 61.233656642987626,
+      "bytes": 52128
+    },
+    {
+      "elapsed_s": 61.23419840299175,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.234717793995515,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.235205233999295,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 61.23523420999118,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 61.23578468899359,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.23619905699161,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 61.23627766499703,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 61.236845968000125,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.23720511999272,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 61.23733521498798,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 61.237901262997184,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.23819270299282,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 61.23840548598673,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 61.23896034999052,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.239187597995624,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 61.2394631329953,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 61.240016700990964,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24019322798995,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 61.240525163986604,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 61.241077802988,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24117516299884,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 61.24158445899957,
+      "bytes": 46336
+    },
+    {
+      "elapsed_s": 61.2421336099942,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24218508199556,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 61.24264653799764,
+      "bytes": 52128
+    },
+    {
+      "elapsed_s": 61.24320476099092,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.243709208996734,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24420143199677,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 61.244224167996435,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 61.24476402399887,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.245213990987395,
+      "bytes": 52128
+    },
+    {
+      "elapsed_s": 61.24528440699214,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 61.245822997996584,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24619197398715,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 61.24635086998751,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 61.24688104499364,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24720162099402,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 61.247412372991676,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 61.24794153998664,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24819560399919,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 61.248471219994826,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 61.248998274997575,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.24919193898677,
+      "bytes": 23168
+    },
+    {
+      "elapsed_s": 61.24954416199762,
+      "bytes": 39096
+    },
+    {
+      "elapsed_s": 61.25005564998719,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.25018137799634,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 61.25059654499637,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 61.25111435299914,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.25118910499441,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 61.25166057598835,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 61.25219171198842,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.252204719989095,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 61.25270094299049,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 61.25319290999323,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 61.253222221988835,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 61.25378015798924,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.2542040769913,
+      "bytes": 52128
+    },
+    {
+      "elapsed_s": 61.25427647698962,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 61.2548164769978,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 61.2552224760002,
+      "bytes": 43196
+    }
+  ],
+  "status": 200,
+  "headers": {
+    "date": "Wed, 14 Oct 2026 20:45:57 GMT",
+    "server": "uvicorn",
+    "x-request-id": "2bd94c016a484f64b79d447bbd562278",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-length": "4476972",
+    "content-type": "audio/wav"
+  },
+  "headers_s": 61.215604550990975,
+  "wall_s": 61.25522865199309,
+  "audio": {
+    "duration_s": 50.758820861678004,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 2238464,
+    "rms": 0.08963871977233849,
+    "peak": 0.7265625,
+    "finite": true
+  },
+  "audio_file": "longer-r2.wav",
+  "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+  "first_pcm_s": 61.2156101189903,
+  "duration_s": 50.758820861678004,
+  "rtf": 1.2067898271104183,
+  "request_id": "2bd94c016a484f64b79d447bbd562278",
+  "finished_at": 1792010818.466212
+}

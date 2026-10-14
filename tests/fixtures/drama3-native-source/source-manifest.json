@@ -1,0 +1,18 @@
+{
+  "revision": "1ff3c3ed2f80d3106a83909dd25b83129c3d816f",
+  "files": {
+    "fish_speech/models/text2semantic/fish_omni/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fish_speech/models/text2semantic/fish_omni/backbone.py": "dd969c85df49c0ec6293b726cbc226e55ca9d2b85cce234a2acf1df340237517",
+    "fish_speech/models/text2semantic/fish_omni/chunking.py": "058d2d9cbc90e28a38ab9eba5269e9b2cc3ab651b605b9508ea9b0cf9b5bd5e2",
+    "fish_speech/models/text2semantic/fish_omni/config.py": "1e885113d269d7f7c9cd6648f393eec7bbc6974be6974719e8493f012ed0bfd7",
+    "fish_speech/models/text2semantic/fish_omni/fp8_moe.py": "c30de427f2ec31beaff7f95e8e15cdd004fcdde005f26d23e1a04593c228b40f",
+    "fish_speech/models/text2semantic/fish_omni/generate.py": "a8c259951fc550af59dc9921b491ff4dea4c29c26be0a350204986371596e298",
+    "fish_speech/models/text2semantic/fish_omni/layers.py": "e4704b4fde7906bf021d6696c4132458b4bc52c836d22da702275252683540bc",
+    "fish_speech/models/text2semantic/fish_omni/model.py": "a9bf89cc277e0cb7505dd197f0a63367e9f6006d7307a39453dc05e685519b27",
+    "fish_speech/models/text2semantic/fish_omni/moe.py": "3b3981c3fa6849942db1a58c9aa9f5085148b3d98427ca7ef1f8cd81e84e2d2c",
+    "fish_speech/models/text2semantic/fish_omni/tower.py": "71f47e85bcc51c1b644fd29d863598bf87208dbd86d479791d699629b7b92d8c",
+    "fish_speech/models/text2semantic/errors.py": "445c7029d965a48640bb583eabcae7ef100c6e7c2786dd320ade4b8fbf11f4d8",
+    "fish_speech/models/text2semantic/sampling.py": "bfd045dc2056dd50d3272463816b7dfae8117b00b5055c1385648be83a6c315e",
+    "LICENSE": "733a32442087acbda12ecafe8e71eb8ee5890c89b50ce7ac4ea3777faa3c823e"
+  }
+}

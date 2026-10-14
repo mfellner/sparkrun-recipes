@@ -1,0 +1,224 @@
+backends:
+  192.168.178.70:
+    backend: nccl
+    vendor: nvidia
+cluster_id: sparkrun_789d6fd65be2d582_b160c652d835
+effective_container_image: ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c
+executor_config:
+  auto_remove: false
+  cap_add: &id001 []
+  devices: &id002 []
+  entrypoint: ''
+  ipc: private
+  network: host
+  privileged: false
+  security_opt: &id003
+  - no-new-privileges
+  shm_size: 2gb
+  user: 1000:1000
+hosts:
+- 192.168.178.70
+intent_id: 789d6fd65be2d582
+model: fishaudio/drama-3
+placement_token: b160c652d835
+port: 8010
+recipe: recipes/fish-audio-drama3-fast-dgx-spark.yaml
+recipe_state:
+  _applied_overrides: {}
+  _qualified_name_override: null
+  _raw:
+    builder: docker-pull
+    command: 'exec env DRAMA_BIND_IP={host} DRAMA_PORT={port} /opt/drama-release/run.sh
+
+      '
+    container: ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c
+    defaults:
+      host: 192.168.178.70
+      port: 8010
+      served_model_name: fishaudio/drama-3
+      tensor_parallel: 1
+    distribution_config:
+      models:
+        enabled: true
+        entries:
+        - name: fishaudio/drama-3
+          revision: dd64a85cd82e9521f7202610ede97b367fc83946
+          target:
+          - -1
+    env:
+      CUDA_CACHE_PATH: /cache/huggingface/drama3/cuda
+      DRAMA_MODEL_DIR: /cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946
+      DRAMA_OUTPUT_DIR: /cache/huggingface/drama3-fast/outputs
+      FISH_DRAMA3_COMPACT_HEAD: '1'
+      FISH_DRAMA3_CUDA_GRAPH: '1'
+      FISH_DRAMA3_FP8_EXPERTS: '1'
+      FISH_DRAMA3_PREFIX_SNAPSHOT: '0'
+      FISH_DRAMA3_SMALL_GRAPH_BUCKETS: '0'
+      HF_HOME: /cache/huggingface
+      HF_HUB_OFFLINE: '1'
+      OMP_NUM_THREADS: '4'
+      TRANSFORMERS_OFFLINE: '1'
+      TRITON_CACHE_DIR: /cache/huggingface/drama3/triton
+      TRITON_PTXAS_PATH: /usr/local/cuda/bin/ptxas
+    executor_config:
+      auto_remove: false
+      cap_add: *id001
+      devices: *id002
+      entrypoint: ''
+      ipc: private
+      network: host
+      privileged: false
+      security_opt: *id003
+      shm_size: 2gb
+      user: 1000:1000
+    max_nodes: 1
+    metadata:
+      description: Native Drama 3 FP8 experts/BF16 dense with compact semantic/EOS
+        head on one GB10
+      hardware: NVIDIA GB10 SM121
+      maintainer: mfellner
+      model_dtype: bfloat16
+      notes: &id004
+      - Built with Fish Audio. Fish Audio Community License v1.0; personal evaluation
+        and legally permitted voice references only. Review hosted-service restrictions.
+      - Legacy public GHCR package is artifact transport only; OCI labels identify
+        the native Drama runtime. Old GLM tags are unchanged.
+      - FP8 experts, BF16 dense/codebook weights and original BF16 GPU codec. Compact
+        BF16 head projects only 4096 semantic candidates plus EOS; no new quantization.
+      - Original LAN/body/origin/consent/reference/admission policies and native WAV
+        API are retained. No OpenAI audio or LiteLLM TTS compatibility claim.
+      - Explicit RFC1918 IPv4 bind required; unauthenticated trusted-LAN service.
+        Default disclosed public-domain LJ Speech voice; unconditioned quality is
+        not qualified.
+      - Smaller buckets, prefix caching, public-code caching, convolution/recurrent/expert
+        kernels, W8/W4/NVFP4 and per-frame streaming are not admitted in this minimal
+        profile.
+      - Native completed-text-chunk streaming remains; no first-audio realtime claim.
+        See docs/drama3-performance.md for measured scope and limitations.
+      - Original fish-audio-drama3-dgx-spark recipe remains an immutable rollback.
+        SparkRun sleep supervisor does not guarantee automatic process/reboot recovery.
+      source: https://github.com/fishaudio/fish-speech
+      source_revision: 1ff3c3ed2f80d3106a83909dd25b83129c3d816f
+    model: fishaudio/drama-3
+    model_revision: dd64a85cd82e9521f7202610ede97b367fc83946
+    name: fish-audio-drama3-fast-dgx-spark
+    recipe_version: '2'
+    runtime: vllm
+    runtime_version: drama3-fast-20261014
+  _serialization_version: 1
+  builder: docker-pull
+  builder_config: {}
+  cluster_config: null
+  command: 'exec env DRAMA_BIND_IP={host} DRAMA_PORT={port} /opt/drama-release/run.sh
+
+    '
+  container: ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c
+  defaults:
+    host: 192.168.178.70
+    port: 8010
+    served_model_name: fishaudio/drama-3
+    tensor_parallel: 1
+  description: Native Drama 3 FP8 experts/BF16 dense with compact semantic/EOS head
+    on one GB10
+  distribution_config:
+    containers:
+      enabled: true
+      entries:
+      - name: ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c
+        target: []
+    externally_provided: true
+    models:
+      enabled: true
+      entries:
+      - name: fishaudio/drama-3
+        revision: dd64a85cd82e9521f7202610ede97b367fc83946
+        target:
+        - -1
+  env:
+    CUDA_CACHE_PATH: /cache/huggingface/drama3/cuda
+    DRAMA_MODEL_DIR: /cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946
+    DRAMA_OUTPUT_DIR: /cache/huggingface/drama3-fast/outputs
+    FISH_DRAMA3_COMPACT_HEAD: '1'
+    FISH_DRAMA3_CUDA_GRAPH: '1'
+    FISH_DRAMA3_FP8_EXPERTS: '1'
+    FISH_DRAMA3_PREFIX_SNAPSHOT: '0'
+    FISH_DRAMA3_SMALL_GRAPH_BUCKETS: '0'
+    HF_HOME: /cache/huggingface
+    HF_HUB_OFFLINE: '1'
+    OMP_NUM_THREADS: '4'
+    TRANSFORMERS_OFFLINE: '1'
+    TRITON_CACHE_DIR: /cache/huggingface/drama3/triton
+    TRITON_PTXAS_PATH: /usr/local/cuda/bin/ptxas
+  executor: ''
+  executor_config:
+    auto_remove: false
+    cap_add: *id001
+    devices: *id002
+    entrypoint: ''
+    ipc: private
+    network: host
+    privileged: false
+    security_opt: *id003
+    shm_size: 2gb
+    user: 1000:1000
+  is_url_sourced: false
+  layout: null
+  maintainer: mfellner
+  max_nodes: 1
+  metadata:
+    description: Native Drama 3 FP8 experts/BF16 dense with compact semantic/EOS head
+      on one GB10
+    hardware: NVIDIA GB10 SM121
+    head_dim: 256
+    maintainer: mfellner
+    model_dtype: bfloat16
+    model_type: fish_omni
+    notes: *id004
+    num_kv_heads: 2
+    num_layers: 40
+    source: https://github.com/fishaudio/fish-speech
+    source_revision: 1ff3c3ed2f80d3106a83909dd25b83129c3d816f
+  min_nodes: 1
+  mode: solo
+  model: fishaudio/drama-3
+  model_revision: dd64a85cd82e9521f7202610ede97b367fc83946
+  mods: []
+  name: fish-audio-drama3-fast-dgx-spark
+  post_commands: []
+  post_exec: []
+  pre_exec: []
+  recipe_version: '2'
+  runtime: vllm-distributed
+  runtime_cache: {}
+  runtime_config: {}
+  runtime_version: drama3-fast-20261014
+  scheduler: ''
+  source_path: recipes/fish-audio-drama3-fast-dgx-spark.yaml
+  source_registry: null
+  source_registry_url: null
+  stop_after_post: false
+runtime: vllm-distributed
+runtime_info:
+  container_fish_model_revision: dd64a85cd82e9521f7202610ede97b367fc83946
+  container_fish_source_revision: 1ff3c3ed2f80d3106a83909dd25b83129c3d816f
+  container_io_sparkrun_fish_source: 1ff3c3ed2f80d3106a83909dd25b83129c3d816f
+  container_io_sparkrun_model_revision: dd64a85cd82e9521f7202610ede97b367fc83946
+  container_maintainer: NVIDIA CORPORATION <cudatools@nvidia.com>
+  container_org_opencontainers_image_ref_name: ubuntu
+  container_org_opencontainers_image_source: https://github.com/mfellner/sparkrun-recipes
+  container_org_opencontainers_image_title: Drama 3 native GB10 compact-head
+  container_org_opencontainers_image_version: drama3-fast-20261014
+  container_sparkrun_cluster_id: sparkrun_789d6fd65be2d582_b160c652d835
+  container_sparkrun_intent_id: 789d6fd65be2d582
+  container_sparkrun_model: fishaudio/drama-3
+  container_sparkrun_recipe: recipes/fish-audio-drama3-fast-dgx-spark.yaml
+  container_sparkrun_runtime: vllm-distributed
+  container_sparkrun_served_model_name: fishaudio/drama-3
+  cuda: '13.0'
+  nccl: (2, 29, 7)
+  python: 3.12.3
+  torch: 2.13.0+cu130
+served_model_name: fishaudio/drama-3
+sparkrun_version: 0.3.6
+started_at: 1792013124.0675557
+tensor_parallel: 1

@@ -1,0 +1,164 @@
+{
+  "name": "german-2",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "83df1d53904342e284b261c87606dcc8",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "83df1d53904342e284b261c87606dcc8",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "Heute gehen wir gemeinsam zum Bahnhof. Danach trinken wir einen Kaffee und lesen ein interessantes Buch."
+  },
+  "started_at": 1792012790.4173415,
+  "finished_at": 1792012802.3499973,
+  "wall_s": 11.9289137559972,
+  "first_audio_s": 11.920231714000693,
+  "chunks": [
+    {
+      "elapsed_s": 11.92022808198817,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 11.920554241994978,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 11.92057308999938,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 11.920886049992987,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 11.921167138993042,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 11.921499762989697,
+      "bytes": 36576
+    },
+    {
+      "elapsed_s": 11.921809811989078,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 11.922245875990484,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 11.922611060988856,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 11.92264182899089,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 11.922860084989225,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 11.922887220993289,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.923411956988275,
+      "bytes": 45960
+    },
+    {
+      "elapsed_s": 11.92380237398902,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 11.924271397991106,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 11.924687958991854,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 11.924977622998995,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 11.925163046995294,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.925599911992322,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 11.925645543989958,
+      "bytes": 23168
+    },
+    {
+      "elapsed_s": 11.92606663198967,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 11.92656039299618,
+      "bytes": 56472
+    },
+    {
+      "elapsed_s": 11.92680493700027,
+      "bytes": 27512
+    },
+    {
+      "elapsed_s": 11.927049353995244,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 11.927568186001736,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 11.927806841995334,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 11.92808402699302,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 11.928607547000865,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 11.928648266999517,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 11.9289052279928,
+      "bytes": 4692
+    }
+  ],
+  "rtf": 1.05273656954301,
+  "audio": {
+    "duration_s": 11.331337868480725,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 499712,
+    "rms": 0.05299660066717435,
+    "peak": 0.671875,
+    "finite": true
+  },
+  "audio_file": "german-2.wav",
+  "audio_sha256": "0daee2d1b4c4219f7dfec3dded8c95eae19515cf10952c369c13e546e5ff36bb"
+}

@@ -1,0 +1,849 @@
+{
+  "schema": 1,
+  "arm": "final-candidate",
+  "fixture": "longer",
+  "name": "longer-r3",
+  "warmup": false,
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day."
+  },
+  "request_identity": "fab4bd7a194c5b01a42355d1bb84b06ec4b844bbf3fb545ed64e19a61a082a65",
+  "runtime": {
+    "host": "192.168.178.70",
+    "hostname": "dgx02",
+    "captured_at": 1792012055.0518467,
+    "effective_env": {
+      "HF_HOME": "/cache/huggingface",
+      "OMP_NUM_THREADS": "4",
+      "DRAMA_MODEL_DIR": "/cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946",
+      "DRAMA_OUTPUT_DIR": "/cache/huggingface/drama3-fast/outputs",
+      "FISH_DRAMA3_FP8_EXPERTS": "1",
+      "FISH_DRAMA3_CUDA_GRAPH": "1",
+      "TRITON_CACHE_DIR": "/cache/huggingface/drama3/triton",
+      "CUDA_CACHE_PATH": "/cache/huggingface/drama3/cuda"
+    },
+    "container": {
+      "id": "a760f7c4375c4bf5e440af86130881cd6ec19ea566852fd64a505427bb253fad",
+      "image_ref": "ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c",
+      "image_id": "sha256:1bfb3e4f8d310d70afa9d8fe4020c544387f52567d6cb0db399589700bcba4bb",
+      "running": true,
+      "created_at": 1792011450.939737,
+      "started_at": "2026-10-14T20:57:30.97626979Z",
+      "privileged": false,
+      "user": "1000:1000",
+      "network": "host",
+      "ipc": "private",
+      "security_opt": [
+        "no-new-privileges"
+      ],
+      "cap_add": null,
+      "devices": [],
+      "mounts": [
+        {
+          "source": "/home/max/.cache/sparkrun/runtime-cache/vllm/fishaudio__drama-3-b005a9ca",
+          "destination": "/cache/runtime",
+          "rw": true
+        },
+        {
+          "source": "/home/max/.cache/huggingface",
+          "destination": "/cache/huggingface",
+          "rw": true
+        }
+      ]
+    },
+    "health": {
+      "status": "ok",
+      "model": "fishaudio/drama-3",
+      "revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+      "source_revision": "1ff3c3ed2f80d3106a83909dd25b83129c3d816f",
+      "default_reference_sha256": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "started_at": 1792011457.4237654,
+      "pid": 59,
+      "fp8_experts": "1",
+      "cuda_graph": "1",
+      "torch": "2.13.0+cu130",
+      "cudnn_enabled": true
+    },
+    "process_join": {
+      "host_pid": 1262856,
+      "namespace_pids": [
+        1262856,
+        59
+      ],
+      "host_start_ticks": 8957052
+    },
+    "listener": {
+      "address": "192.168.178.70:8010",
+      "pid": 59,
+      "start_ticks": 8957052,
+      "inode": "3399419"
+    },
+    "runtime_files": {
+      "contract.py": "1c67310f3713298a5e0cd3809a2eb0beea75ec1c063c0ee0cdcb64b2d29808c8",
+      "server.py": "fcac1ec545abbce5e2d8780807e71d559d2af668f732ecedd4dc59583a8aea66",
+      "run.sh": "0892b613dc8e2d8f177bd716d8be8d96fddaf57602aa0a49cb25ff7244a188da",
+      "probe.py": "b3a72f39e4de6ffc069537d7d29eb1eb23d9cc74bf5d670a5e80ef430784e54e",
+      "model-manifest.json": "55041149157a59577c6996f651949979d320e17851ef7c5134df8f57c1e24b1e",
+      "requirements-lock.txt": "f99d9403ecbb7f6638ad7c09d41e44e271948b55f834665add7770c279bcbb4b",
+      "default-reference.wav": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "default-reference.txt": "e0a833e71a65072dbfcc3353d33f6d7e94ec4f60cafd28087cdfdf7edee59d9e",
+      "reference-provenance.json": "76b5a94258d657463c6f3ae9923c89166c2d309f0d063ea80fa8aec196a89e6b",
+      "manifest.sha256": "f3a3c60e15d565733e64cd8ba72487a8d984859db57e808782ffc6ea699a105f"
+    },
+    "configured_profile": {
+      "configured_flags": {
+        "FISH_DRAMA3_COMPACT_HEAD": true,
+        "FISH_DRAMA3_SMALL_GRAPH_BUCKETS": false,
+        "FISH_DRAMA3_PREFIX_SNAPSHOT": false,
+        "DRAMA_NATIVE_STREAMING": false,
+        "DRAMA_PUBLIC_REFERENCE_CACHE": false,
+        "DRAMA_STATEFUL_CODEC": false
+      },
+      "kernel_options": {
+        "state": false,
+        "conv": false,
+        "fp8": false,
+        "tower_up": "off",
+        "gdn_qkv": "off"
+      },
+      "scope": "effective configuration and physical source identity; not a qualification verdict",
+      "source_files": {
+        "fish_speech/models/text2semantic/fish_omni/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fish_speech/models/text2semantic/fish_omni/backbone.py": "dd969c85df49c0ec6293b726cbc226e55ca9d2b85cce234a2acf1df340237517",
+        "fish_speech/models/text2semantic/fish_omni/chunking.py": "058d2d9cbc90e28a38ab9eba5269e9b2cc3ab651b605b9508ea9b0cf9b5bd5e2",
+        "fish_speech/models/text2semantic/fish_omni/config.py": "1e885113d269d7f7c9cd6648f393eec7bbc6974be6974719e8493f012ed0bfd7",
+        "fish_speech/models/text2semantic/fish_omni/fp8_moe.py": "c30de427f2ec31beaff7f95e8e15cdd004fcdde005f26d23e1a04593c228b40f",
+        "fish_speech/models/text2semantic/fish_omni/generate.py": "4bdfb4a141224331c79d144ba5d1483879b85175df212bc5af78c3839e581410",
+        "fish_speech/models/text2semantic/fish_omni/layers.py": "e4704b4fde7906bf021d6696c4132458b4bc52c836d22da702275252683540bc",
+        "fish_speech/models/text2semantic/fish_omni/model.py": "4e23c929b39ce325b25e806599f339e62e186571f9128c301a4ba689ac7a9eb8",
+        "fish_speech/models/text2semantic/fish_omni/moe.py": "3b3981c3fa6849942db1a58c9aa9f5085148b3d98427ca7ef1f8cd81e84e2d2c",
+        "fish_speech/models/text2semantic/fish_omni/tower.py": "6f2f2304f629f9b47a26f33c534fcaea48b928dc88d830efca43a0d6bfd22a85"
+      },
+      "package_manifest_sha256": "89eb1655ddaecf2900f2f6a5021d97852544634e98f04c9832934d40e7d1afcc"
+    }
+  },
+  "runtime_identity": "d1941a25651e405f5b36d82337057a78c9bf5d20229b2c7b352201720b105dd8",
+  "harness": {
+    "performance.py": "aa1f1b514390957b4199222dfbfe37e57d30f7235bb8ed4b53b8559cf1bec278",
+    "fixtures.py": "2dca375431ce9ea1f5497fa3ab4e3a09720b5353d1db009ed662287fa39dbcca",
+    "acceptance.py": "758bb0319bb3388a25568633b99ddc5ac0f8fa43e19525debba60798508976f0"
+  },
+  "complete": true,
+  "started_at": 1792012221.1757033,
+  "events": [
+    {
+      "elapsed_s": 55.132964304008055,
+      "bytes": 7888
+    },
+    {
+      "elapsed_s": 55.13300737600366,
+      "bytes": 6592
+    },
+    {
+      "elapsed_s": 55.13301372800197,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 55.13321337700472,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 55.1334321769973,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 55.134199508000165,
+      "bytes": 64264
+    },
+    {
+      "elapsed_s": 55.134856022006716,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 55.13511626199761,
+      "bytes": 34984
+    },
+    {
+      "elapsed_s": 55.13543147900782,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 55.13589717600553,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 55.136291642003926,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 55.13631058600731,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 55.1367187309952,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 55.13713145200745,
+      "bytes": 52128
+    },
+    {
+      "elapsed_s": 55.13715103600407,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 55.137521757002105,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 55.13784828600183,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 55.13786879800318,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.138016287004575,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 55.13804175899713,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.138288175003254,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 55.138333902999875,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 55.13836196799821,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.13875644899963,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 55.13877856099862,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.138925328996265,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 55.138950113003375,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.13927054600208,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 55.139293889995315,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.13971531500283,
+      "bytes": 52128
+    },
+    {
+      "elapsed_s": 55.13973776300554,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14020896500733,
+      "bytes": 56472
+    },
+    {
+      "elapsed_s": 55.140230404998874,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14028250100091,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 55.14072267799929,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 55.14074509400234,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14124184800312,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 55.14126455200312,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 55.14175912900828,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 55.14178149700456,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14228004300094,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 55.14229985099519,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.142325563007034,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14281954799662,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.14283953199629,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14328655799909,
+      "bytes": 53576
+    },
+    {
+      "elapsed_s": 55.1433550859947,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 55.1433806700079,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.143876126996474,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.143897007001215,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14426899200771,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 55.144410464999964,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 55.144437505005044,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14493382599903,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.14495494599396,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14527651500248,
+      "bytes": 39096
+    },
+    {
+      "elapsed_s": 55.14546944400354,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 55.145494691998465,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14564342799713,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 55.14566832399578,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14618739800062,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.14620850200299,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.146284870003,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 55.14657895099663,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 55.14660328699392,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.146948951995,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 55.14697139999771,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14727026500623,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 55.14748658600729,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 55.147511578004924,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14793361100601,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 55.14795535500161,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.14827953200438,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 55.14844790000643,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 55.14847274799831,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.148991854002816,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.149014030001126,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.1492869270005,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 55.14950662299816,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 55.149530848008,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15005032099725,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.15007144100673,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15027067399933,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 55.15056669000478,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 55.15058905900514,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15101016400149,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 55.1510323399998,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.151280053003575,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 55.151547877001576,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 55.15157230899786,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15181898200535,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 55.15184288599994,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15229266299866,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 55.15233714399801,
+      "bytes": 5792
+    },
+    {
+      "elapsed_s": 55.152362631997676,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.152880873007234,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.152901816996746,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15327533800155,
+      "bytes": 46336
+    },
+    {
+      "elapsed_s": 55.15339303499786,
+      "bytes": 14480
+    },
+    {
+      "elapsed_s": 55.15341949899448,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15393949999998,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.15395980399626,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.154434541997034,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 55.154455502008204,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 55.154479438002454,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15512504000799,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 55.15550908900332,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 55.15553057700163,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 55.156032674000016,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.15605193800002,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.1564912830072,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 55.15654683600587,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 55.156568467995385,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.1570900210063,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.15711088500393,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15747947800264,
+      "bytes": 23168
+    },
+    {
+      "elapsed_s": 55.15760664700065,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 55.15762704699591,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.158121640008176,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 55.158143320004456,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15826914500212,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 55.15863844200794,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 55.158661754001514,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15917980299855,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.15920161100803,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.15927631499653,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 55.159697037001024,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 55.1597189729946,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.1602139500028,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 55.16023538999434,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.160263262005174,
+      "bytes": 5792
+    },
+    {
+      "elapsed_s": 55.16060543899948,
+      "bytes": 39096
+    },
+    {
+      "elapsed_s": 55.160629022997455,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.16112604900263,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.161146608996205,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.16127008100739,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 55.16166326600069,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 55.16168689800543,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.16218440400553,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.16236729999946,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 55.1627233170002,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 55.16274523700122,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.16324387899658,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.1632644229976,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 55.16378239200276,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 55.163804968004115,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.16427770600421,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 55.164299194002524,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 55.16432463399542,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.164840394994826,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.164862395002274,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.1654309410078,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 55.166049263003515,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 55.16644820799411,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 55.166464096007985,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.16710912200506,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 55.167428211003426,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 55.167797155998414,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 55.16818656500254,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 55.168536454002606,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 55.16855874200701,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 55.16922979999799,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 55.16927223200037,
+      "bytes": 23168
+    },
+    {
+      "elapsed_s": 55.16974608899909,
+      "bytes": 39096
+    },
+    {
+      "elapsed_s": 55.17029185099818,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 55.17031151500123,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 55.17064951600332,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 55.170671419997234,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 55.17119722900679,
+      "bytes": 58340
+    }
+  ],
+  "status": 200,
+  "headers": {
+    "date": "Wed, 14 Oct 2026 21:10:20 GMT",
+    "server": "uvicorn",
+    "x-request-id": "7794b5066fa644b8a03d639c8f553618",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-length": "4476972",
+    "content-type": "audio/wav"
+  },
+  "headers_s": 55.13296046400501,
+  "wall_s": 55.17120121400512,
+  "audio": {
+    "duration_s": 50.758820861678004,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 2238464,
+    "rms": 0.08963871977233849,
+    "peak": 0.7265625,
+    "finite": true
+  },
+  "audio_file": "longer-r3.wav",
+  "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+  "first_pcm_s": 55.132964304008055,
+  "duration_s": 50.758820861678004,
+  "rtf": 1.0869283461952597,
+  "request_id": "7794b5066fa644b8a03d639c8f553618",
+  "finished_at": 1792012276.3558598
+}

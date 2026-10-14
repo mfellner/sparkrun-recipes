@@ -1,0 +1,38 @@
+{
+  "captured_at": 1792017687.6937773,
+  "endpoint": "http://192.168.178.70:8010/v1/runtime-profile",
+  "host": "192.168.178.70",
+  "container_id_before": "b9be85320a1df4263015a1e6aab3aa087551b7dae8996545a822c4e0277bae2a",
+  "container_id_after": "b9be85320a1df4263015a1e6aab3aa087551b7dae8996545a822c4e0277bae2a",
+  "configured_profile": {
+    "configured_flags": {
+      "FISH_DRAMA3_COMPACT_HEAD": true,
+      "FISH_DRAMA3_SMALL_GRAPH_BUCKETS": false,
+      "FISH_DRAMA3_PREFIX_SNAPSHOT": false,
+      "DRAMA_NATIVE_STREAMING": false,
+      "DRAMA_PUBLIC_REFERENCE_CACHE": false,
+      "DRAMA_STATEFUL_CODEC": false
+    },
+    "kernel_options": {
+      "state": false,
+      "conv": false,
+      "fp8": false,
+      "tower_up": "off",
+      "gdn_qkv": "off"
+    },
+    "scope": "effective configuration and physical source identity; not a qualification verdict",
+    "source_files": {
+      "fish_speech/models/text2semantic/fish_omni/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fish_speech/models/text2semantic/fish_omni/backbone.py": "dd969c85df49c0ec6293b726cbc226e55ca9d2b85cce234a2acf1df340237517",
+      "fish_speech/models/text2semantic/fish_omni/chunking.py": "058d2d9cbc90e28a38ab9eba5269e9b2cc3ab651b605b9508ea9b0cf9b5bd5e2",
+      "fish_speech/models/text2semantic/fish_omni/config.py": "1e885113d269d7f7c9cd6648f393eec7bbc6974be6974719e8493f012ed0bfd7",
+      "fish_speech/models/text2semantic/fish_omni/fp8_moe.py": "c30de427f2ec31beaff7f95e8e15cdd004fcdde005f26d23e1a04593c228b40f",
+      "fish_speech/models/text2semantic/fish_omni/generate.py": "4bdfb4a141224331c79d144ba5d1483879b85175df212bc5af78c3839e581410",
+      "fish_speech/models/text2semantic/fish_omni/layers.py": "e4704b4fde7906bf021d6696c4132458b4bc52c836d22da702275252683540bc",
+      "fish_speech/models/text2semantic/fish_omni/model.py": "4e23c929b39ce325b25e806599f339e62e186571f9128c301a4ba689ac7a9eb8",
+      "fish_speech/models/text2semantic/fish_omni/moe.py": "3b3981c3fa6849942db1a58c9aa9f5085148b3d98427ca7ef1f8cd81e84e2d2c",
+      "fish_speech/models/text2semantic/fish_omni/tower.py": "6f2f2304f629f9b47a26f33c534fcaea48b928dc88d830efca43a0d6bfd22a85"
+    },
+    "package_manifest_sha256": "89eb1655ddaecf2900f2f6a5021d97852544634e98f04c9832934d40e7d1afcc"
+  }
+}

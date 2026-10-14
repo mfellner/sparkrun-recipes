@@ -1,0 +1,73 @@
+{
+  "model": "Systran/faster-whisper-small",
+  "revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "faster_whisper": "1.2.1",
+  "ctranslate2": "4.8.3",
+  "device": "cpu",
+  "compute_type": "int8",
+  "beam_size": 5,
+  "vad_filter": false,
+  "rows": [
+    {
+      "name": "longer-warmup",
+      "text": "A traveller arrived at a small village beside the river. The streets were quiet and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last, she reached the old library where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the The traveler returned to the inn and wrote a letter about her peaceful day.",
+      "expected": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day.",
+      "wer": 0.019417475728155338,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+      "passed": true
+    },
+    {
+      "name": "longer-r1",
+      "text": "A traveller arrived at a small village beside the river. The streets were quiet and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last, she reached the old library where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the The traveler returned to the inn and wrote a letter about her peaceful day.",
+      "expected": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day.",
+      "wer": 0.019417475728155338,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+      "passed": true
+    },
+    {
+      "name": "longer-r2",
+      "text": "A traveller arrived at a small village beside the river. The streets were quiet and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last, she reached the old library where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the The traveler returned to the inn and wrote a letter about her peaceful day.",
+      "expected": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day.",
+      "wer": 0.019417475728155338,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+      "passed": true
+    },
+    {
+      "name": "longer-r3",
+      "text": "A traveller arrived at a small village beside the river. The streets were quiet and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last, she reached the old library where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the The traveler returned to the inn and wrote a letter about her peaceful day.",
+      "expected": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day.",
+      "wer": 0.019417475728155338,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+      "passed": true
+    },
+    {
+      "name": "longer-r4",
+      "text": "A traveller arrived at a small village beside the river. The streets were quiet and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last, she reached the old library where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the The traveler returned to the inn and wrote a letter about her peaceful day.",
+      "expected": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day.",
+      "wer": 0.019417475728155338,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+      "passed": true
+    },
+    {
+      "name": "longer-r5",
+      "text": "A traveller arrived at a small village beside the river. The streets were quiet and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last, she reached the old library where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the The traveler returned to the inn and wrote a letter about her peaceful day.",
+      "expected": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day.",
+      "wer": 0.019417475728155338,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

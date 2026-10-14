@@ -1,0 +1,161 @@
+--- a/fish_speech/models/text2semantic/fish_omni/model.py
++++ b/fish_speech/models/text2semantic/fish_omni/model.py
+@@ -24,6 +24,7 @@
+     FishOmniConfig,
+ )
+ from fish_speech.models.text2semantic.fish_omni.fp8_moe import fp8_gemm_supported
++from fish_speech.models.text2semantic.fish_omni.native_perf import initialize_compact
+ from fish_speech.models.text2semantic.fish_omni.tower import (
+     FishOmniAudioDecoder,
+     load_audio_decoder_weights,
+@@ -117,6 +118,7 @@
+                 skip_prefixes=(CHECKPOINT_BACKBONE_PREFIX, CHECKPOINT_LM_HEAD_KEY),
+             ),
+         )
++        initialize_compact(config, backbone, audio_decoder)
+         tokenizer = Tokenizer.from_file(str(checkpoint_dir / "tokenizer.json"))
+         return cls(config, backbone, audio_decoder, tokenizer).eval()
+ 
+--- a/fish_speech/models/text2semantic/fish_omni/generate.py
++++ b/fish_speech/models/text2semantic/fish_omni/generate.py
+@@ -12,6 +12,7 @@
+ from fish_speech.models.text2semantic.errors import InvalidInputError
+ from fish_speech.models.text2semantic.fish_omni.config import FishOmniConfig
+ from fish_speech.models.text2semantic.fish_omni.model import FishOmniModel
++from fish_speech.models.text2semantic.fish_omni.native_perf import graph_buckets, select_bucket
+ from fish_speech.models.text2semantic.fish_omni.tower import (
+     RAS_WINDOW_FRAMES,
+     TowerAttention,
+@@ -260,7 +260,9 @@
+         if graphs is not None:
+             sampled, main = graphs.step(position)
+         else:
+-            logits = backbone.compute_logits(hidden).to(tower.device)
++            compact_head = getattr(backbone, "compact_head", None)
++            logits = (compact_head.project(hidden) if compact_head is not None
++                      else backbone.compute_logits(hidden)).to(tower.device)
+             sampled = tower.decode_step(
+                 logits,
+                 hidden,
+@@ -270,6 +272,8 @@
+                 temperature=temperature,
+                 top_k=top_k,
+                 top_p=top_p,
++                compact_logits=compact_head is not None,
++                finite_status=compact_head.finite if compact_head is not None else None,
+             )
+             main = sampled[0, 0].item()
+         if main == model.config.eos_token_id:
+@@ -330,9 +335,7 @@
+         self.graphs: dict[int, torch.cuda.CUDAGraph] = {}
+         self.pool = torch.cuda.graph_pool_handle()
+         capacity = self.graph_capacity(model)
+-        self.buckets = tuple(
+-            sorted({min(b, capacity) for b in DRAMA3_GRAPH_KV_BUCKETS})
+-        )
++        self.buckets = graph_buckets(capacity)
+ 
+     @staticmethod
+     def graph_capacity(model: FishOmniModel) -> int:
+@@ -373,7 +377,9 @@
+ 
+     def run(self, kv_len: int) -> None:
+         backbone, tower = self.model.backbone, self.model.audio_decoder
+-        logits = backbone.compute_logits(self.hidden)
++        compact_head = getattr(backbone, "compact_head", None)
++        logits = (compact_head.project(self.hidden) if compact_head is not None
++                  else backbone.compute_logits(self.hidden))
+         self.finite.copy_(torch.isfinite(logits).all())
+         sampled = tower.decode_step(
+             logits,
+@@ -385,7 +391,11 @@
+             top_k=self.top_k,
+             top_p=self.top_p,
+             check_finite=False,
+-        )
++            compact_logits=compact_head is not None,
++            finite_status=compact_head.finite if compact_head is not None else None,
++        )
++        if compact_head is not None:
++            self.finite.logical_and_(compact_head.finite)
+         self.sampled.copy_(sampled)
+         embeddings = tower.embed_backbone(sampled, backbone.embed(sampled[:, 0]))
+         hidden = backbone(
+@@ -394,6 +404,8 @@
+             static_kv_len=kv_len,
+         )
+         self.next_hidden.copy_(hidden[0])
++        if compact_head is not None:
++            self.finite.logical_and_(torch.isfinite(self.next_hidden).all())
+ 
+     def capture(self, kv_len: int) -> None:
+         for attention in self.tower_attentions():
+@@ -438,7 +452,7 @@
+ 
+         Returns the frame [1, 1 + N] on the device and its main token.
+         """
+-        kv_len = next(b for b in self.buckets if b >= position + 2)
++        kv_len = select_bucket(self.buckets, position)
+         self.graphs[kv_len].replay()
+         sampled = self.sampled.clone()
+         status = torch.stack((sampled[0, 0], self.finite.long()))
+--- a/fish_speech/models/text2semantic/fish_omni/tower.py
++++ b/fish_speech/models/text2semantic/fish_omni/tower.py
+@@ -7,6 +7,8 @@
+ from loguru import logger
+ from torch import Tensor
+ from torch.types import Device
++
++from fish_speech.models.text2semantic.fish_omni.native_perf import guard_logits, require_finite
+ 
+ from fish_speech.models.text2semantic.fish_omni.config import (
+     AudioDecoderConfig,
+@@ -345,8 +347,12 @@
+         top_k: int | Tensor,
+         top_p: float | Tensor,
+         check_finite: bool = True,
++        compact_logits: bool = False,
++        finite_status: Tensor | None = None,
+     ) -> Tensor:
+         """Sample the frame after each row; the main token is drawn over eos + semantics."""
++        if compact_logits and (self.main_candidates is None or finite_status is None):
++            raise ValueError("compact decode requires load-time candidates and device finite status")
+         if self.main_candidates is None or self.main_candidates.device != self.device:
+             eos = torch.tensor([self.eos_id], device=self.device)
+             band = torch.arange(
+@@ -354,10 +360,15 @@
+             )
+             self.main_candidates = torch.cat((eos, band)).sort().values
+         candidates = self.main_candidates
+-        candidate_logits = logits[:, candidates]
++        candidate_logits = logits if compact_logits else logits[:, candidates]
++        if compact_logits:
++            if candidate_logits.shape != (len(hidden), len(candidates)):
++                raise ValueError("compact logits/candidate shape mismatch")
++            candidate_logits = guard_logits(candidate_logits, hidden, temperature, finite_status)
++            candidate_logits = guard_logits(candidate_logits, hidden, RAS_TEMPERATURE, finite_status)
+         first = candidates[
+             sample_top_k_top_p(
+-                candidate_logits, temperature, top_k, top_p, check_finite=check_finite
++                candidate_logits, temperature, top_k, top_p, check_finite=check_finite and not compact_logits
+             )
+         ]
+         retry = candidates[
+@@ -380,11 +391,16 @@
+         codes = [c0]
+         for layer, head in zip(self.residual_layers, self.codebook_heads):
+             hidden = layer(hidden, codes[-1], semantic, positions)
++            codebook_logits = head(hidden)
++            if compact_logits:
++                codebook_logits = guard_logits(codebook_logits, hidden, temperature, finite_status)
+             codes.append(
+                 sample_top_k_top_p(
+-                    head(hidden), temperature, top_k, top_p, check_finite=check_finite
++                    codebook_logits, temperature, top_k, top_p, check_finite=check_finite and not compact_logits
+                 )
+             )
++        if compact_logits and check_finite:
++            require_finite(finite_status)
+         return torch.stack((main, *codes), dim=-1)
+ 
+ 

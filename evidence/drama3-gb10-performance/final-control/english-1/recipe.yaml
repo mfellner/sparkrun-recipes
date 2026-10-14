@@ -1,0 +1,66 @@
+recipe_version: "2"
+name: fish-audio-drama3-fast-control-experiment
+model: fishaudio/drama-3
+model_revision: dd64a85cd82e9521f7202610ede97b367fc83946
+# vllm is only SparkRun's solo Docker/lifecycle shim, not the inference engine.
+runtime: vllm
+runtime_version: drama3-fast-20261014
+max_nodes: 1
+container: ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c
+builder: docker-pull
+metadata:
+  description: Native Drama 3 FP8 experts/BF16 dense with compact semantic/EOS head on one GB10
+  maintainer: mfellner
+  source: https://github.com/fishaudio/fish-speech
+  source_revision: 1ff3c3ed2f80d3106a83909dd25b83129c3d816f
+  hardware: NVIDIA GB10 SM121
+  model_dtype: bfloat16
+  notes:
+    - Built with Fish Audio. Fish Audio Community License v1.0; personal evaluation and legally permitted voice references only. Review hosted-service restrictions.
+    - Legacy public GHCR package is artifact transport only; OCI labels identify the native Drama runtime. Old GLM tags are unchanged.
+    - FP8 experts, BF16 dense/codebook weights and original BF16 GPU codec. Compact BF16 head projects only 4096 semantic candidates plus EOS; no new quantization.
+    - Original LAN/body/origin/consent/reference/admission policies and native WAV API are retained. No OpenAI audio or LiteLLM TTS compatibility claim.
+    - Explicit RFC1918 IPv4 bind required; unauthenticated trusted-LAN service. Default disclosed public-domain LJ Speech voice; unconditioned quality is not qualified.
+    - Smaller buckets, prefix caching, public-code caching, convolution/recurrent/expert kernels, W8/W4/NVFP4 and per-frame streaming are not admitted in this minimal profile.
+    - Native completed-text-chunk streaming remains; no first-audio realtime claim. See docs/drama3-performance.md for measured scope and limitations.
+    - Original fish-audio-drama3-dgx-spark recipe remains an immutable rollback. SparkRun sleep supervisor does not guarantee automatic process/reboot recovery.
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: fishaudio/drama-3
+        revision: dd64a85cd82e9521f7202610ede97b367fc83946
+        target: [-1]
+executor_config:
+  entrypoint: ""
+  auto_remove: false
+  privileged: false
+  user: "1000:1000"
+  network: host
+  ipc: private
+  shm_size: 2gb
+  cap_add: []
+  devices: []
+  security_opt: [no-new-privileges]
+env:
+  HF_HOME: /cache/huggingface
+  HF_HUB_OFFLINE: "1"
+  TRANSFORMERS_OFFLINE: "1"
+  FISH_DRAMA3_FP8_EXPERTS: "1"
+  FISH_DRAMA3_CUDA_GRAPH: "1"
+  FISH_DRAMA3_COMPACT_HEAD: "0"
+  FISH_DRAMA3_SMALL_GRAPH_BUCKETS: "0"
+  FISH_DRAMA3_PREFIX_SNAPSHOT: "0"
+  TRITON_PTXAS_PATH: /usr/local/cuda/bin/ptxas
+  TRITON_CACHE_DIR: /cache/huggingface/drama3/triton
+  CUDA_CACHE_PATH: /cache/huggingface/drama3/cuda
+  DRAMA_MODEL_DIR: /cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946
+  DRAMA_OUTPUT_DIR: /cache/huggingface/drama3-fast/outputs
+  OMP_NUM_THREADS: "4"
+defaults:
+  port: 8010
+  host: 192.168.178.70
+  tensor_parallel: 1
+  served_model_name: fishaudio/drama-3
+command: |
+  exec env DRAMA_BIND_IP={host} DRAMA_PORT={port} /opt/drama-release/run.sh

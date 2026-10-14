@@ -1,0 +1,20 @@
+{
+  "command": [
+    "ssh",
+    "192.168.178.70",
+    "journalctl",
+    "-k",
+    "--since",
+    "@1791921881",
+    "--until",
+    "@1792011441",
+    "--no-pager",
+    "-o",
+    "short-unix",
+    "--show-cursor"
+  ],
+  "returncode": 0,
+  "sha256": "35a5265e18e904365db62fb05796bacd90e1dff5c2257b6559d07e2e266f5934",
+  "recorded_at": 1792020392.347562,
+  "scope": "Fresh bounded requery matches every event byte; journal cursor metadata differs. Original full capture remains pinned independently."
+}

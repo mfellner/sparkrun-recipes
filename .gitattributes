@@ -5,3 +5,9 @@ evidence/glm53-exl3-850k-20260913/launch.log -whitespace
 evidence/glm53-exl3-850k-20260923/**/*.log -whitespace
 evidence/glm53-exl3-850k-20260923/diagnostics/**/failure/*.txt -whitespace
 evidence/glm53-exl3-850k-20260923/qualification/final-dry-run.txt -whitespace
+# Preserve byte-exact kernel receipts and generated upstream patch context.
+evidence/drama3-gb10-performance/final-control/kernel-full-boot.log -whitespace
+evidence/drama3-gb10-performance/final-candidate/kernel-full-boot.log -whitespace
+mods/drama3-gb10-perf/native.patch -whitespace
+evidence/drama3-gb10-performance/final-control/kernel-repeat.log -whitespace
+evidence/drama3-gb10-performance/final-candidate/kernel-repeat.log -whitespace

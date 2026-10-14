@@ -1,0 +1,30 @@
+{
+  "serve_argv": [
+    "ssh",
+    "192.168.178.70",
+    "docker exec a760f7c4375c4bf5e440af86130881cd6ec19ea566852fd64a505427bb253fad python3 -c 'from pathlib import Path;import sys;sys.stdout.buffer.write(Path(\"/tmp/sparkrun_serve.log\").read_bytes())'"
+  ],
+  "serve_rc": 0,
+  "serve_sha256": "385f647467e9909000cc058cf5ccb049f73a9b84d2776626c884d3fdfb227370",
+  "kernel_argv": [
+    "ssh",
+    "192.168.178.70",
+    "journalctl",
+    "-k",
+    "--since",
+    "@1791921881",
+    "--until",
+    "@1792013108",
+    "--no-pager",
+    "-o",
+    "short-unix",
+    "--show-cursor"
+  ],
+  "kernel_rc": 0,
+  "kernel_sha256": "ccdbb7771c05190b2a5d76831ad431e8b88a0fbb946ca89496583b7ea60090bb",
+  "kernel_repeat_equal": true,
+  "boot_epoch": 1791921881,
+  "until_epoch": 1792013108,
+  "fatal_matches": 0,
+  "scope": "Conservative whole boot through acceptance, including original earlier diagnostics"
+}

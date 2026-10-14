@@ -1,0 +1,140 @@
+{
+  "name": "german-1",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "d2581347e323472781e276427cb9ba63",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "d2581347e323472781e276427cb9ba63",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "Guten Morgen. Dieses Sprachmodell l\u00e4uft auf einem einzelnen Spark. Die Sonne scheint und die V\u00f6gel singen im Garten."
+  },
+  "started_at": 1792012780.436127,
+  "finished_at": 1792012790.4168317,
+  "wall_s": 9.977710188002675,
+  "first_audio_s": 9.970353940007044,
+  "chunks": [
+    {
+      "elapsed_s": 9.970351908006705,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 9.9703649639996,
+      "bytes": 5143
+    },
+    {
+      "elapsed_s": 9.970396676013479,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 9.970407619999605,
+      "bytes": 14480
+    },
+    {
+      "elapsed_s": 9.970574692008086,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 9.971101828006795,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 9.972146662010346,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 9.972179782009334,
+      "bytes": 25600
+    },
+    {
+      "elapsed_s": 9.972830919010448,
+      "bytes": 44032
+    },
+    {
+      "elapsed_s": 9.972862359005376,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 9.97321693500271,
+      "bytes": 25384
+    },
+    {
+      "elapsed_s": 9.973672136009554,
+      "bytes": 44032
+    },
+    {
+      "elapsed_s": 9.973995224005193,
+      "bytes": 47104
+    },
+    {
+      "elapsed_s": 9.974553577005281,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 9.974860585003626,
+      "bytes": 56472
+    },
+    {
+      "elapsed_s": 9.9750433210138,
+      "bytes": 13360
+    },
+    {
+      "elapsed_s": 9.975470010002027,
+      "bytes": 56408
+    },
+    {
+      "elapsed_s": 9.97585599400918,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 9.975972138010547,
+      "bytes": 14480
+    },
+    {
+      "elapsed_s": 9.976520011012326,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 9.976660667001852,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 9.976862491006614,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 9.97718177200295,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 9.977705804005382,
+      "bytes": 57348
+    }
+  ],
+  "rtf": 1.0689157223912615,
+  "audio": {
+    "duration_s": 9.334421768707482,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 411648,
+    "rms": 0.09146941154088695,
+    "peak": 0.59765625,
+    "finite": true
+  },
+  "audio_file": "german-1.wav",
+  "audio_sha256": "62e752b875c1b5f0a59dd4b2cd490a991f99da3cb7b15c64a741d335054f3f20"
+}

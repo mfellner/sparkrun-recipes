@@ -1,0 +1,13 @@
+Built with Fish Audio.
+
+New release wrapper/packaging: MIT. Original Fish Speech source and Drama 3
+checkpoint: Fish Audio Community License v1.0; see the retained FISH_LICENSE.txt
+and baseline NOTICE. This is trusted-LAN personal evaluation, not a licensed
+public hosted API. Reference voice consent/legal rights remain required.
+
+This package enables only compact BF16 semantic/EOS output projection. Model
+weights, sampling, default public-domain LJ Speech voice, original BF16 codec,
+LAN/origin/body/consent/admission validation and original WAV API are retained.
+Optional kernel, quantization, smaller-bucket, prefix and per-frame streaming
+experiments are not admitted. A source file may contain an unused prototype;
+its presence is not supported or validated capability.

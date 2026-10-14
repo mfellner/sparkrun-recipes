@@ -1,0 +1,49 @@
+{
+  "started_at": 1792010392.4980075,
+  "argv": [
+    "/home/max/drama3-performance-20261014/foreground_batch.py",
+    "--arm",
+    "final-control",
+    "--fixture",
+    "english-2",
+    "--container",
+    "527ea7f81e034880e0b04e4144a0f35478305d222df82d0f4a28148923e5b33c",
+    "--image",
+    "sha256:1bfb3e4f8d310d70afa9d8fe4020c544387f52567d6cb0db399589700bcba4bb",
+    "--recipe",
+    "/home/max/drama3-performance-20261014/final-control.yaml"
+  ],
+  "wrapper_sha256": "9445e576c8c663ef80b2bdb2b7d25c5e20d6ca09bb6c21e26dedbe6efd2a5f40",
+  "runtime_image_id": "sha256:1bfb3e4f8d310d70afa9d8fe4020c544387f52567d6cb0db399589700bcba4bb",
+  "telemetry_argv": [
+    "ssh",
+    "192.168.178.70",
+    "python3 - --output /home/max/.cache/huggingface/drama3/performance/foreground-final-control-english-2/samples.jsonl --stop-file /home/max/.cache/huggingface/drama3/performance/foreground-final-control-english-2/stop --seconds 570"
+  ],
+  "telemetry_sha256": "3630a01e3f9d0c798cb9ea6abc9c7cc14802a1cd7766a984ed2f951004a3556f",
+  "fixture": "english-2",
+  "arm": "final-control",
+  "completed": true,
+  "collector_argv": [
+    "/home/max/.hermes/cache/scratch/drama3-all-tests311/bin/python",
+    "/home/max/sparkrun-recipes/scripts/drama3/performance.py",
+    "--endpoint",
+    "http://192.168.178.70:8010",
+    "--output",
+    "/home/max/drama3-performance-20261014/foreground-completion/final-control/english-2/repeated",
+    "--arm",
+    "final-control",
+    "--runtime-json",
+    "/home/max/drama3-performance-20261014/foreground-completion/final-control/english-2/runtime-before.json",
+    "--fixtures",
+    "english-2",
+    "--repeats",
+    "5",
+    "--seed",
+    "42"
+  ],
+  "collector_rc": 0,
+  "telemetry_rc": 0,
+  "telemetry_copy_rc": 0,
+  "finished_at": 1792010459.3089044
+}

@@ -1,0 +1,176 @@
+{
+  "name": "overlap-a",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "59b966ef8e2d47dc99d0ea186ca07cc4",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "59b966ef8e2d47dc99d0ea186ca07cc4",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "The blue bicycle stands beside the river. This is the first overlapping request."
+  },
+  "started_at": 1792012945.5724807,
+  "finished_at": 1792012967.1305528,
+  "wall_s": 21.554612638996332,
+  "first_audio_s": 21.54682540000067,
+  "chunks": [
+    {
+      "elapsed_s": 21.546823431999655,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 21.546858295987477,
+      "bytes": 5143
+    },
+    {
+      "elapsed_s": 21.546876199994585,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 21.5475752880011,
+      "bytes": 11584
+    },
+    {
+      "elapsed_s": 21.547624983999413,
+      "bytes": 56472
+    },
+    {
+      "elapsed_s": 21.548629721000907,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 21.54865919299482,
+      "bytes": 14336
+    },
+    {
+      "elapsed_s": 21.549561401989195,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 21.549595993987168,
+      "bytes": 3072
+    },
+    {
+      "elapsed_s": 21.550193434988614,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.550463530991692,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 21.550502650992712,
+      "bytes": 18208
+    },
+    {
+      "elapsed_s": 21.55162250799185,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 21.551663707999978,
+      "bytes": 37272
+    },
+    {
+      "elapsed_s": 21.55167394799355,
+      "bytes": 20072
+    },
+    {
+      "elapsed_s": 21.551689387997612,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.552380972992978,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 21.552508668988594,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 21.55280046099506,
+      "bytes": 18856
+    },
+    {
+      "elapsed_s": 21.553198317997158,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 21.55320347000088,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.553362253995147,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 21.553389485998196,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.553391501991428,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.553493501996854,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 21.55391162999149,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 21.553927773988107,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.554235853996943,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 21.55424767799559,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.554401390996645,
+      "bytes": 18824
+    },
+    {
+      "elapsed_s": 21.554421470995294,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 21.554500878992258,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 21.554607422993286,
+      "bytes": 8404
+    }
+  ],
+  "rtf": 2.392473465135053,
+  "audio": {
+    "duration_s": 9.009342403628118,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 397312,
+    "rms": 0.07831095036639939,
+    "peak": 0.75,
+    "finite": true
+  },
+  "audio_file": "overlap-a.wav",
+  "audio_sha256": "fb1014ac41d8d069c1ecdf64e4aac70c4f39a6a3da987b7f0a376a18f5cfafbf"
+}

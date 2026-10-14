@@ -1,0 +1,196 @@
+{
+  "name": "english-1",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "092bd50c444e4b2abf79e5a503d60c44",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "092bd50c444e4b2abf79e5a503d60c44",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "Hello, this is Drama three running on a single Spark. The morning test is now complete."
+  },
+  "started_at": 1792012763.0004706,
+  "finished_at": 1792012771.0166874,
+  "wall_s": 8.012674116995186,
+  "first_audio_s": 8.006970141999773,
+  "chunks": [
+    {
+      "elapsed_s": 8.006968461995712,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 8.006981245998759,
+      "bytes": 5143
+    },
+    {
+      "elapsed_s": 8.007182173998444,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 8.007911822991446,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 8.008253919993876,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.008485359998303,
+      "bytes": 31208
+    },
+    {
+      "elapsed_s": 8.008489359999658,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.008520848001353,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 8.008814335989882,
+      "bytes": 13680
+    },
+    {
+      "elapsed_s": 8.008833599989885,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.008838975991239,
+      "bytes": 2456
+    },
+    {
+      "elapsed_s": 8.008841663991916,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.008967903995654,
+      "bytes": 32232
+    },
+    {
+      "elapsed_s": 8.008992367991596,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.009249857001123,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 8.009273168994696,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.009471088997088,
+      "bytes": 24328
+    },
+    {
+      "elapsed_s": 8.009496480997768,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.009524401000817,
+      "bytes": 3072
+    },
+    {
+      "elapsed_s": 8.009553088995744,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.01006364999921,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 8.010069889991428,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.01052715399419,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 8.010564145995886,
+      "bytes": 5792
+    },
+    {
+      "elapsed_s": 8.010592801991152,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.010799698997289,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 8.010826914993231,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.011355875001755,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 8.011360082993633,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.011514115001773,
+      "bytes": 20272
+    },
+    {
+      "elapsed_s": 8.011633219997748,
+      "bytes": 14480
+    },
+    {
+      "elapsed_s": 8.011657939990982,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.01216424399172,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 8.012174787989352,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.012202787998831,
+      "bytes": 5792
+    },
+    {
+      "elapsed_s": 8.012227859988343,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 8.012527012993814,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 8.012670005002292,
+      "bytes": 12916
+    }
+  ],
+  "rtf": 1.0851480461363983,
+  "audio": {
+    "duration_s": 7.383945578231293,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 325632,
+    "rms": 0.07028234770074865,
+    "peak": 0.51953125,
+    "finite": true
+  },
+  "audio_file": "english-1.wav",
+  "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f"
+}

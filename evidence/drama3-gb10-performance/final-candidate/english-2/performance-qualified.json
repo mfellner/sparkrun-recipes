@@ -1,0 +1,37 @@
+{
+  "qualified": true,
+  "measured_count": 5,
+  "warmup_count": 1,
+  "all_serial_rtf": {
+    "count": 5,
+    "median": 1.0799260366927597,
+    "minimum": 1.0779422120097473,
+    "maximum": 1.082787933969709,
+    "p95": 1.082787933969709
+  },
+  "fixtures": {
+    "english-2": {
+      "rtf": {
+        "count": 5,
+        "median": 1.0799260366927597,
+        "minimum": 1.0779422120097473,
+        "maximum": 1.082787933969709,
+        "p95": 1.082787933969709
+      },
+      "first_pcm_s": {
+        "count": 5,
+        "median": 9.42167193100613,
+        "minimum": 9.40398853100487,
+        "maximum": 9.447059921993059,
+        "p95": 9.447059921993059
+      },
+      "samples": {
+        "count": 5,
+        "median": 385024,
+        "minimum": 385024,
+        "maximum": 385024,
+        "p95": 385024
+      }
+    }
+  }
+}

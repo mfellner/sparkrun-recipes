@@ -1,0 +1,73 @@
+{
+  "model": "Systran/faster-whisper-small",
+  "revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "faster_whisper": "1.2.1",
+  "ctranslate2": "4.8.3",
+  "device": "cpu",
+  "compute_type": "int8",
+  "beam_size": 5,
+  "vad_filter": false,
+  "rows": [
+    {
+      "name": "english-1-warmup",
+      "text": "Hello! This is Drama 3, running on a single spark. The morning test is now complete.",
+      "expected": "Hello, this is Drama three running on a single Spark. The morning test is now complete.",
+      "wer": 0.0625,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+      "passed": true
+    },
+    {
+      "name": "english-1-r1",
+      "text": "Hello! This is Drama 3, running on a single spark. The morning test is now complete.",
+      "expected": "Hello, this is Drama three running on a single Spark. The morning test is now complete.",
+      "wer": 0.0625,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+      "passed": true
+    },
+    {
+      "name": "english-1-r2",
+      "text": "Hello! This is Drama 3, running on a single spark. The morning test is now complete.",
+      "expected": "Hello, this is Drama three running on a single Spark. The morning test is now complete.",
+      "wer": 0.0625,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+      "passed": true
+    },
+    {
+      "name": "english-1-r3",
+      "text": "Hello! This is Drama 3, running on a single spark. The morning test is now complete.",
+      "expected": "Hello, this is Drama three running on a single Spark. The morning test is now complete.",
+      "wer": 0.0625,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+      "passed": true
+    },
+    {
+      "name": "english-1-r4",
+      "text": "Hello! This is Drama 3, running on a single spark. The morning test is now complete.",
+      "expected": "Hello, this is Drama three running on a single Spark. The morning test is now complete.",
+      "wer": 0.0625,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+      "passed": true
+    },
+    {
+      "name": "english-1-r5",
+      "text": "Hello! This is Drama 3, running on a single spark. The morning test is now complete.",
+      "expected": "Hello, this is Drama three running on a single Spark. The morning test is now complete.",
+      "wer": 0.0625,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

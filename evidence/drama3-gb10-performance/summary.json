@@ -1,0 +1,20 @@
+{
+  "scope": "One GB10, six canonical fixtures, seed42, same final immutable image and original FP8/BF16 codec/sampling; head off/on. Warmups preserved. Not general speech/naturalness/realtime qualification.",
+  "measured_per_arm": 30,
+  "warmups_per_arm": 6,
+  "baseline_median_rtf": 1.2008836472010322,
+  "candidate_median_rtf": 1.0881797649421394,
+  "rtf_reduction": 0.09385079272382313,
+  "candidate_streaming_first_pcm_median_s": 17.343282055997406,
+  "baseline_streaming_first_pcm_median_s": 19.363558234996162,
+  "image_digest": "sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c",
+  "image_id": "sha256:1bfb3e4f8d310d70afa9d8fe4020c544387f52567d6cb0db399589700bcba4bb",
+  "matched36_audio_bytes_equal": true,
+  "asr_per_arm": 36,
+  "extra_acceptance_cases": 10,
+  "post_restart_cases": 2,
+  "goals": {
+    "median_rtf_le_0_9": false,
+    "first_pcm_lt_2s": false
+  }
+}

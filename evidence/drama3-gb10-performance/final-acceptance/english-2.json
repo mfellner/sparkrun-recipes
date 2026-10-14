@@ -1,0 +1,128 @@
+{
+  "name": "english-2",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "5260c31fd49a438f817dc99623939aeb",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "5260c31fd49a438f817dc99623939aeb",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "A quiet garden surrounds the old house. Today we will walk beside the river and watch the birds."
+  },
+  "started_at": 1792012771.017244,
+  "finished_at": 1792012780.4356375,
+  "wall_s": 9.414441587010515,
+  "first_audio_s": 9.407785835006507,
+  "chunks": [
+    {
+      "elapsed_s": 9.407783947011922,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 9.407796523009893,
+      "bytes": 5143
+    },
+    {
+      "elapsed_s": 9.408485419000499,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 9.408512235007947,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 9.409205036005005,
+      "bytes": 39096
+    },
+    {
+      "elapsed_s": 9.409598461003043,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 9.410162573010894,
+      "bytes": 40104
+    },
+    {
+      "elapsed_s": 9.410182973006158,
+      "bytes": 44888
+    },
+    {
+      "elapsed_s": 9.410836462004227,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 9.410855326001183,
+      "bytes": 3968
+    },
+    {
+      "elapsed_s": 9.411218735011062,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 9.411621647013817,
+      "bytes": 46336
+    },
+    {
+      "elapsed_s": 9.412023376004072,
+      "bytes": 52568
+    },
+    {
+      "elapsed_s": 9.412597072005155,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 9.41303299300489,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 9.413541873000213,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 9.413678962009726,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 9.413747506012442,
+      "bytes": 8688
+    },
+    {
+      "elapsed_s": 9.413895250007045,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 9.414314290013863,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 9.414437411003746,
+      "bytes": 9892
+    }
+  ],
+  "rtf": 1.0783142712848126,
+  "audio": {
+    "duration_s": 8.730702947845804,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 385024,
+    "rms": 0.09516506767016984,
+    "peak": 0.6796875,
+    "finite": true
+  },
+  "audio_file": "english-2.wav",
+  "audio_sha256": "80b1a203106a0f4f78abd75bb4226827e5f04d9eb2d0dcb5d695d5e4e5356a48"
+}

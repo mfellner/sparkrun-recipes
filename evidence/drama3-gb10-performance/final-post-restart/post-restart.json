@@ -1,0 +1,124 @@
+{
+  "name": "post-restart",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "46458ec754504633beda6ad914dba7a1",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "46458ec754504633beda6ad914dba7a1",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "After restarting the service, this fresh audio proves that Drama three is still working on the Spark."
+  },
+  "started_at": 1792013435.422304,
+  "finished_at": 1792013443.0556424,
+  "wall_s": 7.629379125995911,
+  "first_audio_s": 7.622900803005905,
+  "chunks": [
+    {
+      "elapsed_s": 7.622897890993045,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 7.622919251007261,
+      "bytes": 5143
+    },
+    {
+      "elapsed_s": 7.623678307994851,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 7.624726627997006,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 7.624764275999041,
+      "bytes": 17024
+    },
+    {
+      "elapsed_s": 7.62525990899303,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 7.625345556996763,
+      "bytes": 30408
+    },
+    {
+      "elapsed_s": 7.625358085002517,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 7.625808932993095,
+      "bytes": 41992
+    },
+    {
+      "elapsed_s": 7.62606669300294,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 7.626849637003033,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 7.626917796995258,
+      "bytes": 41616
+    },
+    {
+      "elapsed_s": 7.6279155100055505,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 7.627980934004881,
+      "bytes": 12656
+    },
+    {
+      "elapsed_s": 7.628310086001875,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 7.628379925998161,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 7.628837285999907,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 7.6290417020063614,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 7.629052710006363,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 7.629375110002002,
+      "bytes": 33772
+    }
+  ],
+  "rtf": 1.095233136251366,
+  "audio": {
+    "duration_s": 6.965986394557823,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 307200,
+    "rms": 0.08839483145031295,
+    "peak": 0.7578125,
+    "finite": true
+  },
+  "audio_file": "post-restart.wav",
+  "audio_sha256": "52b8d2cc57a35edbfe7dc8bcc36a9c375792a2e22de1cfe099d0f819fbf910f2"
+}

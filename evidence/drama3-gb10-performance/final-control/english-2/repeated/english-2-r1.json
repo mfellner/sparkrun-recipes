@@ -1,0 +1,257 @@
+{
+  "schema": 1,
+  "arm": "final-control",
+  "fixture": "english-2",
+  "name": "english-2-r1",
+  "warmup": false,
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "A quiet garden surrounds the old house. Today we will walk beside the river and watch the birds."
+  },
+  "request_identity": "043a33b5ce8a179d09e765a264bb75859322543a708c8888584276a3fe7f24ea",
+  "runtime": {
+    "host": "192.168.178.70",
+    "hostname": "dgx02",
+    "captured_at": 1792010391.8673074,
+    "effective_env": {
+      "DRAMA_MODEL_DIR": "/cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946",
+      "FISH_DRAMA3_CUDA_GRAPH": "1",
+      "FISH_DRAMA3_FP8_EXPERTS": "1",
+      "HF_HOME": "/cache/huggingface",
+      "OMP_NUM_THREADS": "4",
+      "DRAMA_OUTPUT_DIR": "/cache/huggingface/drama3-fast/outputs",
+      "TRITON_CACHE_DIR": "/cache/huggingface/drama3/triton",
+      "CUDA_CACHE_PATH": "/cache/huggingface/drama3/cuda"
+    },
+    "container": {
+      "id": "527ea7f81e034880e0b04e4144a0f35478305d222df82d0f4a28148923e5b33c",
+      "image_ref": "ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c",
+      "image_id": "sha256:1bfb3e4f8d310d70afa9d8fe4020c544387f52567d6cb0db399589700bcba4bb",
+      "running": true,
+      "created_at": 1792009909.850104,
+      "started_at": "2026-10-14T20:31:49.878408466Z",
+      "privileged": false,
+      "user": "1000:1000",
+      "network": "host",
+      "ipc": "private",
+      "security_opt": [
+        "no-new-privileges"
+      ],
+      "cap_add": null,
+      "devices": [],
+      "mounts": [
+        {
+          "source": "/home/max/.cache/sparkrun/runtime-cache/vllm/fishaudio__drama-3-b005a9ca",
+          "destination": "/cache/runtime",
+          "rw": true
+        },
+        {
+          "source": "/home/max/.cache/huggingface",
+          "destination": "/cache/huggingface",
+          "rw": true
+        }
+      ]
+    },
+    "health": {
+      "status": "ok",
+      "model": "fishaudio/drama-3",
+      "revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+      "source_revision": "1ff3c3ed2f80d3106a83909dd25b83129c3d816f",
+      "default_reference_sha256": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "started_at": 1792009916.4287424,
+      "pid": 60,
+      "fp8_experts": "1",
+      "cuda_graph": "1",
+      "torch": "2.13.0+cu130",
+      "cudnn_enabled": true
+    },
+    "process_join": {
+      "host_pid": 1230124,
+      "namespace_pids": [
+        1230124,
+        60
+      ],
+      "host_start_ticks": 8802943
+    },
+    "listener": {
+      "address": "192.168.178.70:8010",
+      "pid": 60,
+      "start_ticks": 8802943,
+      "inode": "3349924"
+    },
+    "runtime_files": {
+      "contract.py": "1c67310f3713298a5e0cd3809a2eb0beea75ec1c063c0ee0cdcb64b2d29808c8",
+      "server.py": "fcac1ec545abbce5e2d8780807e71d559d2af668f732ecedd4dc59583a8aea66",
+      "run.sh": "0892b613dc8e2d8f177bd716d8be8d96fddaf57602aa0a49cb25ff7244a188da",
+      "probe.py": "b3a72f39e4de6ffc069537d7d29eb1eb23d9cc74bf5d670a5e80ef430784e54e",
+      "model-manifest.json": "55041149157a59577c6996f651949979d320e17851ef7c5134df8f57c1e24b1e",
+      "requirements-lock.txt": "f99d9403ecbb7f6638ad7c09d41e44e271948b55f834665add7770c279bcbb4b",
+      "default-reference.wav": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "default-reference.txt": "e0a833e71a65072dbfcc3353d33f6d7e94ec4f60cafd28087cdfdf7edee59d9e",
+      "reference-provenance.json": "76b5a94258d657463c6f3ae9923c89166c2d309f0d063ea80fa8aec196a89e6b",
+      "manifest.sha256": "f3a3c60e15d565733e64cd8ba72487a8d984859db57e808782ffc6ea699a105f"
+    },
+    "configured_profile": {
+      "configured_flags": {
+        "FISH_DRAMA3_COMPACT_HEAD": false,
+        "FISH_DRAMA3_SMALL_GRAPH_BUCKETS": false,
+        "FISH_DRAMA3_PREFIX_SNAPSHOT": false,
+        "DRAMA_NATIVE_STREAMING": false,
+        "DRAMA_PUBLIC_REFERENCE_CACHE": false,
+        "DRAMA_STATEFUL_CODEC": false
+      },
+      "kernel_options": {
+        "state": false,
+        "conv": false,
+        "fp8": false,
+        "tower_up": "off",
+        "gdn_qkv": "off"
+      },
+      "scope": "effective configuration and physical source identity; not a qualification verdict",
+      "source_files": {
+        "fish_speech/models/text2semantic/fish_omni/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fish_speech/models/text2semantic/fish_omni/backbone.py": "dd969c85df49c0ec6293b726cbc226e55ca9d2b85cce234a2acf1df340237517",
+        "fish_speech/models/text2semantic/fish_omni/chunking.py": "058d2d9cbc90e28a38ab9eba5269e9b2cc3ab651b605b9508ea9b0cf9b5bd5e2",
+        "fish_speech/models/text2semantic/fish_omni/config.py": "1e885113d269d7f7c9cd6648f393eec7bbc6974be6974719e8493f012ed0bfd7",
+        "fish_speech/models/text2semantic/fish_omni/fp8_moe.py": "c30de427f2ec31beaff7f95e8e15cdd004fcdde005f26d23e1a04593c228b40f",
+        "fish_speech/models/text2semantic/fish_omni/generate.py": "4bdfb4a141224331c79d144ba5d1483879b85175df212bc5af78c3839e581410",
+        "fish_speech/models/text2semantic/fish_omni/layers.py": "e4704b4fde7906bf021d6696c4132458b4bc52c836d22da702275252683540bc",
+        "fish_speech/models/text2semantic/fish_omni/model.py": "4e23c929b39ce325b25e806599f339e62e186571f9128c301a4ba689ac7a9eb8",
+        "fish_speech/models/text2semantic/fish_omni/moe.py": "3b3981c3fa6849942db1a58c9aa9f5085148b3d98427ca7ef1f8cd81e84e2d2c",
+        "fish_speech/models/text2semantic/fish_omni/tower.py": "6f2f2304f629f9b47a26f33c534fcaea48b928dc88d830efca43a0d6bfd22a85"
+      },
+      "package_manifest_sha256": "89eb1655ddaecf2900f2f6a5021d97852544634e98f04c9832934d40e7d1afcc"
+    }
+  },
+  "runtime_identity": "482b752f7157148e969b21606dc1fd8adc032577f183088db6393b662d7f17f5",
+  "harness": {
+    "performance.py": "aa1f1b514390957b4199222dfbfe37e57d30f7235bb8ed4b53b8559cf1bec278",
+    "fixtures.py": "2dca375431ce9ea1f5497fa3ab4e3a09720b5353d1db009ed662287fa39dbcca",
+    "acceptance.py": "758bb0319bb3388a25568633b99ddc5ac0f8fa43e19525debba60798508976f0"
+  },
+  "complete": true,
+  "started_at": 1792010403.0122712,
+  "events": [
+    {
+      "elapsed_s": 10.41273827799887,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 10.412751686002593,
+      "bytes": 31207
+    },
+    {
+      "elapsed_s": 10.41277382899716,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 10.413353523996193,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 10.414011986998958,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 10.414710929995636,
+      "bytes": 47944
+    },
+    {
+      "elapsed_s": 10.415248720993986,
+      "bytes": 41144
+    },
+    {
+      "elapsed_s": 10.415869983989978,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 10.41589139199641,
+      "bytes": 38880
+    },
+    {
+      "elapsed_s": 10.416569085995434,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 10.416715981991729,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 10.416860621990054,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 10.417494587993133,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 10.417701899990789,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 10.417984251995222,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 10.41837157899863,
+      "bytes": 59368
+    },
+    {
+      "elapsed_s": 10.418709625999327,
+      "bytes": 41992
+    },
+    {
+      "elapsed_s": 10.418730233999668,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 10.418878377997316,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 10.419421161001083,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 10.419673016003799,
+      "bytes": 27796
+    }
+  ],
+  "status": 200,
+  "headers": {
+    "date": "Wed, 14 Oct 2026 20:40:02 GMT",
+    "server": "uvicorn",
+    "x-request-id": "8647cf548bed44c299f1d1661fa350e7",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-length": "770092",
+    "content-type": "audio/wav"
+  },
+  "headers_s": 10.412733653996838,
+  "wall_s": 10.419676935998723,
+  "audio": {
+    "duration_s": 8.730702947845804,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 385024,
+    "rms": 0.09516506767016984,
+    "peak": 0.6796875,
+    "finite": true
+  },
+  "audio_file": "english-2-r1.wav",
+  "audio_sha256": "80b1a203106a0f4f78abd75bb4226827e5f04d9eb2d0dcb5d695d5e4e5356a48",
+  "first_pcm_s": 10.41273827799887,
+  "duration_s": 8.730702947845804,
+  "rtf": 1.1934522338283944,
+  "request_id": "8647cf548bed44c299f1d1661fa350e7",
+  "finished_at": 1792010413.4345565
+}

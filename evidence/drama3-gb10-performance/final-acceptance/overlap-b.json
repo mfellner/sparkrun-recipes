@@ -1,0 +1,240 @@
+{
+  "name": "overlap-b",
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "status": 200,
+  "headers": {
+    "x-request-id": "a23130821b0043a1b4cd0db6d5ee8d9c",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav"
+  },
+  "model": "fishaudio/drama-3",
+  "model_revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+  "request_id": "a23130821b0043a1b4cd0db6d5ee8d9c",
+  "request": {
+    "format": "wav",
+    "streaming": false,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "The red balloon floats above the garden. This is the second overlapping request."
+  },
+  "started_at": 1792012945.5727503,
+  "finished_at": 1792012957.4314954,
+  "wall_s": 11.853919343993766,
+  "first_audio_s": 11.844977479995578,
+  "chunks": [
+    {
+      "elapsed_s": 11.844975239990163,
+      "bytes": 7889
+    },
+    {
+      "elapsed_s": 11.845013159996597,
+      "bytes": 38447
+    },
+    {
+      "elapsed_s": 11.845753464993322,
+      "bytes": 45832
+    },
+    {
+      "elapsed_s": 11.846490168987657,
+      "bytes": 63712
+    },
+    {
+      "elapsed_s": 11.847292873993865,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 11.847328281990485,
+      "bytes": 2520
+    },
+    {
+      "elapsed_s": 11.847845818992937,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 11.847890746998019,
+      "bytes": 22592
+    },
+    {
+      "elapsed_s": 11.848076026988565,
+      "bytes": 14480
+    },
+    {
+      "elapsed_s": 11.848375354995369,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 11.848455962986918,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 11.848473562989966,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.848576170988963,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 11.848611642999458,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 11.84892581999884,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 11.848934987996472,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.84911908399954,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 11.849132987990743,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.849248123995494,
+      "bytes": 13032
+    },
+    {
+      "elapsed_s": 11.849267915997189,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.849588411991135,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 11.849599163993844,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.849812923988793,
+      "bytes": 26064
+    },
+    {
+      "elapsed_s": 11.84983415598981,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.850167868993594,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 11.850180156994611,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.850236044992926,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 11.850533756994992,
+      "bytes": 33304
+    },
+    {
+      "elapsed_s": 11.850551932991948,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 11.850907932996051,
+      "bytes": 41992
+    },
+    {
+      "elapsed_s": 11.850919228993007,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.851249645987991,
+      "bytes": 39096
+    },
+    {
+      "elapsed_s": 11.85129110199341,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 11.851314333995106,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.851677981991088,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 11.851689821996843,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.852055117997224,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 11.85206522999215,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.852238830993883,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 11.852461182992556,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 11.85247761500068,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.852889054993284,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 11.852899582998361,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.853256846996373,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 11.853295279986924,
+      "bytes": 4344
+    },
+    {
+      "elapsed_s": 11.85331911999674,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.853740943988669,
+      "bytes": 49232
+    },
+    {
+      "elapsed_s": 11.853748607987654,
+      "bytes": 1448
+    },
+    {
+      "elapsed_s": 11.853912783990381,
+      "bytes": 14956
+    }
+  ],
+  "rtf": 1.0547638556263823,
+  "audio": {
+    "duration_s": 11.23845804988662,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 495616,
+    "rms": 0.06898655760546357,
+    "peak": 0.69921875,
+    "finite": true
+  },
+  "audio_file": "overlap-b.wav",
+  "audio_sha256": "f2bf86f5bb9a03deeae09fee4203d2071890fdd180c443cd1cf8d63279eb2ef2"
+}

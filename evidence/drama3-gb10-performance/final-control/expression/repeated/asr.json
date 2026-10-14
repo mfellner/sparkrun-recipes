@@ -1,0 +1,73 @@
+{
+  "model": "Systran/faster-whisper-small",
+  "revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "faster_whisper": "1.2.1",
+  "ctranslate2": "4.8.3",
+  "device": "cpu",
+  "compute_type": "int8",
+  "beam_size": 5,
+  "vad_filter": false,
+  "rows": [
+    {
+      "name": "expression-warmup",
+      "text": "What a wonderful morning. I am so excited to hear the good news.",
+      "expected": "[happy] What a wonderful morning! I am so excited to hear the good news.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978",
+      "passed": true
+    },
+    {
+      "name": "expression-r1",
+      "text": "What a wonderful morning. I am so excited to hear the good news.",
+      "expected": "[happy] What a wonderful morning! I am so excited to hear the good news.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978",
+      "passed": true
+    },
+    {
+      "name": "expression-r2",
+      "text": "What a wonderful morning. I am so excited to hear the good news.",
+      "expected": "[happy] What a wonderful morning! I am so excited to hear the good news.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978",
+      "passed": true
+    },
+    {
+      "name": "expression-r3",
+      "text": "What a wonderful morning. I am so excited to hear the good news.",
+      "expected": "[happy] What a wonderful morning! I am so excited to hear the good news.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978",
+      "passed": true
+    },
+    {
+      "name": "expression-r4",
+      "text": "What a wonderful morning. I am so excited to hear the good news.",
+      "expected": "[happy] What a wonderful morning! I am so excited to hear the good news.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978",
+      "passed": true
+    },
+    {
+      "name": "expression-r5",
+      "text": "What a wonderful morning. I am so excited to hear the good news.",
+      "expected": "[happy] What a wonderful morning! I am so excited to hear the good news.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

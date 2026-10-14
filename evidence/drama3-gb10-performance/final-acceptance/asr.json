@@ -1,0 +1,113 @@
+{
+  "model": "Systran/faster-whisper-small",
+  "revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "faster_whisper": "1.2.1",
+  "ctranslate2": "4.8.3",
+  "device": "cpu",
+  "compute_type": "int8",
+  "beam_size": 5,
+  "vad_filter": false,
+  "rows": [
+    {
+      "name": "english-1",
+      "text": "Hello! This is Drama 3, running on a single spark. The morning test is now complete.",
+      "expected": "Hello, this is Drama three running on a single Spark. The morning test is now complete.",
+      "wer": 0.0625,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "e08fb79b4d709715a515595d010a06a9360ff0be83af1d74090c1421f095089f",
+      "passed": true
+    },
+    {
+      "name": "english-2",
+      "text": "A quiet garden surrounds the old house. Today we will walk beside the river and watch the birds.",
+      "expected": "A quiet garden surrounds the old house. Today we will walk beside the river and watch the birds.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "80b1a203106a0f4f78abd75bb4226827e5f04d9eb2d0dcb5d695d5e4e5356a48",
+      "passed": true
+    },
+    {
+      "name": "german-1",
+      "text": "Guten Morgen. Dieses Sprachmodell läuft auf einem einzelnen Spark. Die Sonne scheint und die Vögel singen im Garten.",
+      "expected": "Guten Morgen. Dieses Sprachmodell läuft auf einem einzelnen Spark. Die Sonne scheint und die Vögel singen im Garten.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "de",
+      "audio_sha256": "62e752b875c1b5f0a59dd4b2cd490a991f99da3cb7b15c64a741d335054f3f20",
+      "passed": true
+    },
+    {
+      "name": "german-2",
+      "text": "Heute gehen wir gemeinsam zum Bahnhof. Danach trinken wir einen Kaffee und lesen ein interessantes Buch.",
+      "expected": "Heute gehen wir gemeinsam zum Bahnhof. Danach trinken wir einen Kaffee und lesen ein interessantes Buch.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "de",
+      "audio_sha256": "0daee2d1b4c4219f7dfec3dded8c95eae19515cf10952c369c13e546e5ff36bb",
+      "passed": true
+    },
+    {
+      "name": "expression",
+      "text": "What a wonderful morning. I am so excited to hear the good news.",
+      "expected": "[happy] What a wonderful morning! I am so excited to hear the good news.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "17f97f14ae5ac8523e699325035a816db609a4b9d612939db10cf21fa8ad6978",
+      "passed": true
+    },
+    {
+      "name": "longer",
+      "text": "A traveller arrived at a small village beside the river. The streets were quiet and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last, she reached the old library where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the The traveler returned to the inn and wrote a letter about her peaceful day.",
+      "expected": "A traveler arrived at a small village beside the river. The streets were quiet, and warm light shone from the bakery. She bought a loaf of bread and asked the baker for directions. He pointed toward the bridge and described a path through the forest. Along the way, she saw bright flowers, tall trees, and a family of ducks swimming in the water. At last she reached the old library, where a friendly librarian welcomed her. They talked about books, maps, and the history of the village. Before sunset, the traveler returned to the inn and wrote a letter about her peaceful day.",
+      "wer": 0.019417475728155338,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "1818589ba14a68886ff5a93855344324c751aa9e3924465282ac04605565f32f",
+      "passed": true
+    },
+    {
+      "name": "streaming",
+      "text": "The first part of this message is arriving as audio. We are testing native speech generation on a single spark computer. The second part continues the story. Outside the window, the birds are singing and the sky is clear. A friendly traveler walks down the street and stops at the bakery to buy a fresh loaf of bread. We continue speaking so that more than one native text chunk is generated. This final sentence marks the end of the streaming test.",
+      "expected": "The first part of this message is arriving as audio. We are testing native speech generation on a single Spark computer. The second part continues the story. Outside the window, the birds are singing and the sky is clear. A friendly traveler walks down the street and stops at the bakery to buy a fresh loaf of bread. We continue speaking so that more than one native text chunk is generated. This final sentence marks the end of the streaming test.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "12c6af16682ee30df104e94657e3410b752ac54b410a1d6bd2fc5fbe795e5caa",
+      "passed": true
+    },
+    {
+      "name": "overlap-a",
+      "text": "The blue bicycle stands beside the river. This is the first overlapping request.",
+      "expected": "The blue bicycle stands beside the river. This is the first overlapping request.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "fb1014ac41d8d069c1ecdf64e4aac70c4f39a6a3da987b7f0a376a18f5cfafbf",
+      "passed": true
+    },
+    {
+      "name": "overlap-b",
+      "text": "The red balloon floats above the garden. This is the second overlapping request.",
+      "expected": "The red balloon floats above the garden. This is the second overlapping request.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "f2bf86f5bb9a03deeae09fee4203d2071890fdd180c443cd1cf8d63279eb2ef2",
+      "passed": true
+    },
+    {
+      "name": "reference",
+      "text": "The art of printing has changed the way we share stories. This new sentence uses a public domain reference recording.",
+      "expected": "The art of printing has changed the way we share stories. This new sentence uses a public domain reference recording.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "08287e5aba997f887d04cd92109cd2f805c185988dd90cc5f35debecd45c72a0",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

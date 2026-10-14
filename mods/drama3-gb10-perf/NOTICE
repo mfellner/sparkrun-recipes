@@ -1,0 +1,12 @@
+Built with Fish Audio.
+These Fish Audio Materials are licensed under the Fish Audio Community License,
+Version 1.0. Copyright © 39 AI, INC. All Rights Reserved.
+Fish source revision: 1ff3c3ed2f80d3106a83909dd25b83129c3d816f.
+Derived from the immutable native GB10 image; its model, codec and public-reference
+license/provenance and adapter NOTICE remain unchanged in /opt/drama.
+Changes to Fish Materials: default-off compact BF16 semantic/EOS projection with
+explicit finite status, compact tower API, default-off smaller graph buckets.
+Added request-local exact-shape hybrid prefill prototype, not serving-integrated.
+Overlay and probe original code/packaging: MIT, see ADAPTER_LICENSE.txt.
+No hardware performance, speech quality, publication or deployment qualification
+is granted by the CPU tests. Source fixtures retain their original bytes/license.

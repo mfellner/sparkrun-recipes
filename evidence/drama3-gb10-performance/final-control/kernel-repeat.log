@@ -1,0 +1,1949 @@
+1791921887.055782 dgx02 kernel: Booting Linux on physical CPU 0x0000000000 [0x410fd871]
+1791921887.055815 dgx02 kernel: Linux version 6.17.0-1029-nvidia (buildd@bos03-arm64-020) (aarch64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #29-Ubuntu SMP PREEMPT_DYNAMIC Wed Jul  1 00:13:52 UTC 2026 (Ubuntu 6.17.0-1029.29-nvidia 6.17.13)
+1791921887.055830 dgx02 kernel: KASLR enabled
+1791921887.055841 dgx02 kernel: earlycon: uart0 at MMIO32 0x0000000016a00000 (options '')
+1791921887.055850 dgx02 kernel: printk: legacy bootconsole [uart0] enabled
+1791921887.055860 dgx02 kernel: efi: EFI v2.9 by American Megatrends
+1791921887.055872 dgx02 kernel: efi: RTPROP=0x86f4fd18 ACPI 2.0=0x8707e018 SMBIOS=0x86dd0000 SMBIOS 3.0=0x86dc0000 TPMFinalLog=0x86fe0000 ESRT=0x855a2818 MOKvar=0x86cf0000 INITRD=0x84828f18 RNG=0x87065d18 MEMRESERVE=0x84828a98 
+1791921887.055882 dgx02 kernel: random: crng init done
+1791921887.055891 dgx02 kernel: secureboot: Secure boot enabled
+1791921887.055900 dgx02 kernel: Kernel is locked down from EFI Secure Boot mode; see man kernel_lockdown.7
+1791921887.055909 dgx02 kernel: esrt: Reserving ESRT space from 0x00000000855a2818 to 0x00000000855a28a0.
+1791921887.055919 dgx02 kernel: ACPI: Early table checksum verification disabled
+1791921887.055928 dgx02 kernel: ACPI: RSDP 0x000000008707E018 000024 (v02 ALASKA)
+1791921887.055939 dgx02 kernel: ACPI: XSDT 0x000000008707E098 0000AC (v01 ALASKA A M I    01072009 AMI  01000013)
+1791921887.055951 dgx02 kernel: ACPI: FACP 0x000000008707EB18 000114 (v06 ALASKA A M I    01072009 AMI  00010013)
+1791921887.055960 dgx02 kernel: ACPI: DSDT 0x000000008706C018 0115EE (v02 ALASKA A M I    01072009 INTL 20230628)
+1791921887.055969 dgx02 kernel: ACPI: FIDT 0x000000008707EF18 00009C (v01 ALASKA A M I    01072009 AMI  00010013)
+1791921887.055978 dgx02 kernel: ACPI: SSDT 0x000000008706A018 001A08 (v02 MTKINC ANGUS    00000001 INTL 20230628)
+1791921887.055987 dgx02 kernel: ACPI: SSDT 0x0000000087069018 000305 (v02 MTKINC ANGUSCPU 000000FF INTL 20230628)
+1791921887.055996 dgx02 kernel: ACPI: CSRT 0x0000000087069E98 000068 (v00 ALASKA A M I    20130221 AMI  00000099)
+1791921887.056005 dgx02 kernel: ACPI: DBG2 0x000000008707EC98 000175 (v00 ALASKA A M I    20130221 AMI  00000099)
+1791921887.056032 dgx02 kernel: ACPI: GTDT 0x0000000087069418 0001D8 (v03 ALASKA A M I    20130221 AMI  00000099)
+1791921887.056044 dgx02 kernel: ACPI: APIC 0x0000000087067018 0006A8 (v05 ALASKA A M I    20130221 AMI  00000099)
+1791921887.056054 dgx02 kernel: ACPI: MCFG 0x0000000087067E98 00012C (v01 ALASKA A M I    20130221 AMI  00000099)
+1791921887.056063 dgx02 kernel: ACPI: PPTT 0x0000000087066018 0008B8 (v02 ALASKA A M I    20130221 AMI  00000099)
+1791921887.056072 dgx02 kernel: ACPI: SPCR 0x0000000087069F98 000050 (v02 ALASKA A M I    20130221 AMI  00000099)
+1791921887.056081 dgx02 kernel: ACPI: SDEV 0x0000000087066E98 000024 (v01 ALASKA NVSDEV   00000000 AMI  00000001)
+1791921887.056090 dgx02 kernel: ACPI: SSDT 0x0000000087065018 000793 (v02 ALASKA A M I    00000001 INTL 20230628)
+1791921887.056099 dgx02 kernel: ACPI: SSDT 0x0000000087065A98 000171 (v01 NVIDIA NBCI     00000001 INTL 20230628)
+1791921887.056108 dgx02 kernel: ACPI: IORT 0x0000000087068018 000F40 (v06 MEDTEK MTKSGI   00000000 MTK  00000001)
+1791921887.056117 dgx02 kernel: ACPI: FPDT 0x0000000087066F18 000044 (v01 ALASKA A M I    01072009 AMI  01000013)
+1791921887.056126 dgx02 kernel: ACPI: WSMT 0x0000000087066F98 000028 (v01 ALASKA A M I    01072009 AMI  00010013)
+1791921887.056134 dgx02 kernel: ACPI: SPCR: console: uart,mmio32,0x16a00000,115200
+1791921887.056143 dgx02 kernel: ACPI: Use ACPI SPCR as default console: Yes
+1791921887.056153 dgx02 kernel: NUMA: Faking a node at [mem 0x0000000080000000-0x000000207fffffff]
+1791921887.056162 dgx02 kernel: NODE_DATA(0) allocated [mem 0x2069693440-0x2069698fff]
+1791921887.056170 dgx02 kernel: Zone ranges:
+1791921887.056179 dgx02 kernel:   DMA      [mem 0x0000000080000000-0x00000000ffffffff]
+1791921887.056188 dgx02 kernel:   DMA32    empty
+1791921887.056199 dgx02 kernel:   Normal   [mem 0x0000000100000000-0x000000207fffffff]
+1791921887.056210 dgx02 kernel:   Device   empty
+1791921887.056219 dgx02 kernel: Movable zone start for each node
+1791921887.056228 dgx02 kernel: Early memory node ranges
+1791921887.056239 dgx02 kernel:   node   0: [mem 0x0000000080000000-0x000000008007ffff]
+1791921887.056250 dgx02 kernel:   node   0: [mem 0x0000000080080000-0x000000008655ffff]
+1791921887.056258 dgx02 kernel:   node   0: [mem 0x0000000086560000-0x000000008701ffff]
+1791921887.056268 dgx02 kernel:   node   0: [mem 0x0000000087020000-0x000000008707ffff]
+1791921887.056277 dgx02 kernel:   node   0: [mem 0x0000000087080000-0x0000000088100fff]
+1791921887.056285 dgx02 kernel:   node   0: [mem 0x0000000088200000-0x000000008a0fffff]
+1791921887.056294 dgx02 kernel:   node   0: [mem 0x000000008b080000-0x000000008e07ffff]
+1791921887.056303 dgx02 kernel:   node   0: [mem 0x0000000090000000-0x00000000933dffff]
+1791921887.056312 dgx02 kernel:   node   0: [mem 0x0000000093400000-0x00000000afffffff]
+1791921887.056321 dgx02 kernel:   node   0: [mem 0x00000000b9600000-0x00000000b97fffff]
+1791921887.056329 dgx02 kernel:   node   0: [mem 0x00000000c2e00000-0x00000000d59fffff]
+1791921887.056339 dgx02 kernel:   node   0: [mem 0x00000000d5a00000-0x00000000ddffffff]
+1791921887.056348 dgx02 kernel:   node   0: [mem 0x00000000e0000000-0x00000000e001ffff]
+1791921887.056357 dgx02 kernel:   node   0: [mem 0x00000000e0020000-0x00000000f9ffffff]
+1791921887.056366 dgx02 kernel:   node   0: [mem 0x00000000fa000000-0x00000000fa001fff]
+1791921887.056374 dgx02 kernel:   node   0: [mem 0x00000000fa002000-0x00000000fbceffff]
+1791921887.056383 dgx02 kernel:   node   0: [mem 0x00000000fbcf0000-0x00000000ffd1ffff]
+1791921887.056393 dgx02 kernel:   node   0: [mem 0x00000000ffd20000-0x000000027fffffff]
+1791921887.056402 dgx02 kernel:   node   0: [mem 0x0000000280000000-0x00000003237fffff]
+1791921887.056411 dgx02 kernel:   node   0: [mem 0x0000000323800000-0x000000207df6ffff]
+1791921887.056419 dgx02 kernel:   node   0: [mem 0x000000207df70000-0x000000207fffffff]
+1791921887.056428 dgx02 kernel: Initmem setup node 0 [mem 0x0000000080000000-0x000000207fffffff]
+1791921887.056437 dgx02 kernel: On node 0, zone DMA: 255 pages in unavailable ranges
+1791921887.056447 dgx02 kernel: On node 0, zone DMA: 3968 pages in unavailable ranges
+1791921887.056456 dgx02 kernel: On node 0, zone DMA: 8064 pages in unavailable ranges
+1791921887.056465 dgx02 kernel: On node 0, zone DMA: 32 pages in unavailable ranges
+1791921887.056473 dgx02 kernel: On node 0, zone DMA: 5632 pages in unavailable ranges
+1791921887.056483 dgx02 kernel: On node 0, zone DMA: 38400 pages in unavailable ranges
+1791921887.056492 dgx02 kernel: On node 0, zone DMA: 8192 pages in unavailable ranges
+1791921887.056501 dgx02 kernel: cma: Reserved 128 MiB at 0x00000000f2000000
+1791921887.056509 dgx02 kernel: crashkernel size resulted in zero bytes
+1791921887.056518 dgx02 kernel: psci: probing for conduit method from ACPI.
+1791921887.056527 dgx02 kernel: psci: PSCIv1.1 detected in firmware.
+1791921887.056536 dgx02 kernel: psci: Using standard PSCI v0.2 function IDs
+1791921887.056546 dgx02 kernel: psci: MIGRATE_INFO_TYPE not supported.
+1791921887.056557 dgx02 kernel: psci: SMC Calling Convention v1.5
+1791921887.056566 dgx02 kernel: percpu: Embedded 57 pages/cpu s108056 r8192 d117224 u233472
+1791921887.056575 dgx02 kernel: pcpu-alloc: s108056 r8192 d117224 u233472 alloc=57*4096
+1791921887.056584 dgx02 kernel: pcpu-alloc: [0] 00 [0] 01 [0] 02 [0] 03 [0] 04 [0] 05 [0] 06 [0] 07 
+1791921887.056593 dgx02 kernel: pcpu-alloc: [0] 08 [0] 09 [0] 10 [0] 11 [0] 12 [0] 13 [0] 14 [0] 15 
+1791921887.056602 dgx02 kernel: pcpu-alloc: [0] 16 [0] 17 [0] 18 [0] 19 
+1791921887.056611 dgx02 kernel: Detected PIPT I-cache on CPU0
+1791921887.056620 dgx02 kernel: CPU features: detected: Address authentication (architected QARMA3 algorithm)
+1791921887.056629 dgx02 kernel: CPU features: detected: GICv3 CPU interface
+1791921887.056638 dgx02 kernel: CPU features: detected: HCRX_EL2 register
+1791921887.056647 dgx02 kernel: CPU features: detected: Virtualization Host Extensions
+1791921887.056656 dgx02 kernel: CPU features: detected: Spectre-v4
+1791921887.056664 dgx02 kernel: CPU features: detected: Spectre-BHB
+1791921887.056673 dgx02 kernel: CPU features: detected: SSBS not fully self-synchronizing
+1791921887.056683 dgx02 kernel: alternatives: applying boot alternatives
+1791921887.056693 dgx02 kernel: Kernel command line: BOOT_IMAGE=/boot/vmlinuz-6.17.0-1029-nvidia root=UUID=c42af0c3-d281-40ac-aa50-f8c531fa1534 ro init_on_alloc=0 iommu.passthrough=0 console=tty0 plymouth.ignore-serial-consoles plymouth.use-simpledrm earlycon=uart,mmio32,0x16A00000 console=tty0 console=ttyS0,921600 crashkernel=1G-:0M quiet splash initcall_blacklist=tegra234_cbb_init pci=pcie_bus_safe vt.handoff=7
+1791921887.056705 dgx02 kernel: blacklisting initcall tegra234_cbb_init
+1791921887.056714 dgx02 kernel: Unknown kernel command line parameters "splash", will be passed to user space.
+1791921887.056723 dgx02 kernel: printk: log buffer data + meta data: 262144 + 917504 = 1179648 bytes
+1791921887.056732 dgx02 kernel: Dentry cache hash table entries: 8388608 (order: 14, 67108864 bytes, linear)
+1791921887.056741 dgx02 kernel: Inode-cache hash table entries: 4194304 (order: 13, 33554432 bytes, linear)
+1791921887.056751 dgx02 kernel: software IO TLB: area num 32.
+1791921887.056760 dgx02 kernel: software IO TLB: mapped [mem 0x00000000ee000000-0x00000000f2000000] (64MB)
+1791921887.056769 dgx02 kernel: Fallback order for Node 0: 0 
+1791921887.056777 dgx02 kernel: Built 1 zonelists, mobility grouping on.  Total pages: 33457121
+1791921887.056786 dgx02 kernel: Policy zone: Normal
+1791921887.056795 dgx02 kernel: mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+1791921887.056804 dgx02 kernel: SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=20, Nodes=1
+1791921887.056813 dgx02 kernel: ftrace: allocating 69235 entries in 272 pages
+1791921887.056823 dgx02 kernel: ftrace: allocated 272 pages with 2 groups
+1791921887.056832 dgx02 kernel: Dynamic Preempt: none
+1791921887.056841 dgx02 kernel: rcu: Preemptible hierarchical RCU implementation.
+1791921887.056852 dgx02 kernel: rcu:         RCU restricting CPUs from NR_CPUS=512 to nr_cpu_ids=20.
+1791921887.056861 dgx02 kernel:         Trampoline variant of Tasks RCU enabled.
+1791921887.056870 dgx02 kernel:         Rude variant of Tasks RCU enabled.
+1791921887.056879 dgx02 kernel:         Tracing variant of Tasks RCU enabled.
+1791921887.056888 dgx02 kernel: rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+1791921887.056897 dgx02 kernel: rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=20
+1791921887.056905 dgx02 kernel: RCU Tasks: Setting shift to 5 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=20.
+1791921887.056916 dgx02 kernel: RCU Tasks Rude: Setting shift to 5 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=20.
+1791921887.056931 dgx02 kernel: RCU Tasks Trace: Setting shift to 5 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=20.
+1791921887.056940 dgx02 kernel: NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+1791921887.056949 dgx02 kernel: GICv3: GIC: Using split EOI/Deactivate mode
+1791921887.056958 dgx02 kernel: GICv3: 960 SPIs implemented
+1791921887.056967 dgx02 kernel: GICv3: 672 Extended SPIs implemented
+1791921887.056976 dgx02 kernel: Root IRQ handler: gic_handle_irq
+1791921887.056985 dgx02 kernel: GICv3: GICv3 features: 16 PPIs, DirectLPI
+1791921887.056996 dgx02 kernel: GICv3: GICv4 features: DirectLPI RVPEID Valid+Dirty 
+1791921887.057005 dgx02 kernel: GICv3: GICD_CTLR.DS=0, SCR_EL3.FIQ=1
+1791921887.057018 dgx02 kernel: GICv3: CPU0: found redistributor 0 region 0:0x0000000006880000
+1791921887.057027 dgx02 kernel: ITS [mem 0x06840000-0x0685ffff]
+1791921887.057036 dgx02 kernel: ITS@0x0000000006840000: Single VMOVP capable
+1791921887.057045 dgx02 kernel: ITS@0x0000000006840000: Using GICv4.1 mode 00000000 00000001
+1791921887.057054 dgx02 kernel: ITS@0x0000000006840000: allocated 8192 Devices @100330000 (indirect, esz 8, psz 64K, shr 1)
+1791921887.057063 dgx02 kernel: ITS@0x0000000006840000: allocated 32768 Interrupt Collections @100340000 (flat, esz 2, psz 64K, shr 1)
+1791921887.057072 dgx02 kernel: ITS@0x0000000006840000: allocated 8192 Virtual CPUs @100350000 (flat, esz 8, psz 64K, shr 1)
+1791921887.057081 dgx02 kernel: GICv3: using LPI property table @0x0000000100360000
+1791921887.057090 dgx02 kernel: ITS: Using DirectLPI for VPE invalidation
+1791921887.057099 dgx02 kernel: ITS: Enabling GICv4 support
+1791921887.057108 dgx02 kernel: GICv3: CPU0: using allocated LPI pending table @0x0000000100370000
+1791921887.057119 dgx02 kernel: rcu: srcu_init: Setting srcu_struct sizes based on contention.
+1791921887.057128 dgx02 kernel: ACPI GTDT: found 1 memory-mapped timer block(s).
+1791921887.057137 dgx02 kernel: arch_timer: cp15 and mmio timer(s) running at 1000.00MHz (phys/virt).
+1791921887.057146 dgx02 kernel: clocksource: arch_sys_counter: mask: 0x1fffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+1791921887.057156 dgx02 kernel: sched_clock: 61 bits at 1000MHz, resolution 1ns, wraps every 4398046511103ns
+1791921887.057165 dgx02 kernel: Console: colour dummy device 80x25
+1791921887.057175 dgx02 kernel: printk: legacy console [tty0] enabled
+1791921887.057186 dgx02 kernel: ACPI: Core revision 20250404
+1791921887.057196 dgx02 kernel: Calibrating delay loop (skipped), value calculated using timer frequency.. 2000.00 BogoMIPS (lpj=1000000)
+1791921887.057205 dgx02 kernel: pid_max: default: 32768 minimum: 301
+1791921887.057215 dgx02 kernel: LSM: initializing lsm=lockdown,capability,landlock,yama,apparmor,ima,evm
+1791921887.057224 dgx02 kernel: landlock: Up and running.
+1791921887.057233 dgx02 kernel: Yama: becoming mindful.
+1791921887.057244 dgx02 kernel: AppArmor: AppArmor initialized
+1791921887.057253 dgx02 kernel: Mount-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+1791921887.057263 dgx02 kernel: Mountpoint-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+1791921887.057272 dgx02 kernel: rcu: Hierarchical SRCU implementation.
+1791921887.057282 dgx02 kernel: rcu:         Max phase no-delay instances is 400.
+1791921887.057291 dgx02 kernel: Timer migration: 2 hierarchy levels; 8 children per group; 2 crossnode level
+1791921887.057301 dgx02 kernel: fsl-mc MSI: ITS@0x6840000 domain created
+1791921887.057310 dgx02 kernel: Remapping and enabling EFI services.
+1791921887.057319 dgx02 kernel: smp: Bringing up secondary CPUs ...
+1791921887.057328 dgx02 kernel: Detected PIPT I-cache on CPU1
+1791921887.057337 dgx02 kernel: GICv3: CPU1: found redistributor 100 region 0:0x00000000068c0000
+1791921887.057347 dgx02 kernel: GICv3: CPU1: using allocated LPI pending table @0x0000000100380000
+1791921887.057358 dgx02 kernel: CPU1: Booted secondary processor 0x0000000100 [0x410fd871]
+1791921887.057367 dgx02 kernel: Detected PIPT I-cache on CPU2
+1791921887.057377 dgx02 kernel: GICv3: CPU2: found redistributor 200 region 0:0x0000000006900000
+1791921887.057386 dgx02 kernel: GICv3: CPU2: using allocated LPI pending table @0x0000000100390000
+1791921887.057396 dgx02 kernel: CPU2: Booted secondary processor 0x0000000200 [0x410fd871]
+1791921887.057405 dgx02 kernel: Detected PIPT I-cache on CPU3
+1791921887.057414 dgx02 kernel: GICv3: CPU3: found redistributor 300 region 0:0x0000000006940000
+1791921887.057424 dgx02 kernel: GICv3: CPU3: using allocated LPI pending table @0x00000001003a0000
+1791921887.057434 dgx02 kernel: CPU3: Booted secondary processor 0x0000000300 [0x410fd871]
+1791921887.057444 dgx02 kernel: Detected PIPT I-cache on CPU4
+1791921887.057454 dgx02 kernel: GICv3: CPU4: found redistributor 400 region 0:0x0000000006980000
+1791921887.057463 dgx02 kernel: GICv3: CPU4: using allocated LPI pending table @0x00000001003b0000
+1791921887.057474 dgx02 kernel: CPU4: Booted secondary processor 0x0000000400 [0x410fd871]
+1791921887.057483 dgx02 kernel: CPU features: detected: Broken broadcast TLBI completion
+1791921887.057492 dgx02 kernel: Detected PIPT I-cache on CPU5
+1791921887.057502 dgx02 kernel: GICv3: CPU5: found redistributor 500 region 0:0x00000000069c0000
+1791921887.057512 dgx02 kernel: GICv3: CPU5: using allocated LPI pending table @0x00000001003c0000
+1791921887.057521 dgx02 kernel: CPU5: Booted secondary processor 0x0000000500 [0x410fd851]
+1791921887.057530 dgx02 kernel: Detected PIPT I-cache on CPU6
+1791921887.057539 dgx02 kernel: GICv3: CPU6: found redistributor 600 region 0:0x0000000006a00000
+1791921887.057548 dgx02 kernel: GICv3: CPU6: using allocated LPI pending table @0x00000001003d0000
+1791921887.057558 dgx02 kernel: CPU6: Booted secondary processor 0x0000000600 [0x410fd851]
+1791921887.057567 dgx02 kernel: Detected PIPT I-cache on CPU7
+1791921887.057582 dgx02 kernel: GICv3: CPU7: found redistributor 700 region 0:0x0000000006a40000
+1791921887.057593 dgx02 kernel: GICv3: CPU7: using allocated LPI pending table @0x00000001003e0000
+1791921887.057603 dgx02 kernel: CPU7: Booted secondary processor 0x0000000700 [0x410fd851]
+1791921887.057612 dgx02 kernel: Detected PIPT I-cache on CPU8
+1791921887.057622 dgx02 kernel: GICv3: CPU8: found redistributor 800 region 0:0x0000000006a80000
+1791921887.057631 dgx02 kernel: GICv3: CPU8: using allocated LPI pending table @0x00000001003f0000
+1791921887.057640 dgx02 kernel: CPU8: Booted secondary processor 0x0000000800 [0x410fd851]
+1791921887.057650 dgx02 kernel: Detected PIPT I-cache on CPU9
+1791921887.057659 dgx02 kernel: GICv3: CPU9: found redistributor 900 region 0:0x0000000006ac0000
+1791921887.057668 dgx02 kernel: GICv3: CPU9: using allocated LPI pending table @0x0000000100400000
+1791921887.057677 dgx02 kernel: CPU9: Booted secondary processor 0x0000000900 [0x410fd851]
+1791921887.057687 dgx02 kernel: Detected PIPT I-cache on CPU10
+1791921887.057696 dgx02 kernel: GICv3: CPU10: found redistributor 10000 region 0:0x0000000006b00000
+1791921887.057707 dgx02 kernel: GICv3: CPU10: using allocated LPI pending table @0x0000000100410000
+1791921887.057717 dgx02 kernel: CPU10: Booted secondary processor 0x0000010000 [0x410fd871]
+1791921887.057726 dgx02 kernel: Detected PIPT I-cache on CPU11
+1791921887.057735 dgx02 kernel: GICv3: CPU11: found redistributor 10100 region 0:0x0000000006b40000
+1791921887.057745 dgx02 kernel: GICv3: CPU11: using allocated LPI pending table @0x0000000100420000
+1791921887.057754 dgx02 kernel: CPU11: Booted secondary processor 0x0000010100 [0x410fd871]
+1791921887.057764 dgx02 kernel: Detected PIPT I-cache on CPU12
+1791921887.057773 dgx02 kernel: GICv3: CPU12: found redistributor 10200 region 0:0x0000000006b80000
+1791921887.057783 dgx02 kernel: GICv3: CPU12: using allocated LPI pending table @0x0000000100430000
+1791921887.057792 dgx02 kernel: CPU12: Booted secondary processor 0x0000010200 [0x410fd871]
+1791921887.057802 dgx02 kernel: Detected PIPT I-cache on CPU13
+1791921887.057813 dgx02 kernel: GICv3: CPU13: found redistributor 10300 region 0:0x0000000006bc0000
+1791921887.057822 dgx02 kernel: GICv3: CPU13: using allocated LPI pending table @0x0000000100440000
+1791921887.057832 dgx02 kernel: CPU13: Booted secondary processor 0x0000010300 [0x410fd871]
+1791921887.057841 dgx02 kernel: Detected PIPT I-cache on CPU14
+1791921887.057851 dgx02 kernel: GICv3: CPU14: found redistributor 10400 region 0:0x0000000006c00000
+1791921887.057860 dgx02 kernel: GICv3: CPU14: using allocated LPI pending table @0x0000000100450000
+1791921887.057869 dgx02 kernel: CPU14: Booted secondary processor 0x0000010400 [0x410fd871]
+1791921887.057878 dgx02 kernel: Detected PIPT I-cache on CPU15
+1791921887.057887 dgx02 kernel: GICv3: CPU15: found redistributor 10500 region 0:0x0000000006c40000
+1791921887.057897 dgx02 kernel: GICv3: CPU15: using allocated LPI pending table @0x0000000100460000
+1791921887.057906 dgx02 kernel: CPU15: Booted secondary processor 0x0000010500 [0x410fd851]
+1791921887.057915 dgx02 kernel: Detected PIPT I-cache on CPU16
+1791921887.057926 dgx02 kernel: GICv3: CPU16: found redistributor 10600 region 0:0x0000000006c80000
+1791921887.057935 dgx02 kernel: GICv3: CPU16: using allocated LPI pending table @0x0000000100470000
+1791921887.057944 dgx02 kernel: CPU16: Booted secondary processor 0x0000010600 [0x410fd851]
+1791921887.057953 dgx02 kernel: Detected PIPT I-cache on CPU17
+1791921887.057963 dgx02 kernel: GICv3: CPU17: found redistributor 10700 region 0:0x0000000006cc0000
+1791921887.057972 dgx02 kernel: GICv3: CPU17: using allocated LPI pending table @0x0000000100480000
+1791921887.057982 dgx02 kernel: CPU17: Booted secondary processor 0x0000010700 [0x410fd851]
+1791921887.057992 dgx02 kernel: Detected PIPT I-cache on CPU18
+1791921887.058001 dgx02 kernel: GICv3: CPU18: found redistributor 10800 region 0:0x0000000006d00000
+1791921887.058013 dgx02 kernel: GICv3: CPU18: using allocated LPI pending table @0x0000000100490000
+1791921887.058022 dgx02 kernel: CPU18: Booted secondary processor 0x0000010800 [0x410fd851]
+1791921887.058033 dgx02 kernel: Detected PIPT I-cache on CPU19
+1791921887.058042 dgx02 kernel: GICv3: CPU19: found redistributor 10900 region 0:0x0000000006d40000
+1791921887.058052 dgx02 kernel: GICv3: CPU19: using allocated LPI pending table @0x00000001004a0000
+1791921887.058061 dgx02 kernel: CPU19: Booted secondary processor 0x0000010900 [0x410fd851]
+1791921887.058071 dgx02 kernel: smp: Brought up 1 node, 20 CPUs
+1791921887.058080 dgx02 kernel: SMP: Total of 20 processors activated.
+1791921887.058089 dgx02 kernel: CPU: All CPU(s) started at EL2
+1791921887.058098 dgx02 kernel: CPU features: detected: Branch Target Identification
+1791921887.058108 dgx02 kernel: CPU features: detected: ARMv8.4 Translation Table Level
+1791921887.058117 dgx02 kernel: CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+1791921887.058127 dgx02 kernel: CPU features: detected: Common not Private translations
+1791921887.058136 dgx02 kernel: CPU features: detected: CRC32 instructions
+1791921887.058147 dgx02 kernel: CPU features: detected: Data cache clean to Point of Deep Persistence
+1791921887.058156 dgx02 kernel: CPU features: detected: Data cache clean to Point of Persistence
+1791921887.058166 dgx02 kernel: CPU features: detected: Data independent timing control (DIT)
+1791921887.058175 dgx02 kernel: CPU features: detected: E0PD
+1791921887.058190 dgx02 kernel: CPU features: detected: Enhanced Counter Virtualization
+1791921887.058200 dgx02 kernel: CPU features: detected: Enhanced Counter Virtualization (CNTPOFF)
+1791921887.058209 dgx02 kernel: CPU features: detected: Enhanced Privileged Access Never
+1791921887.058218 dgx02 kernel: CPU features: detected: Enhanced Virtualization Traps
+1791921887.058228 dgx02 kernel: CPU features: detected: Fine Grained Traps
+1791921887.058237 dgx02 kernel: CPU features: detected: Generic authentication (architected QARMA3 algorithm)
+1791921887.058246 dgx02 kernel: CPU features: detected: RCpc load-acquire (LDAPR)
+1791921887.058257 dgx02 kernel: CPU features: detected: LSE atomic instructions
+1791921887.058266 dgx02 kernel: CPU features: detected: Privileged Access Never
+1791921887.058275 dgx02 kernel: CPU features: detected: PMUv3
+1791921887.058285 dgx02 kernel: CPU features: detected: RAS Extension Support
+1791921887.058294 dgx02 kernel: CPU features: detected: RASv1p1 Extension Support
+1791921887.058304 dgx02 kernel: CPU features: detected: Speculation barrier (SB)
+1791921887.058314 dgx02 kernel: CPU features: detected: Stage-2 Force Write-Back
+1791921887.058323 dgx02 kernel: CPU features: detected: TLB range maintenance instructions
+1791921887.058332 dgx02 kernel: CPU features: detected: WFx with timeout
+1791921887.058341 dgx02 kernel: CPU features: detected: Memory Partitioning And Monitoring
+1791921887.058351 dgx02 kernel: CPU features: detected: Memory Partitioning And Monitoring Virtualisation
+1791921887.058360 dgx02 kernel: CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+1791921887.058371 dgx02 kernel: CPU features: detected: Scalable Vector Extension
+1791921887.058380 dgx02 kernel: alternatives: applying system-wide alternatives
+1791921887.058389 dgx02 kernel: CPU features: detected: Activity Monitors Unit (AMU) on CPU0-19
+1791921887.058400 dgx02 kernel: CPU features: detected: Hardware dirty bit management on CPU0-19
+1791921887.058410 dgx02 kernel: SVE: maximum available vector length 16 bytes per vector
+1791921887.058420 dgx02 kernel: SVE: default vector length 16 bytes per vector
+1791921887.058430 dgx02 kernel: Memory: 127282580K/133828484K available (26048K kernel code, 6390K rwdata, 19344K rodata, 14784K init, 1192K bss, 6390108K reserved, 131072K cma-reserved)
+1791921887.058439 dgx02 kernel: devtmpfs: initialized
+1791921887.058448 dgx02 kernel: initcall tegra234_cbb_init blacklisted
+1791921887.058458 dgx02 kernel: clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+1791921887.058468 dgx02 kernel: posixtimers hash table entries: 16384 (order: 6, 262144 bytes, linear)
+1791921887.058479 dgx02 kernel: futex hash table entries: 8192 (524288 bytes on 1 NUMA nodes, total 512 KiB, linear).
+1791921887.058488 dgx02 kernel: 2G module region forced by RANDOMIZE_MODULE_REGION_FULL
+1791921887.058498 dgx02 kernel: 0 pages in range for non-PLT usage
+1791921887.058507 dgx02 kernel: 507280 pages in range for PLT usage
+1791921887.058516 dgx02 kernel: pinctrl core: initialized pinctrl subsystem
+1791921887.058525 dgx02 kernel: SMBIOS 3.3.0 present.
+1791921887.058535 dgx02 kernel: DMI: ASUSTeK COMPUTER INC. GX10/GX10, BIOS GX10DGX.0105.2026.0505.1153 05/05/2026
+1791921887.058545 dgx02 kernel: DMI: Memory slots populated: 1/1
+1791921887.058554 dgx02 kernel: NET: Registered PF_NETLINK/PF_ROUTE protocol family
+1791921887.058564 dgx02 kernel: DMA: preallocated 16384 KiB GFP_KERNEL pool for atomic allocations
+1791921887.058573 dgx02 kernel: DMA: preallocated 16384 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+1791921887.058582 dgx02 kernel: DMA: preallocated 16384 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+1791921887.058593 dgx02 kernel: audit: initializing netlink subsys (disabled)
+1791921887.058603 dgx02 kernel: audit: type=2000 audit(0.039:1): state=initialized audit_enabled=0 res=1
+1791921887.058614 dgx02 kernel: thermal_sys: Registered thermal governor 'fair_share'
+1791921887.058624 dgx02 kernel: thermal_sys: Registered thermal governor 'bang_bang'
+1791921887.058633 dgx02 kernel: thermal_sys: Registered thermal governor 'step_wise'
+1791921887.058642 dgx02 kernel: thermal_sys: Registered thermal governor 'user_space'
+1791921887.058652 dgx02 kernel: thermal_sys: Registered thermal governor 'power_allocator'
+1791921887.058661 dgx02 kernel: cpuidle: using governor ladder
+1791921887.058670 dgx02 kernel: cpuidle: using governor menu
+1791921887.058679 dgx02 kernel: hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+1791921887.058689 dgx02 kernel: ASID allocator initialised with 65536 entries
+1791921887.058701 dgx02 kernel: acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+1791921887.058710 dgx02 kernel: Serial: AMBA PL011 UART driver
+1791921887.058720 dgx02 kernel: HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+1791921887.058729 dgx02 kernel: HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+1791921887.058738 dgx02 kernel: HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+1791921887.058748 dgx02 kernel: HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+1791921887.058757 dgx02 kernel: HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+1791921887.058766 dgx02 kernel: HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+1791921887.058776 dgx02 kernel: HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+1791921887.058785 dgx02 kernel: HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+1791921887.058795 dgx02 kernel: ACPI: Added _OSI(Module Device)
+1791921887.058804 dgx02 kernel: ACPI: Added _OSI(Processor Device)
+1791921887.058814 dgx02 kernel: ACPI: Added _OSI(Processor Aggregator Device)
+1791921887.058824 dgx02 kernel: ACPI: 5 ACPI AML tables successfully acquired and loaded
+1791921887.058834 dgx02 kernel: ACPI: USB4 _OSC: OS supports USB3+ DisplayPort+ PCIe+ XDomain+
+1791921887.058844 dgx02 kernel: ACPI: USB4 _OSC: OS controls USB3+ DisplayPort+ PCIe+ XDomain+
+1791921887.058853 dgx02 kernel: ACPI: Interpreter enabled
+1791921887.058863 dgx02 kernel: ACPI: Using GIC for interrupt routing
+1791921887.058872 dgx02 kernel: ACPI: MCFG table detected, 16 entries
+1791921887.058882 dgx02 kernel: ACPI: \_SB_.P0RR: New power resource
+1791921887.058891 dgx02 kernel: ACPI: \_SB_.R0RR: New power resource
+1791921887.058900 dgx02 kernel: ACPI: \_SB_.P2RR: New power resource
+1791921887.058910 dgx02 kernel: ACPI: \_SB_.R2RR: New power resource
+1791921887.058919 dgx02 kernel: ACPI: \_SB_.P4RR: New power resource
+1791921887.058929 dgx02 kernel: ACPI: \_SB_.R4RR: New power resource
+1791921887.058938 dgx02 kernel: ACPI: \_SB_.P6RR: New power resource
+1791921887.058948 dgx02 kernel: ACPI: \_SB_.R6RR: New power resource
+1791921887.058958 dgx02 kernel: ACPI: \_SB_.P7RR: New power resource
+1791921887.058967 dgx02 kernel: ACPI: \_SB_.R7RR: New power resource
+1791921887.058976 dgx02 kernel: ACPI: \_SB_.P8RR: New power resource
+1791921887.058985 dgx02 kernel: ACPI: \_SB_.R8RR: New power resource
+1791921887.058994 dgx02 kernel: ACPI: \_SB_.P9RR: New power resource
+1791921887.059004 dgx02 kernel: ACPI: \_SB_.R9RR: New power resource
+1791921887.059017 dgx02 kernel: ACPI: \_SB_.USB5.RHUB.PRT2.PWFR: New power resource
+1791921887.059026 dgx02 kernel: ACPI: \_SB_.PBRR: New power resource
+1791921887.059035 dgx02 kernel: ACPI: \_SB_.RBRR: New power resource
+1791921887.059046 dgx02 kernel: ACPI: \_SB_.PCRR: New power resource
+1791921887.059055 dgx02 kernel: ACPI: \_SB_.RCRR: New power resource
+1791921887.059064 dgx02 kernel: ACPI: \_SB_.PDRR: New power resource
+1791921887.059073 dgx02 kernel: ACPI: \_SB_.RDRR: New power resource
+1791921887.059083 dgx02 kernel: ACPI: \_SB_.PERR: New power resource
+1791921887.059091 dgx02 kernel: ACPI: \_SB_.RERR: New power resource
+1791921887.059100 dgx02 kernel: ACPI: \_SB_.PFRR: New power resource
+1791921887.059109 dgx02 kernel: ACPI: CPU0 has been hot-added
+1791921887.059119 dgx02 kernel: ACPI: CPU1 has been hot-added
+1791921887.059128 dgx02 kernel: ACPI: CPU2 has been hot-added
+1791921887.059137 dgx02 kernel: ACPI: CPU3 has been hot-added
+1791921887.059147 dgx02 kernel: ACPI: CPU4 has been hot-added
+1791921887.059156 dgx02 kernel: ACPI: CPU5 has been hot-added
+1791921887.059166 dgx02 kernel: ACPI: CPU6 has been hot-added
+1791921887.059183 dgx02 kernel: ACPI: CPU7 has been hot-added
+1791921887.059194 dgx02 kernel: ACPI: CPU8 has been hot-added
+1791921887.059203 dgx02 kernel: ACPI: CPU9 has been hot-added
+1791921887.059212 dgx02 kernel: ACPI: CPU10 has been hot-added
+1791921887.059223 dgx02 kernel: ACPI: CPU11 has been hot-added
+1791921887.059232 dgx02 kernel: ACPI: CPU12 has been hot-added
+1791921887.059242 dgx02 kernel: ACPI: CPU13 has been hot-added
+1791921887.059251 dgx02 kernel: ACPI: CPU14 has been hot-added
+1791921887.059260 dgx02 kernel: ACPI: CPU15 has been hot-added
+1791921887.059269 dgx02 kernel: ACPI: CPU16 has been hot-added
+1791921887.059279 dgx02 kernel: ACPI: CPU17 has been hot-added
+1791921887.059288 dgx02 kernel: ACPI: CPU18 has been hot-added
+1791921887.059297 dgx02 kernel: ACPI: CPU19 has been hot-added
+1791921887.059308 dgx02 kernel: ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-0f])
+1791921887.059481 dgx02 kernel: acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+1791921887.059609 dgx02 kernel: acpi PNP0A08:00: _OSC: platform does not support [SHPCHotplug DPC]
+1791921887.059716 dgx02 kernel: acpi PNP0A08:00: _OSC: OS now controls [PCIeHotplug PME AER PCIeCapability LTR]
+1791921887.059819 dgx02 kernel: acpi PNP0A08:00: ECAM area [mem 0xf300000000-0xf300ffffff] reserved by PNP0C02:00
+1791921887.059922 dgx02 kernel: acpi PNP0A08:00: ECAM at [mem 0xf300000000-0xf300ffffff] for [bus 00-0f]
+1791921887.059933 dgx02 kernel: ACPI: Remapped I/O 0x0000000067000000 to [io  0x0000-0xffff window]
+1791921887.059943 dgx02 kernel: PCI host bridge to bus 0000:00
+1791921887.060057 dgx02 kernel: pci_bus 0000:00: root bus resource [io  0x0000-0xffff window] (bus address [0x67000000-0x6700ffff])
+1791921887.060151 dgx02 kernel: pci_bus 0000:00: root bus resource [mem 0x67010000-0x697fffff window]
+1791921887.060239 dgx02 kernel: pci_bus 0000:00: root bus resource [mem 0x7500000000-0x82ffffffff window]
+1791921887.060326 dgx02 kernel: pci_bus 0000:00: root bus resource [bus 00-0f]
+1791921887.060336 dgx02 kernel: PCI: OF: of_root node is NULL, cannot create PCI host bridge node
+1791921887.060465 dgx02 kernel: pci 0000:00:00.0: [10de:22ce] type 01 class 0x060400 PCIe Root Port
+1791921887.060582 dgx02 kernel: pci 0000:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.060697 dgx02 kernel: pci 0000:00:00.0: PME# supported from D0 D3hot D3cold
+1791921887.060824 dgx02 kernel: pci 0000:01:00.0: [15b3:1021] type 00 class 0x020000 PCIe Endpoint
+1791921887.060948 dgx02 kernel: pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x01ffffff 64bit pref]
+1791921887.061131 dgx02 kernel: pci 0000:01:00.0: ROM [mem 0x00000000-0x000fffff pref]
+1791921887.061252 dgx02 kernel: pci 0000:01:00.0: PME# supported from D3cold
+1791921887.061373 dgx02 kernel: pci 0000:01:00.0: VF BAR 0 [mem 0x00000000-0x000fffff 64bit pref]
+1791921887.061491 dgx02 kernel: pci 0000:01:00.0: VF BAR 0 [mem 0x00000000-0x007fffff 64bit pref]: contains BAR 0 for 8 VFs
+1791921887.061613 dgx02 kernel: pci 0000:01:00.1: [15b3:1021] type 00 class 0x020000 PCIe Endpoint
+1791921887.061735 dgx02 kernel: pci 0000:01:00.1: BAR 0 [mem 0x00000000-0x01ffffff 64bit pref]
+1791921887.061854 dgx02 kernel: pci 0000:01:00.1: ROM [mem 0x00000000-0x000fffff pref]
+1791921887.061969 dgx02 kernel: pci 0000:01:00.1: PME# supported from D3cold
+1791921887.062087 dgx02 kernel: pci 0000:01:00.1: VF BAR 0 [mem 0x00000000-0x000fffff 64bit pref]
+1791921887.062202 dgx02 kernel: pci 0000:01:00.1: VF BAR 0 [mem 0x00000000-0x007fffff 64bit pref]: contains BAR 0 for 8 VFs
+1791921887.062292 dgx02 kernel: pci_bus 0000:00: max bus depth: 1 pci_try_num: 2
+1791921887.062407 dgx02 kernel: pci 0000:00:00.0: bridge window [mem 0x7500000000-0x7505ffffff 64bit pref]: assigned
+1791921887.062519 dgx02 kernel: pci 0000:00:00.0: bridge window [mem 0x67100000-0x672fffff]: assigned
+1791921887.062634 dgx02 kernel: pci 0000:01:00.0: BAR 0 [mem 0x7500000000-0x7501ffffff 64bit pref]: assigned
+1791921887.062761 dgx02 kernel: pci 0000:01:00.1: BAR 0 [mem 0x7502000000-0x7503ffffff 64bit pref]: assigned
+1791921887.062878 dgx02 kernel: pci 0000:01:00.0: ROM [mem 0x67100000-0x671fffff pref]: assigned
+1791921887.062995 dgx02 kernel: pci 0000:01:00.0: VF BAR 0 [mem 0x7504000000-0x75047fffff 64bit pref]: assigned
+1791921887.063113 dgx02 kernel: pci 0000:01:00.1: ROM [mem 0x67200000-0x672fffff pref]: assigned
+1791921887.063228 dgx02 kernel: pci 0000:01:00.1: VF BAR 0 [mem 0x7504800000-0x7504ffffff 64bit pref]: assigned
+1791921887.063340 dgx02 kernel: pci 0000:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.063453 dgx02 kernel: pci 0000:00:00.0:   bridge window [mem 0x67100000-0x672fffff]
+1791921887.063566 dgx02 kernel: pci 0000:00:00.0:   bridge window [mem 0x7500000000-0x7505ffffff 64bit pref]
+1791921887.063652 dgx02 kernel: pci_bus 0000:00: resource 4 [io  0x0000-0xffff window]
+1791921887.063738 dgx02 kernel: pci_bus 0000:00: resource 5 [mem 0x67010000-0x697fffff window]
+1791921887.063823 dgx02 kernel: pci_bus 0000:00: resource 6 [mem 0x7500000000-0x82ffffffff window]
+1791921887.063921 dgx02 kernel: pci_bus 0000:01: resource 1 [mem 0x67100000-0x672fffff]
+1791921887.064015 dgx02 kernel: pci_bus 0000:01: resource 2 [mem 0x7500000000-0x7505ffffff 64bit pref]
+1791921887.064127 dgx02 kernel: pci 0000:00:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  512
+1791921887.064245 dgx02 kernel: pci 0000:01:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  512
+1791921887.064360 dgx02 kernel: pci 0000:01:00.1: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  512
+1791921887.064371 dgx02 kernel: ACPI: PCI Root Bridge [PCI2] (domain 0002 [bus 00-0f])
+1791921887.064478 dgx02 kernel: acpi PNP0A08:01: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+1791921887.064584 dgx02 kernel: acpi PNP0A08:01: _OSC: platform does not support [SHPCHotplug DPC]
+1791921887.064687 dgx02 kernel: acpi PNP0A08:01: _OSC: OS now controls [PCIeHotplug PME AER PCIeCapability LTR]
+1791921887.064791 dgx02 kernel: acpi PNP0A08:01: ECAM area [mem 0xf320000000-0xf320ffffff] reserved by PNP0C02:00
+1791921887.064892 dgx02 kernel: acpi PNP0A08:01: ECAM at [mem 0xf320000000-0xf320ffffff] for [bus 00-0f]
+1791921887.064903 dgx02 kernel: ACPI: Remapped I/O 0x000000005d000000 to [io  0x10000-0x1ffff window]
+1791921887.064913 dgx02 kernel: PCI host bridge to bus 0002:00
+1791921887.065004 dgx02 kernel: pci_bus 0002:00: root bus resource [io  0x10000-0x1ffff window] (bus address [0x5d000000-0x5d00ffff])
+1791921887.065095 dgx02 kernel: pci_bus 0002:00: root bus resource [mem 0x5d010000-0x5f7fffff window]
+1791921887.065184 dgx02 kernel: pci_bus 0002:00: root bus resource [mem 0x3d00000000-0x4affffffff window]
+1791921887.065270 dgx02 kernel: pci_bus 0002:00: root bus resource [bus 00-0f]
+1791921887.065281 dgx02 kernel: PCI: OF: of_root node is NULL, cannot create PCI host bridge node
+1791921887.065399 dgx02 kernel: pci 0002:00:00.0: [10de:22ce] type 01 class 0x060400 PCIe Root Port
+1791921887.065515 dgx02 kernel: pci 0002:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.065626 dgx02 kernel: pci 0002:00:00.0: PME# supported from D0 D3hot D3cold
+1791921887.065753 dgx02 kernel: pci 0002:01:00.0: [15b3:1021] type 00 class 0x020000 PCIe Endpoint
+1791921887.065869 dgx02 kernel: pci 0002:01:00.0: BAR 0 [mem 0x00000000-0x01ffffff 64bit pref]
+1791921887.065988 dgx02 kernel: pci 0002:01:00.0: ROM [mem 0x00000000-0x000fffff pref]
+1791921887.066109 dgx02 kernel: pci 0002:01:00.0: PME# supported from D3cold
+1791921887.066225 dgx02 kernel: pci 0002:01:00.0: VF BAR 0 [mem 0x00000000-0x000fffff 64bit pref]
+1791921887.066340 dgx02 kernel: pci 0002:01:00.0: VF BAR 0 [mem 0x00000000-0x007fffff 64bit pref]: contains BAR 0 for 8 VFs
+1791921887.066461 dgx02 kernel: pci 0002:01:00.1: [15b3:1021] type 00 class 0x020000 PCIe Endpoint
+1791921887.066579 dgx02 kernel: pci 0002:01:00.1: BAR 0 [mem 0x00000000-0x01ffffff 64bit pref]
+1791921887.066694 dgx02 kernel: pci 0002:01:00.1: ROM [mem 0x00000000-0x000fffff pref]
+1791921887.066809 dgx02 kernel: pci 0002:01:00.1: PME# supported from D3cold
+1791921887.066924 dgx02 kernel: pci 0002:01:00.1: VF BAR 0 [mem 0x00000000-0x000fffff 64bit pref]
+1791921887.067045 dgx02 kernel: pci 0002:01:00.1: VF BAR 0 [mem 0x00000000-0x007fffff 64bit pref]: contains BAR 0 for 8 VFs
+1791921887.067137 dgx02 kernel: pci_bus 0002:00: max bus depth: 1 pci_try_num: 2
+1791921887.067250 dgx02 kernel: pci 0002:00:00.0: bridge window [mem 0x3d00000000-0x3d05ffffff 64bit pref]: assigned
+1791921887.067364 dgx02 kernel: pci 0002:00:00.0: bridge window [mem 0x5d100000-0x5d2fffff]: assigned
+1791921887.067482 dgx02 kernel: pci 0002:01:00.0: BAR 0 [mem 0x3d00000000-0x3d01ffffff 64bit pref]: assigned
+1791921887.067604 dgx02 kernel: pci 0002:01:00.1: BAR 0 [mem 0x3d02000000-0x3d03ffffff 64bit pref]: assigned
+1791921887.067720 dgx02 kernel: pci 0002:01:00.0: ROM [mem 0x5d100000-0x5d1fffff pref]: assigned
+1791921887.067838 dgx02 kernel: pci 0002:01:00.0: VF BAR 0 [mem 0x3d04000000-0x3d047fffff 64bit pref]: assigned
+1791921887.067955 dgx02 kernel: pci 0002:01:00.1: ROM [mem 0x5d200000-0x5d2fffff pref]: assigned
+1791921887.068088 dgx02 kernel: pci 0002:01:00.1: VF BAR 0 [mem 0x3d04800000-0x3d04ffffff 64bit pref]: assigned
+1791921887.068202 dgx02 kernel: pci 0002:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.068320 dgx02 kernel: pci 0002:00:00.0:   bridge window [mem 0x5d100000-0x5d2fffff]
+1791921887.068434 dgx02 kernel: pci 0002:00:00.0:   bridge window [mem 0x3d00000000-0x3d05ffffff 64bit pref]
+1791921887.068524 dgx02 kernel: pci_bus 0002:00: resource 4 [io  0x10000-0x1ffff window]
+1791921887.068614 dgx02 kernel: pci_bus 0002:00: resource 5 [mem 0x5d010000-0x5f7fffff window]
+1791921887.068705 dgx02 kernel: pci_bus 0002:00: resource 6 [mem 0x3d00000000-0x4affffffff window]
+1791921887.068801 dgx02 kernel: pci_bus 0002:01: resource 1 [mem 0x5d100000-0x5d2fffff]
+1791921887.068902 dgx02 kernel: pci_bus 0002:01: resource 2 [mem 0x3d00000000-0x3d05ffffff 64bit pref]
+1791921887.069030 dgx02 kernel: pci 0002:00:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  512
+1791921887.069165 dgx02 kernel: pci 0002:01:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  512
+1791921887.069293 dgx02 kernel: pci 0002:01:00.1: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  512
+1791921887.069304 dgx02 kernel: ACPI: PCI Root Bridge [PCI4] (domain 0004 [bus 00-0f])
+1791921887.069430 dgx02 kernel: acpi PNP0A08:02: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+1791921887.069535 dgx02 kernel: acpi PNP0A08:02: _OSC: platform does not support [SHPCHotplug DPC]
+1791921887.069645 dgx02 kernel: acpi PNP0A08:02: _OSC: OS now controls [PCIeHotplug PME AER PCIeCapability LTR]
+1791921887.069746 dgx02 kernel: acpi PNP0A08:02: ECAM area [mem 0xf340000000-0xf340ffffff] reserved by PNP0C02:00
+1791921887.069848 dgx02 kernel: acpi PNP0A08:02: ECAM at [mem 0xf340000000-0xf340ffffff] for [bus 00-0f]
+1791921887.069859 dgx02 kernel: ACPI: Remapped I/O 0x0000000062000000 to [io  0x20000-0x2ffff window]
+1791921887.069870 dgx02 kernel: PCI host bridge to bus 0004:00
+1791921887.069965 dgx02 kernel: pci_bus 0004:00: root bus resource [io  0x20000-0x2ffff window] (bus address [0x62000000-0x6200ffff])
+1791921887.070071 dgx02 kernel: pci_bus 0004:00: root bus resource [mem 0x62010000-0x647fffff window]
+1791921887.070161 dgx02 kernel: pci_bus 0004:00: root bus resource [mem 0x5900000000-0x66ffffffff window]
+1791921887.070248 dgx02 kernel: pci_bus 0004:00: root bus resource [bus 00-0f]
+1791921887.070259 dgx02 kernel: PCI: OF: of_root node is NULL, cannot create PCI host bridge node
+1791921887.070380 dgx02 kernel: pci 0004:00:00.0: [10de:22ce] type 01 class 0x060400 PCIe Root Port
+1791921887.070512 dgx02 kernel: pci 0004:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.070638 dgx02 kernel: pci 0004:00:00.0:   bridge window [mem 0x62100000-0x621fffff]
+1791921887.070767 dgx02 kernel: pci 0004:00:00.0: PME# supported from D0 D3hot D3cold
+1791921887.070890 dgx02 kernel: pci 0004:01:00.0: [1987:5027] type 00 class 0x010802 PCIe Endpoint
+1791921887.071009 dgx02 kernel: pci 0004:01:00.0: BAR 0 [mem 0x62100000-0x62103fff 64bit]
+1791921887.071124 dgx02 kernel: pci 0004:00:00.0: bridge window [io  0x1000-0x0fff] to [bus 01-0f] add_size 1000
+1791921887.071240 dgx02 kernel: pci 0004:00:00.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 01-0f] add_size 200000 add_align 100000
+1791921887.071357 dgx02 kernel: pci 0004:00:00.0: bridge window [mem 0x00100000-0x001fffff] to [bus 01-0f] add_size 100000 add_align 100000
+1791921887.071471 dgx02 kernel: pci 0004:00:00.0: bridge window [mem 0x62100000-0x622fffff]: assigned
+1791921887.071583 dgx02 kernel: pci 0004:00:00.0: bridge window [mem 0x5900000000-0x59001fffff 64bit pref]: assigned
+1791921887.071696 dgx02 kernel: pci 0004:00:00.0: bridge window [io  0x20000-0x20fff]: assigned
+1791921887.071814 dgx02 kernel: pci 0004:01:00.0: BAR 0 [mem 0x62100000-0x62103fff 64bit]: assigned
+1791921887.071925 dgx02 kernel: pci 0004:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.072084 dgx02 kernel: pci 0004:00:00.0:   bridge window [io  0x20000-0x20fff]
+1791921887.072194 dgx02 kernel: pci 0004:00:00.0:   bridge window [mem 0x62100000-0x622fffff]
+1791921887.072305 dgx02 kernel: pci 0004:00:00.0:   bridge window [mem 0x5900000000-0x59001fffff 64bit pref]
+1791921887.072394 dgx02 kernel: pci_bus 0004:00: resource 4 [io  0x20000-0x2ffff window]
+1791921887.072481 dgx02 kernel: pci_bus 0004:00: resource 5 [mem 0x62010000-0x647fffff window]
+1791921887.072570 dgx02 kernel: pci_bus 0004:00: resource 6 [mem 0x5900000000-0x66ffffffff window]
+1791921887.072666 dgx02 kernel: pci_bus 0004:01: resource 0 [io  0x20000-0x20fff]
+1791921887.072758 dgx02 kernel: pci_bus 0004:01: resource 1 [mem 0x62100000-0x622fffff]
+1791921887.072849 dgx02 kernel: pci_bus 0004:01: resource 2 [mem 0x5900000000-0x59001fffff 64bit pref]
+1791921887.072967 dgx02 kernel: pci 0004:00:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  256
+1791921887.073088 dgx02 kernel: pci 0004:01:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  256
+1791921887.073099 dgx02 kernel: ACPI: PCI Root Bridge [PCI7] (domain 0007 [bus 00-0f])
+1791921887.073205 dgx02 kernel: acpi PNP0A08:04: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+1791921887.073307 dgx02 kernel: acpi PNP0A08:04: _OSC: platform does not support [SHPCHotplug DPC]
+1791921887.073409 dgx02 kernel: acpi PNP0A08:04: _OSC: OS now controls [PCIeHotplug PME AER PCIeCapability LTR]
+1791921887.073512 dgx02 kernel: acpi PNP0A08:04: ECAM area [mem 0xf370000000-0xf370ffffff] reserved by PNP0C02:00
+1791921887.073615 dgx02 kernel: acpi PNP0A08:04: ECAM at [mem 0xf370000000-0xf370ffffff] for [bus 00-0f]
+1791921887.073626 dgx02 kernel: ACPI: Remapped I/O 0x000000006e800000 to [io  0x30000-0x3ffff window]
+1791921887.073636 dgx02 kernel: PCI host bridge to bus 0007:00
+1791921887.073727 dgx02 kernel: pci_bus 0007:00: root bus resource [io  0x30000-0x3ffff window] (bus address [0x6e800000-0x6e80ffff])
+1791921887.073816 dgx02 kernel: pci_bus 0007:00: root bus resource [mem 0x6e810000-0x70ffffff window]
+1791921887.073903 dgx02 kernel: pci_bus 0007:00: root bus resource [mem 0x9f00000000-0xacffffffff window]
+1791921887.073991 dgx02 kernel: pci_bus 0007:00: root bus resource [bus 00-0f]
+1791921887.074003 dgx02 kernel: PCI: OF: of_root node is NULL, cannot create PCI host bridge node
+1791921887.074122 dgx02 kernel: pci 0007:00:00.0: [10de:22d0] type 01 class 0x060400 PCIe Root Port
+1791921887.074238 dgx02 kernel: pci 0007:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.074351 dgx02 kernel: pci 0007:00:00.0:   bridge window [io  0x30000-0x30fff]
+1791921887.074463 dgx02 kernel: pci 0007:00:00.0:   bridge window [mem 0x6e900000-0x6e9fffff]
+1791921887.074571 dgx02 kernel: pci 0007:00:00.0: PME# supported from D0 D3hot D3cold
+1791921887.074692 dgx02 kernel: pci 0007:01:00.0: [10ec:8127] type 00 class 0x020000 PCIe Endpoint
+1791921887.074806 dgx02 kernel: pci 0007:01:00.0: BAR 0 [io  0x30000-0x300ff]
+1791921887.074922 dgx02 kernel: pci 0007:01:00.0: BAR 2 [mem 0x6e900000-0x6e93ffff 64bit]
+1791921887.075039 dgx02 kernel: pci 0007:01:00.0: BAR 4 [mem 0x6e940000-0x6e943fff 64bit]
+1791921887.075153 dgx02 kernel: pci 0007:01:00.0: supports D1 D2
+1791921887.075269 dgx02 kernel: pci 0007:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+1791921887.075381 dgx02 kernel: pci 0007:00:00.0: bridge window [io  0x1000-0x1fff] to [bus 01-0f] add_size 1000
+1791921887.075493 dgx02 kernel: pci 0007:00:00.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 01-0f] add_size 200000 add_align 100000
+1791921887.075603 dgx02 kernel: pci 0007:00:00.0: bridge window [mem 0x00100000-0x001fffff] to [bus 01-0f] add_size 100000 add_align 100000
+1791921887.075711 dgx02 kernel: pci 0007:00:00.0: bridge window [mem 0x6e900000-0x6eafffff]: assigned
+1791921887.075820 dgx02 kernel: pci 0007:00:00.0: bridge window [mem 0x9f00000000-0x9f001fffff 64bit pref]: assigned
+1791921887.075930 dgx02 kernel: pci 0007:00:00.0: bridge window [io  0x30000-0x31fff]: assigned
+1791921887.076049 dgx02 kernel: pci 0007:01:00.0: BAR 2 [mem 0x6e900000-0x6e93ffff 64bit]: assigned
+1791921887.076162 dgx02 kernel: pci 0007:01:00.0: BAR 4 [mem 0x6e940000-0x6e943fff 64bit]: assigned
+1791921887.076280 dgx02 kernel: pci 0007:01:00.0: BAR 0 [io  0x30000-0x300ff]: assigned
+1791921887.076391 dgx02 kernel: pci 0007:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.076505 dgx02 kernel: pci 0007:00:00.0:   bridge window [io  0x30000-0x31fff]
+1791921887.076614 dgx02 kernel: pci 0007:00:00.0:   bridge window [mem 0x6e900000-0x6eafffff]
+1791921887.076724 dgx02 kernel: pci 0007:00:00.0:   bridge window [mem 0x9f00000000-0x9f001fffff 64bit pref]
+1791921887.076811 dgx02 kernel: pci_bus 0007:00: resource 4 [io  0x30000-0x3ffff window]
+1791921887.076894 dgx02 kernel: pci_bus 0007:00: resource 5 [mem 0x6e810000-0x70ffffff window]
+1791921887.076980 dgx02 kernel: pci_bus 0007:00: resource 6 [mem 0x9f00000000-0xacffffffff window]
+1791921887.077077 dgx02 kernel: pci_bus 0007:01: resource 0 [io  0x30000-0x31fff]
+1791921887.077166 dgx02 kernel: pci_bus 0007:01: resource 1 [mem 0x6e900000-0x6eafffff]
+1791921887.077254 dgx02 kernel: pci_bus 0007:01: resource 2 [mem 0x9f00000000-0x9f001fffff 64bit pref]
+1791921887.077365 dgx02 kernel: pci 0007:00:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  256
+1791921887.077477 dgx02 kernel: pci 0007:01:00.0: Max Payload Size set to  512/ 512 (was  128), Max Read Rq  256
+1791921887.077488 dgx02 kernel: ACPI: PCI Root Bridge [PCI9] (domain 0009 [bus 00-0f])
+1791921887.077591 dgx02 kernel: acpi PNP0A08:06: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+1791921887.077696 dgx02 kernel: acpi PNP0A08:06: _OSC: platform does not support [SHPCHotplug DPC]
+1791921887.077795 dgx02 kernel: acpi PNP0A08:06: _OSC: OS now controls [PCIeHotplug PME AER PCIeCapability LTR]
+1791921887.077894 dgx02 kernel: acpi PNP0A08:06: ECAM area [mem 0xf390000000-0xf390ffffff] reserved by PNP0C02:00
+1791921887.077992 dgx02 kernel: acpi PNP0A08:06: ECAM at [mem 0xf390000000-0xf390ffffff] for [bus 00-0f]
+1791921887.078003 dgx02 kernel: ACPI: Remapped I/O 0x0000000073800000 to [io  0x40000-0x4ffff window]
+1791921887.078017 dgx02 kernel: PCI host bridge to bus 0009:00
+1791921887.078106 dgx02 kernel: pci_bus 0009:00: root bus resource [io  0x40000-0x4ffff window] (bus address [0x73800000-0x7380ffff])
+1791921887.078194 dgx02 kernel: pci_bus 0009:00: root bus resource [mem 0x73810000-0x75ffffff window]
+1791921887.078281 dgx02 kernel: pci_bus 0009:00: root bus resource [mem 0xbb00000000-0xc8ffffffff window]
+1791921887.078367 dgx02 kernel: pci_bus 0009:00: root bus resource [bus 00-0f]
+1791921887.078377 dgx02 kernel: PCI: OF: of_root node is NULL, cannot create PCI host bridge node
+1791921887.078489 dgx02 kernel: pci 0009:00:00.0: [10de:22d0] type 01 class 0x060400 PCIe Root Port
+1791921887.078601 dgx02 kernel: pci 0009:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.078716 dgx02 kernel: pci 0009:00:00.0:   bridge window [mem 0x73a00000-0x73cfffff]
+1791921887.078829 dgx02 kernel: pci 0009:00:00.0: PME# supported from D0 D3hot D3cold
+1791921887.078946 dgx02 kernel: pci 0009:01:00.0: [14c3:7925] type 00 class 0x028000 PCIe Endpoint
+1791921887.079113 dgx02 kernel: pci 0009:01:00.0: BAR 0 [mem 0x73a00000-0x73bfffff 64bit]
+1791921887.079224 dgx02 kernel: pci 0009:01:00.0: BAR 2 [mem 0x73c00000-0x73c07fff 64bit]
+1791921887.079337 dgx02 kernel: pci 0009:01:00.0: PME# supported from D0 D3hot D3cold
+1791921887.079447 dgx02 kernel: pci 0009:00:00.0: bridge window [io  0x1000-0x0fff] to [bus 01-0f] add_size 1000
+1791921887.079558 dgx02 kernel: pci 0009:00:00.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 01-0f] add_size 200000 add_align 100000
+1791921887.079668 dgx02 kernel: pci 0009:00:00.0: bridge window [mem 0x73900000-0x73bfffff]: assigned
+1791921887.079777 dgx02 kernel: pci 0009:00:00.0: bridge window [mem 0xbb00000000-0xbb001fffff 64bit pref]: assigned
+1791921887.079888 dgx02 kernel: pci 0009:00:00.0: bridge window [io  0x40000-0x40fff]: assigned
+1791921887.080007 dgx02 kernel: pci 0009:01:00.0: BAR 0 [mem 0x73a00000-0x73bfffff 64bit]: assigned
+1791921887.080126 dgx02 kernel: pci 0009:01:00.0: BAR 2 [mem 0x73900000-0x73907fff 64bit]: assigned
+1791921887.080241 dgx02 kernel: pci 0009:00:00.0: PCI bridge to [bus 01-0f]
+1791921887.080357 dgx02 kernel: pci 0009:00:00.0:   bridge window [io  0x40000-0x40fff]
+1791921887.080470 dgx02 kernel: pci 0009:00:00.0:   bridge window [mem 0x73900000-0x73bfffff]
+1791921887.080577 dgx02 kernel: pci 0009:00:00.0:   bridge window [mem 0xbb00000000-0xbb001fffff 64bit pref]
+1791921887.080665 dgx02 kernel: pci_bus 0009:00: resource 4 [io  0x40000-0x4ffff window]
+1791921887.080751 dgx02 kernel: pci_bus 0009:00: resource 5 [mem 0x73810000-0x75ffffff window]
+1791921887.080839 dgx02 kernel: pci_bus 0009:00: resource 6 [mem 0xbb00000000-0xc8ffffffff window]
+1791921887.080933 dgx02 kernel: pci_bus 0009:01: resource 0 [io  0x40000-0x40fff]
+1791921887.081025 dgx02 kernel: pci_bus 0009:01: resource 1 [mem 0x73900000-0x73bfffff]
+1791921887.081115 dgx02 kernel: pci_bus 0009:01: resource 2 [mem 0xbb00000000-0xbb001fffff 64bit pref]
+1791921887.081226 dgx02 kernel: pci 0009:00:00.0: Max Payload Size set to  256/ 512 (was  128), Max Read Rq  256
+1791921887.081343 dgx02 kernel: pci 0009:01:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+1791921887.081370 dgx02 kernel: platform NVDA8800:00: failed to claim resource 0: [mem 0x05170000-0x051cffff]
+1791921887.081483 dgx02 kernel: acpi NVDA8800:00: platform device creation failed: -16
+1791921887.081497 dgx02 kernel: ACPI: PCI Root Bridge [PCIF] (domain 000f [bus 00-01])
+1791921887.081601 dgx02 kernel: acpi PNP0A08:0b: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+1791921887.081704 dgx02 kernel: acpi PNP0A08:0b: _OSC: platform does not support [SHPCHotplug DPC]
+1791921887.081802 dgx02 kernel: acpi PNP0A08:0b: _OSC: OS now controls [PCIeHotplug PME AER PCIeCapability LTR]
+1791921887.081898 dgx02 kernel: acpi PNP0A08:0b: ECAM area [mem 0x29000000-0x291fffff] reserved by PNP0C02:01
+1791921887.082000 dgx02 kernel: acpi PNP0A08:0b: ECAM at [mem 0x29000000-0x291fffff] for [bus 00-01]
+1791921887.082014 dgx02 kernel: PCI host bridge to bus 000f:00
+1791921887.082103 dgx02 kernel: pci_bus 000f:00: root bus resource [mem 0x24000000-0x281fffff window]
+1791921887.082193 dgx02 kernel: pci_bus 000f:00: root bus resource [bus 00-01]
+1791921887.082204 dgx02 kernel: PCI: OF: of_root node is NULL, cannot create PCI host bridge node
+1791921887.082322 dgx02 kernel: pci 000f:00:00.0: [10de:22d1] type 01 class 0x060400 PCIe Root Port
+1791921887.082430 dgx02 kernel: pci 000f:00:00.0: PCI bridge to [bus 01]
+1791921887.082537 dgx02 kernel: pci 000f:00:00.0:   bridge window [mem 0x24000000-0x27ffffff 64bit pref]
+1791921887.082646 dgx02 kernel: pci 000f:00:00.0: PME# supported from D0 D3hot
+1791921887.082762 dgx02 kernel: pci 000f:01:00.0: [10de:2e12] type 00 class 0x030000 PCIe Endpoint
+1791921887.082873 dgx02 kernel: pci 000f:01:00.0: BAR 0 [mem 0x24000000-0x27ffffff 64bit pref]
+1791921887.082988 dgx02 kernel: pci 000f:01:00.0: Enabling HDA controller
+1791921887.083104 dgx02 kernel: pci 000f:01:00.0: 0.000 Gb/s available PCIe bandwidth, limited by Unknown x0 link at 000f:00:00.0 (capable of 32.000 Gb/s with 2.5 GT/s PCIe x16 link)
+1791921887.083214 dgx02 kernel: pci 000f:00:00.0: PCI bridge to [bus 01]
+1791921887.083322 dgx02 kernel: pci 000f:00:00.0: PCI bridge to [bus 01]
+1791921887.083435 dgx02 kernel: pci 000f:00:00.0:   bridge window [mem 0x24000000-0x27ffffff 64bit pref]
+1791921887.083524 dgx02 kernel: pci_bus 000f:00: resource 4 [mem 0x24000000-0x281fffff window]
+1791921887.083623 dgx02 kernel: pci_bus 000f:01: resource 2 [mem 0x24000000-0x27ffffff 64bit pref]
+1791921887.083734 dgx02 kernel: pci 000f:00:00.0: Max Payload Size set to  256/ 512 (was  128), Max Read Rq  512
+1791921887.083846 dgx02 kernel: pci 000f:01:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  512
+1791921887.083857 dgx02 kernel: iommu: Default domain type: Translated (set via kernel command line)
+1791921887.083866 dgx02 kernel: iommu: DMA domain TLB invalidation policy: lazy mode
+1791921887.083876 dgx02 kernel: SCSI subsystem initialized
+1791921887.083885 dgx02 kernel: libata version 3.00 loaded.
+1791921887.083894 dgx02 kernel: ACPI: bus type USB registered
+1791921887.083904 dgx02 kernel: usbcore: registered new interface driver usbfs
+1791921887.083915 dgx02 kernel: usbcore: registered new interface driver hub
+1791921887.083924 dgx02 kernel: usbcore: registered new device driver usb
+1791921887.083933 dgx02 kernel: pps_core: LinuxPPS API ver. 1 registered
+1791921887.083943 dgx02 kernel: pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+1791921887.083953 dgx02 kernel: PTP clock support registered
+1791921887.083962 dgx02 kernel: EDAC MC: Ver: 3.0.0
+1791921887.083973 dgx02 kernel: scmi_core: SCMI protocol bus registered
+1791921887.083982 dgx02 kernel: efivars: Registered efivars operations
+1791921887.083991 dgx02 kernel: mpam:mpam_msc_driver_init: No MSC devices found in firmware
+1791921887.084000 dgx02 kernel: NetLabel: Initializing
+1791921887.084013 dgx02 kernel: NetLabel:  domain hash size = 128
+1791921887.084023 dgx02 kernel: NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+1791921887.084034 dgx02 kernel: NetLabel:  unlabeled traffic allowed by default
+1791921887.084043 dgx02 kernel: mctp: management component transport protocol core
+1791921887.084052 dgx02 kernel: NET: Registered PF_MCTP protocol family
+1791921887.084164 dgx02 kernel: pci 000f:01:00.0: vgaarb: setting as boot VGA device
+1791921887.084279 dgx02 kernel: pci 000f:01:00.0: vgaarb: bridge control possible
+1791921887.084392 dgx02 kernel: pci 000f:01:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+1791921887.084403 dgx02 kernel: vgaarb: loaded
+1791921887.084412 dgx02 kernel: clocksource: Switched to clocksource arch_sys_counter
+1791921887.084421 dgx02 kernel: VFS: Disk quotas dquot_6.6.0
+1791921887.084431 dgx02 kernel: VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+1791921887.084440 dgx02 kernel: AppArmor: AppArmor Filesystem Enabled
+1791921887.084452 dgx02 kernel: pnp: PnP ACPI init
+1791921887.084542 dgx02 kernel: system 00:00: [mem 0xf300000000-0xf3ffffffff window] could not be reserved
+1791921887.084630 dgx02 kernel: system 00:00: [mem 0x1d790000-0x1d790fff] has been reserved
+1791921887.084720 dgx02 kernel: system 00:00: [mem 0x1d690000-0x1d690fff] has been reserved
+1791921887.084807 dgx02 kernel: system 00:00: [mem 0x1d600000-0x1d600fff] has been reserved
+1791921887.084893 dgx02 kernel: system 00:00: [mem 0x1d640000-0x1d640fff] has been reserved
+1791921887.084978 dgx02 kernel: system 00:00: [mem 0x16bd0000-0x16bd0fff] has been reserved
+1791921887.085098 dgx02 kernel: system 00:01: [mem 0x29000000-0x291fffff window] could not be reserved
+1791921887.085112 dgx02 kernel: pnp: PnP ACPI: found 2 devices
+1791921887.085124 dgx02 kernel: NET: Registered PF_INET protocol family
+1791921887.085133 dgx02 kernel: IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+1791921887.085143 dgx02 kernel: tcp_listen_portaddr_hash hash table entries: 65536 (order: 8, 1048576 bytes, linear)
+1791921887.085152 dgx02 kernel: Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+1791921887.085162 dgx02 kernel: TCP established hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+1791921887.085171 dgx02 kernel: TCP bind hash table entries: 65536 (order: 9, 2097152 bytes, linear)
+1791921887.085180 dgx02 kernel: TCP: Hash tables configured (established 524288 bind 65536)
+1791921887.085189 dgx02 kernel: MPTCP token hash table entries: 65536 (order: 9, 1572864 bytes, linear)
+1791921887.085199 dgx02 kernel: UDP hash table entries: 65536 (order: 10, 4194304 bytes, linear)
+1791921887.085208 dgx02 kernel: UDP-Lite hash table entries: 65536 (order: 10, 4194304 bytes, linear)
+1791921887.085217 dgx02 kernel: NET: Registered PF_UNIX/PF_LOCAL protocol family
+1791921887.085228 dgx02 kernel: NET: Registered PF_XDP protocol family
+1791921887.085237 dgx02 kernel: PCI: CLS 0 bytes, default 64
+1791921887.085246 dgx02 kernel: ARM FF-A: Driver version 1.2
+1791921887.085255 dgx02 kernel: ARM FF-A: Firmware version 1.2 found
+1791921887.085265 dgx02 kernel: Trying to unpack rootfs image as initramfs...
+1791921887.085274 dgx02 kernel: kvm [1]: nv: 567 coarse grained trap handlers
+1791921887.085283 dgx02 kernel: kvm [1]: nv: 664 fine grained trap handlers
+1791921887.085292 dgx02 kernel: kvm [1]: IPA Size Limit: 40 bits
+1791921887.085302 dgx02 kernel: kvm [1]: GICv4 support disabled
+1791921887.085311 dgx02 kernel: kvm [1]: GICv3: no GICV resource entry
+1791921887.085320 dgx02 kernel: kvm [1]: disabling GICv2 emulation
+1791921887.085329 dgx02 kernel: kvm [1]: GIC system register CPU interface enabled
+1791921887.085338 dgx02 kernel: kvm [1]: vgic interrupt IRQ9
+1791921887.085349 dgx02 kernel: kvm [1]: VHE mode initialized successfully
+1791921887.085358 dgx02 kernel: Initialise system trusted keyrings
+1791921887.085367 dgx02 kernel: Key type blacklist registered
+1791921887.085376 dgx02 kernel: workingset: timestamp_bits=40 max_order=25 bucket_order=0
+1791921887.085386 dgx02 kernel: squashfs: version 4.0 (2009/01/31) Phillip Lougher
+1791921887.085395 dgx02 kernel: fuse: init (API version 7.44)
+1791921887.085404 dgx02 kernel: integrity: Platform Keyring initialized
+1791921887.085413 dgx02 kernel: integrity: Machine keyring initialized
+1791921887.085422 dgx02 kernel: Key type asymmetric registered
+1791921887.085431 dgx02 kernel: Asymmetric key parser 'x509' registered
+1791921887.085441 dgx02 kernel: Block layer SCSI generic (bsg) driver version 0.4 loaded (major 239)
+1791921887.085452 dgx02 kernel: io scheduler mq-deadline registered
+1791921887.085461 dgx02 kernel: ledtrig-cpu: registered to indicate activity on CPUs
+1791921887.085470 dgx02 kernel: input: Power Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input0
+1791921887.085479 dgx02 kernel: ACPI: button: Power Button [PWRB]
+1791921887.085489 dgx02 kernel: input: Lid Switch as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0D:00/input/input1
+1791921887.085498 dgx02 kernel: ACPI: button: Lid Switch [LID0]
+1791921887.085507 dgx02 kernel: input: Sleep Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0E:00/input/input2
+1791921887.085517 dgx02 kernel: ACPI: button: Sleep Button [SLPB]
+1791921887.085626 dgx02 kernel: thermal LNXTHERM:00: registered as thermal_zone0
+1791921887.085638 dgx02 kernel: ACPI: thermal: Thermal Zone [TSOC] (36 C)
+1791921887.085741 dgx02 kernel: thermal LNXTHERM:01: registered as thermal_zone1
+1791921887.085754 dgx02 kernel: ACPI: thermal: Thermal Zone [TS0E] (34 C)
+1791921887.085859 dgx02 kernel: thermal LNXTHERM:02: registered as thermal_zone2
+1791921887.085871 dgx02 kernel: ACPI: thermal: Thermal Zone [TS0P] (34 C)
+1791921887.085971 dgx02 kernel: thermal LNXTHERM:03: registered as thermal_zone3
+1791921887.085982 dgx02 kernel: ACPI: thermal: Thermal Zone [TS1E] (34 C)
+1791921887.086092 dgx02 kernel: thermal LNXTHERM:04: registered as thermal_zone4
+1791921887.086104 dgx02 kernel: ACPI: thermal: Thermal Zone [TS1P] (34 C)
+1791921887.086206 dgx02 kernel: thermal LNXTHERM:05: registered as thermal_zone5
+1791921887.086218 dgx02 kernel: ACPI: thermal: Thermal Zone [TGPU] (36 C)
+1791921887.086321 dgx02 kernel: thermal LNXTHERM:06: registered as thermal_zone6
+1791921887.086332 dgx02 kernel: ACPI: thermal: Thermal Zone [TUNC] (35 C)
+1791921887.086342 dgx02 kernel: ACPI GTDT: found 1 SBSA generic Watchdog(s).
+1791921887.086351 dgx02 kernel: Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+1791921887.086360 dgx02 kernel: printk: legacy console [ttyS0] disabled
+1791921887.086369 dgx02 kernel: MTKI0511:00: ttyS0 at MMIO 0x16a00000 (irq = 45, base_baud = 1625000) is a ST16650V2
+1791921887.086379 dgx02 kernel: printk: legacy console [ttyS0] enabled
+1791921887.086389 dgx02 kernel: printk: legacy bootconsole [uart0] disabled
+1791921887.086398 dgx02 kernel: msm_serial: driver initialized
+1791921887.086407 dgx02 kernel: SuperH (H)SCI(F) driver initialized
+1791921887.086509 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.0.auto: option mask 0x0
+1791921887.086611 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.0.auto: ias 40-bit, oas 40-bit (features 0x0396dfbf)
+1791921887.086707 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.0.auto: allocated 65536 entries for cmdq
+1791921887.086802 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.0.auto: allocated 32768 entries for evtq
+1791921887.086896 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.0.auto: allocated 65536 entries for priq
+1791921887.086992 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.0.auto: 2-level strtab only covers 25/32 bits of SID
+1791921887.087091 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.0.auto: msi_domain absent - falling back to wired irqs
+1791921887.087193 dgx02 kernel: platform NVDA8000:00: Adding to iommu group 0
+1791921887.087296 dgx02 kernel: platform NVDA8000:01: Adding to iommu group 1
+1791921887.087400 dgx02 kernel: platform NVDA8000:02: Adding to iommu group 2
+1791921887.087501 dgx02 kernel: platform NVDA8000:03: Adding to iommu group 3
+1791921887.087597 dgx02 kernel: platform NVDA8001:00: Adding to iommu group 4
+1791921887.087695 dgx02 kernel: platform NVDA8000:04: Adding to iommu group 5
+1791921887.087805 dgx02 kernel: pci 0000:00:00.0: Adding to iommu group 6
+1791921887.087920 dgx02 kernel: pci 0000:01:00.0: Adding to iommu group 7
+1791921887.088043 dgx02 kernel: pci 0000:01:00.1: Adding to iommu group 8
+1791921887.088155 dgx02 kernel: pci 0002:00:00.0: Adding to iommu group 9
+1791921887.088273 dgx02 kernel: pci 0002:01:00.0: Adding to iommu group 10
+1791921887.088393 dgx02 kernel: pci 0002:01:00.1: Adding to iommu group 11
+1791921887.088507 dgx02 kernel: pci 0004:00:00.0: Adding to iommu group 12
+1791921887.088621 dgx02 kernel: pci 0004:01:00.0: Adding to iommu group 13
+1791921887.088738 dgx02 kernel: pci 0007:00:00.0: Adding to iommu group 14
+1791921887.088851 dgx02 kernel: pci 0007:01:00.0: Adding to iommu group 15
+1791921887.088961 dgx02 kernel: pci 0009:00:00.0: Adding to iommu group 16
+1791921887.089088 dgx02 kernel: pci 0009:01:00.0: Adding to iommu group 17
+1791921887.089192 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.1.auto: option mask 0x0
+1791921887.089290 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.1.auto: ias 40-bit, oas 40-bit (features 0x0396dfbf)
+1791921887.089390 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.1.auto: allocated 65536 entries for cmdq
+1791921887.089488 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.1.auto: allocated 32768 entries for evtq
+1791921887.089586 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.1.auto: allocated 65536 entries for priq
+1791921887.089685 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.1.auto: 2-level strtab only covers 25/32 bits of SID
+1791921887.089786 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.1.auto: msi_domain absent - falling back to wired irqs
+1791921887.089890 dgx02 kernel: platform NVDA2014:00: Adding to iommu group 18
+1791921887.090003 dgx02 kernel: pci 000f:00:00.0: Adding to iommu group 19
+1791921887.090120 dgx02 kernel: pci 000f:01:00.0: Adding to iommu group 20
+1791921887.090221 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: option mask 0x0
+1791921887.090334 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: ias 40-bit, oas 40-bit (features 0x0396dfbf)
+1791921887.090430 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: allocated 65536 entries for cmdq
+1791921887.090528 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: allocated 32768 entries for evtq
+1791921887.090625 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: allocated 65536 entries for priq
+1791921887.090719 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: 2-level strtab only covers 25/32 bits of SID
+1791921887.090813 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: msi_domain absent - falling back to wired irqs
+1791921887.090907 dgx02 kernel: arm-smmu-v3 arm-smmu-v3.2.auto: no priq irq - PRI will be broken
+1791921887.091009 dgx02 kernel: platform NVDA2861:00: Adding to iommu group 21
+1791921887.091116 dgx02 kernel: platform NVDA0210:00: Adding to iommu group 22
+1791921887.091216 dgx02 kernel: platform NVDA0210:01: Adding to iommu group 23
+1791921887.091317 dgx02 kernel: platform NVDA0210:02: Adding to iommu group 24
+1791921887.091329 dgx02 kernel: loop: module loaded
+1791921887.091339 dgx02 kernel: ACPI: bus type drm_connector registered
+1791921887.091348 dgx02 kernel: tun: Universal TUN/TAP device driver, 1.6
+1791921887.091357 dgx02 kernel: PPP generic driver version 2.4.2
+1791921887.091367 dgx02 kernel: mousedev: PS/2 mouse device common for all mice
+1791921887.091468 dgx02 kernel: rtc-efi rtc-efi.0: registered as rtc0
+1791921887.091567 dgx02 kernel: rtc-efi rtc-efi.0: setting system clock to 2026-10-13T20:04:41 UTC (1791921881)
+1791921887.091578 dgx02 kernel: i2c_dev: i2c /dev entries driver
+1791921887.091588 dgx02 kernel: device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+1791921887.091597 dgx02 kernel: device-mapper: uevent: version 1.0.3
+1791921887.091609 dgx02 kernel: device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+1791921887.091620 dgx02 kernel: SMCCC: SOC_ID: ID = jep106:0426:8901 Revision = 0x00000000
+1791921887.091629 dgx02 kernel: Arm LFA: Live Firmware activation: no firmware agent found
+1791921887.091639 dgx02 kernel: Freeing initrd memory: 82176K
+1791921887.091649 dgx02 kernel: hw perfevents: enabled with armv8_pmuv3_0 PMU driver, 21 (0,800fffff) counters available
+1791921887.091659 dgx02 kernel: hw perfevents: enabled with armv8_pmuv3_1 PMU driver, 32 (0,ffffffff) counters available
+1791921887.091668 dgx02 kernel: drop_monitor: Initializing network drop monitor service
+1791921887.091678 dgx02 kernel: NET: Registered PF_INET6 protocol family
+1791921887.091687 dgx02 kernel: watchdog: NMI not fully supported
+1791921887.091696 dgx02 kernel: watchdog: Hard watchdog permanently disabled
+1791921887.091706 dgx02 kernel: Segment Routing with IPv6
+1791921887.091717 dgx02 kernel: In-situ OAM (IOAM) with IPv6
+1791921887.091726 dgx02 kernel: NET: Registered PF_PACKET protocol family
+1791921887.091735 dgx02 kernel: Key type dns_resolver registered
+1791921887.091745 dgx02 kernel: registered taskstats version 1
+1791921887.091754 dgx02 kernel: Loading compiled-in X.509 certificates
+1791921887.091764 dgx02 kernel: Loaded X.509 cert 'Build time autogenerated kernel key: bb2d41cc4b08b06db745d2c425d1c24bba63bce5'
+1791921887.091774 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Live Patch Signing 2025 Kmod: d541cef61dc7e793b7eb7e899970a2eef0b5dc8c'
+1791921887.091783 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+1791921887.091793 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing 2025 Kmod: 4627603d2357a2a3f81006370894c221175893e9'
+1791921887.091803 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+1791921887.091813 dgx02 kernel: blacklist: Loading compiled-in revocation X.509 certificates
+1791921887.091824 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+1791921887.091834 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+1791921887.091844 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+1791921887.091853 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+1791921887.091863 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+1791921887.091873 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+1791921887.091883 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+1791921887.091893 dgx02 kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+1791921887.091902 dgx02 kernel: Demotion targets for Node 0: null
+1791921887.091912 dgx02 kernel: Key type .fscrypt registered
+1791921887.091921 dgx02 kernel: Key type fscrypt-provisioning registered
+1791921887.091932 dgx02 kernel: Key type big_key registered
+1791921887.091942 dgx02 kernel: Key type encrypted registered
+1791921887.091951 dgx02 kernel: AppArmor: AppArmor sha256 policy hashing enabled
+1791921887.091960 dgx02 kernel: integrity: Loading X.509 certificate: UEFI:db
+1791921887.091970 dgx02 kernel: integrity: Loaded X.509 cert 'ASUS UEFI SW Key Certificate: b0fa6680874410ba479208b6268c10e4'
+1791921887.091980 dgx02 kernel: integrity: Loading X.509 certificate: UEFI:db
+1791921887.091990 dgx02 kernel: integrity: Loaded X.509 cert 'Microsoft Corporation UEFI CA 2011: 13adbf4309bd82709c8cd54f316ed522988a1bd4'
+1791921887.091999 dgx02 kernel: integrity: Loading X.509 certificate: UEFI:db
+1791921887.092008 dgx02 kernel: integrity: Loaded X.509 cert 'Microsoft Windows Production PCA 2011: a92902398e16c49778cd90f99e4f9ae17c55af53'
+1791921887.092034 dgx02 kernel: integrity: Loading X.509 certificate: UEFI:db
+1791921887.092043 dgx02 kernel: integrity: Loaded X.509 cert 'Microsoft Corporation: Windows UEFI CA 2023: aefc5fbbbe055d8f8daa585473499417ab5a5272'
+1791921887.092054 dgx02 kernel: integrity: Loading X.509 certificate: UEFI:db
+1791921887.092063 dgx02 kernel: integrity: Loaded X.509 cert 'Microsoft UEFI CA 2023: 81aa6b3244c935bce0d6628af39827421e32497d'
+1791921887.092072 dgx02 kernel: ima: secureboot mode enabled
+1791921887.092082 dgx02 kernel: integrity: Loading X.509 certificate: UEFI:MokListRT (MOKvar table)
+1791921887.092091 dgx02 kernel: integrity: Loaded X.509 cert 'Canonical Ltd. Master Certificate Authority: ad91990bc22ab1f517048c23b6655a268e345a63'
+1791921887.092100 dgx02 kernel: ima: No TPM chip found, activating TPM-bypass!
+1791921887.092110 dgx02 kernel: Loading compiled-in module X.509 certificates
+1791921887.092120 dgx02 kernel: Loaded X.509 cert 'Build time autogenerated kernel key: bb2d41cc4b08b06db745d2c425d1c24bba63bce5'
+1791921887.092129 dgx02 kernel: ima: Allocated hash algorithm: sha256
+1791921887.092138 dgx02 kernel: evm: Initialising EVM extended attributes:
+1791921887.092147 dgx02 kernel: evm: security.selinux
+1791921887.092156 dgx02 kernel: evm: security.SMACK64
+1791921887.092165 dgx02 kernel: evm: security.SMACK64EXEC
+1791921887.092176 dgx02 kernel: evm: security.SMACK64TRANSMUTE
+1791921887.092185 dgx02 kernel: evm: security.SMACK64MMAP
+1791921887.092194 dgx02 kernel: evm: security.apparmor
+1791921887.092204 dgx02 kernel: evm: security.ima
+1791921887.092213 dgx02 kernel: evm: security.capability
+1791921887.092222 dgx02 kernel: evm: HMAC attrs: 0x1
+1791921887.092231 dgx02 kernel: audit: type=1807 audit(1791921881.573:2): action=measure func=KEXEC_KERNEL_CHECK res=1
+1791921887.092241 dgx02 kernel: audit: type=1807 audit(1791921881.573:3): action=measure func=MODULE_CHECK res=1
+1791921887.092354 dgx02 kernel: pcieport 0000:00:00.0: PME: Signaling with IRQ 325
+1791921887.092467 dgx02 kernel: pcieport 0000:00:00.0: AER: enabled with IRQ 326
+1791921887.092576 dgx02 kernel: pcieport 0002:00:00.0: PME: Signaling with IRQ 328
+1791921887.092687 dgx02 kernel: pcieport 0002:00:00.0: AER: enabled with IRQ 329
+1791921887.092799 dgx02 kernel: pcieport 0004:00:00.0: PME: Signaling with IRQ 331
+1791921887.092906 dgx02 kernel: pcieport 0004:00:00.0: AER: enabled with IRQ 332
+1791921887.093021 dgx02 kernel: pcieport 0004:00:00.0: pciehp: Slot #4 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+ Interlock- NoCompl+ IbPresDis- LLActRep+
+1791921887.093131 dgx02 kernel: pcieport 0007:00:00.0: PME: Signaling with IRQ 334
+1791921887.093239 dgx02 kernel: pcieport 0007:00:00.0: AER: enabled with IRQ 335
+1791921887.093349 dgx02 kernel: pcieport 0007:00:00.0: pciehp: Slot #7 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+ Interlock- NoCompl+ IbPresDis- LLActRep+
+1791921887.093457 dgx02 kernel: pcieport 0009:00:00.0: PME: Signaling with IRQ 337
+1791921887.093567 dgx02 kernel: pcieport 0009:00:00.0: AER: enabled with IRQ 338
+1791921887.093675 dgx02 kernel: pcieport 0009:00:00.0: pciehp: Slot #9 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+ Interlock- NoCompl+ IbPresDis- LLActRep+
+1791921887.093784 dgx02 kernel: pcieport 000f:00:00.0: PME: Signaling with IRQ 339
+1791921887.093896 dgx02 kernel: pcieport 000f:00:00.0: AER: enabled with IRQ 341
+1791921887.093907 dgx02 kernel: clk: Disabling unused clocks
+1791921887.093916 dgx02 kernel: PM: genpd: Disabling unused power domains
+1791921887.093926 dgx02 kernel: Freeing unused kernel memory: 14784K
+1791921887.093935 dgx02 kernel: Checked W+X mappings: passed, no W+X pages found
+1791921887.093944 dgx02 kernel: Run /init as init process
+1791921887.093953 dgx02 kernel:   with arguments:
+1791921887.093963 dgx02 kernel:     /init
+1791921887.093972 dgx02 kernel:     splash
+1791921887.093981 dgx02 kernel:   with environment:
+1791921887.093990 dgx02 kernel:     HOME=/
+1791921887.093999 dgx02 kernel:     TERM=linux
+1791921887.094121 dgx02 kernel: xhci-hcd NVDA8000:00: xHCI Host Controller
+1791921887.094221 dgx02 kernel: xhci-hcd NVDA8000:00: new USB bus registered, assigned bus number 1
+1791921887.094323 dgx02 kernel: xhci-hcd NVDA8000:00: hcc params 0x01844f91 hci version 0x120 quirks 0x0008000000000010
+1791921887.094424 dgx02 kernel: xhci-hcd NVDA8000:00: irq 96, io mem 0x1db60000
+1791921887.094524 dgx02 kernel: xhci-hcd NVDA8000:00: xHCI Host Controller
+1791921887.094625 dgx02 kernel: xhci-hcd NVDA8000:00: new USB bus registered, assigned bus number 2
+1791921887.094731 dgx02 kernel: xhci-hcd NVDA8000:00: Host supports USB 3.2 Enhanced SuperSpeed
+1791921887.094917 dgx02 kernel: usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.17
+1791921887.095088 dgx02 kernel: usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.095251 dgx02 kernel: usb usb1: Product: xHCI Host Controller
+1791921887.095412 dgx02 kernel: usb usb1: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.095562 dgx02 kernel: usb usb1: SerialNumber: NVDA8000:00
+1791921887.095699 dgx02 kernel: hub 1-0:1.0: USB hub found
+1791921887.095829 dgx02 kernel: hub 1-0:1.0: 1 port detected
+1791921887.096000 dgx02 kernel: usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+1791921887.096171 dgx02 kernel: usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.17
+1791921887.096328 dgx02 kernel: usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.096485 dgx02 kernel: usb usb2: Product: xHCI Host Controller
+1791921887.096642 dgx02 kernel: usb usb2: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.096796 dgx02 kernel: usb usb2: SerialNumber: NVDA8000:00
+1791921887.096924 dgx02 kernel: hub 2-0:1.0: USB hub found
+1791921887.097051 dgx02 kernel: hub 2-0:1.0: 1 port detected
+1791921887.097152 dgx02 kernel: xhci-hcd NVDA8000:01: xHCI Host Controller
+1791921887.097250 dgx02 kernel: xhci-hcd NVDA8000:01: new USB bus registered, assigned bus number 3
+1791921887.097347 dgx02 kernel: xhci-hcd NVDA8000:01: hcc params 0x01844f91 hci version 0x120 quirks 0x0008000000000010
+1791921887.097446 dgx02 kernel: xhci-hcd NVDA8000:01: irq 97, io mem 0x1db90000
+1791921887.097543 dgx02 kernel: xhci-hcd NVDA8000:01: xHCI Host Controller
+1791921887.097643 dgx02 kernel: xhci-hcd NVDA8000:01: new USB bus registered, assigned bus number 4
+1791921887.097739 dgx02 kernel: xhci-hcd NVDA8000:01: Host supports USB 3.2 Enhanced SuperSpeed
+1791921887.097897 dgx02 kernel: usb usb3: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.17
+1791921887.098055 dgx02 kernel: usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.098208 dgx02 kernel: usb usb3: Product: xHCI Host Controller
+1791921887.098359 dgx02 kernel: usb usb3: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.098508 dgx02 kernel: usb usb3: SerialNumber: NVDA8000:01
+1791921887.098639 dgx02 kernel: hub 3-0:1.0: USB hub found
+1791921887.098770 dgx02 kernel: hub 3-0:1.0: 1 port detected
+1791921887.098938 dgx02 kernel: usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+1791921887.099098 dgx02 kernel: usb usb4: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.17
+1791921887.099249 dgx02 kernel: usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.099398 dgx02 kernel: usb usb4: Product: xHCI Host Controller
+1791921887.099546 dgx02 kernel: usb usb4: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.099695 dgx02 kernel: usb usb4: SerialNumber: NVDA8000:01
+1791921887.099824 dgx02 kernel: hub 4-0:1.0: USB hub found
+1791921887.099946 dgx02 kernel: hub 4-0:1.0: 1 port detected
+1791921887.100051 dgx02 kernel: xhci-hcd NVDA8000:02: xHCI Host Controller
+1791921887.100150 dgx02 kernel: xhci-hcd NVDA8000:02: new USB bus registered, assigned bus number 5
+1791921887.100248 dgx02 kernel: xhci-hcd NVDA8000:02: hcc params 0x01844f91 hci version 0x120 quirks 0x0008000000000010
+1791921887.100346 dgx02 kernel: xhci-hcd NVDA8000:02: irq 98, io mem 0x1dde0000
+1791921887.100444 dgx02 kernel: xhci-hcd NVDA8000:02: xHCI Host Controller
+1791921887.100541 dgx02 kernel: xhci-hcd NVDA8000:02: new USB bus registered, assigned bus number 6
+1791921887.100639 dgx02 kernel: xhci-hcd NVDA8000:02: Host supports USB 3.2 Enhanced SuperSpeed
+1791921887.100796 dgx02 kernel: usb usb5: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.17
+1791921887.100948 dgx02 kernel: usb usb5: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.101098 dgx02 kernel: usb usb5: Product: xHCI Host Controller
+1791921887.101251 dgx02 kernel: usb usb5: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.101405 dgx02 kernel: usb usb5: SerialNumber: NVDA8000:02
+1791921887.101536 dgx02 kernel: hub 5-0:1.0: USB hub found
+1791921887.101662 dgx02 kernel: hub 5-0:1.0: 1 port detected
+1791921887.101830 dgx02 kernel: usb usb6: We don't know the algorithms for LPM for this host, disabling LPM.
+1791921887.101987 dgx02 kernel: usb usb6: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.17
+1791921887.102142 dgx02 kernel: usb usb6: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.102293 dgx02 kernel: usb usb6: Product: xHCI Host Controller
+1791921887.102446 dgx02 kernel: usb usb6: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.102594 dgx02 kernel: usb usb6: SerialNumber: NVDA8000:02
+1791921887.102719 dgx02 kernel: hub 6-0:1.0: USB hub found
+1791921887.102840 dgx02 kernel: hub 6-0:1.0: 1 port detected
+1791921887.102939 dgx02 kernel: xhci-hcd NVDA8000:03: xHCI Host Controller
+1791921887.103041 dgx02 kernel: xhci-hcd NVDA8000:03: new USB bus registered, assigned bus number 7
+1791921887.103140 dgx02 kernel: xhci-hcd NVDA8000:03: hcc params 0x01844f91 hci version 0x120 quirks 0x0008000000000010
+1791921887.103238 dgx02 kernel: xhci-hcd NVDA8000:03: irq 99, io mem 0x1de10000
+1791921887.103335 dgx02 kernel: xhci-hcd NVDA8000:03: xHCI Host Controller
+1791921887.103433 dgx02 kernel: xhci-hcd NVDA8000:03: new USB bus registered, assigned bus number 8
+1791921887.103530 dgx02 kernel: xhci-hcd NVDA8000:03: Host supports USB 3.2 Enhanced SuperSpeed
+1791921887.103689 dgx02 kernel: usb usb7: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.17
+1791921887.103839 dgx02 kernel: usb usb7: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.103994 dgx02 kernel: usb usb7: Product: xHCI Host Controller
+1791921887.104151 dgx02 kernel: usb usb7: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.104299 dgx02 kernel: usb usb7: SerialNumber: NVDA8000:03
+1791921887.104431 dgx02 kernel: hub 7-0:1.0: USB hub found
+1791921887.104560 dgx02 kernel: hub 7-0:1.0: 1 port detected
+1791921887.104726 dgx02 kernel: usb usb8: We don't know the algorithms for LPM for this host, disabling LPM.
+1791921887.104889 dgx02 kernel: usb usb8: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.17
+1791921887.105078 dgx02 kernel: usb usb8: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.105228 dgx02 kernel: usb usb8: Product: xHCI Host Controller
+1791921887.105379 dgx02 kernel: usb usb8: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.105525 dgx02 kernel: usb usb8: SerialNumber: NVDA8000:03
+1791921887.105654 dgx02 kernel: hub 8-0:1.0: USB hub found
+1791921887.105775 dgx02 kernel: hub 8-0:1.0: 1 port detected
+1791921887.105875 dgx02 kernel: xhci-hcd NVDA8001:00: xHCI Host Controller
+1791921887.105974 dgx02 kernel: xhci-hcd NVDA8001:00: new USB bus registered, assigned bus number 9
+1791921887.106078 dgx02 kernel: xhci-hcd NVDA8001:00: hcc params 0x01844f91 hci version 0x120 quirks 0x0008000000000010
+1791921887.106177 dgx02 kernel: xhci-hcd NVDA8001:00: irq 100, io mem 0x1d860000
+1791921887.106279 dgx02 kernel: xhci-hcd NVDA8001:00: xHCI Host Controller
+1791921887.106376 dgx02 kernel: xhci-hcd NVDA8001:00: new USB bus registered, assigned bus number 10
+1791921887.106472 dgx02 kernel: xhci-hcd NVDA8001:00: Host supports USB 3.2 Enhanced SuperSpeed
+1791921887.106633 dgx02 kernel: usb usb9: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.17
+1791921887.106782 dgx02 kernel: usb usb9: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.106932 dgx02 kernel: usb usb9: Product: xHCI Host Controller
+1791921887.107088 dgx02 kernel: usb usb9: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.107237 dgx02 kernel: usb usb9: SerialNumber: NVDA8001:00
+1791921887.107369 dgx02 kernel: hub 9-0:1.0: USB hub found
+1791921887.107499 dgx02 kernel: hub 9-0:1.0: 1 port detected
+1791921887.107669 dgx02 kernel: usb usb10: We don't know the algorithms for LPM for this host, disabling LPM.
+1791921887.107823 dgx02 kernel: usb usb10: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.17
+1791921887.107981 dgx02 kernel: usb usb10: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.108132 dgx02 kernel: usb usb10: Product: xHCI Host Controller
+1791921887.108283 dgx02 kernel: usb usb10: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.108434 dgx02 kernel: usb usb10: SerialNumber: NVDA8001:00
+1791921887.108567 dgx02 kernel: hub 10-0:1.0: USB hub found
+1791921887.108692 dgx02 kernel: hub 10-0:1.0: 1 port detected
+1791921887.108790 dgx02 kernel: xhci-hcd NVDA8000:04: xHCI Host Controller
+1791921887.108890 dgx02 kernel: xhci-hcd NVDA8000:04: new USB bus registered, assigned bus number 11
+1791921887.108901 dgx02 kernel: Key type psk registered
+1791921887.108997 dgx02 kernel: xhci-hcd NVDA8000:04: hcc params 0x01844f91 hci version 0x120 quirks 0x0008000000000010
+1791921887.109098 dgx02 kernel: xhci-hcd NVDA8000:04: irq 101, io mem 0x1d870000
+1791921887.109195 dgx02 kernel: xhci-hcd NVDA8000:04: xHCI Host Controller
+1791921887.109291 dgx02 kernel: xhci-hcd NVDA8000:04: new USB bus registered, assigned bus number 12
+1791921887.109388 dgx02 kernel: xhci-hcd NVDA8000:04: Host supports USB 3.2 Enhanced SuperSpeed
+1791921887.109545 dgx02 kernel: usb usb11: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.17
+1791921887.109697 dgx02 kernel: usb usb11: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.109846 dgx02 kernel: usb usb11: Product: xHCI Host Controller
+1791921887.109993 dgx02 kernel: usb usb11: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.110146 dgx02 kernel: usb usb11: SerialNumber: NVDA8000:04
+1791921887.110277 dgx02 kernel: hub 11-0:1.0: USB hub found
+1791921887.110407 dgx02 kernel: hub 11-0:1.0: 2 ports detected
+1791921887.110573 dgx02 kernel: usb usb12: We don't know the algorithms for LPM for this host, disabling LPM.
+1791921887.110727 dgx02 kernel: usb usb12: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.17
+1791921887.110880 dgx02 kernel: usb usb12: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+1791921887.111037 dgx02 kernel: usb usb12: Product: xHCI Host Controller
+1791921887.111186 dgx02 kernel: usb usb12: Manufacturer: Linux 6.17.0-1029-nvidia xhci-hcd
+1791921887.111337 dgx02 kernel: usb usb12: SerialNumber: NVDA8000:04
+1791921887.111464 dgx02 kernel: hub 12-0:1.0: USB hub found
+1791921887.111588 dgx02 kernel: hub 12-0:1.0: 1 port detected
+1791921887.111600 dgx02 kernel: r8127 Ethernet controller driver 11.014.00-NAPI loaded
+1791921887.111612 dgx02 kernel: r8127: This product is covered by one or more of the following patents: US6,570,884, US6,115,776, and US6,327,625.
+1791921887.111623 dgx02 kernel: r8127  Copyright (C) 2025 Realtek NIC software team <nicfae@realtek.com> 
+                                 This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+                                 This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+1791921887.111742 dgx02 kernel: nvme nvme0: pci function 0004:01:00.0
+1791921887.111841 dgx02 kernel: nvme nvme0: allocated 64 MiB host memory buffer (1 segment).
+1791921887.111963 dgx02 kernel: r8127 0007:01:00.0 enP7s7: renamed from eth0
+1791921887.112060 dgx02 kernel: nvme nvme0: 20/0/0 default/read/poll queues
+1791921887.112071 dgx02 kernel:  nvme0n1: p1 p2
+1791921887.112185 dgx02 kernel: mlx5_core 0000:01:00.0: enabling device (0000 -> 0002)
+1791921887.112300 dgx02 kernel: mlx5_core 0000:01:00.0: firmware version: 28.45.4028
+1791921887.112416 dgx02 kernel: mlx5_core 0000:01:00.0: 126.028 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x4 link)
+1791921887.112586 dgx02 kernel: usb 11-2: new high-speed USB device number 2 using xhci-hcd
+1791921887.112707 dgx02 kernel: mlx5_core 0000:01:00.0: Rate limit: 127 rates are supported, range: 0Mbps to 195312Mbps
+1791921887.112820 dgx02 kernel: mlx5_core 0000:01:00.0: E-Switch: Total vports 10, per vport: max uc(128) max mc(2048)
+1791921887.112932 dgx02 kernel: mlx5_core 0000:01:00.0: Flow counters bulk query buffer size increased, bulk_query_len(8)
+1791921887.113054 dgx02 kernel: mlx5_core 0000:01:00.0: Port module event: module 0, Cable unplugged
+1791921887.113166 dgx02 kernel: mlx5_core 0000:01:00.0: mlx5_pcie_event:326:(pid 12): Detected insufficient power on the PCIe slot (27W).
+1791921887.113280 dgx02 kernel: mlx5_core 0000:01:00.0: mlx5e: IPSec ESP acceleration enabled
+1791921887.113439 dgx02 kernel: usb 11-2: New USB device found, idVendor=13d3, idProduct=3608, bcdDevice= 1.00
+1791921887.113592 dgx02 kernel: usb 11-2: New USB device strings: Mfr=5, Product=6, SerialNumber=7
+1791921887.113744 dgx02 kernel: usb 11-2: Product: Wireless_Device
+1791921887.113895 dgx02 kernel: usb 11-2: Manufacturer: MediaTek Inc.
+1791921887.114056 dgx02 kernel: usb 11-2: SerialNumber: 000000000
+1791921887.114176 dgx02 kernel: mlx5_core 0000:01:00.0: MLX5E: StrdRq(1) RqSz(8) StrdSz(2048) RxCqeCmprss(0 enhanced)
+1791921887.114292 dgx02 kernel: mlx5_core 0000:01:00.1: enabling device (0000 -> 0002)
+1791921887.114406 dgx02 kernel: mlx5_core 0000:01:00.1: firmware version: 28.45.4028
+1791921887.114520 dgx02 kernel: mlx5_core 0000:01:00.1: 126.028 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x4 link)
+1791921887.114632 dgx02 kernel: mlx5_core 0000:01:00.1: Rate limit: 127 rates are supported, range: 0Mbps to 195312Mbps
+1791921887.114742 dgx02 kernel: mlx5_core 0000:01:00.1: E-Switch: Total vports 10, per vport: max uc(128) max mc(2048)
+1791921887.114855 dgx02 kernel: mlx5_core 0000:01:00.1: Flow counters bulk query buffer size increased, bulk_query_len(8)
+1791921887.114968 dgx02 kernel: mlx5_core 0000:01:00.1: Port module event: module 1, Cable plugged
+1791921887.115084 dgx02 kernel: mlx5_core 0000:01:00.1: mlx5_pcie_event:326:(pid 12): Detected insufficient power on the PCIe slot (27W).
+1791921887.115196 dgx02 kernel: mlx5_core 0000:01:00.1: mlx5e: IPSec ESP acceleration enabled
+1791921887.115306 dgx02 kernel: mlx5_core 0000:01:00.1: MLX5E: StrdRq(1) RqSz(8) StrdSz(2048) RxCqeCmprss(0 enhanced)
+1791921887.115421 dgx02 kernel: mlx5_core 0002:01:00.0: enabling device (0000 -> 0002)
+1791921887.115532 dgx02 kernel: mlx5_core 0002:01:00.0: firmware version: 28.45.4028
+1791921887.115645 dgx02 kernel: mlx5_core 0002:01:00.0: 126.028 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x4 link)
+1791921887.115756 dgx02 kernel: mlx5_core 0002:01:00.0: Rate limit: 127 rates are supported, range: 0Mbps to 195312Mbps
+1791921887.115868 dgx02 kernel: mlx5_core 0002:01:00.0: E-Switch: Total vports 10, per vport: max uc(128) max mc(2048)
+1791921887.115982 dgx02 kernel: mlx5_core 0002:01:00.0: Flow counters bulk query buffer size increased, bulk_query_len(8)
+1791921887.116099 dgx02 kernel: mlx5_core 0002:01:00.0: Port module event: module 0, Cable unplugged
+1791921887.116208 dgx02 kernel: mlx5_core 0002:01:00.0: mlx5_pcie_event:326:(pid 163): Detected insufficient power on the PCIe slot (27W).
+1791921887.116317 dgx02 kernel: mlx5_core 0002:01:00.0: mlx5e: IPSec ESP acceleration enabled
+1791921887.116428 dgx02 kernel: mlx5_core 0002:01:00.0: MLX5E: StrdRq(1) RqSz(8) StrdSz(2048) RxCqeCmprss(0 enhanced)
+1791921887.116543 dgx02 kernel: mlx5_core 0002:01:00.1: enabling device (0000 -> 0002)
+1791921887.116657 dgx02 kernel: mlx5_core 0002:01:00.1: firmware version: 28.45.4028
+1791921887.116769 dgx02 kernel: mlx5_core 0002:01:00.1: 126.028 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x4 link)
+1791921887.116880 dgx02 kernel: mlx5_core 0002:01:00.1: Rate limit: 127 rates are supported, range: 0Mbps to 195312Mbps
+1791921887.116993 dgx02 kernel: mlx5_core 0002:01:00.1: E-Switch: Total vports 10, per vport: max uc(128) max mc(2048)
+1791921887.117108 dgx02 kernel: mlx5_core 0002:01:00.1: Flow counters bulk query buffer size increased, bulk_query_len(8)
+1791921887.117223 dgx02 kernel: mlx5_core 0002:01:00.1: Port module event: module 1, Cable plugged
+1791921887.117334 dgx02 kernel: mlx5_core 0002:01:00.1: mlx5_pcie_event:326:(pid 381): Detected insufficient power on the PCIe slot (27W).
+1791921887.117448 dgx02 kernel: mlx5_core 0002:01:00.1: mlx5e: IPSec ESP acceleration enabled
+1791921887.117558 dgx02 kernel: mlx5_core 0002:01:00.1: MLX5E: StrdRq(1) RqSz(8) StrdSz(2048) RxCqeCmprss(0 enhanced)
+1791921887.117670 dgx02 kernel: mlx5_core 0002:01:00.1 enP2p1s0f1np1: renamed from eth3
+1791921887.117785 dgx02 kernel: mlx5_core 0000:01:00.0 enp1s0f0np0: renamed from eth0
+1791921887.117895 dgx02 kernel: mlx5_core 0002:01:00.0 enP2p1s0f0np0: renamed from eth2
+1791921887.118007 dgx02 kernel: mlx5_core 0000:01:00.1 enp1s0f1np1: renamed from eth1
+1791921887.118021 dgx02 kernel: MACsec IEEE 802.1AE
+1791921887.118044 dgx02 kernel: raid6: neonx8   gen() 18958 MB/s
+1791921887.118055 dgx02 kernel: raid6: neonx4   gen() 15741 MB/s
+1791921887.118065 dgx02 kernel: raid6: neonx2   gen() 14378 MB/s
+1791921887.118074 dgx02 kernel: raid6: neonx1   gen() 13117 MB/s
+1791921887.118085 dgx02 kernel: raid6: int64x8  gen()  6285 MB/s
+1791921887.118094 dgx02 kernel: raid6: int64x4  gen()  6363 MB/s
+1791921887.118103 dgx02 kernel: raid6: int64x2  gen()  5222 MB/s
+1791921887.118112 dgx02 kernel: raid6: int64x1  gen()  4256 MB/s
+1791921887.118123 dgx02 kernel: raid6: using algorithm neonx8 gen() 18958 MB/s
+1791921887.118132 dgx02 kernel: raid6: .... xor() 14606 MB/s, rmw enabled
+1791921887.118142 dgx02 kernel: raid6: using neon recovery algorithm
+1791921887.118151 dgx02 kernel: xor: measuring software checksum speed
+1791921887.118162 dgx02 kernel:    8regs           : 18784 MB/sec
+1791921887.118172 dgx02 kernel:    32regs          : 18612 MB/sec
+1791921887.118181 dgx02 kernel:    arm64_neon      : 25438 MB/sec
+1791921887.118191 dgx02 kernel: xor: using function: arm64_neon (25438 MB/sec)
+1791921887.118200 dgx02 kernel: async_tx: api initialized (async)
+1791921887.118209 dgx02 kernel: Btrfs loaded, zoned=yes, fsverity=yes
+1791921887.118219 dgx02 kernel: EXT4-fs (nvme0n1p2): mounted filesystem c42af0c3-d281-40ac-aa50-f8c531fa1534 ro with ordered data mode. Quota mode: none.
+1791921887.118231 dgx02 systemd[1]: Inserted module 'autofs4'
+1791921887.118247 dgx02 systemd[1]: systemd 255.4-1ubuntu8.17 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+1791921887.118259 dgx02 systemd[1]: Detected architecture arm64.
+1791921887.118269 dgx02 systemd[1]: Hostname set to <dgx02>.
+1791921887.118280 dgx02 systemd[1]: Queued start job for default target graphical.target.
+1791921887.118290 dgx02 systemd[1]: Created slice system-modprobe.slice - Slice /system/modprobe.
+1791921887.118301 dgx02 systemd[1]: Created slice system-serial\x2dgetty.slice - Slice /system/serial-getty.
+1791921887.118313 dgx02 systemd[1]: Created slice system-systemd\x2dfsck.slice - Slice /system/systemd-fsck.
+1791921887.118323 dgx02 systemd[1]: Created slice user.slice - User and Session Slice.
+1791921887.118333 dgx02 systemd[1]: Started systemd-ask-password-wall.path - Forward Password Requests to Wall Directory Watch.
+1791921887.118346 dgx02 systemd[1]: Set up automount proc-sys-fs-binfmt_misc.automount - Arbitrary Executable File Formats File System Automount Point.
+1791921887.118357 dgx02 systemd[1]: Expecting device dev-disk-by\x2duuid-491E\x2d7243.device - /dev/disk/by-uuid/491E-7243...
+1791921887.118367 dgx02 systemd[1]: Expecting device dev-ttyS0.device - /dev/ttyS0...
+1791921887.118377 dgx02 systemd[1]: Reached target integritysetup.target - Local Integrity Protected Volumes.
+1791921887.118389 dgx02 systemd[1]: Reached target nss-user-lookup.target - User and Group Name Lookups.
+1791921887.118399 dgx02 systemd[1]: Reached target slices.target - Slice Units.
+1791921887.118409 dgx02 systemd[1]: Reached target snapd.mounts-pre.target - Mounting snaps.
+1791921887.118419 dgx02 systemd[1]: Reached target veritysetup.target - Local Verity Protected Volumes.
+1791921887.118429 dgx02 systemd[1]: Listening on dm-event.socket - Device-mapper event daemon FIFOs.
+1791921887.118440 dgx02 systemd[1]: Listening on lvm2-lvmpolld.socket - LVM2 poll daemon socket.
+1791921887.118452 dgx02 systemd[1]: Listening on multipathd.socket - multipathd control socket.
+1791921887.118462 dgx02 systemd[1]: Listening on syslog.socket - Syslog Socket.
+1791921887.118472 dgx02 systemd[1]: Listening on systemd-fsckd.socket - fsck to fsckd communication Socket.
+1791921887.118482 dgx02 systemd[1]: Listening on systemd-initctl.socket - initctl Compatibility Named Pipe.
+1791921887.118493 dgx02 systemd[1]: Listening on systemd-journald-dev-log.socket - Journal Socket (/dev/log).
+1791921887.118503 dgx02 systemd[1]: Listening on systemd-journald.socket - Journal Socket.
+1791921887.118514 dgx02 systemd[1]: Listening on systemd-networkd.socket - Network Service Netlink Socket.
+1791921887.118525 dgx02 systemd[1]: systemd-pcrextend.socket - TPM2 PCR Extension (Varlink) was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+1791921887.118536 dgx02 systemd[1]: Listening on systemd-udevd-control.socket - udev Control Socket.
+1791921887.118546 dgx02 systemd[1]: Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+1791921887.118556 dgx02 systemd[1]: Mounting dev-hugepages.mount - Huge Pages File System...
+1791921887.118568 dgx02 systemd[1]: Mounting dev-mqueue.mount - POSIX Message Queue File System...
+1791921887.118579 dgx02 systemd[1]: Mounting sys-kernel-debug.mount - Kernel Debug File System...
+1791921887.118589 dgx02 systemd[1]: Mounting sys-kernel-tracing.mount - Kernel Trace File System...
+1791921887.118599 dgx02 systemd[1]: Starting systemd-journald.service - Journal Service...
+1791921887.118610 dgx02 systemd[1]: auth-rpcgss-module.service - Kernel Module supporting RPCSEC_GSS was skipped because of an unmet condition check (ConditionPathExists=/etc/krb5.keytab).
+1791921887.118621 dgx02 systemd[1]: Starting keyboard-setup.service - Set the console keyboard layout...
+1791921887.118631 dgx02 systemd[1]: Starting kmod-static-nodes.service - Create List of Static Device Nodes...
+1791921887.118641 dgx02 systemd[1]: Starting lvm2-monitor.service - Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+1791921887.118652 dgx02 systemd[1]: Starting modprobe@configfs.service - Load Kernel Module configfs...
+1791921887.118665 dgx02 systemd[1]: Starting modprobe@dm_mod.service - Load Kernel Module dm_mod...
+1791921887.118675 dgx02 systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+1791921887.118685 dgx02 systemd[1]: Starting modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
+1791921887.118695 dgx02 systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+1791921887.118705 dgx02 systemd[1]: Starting modprobe@loop.service - Load Kernel Module loop...
+1791921887.118715 dgx02 systemd[1]: Starting modprobe@nvme_fabrics.service - Load Kernel Module nvme_fabrics...
+1791921887.118726 dgx02 systemd[1]: netplan-ovs-cleanup.service - OpenVSwitch configuration for cleanup was skipped because of an unmet condition check (ConditionFileIsExecutable=/usr/bin/ovs-vsctl).
+1791921887.118737 dgx02 systemd[1]: systemd-fsck-root.service - File System Check on Root Device was skipped because of an unmet condition check (ConditionPathExists=!/run/initramfs/fsck-root).
+1791921887.118747 dgx02 systemd[1]: Starting systemd-modules-load.service - Load Kernel Modules...
+1791921887.118761 dgx02 systemd[1]: systemd-pcrmachine.service - TPM2 PCR Machine ID Measurement was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+1791921887.118771 dgx02 systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+1791921887.118782 dgx02 systemd[1]: systemd-tpm2-setup-early.service - TPM2 SRK Setup (Early) was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+1791921887.118792 dgx02 systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+1791921887.118802 dgx02 systemd[1]: Mounted dev-hugepages.mount - Huge Pages File System.
+1791921887.118812 dgx02 systemd[1]: Mounted dev-mqueue.mount - POSIX Message Queue File System.
+1791921887.118823 dgx02 systemd[1]: Mounted sys-kernel-debug.mount - Kernel Debug File System.
+1791921887.118833 dgx02 systemd[1]: Mounted sys-kernel-tracing.mount - Kernel Trace File System.
+1791921887.118844 dgx02 systemd[1]: Finished kmod-static-nodes.service - Create List of Static Device Nodes.
+1791921887.118854 dgx02 systemd[1]: modprobe@configfs.service: Deactivated successfully.
+1791921887.118865 dgx02 systemd[1]: Finished modprobe@configfs.service - Load Kernel Module configfs.
+1791921887.118877 dgx02 systemd[1]: modprobe@dm_mod.service: Deactivated successfully.
+1791921887.118889 dgx02 systemd[1]: Finished modprobe@dm_mod.service - Load Kernel Module dm_mod.
+1791921887.118900 dgx02 systemd[1]: modprobe@drm.service: Deactivated successfully.
+1791921887.118910 dgx02 systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+1791921887.118920 dgx02 systemd[1]: modprobe@fuse.service: Deactivated successfully.
+1791921887.118931 dgx02 systemd[1]: Finished modprobe@fuse.service - Load Kernel Module fuse.
+1791921887.118941 dgx02 systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+1791921887.118951 dgx02 systemd[1]: Mounting sys-kernel-config.mount - Kernel Configuration File System...
+1791921887.118961 dgx02 kernel: pstore: Using crash dump compression: deflate
+1791921887.118971 dgx02 systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+1791921887.118983 dgx02 systemd[1]: modprobe@loop.service: Deactivated successfully.
+1791921887.118993 dgx02 systemd[1]: Finished modprobe@loop.service - Load Kernel Module loop.
+1791921887.119003 dgx02 systemd[1]: modprobe@nvme_fabrics.service: Deactivated successfully.
+1791921887.119016 dgx02 systemd[1]: Finished modprobe@nvme_fabrics.service - Load Kernel Module nvme_fabrics.
+1791921887.119027 dgx02 systemd[1]: systemd-repart.service - Repartition Root Disk was skipped because no trigger condition checks were met.
+1791921887.119037 dgx02 kernel: pstore: Registered efi_pstore as persistent store backend
+1791921887.119047 dgx02 systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+1791921887.119057 dgx02 systemd[1]: Finished modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
+1791921887.119067 dgx02 kernel: IPMI message handler: version 39.2
+1791921887.119077 dgx02 systemd[1]: Mounted sys-fs-fuse-connections.mount - FUSE Control File System.
+1791921887.119087 dgx02 systemd[1]: Mounted sys-kernel-config.mount - Kernel Configuration File System.
+1791921887.119098 dgx02 kernel: ipmi device interface
+1791921887.119130 dgx02 systemd-journald[620]: Collecting audit messages is disabled.
+1791921887.119157 dgx02 kernel: mstflint_access: loading out-of-tree module taints kernel.
+1791921887.119166 dgx02 kernel:   MST::  : mst_init 1963: Mellanox Technologies Software Tools Driver - version 2.0.0
+1791921887.119176 dgx02 kernel:   MST::  : mst_init 1976: found device - domain=0x0, bus=0x1, slot=0x0, func=0x0, vendor=0x15b3, device=0x1021
+1791921887.119186 dgx02 kernel: EXT4-fs (nvme0n1p2): re-mounted c42af0c3-d281-40ac-aa50-f8c531fa1534 r/w.
+1791921887.119198 dgx02 kernel:   MST::  : mst_init 1976: found device - domain=0x0, bus=0x1, slot=0x0, func=0x1, vendor=0x15b3, device=0x1021
+1791921887.119208 dgx02 kernel:   MST::  : mst_init 1976: found device - domain=0x2, bus=0x1, slot=0x0, func=0x0, vendor=0x15b3, device=0x1021
+1791921887.119218 dgx02 kernel:   MST::  : mst_init 1976: found device - domain=0x2, bus=0x1, slot=0x0, func=0x1, vendor=0x15b3, device=0x1021
+1791921887.119228 dgx02 systemd[1]: Finished systemd-modules-load.service - Load Kernel Modules.
+1791921887.119238 dgx02 systemd[1]: Finished systemd-remount-fs.service - Remount Root and Kernel File Systems.
+1791921887.119248 dgx02 systemd[1]: Activating swap swap.img.swap - /swap.img...
+1791921887.119259 dgx02 systemd[1]: Starting multipathd.service - Device-Mapper Multipath Device Controller...
+1791921887.119270 dgx02 systemd[1]: systemd-hwdb-update.service - Rebuild Hardware Database was skipped because of an unmet condition check (ConditionNeedsUpdate=/etc).
+1791921887.119281 dgx02 systemd[1]: systemd-pstore.service - Platform Persistent Storage Archival was skipped because of an unmet condition check (ConditionDirectoryNotEmpty=/sys/fs/pstore).
+1791921887.119291 dgx02 systemd[1]: Starting systemd-random-seed.service - Load/Save OS Random Seed...
+1791921887.119303 dgx02 systemd[1]: Starting systemd-sysctl.service - Apply Kernel Variables...
+1791921887.119313 dgx02 systemd[1]: systemd-tpm2-setup.service - TPM2 SRK Setup was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+1791921887.119324 dgx02 kernel: Adding 16777212k swap on /swap.img.  Priority:-2 extents:132 across:1864237056k SS
+1791921887.119334 dgx02 systemd[1]: Finished keyboard-setup.service - Set the console keyboard layout.
+1791921887.119344 dgx02 systemd[1]: Activated swap swap.img.swap - /swap.img.
+1791921887.119355 dgx02 systemd[1]: Finished systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully.
+1791921887.119365 dgx02 systemd[1]: Reached target swap.target - Swaps.
+1791921887.119376 dgx02 systemd[1]: systemd-sysusers.service - Create System Users was skipped because no trigger condition checks were met.
+1791921887.119386 dgx02 systemd[1]: Starting systemd-tmpfiles-setup-dev.service - Create Static Device Nodes in /dev...
+1791921887.119396 dgx02 systemd[1]: Finished systemd-random-seed.service - Load/Save OS Random Seed.
+1791921887.119407 dgx02 systemd[1]: Finished systemd-tmpfiles-setup-dev.service - Create Static Device Nodes in /dev.
+1791921887.119419 dgx02 systemd[1]: Starting systemd-udevd.service - Rule-based Manager for Device Events and Files...
+1791921887.119429 dgx02 systemd[1]: Finished systemd-sysctl.service - Apply Kernel Variables.
+1791921887.119439 dgx02 systemd[1]: Finished lvm2-monitor.service - Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling.
+1791921887.120022 dgx02 systemd[1]: Started systemd-journald.service - Journal Service.
+1791921887.132027 dgx02 kernel: nvme nvme0: using unchecked data buffer
+1791921887.622341 dgx02 systemd-journald[620]: Received client request to flush runtime journal.
+1791921887.622396 dgx02 systemd-journald[620]: /var/log/journal/1ab56562f78545b9b20199aa6463b64c/system.journal: Journal file uses a different sequence number ID, rotating.
+1791921887.622439 dgx02 systemd-journald[620]: Rotating system journal.
+1791921887.622462 dgx02 kernel: loop0: detected capacity change from 0 to 8
+1791921887.622486 dgx02 kernel: loop1: detected capacity change from 0 to 141272
+1791921887.622503 dgx02 kernel: loop2: detected capacity change from 0 to 141288
+1791921887.622520 dgx02 kernel: loop3: detected capacity change from 0 to 126640
+1791921887.622547 dgx02 kernel: loop4: detected capacity change from 0 to 126688
+1791921887.622558 dgx02 kernel: loop5: detected capacity change from 0 to 514960
+1791921887.622575 dgx02 kernel: loop6: detected capacity change from 0 to 152408
+1791921887.622590 dgx02 kernel: loop7: detected capacity change from 0 to 152408
+1791921887.622602 dgx02 kernel: loop8: detected capacity change from 0 to 515056
+1791921887.622610 dgx02 kernel: loop9: detected capacity change from 0 to 1030424
+1791921887.622626 dgx02 kernel: cx7-pcie-hotplug MTKP0001:00: PCIe hotplug driver initialized successfully
+1791921887.628360 dgx02 kernel: CPPC Cpufreq:Enabling auto_sel_mode (autonomous selection mode)
+1791921887.628376 dgx02 kernel: processor cpu0: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.629084 dgx02 kernel: processor cpu1: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.629663 dgx02 kernel: processor cpu2: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.630406 dgx02 kernel: processor cpu3: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.630855 dgx02 kernel: processor cpu4: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.631895 dgx02 kernel: processor cpu5: EM: created perf domain
+1791921887.634229 dgx02 kernel: cx7-pcie-hotplug MTKP0001:00: Hotplug enabled
+1791921887.636988 dgx02 kernel: processor cpu10: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.645051 dgx02 kernel: processor cpu11: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.652105 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.3.auto: option mask 0x0
+1791921887.658230 dgx02 kernel: processor cpu12: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.663903 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.3.auto: Registered PMU @ 0x0000000013802000 using 32 counters with Global(Counter0) filter settings
+1791921887.667510 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.4.auto: option mask 0x0
+1791921887.670155 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.4.auto: Registered PMU @ 0x0000000013842000 using 16 counters with Global(Counter0) filter settings
+1791921887.672075 dgx02 kernel: processor cpu13: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.673755 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.5.auto: option mask 0x0
+1791921887.675049 dgx02 kernel: arm_spe_pmu arm,spe-v1: probed SPEv1.2 for CPUs 0-19 [max_record_sz 64, align 64, features 0xd7]
+1791921887.676955 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.5.auto: Registered PMU @ 0x0000000013862000 using 16 counters with Global(Counter0) filter settings
+1791921887.677473 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.6.auto: option mask 0x0
+1791921887.679099 dgx02 kernel: processor cpu14: EM: CPUs of 0-4,10-14 must have the same capacity
+1791921887.680933 dgx02 kernel: processor cpu15: EM: CPUs of 15-19 must have the same capacity
+1791921887.682474 dgx02 kernel: processor cpu16: EM: CPUs of 15-19 must have the same capacity
+1791921887.684742 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.6.auto: Registered PMU @ 0x0000000013882000 using 16 counters with Global(Counter0) filter settings
+1791921887.685656 dgx02 kernel: processor cpu17: EM: CPUs of 15-19 must have the same capacity
+1791921887.686564 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.7.auto: option mask 0x0
+1791921887.687164 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.7.auto: Registered PMU @ 0x00000000138a2000 using 16 counters with Global(Counter0) filter settings
+1791921887.688362 dgx02 kernel: processor cpu18: EM: CPUs of 15-19 must have the same capacity
+1791921887.689015 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.8.auto: option mask 0x0
+1791921887.691066 dgx02 kernel: processor cpu19: EM: CPUs of 15-19 must have the same capacity
+1791921887.692032 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.8.auto: Registered PMU @ 0x00000000138c2000 using 16 counters with Global(Counter0) filter settings
+1791921887.693067 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.9.auto: option mask 0x0
+1791921887.693898 dgx02 kernel: cfg80211: Loading compiled-in X.509 certificates for regulatory database
+1791921887.693924 dgx02 kernel: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+1791921887.693942 dgx02 kernel: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+1791921887.693958 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.9.auto: Registered PMU @ 0x00000000138e2000 using 16 counters with Global(Counter0) filter settings
+1791921887.694111 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.10.auto: option mask 0x0
+1791921887.694255 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.10.auto: Registered PMU @ 0x0000000013002000 using 32 counters with Global(Counter0) filter settings
+1791921887.694335 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.11.auto: option mask 0x0
+1791921887.694458 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.11.auto: Registered PMU @ 0x0000000013042000 using 16 counters with Global(Counter0) filter settings
+1791921887.694556 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.12.auto: option mask 0x0
+1791921887.694665 dgx02 kernel: sbsa-gwdt sbsa-gwdt.0: Initialized with 10s timeout @ 1000000000 Hz, action=1. [enabled]
+1791921887.694770 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.12.auto: Registered PMU @ 0x0000000013062000 using 16 counters with Global(Counter0) filter settings
+1791921887.694869 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.13.auto: option mask 0x0
+1791921887.694960 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.13.auto: Registered PMU @ 0x0000000013082000 using 16 counters with Global(Counter0) filter settings
+1791921887.696572 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.14.auto: option mask 0x0
+1791921887.697291 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.14.auto: Registered PMU @ 0x00000000130a2000 using 16 counters with Global(Counter0) filter settings
+1791921887.697585 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.15.auto: option mask 0x0
+1791921887.698023 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.15.auto: Registered PMU @ 0x00000000130c2000 using 16 counters with Global(Counter0) filter settings
+1791921887.698312 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.16.auto: option mask 0x0
+1791921887.698738 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.16.auto: Registered PMU @ 0x00000000130e2000 using 16 counters with Global(Counter0) filter settings
+1791921887.699710 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.17.auto: option mask 0x0
+1791921887.701128 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.17.auto: Registered PMU @ 0x0000000014902000 using 32 counters with Global(Counter0) filter settings
+1791921887.702115 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.18.auto: option mask 0x0
+1791921887.703020 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.18.auto: Registered PMU @ 0x0000000014942000 using 16 counters with Global(Counter0) filter settings
+1791921887.704779 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.19.auto: option mask 0x0
+1791921887.706320 dgx02 kernel: arm-smmu-v3-pmcg arm-smmu-v3-pmcg.19.auto: Registered PMU @ 0x0000000014962000 using 16 counters with Global(Counter0) filter settings
+1791921887.707755 dgx02 kernel: Loading iSCSI transport class v2.0-870.
+1791921887.707774 dgx02 kernel: nvidia-nvlink: Nvlink Core is being initialized, major device number 500
+1791921887.707782 dgx02 kernel: 
+1791921887.707799 dgx02 kernel: nvidia 000f:01:00.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=none:owns=none
+1791921887.709119 dgx02 kernel: iscsi: registered transport (iser)
+1791921887.709141 dgx02 kernel: mt7925e 0009:01:00.0: enabling device (0000 -> 0002)
+1791921887.709973 dgx02 kernel: mt7925e 0009:01:00.0: ASIC revision: 79250000
+1791921887.711199 dgx02 kernel: RPC: Registered named UNIX socket transport module.
+1791921887.711220 dgx02 kernel: RPC: Registered udp transport module.
+1791921887.711237 dgx02 kernel: RPC: Registered tcp transport module.
+1791921887.711255 dgx02 kernel: RPC: Registered tcp-with-tls transport module.
+1791921887.711268 dgx02 kernel: RPC: Registered tcp NFSv4.1 backchannel transport module.
+1791921887.716044 dgx02 kernel: RPC: Registered rdma transport module.
+1791921887.716062 dgx02 kernel: RPC: Registered rdma backchannel transport module.
+1791921887.757044 dgx02 kernel: Bluetooth: Core ver 2.22
+1791921887.757110 dgx02 kernel: NET: Registered PF_BLUETOOTH protocol family
+1791921887.757144 dgx02 kernel: Bluetooth: HCI device and connection manager initialized
+1791921887.757164 dgx02 kernel: Bluetooth: HCI socket layer initialized
+1791921887.757177 dgx02 kernel: Bluetooth: L2CAP socket layer initialized
+1791921887.757189 dgx02 kernel: Bluetooth: SCO socket layer initialized
+1791921887.766028 dgx02 kernel: input: NVIDIA HDMI/DP,pcm=3 as /devices/platform/NVDA2014:00/sound/card0/input3
+1791921887.778028 dgx02 kernel: mt7925e 0009:01:00.0: HW/SW Version: 0x8a108a10, Build Time: 20251210092928a
+1791921887.780298 dgx02 kernel: input: NVIDIA HDMI/DP,pcm=7 as /devices/platform/NVDA2014:00/sound/card0/input4
+1791921887.787022 dgx02 kernel: usbcore: registered new interface driver btusb
+1791921887.789022 dgx02 kernel: Bluetooth: hci0: HW/SW Version: 0x00000000, Build Time: 20251210093205
+1791921887.795024 dgx02 kernel: input: NVIDIA HDMI/DP,pcm=8 as /devices/platform/NVDA2014:00/sound/card0/input5
+1791921887.795051 dgx02 kernel: input: NVIDIA HDMI/DP,pcm=9 as /devices/platform/NVDA2014:00/sound/card0/input6
+1791921888.084028 dgx02 kernel: audit: type=1400 audit(1791921888.083:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="brave" pid=1372 comm="apparmor_parser"
+1791921888.084067 dgx02 kernel: audit: type=1400 audit(1791921888.083:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="Discord" pid=1367 comm="apparmor_parser"
+1791921888.084088 dgx02 kernel: audit: type=1400 audit(1791921888.083:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="buildah" pid=1373 comm="apparmor_parser"
+1791921888.084106 dgx02 kernel: audit: type=1400 audit(1791921888.083:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="QtWebEngineProcess" pid=1369 comm="apparmor_parser"
+1791921888.084123 dgx02 kernel: audit: type=1400 audit(1791921888.083:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="balena-etcher" pid=1370 comm="apparmor_parser"
+1791921888.084135 dgx02 kernel: audit: type=1400 audit(1791921888.083:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="cam" pid=1374 comm="apparmor_parser"
+1791921888.084149 dgx02 kernel: audit: type=1400 audit(1791921888.083:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="1password" pid=1366 comm="apparmor_parser"
+1791921888.084159 dgx02 kernel: audit: type=1400 audit(1791921888.083:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="flatpak" pid=1387 comm="apparmor_parser"
+1791921888.084173 dgx02 kernel: audit: type=1400 audit(1791921888.083:12): apparmor="STATUS" operation="profile_load" profile="unconfined" name="vscode" pid=1378 comm="apparmor_parser"
+1791921888.084184 dgx02 kernel: audit: type=1400 audit(1791921888.083:13): apparmor="STATUS" operation="profile_load" profile="unconfined" name="firefox" pid=1385 comm="apparmor_parser"
+1791921888.128016 dgx02 kernel: mt7925e 0009:01:00.0: WM Firmware Version: ____000000, Build Time: 20251210093025
+1791921888.372151 dgx02 kernel: NOTICE: Automounting of tracing to debugfs is deprecated and will be removed in 2030
+1791921888.410076 dgx02 kernel: Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+1791921888.410100 dgx02 kernel: Bluetooth: BNEP filters: protocol multicast
+1791921888.410109 dgx02 kernel: Bluetooth: BNEP socket layer initialized
+1791921888.459024 dgx02 kernel: block nvme0n1: No UUID available providing old NGUID
+1791921888.505029 dgx02 kernel: NET: Registered PF_QIPCRTR protocol family
+1791921888.731020 dgx02 kernel: mt7925e 0009:01:00.0 wlP9s9: renamed from wlan0
+1791921889.125027 dgx02 kernel: mlx5_core 0002:01:00.0 enP2p1s0f0np0: Link down
+1791921889.466179 dgx02 kernel: mlx5_core 0002:01:00.1 enP2p1s0f1np1: Link up
+1791921889.469024 dgx02 kernel: mlx5_core 0002:01:00.1 roceP2p1s0f1: Port: 1 Link ACTIVE
+1791921889.470096 dgx02 kernel: enP7s7: 0xffff800085c80000, 30:c5:99:c0:7f:f0, IRQ 333
+1791921889.696133 dgx02 kernel: Bluetooth: hci0: Device setup in 1864386 usecs
+1791921889.696187 dgx02 kernel: Bluetooth: hci0: HCI Enhanced Setup Synchronous Connection command is advertised, but not supported.
+1791921889.816192 dgx02 kernel: mlx5_core 0000:01:00.0 enp1s0f0np0: Link down
+1791921889.819032 dgx02 kernel: Bluetooth: hci0: AOSP extensions version v1.00
+1791921889.819060 dgx02 kernel: Bluetooth: hci0: AOSP quality report is supported
+1791921889.819070 dgx02 kernel: Bluetooth: MGMT ver 1.23
+1791921889.825024 dgx02 kernel: NET: Registered PF_ALG protocol family
+1791921890.323177 dgx02 kernel: mlx5_core 0000:01:00.1 enp1s0f1np1: Link up
+1791921890.326160 dgx02 kernel: mlx5_core 0000:01:00.1 rocep1s0f1: Port: 1 Link ACTIVE
+1791921890.373015 dgx02 kernel: warning: `lldpd' uses wireless extensions which will stop working for Wi-Fi 7 hardware; use nl80211
+1791921890.562733 dgx02 systemd-journald[620]: /var/log/journal/1ab56562f78545b9b20199aa6463b64c/user-1000.journal: Journal file uses a different sequence number ID, rotating.
+1791921890.705021 dgx02 kernel: evm: overlay not supported
+1791921890.785033 dgx02 kernel: NVRM: loading NVIDIA UNIX Open Kernel Module for aarch64  580.173.02  Release Build  (dvs-builder@U22-A24-5-4)  Tue Jun 23 08:34:19 UTC 2026
+1791921890.800025 dgx02 kernel: nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  580.173.02  Release Build  (dvs-builder@U22-A24-5-4)  Tue Jun 23 08:15:40 UTC 2026
+1791921891.147142 dgx02 kernel: Initializing XFRM netlink socket
+1791921891.169114 dgx02 kernel: bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+1791921892.708145 dgx02 kernel: [drm] [nvidia-drm] [GPU ID 0x000f0100] Loading driver
+1791921892.709138 dgx02 kernel: [drm] Initialized nvidia-drm 0.0.0 for 000f:01:00.0 on minor 0
+1791921892.984023 dgx02 kernel: Bluetooth: RFCOMM TTY layer initialized
+1791921892.984055 dgx02 kernel: Bluetooth: RFCOMM socket layer initialized
+1791921892.984067 dgx02 kernel: Bluetooth: RFCOMM ver 1.11
+1791921893.348025 dgx02 kernel: r8127: enP7s7: link up
+1791921894.196030 dgx02 kernel: rfkill: input handler disabled
+1791921898.704024 dgx02 kernel: kauditd_printk_skb: 162 callbacks suppressed
+1791921898.704079 dgx02 kernel: audit: type=1400 audit(1791921898.703:176): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=3324 comm="systemd-detect-" capability=38  capname="perfmon"
+1791921898.706013 dgx02 kernel: audit: type=1400 audit(1791921898.705:177): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=3285 comm="cloud-id" capability=38  capname="perfmon"
+1791921915.975136 dgx02 kernel:   MST::  : get_space_support_status 834: Device 0x1021 (0:1:0.0) doesn't support RECOVERY capability.
+1791925488.985144 dgx02 kernel: audit: type=1400 audit(1791925488.983:178): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=39143 comm="systemd-detect-" capability=38  capname="perfmon"
+1791925488.987174 dgx02 kernel: audit: type=1400 audit(1791925488.985:179): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=39138 comm="cloud-id" capability=38  capname="perfmon"
+1791928800.200107 dgx02 kernel: audit: type=1400 audit(1791928800.198:180): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=74782 comm="cupsd" capability=12  capname="net_admin"
+1791928853.158399 dgx02 kernel: audit: type=1400 audit(1791928853.155:181): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=74797 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791928853.673036 dgx02 kernel: audit: type=1400 audit(1791928853.671:182): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=74958 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791928854.173016 dgx02 kernel: audit: type=1400 audit(1791928854.171:183): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=75115 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791928854.690028 dgx02 kernel: audit: type=1400 audit(1791928854.688:184): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=75234 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791928855.185116 dgx02 kernel: audit: type=1400 audit(1791928855.183:185): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=75305 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791929088.679121 dgx02 kernel: audit: type=1400 audit(1791929088.677:186): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=75469 comm="systemd-detect-" capability=38  capname="perfmon"
+1791929088.681114 dgx02 kernel: audit: type=1400 audit(1791929088.679:187): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=75464 comm="cloud-id" capability=38  capname="perfmon"
+1791930268.023033 dgx02 kernel: docker0: port 1(veth9ef30d2) entered blocking state
+1791930268.023104 dgx02 kernel: docker0: port 1(veth9ef30d2) entered disabled state
+1791930268.023125 dgx02 kernel: veth9ef30d2: entered allmulticast mode
+1791930268.023151 dgx02 kernel: veth9ef30d2: entered promiscuous mode
+1791930268.103128 dgx02 kernel: eth0: renamed from vethe83f00d
+1791930268.105024 dgx02 kernel: docker0: port 1(veth9ef30d2) entered blocking state
+1791930268.105062 dgx02 kernel: docker0: port 1(veth9ef30d2) entered forwarding state
+1791930301.292126 dgx02 kernel: docker0: port 1(veth9ef30d2) entered disabled state
+1791930301.292156 dgx02 kernel: vethe83f00d: renamed from eth0
+1791930301.330128 dgx02 kernel: docker0: port 1(veth9ef30d2) entered disabled state
+1791930301.330159 dgx02 kernel: veth9ef30d2 (unregistering): left allmulticast mode
+1791930301.330170 dgx02 kernel: veth9ef30d2 (unregistering): left promiscuous mode
+1791930301.330184 dgx02 kernel: docker0: port 1(veth9ef30d2) entered disabled state
+1791930301.417079 dgx02 kernel: docker0: port 1(vethc717eb9) entered blocking state
+1791930301.417135 dgx02 kernel: docker0: port 1(vethc717eb9) entered disabled state
+1791930301.417159 dgx02 kernel: vethc717eb9: entered allmulticast mode
+1791930301.417174 dgx02 kernel: vethc717eb9: entered promiscuous mode
+1791930301.492029 dgx02 kernel: eth0: renamed from veth9f81ccf
+1791930301.493021 dgx02 kernel: docker0: port 1(vethc717eb9) entered blocking state
+1791930301.493053 dgx02 kernel: docker0: port 1(vethc717eb9) entered forwarding state
+1791930302.946020 dgx02 kernel: docker0: port 1(vethc717eb9) entered disabled state
+1791930302.946041 dgx02 kernel: veth9f81ccf: renamed from eth0
+1791930302.962027 dgx02 kernel: docker0: port 2(veth92e1a25) entered blocking state
+1791930302.962062 dgx02 kernel: docker0: port 2(veth92e1a25) entered disabled state
+1791930302.962079 dgx02 kernel: veth92e1a25: entered allmulticast mode
+1791930302.962094 dgx02 kernel: veth92e1a25: entered promiscuous mode
+1791930302.977021 dgx02 kernel: docker0: port 1(vethc717eb9) entered disabled state
+1791930302.977044 dgx02 kernel: vethc717eb9 (unregistering): left allmulticast mode
+1791930302.977058 dgx02 kernel: vethc717eb9 (unregistering): left promiscuous mode
+1791930302.977072 dgx02 kernel: docker0: port 1(vethc717eb9) entered disabled state
+1791930303.064024 dgx02 kernel: eth0: renamed from vethe5e5d2e
+1791930303.065107 dgx02 kernel: docker0: port 2(veth92e1a25) entered blocking state
+1791930303.065145 dgx02 kernel: docker0: port 2(veth92e1a25) entered forwarding state
+1791930304.000016 dgx02 kernel: docker0: port 2(veth92e1a25) entered disabled state
+1791930304.000031 dgx02 kernel: vethe5e5d2e: renamed from eth0
+1791930304.033025 dgx02 kernel: docker0: port 2(veth92e1a25) entered disabled state
+1791930304.033045 dgx02 kernel: veth92e1a25 (unregistering): left allmulticast mode
+1791930304.033055 dgx02 kernel: veth92e1a25 (unregistering): left promiscuous mode
+1791930304.033067 dgx02 kernel: docker0: port 2(veth92e1a25) entered disabled state
+1791930357.421021 dgx02 kernel: docker0: port 1(vethadd6fa5) entered blocking state
+1791930357.421083 dgx02 kernel: docker0: port 1(vethadd6fa5) entered disabled state
+1791930357.421097 dgx02 kernel: vethadd6fa5: entered allmulticast mode
+1791930357.421119 dgx02 kernel: vethadd6fa5: entered promiscuous mode
+1791930357.506032 dgx02 kernel: eth0: renamed from veth271c0f9
+1791930357.506106 dgx02 kernel: docker0: port 1(vethadd6fa5) entered blocking state
+1791930357.506119 dgx02 kernel: docker0: port 1(vethadd6fa5) entered forwarding state
+1791930408.797016 dgx02 kernel: docker0: port 1(vethadd6fa5) entered disabled state
+1791930408.797048 dgx02 kernel: veth271c0f9: renamed from eth0
+1791930408.836027 dgx02 kernel: docker0: port 1(vethadd6fa5) entered disabled state
+1791930408.837017 dgx02 kernel: vethadd6fa5 (unregistering): left allmulticast mode
+1791930408.837033 dgx02 kernel: vethadd6fa5 (unregistering): left promiscuous mode
+1791930408.837058 dgx02 kernel: docker0: port 1(vethadd6fa5) entered disabled state
+1791930409.715104 dgx02 kernel: docker0: port 1(veth8779451) entered blocking state
+1791930409.715178 dgx02 kernel: docker0: port 1(veth8779451) entered disabled state
+1791930409.715196 dgx02 kernel: veth8779451: entered allmulticast mode
+1791930409.715208 dgx02 kernel: veth8779451: entered promiscuous mode
+1791930409.792023 dgx02 kernel: eth0: renamed from veth1fd4100
+1791930409.792084 dgx02 kernel: docker0: port 1(veth8779451) entered blocking state
+1791930409.792090 dgx02 kernel: docker0: port 1(veth8779451) entered forwarding state
+1791930423.175039 dgx02 kernel: docker0: port 1(veth8779451) entered disabled state
+1791930423.175057 dgx02 kernel: veth1fd4100: renamed from eth0
+1791930423.203141 dgx02 kernel: docker0: port 1(veth8779451) entered disabled state
+1791930423.204022 dgx02 kernel: veth8779451 (unregistering): left allmulticast mode
+1791930423.204068 dgx02 kernel: veth8779451 (unregistering): left promiscuous mode
+1791930423.204095 dgx02 kernel: docker0: port 1(veth8779451) entered disabled state
+1791930423.458020 dgx02 kernel: docker0: port 1(vethfd420ea) entered blocking state
+1791930423.458079 dgx02 kernel: docker0: port 1(vethfd420ea) entered disabled state
+1791930423.458095 dgx02 kernel: vethfd420ea: entered allmulticast mode
+1791930423.460019 dgx02 kernel: vethfd420ea: entered promiscuous mode
+1791930423.535134 dgx02 kernel: eth0: renamed from veth2bcaba5
+1791930423.536127 dgx02 kernel: docker0: port 1(vethfd420ea) entered blocking state
+1791930423.536149 dgx02 kernel: docker0: port 1(vethfd420ea) entered forwarding state
+1791930425.184017 dgx02 kernel: docker0: port 1(vethfd420ea) entered disabled state
+1791930425.184040 dgx02 kernel: veth2bcaba5: renamed from eth0
+1791930425.267022 dgx02 kernel: docker0: port 1(vethfd420ea) entered disabled state
+1791930425.267056 dgx02 kernel: vethfd420ea (unregistering): left allmulticast mode
+1791930425.267067 dgx02 kernel: vethfd420ea (unregistering): left promiscuous mode
+1791930425.267078 dgx02 kernel: docker0: port 1(vethfd420ea) entered disabled state
+1791930425.315026 dgx02 kernel: docker0: port 1(veth955253e) entered blocking state
+1791930425.315059 dgx02 kernel: docker0: port 1(veth955253e) entered disabled state
+1791930425.315071 dgx02 kernel: veth955253e: entered allmulticast mode
+1791930425.315082 dgx02 kernel: veth955253e: entered promiscuous mode
+1791930425.384041 dgx02 kernel: eth0: renamed from veth392f2ba
+1791930425.384130 dgx02 kernel: docker0: port 1(veth955253e) entered blocking state
+1791930425.384150 dgx02 kernel: docker0: port 1(veth955253e) entered forwarding state
+1791930425.421168 dgx02 kernel: docker0: port 1(veth955253e) entered disabled state
+1791930425.421202 dgx02 kernel: veth392f2ba: renamed from eth0
+1791930425.460024 dgx02 kernel: docker0: port 1(veth955253e) entered disabled state
+1791930425.460054 dgx02 kernel: veth955253e (unregistering): left allmulticast mode
+1791930425.460075 dgx02 kernel: veth955253e (unregistering): left promiscuous mode
+1791930425.460091 dgx02 kernel: docker0: port 1(veth955253e) entered disabled state
+1791930571.688105 dgx02 kernel: docker0: port 1(veth9faae30) entered blocking state
+1791930571.688176 dgx02 kernel: docker0: port 1(veth9faae30) entered disabled state
+1791930571.688190 dgx02 kernel: veth9faae30: entered allmulticast mode
+1791930571.688203 dgx02 kernel: veth9faae30: entered promiscuous mode
+1791930571.754195 dgx02 kernel: eth0: renamed from vethb39bd9b
+1791930571.754263 dgx02 kernel: docker0: port 1(veth9faae30) entered blocking state
+1791930571.754275 dgx02 kernel: docker0: port 1(veth9faae30) entered forwarding state
+1791930571.810017 dgx02 kernel: docker0: port 1(veth9faae30) entered disabled state
+1791930571.810044 dgx02 kernel: vethb39bd9b: renamed from eth0
+1791930571.845033 dgx02 kernel: docker0: port 1(veth9faae30) entered disabled state
+1791930571.845107 dgx02 kernel: veth9faae30 (unregistering): left allmulticast mode
+1791930571.845132 dgx02 kernel: veth9faae30 (unregistering): left promiscuous mode
+1791930571.845153 dgx02 kernel: docker0: port 1(veth9faae30) entered disabled state
+1791930579.884028 dgx02 kernel: docker0: port 1(veth2f1cedb) entered blocking state
+1791930579.884104 dgx02 kernel: docker0: port 1(veth2f1cedb) entered disabled state
+1791930579.884122 dgx02 kernel: veth2f1cedb: entered allmulticast mode
+1791930579.884135 dgx02 kernel: veth2f1cedb: entered promiscuous mode
+1791930579.888024 dgx02 kernel: eth0: renamed from veth783ab60
+1791930579.889370 dgx02 kernel: docker0: port 1(veth2f1cedb) entered blocking state
+1791930579.889407 dgx02 kernel: docker0: port 1(veth2f1cedb) entered forwarding state
+1791930583.438022 dgx02 kernel: docker0: port 1(veth2f1cedb) entered disabled state
+1791930583.438044 dgx02 kernel: veth783ab60: renamed from eth0
+1791930583.477020 dgx02 kernel: docker0: port 1(veth2f1cedb) entered disabled state
+1791930583.477032 dgx02 kernel: veth2f1cedb (unregistering): left allmulticast mode
+1791930583.477041 dgx02 kernel: veth2f1cedb (unregistering): left promiscuous mode
+1791930583.477054 dgx02 kernel: docker0: port 1(veth2f1cedb) entered disabled state
+1791930605.805175 dgx02 kernel: docker0: port 1(vethb41bb4b) entered blocking state
+1791930605.805205 dgx02 kernel: docker0: port 1(vethb41bb4b) entered disabled state
+1791930605.805221 dgx02 kernel: vethb41bb4b: entered allmulticast mode
+1791930605.805235 dgx02 kernel: vethb41bb4b: entered promiscuous mode
+1791930605.808017 dgx02 kernel: eth0: renamed from vethd2e5b4a
+1791930605.808050 dgx02 kernel: docker0: port 1(vethb41bb4b) entered blocking state
+1791930605.808063 dgx02 kernel: docker0: port 1(vethb41bb4b) entered forwarding state
+1791930607.306101 dgx02 kernel: docker0: port 1(vethb41bb4b) entered disabled state
+1791930607.306126 dgx02 kernel: vethd2e5b4a: renamed from eth0
+1791930607.340023 dgx02 kernel: docker0: port 1(vethb41bb4b) entered disabled state
+1791930607.340061 dgx02 kernel: vethb41bb4b (unregistering): left allmulticast mode
+1791930607.340079 dgx02 kernel: vethb41bb4b (unregistering): left promiscuous mode
+1791930607.340096 dgx02 kernel: docker0: port 1(vethb41bb4b) entered disabled state
+1791930607.509024 dgx02 kernel: docker0: port 1(veth270ba42) entered blocking state
+1791930607.509098 dgx02 kernel: docker0: port 1(veth270ba42) entered disabled state
+1791930607.509116 dgx02 kernel: veth270ba42: entered allmulticast mode
+1791930607.509128 dgx02 kernel: veth270ba42: entered promiscuous mode
+1791930607.520037 dgx02 kernel: eth0: renamed from vethfa868a9
+1791930607.520060 dgx02 kernel: docker0: port 1(veth270ba42) entered blocking state
+1791930607.520067 dgx02 kernel: docker0: port 1(veth270ba42) entered forwarding state
+1791930607.801113 dgx02 kernel: docker0: port 1(veth270ba42) entered disabled state
+1791930607.801165 dgx02 kernel: vethfa868a9: renamed from eth0
+1791930607.851015 dgx02 kernel: docker0: port 1(veth270ba42) entered disabled state
+1791930607.851034 dgx02 kernel: veth270ba42 (unregistering): left allmulticast mode
+1791930607.851047 dgx02 kernel: veth270ba42 (unregistering): left promiscuous mode
+1791930607.851061 dgx02 kernel: docker0: port 1(veth270ba42) entered disabled state
+1791930648.418021 dgx02 kernel: docker0: port 1(veth966d488) entered blocking state
+1791930648.418089 dgx02 kernel: docker0: port 1(veth966d488) entered disabled state
+1791930648.418117 dgx02 kernel: veth966d488: entered allmulticast mode
+1791930648.418141 dgx02 kernel: veth966d488: entered promiscuous mode
+1791930648.491120 dgx02 kernel: eth0: renamed from veth19c0386
+1791930648.491279 dgx02 kernel: docker0: port 1(veth966d488) entered blocking state
+1791930648.491327 dgx02 kernel: docker0: port 1(veth966d488) entered forwarding state
+1791930862.620099 dgx02 kernel: docker0: port 1(veth966d488) entered disabled state
+1791930862.620132 dgx02 kernel: veth19c0386: renamed from eth0
+1791930862.650024 dgx02 kernel: docker0: port 1(veth966d488) entered disabled state
+1791930862.652113 dgx02 kernel: veth966d488 (unregistering): left allmulticast mode
+1791930862.652172 dgx02 kernel: veth966d488 (unregistering): left promiscuous mode
+1791930862.652195 dgx02 kernel: docker0: port 1(veth966d488) entered disabled state
+1791930963.242022 dgx02 kernel: docker0: port 1(veth90bcc7e) entered blocking state
+1791930963.242070 dgx02 kernel: docker0: port 1(veth90bcc7e) entered disabled state
+1791930963.242095 dgx02 kernel: veth90bcc7e: entered allmulticast mode
+1791930963.242114 dgx02 kernel: veth90bcc7e: entered promiscuous mode
+1791930963.307030 dgx02 kernel: eth0: renamed from veth5e4cd51
+1791930963.308095 dgx02 kernel: docker0: port 1(veth90bcc7e) entered blocking state
+1791930963.308120 dgx02 kernel: docker0: port 1(veth90bcc7e) entered forwarding state
+1791931078.293034 dgx02 kernel: docker0: port 1(veth90bcc7e) entered disabled state
+1791931078.293087 dgx02 kernel: veth5e4cd51: renamed from eth0
+1791931078.330026 dgx02 kernel: docker0: port 1(veth90bcc7e) entered disabled state
+1791931078.330074 dgx02 kernel: veth90bcc7e (unregistering): left allmulticast mode
+1791931078.330093 dgx02 kernel: veth90bcc7e (unregistering): left promiscuous mode
+1791931078.330109 dgx02 kernel: docker0: port 1(veth90bcc7e) entered disabled state
+1791931078.489025 dgx02 kernel: docker0: port 1(vethf8fee2f) entered blocking state
+1791931078.489079 dgx02 kernel: docker0: port 1(vethf8fee2f) entered disabled state
+1791931078.489104 dgx02 kernel: vethf8fee2f: entered allmulticast mode
+1791931078.489125 dgx02 kernel: vethf8fee2f: entered promiscuous mode
+1791931078.552135 dgx02 kernel: eth0: renamed from veth80c277a
+1791931078.553043 dgx02 kernel: docker0: port 1(vethf8fee2f) entered blocking state
+1791931078.553066 dgx02 kernel: docker0: port 1(vethf8fee2f) entered forwarding state
+1791931080.005168 dgx02 kernel: docker0: port 1(vethf8fee2f) entered disabled state
+1791931080.005209 dgx02 kernel: veth80c277a: renamed from eth0
+1791931080.044014 dgx02 kernel: docker0: port 1(vethf8fee2f) entered disabled state
+1791931080.045013 dgx02 kernel: vethf8fee2f (unregistering): left allmulticast mode
+1791931080.045026 dgx02 kernel: vethf8fee2f (unregistering): left promiscuous mode
+1791931080.045038 dgx02 kernel: docker0: port 1(vethf8fee2f) entered disabled state
+1791931080.060023 dgx02 kernel: docker0: port 1(veth58fd0ac) entered blocking state
+1791931080.060076 dgx02 kernel: docker0: port 1(veth58fd0ac) entered disabled state
+1791931080.060092 dgx02 kernel: veth58fd0ac: entered allmulticast mode
+1791931080.060103 dgx02 kernel: veth58fd0ac: entered promiscuous mode
+1791931080.149152 dgx02 kernel: eth0: renamed from veth869c78b
+1791931080.149243 dgx02 kernel: docker0: port 1(veth58fd0ac) entered blocking state
+1791931080.149261 dgx02 kernel: docker0: port 1(veth58fd0ac) entered forwarding state
+1791931080.207022 dgx02 kernel: docker0: port 1(veth58fd0ac) entered disabled state
+1791931080.207067 dgx02 kernel: veth869c78b: renamed from eth0
+1791931080.235027 dgx02 kernel: docker0: port 1(veth58fd0ac) entered disabled state
+1791931080.235074 dgx02 kernel: veth58fd0ac (unregistering): left allmulticast mode
+1791931080.235093 dgx02 kernel: veth58fd0ac (unregistering): left promiscuous mode
+1791931080.235109 dgx02 kernel: docker0: port 1(veth58fd0ac) entered disabled state
+1791931084.052053 dgx02 kernel: docker0: port 1(veth6df0145) entered blocking state
+1791931084.052137 dgx02 kernel: docker0: port 1(veth6df0145) entered disabled state
+1791931084.052179 dgx02 kernel: veth6df0145: entered allmulticast mode
+1791931084.052199 dgx02 kernel: veth6df0145: entered promiscuous mode
+1791931084.055026 dgx02 kernel: eth0: renamed from veth122ae60
+1791931084.056061 dgx02 kernel: docker0: port 1(veth6df0145) entered blocking state
+1791931084.056107 dgx02 kernel: docker0: port 1(veth6df0145) entered forwarding state
+1791931085.758016 dgx02 kernel: docker0: port 1(veth6df0145) entered disabled state
+1791931085.758029 dgx02 kernel: veth122ae60: renamed from eth0
+1791931085.792028 dgx02 kernel: docker0: port 1(veth6df0145) entered disabled state
+1791931085.792054 dgx02 kernel: veth6df0145 (unregistering): left allmulticast mode
+1791931085.792064 dgx02 kernel: veth6df0145 (unregistering): left promiscuous mode
+1791931085.792079 dgx02 kernel: docker0: port 1(veth6df0145) entered disabled state
+1791931118.675309 dgx02 kernel: docker0: port 1(veth03d9d94) entered blocking state
+1791931118.675350 dgx02 kernel: docker0: port 1(veth03d9d94) entered disabled state
+1791931118.675367 dgx02 kernel: veth03d9d94: entered allmulticast mode
+1791931118.675384 dgx02 kernel: veth03d9d94: entered promiscuous mode
+1791931118.678024 dgx02 kernel: eth0: renamed from vethe73a525
+1791931118.679047 dgx02 kernel: docker0: port 1(veth03d9d94) entered blocking state
+1791931118.679083 dgx02 kernel: docker0: port 1(veth03d9d94) entered forwarding state
+1791931118.956025 dgx02 kernel: docker0: port 1(veth03d9d94) entered disabled state
+1791931118.956053 dgx02 kernel: vethe73a525: renamed from eth0
+1791931118.990023 dgx02 kernel: docker0: port 1(veth03d9d94) entered disabled state
+1791931118.990056 dgx02 kernel: veth03d9d94 (unregistering): left allmulticast mode
+1791931118.990077 dgx02 kernel: veth03d9d94 (unregistering): left promiscuous mode
+1791931118.990108 dgx02 kernel: docker0: port 1(veth03d9d94) entered disabled state
+1791931153.230128 dgx02 kernel: docker0: port 1(veth5a97f7e) entered blocking state
+1791931153.230224 dgx02 kernel: docker0: port 1(veth5a97f7e) entered disabled state
+1791931153.230247 dgx02 kernel: veth5a97f7e: entered allmulticast mode
+1791931153.230269 dgx02 kernel: veth5a97f7e: entered promiscuous mode
+1791931153.297131 dgx02 kernel: eth0: renamed from vetha896d62
+1791931153.298108 dgx02 kernel: docker0: port 1(veth5a97f7e) entered blocking state
+1791931153.298173 dgx02 kernel: docker0: port 1(veth5a97f7e) entered forwarding state
+1791931171.073031 dgx02 kernel: docker0: port 1(veth5a97f7e) entered disabled state
+1791931171.073075 dgx02 kernel: vetha896d62: renamed from eth0
+1791931171.106023 dgx02 kernel: docker0: port 1(veth5a97f7e) entered disabled state
+1791931171.106036 dgx02 kernel: veth5a97f7e (unregistering): left allmulticast mode
+1791931171.106047 dgx02 kernel: veth5a97f7e (unregistering): left promiscuous mode
+1791931171.106057 dgx02 kernel: docker0: port 1(veth5a97f7e) entered disabled state
+1791931171.324130 dgx02 kernel: docker0: port 1(veth3e649c8) entered blocking state
+1791931171.324195 dgx02 kernel: docker0: port 1(veth3e649c8) entered disabled state
+1791931171.324220 dgx02 kernel: veth3e649c8: entered allmulticast mode
+1791931171.325115 dgx02 kernel: veth3e649c8: entered promiscuous mode
+1791931171.384128 dgx02 kernel: eth0: renamed from vethafdb638
+1791931171.384208 dgx02 kernel: docker0: port 1(veth3e649c8) entered blocking state
+1791931171.384221 dgx02 kernel: docker0: port 1(veth3e649c8) entered forwarding state
+1791931172.641030 dgx02 kernel: docker0: port 1(veth3e649c8) entered disabled state
+1791931172.641105 dgx02 kernel: vethafdb638: renamed from eth0
+1791931172.673020 dgx02 kernel: docker0: port 2(veth27b9e11) entered blocking state
+1791931172.673072 dgx02 kernel: docker0: port 2(veth27b9e11) entered disabled state
+1791931172.673087 dgx02 kernel: veth27b9e11: entered allmulticast mode
+1791931172.673099 dgx02 kernel: veth27b9e11: entered promiscuous mode
+1791931172.673115 dgx02 kernel: docker0: port 1(veth3e649c8) entered disabled state
+1791931172.674022 dgx02 kernel: veth3e649c8 (unregistering): left allmulticast mode
+1791931172.674037 dgx02 kernel: veth3e649c8 (unregistering): left promiscuous mode
+1791931172.674053 dgx02 kernel: docker0: port 1(veth3e649c8) entered disabled state
+1791931172.763027 dgx02 kernel: eth0: renamed from veth9e90175
+1791931172.764095 dgx02 kernel: docker0: port 2(veth27b9e11) entered blocking state
+1791931172.764286 dgx02 kernel: docker0: port 2(veth27b9e11) entered forwarding state
+1791931172.818033 dgx02 kernel: docker0: port 2(veth27b9e11) entered disabled state
+1791931172.818089 dgx02 kernel: veth9e90175: renamed from eth0
+1791931172.852050 dgx02 kernel: docker0: port 2(veth27b9e11) entered disabled state
+1791931172.852089 dgx02 kernel: veth27b9e11 (unregistering): left allmulticast mode
+1791931172.852102 dgx02 kernel: veth27b9e11 (unregistering): left promiscuous mode
+1791931172.852113 dgx02 kernel: docker0: port 2(veth27b9e11) entered disabled state
+1791931176.563031 dgx02 kernel: docker0: port 1(vethfce4d17) entered blocking state
+1791931176.563065 dgx02 kernel: docker0: port 1(vethfce4d17) entered disabled state
+1791931176.563079 dgx02 kernel: vethfce4d17: entered allmulticast mode
+1791931176.563088 dgx02 kernel: vethfce4d17: entered promiscuous mode
+1791931176.566024 dgx02 kernel: eth0: renamed from veth1833050
+1791931176.567033 dgx02 kernel: docker0: port 1(vethfce4d17) entered blocking state
+1791931176.567073 dgx02 kernel: docker0: port 1(vethfce4d17) entered forwarding state
+1791931178.716025 dgx02 kernel: docker0: port 1(vethfce4d17) entered disabled state
+1791931178.716057 dgx02 kernel: veth1833050: renamed from eth0
+1791931178.771026 dgx02 kernel: docker0: port 1(vethfce4d17) entered disabled state
+1791931178.771074 dgx02 kernel: vethfce4d17 (unregistering): left allmulticast mode
+1791931178.771108 dgx02 kernel: vethfce4d17 (unregistering): left promiscuous mode
+1791931178.771121 dgx02 kernel: docker0: port 1(vethfce4d17) entered disabled state
+1791931229.932021 dgx02 kernel: docker0: port 1(vethc61bf1f) entered blocking state
+1791931229.932063 dgx02 kernel: docker0: port 1(vethc61bf1f) entered disabled state
+1791931229.932093 dgx02 kernel: vethc61bf1f: entered allmulticast mode
+1791931229.932107 dgx02 kernel: vethc61bf1f: entered promiscuous mode
+1791931230.006141 dgx02 kernel: eth0: renamed from veth02f72be
+1791931230.006222 dgx02 kernel: docker0: port 1(vethc61bf1f) entered blocking state
+1791931230.006242 dgx02 kernel: docker0: port 1(vethc61bf1f) entered forwarding state
+1791931245.980025 dgx02 kernel: docker0: port 1(vethc61bf1f) entered disabled state
+1791931245.980060 dgx02 kernel: veth02f72be: renamed from eth0
+1791931245.999023 dgx02 kernel: docker0: port 1(vethc61bf1f) entered disabled state
+1791931245.999058 dgx02 kernel: vethc61bf1f (unregistering): left allmulticast mode
+1791931245.999070 dgx02 kernel: vethc61bf1f (unregistering): left promiscuous mode
+1791931245.999093 dgx02 kernel: docker0: port 1(vethc61bf1f) entered disabled state
+1791931246.252023 dgx02 kernel: docker0: port 1(veth611edaf) entered blocking state
+1791931246.252086 dgx02 kernel: docker0: port 1(veth611edaf) entered disabled state
+1791931246.252107 dgx02 kernel: veth611edaf: entered allmulticast mode
+1791931246.253029 dgx02 kernel: veth611edaf: entered promiscuous mode
+1791931246.315091 dgx02 kernel: eth0: renamed from veth5175015
+1791931246.315124 dgx02 kernel: docker0: port 1(veth611edaf) entered blocking state
+1791931246.315145 dgx02 kernel: docker0: port 1(veth611edaf) entered forwarding state
+1791931247.644061 dgx02 kernel: docker0: port 1(veth611edaf) entered disabled state
+1791931247.644096 dgx02 kernel: veth5175015: renamed from eth0
+1791931247.678019 dgx02 kernel: docker0: port 1(veth611edaf) entered disabled state
+1791931247.678062 dgx02 kernel: veth611edaf (unregistering): left allmulticast mode
+1791931247.678078 dgx02 kernel: veth611edaf (unregistering): left promiscuous mode
+1791931247.678095 dgx02 kernel: docker0: port 1(veth611edaf) entered disabled state
+1791931247.690018 dgx02 kernel: docker0: port 1(veth2df7b7f) entered blocking state
+1791931247.690059 dgx02 kernel: docker0: port 1(veth2df7b7f) entered disabled state
+1791931247.690073 dgx02 kernel: veth2df7b7f: entered allmulticast mode
+1791931247.697020 dgx02 kernel: veth2df7b7f: entered promiscuous mode
+1791931247.766141 dgx02 kernel: eth0: renamed from veth86b1aa2
+1791931247.766226 dgx02 kernel: docker0: port 1(veth2df7b7f) entered blocking state
+1791931247.766245 dgx02 kernel: docker0: port 1(veth2df7b7f) entered forwarding state
+1791931247.822079 dgx02 kernel: docker0: port 1(veth2df7b7f) entered disabled state
+1791931247.822160 dgx02 kernel: veth86b1aa2: renamed from eth0
+1791931247.844024 dgx02 kernel: docker0: port 1(veth2df7b7f) entered disabled state
+1791931247.844082 dgx02 kernel: veth2df7b7f (unregistering): left allmulticast mode
+1791931247.844104 dgx02 kernel: veth2df7b7f (unregistering): left promiscuous mode
+1791931247.844125 dgx02 kernel: docker0: port 1(veth2df7b7f) entered disabled state
+1791931251.661238 dgx02 kernel: docker0: port 1(veth6bb5ad0) entered blocking state
+1791931251.661269 dgx02 kernel: docker0: port 1(veth6bb5ad0) entered disabled state
+1791931251.661296 dgx02 kernel: veth6bb5ad0: entered allmulticast mode
+1791931251.661312 dgx02 kernel: veth6bb5ad0: entered promiscuous mode
+1791931251.664023 dgx02 kernel: eth0: renamed from veth3dde49a
+1791931251.665023 dgx02 kernel: docker0: port 1(veth6bb5ad0) entered blocking state
+1791931251.665055 dgx02 kernel: docker0: port 1(veth6bb5ad0) entered forwarding state
+1791931256.480027 dgx02 kernel: docker0: port 1(veth6bb5ad0) entered disabled state
+1791931256.480062 dgx02 kernel: veth3dde49a: renamed from eth0
+1791931256.536023 dgx02 kernel: docker0: port 1(veth6bb5ad0) entered disabled state
+1791931256.536047 dgx02 kernel: veth6bb5ad0 (unregistering): left allmulticast mode
+1791931256.536059 dgx02 kernel: veth6bb5ad0 (unregistering): left promiscuous mode
+1791931256.536076 dgx02 kernel: docker0: port 1(veth6bb5ad0) entered disabled state
+1791931256.734030 dgx02 kernel: docker0: port 1(vethaf02c80) entered blocking state
+1791931256.734119 dgx02 kernel: docker0: port 1(vethaf02c80) entered disabled state
+1791931256.734139 dgx02 kernel: vethaf02c80: entered allmulticast mode
+1791931256.734158 dgx02 kernel: vethaf02c80: entered promiscuous mode
+1791931256.738021 dgx02 kernel: eth0: renamed from vethba9cbe8
+1791931256.738061 dgx02 kernel: docker0: port 1(vethaf02c80) entered blocking state
+1791931256.738071 dgx02 kernel: docker0: port 1(vethaf02c80) entered forwarding state
+1791931259.960021 dgx02 kernel: docker0: port 1(vethaf02c80) entered disabled state
+1791931259.960037 dgx02 kernel: vethba9cbe8: renamed from eth0
+1791931260.004024 dgx02 kernel: docker0: port 1(vethaf02c80) entered disabled state
+1791931260.004042 dgx02 kernel: vethaf02c80 (unregistering): left allmulticast mode
+1791931260.004061 dgx02 kernel: vethaf02c80 (unregistering): left promiscuous mode
+1791931260.004083 dgx02 kernel: docker0: port 1(vethaf02c80) entered disabled state
+1791931260.159036 dgx02 kernel: docker0: port 1(vethca89414) entered blocking state
+1791931260.159137 dgx02 kernel: docker0: port 1(vethca89414) entered disabled state
+1791931260.159163 dgx02 kernel: vethca89414: entered allmulticast mode
+1791931260.159183 dgx02 kernel: vethca89414: entered promiscuous mode
+1791931260.162018 dgx02 kernel: eth0: renamed from veth20fa891
+1791931260.163044 dgx02 kernel: docker0: port 1(vethca89414) entered blocking state
+1791931260.163069 dgx02 kernel: docker0: port 1(vethca89414) entered forwarding state
+1791931279.170024 dgx02 kernel: docker0: port 1(vethca89414) entered disabled state
+1791931279.170058 dgx02 kernel: veth20fa891: renamed from eth0
+1791931279.211017 dgx02 kernel: docker0: port 1(vethca89414) entered disabled state
+1791931279.211038 dgx02 kernel: vethca89414 (unregistering): left allmulticast mode
+1791931279.211059 dgx02 kernel: vethca89414 (unregistering): left promiscuous mode
+1791931279.211075 dgx02 kernel: docker0: port 1(vethca89414) entered disabled state
+1791931321.583656 dgx02 kernel: nvidia 000f:01:00.0: Using 40-bit DMA addresses
+1791931502.979212 dgx02 kernel: docker0: port 1(veth6638bc0) entered blocking state
+1791931502.979299 dgx02 kernel: docker0: port 1(veth6638bc0) entered disabled state
+1791931502.979335 dgx02 kernel: veth6638bc0: entered allmulticast mode
+1791931502.979356 dgx02 kernel: veth6638bc0: entered promiscuous mode
+1791931503.056023 dgx02 kernel: eth0: renamed from veth5150841
+1791931503.056053 dgx02 kernel: docker0: port 1(veth6638bc0) entered blocking state
+1791931503.056067 dgx02 kernel: docker0: port 1(veth6638bc0) entered forwarding state
+1791931503.118067 dgx02 kernel: docker0: port 1(veth6638bc0) entered disabled state
+1791931503.118105 dgx02 kernel: veth5150841: renamed from eth0
+1791931503.156177 dgx02 kernel: docker0: port 1(veth6638bc0) entered disabled state
+1791931503.156217 dgx02 kernel: veth6638bc0 (unregistering): left allmulticast mode
+1791931503.156251 dgx02 kernel: veth6638bc0 (unregistering): left promiscuous mode
+1791931503.156266 dgx02 kernel: docker0: port 1(veth6638bc0) entered disabled state
+1791931503.320018 dgx02 kernel: docker0: port 1(veth40e6052) entered blocking state
+1791931503.320090 dgx02 kernel: docker0: port 1(veth40e6052) entered disabled state
+1791931503.320109 dgx02 kernel: veth40e6052: entered allmulticast mode
+1791931503.320124 dgx02 kernel: veth40e6052: entered promiscuous mode
+1791931503.323022 dgx02 kernel: eth0: renamed from vethede7dc5
+1791931503.324016 dgx02 kernel: docker0: port 1(veth40e6052) entered blocking state
+1791931503.324035 dgx02 kernel: docker0: port 1(veth40e6052) entered forwarding state
+1791931506.406028 dgx02 kernel: docker0: port 1(veth40e6052) entered disabled state
+1791931506.406063 dgx02 kernel: vethede7dc5: renamed from eth0
+1791931506.441018 dgx02 kernel: docker0: port 1(veth40e6052) entered disabled state
+1791931506.442019 dgx02 kernel: veth40e6052 (unregistering): left allmulticast mode
+1791931506.442039 dgx02 kernel: veth40e6052 (unregistering): left promiscuous mode
+1791931506.442054 dgx02 kernel: docker0: port 1(veth40e6052) entered disabled state
+1791931506.570026 dgx02 kernel: docker0: port 1(vethd272ff9) entered blocking state
+1791931506.570095 dgx02 kernel: docker0: port 1(vethd272ff9) entered disabled state
+1791931506.570113 dgx02 kernel: vethd272ff9: entered allmulticast mode
+1791931506.570129 dgx02 kernel: vethd272ff9: entered promiscuous mode
+1791931506.574022 dgx02 kernel: eth0: renamed from vethee76a16
+1791931506.575020 dgx02 kernel: docker0: port 1(vethd272ff9) entered blocking state
+1791931506.575073 dgx02 kernel: docker0: port 1(vethd272ff9) entered forwarding state
+1791931511.094026 dgx02 kernel: docker0: port 1(vethd272ff9) entered disabled state
+1791931511.094064 dgx02 kernel: vethee76a16: renamed from eth0
+1791931511.137027 dgx02 kernel: docker0: port 1(vethd272ff9) entered disabled state
+1791931511.137058 dgx02 kernel: vethd272ff9 (unregistering): left allmulticast mode
+1791931511.137071 dgx02 kernel: vethd272ff9 (unregistering): left promiscuous mode
+1791931511.137095 dgx02 kernel: docker0: port 1(vethd272ff9) entered disabled state
+1791932144.863030 dgx02 kernel: docker0: port 1(veth12fdbcd) entered blocking state
+1791932144.863125 dgx02 kernel: docker0: port 1(veth12fdbcd) entered disabled state
+1791932144.863158 dgx02 kernel: veth12fdbcd: entered allmulticast mode
+1791932144.863180 dgx02 kernel: veth12fdbcd: entered promiscuous mode
+1791932144.935032 dgx02 kernel: eth0: renamed from vetha1c222b
+1791932144.935124 dgx02 kernel: docker0: port 1(veth12fdbcd) entered blocking state
+1791932144.935143 dgx02 kernel: docker0: port 1(veth12fdbcd) entered forwarding state
+1791932144.997027 dgx02 kernel: docker0: port 1(veth12fdbcd) entered disabled state
+1791932144.997151 dgx02 kernel: vetha1c222b: renamed from eth0
+1791932145.037017 dgx02 kernel: docker0: port 1(veth12fdbcd) entered disabled state
+1791932145.037044 dgx02 kernel: veth12fdbcd (unregistering): left allmulticast mode
+1791932145.037057 dgx02 kernel: veth12fdbcd (unregistering): left promiscuous mode
+1791932145.037070 dgx02 kernel: docker0: port 1(veth12fdbcd) entered disabled state
+1791932477.474022 dgx02 kernel: docker0: port 1(vethfe23efb) entered blocking state
+1791932477.474060 dgx02 kernel: docker0: port 1(vethfe23efb) entered disabled state
+1791932477.474084 dgx02 kernel: vethfe23efb: entered allmulticast mode
+1791932477.474105 dgx02 kernel: vethfe23efb: entered promiscuous mode
+1791932477.540145 dgx02 kernel: eth0: renamed from veth1b7653b
+1791932477.540215 dgx02 kernel: docker0: port 1(vethfe23efb) entered blocking state
+1791932477.540227 dgx02 kernel: docker0: port 1(vethfe23efb) entered forwarding state
+1791932477.605020 dgx02 kernel: docker0: port 1(vethfe23efb) entered disabled state
+1791932477.605052 dgx02 kernel: veth1b7653b: renamed from eth0
+1791932477.633089 dgx02 kernel: docker0: port 1(vethfe23efb) entered disabled state
+1791932477.634029 dgx02 kernel: vethfe23efb (unregistering): left allmulticast mode
+1791932477.634098 dgx02 kernel: vethfe23efb (unregistering): left promiscuous mode
+1791932477.634118 dgx02 kernel: docker0: port 1(vethfe23efb) entered disabled state
+1791932688.792110 dgx02 kernel: audit: type=1400 audit(1791932688.790:188): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=135633 comm="systemd-detect-" capability=38  capname="perfmon"
+1791932688.793114 dgx02 kernel: audit: type=1400 audit(1791932688.791:189): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=135629 comm="cloud-id" capability=38  capname="perfmon"
+1791932918.751123 dgx02 kernel: docker0: port 1(veth0372910) entered blocking state
+1791932918.751173 dgx02 kernel: docker0: port 1(veth0372910) entered disabled state
+1791932918.751184 dgx02 kernel: veth0372910: entered allmulticast mode
+1791932918.751198 dgx02 kernel: veth0372910: entered promiscuous mode
+1791932918.826044 dgx02 kernel: eth0: renamed from vethee818f5
+1791932918.827155 dgx02 kernel: docker0: port 1(veth0372910) entered blocking state
+1791932918.827218 dgx02 kernel: docker0: port 1(veth0372910) entered forwarding state
+1791932918.880119 dgx02 kernel: docker0: port 1(veth0372910) entered disabled state
+1791932918.880161 dgx02 kernel: vethee818f5: renamed from eth0
+1791932918.915019 dgx02 kernel: docker0: port 1(veth0372910) entered disabled state
+1791932918.915061 dgx02 kernel: veth0372910 (unregistering): left allmulticast mode
+1791932918.915075 dgx02 kernel: veth0372910 (unregistering): left promiscuous mode
+1791932918.915093 dgx02 kernel: docker0: port 1(veth0372910) entered disabled state
+1791933420.972213 dgx02 kernel: tee (175435): drop_caches: 3
+1791933595.777142 dgx02 kernel: docker0: port 1(veth252c1fe) entered blocking state
+1791933595.777230 dgx02 kernel: docker0: port 1(veth252c1fe) entered disabled state
+1791933595.777256 dgx02 kernel: veth252c1fe: entered allmulticast mode
+1791933595.777273 dgx02 kernel: veth252c1fe: entered promiscuous mode
+1791933595.874038 dgx02 kernel: eth0: renamed from vethb24400a
+1791933595.875102 dgx02 kernel: docker0: port 1(veth252c1fe) entered blocking state
+1791933595.875153 dgx02 kernel: docker0: port 1(veth252c1fe) entered forwarding state
+1791933595.952024 dgx02 kernel: docker0: port 1(veth252c1fe) entered disabled state
+1791933595.952081 dgx02 kernel: vethb24400a: renamed from eth0
+1791933595.976021 dgx02 kernel: docker0: port 1(veth252c1fe) entered disabled state
+1791933595.976050 dgx02 kernel: veth252c1fe (unregistering): left allmulticast mode
+1791933595.976065 dgx02 kernel: veth252c1fe (unregistering): left promiscuous mode
+1791933595.976080 dgx02 kernel: docker0: port 1(veth252c1fe) entered disabled state
+1791934089.050022 dgx02 kernel: tee (182282): drop_caches: 3
+1791934669.795384 dgx02 kernel: tee (189109): drop_caches: 3
+1791934721.234029 dgx02 kernel: docker0: port 1(veth181fd79) entered blocking state
+1791934721.234087 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934721.234106 dgx02 kernel: veth181fd79: entered allmulticast mode
+1791934721.234126 dgx02 kernel: veth181fd79: entered promiscuous mode
+1791934721.242017 dgx02 kernel: eth0: renamed from veth54d93bc
+1791934721.242041 dgx02 kernel: docker0: port 1(veth181fd79) entered blocking state
+1791934721.242048 dgx02 kernel: docker0: port 1(veth181fd79) entered forwarding state
+1791934724.902024 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934724.902072 dgx02 kernel: veth54d93bc: renamed from eth0
+1791934724.936021 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934724.936055 dgx02 kernel: veth181fd79 (unregistering): left allmulticast mode
+1791934724.936071 dgx02 kernel: veth181fd79 (unregistering): left promiscuous mode
+1791934724.936091 dgx02 kernel: docker0: port 1(veth181fd79) entered disabled state
+1791934725.824103 dgx02 kernel: docker0: port 1(vethc996ade) entered blocking state
+1791934725.824138 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791934725.824149 dgx02 kernel: vethc996ade: entered allmulticast mode
+1791934725.824159 dgx02 kernel: vethc996ade: entered promiscuous mode
+1791934725.827036 dgx02 kernel: eth0: renamed from veth96dfa0a
+1791934725.827079 dgx02 kernel: docker0: port 1(vethc996ade) entered blocking state
+1791934725.827098 dgx02 kernel: docker0: port 1(vethc996ade) entered forwarding state
+1791934726.736016 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791934726.736031 dgx02 kernel: veth96dfa0a: renamed from eth0
+1791934726.780219 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791934726.780270 dgx02 kernel: vethc996ade (unregistering): left allmulticast mode
+1791934726.780305 dgx02 kernel: vethc996ade (unregistering): left promiscuous mode
+1791934726.780325 dgx02 kernel: docker0: port 1(vethc996ade) entered disabled state
+1791936288.873025 dgx02 kernel: audit: type=1400 audit(1791936288.871:190): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=200454 comm="systemd-detect-" capability=38  capname="perfmon"
+1791936288.876026 dgx02 kernel: audit: type=1400 audit(1791936288.874:191): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=200388 comm="cloud-id" capability=38  capname="perfmon"
+1791939653.824018 dgx02 kernel: audit: type=1400 audit(1791939653.822:192): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=245822 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791939654.191031 dgx02 kernel: audit: type=1400 audit(1791939654.189:193): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=246014 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791939654.698142 dgx02 kernel: audit: type=1400 audit(1791939654.696:194): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=246167 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791939655.198117 dgx02 kernel: audit: type=1400 audit(1791939655.196:195): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=246244 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791939655.692028 dgx02 kernel: audit: type=1400 audit(1791939655.690:196): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=246319 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791939888.787024 dgx02 kernel: audit: type=1400 audit(1791939888.785:197): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=246535 comm="systemd-detect-" capability=38  capname="perfmon"
+1791939888.789014 dgx02 kernel: audit: type=1400 audit(1791939888.787:198): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=246461 comm="cloud-id" capability=38  capname="perfmon"
+1791943489.099024 dgx02 kernel: audit: type=1400 audit(1791943489.097:199): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=282868 comm="systemd-detect-" capability=38  capname="perfmon"
+1791943489.101013 dgx02 kernel: audit: type=1400 audit(1791943489.099:200): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=282826 comm="cloud-id" capability=38  capname="perfmon"
+1791947088.700031 dgx02 kernel: audit: type=1400 audit(1791947088.698:201): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=319209 comm="systemd-detect-" capability=38  capname="perfmon"
+1791947088.701028 dgx02 kernel: audit: type=1400 audit(1791947088.699:202): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=319200 comm="cloud-id" capability=38  capname="perfmon"
+1791950452.815026 dgx02 kernel: audit: type=1400 audit(1791950452.813:203): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=355499 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791950453.205027 dgx02 kernel: audit: type=1400 audit(1791950453.203:204): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=355620 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791950453.673023 dgx02 kernel: audit: type=1400 audit(1791950453.671:205): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=355774 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791950454.176123 dgx02 kernel: audit: type=1400 audit(1791950454.174:206): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=355930 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791950454.678063 dgx02 kernel: audit: type=1400 audit(1791950454.676:207): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=356000 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791950689.022120 dgx02 kernel: audit: type=1400 audit(1791950689.020:208): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=356163 comm="systemd-detect-" capability=38  capname="perfmon"
+1791950689.023131 dgx02 kernel: audit: type=1400 audit(1791950689.021:209): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=356146 comm="cloud-id" capability=38  capname="perfmon"
+1791954289.018123 dgx02 kernel: audit: type=1400 audit(1791954289.016:210): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=392576 comm="systemd-detect-" capability=38  capname="perfmon"
+1791954289.019160 dgx02 kernel: audit: type=1400 audit(1791954289.017:211): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=392571 comm="cloud-id" capability=38  capname="perfmon"
+1791957888.740111 dgx02 kernel: audit: type=1400 audit(1791957888.738:212): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=428970 comm="systemd-detect-" capability=38  capname="perfmon"
+1791957888.742111 dgx02 kernel: audit: type=1400 audit(1791957888.740:213): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=428962 comm="cloud-id" capability=38  capname="perfmon"
+1791961252.830029 dgx02 kernel: audit: type=1400 audit(1791961252.828:214): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=467005 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791961253.179026 dgx02 kernel: audit: type=1400 audit(1791961253.177:215): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=467118 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791961253.681027 dgx02 kernel: audit: type=1400 audit(1791961253.679:216): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=467270 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791961254.194030 dgx02 kernel: audit: type=1400 audit(1791961254.192:217): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=467427 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791961254.680143 dgx02 kernel: audit: type=1400 audit(1791961254.678:218): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=467500 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791961488.775037 dgx02 kernel: audit: type=1400 audit(1791961488.773:219): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=467646 comm="systemd-detect-" capability=38  capname="perfmon"
+1791961488.775163 dgx02 kernel: audit: type=1400 audit(1791961488.774:220): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=467640 comm="cloud-id" capability=38  capname="perfmon"
+1791965088.728077 dgx02 kernel: audit: type=1400 audit(1791965088.726:221): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=509341 comm="systemd-detect-" capability=38  capname="perfmon"
+1791965088.730117 dgx02 kernel: audit: type=1400 audit(1791965088.728:222): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=509324 comm="cloud-id" capability=38  capname="perfmon"
+1791965645.693406 dgx02 kernel: NVRM: refcntRequestReference_IMPL: Failed to enter state 1 (current state: 0, status: 0x00000056)
+1791965707.317945 dgx02 kernel: NVRM: refcntRequestReference_IMPL: Failed to enter state 1 (current state: 0, status: 0x00000056)
+1791966135.267435 dgx02 kernel: NVRM: refcntRequestReference_IMPL: Failed to enter state 1 (current state: 0, status: 0x00000056)
+1791966486.380678 dgx02 kernel: NVRM: refcntRequestReference_IMPL: Failed to enter state 1 (current state: 0, status: 0x00000056)
+1791966867.544332 dgx02 kernel: NVRM: refcntRequestReference_IMPL: Failed to enter state 1 (current state: 0, status: 0x00000056)
+1791967490.455067 dgx02 kernel: docker0: port 1(veth7bec842) entered blocking state
+1791967490.455122 dgx02 kernel: docker0: port 1(veth7bec842) entered disabled state
+1791967490.455138 dgx02 kernel: veth7bec842: entered allmulticast mode
+1791967490.455157 dgx02 kernel: veth7bec842: entered promiscuous mode
+1791967490.564208 dgx02 kernel: eth0: renamed from veth03c51af
+1791967490.565085 dgx02 kernel: docker0: port 1(veth7bec842) entered blocking state
+1791967490.565122 dgx02 kernel: docker0: port 1(veth7bec842) entered forwarding state
+1791967490.649204 dgx02 kernel: docker0: port 1(veth7bec842) entered disabled state
+1791967490.649253 dgx02 kernel: veth03c51af: renamed from eth0
+1791967490.682286 dgx02 kernel: docker0: port 1(veth7bec842) entered disabled state
+1791967490.682316 dgx02 kernel: veth7bec842 (unregistering): left allmulticast mode
+1791967490.682337 dgx02 kernel: veth7bec842 (unregistering): left promiscuous mode
+1791967490.682352 dgx02 kernel: docker0: port 1(veth7bec842) entered disabled state
+1791968418.556173 dgx02 kernel: docker0: port 1(vethef92ec5) entered blocking state
+1791968418.556243 dgx02 kernel: docker0: port 1(vethef92ec5) entered disabled state
+1791968418.556279 dgx02 kernel: vethef92ec5: entered allmulticast mode
+1791968418.556304 dgx02 kernel: vethef92ec5: entered promiscuous mode
+1791968418.639130 dgx02 kernel: eth0: renamed from veth66bc317
+1791968418.640068 dgx02 kernel: docker0: port 1(vethef92ec5) entered blocking state
+1791968418.640127 dgx02 kernel: docker0: port 1(vethef92ec5) entered forwarding state
+1791968418.692032 dgx02 kernel: docker0: port 1(vethef92ec5) entered disabled state
+1791968418.692135 dgx02 kernel: veth66bc317: renamed from eth0
+1791968418.722030 dgx02 kernel: docker0: port 1(vethef92ec5) entered disabled state
+1791968418.722049 dgx02 kernel: vethef92ec5 (unregistering): left allmulticast mode
+1791968418.722061 dgx02 kernel: vethef92ec5 (unregistering): left promiscuous mode
+1791968418.722073 dgx02 kernel: docker0: port 1(vethef92ec5) entered disabled state
+1791968688.765040 dgx02 kernel: audit: type=1400 audit(1791968688.763:223): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=557106 comm="systemd-detect-" capability=38  capname="perfmon"
+1791968688.766025 dgx02 kernel: audit: type=1400 audit(1791968688.764:224): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=557079 comm="cloud-id" capability=38  capname="perfmon"
+1791972052.834024 dgx02 kernel: audit: type=1400 audit(1791972052.832:225): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=610626 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791972053.178018 dgx02 kernel: audit: type=1400 audit(1791972053.176:226): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=610741 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791972053.688120 dgx02 kernel: audit: type=1400 audit(1791972053.686:227): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=610895 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791972054.172134 dgx02 kernel: audit: type=1400 audit(1791972054.170:228): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=611051 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791972054.674033 dgx02 kernel: audit: type=1400 audit(1791972054.672:229): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=611128 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791972289.043067 dgx02 kernel: audit: type=1400 audit(1791972289.041:230): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=612002 comm="systemd-detect-" capability=38  capname="perfmon"
+1791972289.044022 dgx02 kernel: audit: type=1400 audit(1791972289.042:231): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=611870 comm="cloud-id" capability=38  capname="perfmon"
+1791973268.048022 dgx02 kernel: docker0: port 1(vethc42edc7) entered blocking state
+1791973268.048095 dgx02 kernel: docker0: port 1(vethc42edc7) entered disabled state
+1791973268.048129 dgx02 kernel: vethc42edc7: entered allmulticast mode
+1791973268.048158 dgx02 kernel: vethc42edc7: entered promiscuous mode
+1791973268.126032 dgx02 kernel: eth0: renamed from vethfdf6d15
+1791973268.126105 dgx02 kernel: docker0: port 1(vethc42edc7) entered blocking state
+1791973268.126111 dgx02 kernel: docker0: port 1(vethc42edc7) entered forwarding state
+1791973268.313064 dgx02 kernel: docker0: port 1(vethc42edc7) entered disabled state
+1791973268.314017 dgx02 kernel: vethfdf6d15: renamed from eth0
+1791973268.343019 dgx02 kernel: docker0: port 1(vethc42edc7) entered disabled state
+1791973268.343034 dgx02 kernel: vethc42edc7 (unregistering): left allmulticast mode
+1791973268.343058 dgx02 kernel: vethc42edc7 (unregistering): left promiscuous mode
+1791973268.343068 dgx02 kernel: docker0: port 1(vethc42edc7) entered disabled state
+1791975889.122035 dgx02 kernel: audit: type=1400 audit(1791975889.120:232): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=651525 comm="systemd-detect-" capability=38  capname="perfmon"
+1791975889.123025 dgx02 kernel: audit: type=1400 audit(1791975889.121:233): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=651449 comm="cloud-id" capability=38  capname="perfmon"
+1791979489.103119 dgx02 kernel: audit: type=1400 audit(1791979489.101:234): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=692968 comm="systemd-detect-" capability=38  capname="perfmon"
+1791979489.104138 dgx02 kernel: audit: type=1400 audit(1791979489.102:235): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=692903 comm="cloud-id" capability=38  capname="perfmon"
+1791982853.085046 dgx02 kernel: audit: type=1400 audit(1791982853.083:236): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=733886 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791982853.461126 dgx02 kernel: audit: type=1400 audit(1791982853.459:237): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=733995 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791982853.924039 dgx02 kernel: audit: type=1400 audit(1791982853.922:238): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=734171 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791982854.460031 dgx02 kernel: audit: type=1400 audit(1791982854.457:239): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=734517 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791982854.944031 dgx02 kernel: audit: type=1400 audit(1791982854.942:240): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=734593 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791983089.077042 dgx02 kernel: audit: type=1400 audit(1791983089.075:241): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=737898 comm="systemd-detect-" capability=38  capname="perfmon"
+1791983089.078031 dgx02 kernel: audit: type=1400 audit(1791983089.076:242): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=737830 comm="cloud-id" capability=38  capname="perfmon"
+1791986688.753045 dgx02 kernel: audit: type=1400 audit(1791986688.751:243): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=778898 comm="systemd-detect-" capability=38  capname="perfmon"
+1791986688.755032 dgx02 kernel: audit: type=1400 audit(1791986688.753:244): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=778890 comm="cloud-id" capability=38  capname="perfmon"
+1791990289.131141 dgx02 kernel: audit: type=1400 audit(1791990289.128:245): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=824317 comm="systemd-detect-" capability=38  capname="perfmon"
+1791990289.133130 dgx02 kernel: audit: type=1400 audit(1791990289.130:246): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=824297 comm="cloud-id" capability=38  capname="perfmon"
+1791993652.909027 dgx02 kernel: audit: type=1400 audit(1791993652.907:247): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=871856 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791993653.448139 dgx02 kernel: audit: type=1400 audit(1791993653.445:248): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=872010 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791993653.950148 dgx02 kernel: audit: type=1400 audit(1791993653.948:249): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=872170 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791993654.426034 dgx02 kernel: audit: type=1400 audit(1791993654.424:250): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=872282 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791993654.971037 dgx02 kernel: audit: type=1400 audit(1791993654.969:251): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=872356 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1791993888.812050 dgx02 kernel: audit: type=1400 audit(1791993888.810:252): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=873298 comm="systemd-detect-" capability=38  capname="perfmon"
+1791993888.814028 dgx02 kernel: audit: type=1400 audit(1791993888.812:253): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=873256 comm="cloud-id" capability=38  capname="perfmon"
+1791997488.688134 dgx02 kernel: audit: type=1400 audit(1791997488.686:254): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=913271 comm="systemd-detect-" capability=38  capname="perfmon"
+1791997488.690136 dgx02 kernel: audit: type=1400 audit(1791997488.688:255): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=913266 comm="cloud-id" capability=38  capname="perfmon"
+1791997592.005138 dgx02 kernel: NVRM: refcntRequestReference_IMPL: Failed to enter state 1 (current state: 0, status: 0x00000056)
+1792000172.235149 dgx02 kernel: tee (978943): drop_caches: 3
+1792000680.231401 dgx02 kernel: tee (984223): drop_caches: 3
+1792001088.938044 dgx02 kernel: audit: type=1400 audit(1792001088.936:256): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=995256 comm="systemd-detect-" capability=38  capname="perfmon"
+1792001088.939051 dgx02 kernel: audit: type=1400 audit(1792001088.937:257): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=995177 comm="cloud-id" capability=38  capname="perfmon"
+1792001839.645368 dgx02 kernel: tee (1037150): drop_caches: 3
+1792004453.775166 dgx02 kernel: audit: type=1400 audit(1792004453.774:258): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=1067493 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1792004454.207136 dgx02 kernel: audit: type=1400 audit(1792004454.206:259): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=1067684 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1792004454.722038 dgx02 kernel: audit: type=1400 audit(1792004454.720:260): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=1067839 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1792004455.211035 dgx02 kernel: audit: type=1400 audit(1792004455.209:261): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=1067910 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1792004455.723076 dgx02 kernel: audit: type=1400 audit(1792004455.721:262): apparmor="DENIED" operation="open" class="file" profile="snap.firmware-updater.firmware-notifier" name="/proc/sys/vm/max_map_count" pid=1067986 comm="firmware-notifi" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+1792004688.836123 dgx02 kernel: audit: type=1400 audit(1792004688.833:263): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=1070494 comm="systemd-detect-" capability=38  capname="perfmon"
+1792004688.839131 dgx02 kernel: audit: type=1400 audit(1792004688.837:264): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=1070486 comm="cloud-id" capability=38  capname="perfmon"
+1792004764.301059 dgx02 kernel: tee (1107934): drop_caches: 3
+1792006173.815385 dgx02 kernel: tee (1139469): drop_caches: 3
+1792007018.773142 dgx02 kernel: tee (1161224): drop_caches: 3
+1792008289.146031 dgx02 kernel: audit: type=1400 audit(1792008289.144:265): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache_systemd_detect_virt" pid=1190750 comm="systemd-detect-" capability=38  capname="perfmon"
+1792008289.147018 dgx02 kernel: audit: type=1400 audit(1792008289.145:266): apparmor="DENIED" operation="capable" class="cap" profile="ubuntu_pro_esm_cache//cloud_id" pid=1190668 comm="cloud-id" capability=38  capname="perfmon"
+1792009908.387401 dgx02 kernel: tee (1229031): drop_caches: 3
+-- cursor: s=f85bbb3c4e344c078574b181a87ac708;i=7371dfa;b=4d32c9e38f684765a2dc2567b2b737d0;m=14dab19d41;t=65dd32de2415a;x=6cf2dc1ef60d341c

@@ -1,0 +1,453 @@
+{
+  "schema": 1,
+  "arm": "final-control",
+  "fixture": "streaming",
+  "name": "streaming-warmup",
+  "warmup": true,
+  "endpoint": "http://192.168.178.70:8010",
+  "route": "/v1/tts",
+  "request": {
+    "format": "wav",
+    "streaming": true,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "chunk_length": 200,
+    "single_chunk": false,
+    "references": [],
+    "text": "The first part of this message is arriving as audio. We are testing native speech generation on a single Spark computer. The second part continues the story. Outside the window, the birds are singing and the sky is clear. A friendly traveler walks down the street and stops at the bakery to buy a fresh loaf of bread. We continue speaking so that more than one native text chunk is generated. This final sentence marks the end of the streaming test."
+  },
+  "request_identity": "354f620eef693486d0cbf47db999c44cb2152372233362f566f1c3c8778257c1",
+  "runtime": {
+    "host": "192.168.178.70",
+    "hostname": "dgx02",
+    "captured_at": 1792011028.7491987,
+    "effective_env": {
+      "DRAMA_MODEL_DIR": "/cache/huggingface/hub/models--fishaudio--drama-3/snapshots/dd64a85cd82e9521f7202610ede97b367fc83946",
+      "FISH_DRAMA3_CUDA_GRAPH": "1",
+      "FISH_DRAMA3_FP8_EXPERTS": "1",
+      "HF_HOME": "/cache/huggingface",
+      "OMP_NUM_THREADS": "4",
+      "DRAMA_OUTPUT_DIR": "/cache/huggingface/drama3-fast/outputs",
+      "TRITON_CACHE_DIR": "/cache/huggingface/drama3/triton",
+      "CUDA_CACHE_PATH": "/cache/huggingface/drama3/cuda"
+    },
+    "container": {
+      "id": "527ea7f81e034880e0b04e4144a0f35478305d222df82d0f4a28148923e5b33c",
+      "image_ref": "ghcr.io/mfellner/glm-5.3-flash-2x-dgx-sparks@sha256:eb5f38cb8c242dae2162c0618dddae101bf6ed386feb3fdcf0c38971120e511c",
+      "image_id": "sha256:1bfb3e4f8d310d70afa9d8fe4020c544387f52567d6cb0db399589700bcba4bb",
+      "running": true,
+      "created_at": 1792009909.850104,
+      "started_at": "2026-10-14T20:31:49.878408466Z",
+      "privileged": false,
+      "user": "1000:1000",
+      "network": "host",
+      "ipc": "private",
+      "security_opt": [
+        "no-new-privileges"
+      ],
+      "cap_add": null,
+      "devices": [],
+      "mounts": [
+        {
+          "source": "/home/max/.cache/huggingface",
+          "destination": "/cache/huggingface",
+          "rw": true
+        },
+        {
+          "source": "/home/max/.cache/sparkrun/runtime-cache/vllm/fishaudio__drama-3-b005a9ca",
+          "destination": "/cache/runtime",
+          "rw": true
+        }
+      ]
+    },
+    "health": {
+      "status": "ok",
+      "model": "fishaudio/drama-3",
+      "revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+      "source_revision": "1ff3c3ed2f80d3106a83909dd25b83129c3d816f",
+      "default_reference_sha256": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "started_at": 1792009916.4287424,
+      "pid": 60,
+      "fp8_experts": "1",
+      "cuda_graph": "1",
+      "torch": "2.13.0+cu130",
+      "cudnn_enabled": true
+    },
+    "process_join": {
+      "host_pid": 1230124,
+      "namespace_pids": [
+        1230124,
+        60
+      ],
+      "host_start_ticks": 8802943
+    },
+    "listener": {
+      "address": "192.168.178.70:8010",
+      "pid": 60,
+      "start_ticks": 8802943,
+      "inode": "3349924"
+    },
+    "runtime_files": {
+      "contract.py": "1c67310f3713298a5e0cd3809a2eb0beea75ec1c063c0ee0cdcb64b2d29808c8",
+      "server.py": "fcac1ec545abbce5e2d8780807e71d559d2af668f732ecedd4dc59583a8aea66",
+      "run.sh": "0892b613dc8e2d8f177bd716d8be8d96fddaf57602aa0a49cb25ff7244a188da",
+      "probe.py": "b3a72f39e4de6ffc069537d7d29eb1eb23d9cc74bf5d670a5e80ef430784e54e",
+      "model-manifest.json": "55041149157a59577c6996f651949979d320e17851ef7c5134df8f57c1e24b1e",
+      "requirements-lock.txt": "f99d9403ecbb7f6638ad7c09d41e44e271948b55f834665add7770c279bcbb4b",
+      "default-reference.wav": "4d2bd83ff0f7fe33491b03193abdf623f1b4cc2d8103972b33638d3607d86dc5",
+      "default-reference.txt": "e0a833e71a65072dbfcc3353d33f6d7e94ec4f60cafd28087cdfdf7edee59d9e",
+      "reference-provenance.json": "76b5a94258d657463c6f3ae9923c89166c2d309f0d063ea80fa8aec196a89e6b",
+      "manifest.sha256": "f3a3c60e15d565733e64cd8ba72487a8d984859db57e808782ffc6ea699a105f"
+    },
+    "configured_profile": {
+      "configured_flags": {
+        "FISH_DRAMA3_COMPACT_HEAD": false,
+        "FISH_DRAMA3_SMALL_GRAPH_BUCKETS": false,
+        "FISH_DRAMA3_PREFIX_SNAPSHOT": false,
+        "DRAMA_NATIVE_STREAMING": false,
+        "DRAMA_PUBLIC_REFERENCE_CACHE": false,
+        "DRAMA_STATEFUL_CODEC": false
+      },
+      "kernel_options": {
+        "state": false,
+        "conv": false,
+        "fp8": false,
+        "tower_up": "off",
+        "gdn_qkv": "off"
+      },
+      "scope": "effective configuration and physical source identity; not a qualification verdict",
+      "source_files": {
+        "fish_speech/models/text2semantic/fish_omni/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fish_speech/models/text2semantic/fish_omni/backbone.py": "dd969c85df49c0ec6293b726cbc226e55ca9d2b85cce234a2acf1df340237517",
+        "fish_speech/models/text2semantic/fish_omni/chunking.py": "058d2d9cbc90e28a38ab9eba5269e9b2cc3ab651b605b9508ea9b0cf9b5bd5e2",
+        "fish_speech/models/text2semantic/fish_omni/config.py": "1e885113d269d7f7c9cd6648f393eec7bbc6974be6974719e8493f012ed0bfd7",
+        "fish_speech/models/text2semantic/fish_omni/fp8_moe.py": "c30de427f2ec31beaff7f95e8e15cdd004fcdde005f26d23e1a04593c228b40f",
+        "fish_speech/models/text2semantic/fish_omni/generate.py": "4bdfb4a141224331c79d144ba5d1483879b85175df212bc5af78c3839e581410",
+        "fish_speech/models/text2semantic/fish_omni/layers.py": "e4704b4fde7906bf021d6696c4132458b4bc52c836d22da702275252683540bc",
+        "fish_speech/models/text2semantic/fish_omni/model.py": "4e23c929b39ce325b25e806599f339e62e186571f9128c301a4ba689ac7a9eb8",
+        "fish_speech/models/text2semantic/fish_omni/moe.py": "3b3981c3fa6849942db1a58c9aa9f5085148b3d98427ca7ef1f8cd81e84e2d2c",
+        "fish_speech/models/text2semantic/fish_omni/tower.py": "6f2f2304f629f9b47a26f33c534fcaea48b928dc88d830efca43a0d6bfd22a85"
+      },
+      "package_manifest_sha256": "89eb1655ddaecf2900f2f6a5021d97852544634e98f04c9832934d40e7d1afcc"
+    }
+  },
+  "runtime_identity": "8d7c2061c753313a49fef8801995c346e0f7082cf10032b39a6d52894fab3d4d",
+  "harness": {
+    "performance.py": "aa1f1b514390957b4199222dfbfe37e57d30f7235bb8ed4b53b8559cf1bec278",
+    "fixtures.py": "2dca375431ce9ea1f5497fa3ab4e3a09720b5353d1db009ed662287fa39dbcca",
+    "acceptance.py": "758bb0319bb3388a25568633b99ddc5ac0f8fa43e19525debba60798508976f0"
+  },
+  "complete": true,
+  "started_at": 1792011029.4275937,
+  "events": [
+    {
+      "elapsed_s": 19.36699665999913,
+      "bytes": 44
+    },
+    {
+      "elapsed_s": 19.367002004000824,
+      "bytes": 7827
+    },
+    {
+      "elapsed_s": 19.367011859998456,
+      "bytes": 3749
+    },
+    {
+      "elapsed_s": 19.367466180003248,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 19.36860869100201,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 19.369511009994312,
+      "bytes": 39224
+    },
+    {
+      "elapsed_s": 19.37016736100486,
+      "bytes": 51912
+    },
+    {
+      "elapsed_s": 19.37066420899646,
+      "bytes": 39224
+    },
+    {
+      "elapsed_s": 19.372242864003056,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.372317311994266,
+      "bytes": 48640
+    },
+    {
+      "elapsed_s": 19.37312683100754,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.373173087005853,
+      "bytes": 51512
+    },
+    {
+      "elapsed_s": 19.373921086997143,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.37397535800119,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.373982830002205,
+      "bytes": 9928
+    },
+    {
+      "elapsed_s": 19.374682462002966,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 19.375388444997952,
+      "bytes": 43440
+    },
+    {
+      "elapsed_s": 19.375424444995588,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 19.375925740998355,
+      "bytes": 56472
+    },
+    {
+      "elapsed_s": 19.376496957003837,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 19.37697970800218,
+      "bytes": 47784
+    },
+    {
+      "elapsed_s": 19.377929210997536,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 19.37853908300167,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.378587739003706,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.37859908300743,
+      "bytes": 10832
+    },
+    {
+      "elapsed_s": 19.379045034002047,
+      "bytes": 36200
+    },
+    {
+      "elapsed_s": 19.3798647299991,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.379896522004856,
+      "bytes": 32928
+    },
+    {
+      "elapsed_s": 19.38053594500525,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 19.380569257002207,
+      "bytes": 34376
+    },
+    {
+      "elapsed_s": 19.381042200999218,
+      "bytes": 50680
+    },
+    {
+      "elapsed_s": 19.381790327999624,
+      "bytes": 53704
+    },
+    {
+      "elapsed_s": 38.458516536004026,
+      "bytes": 8184
+    },
+    {
+      "elapsed_s": 38.458602839993546,
+      "bytes": 6288
+    },
+    {
+      "elapsed_s": 38.45993405400077,
+      "bytes": 28960
+    },
+    {
+      "elapsed_s": 38.46154832499451,
+      "bytes": 57920
+    },
+    {
+      "elapsed_s": 38.462820147993625,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 38.462862291999045,
+      "bytes": 22792
+    },
+    {
+      "elapsed_s": 38.46318928399705,
+      "bytes": 27512
+    },
+    {
+      "elapsed_s": 38.46392681900761,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.464615491000586,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 38.46466701099416,
+      "bytes": 65536
+    },
+    {
+      "elapsed_s": 38.46468296300736,
+      "bytes": 16624
+    },
+    {
+      "elapsed_s": 38.465304258003016,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.46553963399492,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 38.46579451400612,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 38.46627940899634,
+      "bytes": 60816
+    },
+    {
+      "elapsed_s": 38.466404865001095,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 38.46655089700653,
+      "bytes": 17376
+    },
+    {
+      "elapsed_s": 38.467123313006596,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.46712921699509,
+      "bytes": 2896
+    },
+    {
+      "elapsed_s": 38.46731660900696,
+      "bytes": 23168
+    },
+    {
+      "elapsed_s": 38.467384944000514,
+      "bytes": 10136
+    },
+    {
+      "elapsed_s": 38.46766521599784,
+      "bytes": 31856
+    },
+    {
+      "elapsed_s": 38.46822316800535,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.46840588799387,
+      "bytes": 24616
+    },
+    {
+      "elapsed_s": 38.46872604699456,
+      "bytes": 37648
+    },
+    {
+      "elapsed_s": 38.46927694299666,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.46939334299532,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 38.46982652699808,
+      "bytes": 34752
+    },
+    {
+      "elapsed_s": 38.47043139000016,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.47046138999576,
+      "bytes": 21720
+    },
+    {
+      "elapsed_s": 38.47074858999986,
+      "bytes": 40544
+    },
+    {
+      "elapsed_s": 38.47129578900058,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.47161210900231,
+      "bytes": 15928
+    },
+    {
+      "elapsed_s": 38.47181065300538,
+      "bytes": 46336
+    },
+    {
+      "elapsed_s": 38.472354013007134,
+      "bytes": 62264
+    },
+    {
+      "elapsed_s": 38.47238946899597,
+      "bytes": 7240
+    },
+    {
+      "elapsed_s": 38.47297636400617,
+      "bytes": 55024
+    },
+    {
+      "elapsed_s": 38.47315570799401,
+      "bytes": 32688
+    }
+  ],
+  "status": 200,
+  "headers": {
+    "date": "Wed, 14 Oct 2026 20:50:28 GMT",
+    "server": "uvicorn",
+    "x-request-id": "d6b704cecdf145b8a9db3533d173f6ee",
+    "x-model-revision": "dd64a85cd82e9521f7202610ede97b367fc83946",
+    "content-type": "audio/wav",
+    "transfer-encoding": "chunked"
+  },
+  "headers_s": 19.366988148001838,
+  "wall_s": 38.627016115002334,
+  "audio": {
+    "duration_s": 32.879455782312924,
+    "sample_rate": 44100,
+    "channels": 1,
+    "samples": 1449984,
+    "rms": 0.07817977421554109,
+    "peak": 0.83984375,
+    "finite": true
+  },
+  "audio_file": "streaming-warmup.wav",
+  "audio_sha256": "12c6af16682ee30df104e94657e3410b752ac54b410a1d6bd2fc5fbe795e5caa",
+  "first_pcm_s": 19.367002004000824,
+  "duration_s": 32.879455782312924,
+  "rtf": 1.174807039713268,
+  "request_id": "d6b704cecdf145b8a9db3533d173f6ee",
+  "finished_at": 1792011068.0670314
+}

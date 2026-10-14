@@ -1,0 +1,33 @@
+{
+  "model": "Systran/faster-whisper-small",
+  "revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "faster_whisper": "1.2.1",
+  "ctranslate2": "4.8.3",
+  "device": "cpu",
+  "compute_type": "int8",
+  "beam_size": 5,
+  "vad_filter": false,
+  "rows": [
+    {
+      "name": "post-restart",
+      "text": "After restarting the service, this fresh audio proves that Drama 3 is still working on the spark.",
+      "expected": "After restarting the service, this fresh audio proves that Drama three is still working on the Spark.",
+      "wer": 0.058823529411764705,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "52b8d2cc57a35edbfe7dc8bcc36a9c375792a2e22de1cfe099d0f819fbf910f2",
+      "passed": true
+    },
+    {
+      "name": "streaming",
+      "text": "The first part of this message is arriving as audio. We are testing native speech generation on a single spark computer. The second part continues the story. Outside the window, the birds are singing and the sky is clear. A friendly traveler walks down the street and stops at the bakery to buy a fresh loaf of bread. We continue speaking so that more than one native text chunk is generated. This final sentence marks the end of the streaming test.",
+      "expected": "The first part of this message is arriving as audio. We are testing native speech generation on a single Spark computer. The second part continues the story. Outside the window, the birds are singing and the sky is clear. A friendly traveler walks down the street and stops at the bakery to buy a fresh loaf of bread. We continue speaking so that more than one native text chunk is generated. This final sentence marks the end of the streaming test.",
+      "wer": 0.0,
+      "tail_matches": true,
+      "language": "en",
+      "audio_sha256": "12c6af16682ee30df104e94657e3410b752ac54b410a1d6bd2fc5fbe795e5caa",
+      "passed": true
+    }
+  ],
+  "passed": true
+}
