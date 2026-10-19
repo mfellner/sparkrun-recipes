@@ -1,0 +1,79 @@
+[
+  {
+    "argv": [
+      "sparkrun",
+      "stop",
+      "143aaa9f3e323aa9_bcc74ffc19b7"
+    ],
+    "started_at": 1792441131.0717924,
+    "finished_at": 1792441133.4168775,
+    "returncode": 0,
+    "stdout": "Workload stopped on 1 host(s).\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "sparkrun",
+      "proxy",
+      "models",
+      "--refresh"
+    ],
+    "started_at": 1792441133.4168878,
+    "finished_at": 1792441133.762396,
+    "returncode": 0,
+    "stdout": "Re-discovering endpoints...\nProxy models already in sync.\nNo models registered with the proxy.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "sparkrun",
+      "status",
+      "--hosts",
+      "192.168.178.47,192.168.178.70",
+      "--json"
+    ],
+    "started_at": 1792441133.7624066,
+    "finished_at": 1792441134.647685,
+    "returncode": 0,
+    "stdout": "{\"groups\": {}, \"solo_entries\": [], \"idle_hosts\": [\"192.168.178.47\", \"192.168.178.70\"], \"preparing_hosts\": [], \"pending_ops\": [], \"errors\": {}, \"total_containers\": 0, \"host_count\": 2}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "sparkrun",
+      "proxy",
+      "models",
+      "--json"
+    ],
+    "started_at": 1792441134.6476967,
+    "finished_at": 1792441134.9323483,
+    "returncode": 0,
+    "stdout": "[]\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "docker",
+      "ps",
+      "--format",
+      "{{.Names}} {{.Image}}"
+    ],
+    "started_at": 1792441134.932359,
+    "finished_at": 1792441134.942825,
+    "returncode": 0,
+    "stdout": "sparkDash sparkdash-sparkdash\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "nvidia-smi",
+      "--query-compute-apps=pid,process_name,used_memory",
+      "--format=csv,noheader"
+    ],
+    "started_at": 1792441134.9428334,
+    "finished_at": 1792441134.9680831,
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

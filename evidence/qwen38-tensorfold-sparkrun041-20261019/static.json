@@ -1,0 +1,65 @@
+[
+  {
+    "argv": [
+      "sparkrun",
+      "recipe",
+      "validate",
+      "/home/max/sparkrun-recipes/recipes/qwen3.8-27b-tensorfold-dgx-spark.yaml",
+      "--json"
+    ],
+    "started_at": 1792440301.1138532,
+    "finished_at": 1792440301.3807807,
+    "returncode": 0,
+    "stdout": "{\"recipe\": \"/home/max/sparkrun-recipes/recipes/qwen3.8-27b-tensorfold-dgx-spark.yaml\", \"valid\": true, \"failed\": false, \"fail_on\": \"error\", \"errors\": 0, \"warnings\": 1, \"suggestions\": 1, \"issues\": [{\"severity\": \"warning\", \"code\": \"unpinned-model-revision\", \"message\": \"model_revision is pinned to '22d8d538154e0e5b6f8dcb1fcc74a60a0798104c', but command: never passes it to the engine \\u2014 the 'vllm-distributed' runtime takes the pin as --revision and no defaults key maps to it. sparkrun downloads by commit SHA, which writes no refs/ entry in the HuggingFace cache, and the container runs HF_HUB_OFFLINE=1 \\u2014 so the engine resolves its default revision, finds no ref, and dies with LocalEntryNotFoundError after the model has already downloaded. Add `--revision {model_revision}` to the command: template, or drop the model_revision pin.\", \"summary\": \"model_revision is pinned to '22d8d538154e0e5b6f8dcb1fcc74a60a0798104c', but command: never passes it to the engine \\u2014 the 'vllm-distributed' runtime takes the pin as --revision and no defaults key maps to it. sparkrun downloads by commit SHA, which writes no refs/ entry in the HuggingFace cache, and the container runs HF_HUB_OFFLINE=1 \\u2014 so the engine resolves its default revision, finds no ref, and dies with LocalEntryNotFoundError after the model has already downloaded.\", \"fix\": \"Add `--revision {model_revision}` to the command: template, or drop the model_revision pin.\", \"deprecation\": false}, {\"severity\": \"suggestion\", \"code\": \"restated-managed-path\", \"message\": \"command: spells out a container path sparkrun manages ('models--z-lab--Qwen3.8-27B-DFlash2' is huggingface_hub's internal on-disk layout, not an interface sparkrun promises, and pins the snapshot of one download). Paths under sparkrun's mounts are supplied by the launch \\u2014 through {model}, HF_HOME/HF_HUB_CACHE and the runtime-cache env \\u2014 so restating one pins the recipe to a layout it does not control and skips the rewrites the launch would have applied. Reference the value sparkrun provides ({model}, or $HF_HOME / $HF_HUB_CACHE / $XDG_CACHE_HOME inside the container) rather than the path it currently resolves to. If the path is genuinely not reachable that way, keep it \\u2014 this is advice, not a rule.\", \"summary\": \"command: spells out a container path sparkrun manages ('models--z-lab--Qwen3.8-27B-DFlash2' is huggingface_hub's internal on-disk layout, not an interface sparkrun promises, and pins the snapshot of one download). Paths under sparkrun's mounts are supplied by the launch \\u2014 through {model}, HF_HOME/HF_HUB_CACHE and the runtime-cache env \\u2014 so restating one pins the recipe to a layout it does not control and skips the rewrites the launch would have applied.\", \"fix\": \"Reference the value sparkrun provides ({model}, or $HF_HOME / $HF_HUB_CACHE / $XDG_CACHE_HOME inside the container) rather than the path it currently resolves to. If the path is genuinely not reachable that way, keep it \\u2014 this is advice, not a rule.\", \"deprecation\": false}]}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "sparkrun",
+      "run",
+      "/home/max/sparkrun-recipes/recipes/qwen3.8-27b-tensorfold-dgx-spark.yaml",
+      "--hosts",
+      "192.168.178.47",
+      "-o",
+      "host=192.168.178.47",
+      "--trust",
+      "--dry-run",
+      "--no-sync-tuning"
+    ],
+    "started_at": 1792440301.3807828,
+    "finished_at": 1792440302.091606,
+    "returncode": 0,
+    "stdout": "sparkrun v0.4.1\n\nRuntime:   vllm-distributed\nImage:     ghcr.io/miaai-lab/qwen3.8-27b-dgx-spark-tensorfold@sha256:043d192b9e1725f55c5439fc9672055de891433e5b31448ed8963918e3c460e9\nModel:     Vontra/Qwen3.8-27B-MLX-4bit\nPlanning:  probing hardware, querying cluster occupancy and model metadata... done\n\nPlacement: solo on 192.168.178.47 (--hosts)\nPlatform:  DGX Spark (NVIDIA GB10, NCCL)\n  ROLE    HOST            GPU     MEMORY       DRIVER  RDMA\n  target  192.168.178.47  gb10 ~  121.0 GiB ~  \u2014       \u2014\n  ~ assumed by platform policy, not probed (dry run doesn't probe)\n\nMemory per GPU (tp=1, sized to the host above):\n  Weights       12.6 GiB    12.6 GiB int4\n  KV demand      8.1 GiB    fp8 at max_model_len 262,144\n  Budget       108.9 GiB    121.0 GiB x 90% usable cap (platform default)\n  Spare         88.2 GiB    after weights and KV demand\n  Fit         UNVERIFIED    hardware assumed, not probed\n\nCluster:   sparkrun_143aaa9f3e323aa9_bcc74ffc19b7\n\nServe command:\n  exec python /workspace/mods/qwen38-tensorfold/serve.py Vontra/Qwen3.8-27B-MLX-4bit --drafter \"$HF_HUB_CACHE/models--z-lab--Qwen3.8-27B-DFlash2/snapshots/50307d4c4cde6860d4eee73e2547cd786fe8e8a4\" --served-model-name Qwen3.8-27B --host 192.168.178.47 --port 8000 --parallel 8 --context 262144 --temperature 1.0 --top-p 0.95 --top-k 20 --prefill-fp8 --vision --thinking\n\n\nLaunch timings (total 0.1s):\n  run                                                         0.1s\n    launch                                                    0.0s\n\n",
+    "stderr": "Recipe validation for '/home/max/sparkrun-recipes/recipes/qwen3.8-27b-tensorfold-dgx-spark.yaml': 1 warning\n\nwarning  unpinned-model-revision\n    model_revision is pinned to '22d8d538154e0e5b6f8dcb1fcc74a60a0798104c', but\n    command: never passes it to the engine \u2014 the 'vllm-distributed' runtime\n    takes the pin as --revision and no defaults key maps to it. sparkrun\n    downloads by commit SHA, which writes no refs/ entry in the HuggingFace\n    cache, and the container runs HF_HUB_OFFLINE=1 \u2014 so the engine resolves its\n    default revision, finds no ref, and dies with LocalEntryNotFoundError after\n    the model has already downloaded.\n\n      Add `--revision {model_revision}` to the command: template, or drop the\n      model_revision pin.\n\nNothing above blocks the launch. Continuing.\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n[1/6] Preparing\n  done (0.0s)\n[2/6] Building\n  done (0.0s)\n[3/6] Distributing resources\n  done (0.0s)\n[4/6] Syncing tuning configs\n  done (0.0s)\n[5/6] Launching vllm runtime\n  Step 1/3: Using pre-detected comm env\n  Step 2/3: Launching container\n  Step 3/3: Executing serve command\n  done (0.0s)\n[6/6] Post-launch hooks \u2014 skipped\n"
+  },
+  {
+    "argv": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_qwen38_tensorfold_adapter.py",
+      "-v"
+    ],
+    "started_at": 1792440302.0916078,
+    "finished_at": 1792440302.1340532,
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "test_bad_alias_fails_closed (test_qwen38_tensorfold_adapter.AliasAdapterTests.test_bad_alias_fails_closed) ... ok\ntest_translates_only_alias (test_qwen38_tensorfold_adapter.AliasAdapterTests.test_translates_only_alias) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+  },
+  {
+    "argv": [
+      "bash",
+      "-n",
+      "mods/qwen38-tensorfold/run.sh"
+    ],
+    "started_at": 1792440302.1340544,
+    "finished_at": 1792440302.1352665,
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

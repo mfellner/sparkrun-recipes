@@ -1,0 +1,73 @@
+{
+  "case": "vision",
+  "url": "http://127.0.0.1:8000/v1/chat/completions",
+  "request": {
+    "model": "Qwen3.8-27B",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 256,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "image_url",
+            "image_url": {
+              "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAADACAIAAACCiiMwAAAEa0lEQVR4nO3NsQkAMBDEsNt/6WSHb4zBoF57W3JG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/UeO/uNG/5Gj/7jRf+ToP270Hzn6jxv9R47+40b/kaP/uNF/5Og/bvQfOfqPG/1Hjv7jRv+Ro/+40X/k6D9u9B85+o8b/cftA96E8MPFgiWiAAAAAElFTkSuQmCC"
+            }
+          },
+          {
+            "type": "text",
+            "text": "What color is the left half, and what color is the right half? Answer left and right explicitly."
+          }
+        ]
+      }
+    ]
+  },
+  "status": 200,
+  "started_at": 1792441023.2676342,
+  "finished_at": 1792441024.3568285,
+  "raw_response_base64": "eyJpZCI6ICJjaGF0Y21wbC02N2VmNWNjNjg2NzU0MGVlYWIzMzI2ZWYiLCAib2JqZWN0IjogImNoYXQuY29tcGxldGlvbiIsICJjcmVhdGVkIjogMTc5MjQ0MTAyMywgIm1vZGVsIjogIlF3ZW4zLjgtMjdCIiwgImNob2ljZXMiOiBbeyJpbmRleCI6IDAsICJtZXNzYWdlIjogeyJyb2xlIjogImFzc2lzdGFudCIsICJjb250ZW50IjogIkxlZnQ6IFJlZCAgXG5SaWdodDogQmx1ZSJ9LCAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIn1dLCAidXNhZ2UiOiB7InByb21wdF90b2tlbnMiOiAxMDcsICJjb21wbGV0aW9uX3Rva2VucyI6IDgsICJ0b3RhbF90b2tlbnMiOiAxMTUsICJwcm9tcHRfdG9rZW5zX2RldGFpbHMiOiB7ImNhY2hlZF90b2tlbnMiOiAwfSwgImNvbXBsZXRpb25fdG9rZW5zX2RldGFpbHMiOiB7InJlYXNvbmluZ190b2tlbnMiOiAwfX0sICJ0ZW5zb3Jmb2xkIjogeyJwcmVmaWxsX3MiOiAwLjI1MDgsICJkZWNvZGVfcyI6IDAuMDgwOSwgInJvdW5kcyI6IDEsICJkcmFmdHMiOiB0cnVlLCAiY2FjaGVkIjogMCwgIm1pbl9yb3dzIjogMTYsICJkcmFmdGVkIjogMTUsICJhY2NlcHRlZCI6IDYsICJ0b2tlbl9zaGEiOiAiYjUwZDMwZTVmMmIzIn19",
+  "response": {
+    "id": "chatcmpl-67ef5cc6867540eeab3326ef",
+    "object": "chat.completion",
+    "created": 1792441023,
+    "model": "Qwen3.8-27B",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Left: Red  \nRight: Blue"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 107,
+      "completion_tokens": 8,
+      "total_tokens": 115,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "tensorfold": {
+      "prefill_s": 0.2508,
+      "decode_s": 0.0809,
+      "rounds": 1,
+      "drafts": true,
+      "cached": 0,
+      "min_rows": 16,
+      "drafted": 15,
+      "accepted": 6,
+      "token_sha": "b50d30e5f2b3"
+    }
+  }
+}

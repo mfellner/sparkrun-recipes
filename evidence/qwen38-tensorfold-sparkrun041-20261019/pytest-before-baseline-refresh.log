@@ -1,0 +1,45 @@
+Installed 17 packages in 30ms
+........................................................................ [ 20%]
+.......................ssss............................................. [ 40%]
+..................F...................................s................. [ 61%]
+................s....................................................... [ 81%]
+..............................................................F.. [ 99%]
+.                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_detect_secrets_baseline_is_reviewed_and_reproducible ___________
+
+    def test_detect_secrets_baseline_is_reviewed_and_reproducible() -> None:
+        verifier = ROOT / "scripts/verify_detect_secrets.py"
+        baseline = ROOT / ".secrets.baseline"
+        assert verifier.is_file()
+        assert baseline.is_file()
+        result = subprocess.run(
+            [sys.executable, str(verifier), "--root", str(ROOT)],
+            text=True,
+            capture_output=True,
+            timeout=180,
+        )
+>       assert result.returncode == 0, (result.stdout, result.stderr)
+E       AssertionError: ('{"adjudicated_false_positives": 7115, "errors": ["current findings differ from reviewed baseline", "rescan contains unadjudicated findings"], "findings": 7115, "passed": false, "raw_occurrences": 8794, "stderr": ""}
+E         ', '')
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/home/max/.cache/uv/builds-v0/.tmpkSzRtL/bin/python', '/home/max/sparkrun-recipes/scripts/veri...ains unadjudicated findings"], "findings": 7115, "passed": false, "raw_occurrences": 8794, "stderr": ""}\n', stderr='').returncode
+
+tests/test_glm53_latest_recipe.py:1909: AssertionError
+______ test_v171_license_disclosure_does_not_inherit_historical_tr3_terms ______
+
+    def test_v171_license_disclosure_does_not_inherit_historical_tr3_terms():
+        readme = (ROOT / "README.md").read_text()
+        license_section = readme.split("## License\n", 1)[1]
+        assert "historical GLM-5.3-Flash-EXL3-TR3-4bpw checkpoint is reported\nunder ShapleyMCG License 1.0" in license_section
+        assert "newer public TensorFold checkpoint has\nconflicting publisher statements" in license_section
+        assert "MIT in its pinned card and bundled LICENSE" in license_section
+        assert "Apache-2.0 in the launcher NOTICE" in license_section
+>       assert "DFlash2 reports CC\nBY-NC-ND 4.0" in license_section
+E       AssertionError: assert 'DFlash2 reports CC\nBY-NC-ND 4.0' in '\nMIT applies only to repository-authored files covered by the root\n[LICENSE](LICENSE). It does not apply to the ven...ream, image, and checkpoint license before use;\nseek publisher clarification when an unambiguous grant is required.\n'
+
+tests/test_glm53_tensorfold_v171_recipe.py:104: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_glm53_latest_recipe.py::test_detect_secrets_baseline_is_reviewed_and_reproducible
+FAILED tests/test_glm53_tensorfold_v171_recipe.py::test_v171_license_disclosure_does_not_inherit_historical_tr3_terms
+2 failed, 346 passed, 9 skipped, 7 subtests passed in 97.53s (0:01:37)

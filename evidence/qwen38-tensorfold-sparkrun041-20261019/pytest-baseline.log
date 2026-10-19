@@ -1,0 +1,22 @@
+........................................................................ [ 20%]
+.......................ssss............................................. [ 40%]
+......................................................s................. [ 61%]
+................s....................................................... [ 81%]
+..............................................................F.. [100%]
+=================================== FAILURES ===================================
+______ test_v171_license_disclosure_does_not_inherit_historical_tr3_terms ______
+
+    def test_v171_license_disclosure_does_not_inherit_historical_tr3_terms():
+        readme = (ROOT / "README.md").read_text()
+        license_section = readme.split("## License\n", 1)[1]
+        assert "historical GLM-5.3-Flash-EXL3-TR3-4bpw checkpoint is reported\nunder ShapleyMCG License 1.0" in license_section
+        assert "newer public TensorFold checkpoint has\nconflicting publisher statements" in license_section
+        assert "MIT in its pinned card and bundled LICENSE" in license_section
+        assert "Apache-2.0 in the launcher NOTICE" in license_section
+>       assert "DFlash2 reports CC\nBY-NC-ND 4.0" in license_section
+E       AssertionError: assert 'DFlash2 reports CC\nBY-NC-ND 4.0' in '\nMIT applies only to repository-authored files covered by the root\n[LICENSE](LICENSE). It does not apply to the ven...ream, image, and checkpoint license before use;\nseek publisher clarification when an unambiguous grant is required.\n'
+
+tests/test_glm53_tensorfold_v171_recipe.py:104: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_glm53_tensorfold_v171_recipe.py::test_v171_license_disclosure_does_not_inherit_historical_tr3_terms
+1 failed, 346 passed, 9 skipped, 7 subtests passed in 98.50s (0:01:38)

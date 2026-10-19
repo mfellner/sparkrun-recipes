@@ -4,15 +4,20 @@
 
 Adapted from MiaAI-Lab/Qwen3.8-27B-DGX-Spark-TensorFold at
 `c11ff138871cf43d12898d79dbfa4dc952d17ca4`. TensorFold v0.6.0 is the actual
-engine; SparkRun 0.3.6's `vllm` runtime is only the solo Docker/lifecycle shim.
+engine; SparkRun 0.4.1's `vllm-distributed` runtime is only the solo
+Docker/lifecycle shim, not the inference engine. Use SparkRun 0.4.1 or later
+for this recipe; versions later than 0.4.1 have not been live-tested here.
 The public ARM64 image is pinned to
 `sha256:043d192b9e1725f55c5439fc9672055de891433e5b31448ed8963918e3c460e9`,
 with `tf.patches=fb91a0019fdc` (Mia's five patches, no engine modifications here).
-Target and drafter snapshots are pinned independently in serving paths. The target
-uses SparkRun distribution; a checksum-pinned pre-launch mod stages the drafter.
-SparkRun 0.3.6's single-local-host fast path ignores per-entry revisions and
-otherwise downloads the draft at the target revision (a real failed launch receipt
-is retained). The mod first hashes the cached draft config and 3.85 GB safetensor
+Target and drafter snapshots are pinned independently. The target uses SparkRun
+distribution and its validated `{model}` binding, which resolves to the exact
+prepared snapshot before serving on 0.4.1. The drafter path is relative to the
+managed `$HF_HUB_CACHE` mount. A checksum-pinned pre-launch mod stages the drafter.
+This mod originated as a workaround for SparkRun 0.3.6's local per-entry revision
+bug (the old failed launch receipt is retained); it remains an explicit integrity
+check, not a claim that 0.4.1 still has that bug.
+The mod first hashes the cached draft config and 3.85 GB safetensor
 against reviewed constants; on missing/corrupt data it downloads only those files
 at the exact draft revision, without forwarding a token, then rechecks fail-closed.
 No update of a moving Hub ref or `trust_remote_code` is required. A fully verified
@@ -37,8 +42,12 @@ access during preparation, before the offline server starts.
 - `mods/qwen38-tensorfold/serve.py` converts the one SparkRun
   `--served-model-name` argument into TensorFold's `--name`, rejecting a duplicate,
   missing value, or ambiguous native alias. TensorFold validates all other flags.
-- SparkRun mounts its existing HF cache; torch extensions and Triton use persistent
-  subdirectories there. Persistence configuration is not proof of measured reuse.
+- SparkRun mounts its existing HF cache. Compilation caches now use SparkRun's
+  managed `/cache/runtime` mount, keyed by both model/revision and image identity.
+  Recipe-local HF_HOME/TORCH_EXTENSIONS_DIR/TRITON_CACHE_DIR overrides and the
+  mkdir hook have been removed; old cache directories are not deleted. Automatic
+  pruning is disabled for this recipe to avoid deleting other runtime-cache trees.
+  Persistence configuration alone is not proof of measured reuse.
 
 ## Launch and stop
 
@@ -69,6 +78,14 @@ sparkrun run @mfellner/qwen3.8-27b-tensorfold-dgx-spark \
   --hosts YOUR_SPARK_LAN_IP --no-follow
 curl -fsS http://127.0.0.1:8000/v1/models
 ```
+
+For a LAN-only bind on SparkRun 0.4.1, add
+`-o host=YOUR_PRIVATE_LAN_IP --no-ready-wait` and perform the HTTP and semantic
+checks yourself against that LAN IP. SparkRun's local readiness observer probes
+`127.0.0.1` even when the engine binds only the LAN address: an initial LAN-bound
+attempt served successfully, but the CLI wait timed out and is **not** accepted
+as a successful launch receipt. Do not widen the bind to all interfaces merely
+to make that observer pass. The default loopback recipe avoids this limitation.
 
 Do not infer readiness from launch completion. Wait for `/v1/models`, inspect
 `/health`, and require a semantic chat completion. First startup can compile CUDA
@@ -111,9 +128,17 @@ this repository's license. No upstream source code is vendored by the adapter.
 
 The configuration above is not a claim of locally measured 262K retrieval,
 8 full simultaneous windows, 50-image/video validation, upstream throughput,
-quality parity, or long-term uptime. The [final LAN-process evidence](../evidence/qwen38-tensorfold-20261019/)
+quality parity, or long-term uptime. The [historical 0.3.6 LAN-process evidence](../evidence/qwen38-tensorfold-20261019/)
 passes direct chat, eight overlapping clients, image understanding, typed tools,
-41,443-token retrieval, proxy chat/image/tools and process/log checks. The live
-bind is `192.168.178.47:8000`, selected explicitly with `-o host=192.168.178.47`.
-The local proxy is `127.0.0.1:4000`. These measured cases do not qualify untested
-near-limit or media capacities.
+41,443-token retrieval, proxy chat/image/tools and process/log checks for the
+**old recipe at commit `01284da`**, not the updated runtime-cache configuration.
+Its exact-recipe verifier must be replayed from that Git revision. Updated
+SparkRun 0.4.1 evidence is separate in
+[qwen38-tensorfold-sparkrun041-20261019](../evidence/qwen38-tensorfold-sparkrun041-20261019/).
+No old process receipt is reused to qualify a new process or recipe.
+
+SparkRun 0.4.1's validator still emits `unpinned-model-revision`: that check
+assumes a vLLM engine needs `--revision` and does not recognize the prepared
+`{model}` snapshot binding. TensorFold does not accept that vLLM flag. Keep the
+pin and verify the actual listener argv and SparkRun prepared-model metadata;
+do not drop the pin or add an unsupported flag to silence this false positive.

@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "uv",
+    "run",
+    "--no-project",
+    "--with",
+    "pytest",
+    "--with",
+    "pyyaml",
+    "--with",
+    "numpy",
+    "--with",
+    "soundfile",
+    "--with",
+    "detect-secrets",
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_qwen38_sparkrun041_recipe.py",
+    "tests/test_qwen38_tensorfold_adapter.py"
+  ],
+  "started_at": 1792441282.0897787,
+  "finished_at": 1792441282.200364,
+  "returncode": 0,
+  "stdout": "...                                                               [100%]\n3 passed, 7 subtests passed in 0.01s\n",
+  "stderr": ""
+}

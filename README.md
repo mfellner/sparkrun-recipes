@@ -24,11 +24,14 @@ retained: **262,144 configured context, eight streams, FP8 KV and prefill,
 thinking on, inline images/video, and a 78 GiB pinned KV pool**. YaRN and remote
 URL media fetching are off. The alias is `Qwen3.8-27B`.
 
-Final local acceptance on dgx01 passed direct exact chat, eight overlapping HTTP
+SparkRun **0.4.1** compatibility acceptance on dgx01 passed its CLI readiness
+probe, direct exact chat, eight overlapping HTTP
 clients, a deterministic red/blue image, typed tool arguments, and unique-code
-retrieval from **41,443 API prompt tokens**. The same final process passed
-LiteLLM-proxied chat/image/tool probes with one healthy route and zero unhealthy
-routes. The full serve log and repeated bounded launch-to-post-acceptance kernel
+retrieval from **41,443 API prompt tokens**. The recipe uses the explicit solo
+`vllm-distributed` lifecycle shim, SparkRun's prepared snapshot binding and managed
+model/image-keyed runtime cache. The earlier 0.3.6 process passed LiteLLM-proxied
+chat/image/tool probes; proxy routing was **not requalified** for the updated recipe.
+The full serve log and repeated bounded launch-to-post-acceptance kernel
 queries contain no matched fatal CUDA/Xid/OOM errors. This is **not** full-262K,
 video/50-image, eight-full-window, throughput-parity or sustained-uptime validation.
 The image has no Docker healthcheck; container/process identity, `/health` and
@@ -38,11 +41,15 @@ semantic API responses supply the readiness evidence.
 # After reviewing/trusting this registry and temporarily stopping earlyoom:
 sparkrun run @mfellner/qwen3.8-27b-tensorfold-dgx-spark \
   --hosts YOUR_SPARK_LAN_IP --no-follow
-# For private-LAN clients/proxy discovery, add: -o host=YOUR_SPARK_LAN_IP
+# For LAN-only binding on 0.4.1, add:
+# -o host=YOUR_SPARK_LAN_IP --no-ready-wait
+# Then verify readiness and semantic inference against that LAN IP yourself.
 ```
 
-Default API binding is loopback on port 8000. The accepted deployment explicitly
-binds `192.168.178.47:8000`; its local LiteLLM proxy binds `127.0.0.1:4000`.
+Default API binding is loopback on port 8000, as tested with 0.4.1. Its local
+readiness observer incorrectly probes loopback for a LAN-only bind, so the
+LAN-only attempt's CLI timeout is not accepted as a pass. The model was unloaded
+after compatibility testing; this is a recorded test, not a currently running service.
 The API is unauthenticated and runs as root in a non-privileged host-network/IPC
 container with IPC_LOCK and no RDMA device mount; trusted private networks only.
 Keep earlyoom inactive while loaded, restoring it only after unloading and
@@ -50,8 +57,9 @@ checking safe memory headroom. The target's pinned LICENSE and draft card report
 Apache-2.0, while Mia's launcher says Community License 1.0; preserve this
 publisher-prose discrepancy and review NVIDIA container terms separately.
 
-See [deployment, exact pins and SparkRun 0.3.6 workaround](docs/qwen38-tensorfold.md)
-and [raw final-process evidence and fail-closed verifier](evidence/qwen38-tensorfold-20261019/).
+See [deployment, exact pins and SparkRun 0.4.1 notes](docs/qwen38-tensorfold.md),
+[new compatibility evidence](evidence/qwen38-tensorfold-sparkrun041-20261019/),
+and [historical 0.3.6 evidence](evidence/qwen38-tensorfold-20261019/).
 
 ### Fish Audio Drama 3 — native TTS, single Spark
 

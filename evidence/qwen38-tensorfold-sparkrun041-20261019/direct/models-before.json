@@ -1,0 +1,19 @@
+{
+  "case": "models-before",
+  "url": "http://127.0.0.1:8000/v1/models",
+  "request": null,
+  "status": 200,
+  "started_at": 1792441021.6812048,
+  "finished_at": 1792441021.6835425,
+  "raw_response_base64": "eyJvYmplY3QiOiAibGlzdCIsICJkYXRhIjogW3siaWQiOiAiUXdlbjMuOC0yN0IiLCAib2JqZWN0IjogIm1vZGVsIiwgIm93bmVkX2J5IjogInRlbnNvcmZvbGQifV19",
+  "response": {
+    "object": "list",
+    "data": [
+      {
+        "id": "Qwen3.8-27B",
+        "object": "model",
+        "owned_by": "tensorfold"
+      }
+    ]
+  }
+}

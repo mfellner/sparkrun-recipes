@@ -1,0 +1,62 @@
+{
+  "case": "chat",
+  "url": "http://127.0.0.1:8000/v1/chat/completions",
+  "request": {
+    "model": "Qwen3.8-27B",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 256,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly SPARK_READY and nothing else."
+      }
+    ]
+  },
+  "status": 200,
+  "started_at": 1792441021.684869,
+  "finished_at": 1792441021.8637316,
+  "raw_response_base64": "eyJpZCI6ICJjaGF0Y21wbC1jODg0YmZlNjhmYmM0ZTAzOTE2YjgzMjEiLCAib2JqZWN0IjogImNoYXQuY29tcGxldGlvbiIsICJjcmVhdGVkIjogMTc5MjQ0MTAyMSwgIm1vZGVsIjogIlF3ZW4zLjgtMjdCIiwgImNob2ljZXMiOiBbeyJpbmRleCI6IDAsICJtZXNzYWdlIjogeyJyb2xlIjogImFzc2lzdGFudCIsICJjb250ZW50IjogIlNQQVJLX1JFQURZIn0sICJmaW5pc2hfcmVhc29uIjogInN0b3AifV0sICJ1c2FnZSI6IHsicHJvbXB0X3Rva2VucyI6IDIyLCAiY29tcGxldGlvbl90b2tlbnMiOiA0LCAidG90YWxfdG9rZW5zIjogMjYsICJwcm9tcHRfdG9rZW5zX2RldGFpbHMiOiB7ImNhY2hlZF90b2tlbnMiOiAwfSwgImNvbXBsZXRpb25fdG9rZW5zX2RldGFpbHMiOiB7InJlYXNvbmluZ190b2tlbnMiOiAwfX0sICJ0ZW5zb3Jmb2xkIjogeyJwcmVmaWxsX3MiOiAwLjA5MjYsICJkZWNvZGVfcyI6IDAuMDgyMiwgInJvdW5kcyI6IDEsICJkcmFmdHMiOiB0cnVlLCAiY2FjaGVkIjogMCwgIm1pbl9yb3dzIjogMTYsICJkcmFmdGVkIjogMTUsICJhY2NlcHRlZCI6IDIsICJ0b2tlbl9zaGEiOiAiNTE0YTA4NWNlZTYyIn19",
+  "response": {
+    "id": "chatcmpl-c884bfe68fbc4e03916b8321",
+    "object": "chat.completion",
+    "created": 1792441021,
+    "model": "Qwen3.8-27B",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "SPARK_READY"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 22,
+      "completion_tokens": 4,
+      "total_tokens": 26,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "tensorfold": {
+      "prefill_s": 0.0926,
+      "decode_s": 0.0822,
+      "rounds": 1,
+      "drafts": true,
+      "cached": 0,
+      "min_rows": 16,
+      "drafted": 15,
+      "accepted": 2,
+      "token_sha": "514a085cee62"
+    }
+  }
+}

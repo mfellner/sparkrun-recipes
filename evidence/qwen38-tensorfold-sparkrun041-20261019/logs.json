@@ -1,0 +1,70 @@
+{
+  "serve": {
+    "argv": [
+      "docker",
+      "exec",
+      "sparkrun_143aaa9f3e323aa9_bcc74ffc19b7_solo",
+      "cat",
+      "/tmp/sparkrun_serve.log"
+    ],
+    "started_at": 1792441051.000083,
+    "finished_at": 1792441051.043489,
+    "returncode": 0,
+    "stdout": "[tensorfold] loading Qwen3.8-27B: Qwen3.8 dense (qwen3_5) on CUDA\n/usr/local/lib/python3.12/dist-packages/tensorfold/families/qwen3_5/cuda/engine.py:60: FutureWarning: torch.cuda._set_allocator_settings is deprecated. Use torch._C._accelerator_setAllocatorSettings instead.\n  torch.cuda.memory._set_allocator_settings(\"expandable_segments:True\")\n[tensorfold] CUDA rank 0 startup estimate 107.69 GiB within 115.84 GiB; native 262144, allocated prompt/reply window 262144, cache slots 262145\nW1019 20:16:05.257000 288 torch/utils/_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.\nW1019 20:16:05.279000 288 torch/utils/_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.\n[tensorfold] up to 8 streams, each growing to 262144 prompt/reply tokens inside a pinned 78.0 GiB cache pool (2,555,904 tokens), 3 prompt states kept\n[tensorfold] verify ms by rows (tree widths follow it): 1: 66.5, 2: 65.8, 4: 66.4, 8: 67.1, 12: 67.9, 16: 69.3, 24: 73.1, 32: 74.6, 48: 84.6, 64: 88.2, 96: 128.3, 128: 135.4\n[tensorfold] serving Qwen3.8-27B at http://127.0.0.1:8000/v1 on CUDA (sampling: temperature 1.0, top_k 20, top_p 0.95; drafts: on; prompts: FP8 activations; context: 262144; loaded in 32.2s)\n[tensorfold] building CUDA extension tensorfold_prefill_attention_v1 (first start after an install or update; later starts reuse it)\n",
+    "stderr": ""
+  },
+  "serve_sha256": {
+    "argv": [
+      "docker",
+      "exec",
+      "sparkrun_143aaa9f3e323aa9_bcc74ffc19b7_solo",
+      "sha256sum",
+      "/tmp/sparkrun_serve.log"
+    ],
+    "started_at": 1792441051.0434942,
+    "finished_at": 1792441051.098192,
+    "returncode": 0,
+    "stdout": "03508ccb1200e52c4056e2e1eb201a043bb87591d8d0976250bec8bb2d6dd276  /tmp/sparkrun_serve.log\n",
+    "stderr": ""
+  },
+  "kernel_first": {
+    "argv": [
+      "journalctl",
+      "-k",
+      "--since",
+      "@1792440878",
+      "--until",
+      "@1792441051",
+      "--no-pager",
+      "-o",
+      "short-unix",
+      "--show-cursor"
+    ],
+    "started_at": 1792441051.0982275,
+    "finished_at": 1792441051.22744,
+    "returncode": 0,
+    "stdout": "1792440941.122618 dgx01 kernel: tee (1052415): drop_caches: 3\n-- cursor: s=d73d73cd54fc45a5b4b0c52773bb9046;i=aefaf1;b=84ee361054bc49b7bf3d229dae73193c;m=13b873fbb0;t=65e372d93943a;x=937cd827656a0a8e\n",
+    "stderr": ""
+  },
+  "kernel_second": {
+    "argv": [
+      "journalctl",
+      "-k",
+      "--since",
+      "@1792440878",
+      "--until",
+      "@1792441051",
+      "--no-pager",
+      "-o",
+      "short-unix",
+      "--show-cursor"
+    ],
+    "started_at": 1792441051.2274442,
+    "finished_at": 1792441051.2363577,
+    "returncode": 0,
+    "stdout": "1792440941.122618 dgx01 kernel: tee (1052415): drop_caches: 3\n-- cursor: s=d73d73cd54fc45a5b4b0c52773bb9046;i=aefaf1;b=84ee361054bc49b7bf3d229dae73193c;m=13b873fbb0;t=65e372d93943a;x=937cd827656a0a8e\n",
+    "stderr": ""
+  },
+  "since": 1792440878,
+  "until": 1792441051
+}

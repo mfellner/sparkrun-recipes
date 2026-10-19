@@ -1,0 +1,17 @@
+{
+  "verdict": "PASS",
+  "semantic_cases": 12,
+  "long_prompt_tokens": 41443,
+  "client_concurrency": 8,
+  "endpoint": "127.0.0.1:8000",
+  "negative_controls_rejected": 4,
+  "recipe_sha256": "40f80456af390a49f4a84684e71791941da89680cf1f349b00ca8f68d24678e8",
+  "sparkrun_version": "0.4.1",
+  "container": "02178c552418bb70a6cd6a11c51a265744667384d0a89134a8e81573b166132f",
+  "configured_context": 262144,
+  "kv_pool_tokens": 2555904,
+  "runtime_bindings": "PASS",
+  "launch_cli": "PASS",
+  "serve_and_kernel_logs": "PASS",
+  "proxy_tested": false
+}

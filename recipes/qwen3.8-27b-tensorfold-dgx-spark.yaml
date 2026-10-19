@@ -1,10 +1,9 @@
 # MiaAI-Lab's single-Spark TensorFold profile; SparkRun owns lifecycle/distribution.
 recipe_version: "2"
-name: qwen3.8-27b-tensorfold-dgx-spark
 model: Vontra/Qwen3.8-27B-MLX-4bit
 model_revision: 22d8d538154e0e5b6f8dcb1fcc74a60a0798104c
-# vllm is ONLY SparkRun's solo Docker/lifecycle shim, not the inference engine.
-runtime: vllm
+# ONLY SparkRun's solo Docker/lifecycle shim, not the inference engine.
+runtime: vllm-distributed
 runtime_version: tensorfold-0.6.0
 min_nodes: 1
 max_nodes: 1
@@ -35,10 +34,16 @@ distribution_config:
       - name: Vontra/Qwen3.8-27B-MLX-4bit
         revision: 22d8d538154e0e5b6f8dcb1fcc74a60a0798104c
         target: [-1]
-# SparkRun 0.3.6's local fast path ignores per-entry revisions. The mod stages
-# and SHA256-verifies the independently pinned drafter before serving instead.
+# Retain checksum verification of the independently pinned drafter; the mod
+# also stages missing artifacts before the offline server starts.
 mods:
   - ../mods/qwen38-tensorfold
+runtime_cache:
+  enabled: true
+  key_by_model: true
+  key_by_image: true
+  prune:
+    enabled: false
 executor_config:
   entrypoint: ""
   privileged: false
@@ -53,7 +58,6 @@ executor_config:
     - memlock=-1:-1
     - stack=67108864:67108864
 env:
-  HF_HOME: /cache/huggingface
   HF_HUB_OFFLINE: "1"
   TENSORFOLD_NO_UPDATE_CHECK: "1"
   TENSORFOLD_MEMORY_RESERVE_GIB: "0"
@@ -62,10 +66,7 @@ env:
   TENSORFOLD_MAX_IMAGES: "50"
   TENSORFOLD_IMAGE_TOKENS: "16384"
   TENSORFOLD_VIDEO_TOKENS: "16384"
-  TORCH_EXTENSIONS_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/torch_extensions
-  TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/triton
-pre_exec:
-  - mkdir -p /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/torch_extensions /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/triton
+
 defaults:
   port: 8000
   host: 127.0.0.1
@@ -75,9 +76,8 @@ defaults:
   max_model_len: 262144
   max_num_seqs: 8
 command: >-
-  exec python /workspace/mods/qwen38-tensorfold/serve.py
-  /cache/huggingface/hub/models--Vontra--Qwen3.8-27B-MLX-4bit/snapshots/22d8d538154e0e5b6f8dcb1fcc74a60a0798104c
-  --drafter /cache/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2/snapshots/50307d4c4cde6860d4eee73e2547cd786fe8e8a4
+  exec python /workspace/mods/qwen38-tensorfold/serve.py {model}
+  --drafter "$HF_HUB_CACHE/models--z-lab--Qwen3.8-27B-DFlash2/snapshots/50307d4c4cde6860d4eee73e2547cd786fe8e8a4"
   --served-model-name {served_model_name} --host {host} --port {port}
   --parallel {max_num_seqs} --context {max_model_len}
   --temperature 1.0 --top-p 0.95 --top-k 20
