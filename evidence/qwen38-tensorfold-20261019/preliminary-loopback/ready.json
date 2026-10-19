@@ -1,0 +1,14 @@
+{
+  "started_waiting_at": 1792369941.2031162,
+  "ready_at": 1792369941.2062213,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "Qwen3.8-27B",
+        "object": "model",
+        "owned_by": "tensorfold"
+      }
+    ]
+  }
+}

@@ -12,6 +12,47 @@ Recipes are then available under the `@mfellner/` namespace. Review the reposito
 
 ## Recipes
 
+### Qwen3.8-27B — TensorFold, single Spark
+
+`@mfellner/qwen3.8-27b-tensorfold-dgx-spark`
+
+MiaAI-Lab's newer single-Spark TensorFold launcher, reviewed at
+`c11ff138871cf43d12898d79dbfa4dc952d17ca4`, with the public ARM64 image pinned
+by digest. TensorFold 0.6.0 (not vLLM) serves the independently pinned Vontra
+MLX affine-INT4 target and z-lab DFlash2 drafter. Upstream's default profile is
+retained: **262,144 configured context, eight streams, FP8 KV and prefill,
+thinking on, inline images/video, and a 78 GiB pinned KV pool**. YaRN and remote
+URL media fetching are off. The alias is `Qwen3.8-27B`.
+
+Final local acceptance on dgx01 passed direct exact chat, eight overlapping HTTP
+clients, a deterministic red/blue image, typed tool arguments, and unique-code
+retrieval from **41,443 API prompt tokens**. The same final process passed
+LiteLLM-proxied chat/image/tool probes with one healthy route and zero unhealthy
+routes. The full serve log and repeated bounded launch-to-post-acceptance kernel
+queries contain no matched fatal CUDA/Xid/OOM errors. This is **not** full-262K,
+video/50-image, eight-full-window, throughput-parity or sustained-uptime validation.
+The image has no Docker healthcheck; container/process identity, `/health` and
+semantic API responses supply the readiness evidence.
+
+```bash
+# After reviewing/trusting this registry and temporarily stopping earlyoom:
+sparkrun run @mfellner/qwen3.8-27b-tensorfold-dgx-spark \
+  --hosts YOUR_SPARK_LAN_IP --no-follow
+# For private-LAN clients/proxy discovery, add: -o host=YOUR_SPARK_LAN_IP
+```
+
+Default API binding is loopback on port 8000. The accepted deployment explicitly
+binds `192.168.178.47:8000`; its local LiteLLM proxy binds `127.0.0.1:4000`.
+The API is unauthenticated and runs as root in a non-privileged host-network/IPC
+container with IPC_LOCK and no RDMA device mount; trusted private networks only.
+Keep earlyoom inactive while loaded, restoring it only after unloading and
+checking safe memory headroom. The target's pinned LICENSE and draft card report
+Apache-2.0, while Mia's launcher says Community License 1.0; preserve this
+publisher-prose discrepancy and review NVIDIA container terms separately.
+
+See [deployment, exact pins and SparkRun 0.3.6 workaround](docs/qwen38-tensorfold.md)
+and [raw final-process evidence and fail-closed verifier](evidence/qwen38-tensorfold-20261019/).
+
 ### Fish Audio Drama 3 — native TTS, single Spark
 
 `@mfellner/fish-audio-drama3-dgx-spark`
@@ -616,6 +657,9 @@ separate AGPL-3.0 terms. Model checkpoints are not relicensed by this
 repository. The historical GLM-5.3-Flash-EXL3-TR3-4bpw checkpoint is reported
 under ShapleyMCG License 1.0; the newer public TensorFold checkpoint has
 conflicting publisher statements (MIT in its pinned card and bundled LICENSE,
-Apache-2.0 in the launcher NOTICE), as noted above. DFlash2 reports CC
-BY-NC-ND 4.0. Review each upstream, image, and checkpoint license before use;
+Apache-2.0 in the launcher NOTICE), as noted above. The GLM-5.3 DFlash2
+checkpoint reports CC BY-NC-ND 4.0; this is not a family-wide license claim.
+The separately pinned Qwen3.8-27B target's bundled LICENSE and its DFlash2
+card report Apache-2.0, contrary to the Qwen launcher's Community License prose.
+Review each upstream, image, and checkpoint license before use;
 seek publisher clarification when an unambiguous grant is required.

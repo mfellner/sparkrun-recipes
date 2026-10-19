@@ -1,0 +1,107 @@
+{
+  "case": "tools",
+  "url": "http://192.168.178.47:8000/v1/chat/completions",
+  "request": {
+    "model": "Qwen3.8-27B",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 256,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Call get_weather for Berlin using unit celsius. Do not answer in prose."
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get weather for a city.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "celsius",
+                  "fahrenheit"
+                ]
+              }
+            },
+            "required": [
+              "city",
+              "unit"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "type": "function",
+      "function": {
+        "name": "get_weather"
+      }
+    }
+  },
+  "status": 200,
+  "started_at": 1792370091.86037,
+  "finished_at": 1792370092.4799457,
+  "raw_response_base64": "eyJpZCI6ICJjaGF0Y21wbC1kNWYyOWI0ZGI5MGU0NWRmYmZjN2UyOWEiLCAib2JqZWN0IjogImNoYXQuY29tcGxldGlvbiIsICJjcmVhdGVkIjogMTc5MjM3MDA5MSwgIm1vZGVsIjogIlF3ZW4zLjgtMjdCIiwgImNob2ljZXMiOiBbeyJpbmRleCI6IDAsICJtZXNzYWdlIjogeyJyb2xlIjogImFzc2lzdGFudCIsICJjb250ZW50IjogbnVsbCwgInRvb2xfY2FsbHMiOiBbeyJpZCI6ICJjYWxsX2ViN2Q0YzUzYzEyOTQ2YjBiMzA3ZTJlMCIsICJ0eXBlIjogImZ1bmN0aW9uIiwgImZ1bmN0aW9uIjogeyJuYW1lIjogImdldF93ZWF0aGVyIiwgImFyZ3VtZW50cyI6ICJ7XCJjaXR5XCI6XCJCZXJsaW5cIixcInVuaXRcIjpcImNlbHNpdXNcIn0ifX1dfSwgImZpbmlzaF9yZWFzb24iOiAidG9vbF9jYWxscyJ9XSwgInVzYWdlIjogeyJwcm9tcHRfdG9rZW5zIjogMzEzLCAiY29tcGxldGlvbl90b2tlbnMiOiAzOSwgInRvdGFsX3Rva2VucyI6IDM1MiwgInByb21wdF90b2tlbnNfZGV0YWlscyI6IHsiY2FjaGVkX3Rva2VucyI6IDB9LCAiY29tcGxldGlvbl90b2tlbnNfZGV0YWlscyI6IHsicmVhc29uaW5nX3Rva2VucyI6IDB9fSwgInRlbnNvcmZvbGQiOiB7InByZWZpbGxfcyI6IDAuMjk5MywgImRlY29kZV9zIjogMC4zMTI1LCAicm91bmRzIjogNCwgImRyYWZ0cyI6IHRydWUsICJjYWNoZWQiOiAwLCAibWluX3Jvd3MiOiAxNiwgImRyYWZ0ZWQiOiA2MCwgImFjY2VwdGVkIjogMzQsICJ0b2tlbl9zaGEiOiAiNjI1YzRiZTk5MTdjIn19",
+  "response": {
+    "id": "chatcmpl-d5f29b4db90e45dfbfc7e29a",
+    "object": "chat.completion",
+    "created": 1792370091,
+    "model": "Qwen3.8-27B",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_eb7d4c53c12946b0b307e2e0",
+              "type": "function",
+              "function": {
+                "name": "get_weather",
+                "arguments": "{\"city\":\"Berlin\",\"unit\":\"celsius\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 313,
+      "completion_tokens": 39,
+      "total_tokens": 352,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "tensorfold": {
+      "prefill_s": 0.2993,
+      "decode_s": 0.3125,
+      "rounds": 4,
+      "drafts": true,
+      "cached": 0,
+      "min_rows": 16,
+      "drafted": 60,
+      "accepted": 34,
+      "token_sha": "625c4be9917c"
+    }
+  }
+}

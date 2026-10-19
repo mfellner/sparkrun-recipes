@@ -1,0 +1,109 @@
+{
+  "repo": "Vontra/Qwen3.8-27B-MLX-4bit",
+  "revision": "22d8d538154e0e5b6f8dcb1fcc74a60a0798104c",
+  "snapshot": "/home/max/.cache/huggingface/hub/models--Vontra--Qwen3.8-27B-MLX-4bit/snapshots/22d8d538154e0e5b6f8dcb1fcc74a60a0798104c",
+  "files": [
+    {
+      "file": ".gitattributes",
+      "size": 1570,
+      "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+      "lfs_sha256": null
+    },
+    {
+      "file": "LICENSE",
+      "size": 11544,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "lfs_sha256": null
+    },
+    {
+      "file": "README.md",
+      "size": 7951,
+      "sha256": "c93c08d92f704889e4c18b05aef061fdf58508c626982c58b774b75dc0ba5d43",
+      "lfs_sha256": null
+    },
+    {
+      "file": "chat_template.jinja",
+      "size": 8952,
+      "sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+      "lfs_sha256": null
+    },
+    {
+      "file": "config.json",
+      "size": 4932,
+      "sha256": "14b65a0ee06517060a6bbd979bb1a8ff54e7b304b1a1f01d54344b88b8285e85",
+      "lfs_sha256": null
+    },
+    {
+      "file": "generation_config.json",
+      "size": 202,
+      "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e",
+      "lfs_sha256": null
+    },
+    {
+      "file": "model-00001-of-00003.safetensors",
+      "size": 5343268662,
+      "sha256": "6cc1508e96fb5d0865dfd5753a79f4ec60651bf3e2a82844a7e8ae9c60528c0d",
+      "lfs_sha256": "6cc1508e96fb5d0865dfd5753a79f4ec60651bf3e2a82844a7e8ae9c60528c0d"
+    },
+    {
+      "file": "model-00002-of-00003.safetensors",
+      "size": 5354185130,
+      "sha256": "83f2a20ca8058f486a3634a27faf99587f4cd3c156a83dee34fb99e6ac178670",
+      "lfs_sha256": "83f2a20ca8058f486a3634a27faf99587f4cd3c156a83dee34fb99e6ac178670"
+    },
+    {
+      "file": "model-00003-of-00003.safetensors",
+      "size": 5357087557,
+      "sha256": "31b8c91ef899f79efaaa69e3d2c096f6e2ebeb2ff20e29222abbd9ebc79e560a",
+      "lfs_sha256": "31b8c91ef899f79efaaa69e3d2c096f6e2ebeb2ff20e29222abbd9ebc79e560a"
+    },
+    {
+      "file": "model.safetensors.index.json",
+      "size": 218281,
+      "sha256": "13b840162b4cb35c66fef7df072f7dbb4717908204364f5e5d9f9655a2758fa8",
+      "lfs_sha256": null
+    },
+    {
+      "file": "preprocessor_config.json",
+      "size": 390,
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "lfs_sha256": null
+    },
+    {
+      "file": "processor_config.json",
+      "size": 991,
+      "sha256": "45fc17c8dd2474af6b493b52483c26c0584b0082d368c480f9fa611e73070040",
+      "lfs_sha256": null
+    },
+    {
+      "file": "qwen-logo.png",
+      "size": 11203,
+      "sha256": "e56f3a62991f1d7475f0fd51b742bb293d9a228cd9dcbc1131b118d745e47cf3",
+      "lfs_sha256": null
+    },
+    {
+      "file": "tokenizer.json",
+      "size": 19989325,
+      "sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+      "lfs_sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "size": 1165,
+      "sha256": "792fa3f0cb88b111e54ef3134c873531008c4df471d108da17903426e308aa7b",
+      "lfs_sha256": null
+    },
+    {
+      "file": "video_preprocessor_config.json",
+      "size": 385,
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "lfs_sha256": null
+    },
+    {
+      "file": "vocab.json",
+      "size": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003",
+      "lfs_sha256": null
+    }
+  ]
+}

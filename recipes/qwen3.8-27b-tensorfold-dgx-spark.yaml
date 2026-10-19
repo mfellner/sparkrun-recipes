@@ -1,0 +1,84 @@
+# MiaAI-Lab's single-Spark TensorFold profile; SparkRun owns lifecycle/distribution.
+recipe_version: "2"
+name: qwen3.8-27b-tensorfold-dgx-spark
+model: Vontra/Qwen3.8-27B-MLX-4bit
+model_revision: 22d8d538154e0e5b6f8dcb1fcc74a60a0798104c
+# vllm is ONLY SparkRun's solo Docker/lifecycle shim, not the inference engine.
+runtime: vllm
+runtime_version: tensorfold-0.6.0
+min_nodes: 1
+max_nodes: 1
+container: ghcr.io/miaai-lab/qwen3.8-27b-dgx-spark-tensorfold@sha256:043d192b9e1725f55c5439fc9672055de891433e5b31448ed8963918e3c460e9
+builder: docker-pull
+metadata:
+  description: Qwen3.8-27B affine INT4 on one GB10, TensorFold 0.6.0, DFlash2, FP8 KV/prefill, eight streams and native 262144 context
+  maintainer: mfellner
+  source: https://github.com/MiaAI-Lab/Qwen3.8-27B-DGX-Spark-TensorFold
+  source_revision: c11ff138871cf43d12898d79dbfa4dc952d17ca4
+  hardware: 1x NVIDIA DGX Spark or compatible GB10, 128 GB unified memory
+  model_params: 27B
+  model_dtype: int4
+  kv_dtype: fp8
+  context_length: 262144
+  multimodal: true
+  notes:
+    - TensorFold v0.6.0 c4646171139ee8a3c38103eaa1699dad226ec12b with upstream patch hash fb91a0019fdc. Public image, target and drafter are immutable pins; explicit snapshot paths avoid moving Hub refs.
+    - Eight streams, FP8 KV, FP8 prompt activations, thinking on, native context and inline image/video input preserve the selected upstream default. YaRN is not enabled. FP8 prefill trades prompt precision for speed.
+    - Fixed 78 GiB KV pool is the upstream auto maximum on an idle 128 GB Spark. Launch only with at least 109 GiB MemAvailable and earlyoom inactive; do not silently lower the profile after failed admission. Inspect current memory before launch.
+    - API port 8000 follows this registry rather than upstream 8888. Default loopback binding narrows exposure; override host only for a trusted private LAN. URL media fetching stays disabled.
+    - Unauthenticated root-user non-privileged container with host networking/IPC and IPC_LOCK; not suitable for public exposure. No remote model code flag is enabled. NVIDIA container terms apply; checkpoint card and launcher model-license statements conflict, see docs/qwen38-tensorfold.md.
+    - SparkRun container supervision does not provide automatic model-process or host-reboot recovery. Configured context, media limits and concurrency are not performance or near-limit acceptance claims.
+distribution_config:
+  models:
+    enabled: true
+    entries:
+      - name: Vontra/Qwen3.8-27B-MLX-4bit
+        revision: 22d8d538154e0e5b6f8dcb1fcc74a60a0798104c
+        target: [-1]
+# SparkRun 0.3.6's local fast path ignores per-entry revisions. The mod stages
+# and SHA256-verifies the independently pinned drafter before serving instead.
+mods:
+  - ../mods/qwen38-tensorfold
+executor_config:
+  entrypoint: ""
+  privileged: false
+  user: root
+  network: host
+  ipc: host
+  shm_size: 32gb
+  devices: []
+  cap_add: [IPC_LOCK]
+  security_opt: [no-new-privileges]
+  ulimit:
+    - memlock=-1:-1
+    - stack=67108864:67108864
+env:
+  HF_HOME: /cache/huggingface
+  HF_HUB_OFFLINE: "1"
+  TENSORFOLD_NO_UPDATE_CHECK: "1"
+  TENSORFOLD_MEMORY_RESERVE_GIB: "0"
+  TENSORFOLD_KV_DTYPE: fp8
+  TENSORFOLD_KV_POOL_GIB: "78"
+  TENSORFOLD_MAX_IMAGES: "50"
+  TENSORFOLD_IMAGE_TOKENS: "16384"
+  TENSORFOLD_VIDEO_TOKENS: "16384"
+  TORCH_EXTENSIONS_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/torch_extensions
+  TRITON_CACHE_DIR: /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/triton
+pre_exec:
+  - mkdir -p /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/torch_extensions /cache/huggingface/sparkrun-runtime-cache/qwen38-27b-tensorfold/triton
+defaults:
+  port: 8000
+  host: 127.0.0.1
+  served_model_name: Qwen3.8-27B
+  tensor_parallel: 1
+  pipeline_parallel: 1
+  max_model_len: 262144
+  max_num_seqs: 8
+command: >-
+  exec python /workspace/mods/qwen38-tensorfold/serve.py
+  /cache/huggingface/hub/models--Vontra--Qwen3.8-27B-MLX-4bit/snapshots/22d8d538154e0e5b6f8dcb1fcc74a60a0798104c
+  --drafter /cache/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2/snapshots/50307d4c4cde6860d4eee73e2547cd786fe8e8a4
+  --served-model-name {served_model_name} --host {host} --port {port}
+  --parallel {max_num_seqs} --context {max_model_len}
+  --temperature 1.0 --top-p 0.95 --top-k 20
+  --prefill-fp8 --vision --thinking

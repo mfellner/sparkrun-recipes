@@ -1,0 +1,30 @@
+{
+  "case": "health-before",
+  "url": "http://192.168.178.47:8000/health",
+  "request": null,
+  "status": 200,
+  "started_at": 1792370089.1906798,
+  "finished_at": 1792370089.1914108,
+  "raw_response_base64": "eyJvayI6IHRydWUsICJiYWNrZW5kIjogInRlbnNvcmZvbGQiLCAiYnVzeSI6IGZhbHNlLCAicmVxdWVzdHNfcnVubmluZyI6IDAsICJyZXF1ZXN0c190b3RhbCI6IDAsICJwcm9tcHRfdG9rZW5zX3RvdGFsIjogMCwgImNvbXBsZXRpb25fdG9rZW5zX3RvdGFsIjogMCwgInByZWZpbGxfc2Vjb25kc190b3RhbCI6IDAsICJkZWNvZGVfc2Vjb25kc190b3RhbCI6IDAsICJjYWNoZWRfdG9rZW5zX3RvdGFsIjogMCwgInJvdW5kc190b3RhbCI6IDAsICJkcmFmdGVkX3RvdGFsIjogMCwgImFjY2VwdGVkX3RvdGFsIjogMCwgInN0cmVhbXMiOiB7ImRlY29kaW5nIjogMCwgInByZWZpbGxpbmciOiAwLCAibWF4IjogOH0sICJjb250ZXh0X2xlbmd0aCI6IDI2MjE0NH0=",
+  "response": {
+    "ok": true,
+    "backend": "tensorfold",
+    "busy": false,
+    "requests_running": 0,
+    "requests_total": 0,
+    "prompt_tokens_total": 0,
+    "completion_tokens_total": 0,
+    "prefill_seconds_total": 0,
+    "decode_seconds_total": 0,
+    "cached_tokens_total": 0,
+    "rounds_total": 0,
+    "drafted_total": 0,
+    "accepted_total": 0,
+    "streams": {
+      "decoding": 0,
+      "prefilling": 0,
+      "max": 8
+    },
+    "context_length": 262144
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "case": "concurrent-0",
+  "url": "http://127.0.0.1:8000/v1/chat/completions",
+  "request": {
+    "model": "Qwen3.8-27B",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 256,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly SPARK_C0_OK and nothing else."
+      }
+    ]
+  },
+  "status": 200,
+  "started_at": 1792369970.0770934,
+  "finished_at": 1792369970.774983,
+  "response": {
+    "id": "chatcmpl-85cc84b53eaf43a7906999a2",
+    "object": "chat.completion",
+    "created": 1792369970,
+    "model": "Qwen3.8-27B",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "SPARK_C0_OK"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 24,
+      "completion_tokens": 6,
+      "total_tokens": 30,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "tensorfold": {
+      "prefill_s": 0.091,
+      "decode_s": 0.0768,
+      "rounds": 1,
+      "drafts": true,
+      "cached": 0,
+      "min_rows": 16,
+      "drafted": 15,
+      "accepted": 4,
+      "token_sha": "821e325bfc18"
+    }
+  }
+}

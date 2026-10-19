@@ -1,0 +1,66 @@
+{
+  "case": "chat",
+  "url": "http://127.0.0.1:4000/v1/chat/completions",
+  "request": {
+    "model": "Qwen3.8-27B",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 256,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly SPARK_READY and nothing else."
+      }
+    ]
+  },
+  "status": 200,
+  "started_at": 1792370147.1350238,
+  "finished_at": 1792370147.3178954,
+  "raw_response_base64": "eyJpZCI6ImNoYXRjbXBsLTRiYWU1ZjBhNmIyYTQ2NTU4MThhNWFmNiIsImNyZWF0ZWQiOjE3OTIzNzAxNDcsIm1vZGVsIjoiUXdlbjMuOC0yN0IiLCJvYmplY3QiOiJjaGF0LmNvbXBsZXRpb24iLCJjaG9pY2VzIjpbeyJmaW5pc2hfcmVhc29uIjoic3RvcCIsImluZGV4IjowLCJtZXNzYWdlIjp7ImNvbnRlbnQiOiJTUEFSS19SRUFEWSIsInJvbGUiOiJhc3Npc3RhbnQiLCJwcm92aWRlcl9zcGVjaWZpY19maWVsZHMiOnsicmVmdXNhbCI6bnVsbH19LCJwcm92aWRlcl9zcGVjaWZpY19maWVsZHMiOnt9fV0sInVzYWdlIjp7ImNvbXBsZXRpb25fdG9rZW5zIjo0LCJwcm9tcHRfdG9rZW5zIjoyMiwidG90YWxfdG9rZW5zIjoyNiwiY29tcGxldGlvbl90b2tlbnNfZGV0YWlscyI6eyJyZWFzb25pbmdfdG9rZW5zIjowfSwicHJvbXB0X3Rva2Vuc19kZXRhaWxzIjp7ImNhY2hlZF90b2tlbnMiOjB9fSwidGVuc29yZm9sZCI6eyJwcmVmaWxsX3MiOjAuMDkyOSwiZGVjb2RlX3MiOjAuMDc3OCwicm91bmRzIjoxLCJkcmFmdHMiOnRydWUsImNhY2hlZCI6MCwibWluX3Jvd3MiOjE2LCJkcmFmdGVkIjoxNSwiYWNjZXB0ZWQiOjIsInRva2VuX3NoYSI6IjUxNGEwODVjZWU2MiJ9fQ==",
+  "response": {
+    "id": "chatcmpl-4bae5f0a6b2a4655818a5af6",
+    "created": 1792370147,
+    "model": "Qwen3.8-27B",
+    "object": "chat.completion",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "content": "SPARK_READY",
+          "role": "assistant",
+          "provider_specific_fields": {
+            "refusal": null
+          }
+        },
+        "provider_specific_fields": {}
+      }
+    ],
+    "usage": {
+      "completion_tokens": 4,
+      "prompt_tokens": 22,
+      "total_tokens": 26,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "tensorfold": {
+      "prefill_s": 0.0929,
+      "decode_s": 0.0778,
+      "rounds": 1,
+      "drafts": true,
+      "cached": 0,
+      "min_rows": 16,
+      "drafted": 15,
+      "accepted": 2,
+      "token_sha": "514a085cee62"
+    }
+  }
+}

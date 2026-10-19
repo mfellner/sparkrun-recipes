@@ -1,0 +1,20 @@
+{
+  "case": "models",
+  "url": "http://127.0.0.1:4000/v1/models",
+  "request": null,
+  "status": 200,
+  "started_at": 1792370146.905055,
+  "finished_at": 1792370146.9085789,
+  "raw_response_base64": "eyJkYXRhIjpbeyJpZCI6IlF3ZW4zLjgtMjdCIiwib2JqZWN0IjoibW9kZWwiLCJjcmVhdGVkIjoxNjc3NjEwNjAyLCJvd25lZF9ieSI6Im9wZW5haSJ9XSwib2JqZWN0IjoibGlzdCJ9",
+  "response": {
+    "data": [
+      {
+        "id": "Qwen3.8-27B",
+        "object": "model",
+        "created": 1677610602,
+        "owned_by": "openai"
+      }
+    ],
+    "object": "list"
+  }
+}

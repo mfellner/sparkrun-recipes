@@ -1,0 +1,29 @@
+{
+  "case": "health-before",
+  "url": "http://127.0.0.1:8000/health",
+  "request": null,
+  "status": 200,
+  "started_at": 1792369941.4794717,
+  "finished_at": 1792369941.4802616,
+  "response": {
+    "ok": true,
+    "backend": "tensorfold",
+    "busy": false,
+    "requests_running": 0,
+    "requests_total": 0,
+    "prompt_tokens_total": 0,
+    "completion_tokens_total": 0,
+    "prefill_seconds_total": 0,
+    "decode_seconds_total": 0,
+    "cached_tokens_total": 0,
+    "rounds_total": 0,
+    "drafted_total": 0,
+    "accepted_total": 0,
+    "streams": {
+      "decoding": 0,
+      "prefilling": 0,
+      "max": 8
+    },
+    "context_length": 262144
+  }
+}

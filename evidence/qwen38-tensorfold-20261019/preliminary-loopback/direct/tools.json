@@ -1,0 +1,106 @@
+{
+  "case": "tools",
+  "url": "http://127.0.0.1:8000/v1/chat/completions",
+  "request": {
+    "model": "Qwen3.8-27B",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 256,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Call get_weather for Berlin using unit celsius. Do not answer in prose."
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get weather for a city.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "celsius",
+                  "fahrenheit"
+                ]
+              }
+            },
+            "required": [
+              "city",
+              "unit"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "type": "function",
+      "function": {
+        "name": "get_weather"
+      }
+    }
+  },
+  "status": 200,
+  "started_at": 1792369972.5936964,
+  "finished_at": 1792369973.2067332,
+  "response": {
+    "id": "chatcmpl-2bc208fb52e54d7e9a98d401",
+    "object": "chat.completion",
+    "created": 1792369972,
+    "model": "Qwen3.8-27B",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_84b34476540c418f905c7fa0",
+              "type": "function",
+              "function": {
+                "name": "get_weather",
+                "arguments": "{\"city\":\"Berlin\",\"unit\":\"celsius\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 313,
+      "completion_tokens": 39,
+      "total_tokens": 352,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "tensorfold": {
+      "prefill_s": 0.2964,
+      "decode_s": 0.3116,
+      "rounds": 4,
+      "drafts": true,
+      "cached": 0,
+      "min_rows": 16,
+      "drafted": 60,
+      "accepted": 34,
+      "token_sha": "625c4be9917c"
+    }
+  }
+}

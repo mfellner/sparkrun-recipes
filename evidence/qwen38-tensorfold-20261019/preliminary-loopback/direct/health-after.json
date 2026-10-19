@@ -1,0 +1,29 @@
+{
+  "case": "health-after",
+  "url": "http://127.0.0.1:8000/health",
+  "request": null,
+  "status": 200,
+  "started_at": 1792369998.8505366,
+  "finished_at": 1792369998.8513572,
+  "response": {
+    "ok": true,
+    "backend": "tensorfold",
+    "busy": false,
+    "requests_running": 0,
+    "requests_total": 12,
+    "prompt_tokens_total": 42077,
+    "completion_tokens_total": 109,
+    "prefill_seconds_total": 53.8308,
+    "decode_seconds_total": 2.6286,
+    "cached_tokens_total": 0,
+    "rounds_total": 17,
+    "drafted_total": 255,
+    "accepted_total": 80,
+    "streams": {
+      "decoding": 0,
+      "prefilling": 0,
+      "max": 8
+    },
+    "context_length": 262144
+  }
+}

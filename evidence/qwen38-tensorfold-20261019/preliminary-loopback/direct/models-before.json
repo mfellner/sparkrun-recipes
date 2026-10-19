@@ -1,0 +1,18 @@
+{
+  "case": "models-before",
+  "url": "http://127.0.0.1:8000/v1/models",
+  "request": null,
+  "status": 200,
+  "started_at": 1792369941.477149,
+  "finished_at": 1792369941.4792948,
+  "response": {
+    "object": "list",
+    "data": [
+      {
+        "id": "Qwen3.8-27B",
+        "object": "model",
+        "owned_by": "tensorfold"
+      }
+    ]
+  }
+}
