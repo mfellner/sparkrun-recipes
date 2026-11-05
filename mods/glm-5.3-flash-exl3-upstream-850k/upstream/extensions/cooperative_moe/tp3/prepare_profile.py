@@ -8,13 +8,10 @@ from pathlib import Path
 
 from manifest import verify_artifacts
 
-# Reviewed repin for the default-off KDA large-M BF16 path (#233) on TP3.
-# Cooperative MoE implementation and TP3's unaligned f_b/g_b exclusion are
-# unchanged. With GLM53_KDA_BF16_LARGE_M unset/0, no BF16 copy is retained and
-# dense projections still use their existing Marlin/base paths. Enabling the
-# in_proj path on TP3 retains the padded-head [8726x4096] copy. Refusal on
-# further source drift is unchanged.
-STOCK_SHA = "849e25882ab7901fbdd7227990a4f125809e1f79288ce6506311b6e6a53e6fb2"
+# Dense EXL3 leaves the cooperative routed-expert ABI, pointer tables and
+# TP3 Marlin exclusions unchanged. This pin supports the ordinary TP3 pack;
+# dense EXL3 still refuses TP3 trellis/head padding.
+STOCK_SHA = "da7dd6540d402f53d8a1af0f17eac5570ec37041bd2e1029017bea4ed44f87e4"
 
 
 def prepare(stock, bundle):

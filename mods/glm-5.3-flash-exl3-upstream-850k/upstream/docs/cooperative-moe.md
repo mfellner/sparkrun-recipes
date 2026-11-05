@@ -37,10 +37,11 @@ thin experts on fused `exl3_moe` and every fat expert on E3. Cooperative
 path.
 
 Native ABI: `glm53_coop_abi` / `glm53_coop_info` / `glm53_coop_launch` (v1).
-Pinned `cooperative_moe.so` digest:
-`aa3fe5e9387c7e0d42d685fb2ca8a5fb959ad956600236baac078a9076c17a1c`
-(nvcc 13.0 in `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks:exl3`
-`sha256:eecb36e14dc34c92d46827fde7b09f7e0bf27e27c426ece126376c02dea6cd2f`).
+The historical measured library had digest `aa3fe5e9…` (nvcc 13.0 in image
+`sha256:eecb36e…`). Current builds are accepted by `build-manifest.json` source
+provenance rather than that complete ELF hash: pinned ExLlamaV3 commit,
+combined tree, repository source hashes, SM121a target and compiler identity.
+Runtime independently verifies ABI, layout and occupancy.
 
 ## Stock decode baselines (this kit)
 
@@ -79,8 +80,10 @@ sparkDash prose ×2 is still open.
 
 ## Numerical and safety validation
 
-Host-side: 49 dispatch assertions, eight profile-integrity tests (including
-refusal of an unvalidated binary digest), `bash -n` on `build.sh`.
+Historical host-side qualification had 49 dispatch assertions and eight
+profile-integrity tests. Current coverage adds source-manifest drift,
+architecture/symbol checks and acceptance of different valid compiler output;
+`bash -n` covers `build.sh`.
 
 Native rebuild: K4 / cb=1 (`mcg`) kernels for wide and narrow tiles plus the
 rotation kernel, `sm_121a`. Occupancy is checked at `glm53_coop_info` before
@@ -94,16 +97,29 @@ Rows 40 stayed stock (E3 grouped remains the prefill/fat path). Load-time E3
 resolution stayed `effective_tier=grouped`. Strict differences vs stock fused
 were retained (6,473,169 raw / 4,140,219 post-BF16 failed elements across
 repeated comparisons) — not bit-exact, as documented. A two-node serving smoke
-test has been executed (geometry 1 on both ranks). The worker-node numerical
-GPU gate, geometry-1 capture-size coverage, sanitizers, and matched serving
-baselines remain outstanding.
+test has been executed (geometry 1 on both ranks).
+
+Current source-build qualification (2026-09-28, image `sha256:0c2bcbe9…`): two
+isolated builds were byte-identical at `03bb1293…`. That artifact passed the
+48-check numerical/CUDA-graph gate separately on both Sparks, including all
+live capture sizes and grouped fallback at rows 40. The bounded 8-check
+`compute-sanitizer --tool memcheck` gate also passed on both GPUs with zero
+errors. These isolated rank tests do not claim distributed serving or quality
+validation.
+
+A subsequent matched TP2 comparison held the tuned serving configuration fixed
+and changed only the cooperative overlay. Against `GLM53_EXL3_MOE_FAST=1`, the
+candidate improved structured decode by 2.0% at ×1 and 1.8% aggregate at ×2.
+Hash-map prose was 3.1% slower at ×1 and tied at ×2; the warm 32,753-token Pi
+replay was 6.0% slower because small numerical differences reduced DFlash2
+acceptance. Direct CUDA-event tests still showed the intended kernel shape:
+1.32× at one spread row, 1.04× at eight, parity at 32, and 1.08–1.33× with
+expert reuse. The extension is therefore a valid opt-in, but FAST remains the
+production choice on this workload.
 
 ## Remaining work
 
-- Repeat the GPU gate on **both** Sparks at geometry 1, including live
-  adaptive-k capture sizes 3 and 5, E3 execution for oversized concentrated
-  routing, and bounded memcheck/racecheck.
-- Matched stock / geometry-1 / candidate serving restarts, including ×2.
+- Bounded racecheck for the current source-built artifact.
 - Real-weight arithmetic and assistant-output quality vs stock.
 - Prolonged production burn-in. Default serving remains stock until the overlay
   is selected.

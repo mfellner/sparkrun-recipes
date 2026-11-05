@@ -19,7 +19,7 @@ metadata:
   description: GLM 5.3 Flash EXL3 4bpw on two DGX Sparks with MiaAI-Lab's E3 grouped fat-expert kernel, TP2 DFlash2, replay-safe hybrid APC, optional per-group retention, image input, and 850,000-token context
   maintainer: mfellner
   source: https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
-  source_revision: 3f2be18c41effca0b4b2c6a65f0b24a7a9f39567
+  source_revision: fffe64fc093f65fa8f033957e16b744dc266c2ec
   hardware: 2x NVIDIA DGX Spark or compatible GB10 systems
   architecture: Glm5NextForConditionalGeneration
   model_params: 320B
@@ -30,8 +30,8 @@ metadata:
   multimodal: true
   notes:
     - The main mirror is pinned to 024db9f7e9871e8efdf21538ba55af7442be3cd5; its serving payload is byte-identical to the prior 25a44fdb snapshot and brandonmusic snapshot 5ab363a8. The DFlash2 draft payload selected by source revision 3f2be18 is independently pinned to dc77ff1c99eeb2df044ee3d4f0094eb033fee410.
-    - The pinned public arm64 exl3-instanttensor image supplies InstantTensor 0.2.0 and compiled E3 grouped fat-expert symbols. Exact 3f2be18 runtime overlays are checksum-pinned in the adjacent AGPL-3.0 mod and applied on both ranks. The public image predates optional thin-decode compiled kernels; those require a separately qualified rebuilt image, not a Python-only overlay. Thin decode, compact draft KV, cooperative MoE, dense FP8, adaptive verification, runtime ABLIT, and per-group sparse retention remain off.
-    - The reviewed TP2 profile uses InstantTensor loading, an explicit 15032385536-byte (14 GiB) KV pool, GPU_MEM_UTIL=0.85, and 850,000-token context. The KV cap comes from upstream .env.example; start.sh alone only warns when it is absent. The default mixed scheduler is fair v5. Old 20260913 live evidence is historical and does not validate this refresh; fresh clean-image and dual-rank live qualification are required. The prior 1M/E2 recipe remains unchanged for rollback.
+    - The pinned public arm64 exl3-instanttensor image supplies InstantTensor 0.2.0 and compiled E3 grouped fat-expert symbols. Exact fffe64fc runtime overlays are checksum-pinned in the adjacent AGPL-3.0 mod and applied on both ranks. The public image predates optional thin-decode compiled kernels; those require a separately qualified rebuilt image, not a Python-only overlay. Thin decode, compact draft KV, cooperative MoE, dense FP8, adaptive verification, runtime ABLIT, and per-group sparse retention remain off.
+    - The TP2 profile retains InstantTensor loading, an explicit 15032385536-byte (14 GiB) KV pool, GPU_MEM_UTIL=0.85, and 850,000-token context. The default mixed scheduler is fair v7. The 20260913 and 20260923 live evidence is historical and does not validate this refresh; fresh dual-rank live qualification is required. The prior 1M/E2 recipe remains unchanged for rollback.
     - DEFAULT_MAX_NEW_TOKENS=65536 changes only omitted-request output limits; explicit client limits still win subject to independent model/platform caps. Image processing uses max_image_tokens=2048 and a 1 GiB processor cache; video remains disabled locally. Cache-reset routes remain disabled.
     - GLM53_INDEXER_WORKSPACE=rightsize uses upstream's fail-closed legal-maximum workspace formula. Its exhaustive gate proves equivalent prefill chunking while returning memory to KV.
     - Local observability adaptations preserve worker environment with SPT_NOENV=1 and expose per-request APC cached-token counts with --enable-prompt-tokens-details; neither changes the selected model or scheduler profile.

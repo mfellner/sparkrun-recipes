@@ -57,7 +57,8 @@ def test_empty_repo_counts_zero() -> None:
         repo = Path(tmp) / "repo"
         repo.mkdir()
         result = run_bash(
-            "set -euo pipefail\n"
+            "set -euo pipefail\nDENSE_H3_REF=glm53-dense-h3\nDENSE_H3_ABLIT_REF=glm53-dense-h3-ablit\n"
+            + function("newest_snapshot")
             + function("count_shards")
             + f"count_shards {str(repo)!r}\n"
         )

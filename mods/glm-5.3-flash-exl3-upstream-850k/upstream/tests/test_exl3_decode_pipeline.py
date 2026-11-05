@@ -373,6 +373,7 @@ class ProcessWeightsFailClosedTests(unittest.TestCase):
         env = {
             "torch": _PWATorch(),
             "os": os,
+            "_dense_exl3_build_checked": False,
             "MCG_MARKER_SIGNED_INT32": 0xCBAC1FED,
             "make_linear_exl3": lambda *a: SimpleNamespace(),
             "_record_exl3_fat_resolution": lambda layer: None,
@@ -392,7 +393,10 @@ class ProcessWeightsFailClosedTests(unittest.TestCase):
             w2_trellis=_Pack(), w2_suh=_Pack(), w2_svh=_Pack(), w2_mcg=_Pack(),
             _exl3_hidden_size=4096, _exl3_intermediate_local=1024,
         )
-        self_ns = SimpleNamespace(_logged=False, bits=4)
+        self_ns = SimpleNamespace(
+            _logged=False, bits=4,
+            quant_config=SimpleNamespace(_assert_non_routed_built=lambda: None),
+        )
         env_map = {"GLM53_EXL3_MOE_FAST": fast}
         with patch.dict(sys.modules, {"exllamav3_ext": ext}), patch.dict(
             os.environ, env_map, clear=False

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Exact runtime overlay bundle from MiaAI-Lab commit:
-# 3f2be18c41effca0b4b2c6a65f0b24a7a9f39567
+# fffe64fc093f65fa8f033957e16b744dc266c2ec
 MOD_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$MOD_DIR"
 sha256sum -c SHA256SUMS
@@ -20,10 +20,13 @@ python3 verify_roce_gid.py --gid-index "$gid_index" "${hcas[@]}"
 # are installed but remain disabled by the recipe.
 install -d -m 0755 /opt/glm53/ablit
 install -m 0644 upstream/overlay/exl3.py /opt/glm53/exl3.py
+install -m 0644 upstream/overlay/qwen3_dflash2.py /opt/glm53/qwen3_dflash2.py
 install -m 0644 upstream/overlay/ablit_runtime.py /opt/glm53/ablit_runtime.py
 install -m 0644 upstream/ablit/* /opt/glm53/ablit/
 install -m 0644 upstream/files/chat_template.jinja /opt/glm53/chat_template.jinja
 
+python3 upstream/overlay/patch_cold_load_uma.py
+python3 upstream/overlay/patch_skip_cudagraph_profile.py
 python3 upstream/overlay/patch_glm_video_placeholders.py
 python3 upstream/overlay/patch_suppress_stops_in_reasoning.py
 python3 patch_suppress_stops_multitoken.py
@@ -38,12 +41,16 @@ python3 upstream/overlay/patch_kv_capacity_log.py
 python3 upstream/overlay/patch_tool_choice_none.py
 python3 upstream/overlay/patch_xgrammar_termination.py
 python3 upstream/overlay/patch_kpool_tail_slotmap.py
+python3 upstream/overlay/patch_kpool_tail_seed_stride.py
 python3 upstream/overlay/patch_spinwait.py
 python3 upstream/overlay/patch_adaptive_k.py
 python3 patch_e3_execution_marker.py
 python3 upstream/overlay/patch_dense_fp8.py
+python3 upstream/overlay/patch_dflash2_exl3.py
+python3 upstream/overlay/patch_loadclone.py
 python3 upstream/overlay/patch_default_max_new_tokens.py
 python3 upstream/overlay/patch_indexer_workspace.py
+python3 upstream/overlay/patch_indexer_warmup_range.py
 python3 upstream/overlay/patch_cache_reset.py
 python3 patch_ablit.py
 python3 verify_runtime_patch_state.py

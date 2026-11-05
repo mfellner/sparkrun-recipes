@@ -14,6 +14,7 @@ from torch import nn
 from vllm.compilation.backends import set_model_tag
 from vllm.compilation.decorators import support_torch_compile
 from vllm.config import CacheConfig, VllmConfig
+from vllm.logger import init_logger
 from vllm.model_executor.layers.linear import ReplicatedLinear
 from vllm.model_executor.layers.logits_processor import LogitsProcessor
 from vllm.model_executor.layers.quantization.base_config import QuantizationConfig
@@ -24,6 +25,8 @@ from .qwen3_dflash import (
     DFlashQwen3Model,
 )
 from .utils import maybe_prefix
+
+logger = init_logger(__name__)
 
 
 def _grouped_conv(
@@ -58,6 +61,7 @@ class DFlashGroupedConv(nn.Module):
         block_size: int,
         params_dtype: torch.dtype,
         prefix: str,
+        quant_config: QuantizationConfig | None = None,
     ) -> None:
         super().__init__()
         if hidden_size % group_size:
@@ -77,7 +81,10 @@ class DFlashGroupedConv(nn.Module):
             2 * taps * self.num_groups,
             bias=False,
             params_dtype=params_dtype,
-            quant_config=None,
+            # [dense-exl3] threaded so an EXL3 draft pack's
+            # attention_conv/mlp_conv.kernel_projection prefixes dispatch to
+            # Exl3LinearMethod; None keeps the BF16 draft byte-identical.
+            quant_config=quant_config,
             prefix=maybe_prefix(prefix, "kernel_projection"),
             return_bias=False,
         )
@@ -138,10 +145,14 @@ class DFlash2Qwen3DecoderLayer(DFlashQwen3DecoderLayer):
             params_dtype=vllm_config.model_config.dtype,
         )
         self.attention_conv = DFlashGroupedConv(
-            **conv_args, prefix=maybe_prefix(prefix, "attention_conv")
+            **conv_args,
+            quant_config=quant_config,
+            prefix=maybe_prefix(prefix, "attention_conv"),
         )
         self.mlp_conv = DFlashGroupedConv(
-            **conv_args, prefix=maybe_prefix(prefix, "mlp_conv")
+            **conv_args,
+            quant_config=quant_config,
+            prefix=maybe_prefix(prefix, "mlp_conv"),
         )
 
     def forward(
@@ -215,6 +226,8 @@ class CandidateSelector(nn.Module):
             bias=False,
             params_dtype=params_dtype,
             quant_config=None,
+            # Stays BF16 by design (not in the EXL3 draft pack): 1 M params,
+            # and selector precision directly steers acceptance.
             prefix=maybe_prefix(prefix, "hidden_projection"),
             return_bias=False,
         )
@@ -236,6 +249,35 @@ class CandidateSelector(nn.Module):
             anchor_token_ids,
             self.top_k,
         )
+
+
+def _log_draft_exl3(model: "DFlash2Qwen3Model") -> None:
+    """[dense-exl3] Boot evidence for an EXL3 draft pack (D6): declared-vs-
+    built check plus one count/bytes line for the draft's EXL3 modules.
+    Runs at the load_weights tail, while the staging params still exist
+    (process_weights_after_loading deletes them later). A BF16 draft has no
+    non_routed_exl3 declarations and passes through silently.
+    """
+    quant_config = model.quant_config
+    declared = (getattr(quant_config, "non_routed_exl3", None) or {}).get(
+        "layers"
+    ) or {}
+    if not declared:
+        return
+    quant_config._assert_non_routed_built()
+    modules = [m for m in model.modules() if hasattr(m, "_exl3_linear_n_shards")]
+    staged = sum(
+        p.numel() * p.element_size()
+        for m in modules
+        for name in ("trellis", "suh", "svh", "mcg", "mul1", "weight")
+        if (p := getattr(m, name, None)) is not None
+    )
+    logger.info(
+        "[dense-exl3] draft: %d EXL3 modules loaded (%.1f MiB staged incl. "
+        "bf16 k/v tails)",
+        len(modules),
+        staged / 2**20,
+    )
 
 
 class DFlash2Qwen3Model(DFlashQwen3Model):
@@ -293,6 +335,12 @@ class DFlash2Qwen3ForCausalLM(DFlashQwen3ForCausalLM):
         top_k = self.model.candidate_selector.top_k
         unary_logits, candidate_ids = torch.topk(logits, top_k, dim=-1)
         return candidate_ids, unary_logits
+
+    def load_weights(self, weights) -> None:
+        super().load_weights(weights)
+        # [dense-exl3] after the fused context-KV buffers are built (they
+        # read the bf16 k/v staging rows before those params are deleted).
+        _log_draft_exl3(self.model)
 
 
 EntryClass = DFlash2Qwen3ForCausalLM

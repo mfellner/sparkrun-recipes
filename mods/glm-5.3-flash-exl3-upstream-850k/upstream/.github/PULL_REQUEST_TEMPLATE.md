@@ -59,4 +59,4 @@
 - [ ] My pull request has a sound title and description (not something vague like `Update README.md`).
 - [ ] My change is reproducible and verified (a boot and, for behavior changes, measurements).
 - [ ] Defaults still work out of the box; a new knob has a sane fallback consistent with the existing ones.
-- [ ] I updated the README (and docs/ where relevant) for any knob, default, or measured number I changed.
+- [ ] I updated the README or docs/REFERENCE.md (and docs/ where relevant) for any knob, default, or measured number I changed.

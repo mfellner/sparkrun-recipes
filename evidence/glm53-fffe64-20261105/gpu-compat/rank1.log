@@ -1,0 +1,77 @@
+[glm53-cold-load-uma] patched /usr/local/lib/python3.12/dist-packages/vllm/model_executor/model_loader/weight_utils.py (page=4096)
+[glm53-skip-cudagraph-profile] patched /usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py
+glm53: disabled GB10 persistent_topk (use top_k_per_row_decode)
+glm53: overlay install ok aligned=True
+[suppress-stops-in-reasoning] skipped: /usr/local/lib/python3.12/dist-packages/vllm/v1/engine/detokenizer.py
+repaired request-state-bound reasoning stop policy
+patched scheduler.py (# [glm53-decode-floor:v7]) from v1-image-d9758a6
+patched scheduler.py (# [glm53-mamba-align-chunking-v2])
+[patch_glm5_drafter_group] /usr/local/lib/python3.12/dist-packages/vllm/v1/worker/utils.py
+[patch_glm5_drafter_group] /usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py
+patched kv_cache_coordinator.py (hybrid APC + versioned DFlash SWA replay clamp + DFlash boundary lookup)
+patched kv_cache_coordinator.py (per-group APC retention + DFlash replay/free ordering; VLLM_PREFIX_CACHE_RETENTION_INTERVAL_SWA drives the DFlash2 drafter group)
+patched sampling_params.py (sampling_params.py: 8 marks)
+patched request.py (request.py: 2 marks)
+patched block_pool.py (block_pool.py: 3 marks)
+patched no-store overlay (per-request GPU prefix-cache no-store via SamplingParams.skip_writing_prefix_cache / vllm_xargs; kill switch GLM53_APC_NO_STORE)
+patched single_type_kv_cache_manager.py (# [glm53-mamba-align-state-free-v1])
+patched kv_cache_interface.py (# [glm53-mamba-align-state-free-v1])
+kv_cache_utils.py: kv-capacity-log patched (GLM53_KV_CAPACITY_LOG='1 (unset)')
+[tool-choice-none] applied: /usr/local/lib/python3.12/dist-packages/vllm/parser/glm47_moe.py
+backend_xgrammar.py: termination fix already present (#52805)
+__init__.py: reasoning fix already present (#53046)
+block_table.py: kpool tail slot-map already present
+[glm53-kpool-tail-seed-stride] kpool_compress.py: patched
+shm_broadcast.py: spinwait stock (stock)
+patched scheduler.py (GLM53_ADAPTIVE_K=off)
+patched cudagraph_utils.py (adaptive-k graph lengths)
+/opt/glm53/exl3.py: E3 execution marker patched
+installed /opt/glm53/exl3.py -> /usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py
+GLM53_DENSE_FP8=off GLM53_DENSE_EXL3=0 — constructors untouched
+installed qwen3_dflash2.py -> /usr/local/lib/python3.12/dist-packages/vllm/model_executor/models/qwen3_dflash2.py
+patched qwen3_dflash.py ([dense-exl3-dflash2])
+[glm53-loadclone] /usr/local/lib/python3.12/dist-packages/vllm/model_executor/model_loader/weight_utils.py: patched
+[glm53-default-max-new-tokens] applied: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/serve/utils/api_utils.py
+[glm53-default-max-new-tokens] applied: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/completion/serving.py
+[glm53-default-max-new-tokens] applied: /usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/completion/protocol.py
+indexer.py: indexer workspace already present (GLM53_INDEXER_WORKSPACE='rightsize')
+indexer.py: indexer warmup-range patched
+patched api_server.py (GLM53_EXPOSE_CACHE_RESET=1 mounts only the cache-reset dev routes)
+installed /usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/glm53_ablit.py
+model.py: ABLIT-HOOK already present — skipping
+mtp.py: ABLIT-HOOK already present — skipping
+[OK] complete GLM-5.3 runtime patched state verified
+glm53: video placeholders aligned to encoder grid_t (Glm5Next→glm46v)
+exl3 registry OK
+exl3 TP shard rules OK (gate/up col, down row)
+exllamav3_ext.exl3_moe present
+exllamav3_ext arch OK /usr/local/lib/python3.12/dist-packages/exllamav3_ext.cpython-312-aarch64-linux-gnu.so arches=['activation.sm_121a.cubin', 'add.sm_121a.cubin', 'all_reduce.sm_121a.cubin', 'all_reduce_cpu.sm_121a.cubin', 'attention.sm_121a.cubin', 'barrier.sm_121a.cubin', 'broadcast.sm_121a.cubin', 'cache.sm_121a.cubin', 'context.sm_121a.cubin', 'coop_autotune.sm_121a.cubin', 'exl3_comp_unit_1.sm_121a.cubin', 'exl3_comp_unit_2.sm_121a.cubin', 'exl3_comp_unit_3.sm_121a.cubin', 'exl3_comp_unit_4.sm_121a.cubin', 'exl3_comp_unit_5.sm_121a.cubin', 'exl3_comp_unit_6.sm_121a.cubin', 'exl3_comp_unit_7.sm_121a.cubin', 'exl3_comp_unit_8.sm_121a.cubin', 'exl3_devctx.sm_121a.cubin', 'exl3_fat_gemm.sm_121a.cubin', 'exl3_fat_moe.sm_121a.cubin', 'exl3_gemm.sm_121a.cubin', 'exl3_gemv.sm_121a.cubin', 'exl3_kernel_map.sm_121a.cubin', 'exl3_moe.sm_121a.cubin', 'exl3_moe_inst_0.sm_121a.cubin', 'exl3_moe_inst_0_128.sm_121a.cubin', 'exl3_moe_inst_0_256.sm_121a.cubin', 'exl3_moe_inst_1.sm_121a.cubin', 'exl3_moe_inst_2.sm_121a.cubin', 'exl3_moe_inst_3.sm_121a.cubin', 'exl3_moe_inst_4.sm_121a.cubin', 'exl3_moe_inst_5.sm_121a.cubin', 'exl3_moe_inst_6.sm_121a.cubin', 'exl3_moe_inst_7.sm_121a.cubin', 'exl3_moe_inst_8.sm_121a.cubin', 'gather.sm_121a.cubin', 'gdn.sm_121a.cubin', 'graph.sm_121a.cubin', 'gumbel.sm_121a.cubin', 'hadamard.sm_121a.cubin', 'hgemm.sm_121a.cubin', 'histogram.sm_121a.cubin', 'norm.sm_121a.cubin', 'pack.sm_121a.cubin', 'q_cache.sm_121a.cubin', 'quantize.sm_121a.cubin', 'reconstruct.sm_121a.cubin', 'rep_pen.sm_121a.cubin', 'rope.sm_121a.cubin', 'routing.sm_121a.cubin', 'sampling_basic.sm_121a.cubin', 'sampling_extra.sm_121a.cubin', 'softcap.sm_121a.cubin', 'stloader_cu.sm_121a.cubin', 'util.sm_121a.cubin']
+exl3 E2 diag schema + tier resolution OK
+glm53: video placeholders aligned to encoder grid_t (Glm5Next→glm46v)
+DFLASH_CURRENT_STATIC_AND_OFF64_PASS
+dflash2 overlay OK
+exl3 GPU GEMM OK LinearEXL3 y=(4, 256) finite mean=-1.0508
+exl3 E2 direct/scatter parity OK rows=145 direct=0.00002 scatter=0.00002 bound=7.31089
+INFO 11-05 21:21:21 [exl3.py:577] exl3 e2 diag schema=2 configured_tier=grouped effective_tier=grouped tier_reason=grouped_ok shared_suh=1 shared_suh_layers=1/1 sym_exl3_moe=1 sym_fat_gemm=1 sym_fat_gemm_scatter=1 sym_fat_moe=1 grouped_eligible=1 grouped_calls=0 grouped_scratch_bytes=0 cap=12.1 cap_ok=1 tp_rank=-1 tp_size=1 prefill_layer_calls=0 thin_calls=0 row_tile_calls=0 fallback_calls=grouped=0,kernel=0,batched=0,sorted=0,legacy=0 fallback_reasons=none fat_expert_runs=0 direct_calls=0 scatter_calls=0 fat_layers=0 fat_expert_slots=0 max_rows=0 fused_temps_allocs=0 fused_temps_bytes=0 fat_scratch_allocs=0 fat_scratch_bytes=0 fat_scratch_peak_bytes=0
+INFO 11-05 21:21:21 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=3 hidden=256 intermediate_local=256 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+exl3 fused vs LinearEXL3 loop OK maxabs=3.06250 bound=224.16000
+WARNING 11-05 21:21:21 [exl3.py:560] exl3 e2 diag tier changed grouped -> kernel (kernel_ok): schema=2 configured_tier=kernel effective_tier=grouped tier_reason=grouped_ok shared_suh=1 shared_suh_layers=2/2 sym_exl3_moe=1 sym_fat_gemm=1 sym_fat_gemm_scatter=1 sym_fat_moe=1 grouped_eligible=1 grouped_calls=0 grouped_scratch_bytes=0 cap=12.1 cap_ok=1 tp_rank=-1 tp_size=1 prefill_layer_calls=0 thin_calls=0 row_tile_calls=0 fallback_calls=grouped=0,kernel=0,batched=0,sorted=0,legacy=0 fallback_reasons=none fat_expert_runs=0 direct_calls=0 scatter_calls=0 fat_layers=0 fat_expert_slots=0 max_rows=0 fused_temps_allocs=1 fused_temps_bytes=393216 fat_scratch_allocs=0 fat_scratch_bytes=0 fat_scratch_peak_bytes=0
+INFO 11-05 21:21:21 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=3 hidden=256 intermediate_local=256 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+exl3 legacy/sorted/batched/kernel fat fallback + row-tile vs loop OK T=160 legacy=0.00000 sorted=0.00000 batched=0.25000 kernel=1.0 tile=5.00000 bound=373.12000
+INFO 11-05 21:21:21 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=3 hidden=256 intermediate_local=256 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+exl3 mixed thin+fat composition OK maxabs=1.00000 bound=321.76000
+INFO 11-05 21:21:22 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=3 hidden=256 intermediate_local=256 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+exl3 E2 diag counters OK: kernel call = prefill_layer_calls 1, fallback kernel=1, direct=2, scatter=2, fat_expert_runs=2, scratch_allocs=1; shared-SUH loss -> sorted+degraded_shared_suh; row tiles preempt
+WARNING 11-05 21:21:22 [exl3.py:560] exl3 e2 diag tier changed kernel -> grouped (grouped_ok): schema=2 configured_tier=grouped effective_tier=kernel tier_reason=kernel_ok shared_suh=1 shared_suh_layers=5/5 sym_exl3_moe=1 sym_fat_gemm=1 sym_fat_gemm_scatter=1 sym_fat_moe=1 grouped_eligible=1 grouped_calls=0 grouped_scratch_bytes=0 cap=12.1 cap_ok=1 tp_rank=-1 tp_size=1 prefill_layer_calls=3 thin_calls=0 row_tile_calls=1 fallback_calls=grouped=0,kernel=1,batched=0,sorted=1,legacy=0 fallback_reasons=degraded_shared_suh=1,kernel_ok=1,row_tile_preempts_fat=1 fat_expert_runs=4 direct_calls=2 scatter_calls=2 fat_layers=10 fat_expert_slots=22 max_rows=200 fused_temps_allocs=2 fused_temps_bytes=1572864 fat_scratch_allocs=1 fat_scratch_bytes=2032640 fat_scratch_peak_bytes=2032640
+INFO 11-05 21:21:22 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=3 hidden=256 intermediate_local=256 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+exl3 apply expert_map -1 + EXL3_FUSED_MOE=0 loop OK
+INFO 11-05 21:21:22 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=3 hidden=256 intermediate_local=256 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+exl3 fused CUDA graph capture OK maxabs=0.00000
+exl3 E3 row/segment tables vs reference OK (9 cases)
+INFO 11-05 21:21:22 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=4 hidden=256 intermediate_local=256 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+INFO 11-05 21:21:22 [exl3.py:180] [glm53-e3-executed] grouped_calls=1 fat_expert_runs=3 configured_tier=grouped effective_tier=grouped
+exl3 E3 real-checkpoint parity SKIPPED (HF cache not mounted)
+WARNING 11-05 21:21:22 [exl3.py:560] exl3 e2 diag tier changed grouped -> kernel (grouped_ineligible_bits_3:kernel_ok): schema=2 configured_tier=grouped effective_tier=grouped tier_reason=grouped_ok shared_suh=1 shared_suh_layers=8/8 sym_exl3_moe=1 sym_fat_gemm=1 sym_fat_gemm_scatter=1 sym_fat_moe=1 grouped_eligible=0 grouped_calls=14 grouped_scratch_bytes=2457600 cap=12.1 cap_ok=1 tp_rank=-1 tp_size=1 prefill_layer_calls=18 thin_calls=0 row_tile_calls=0 fallback_calls=grouped=14,kernel=4,batched=0,sorted=0,legacy=0 fallback_reasons=grouped_ok=14,kernel_ok=4 fat_expert_runs=14 direct_calls=11 scatter_calls=11 fat_layers=10 fat_expert_slots=22 max_rows=200 fused_temps_allocs=2 fused_temps_bytes=393216 fat_scratch_allocs=1 fat_scratch_bytes=13042688 fat_scratch_peak_bytes=13042688
+WARNING 11-05 21:21:22 [exl3.py:560] exl3 e2 diag tier changed kernel -> grouped (grouped_ok): schema=2 configured_tier=grouped effective_tier=kernel tier_reason=grouped_ineligible_bits_3:kernel_ok shared_suh=1 shared_suh_layers=9/9 sym_exl3_moe=1 sym_fat_gemm=1 sym_fat_gemm_scatter=1 sym_fat_moe=1 grouped_eligible=1 grouped_calls=14 grouped_scratch_bytes=2457600 cap=12.1 cap_ok=1 tp_rank=-1 tp_size=1 prefill_layer_calls=19 thin_calls=0 row_tile_calls=0 fallback_calls=grouped=14,kernel=5,batched=0,sorted=0,legacy=0 fallback_reasons=grouped_ok=14,kernel_ok=5 fat_expert_runs=17 direct_calls=14 scatter_calls=14 fat_layers=10 fat_expert_slots=22 max_rows=200 fused_temps_allocs=2 fused_temps_bytes=393216 fat_scratch_allocs=1 fat_scratch_bytes=13042688 fat_scratch_peak_bytes=13042688
+exl3 E3 grouped OK: mixed e2_vs_loop maxabs=3.0000 nrmse=0.000229 | e3_vs_loop maxabs=3.0000 nrmse=0.000229 | e3_vs_e2 maxabs=0.2500 | e3_repeat maxabs=0.00000 | real=skipped
+glm53 EXL3 overlay verify OK

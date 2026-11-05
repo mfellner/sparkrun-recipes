@@ -46,9 +46,17 @@ the host, then compile in the container.
 bash extensions/cooperative_moe/build.sh EXLLAMAV3_CHECKOUT EMPTY_OUTPUT_DIRECTORY
 ```
 
-Outputs are `cooperative_moe.so`, `runtime.py`, and the build log. The adapter
-and `prepare_profile.py` pin the binary digest. Different toolchains or
-compiler paths may change it. Do not bypass the check.
+Outputs are `cooperative_moe.so`, `runtime.py`, `build-manifest.json`, and the
+build log. CUDA 13's `--frandom-seed`, a fixed `SOURCE_DATE_EPOCH`, locale and
+container paths remove avoidable compiler variance. Exact ELF reproducibility
+is deliberately not required: CUDA or host-toolchain changes may produce a
+different valid binary. `prepare_profile.py` instead verifies the pinned
+ExLlamaV3 commit, combined input-tree digest, every repository source digest,
+SM121a target and compiler provenance. The manifest records and binds its own
+artifact digest for transfer integrity; that digest is not a repository-wide
+allowlist. At runtime the adapter verifies the
+native ABI, layout and occupancy before allocating scratch. The both-GPU gate
+remains required before serving a newly built artifact.
 
 ## Select a profile
 

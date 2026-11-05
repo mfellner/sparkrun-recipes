@@ -15,6 +15,17 @@ def rows(document: dict) -> list[dict]:
     return [row for findings in document.get("results", {}).values() for row in findings]
 
 
+def combined_exclude_pattern(document: dict) -> str:
+    patterns = []
+    for item in document.get("filters_used", []):
+        if item.get("path") == "detect_secrets.filters.regex.should_exclude_file":
+            value = item.get("pattern", [])
+            patterns.extend([value] if isinstance(value, str) else value)
+    alternatives = [f"(?:{pattern})" for pattern in patterns]
+    alternatives.append(r"^\.git/")
+    return "|".join(alternatives)
+
+
 def identities(document: dict) -> Counter[tuple[str, str, str]]:
     return Counter(
         (row["filename"], row["type"], row["hashed_secret"])
@@ -128,7 +139,7 @@ def main() -> int:
         process = subprocess.run(
             [
                 "detect-secrets", "scan", "--all-files", "--no-verify",
-                "--baseline", str(candidate), ".",
+                "--exclude-files", combined_exclude_pattern(reviewed), "--baseline", str(candidate), ".",
             ],
             cwd=root,
             text=True,

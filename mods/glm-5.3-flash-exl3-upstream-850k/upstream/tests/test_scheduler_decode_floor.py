@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import ast
+import hashlib
 import contextlib
 import importlib.util
 import io
+import json
 import os
 from pathlib import Path
 import subprocess
@@ -28,6 +30,11 @@ if PATCH is None:
         + ', '.join(str(p) for p in _PATCH_CANDIDATES)
         + ')'
     )
+_FIXTURE_CANDIDATES = (HERE / 'fixtures', ROOT / 'tests' / 'fixtures')  # image layout, then checkout
+FIXTURES = next((p for p in _FIXTURE_CANDIDATES if (p / 'legacy_scheduler_helpers.py').is_file()), None)
+if FIXTURES is None:
+    raise SystemExit('missing fixtures/legacy_scheduler_helpers.py (tried '
+                     + ', '.join(str(p) for p in _FIXTURE_CANDIDATES) + ')')
 spec = importlib.util.spec_from_file_location('glm53_decode_floor', PATCH)
 mod = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = mod
@@ -385,6 +392,37 @@ class FairTests(unittest.TestCase):
         self.p.note_scheduled(self.b, 0)
         self.assertEqual(self.p.cap_for(self.s, c), 256)
 
+    def test_native_kv_refusal_keeps_waiter_retryable_and_peer_progressing(self):
+        # #246: a selected waiter that vLLM refuses KV must not stall a runnable
+        # prefill, must stay a candidate, and must recover once memory frees.
+        c = Req('C')
+        self.s.waiting.append(c)
+        self.s.refresh()
+        self.assertEqual(self.p.cap_for(self.s, self.b), 256)
+        self.assertEqual(self.p.cap_for(self.s, c), 0)
+        self.p.note_alloc_failed(self.b)                      # native refusal (new_blocks is None)
+        cap_c = self.p.cap_for(self.s, c)
+        self.assertGreater(cap_c, 0)                          # the runnable peer progresses in the same step
+        self.complete(self.submit({'A': 8, 'C': cap_c}), 0.2)
+        self.p.begin_step(self.s)                             # next step: refusal evidence lasts one step
+        self.assertEqual(self.p._refused_prev, {'B'})
+        self.assertNotIn('B', self.p.selected)                # not preselected right after its refusal
+        self.assertIn('B', [r.request_id for r in self.p._candidates])  # but still queued for retry
+        served = {'B': 0, 'C': cap_c}
+        for _ in range(20):                                   # memory has freed: no further refusals
+            counts = {'A': 8}
+            for r in (self.b, c):
+                cap = self.p.cap_for(self.s, r)
+                if cap:
+                    counts[r.request_id] = cap
+                    served[r.request_id] += cap
+            self.complete(self.submit(counts), 0.2)
+            self.p.begin_step(self.s)
+            if served['B'] and served['C'] > cap_c:
+                break
+        self.assertGreater(served['B'], 0)                    # the refused waiter recovers
+        self.assertGreater(served['C'], cap_c)                # and the peer keeps progressing
+
     def test_full_prefix_hit_is_not_blocked_as_cold_prefill(self):
         self.p.begin_step(self.s)
         self.p.credit = -10
@@ -446,52 +484,201 @@ class FairTests(unittest.TestCase):
         self.assertEqual(ns['input_budget'], 0)
 
 
+def hook_table_digests_check(legacy):
+    """The installer's legacy hook tables must match their independently recorded digests."""
+    for version, table in (('v1', mod.V1_PAIRS), ('v2', mod.V2_PAIRS), ('v5', mod.V5_PAIRS), ('v6', mod.V6_PAIRS)):
+        got = hashlib.sha256(json.dumps([list(t) for t in table]).encode()).hexdigest()
+        assert got == legacy.HOOK_TABLE_DIGESTS[version], f'{version} hook table differs from its recorded digest'
+
+
+class HookTableDigests(unittest.TestCase):
+    def test_legacy_hook_tables_match_recorded_digests(self):
+        spec = importlib.util.spec_from_file_location('legacy_scheduler_helpers_digests', FIXTURES / 'legacy_scheduler_helpers.py')
+        legacy = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(legacy)
+        hook_table_digests_check(legacy)
+
+
 def installation_tests():
+    """Installer contract for decode-floor v7 (#283; integrates #246/#221/#180).
+
+    Deployed and fixture producers migrate to the same v7 bytes as a fresh install,
+    a second run is a verified no-op, and unsupported (v3/v4), drifted, duplicated,
+    marker-only or unmarked inputs are refused without writing (#180's fail-closed
+    contract). This is a self-contained subset of the 13-producer / 14-refusal
+    matrix run for #283 (summarized in the #283 integration PR).
+    """
     src = next((p for p in [Path(os.environ.get('GLM53_SCHEDULER_PY_SRC', '/missing')),
                            Path('/usr/local/lib/python3.12/dist-packages/vllm/v1/core/sched/scheduler.py'),
                            Path('/tmp/sched-live.py')] if p.is_file()), None)
     if src is None:
         raise SystemExit('Set GLM53_SCHEDULER_PY_SRC to the pinned scheduler source')
-    clean = src.read_text()
-    for marker, fn in [(mod.MARK_V5, mod.unpatch_v5), (mod.MARK_V4, mod.unpatch_v4), (mod.MARK_V3, mod.unpatch_v3), (mod.MARK_V2, mod.unpatch_v2)]:
-        if marker in clean:
-            clean = fn(clean)
-    if mod.V1_HELPER_START in clean:
-        clean = mod.unpatch_v1(clean)
+    image = src.read_text()
+    current = found = None
+    if mod.MARK_V7 in image:
+        # An already-current v7 install verifies exactly (as main() does); any other
+        # v7-marked source falls back to legacy identification, also as main() does
+        # (the accepted pre-release v7 identities carry the same marker).
+        try:
+            clean, current_at, _ = mod._unpatch(image, 'v7', mod.MARK_V7, mod.CLASS_HEAD, mod.V7_PAIRS,
+                                                exact=mod._helper_text())
+            current = image
+        except SystemExit:
+            pass
+    if current is None:
+        found = mod._identify(image)
+        clean = image if found is None else found[1]
+    assert mod.MARK_V7 not in clean and mod.CLASS_HEAD not in clean
+
+    def load_fixture(name, path):
+        spec = importlib.util.spec_from_file_location(name, path)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[name] = module  # inspect.getsource needs the module registered
+        spec.loader.exec_module(module)
+        return module
+
+    legacy = load_fixture('legacy_scheduler_helpers', FIXTURES / 'legacy_scheduler_helpers.py')
+
+    # Every accepted public identity, rebuilt from its byte-exact helper text at the
+    # installer's anchor plus that version's hook pairs (the installer authenticates
+    # each by sha256 and length before migrating it).
+    pairs = {'v1': mod.V1_PAIRS, 'v1-image-d9758a6': mod.V1_PAIRS, 'v2': mod.V2_PAIRS,
+             'v5-historical': mod.V5_PAIRS, 'v5-main': mod.V5_PAIRS, 'v5-priority': mod.V5_PAIRS,
+             'v6-warm-deadline': mod.V6_PAIRS, 'v6-carry': mod.V6_PAIRS}
+    helpers = {'v1': legacy.HELPERS[1], 'v2': legacy.HELPERS[2], 'v5-historical': legacy.HELPERS[5],
+               **{k: legacy.HELPERS[k] for k in ('v1-image-d9758a6', 'v5-main', 'v5-priority',
+                                                 'v6-warm-deadline', 'v6-carry')}}
+
+    def producer(ident):
+        text = clean.replace(mod.NEEDLE, helpers[ident] + mod.NEEDLE, 1)
+        for new, old, label in pairs[ident]:
+            text = mod.replace_once(text, old, new, label)
+        return text
+
+    producers = {'pristine': clean, **{ident: producer(ident) for ident in helpers}}
+    hook_table_digests_check(legacy)
+    # On the pinned source, every rebuilt legacy install must match its recorded digest:
+    # this checks the installer's hook tables against history, not against themselves.
+    on_pinned = hashlib.sha256(clean.encode()).hexdigest() == legacy.PINNED_CLEAN_SHA256
+    if on_pinned:
+        for ident in helpers:
+            got = hashlib.sha256(producers[ident].encode()).hexdigest()
+            assert got == legacy.SOURCE_DIGESTS[ident], f'{ident}: rebuilt install differs from its recorded bytes'
+        # Sensitivity: a wrong hook insertion must be caught by that comparison.
+        for ident, table in (('v5-main', mod.V5_PAIRS), ('v6-carry', mod.V6_PAIRS)):
+            wrong = tuple((new.replace('_GLM53_MIXED.begin_step(self)', '_GLM53_MIXED.broken_begin_step(self)'), old, label)
+                          for new, old, label in table)
+            assert wrong != table, ident
+            text = clean.replace(mod.NEEDLE, helpers[ident] + mod.NEEDLE, 1)
+            for new, old, label in wrong:
+                text = mod.replace_once(text, old, new, label)
+            assert hashlib.sha256(text.encode()).hexdigest() != legacy.SOURCE_DIGESTS[ident], f'{ident}: digest check is blind to a wrong hook'
+    else:
+        print('note: scheduler source is not the pinned image source; recorded legacy digests not compared')
+
+    def run(text, temp):
+        target = Path(temp) / 'scheduler.py'
+        target.write_text(text)
+        env = {**os.environ, 'GLM53_SCHEDULER_PY': str(target), 'GLM53_MIXED_PREFILL_CHUNK': 'skip'}
+        result = subprocess.run([sys.executable, str(PATCH)], env=env, capture_output=True, text=True)
+        return result, target.read_text()
+
+    installed = None
     with tempfile.TemporaryDirectory() as temp:
-        for version in (0, 1, 2, 3, 4):
-            text = clean
-            if version:
-                marker = mod.MARK if version == 1 else getattr(mod, f'MARK_V{version}')
-                helper = ('\ndef _glm53_mixed_prefill_policy(running, current):\n    return 0\n\n' if version == 1 else
-                          f'\nclass _Glm53MixedPrefill:  {marker}\n    pass\n\n')
-                needle = 'from vllm.compilation.cuda_graph import CUDAGraphStat\n'
-                text = text.replace(needle, helper + needle, 1)
-                if version == 4:
-                    for new, old, label in mod.V4_PAIRS:
-                        text = mod.replace_once(text, old, new, label)
-                else:
-                    names = ['RUNNING', 'WAITING'] if version == 1 else ['BEGIN', 'OBS', 'RUNNING', 'WAITING', 'ALIGN', 'RUNNING_MAMBA', 'WAITING_MAMBA']
-                    if version == 3:
-                        names.append('FIN')
-                    for name in names:
-                        old = mod.V3_FIN_OLD if name == 'FIN' else getattr(mod, name + '_OLD')
-                        text = mod.replace_once(text, old, getattr(mod, f'V{version}_{name}_NEW'), name)
-            target = Path(temp) / f'scheduler_v{version}.py'
-            target.write_text(text)
-            env = {**os.environ, 'GLM53_SCHEDULER_PY': str(target), 'GLM53_MIXED_PREFILL_CHUNK': 'skip'}
-            subprocess.run([sys.executable, str(PATCH)], env=env, check=True, capture_output=True)
-            installed = target.read_text()
-            compile(installed, str(target), 'exec')
-            assert mod.MARK_V5 in installed and mod.MARK_V4 not in installed and mod.MARK_V3 not in installed and mod.MARK_V2 not in installed
-            subprocess.run([sys.executable, str(PATCH)], env=env, check=True, capture_output=True)
-            assert target.read_text() == installed
-            # Marker alone must not suppress validation or overwrite source drift.
-            drifted = installed.replace('_GLM53_MIXED.finish_step(self, scheduler_output)', '_GLM53_MIXED.finish_step_changed(self, scheduler_output)', 1)
-            target.write_text(drifted)
-            result = subprocess.run([sys.executable, str(PATCH)], env=env, capture_output=True)
-            assert result.returncode != 0 and target.read_text() == drifted
-        return installed
+        for ident, text in producers.items():
+            result, after = run(text, temp)
+            assert result.returncode == 0, (ident, result.stderr)
+            assert f'from {ident}' in result.stdout, (ident, result.stdout)
+            compile(after, ident, 'exec')
+            assert mod.MARK_V7 in after, ident
+            for older in (mod.MARK_V2, mod.MARK_V3, mod.MARK_V4, mod.MARK_V5, mod.MARK_V6):
+                assert older not in after, (ident, older)
+            if installed is None:
+                installed = after
+            assert after == installed, f'{ident} did not migrate to the fresh-install bytes'
+            again, repeat = run(after, temp)
+            assert again.returncode == 0 and repeat == after and 'already present' in again.stdout, ident
+
+        if current is not None:
+            # A deployed v7 keeps its helper where it was installed (e.g. before a later
+            # overlay such as adaptive-K), so compare at that position, not the default anchor.
+            assert current == mod.apply_v7(clean, at=current_at), 'the installed v7 is not canonical'
+            again, repeat = run(current, temp)
+            assert again.returncode == 0 and repeat == current and 'already present' in again.stdout
+        if found is not None:
+            # A supplied legacy install (any accepted identity, including the pre-release v7
+            # ones) migrates in place: expect the v7 helper at the legacy helper's position.
+            ident, found_clean, found_at = found
+            result, after = run(image, temp)
+            assert result.returncode == 0 and f'from {ident}' in result.stdout, (ident, result.stderr)
+            assert after == mod.apply_v7(found_clean, at=found_at), f'{ident}: migration did not keep the helper position'
+            again, repeat = run(after, temp)
+            assert again.returncode == 0 and repeat == after and 'already present' in again.stdout, ident
+
+        # Composition with patch_adaptive_k, which inserts its class at the same anchor:
+        # the helper may sit before it (decode-floor applied first, as deployed) or after
+        # it, and both layouts verify as a no-op.
+        if mod.ADAPTIVE_K_HEAD in clean:  # a deployed source already carries the real class
+            with_adaptive = clean
+            adaptive_at = clean.index(mod.ADAPTIVE_K_HEAD)
+        else:
+            adaptive = mod.ADAPTIVE_K_HEAD + '  # [glm53-adaptive-k]\n    pass\n\n'
+            with_adaptive = clean.replace(mod.NEEDLE, adaptive + mod.NEEDLE, 1)
+            adaptive_at = with_adaptive.index(adaptive)
+        helper_after = mod.apply_v7(with_adaptive)
+        helper_before = mod.apply_v7(with_adaptive, at=adaptive_at)
+        assert helper_after.index(mod.CLASS_HEAD) > helper_after.index(mod.ADAPTIVE_K_HEAD)
+        assert helper_before.index(mod.CLASS_HEAD) < helper_before.index(mod.ADAPTIVE_K_HEAD)
+        for layout, text in (('helper-after-adaptive-k', helper_after), ('helper-before-adaptive-k', helper_before)):
+            again, repeat = run(text, temp)
+            assert again.returncode == 0 and repeat == text and 'already present' in again.stdout, layout
+        # A legacy install migrates in place in either layout: the v7 helper takes the
+        # legacy helper's position (public v5-main fixture, so no private source needed).
+        for layout, at in (('legacy-after-adaptive-k', None), ('legacy-before-adaptive-k', adaptive_at)):
+            legacy_src = (with_adaptive[:at] + helpers['v5-main'] + with_adaptive[at:] if at is not None
+                          else with_adaptive.replace(mod.NEEDLE, helpers['v5-main'] + mod.NEEDLE, 1))
+            for new, old, label in pairs['v5-main']:
+                legacy_src = mod.replace_once(legacy_src, old, new, label)
+            result, after = run(legacy_src, temp)
+            assert result.returncode == 0 and 'from v5-main' in result.stdout, (layout, result.stderr)
+            expected = mod.apply_v7(with_adaptive, at=at) if at is not None else mod.apply_v7(with_adaptive)
+            assert after == expected, f'{layout}: migration did not keep the helper position'
+
+        v5 = producers['v5-priority']
+        refused = {
+            'v3-marker': v5.replace(mod.MARK_V5, mod.MARK_V3),
+            'v4-marker': v5.replace(mod.MARK_V5, mod.MARK_V4),
+            'v5-hook-drift': v5.replace('_GLM53_MIXED.finish_step(self, scheduler_output)',
+                                        '_GLM53_MIXED.finish_step_changed(self, scheduler_output)', 1),
+            'v5-duplicate-helper': v5.replace(mod.CLASS_HEAD, mod.CLASS_HEAD + ' pass\n\n' + mod.CLASS_HEAD, 1),
+            'v5-marker-only': clean.replace(mod.NEEDLE, mod.MARK_V5 + '\n' + mod.NEEDLE, 1),
+            'v7-hook-drift': installed.replace('_GLM53_MIXED.note_alloc_failed(request)  # [glm53-decode-floor:v7]',
+                                               '_GLM53_MIXED.note_scheduled(request, 0)  # [glm53-decode-floor:v7]', 1),
+            'v7-duplicate-helper': installed.replace(mod.CLASS_HEAD, mod.CLASS_HEAD + ' pass\n\n' + mod.CLASS_HEAD, 1),
+            'unmarked-helper': clean.replace(mod.NEEDLE, '\n\nclass _Glm53MixedPrefill:\n    pass\n' + mod.NEEDLE, 1),
+            # Mixed state: a canonical v7 plus a leftover older marker must not verify.
+            'v7-plus-v5-marker': mod.MARK_V5 + '\n' + installed,
+            'v7-plus-v1-marker': installed + '\n' + mod.MARK + '\n',
+            # A later duplicate wrapper would rebind the global the hooks call.
+            'v7-plus-duplicate-wrapper': installed + '\n\ndef _glm53_mixed_prefill_policy(sched, request, computed=None):\n    return 0\n',
+            'pristine-plus-wrapper': clean + '\n\ndef _glm53_mixed_prefill_policy(sched, request, computed=None):\n    return 0\n',
+            # An unknown version is not pristine: refuse instead of installing beside it.
+            'unknown-marker-v99': '# [glm53-decode-floor:v99]\n' + clean,
+            # Only the import anchor or adaptive-K may follow the helper.
+            'v7-unknown-text-after-helper': installed.replace(
+                mod.NEEDLE, 'class _Glm53OtherOverlay:\n    pass\n\n' + mod.NEEDLE, 1),
+            # The overlay's `import os` is part of the applied state: a legacy or current
+            # install missing it is drift, not something to repair in place.
+            **{f'{ident}-import-removed': text.replace('import os\n', '', 1)
+               for ident, text in (('v1-image-d9758a6', producers['v1-image-d9758a6']),
+                                   ('v5-main', producers['v5-main']), ('v7', installed))},
+        }
+        for case, text in refused.items():
+            assert text != installed and text != v5, f'{case}: mutation did not apply'
+            result, after = run(text, temp)
+            assert result.returncode != 0 and after == text, f'{case} was not refused without writing'
+            assert 'refusing to rewrite' in result.stderr, f'{case}: not a deliberate refusal: {result.stderr[-200:]}'
+    return installed
 
 
 def main():

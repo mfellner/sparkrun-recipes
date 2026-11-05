@@ -6,14 +6,30 @@ import shlex
 import subprocess
 import sys
 import runpy
+import tarfile
+
+import pytest
 
 import yaml
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MOD = ROOT / "mods/glm-5.3-flash-exl3-upstream-850k"
-RECIPE = ROOT / "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml"
+MOD: Path
+RECIPE: Path
 REVISION = "3f2be18c41effca0b4b2c6a65f0b24a7a9f39567"
+
+
+@pytest.fixture(scope="module", autouse=True)
+def historical_recipe_tree(tmp_path_factory):
+    snapshot = ROOT / "tests/fixtures/glm53-3f2be18/recipe-mod.tar.gz"
+    assert hashlib.sha256(snapshot.read_bytes()).hexdigest() == "e40747b096f145d79a4290ea867b5337ea08c922043e9abc4b012f37bc876f47"
+    tree = tmp_path_factory.mktemp("glm53-3f2be18")
+    with tarfile.open(snapshot, "r:gz") as archive:
+        archive.extractall(tree, filter="data")
+    with pytest.MonkeyPatch.context() as patch:
+        patch.setitem(globals(), "MOD", tree / "mods/glm-5.3-flash-exl3-upstream-850k")
+        patch.setitem(globals(), "RECIPE", tree / "recipes/glm-5.3-flash-exl3-dflash2-dual-spark-850k.yaml")
+        yield
 
 
 def test_complete_upstream_tree_matches_exact_reviewed_commit():

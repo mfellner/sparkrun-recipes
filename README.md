@@ -217,14 +217,14 @@ The API and LiteLLM proxy are unauthenticated, bind beyond loopback, and use hos
 
 `@mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k`
 
-Immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), audited against upstream commit `3f2be18c41effca0b4b2c6a65f0b24a7a9f39567`.
+Immutable SparkRun adaptation of [MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), with upstream source commit `fffe64fc093f65fa8f033957e16b744dc266c2ec`. This refresh has not received live GPU qualification.
 
 - Exactly two DGX Spark or compatible GB10 nodes using native `vllm-distributed` TP2/MP
 - Main model pinned to `024db9f7e9871e8efdf21538ba55af7442be3cd5`, serving-payload-equivalent to upstream's `25a44fdbf16862a46b7cc9921142c6c81350af2f`; DFlash2 retains upstream's explicit `dc77ff1c99eeb2df044ee3d4f0094eb033fee410` pin rather than following changed weights on Hugging Face main
 - MiaAI-Lab's public arm64 InstantTensor image pinned at `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d`, with explicit `--load-format instanttensor` and `--kv-cache-memory-bytes 15032385536` (14 GiB)
 - The complete mod tree, including archival vendored source, is covered by its SHA-256 manifest; only the named runtime subset selected by `run.sh` is applied fail-closed on both ranks
 - E3 grouped fat-expert kernels, FP8 MLA KV, TP2-sharded DFlash2 k=7, hardened hybrid APC composition, Mamba alignment/state-lifetime fixes, CUDA graphs, tool calling, reasoning parsing, and still-image input; the stricter local per-prompt limits remain `{"image":4,"video":0}`
-- Mia's default `GPU_MEM_UTIL=0.85`, `MAX_MODEL_LEN=850000`, `MAX_NUM_SEQS=4`, `MAX_NUM_BATCHED_TOKENS=7168`, right-sized indexer workspace, and fair-v5 mixed-prefill policy
+- The retained `GPU_MEM_UTIL=0.85`, `MAX_MODEL_LEN=850000`, `MAX_NUM_SEQS=4`, `MAX_NUM_BATCHED_TOKENS=7168`, right-sized indexer workspace, and fair-v7 mixed-prefill policy
 - Per-image processing capped at 2,048 tokens with a 1-GiB processor cache; `tool_choice:none` decode guard, omitted-only 65,536-token output fallback, per-request APC no-store support, and detailed KV-capacity logging
 - Optional sparse retention, compact draft KV, thin fast-decode, KDA large-M, adaptive-k, dense-FP8, ABLIT, and cache-reset exposure remain off
 
@@ -242,7 +242,7 @@ sparkrun run @mfellner/glm-5.3-flash-exl3-dflash2-dual-spark-850k \
 
 The endpoint is unauthenticated, root-user, host-networked/IPC, configured for still-image input with video limited to zero, LAN-only, and trust-gated. Keep inference, native-distributed, NCCL, and proxy port `4000` on a trusted firewalled private network; all are untrusted-client boundaries. The fixed `--allowed-media-domains media.invalid` sentinel denies arbitrary remote URL media; deterministic inline `data:` images remain supported. Deploy authentication and an explicit real-domain allowlist before any use outside this trusted private boundary. Keep `earlyoom` inactive while the model remains loaded; restore it only after unloading and verifying safe memory headroom.
 
-Fresh functional validation of the `3f2be18` refresh **PASSED** on 2026-09-23: all 35 checks on the final workload `sparkrun_3f2be18c41effca0_13351defc50c`, with both ranks' pinned runtime identity and unchanged serving processes verified. [Raw evidence and verifier](evidence/glm53-exl3-850k-20260923/) cover direct/proxy completions, C4, vision/OCR, tools and `tool_choice: none`, schema/reasoning, media rejection, ten constrained literal-stop probes, 4,096-token visible output, and APC replay (14,336 cached tokens). The largest completed semantic request was **110,035 prompt tokens**, not the full configured 850,000-token limit. Both readiness-to-acceptance kernel windows were clean. This is functional qualification, not a throughput, full-context, 65,536-token output-exhaustion, or general model-quality claim. Earlier failed startup and unconstrained-stop probes are retained as diagnostics; they are not passes. The [2026-09-13 evidence](evidence/glm53-exl3-850k-20260913/) remains historical.
+Historical functional validation of the prior `3f2be18` refresh **PASSED** on 2026-09-23: all 35 checks on the final workload `sparkrun_3f2be18c41effca0_13351defc50c`, with both ranks' pinned runtime identity and unchanged serving processes verified. [Raw evidence and verifier](evidence/glm53-exl3-850k-20260923/) cover direct/proxy completions, C4, vision/OCR, tools and `tool_choice: none`, schema/reasoning, media rejection, ten constrained literal-stop probes, 4,096-token visible output, and APC replay (14,336 cached tokens). The largest completed semantic request was **110,035 prompt tokens**, not the full configured 850,000-token limit. Both readiness-to-acceptance kernel windows were clean. This is not evidence for the current `fffe64fc` profile or a throughput, full-context, 65,536-token output-exhaustion, or general model-quality claim. Earlier failed startup and unconstrained-stop probes are retained as diagnostics; they are not passes. The [2026-09-13 evidence](evidence/glm53-exl3-850k-20260913/) remains historical.
 
 ### GLM 5.3 Flash EXL3 + DFlash2 — dual Spark, 1M context (legacy rollback)
 
@@ -665,8 +665,8 @@ separate AGPL-3.0 terms. Model checkpoints are not relicensed by this
 repository. The historical GLM-5.3-Flash-EXL3-TR3-4bpw checkpoint is reported
 under ShapleyMCG License 1.0; the newer public TensorFold checkpoint has
 conflicting publisher statements (MIT in its pinned card and bundled LICENSE,
-Apache-2.0 in the launcher NOTICE), as noted above. The GLM-5.3 DFlash2
-checkpoint reports CC BY-NC-ND 4.0; this is not a family-wide license claim.
+Apache-2.0 in the launcher NOTICE), as noted above. The GLM-5.3 DFlash2 reports CC
+BY-NC-ND 4.0; this is not a family-wide license claim.
 The separately pinned Qwen3.8-27B target's bundled LICENSE and its DFlash2
 card report Apache-2.0, contrary to the Qwen launcher's Community License prose.
 Review each upstream, image, and checkpoint license before use;

@@ -3,7 +3,7 @@
 This SparkRun mod vendors the **complete tracked source tree** from:
 
 - Repository: `MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks`
-- Commit: `3f2be18c41effca0b4b2c6a65f0b24a7a9f39567` (258 files)
+- Commit: `fffe64fc093f65fa8f033957e16b744dc266c2ec` (305 files)
 - License: AGPL-3.0; `upstream/LICENSE` is authoritative and
   `upstream/LICENSE.MIT` retains the earlier license text.
 - Default-profile image: `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d`
@@ -21,12 +21,14 @@ kernels. No such opt-in is selected here.
 
 The TP2 profile keeps 850000 context, utilization 0.85, sequences 4, batch tokens
 7168, DFlash2 k=7/draft TP2, FP8 target KV, E3/32 fused temporary rows and
-right-sized indexer workspace. New defaults are:
+right-sized indexer workspace. The profile includes:
 
 - `--load-format instanttensor` and `--kv-cache-memory-bytes 15032385536`
-  (14 GiB). The reservation comes from upstream `.env.example`; `start.sh`
-  alone warns rather than installing it in an existing dotenv file.
-- Fair-v5 mixed-prefill scheduling: chunk 256, share 0.30, max interval 2000 ms,
+  (14 GiB). This preserves the existing 850K profile, as does compact draft KV
+  being off. Current upstream `.env.example` specifies 11 GiB with compact
+  draft KV on by default; `start.sh` alone warns rather than installing the
+  reservation in an existing dotenv file.
+- Fair-v7 mixed-prefill scheduling: chunk 256, share 0.30, max interval 2000 ms,
   max step 2000 ms, max chunks 1; Mamba chunk alignment and state-lifetime fixes.
 - Hardened hybrid APC/boundary support, client-requested no-store support ON
   (`GLM53_APC_NO_STORE=1`, requests remain store-enabled unless they opt out),
@@ -53,7 +55,7 @@ suppression and the E3 execution marker immediately before dense-FP8 installs
 the EXL3 module. The existing TP2-local ABLIT hook installer remains last.
 
 `verify_runtime_patch_state.py` validates **final composed source**, including
-all fair-v5 hooks, Mamba changes, compact-off drafter code and worker split
+all fair-v7 hooks, Mamba changes, compact-off drafter code and worker split
 guard, boundary/replay coordinator plus per-group retention, no-store's three
 files, capacity diagnostics, output defaults, tool control and cache routing.
 It also retains exact stop-policy, E3 marker, video hook, indexer, kpool,
@@ -62,7 +64,7 @@ and stale snippets fail closed; stock anchors embedded inside canonical
 replacements have precisely counted allowances. Hybrid and capacity helpers
 also use upstream's owned-binding checks. Two legacy drafter **comment-only**
 paragraphs survive in the public image; all executable bytes around them are
-still checked. Fair-v5's generated helper needs an importlib-registered module
+still checked. Fair-v7's generated helper needs an importlib-registered module
 for `inspect.getsource`, rather than a transient runpy namespace.
 
 The CLI always checks live video-import ownership. CPU fixture tests can call
@@ -87,14 +89,28 @@ and leaves thinking-disabled requests unguarded.
 
 ## Verification and prerequisites
 
-Live qualification status and exact run bindings are maintained in
-`evidence/glm53-exl3-850k-20260923/README.md` and the repository README.
-Prior 20260913 results (including the former 114-test source-suite receipt)
-are historical, not proof of the new image/profile. No old evidence is rewritten
-by this mod.
+The current refresh has no live qualification. Results in
+`evidence/glm53-exl3-850k-20260923/README.md` and earlier evidence are
+historical, not proof of the current profile. No old evidence is rewritten.
 `run.sh` does not run the complete upstream test suite during pre-launch.
 
-CPU-only checks exercised during this refresh:
+Current refresh CPU composition: a standalone test applied the install and
+patch commands selected from the launcher twice inside the pinned image in a
+disposable, network-disabled, 2 GiB container with no GPU devices. Both static
+final-state verification rounds and the byte-identical second-application
+check passed. This does not run the launcher or validate GPU execution, runtime
+imports or inference.
+
+The full current upstream CPU suite is **not yet green**: a bounded 4 GiB run
+was killed (137), and a 12 GiB run reported 470 passed, 27 failed, 19 errors,
+8 skipped and 131 subtests passed, then exited 139. Failures include missing
+`rsync` in the public image and cross-test Torch/fake-module interference;
+these results are not a qualification. The pristine five-file vLLM fixture
+was independently SHA-256 checked. Separate isolated test processes and the
+remaining image/source fixture legs still need to be completed.
+
+The following CPU-only checks describe the historical `3f2be18` refresh,
+not the current revision:
 
 - Complete exact-commit source-tree parity and local test-first contracts.
 - Actual latest runtime patch sequence in an isolated, no-device, no-network
@@ -131,13 +147,19 @@ GLM53_VLLM_SRC=/path/to/pristine-vllm bash run_upstream_compatibility_suite.sh
 Both pinned public and pristine base images must already be available; the
 runner does not pull. `GLM53_VLLM_SRC` must contain `vllm/v1/` files from vLLM
 `487ecf187d3dfe74d2cf6119a92881dba403c219`; the five exact hashes are in
-`upstream/tests/test_draft_kv_compact.py`. The runner supplies the source-root
-Python path, excludes the two explicitly GPU-only optional tests, runs the
-standalone tests, applies/verifies the actual mod twice, then requires
-`GLM53_REQUIRE_VLLM=1 GLM53_REQUIRE_COMPOSITION=1` for no-store and the pristine
-base-image APC gate. Default memory/swap cap is 768 MiB. Only after separately
-unloading workloads and checking host headroom may the operator explicitly
-raise `GLM53_TEST_MEMORY`; a killed or skipped mandatory gate is not acceptance.
+`upstream/tests/test_draft_kv_compact.py`. This host-side CPU suite is deliberately
+opt-in: stop workloads first, then set `GLM53_RUN_CPU_SUITE=1` and explicitly
+set `GLM53_TEST_MEMORY=Ng` (integer GiB). It refuses unless `/proc/meminfo`
+reports at least the cap plus a 4 GiB host reserve, and refuses while a GLM-5.3
+container is running. Docker RAM and swap are both limited to the requested cap,
+CPU to one core, network disabled, and no GPU device is exposed. These are
+limits, not a substitute for stopping competing jobs; run only on an otherwise
+idle host. Seven pytest-empty modules are allowlisted only when their exact paths
+match: ABLIT, adaptive-K, dense-FP8, and scheduler-restart are standalone
+harnesses; EXL3 is a GPU/image runtime self-check; mixed-prefill and
+ tool-concurrency require the live API. Each is executed in its appropriate
+standalone phase or deliberately excluded from this offline run; unexpected
+empty modules fail closed.
 
 The local `upstream_fixture_adapter.py` plugin repairs test inputs only: the
 NIC fixture receives its existing temporary placeholder for the two missing
@@ -145,6 +167,13 @@ Mamba overlay paths, without replacing the real preflight or its assertions.
 Explicit invalid inputs remain invalid. Pytest also runs the scheduler module's
 unchanged source-installation helper, so its three running-loop tests execute
 rather than skip. The standalone scheduler gate still repeats all 30 tests.
+The TP3 cooperative tests require a historical stock EXL3 SHA that does not
+match this refresh's overlay. Their two positive input paths use the unmodified
+`fixtures/exl3-stock-41d1da4280.py.txt` from upstream commit
+[`41d1da4280adabbd3645c0ac3fd7f6fd0962f565`](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/blob/41d1da4280adabbd3645c0ac3fd7f6fd0962f565/overlay/exl3.py),
+SHA-256 `da7dd6540d402f53d8a1af0f17eac5570ec37041bd2e1029017bea4ed44f87e4`;
+unknown-source rejection remains tested. This validates the pinned historical
+TP3 preparation path, not compatibility of the current overlay with TP3.
 
 `run_upstream_gpu_compatibility.py` is a separate GPU qualification wrapper,
 not a runtime change. It replaces only the exact obsolete eight-line compact-KV

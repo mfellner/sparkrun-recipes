@@ -66,6 +66,7 @@ _cli_temp_rows="${EXL3_TEMP_ROWS_FUSED-}"
 _cli_fat_sorted="${EXL3_FAT_SORTED-}"
 _cli_fat_batched="${EXL3_FAT_BATCHED-}"
 _cli_fat_kernel="${EXL3_FAT_KERNEL-}"
+_cli_fat_grouped="${EXL3_FAT_GROUPED-}"
 _cli_mnbt="${MAX_NUM_BATCHED_TOKENS-}"
 _cli_image="${IMAGE-}"
 _cli_util="${GPU_MEM_UTIL-}"
@@ -81,10 +82,18 @@ _cli_ablit_mtp="${ABLIT_INCLUDE_MTP-}"
 # must reach validate_numeric_config, not be swallowed by a .env value.
 _cli_indexer_workspace_set="${GLM53_INDEXER_WORKSPACE+1}"
 _cli_indexer_workspace="${GLM53_INDEXER_WORKSPACE-}"
+_cli_default_reasoning_effort_set="${GLM53_DEFAULT_REASONING_EFFORT+1}"
+_cli_default_reasoning_effort="${GLM53_DEFAULT_REASONING_EFFORT-}"
 _cli_draft_kv_compact_set="${GLM53_DRAFT_KV_COMPACT+1}"
 _cli_draft_kv_compact="${GLM53_DRAFT_KV_COMPACT-}"
 _cli_spinwait_ms_set="${GLM53_SPINWAIT_MS+1}"
 _cli_spinwait_ms="${GLM53_SPINWAIT_MS-}"
+_cli_load_clone_set="${GLM53_LOAD_CLONE+1}"
+_cli_load_clone="${GLM53_LOAD_CLONE-}"
+_cli_load_prefetch_set="${GLM53_LOAD_PREFETCH+1}"
+_cli_load_prefetch="${GLM53_LOAD_PREFETCH-}"
+_cli_load_format_set="${LOAD_FORMAT+1}"
+_cli_load_format="${LOAD_FORMAT-}"
 _cli_apc_swa_set="${GLM53_APC_RETENTION_INTERVAL_SWA+1}"
 _cli_sparse_slice_set="${VLLM_SM120_SPARSE_MLA_SLICE_TOKENS+1}"
 _cli_sparse_slice="${VLLM_SM120_SPARSE_MLA_SLICE_TOKENS-}"
@@ -94,6 +103,20 @@ _cli_apc_swa="${GLM53_APC_RETENTION_INTERVAL_SWA-}"
 # value only. #204 / PR #242 review.
 _cli_extra_args_set="${EXTRA_ARGS+1}"
 _cli_extra_args="${EXTRA_ARGS-}"
+_cli_adaptive_mode_set="${GLM53_ADAPTIVE_K+1}"
+_cli_adaptive_mode="${GLM53_ADAPTIVE_K-}"
+_cli_glm53_adaptive_k_set_set="${GLM53_ADAPTIVE_K_SET+1}"
+_cli_glm53_adaptive_k_set="${GLM53_ADAPTIVE_K_SET-}"
+_cli_glm53_adaptive_k_alpha_set="${GLM53_ADAPTIVE_K_ALPHA+1}"
+_cli_glm53_adaptive_k_alpha="${GLM53_ADAPTIVE_K_ALPHA-}"
+_cli_glm53_adaptive_k_margin_set="${GLM53_ADAPTIVE_K_MARGIN+1}"
+_cli_glm53_adaptive_k_margin="${GLM53_ADAPTIVE_K_MARGIN-}"
+_cli_glm53_adaptive_k_min_steps_set="${GLM53_ADAPTIVE_K_MIN_STEPS+1}"
+_cli_glm53_adaptive_k_min_steps="${GLM53_ADAPTIVE_K_MIN_STEPS-}"
+_cli_glm53_adaptive_k_saturate_set="${GLM53_ADAPTIVE_K_SATURATE+1}"
+_cli_glm53_adaptive_k_saturate="${GLM53_ADAPTIVE_K_SATURATE-}"
+_cli_glm53_adaptive_k_hist_set="${GLM53_ADAPTIVE_K_HIST+1}"
+_cli_glm53_adaptive_k_hist="${GLM53_ADAPTIVE_K_HIST-}"
 set -a
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/.env"
@@ -122,10 +145,26 @@ if [ -n "${EXTRA_ARGS:-}" ]; then
     fi
     unset _kept _skip _tok _dropped
 fi
+# Adaptive-k requires a TP4 opt-in, even for existing .env.tp4 files.
+GLM53_ADAPTIVE_K=off
+_adaptive_k_source=".env.tp4"
+# Server-side default reasoning effort for clients that send none, as on
+# start.sh (TP=2) and start-tp3.sh. Empty leaves the chat template's own
+# fallback (an absent effort resolves to `max`) unchanged: opt-in only.
+# Declared before .env.tp4 is sourced so the TP=4 env file still wins.
+GLM53_DEFAULT_REASONING_EFFORT="${GLM53_DEFAULT_REASONING_EFFORT-}"
 # TP=4 overlay wins over the 2× knobs in .env.
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/.env.tp4"
 set +a
+[ -n "${_cli_adaptive_mode_set}" ] && GLM53_ADAPTIVE_K="$_cli_adaptive_mode"
+[ -n "${_cli_glm53_adaptive_k_set_set}" ] && GLM53_ADAPTIVE_K_SET="$_cli_glm53_adaptive_k_set"
+[ -n "${_cli_glm53_adaptive_k_alpha_set}" ] && GLM53_ADAPTIVE_K_ALPHA="$_cli_glm53_adaptive_k_alpha"
+[ -n "${_cli_glm53_adaptive_k_margin_set}" ] && GLM53_ADAPTIVE_K_MARGIN="$_cli_glm53_adaptive_k_margin"
+[ -n "${_cli_glm53_adaptive_k_min_steps_set}" ] && GLM53_ADAPTIVE_K_MIN_STEPS="$_cli_glm53_adaptive_k_min_steps"
+[ -n "${_cli_glm53_adaptive_k_saturate_set}" ] && GLM53_ADAPTIVE_K_SATURATE="$_cli_glm53_adaptive_k_saturate"
+[ -n "${_cli_glm53_adaptive_k_hist_set}" ] && GLM53_ADAPTIVE_K_HIST="$_cli_glm53_adaptive_k_hist"
+[ -n "${_cli_adaptive_mode_set}" ] && _adaptive_k_source="caller environment"
 [ -n "${_cli_mtp}" ] && MTP_TOKENS="$_cli_mtp"
 [ -n "${_cli_spec}" ] && SPEC_METHOD="$_cli_spec"
 [ -n "${_cli_eager}" ] && ENFORCE_EAGER="$_cli_eager"
@@ -135,6 +174,7 @@ set +a
 [ -n "${_cli_fat_sorted}" ] && EXL3_FAT_SORTED="$_cli_fat_sorted"
 [ -n "${_cli_fat_batched}" ] && EXL3_FAT_BATCHED="$_cli_fat_batched"
 [ -n "${_cli_fat_kernel}" ] && EXL3_FAT_KERNEL="$_cli_fat_kernel"
+[ -n "${_cli_fat_grouped}" ] && EXL3_FAT_GROUPED="$_cli_fat_grouped"
 [ -n "${_cli_mnbt}" ] && MAX_NUM_BATCHED_TOKENS="$_cli_mnbt"
 [ -n "${_cli_image}" ] && IMAGE="$_cli_image"
 [ -n "${_cli_util}" ] && GPU_MEM_UTIL="$_cli_util"
@@ -147,20 +187,24 @@ set +a
 [ -n "${_cli_ablit_alpha}" ] && ABLIT_ALPHA="$_cli_ablit_alpha"
 [ -n "${_cli_ablit_mtp}" ] && ABLIT_INCLUDE_MTP="$_cli_ablit_mtp"
 [ -n "${_cli_indexer_workspace_set}" ] && GLM53_INDEXER_WORKSPACE="$_cli_indexer_workspace"
+[ -n "${_cli_default_reasoning_effort_set}" ] && GLM53_DEFAULT_REASONING_EFFORT="$_cli_default_reasoning_effort"
 [ -n "${_cli_draft_kv_compact_set}" ] && GLM53_DRAFT_KV_COMPACT="$_cli_draft_kv_compact"
 [ -n "${_cli_spinwait_ms_set}" ] && GLM53_SPINWAIT_MS="$_cli_spinwait_ms"
+[ -n "${_cli_load_clone_set}" ] && GLM53_LOAD_CLONE="$_cli_load_clone"
+[ -n "${_cli_load_prefetch_set}" ] && GLM53_LOAD_PREFETCH="$_cli_load_prefetch"
+[ -n "${_cli_load_format_set}" ] && LOAD_FORMAT="$_cli_load_format"
 [ -n "${_cli_apc_swa_set}" ] && GLM53_APC_RETENTION_INTERVAL_SWA="$_cli_apc_swa"
 [ -n "${_cli_sparse_slice_set}" ] && VLLM_SM120_SPARSE_MLA_SLICE_TOKENS="$_cli_sparse_slice"
 [ -n "${_cli_extra_args_set}" ] && EXTRA_ARGS="$_cli_extra_args"
 
 # ----------------------------- configuration -------------------------------
-MODEL="${MODEL:-Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw}"
-# If the durable mirror is empty/moved, download.sh falls back to this id.
-MODEL_FALLBACK="${MODEL_FALLBACK:-brandonmusic/GLM-5.3-Flash-tr3-4bpw}"
+MODEL="${MODEL:-Mia-AiLab/GLM-5.3-Flash-EXL3-4bpw-TensorFold}"
+# Same repo unless the operator points MODEL_FALLBACK at another complete cache.
+MODEL_FALLBACK="${MODEL_FALLBACK:-Mia-AiLab/GLM-5.3-Flash-EXL3-4bpw-TensorFold}"
 MODEL_CACHE_NAME="${MODEL_CACHE_NAME:-models--${MODEL//\//--}}"
 MODEL_FALLBACK_CACHE_NAME="${MODEL_FALLBACK_CACHE_NAME:-models--${MODEL_FALLBACK//\//--}}"
-# Hub commit on the Mia-AiLab mirror (the 5ab363a8-byte-identical upload).
-MODEL_REVISION="${MODEL_REVISION:-25a44fdbf16862a46b7cc9921142c6c81350af2f}"
+# Hub commit of the default TensorFold EXL3 pack.
+MODEL_REVISION="${MODEL_REVISION:-76c0b5173166d2795dd48860f45d8224817f894c}"
 IMAGE="${IMAGE:-ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks:exl3-instanttensor}"
 SERVED_MODEL_NAME="${SERVED_MODEL_NAME:-GLM-5.3-Flash-EXL3}"
 GHCR_USER="${GHCR_USER:-MiaAI-Lab}"
@@ -265,8 +309,12 @@ PERGROUP_PATCH_HOST="${PERGROUP_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_apc_per_gr
 MAMBA_STATE_PATCH_HOST="${MAMBA_STATE_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_mamba_align_state_free.py}"
 XGRAMMAR_PATCH_HOST="${XGRAMMAR_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_xgrammar_termination.py}"
 KPOOL_TAIL_PATCH_HOST="${KPOOL_TAIL_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_kpool_tail_slotmap.py}"
+# vLLM #57477. Different file from the slot-map clamp above.
+KPOOL_SEED_PATCH_HOST="${KPOOL_SEED_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_kpool_tail_seed_stride.py}"
 SPINWAIT_PATCH_HOST="${SPINWAIT_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_spinwait.py}"
+LOADCLONE_PATCH_HOST="${LOADCLONE_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_loadclone.py}"
 SPARSE_SLICE_PATCH_HOST="${SPARSE_SLICE_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_sparse_mla_slice.py}"
+ADAPTIVE_K_PATCH_HOST="${ADAPTIVE_K_PATCH_HOST:-$SCRIPT_DIR/overlay/patch_adaptive_k.py}"
 KV_CACHE_DTYPE="${KV_CACHE_DTYPE:-fp8}"
 # Direct-I/O safetensors on the published InstantTensor image. Unset follows
 # IMAGE (*instanttensor* → on). Explicit empty (LOAD_FORMAT=) is vLLM auto.
@@ -279,6 +327,8 @@ if [ -z "${LOAD_FORMAT+x}" ]; then
     esac
 fi
 PREFIX_MATCH_UNIT="${PREFIX_MATCH_UNIT:-}"
+GLM53_LOAD_CLONE="${GLM53_LOAD_CLONE-1}"
+GLM53_LOAD_PREFETCH="${GLM53_LOAD_PREFETCH-0}"
 QUANTIZATION="${QUANTIZATION:-exl3}"
 LANGUAGE_MODEL_ONLY="${LANGUAGE_MODEL_ONLY:-0}"
 SKIP_MM_PROFILING="${SKIP_MM_PROFILING:-1}"
@@ -292,25 +342,53 @@ FLASHINFER_CUDA_ARCH_LIST="${FLASHINFER_CUDA_ARCH_LIST:-12.1a}"
 # 1..4 seqs × 3 tokens (must include 3). DFlash2 k=7 is 1..4 seqs × 8 tokens
 # (must include 8, 16, 24, 32).
 ENFORCE_EAGER="${ENFORCE_EAGER:-0}"
-if [ "${ENFORCE_EAGER}" != "1" ]; then
-    case " ${EXTRA_ARGS:-} " in
-        *" --cudagraph-capture-sizes "*|*" cudagraph-capture-sizes "*) ;;
-        *)
-            if [ "$SPEC_METHOD" = "dflash" ]; then
-                EXTRA_ARGS="${EXTRA_ARGS:+$EXTRA_ARGS }--cudagraph-capture-sizes 1 2 4 8 16 24 32"
-            else
-                EXTRA_ARGS="${EXTRA_ARGS:+$EXTRA_ARGS }--cudagraph-capture-sizes 1 2 3 4 6 8 12"
+# Called only for start/restart, after validation and before any host action.
+configure_capture_sizes() {
+    local capture_sizes
+    if [[ "$GLM53_ADAPTIVE_K" =~ ^[[:space:]]*([eE][mM][aA]|[oO][nN]|1)[[:space:]]*$ ]]; then
+        printf '[glm53-exl3-tp4] GLM53_ADAPTIVE_K=%s from %s\n' "$GLM53_ADAPTIVE_K" "$_adaptive_k_source" >&2
+    fi
+    if [ "$ENFORCE_EAGER" != "1" ] && [[ ! " ${EXTRA_ARGS:-} " =~ [[:space:]](--)?cudagraph-capture-sizes([[:space:]]|=) ]]; then
+        if [ "$SPEC_METHOD" = "dflash" ]; then
+            capture_sizes="1 2 4 8 16 24 32"
+            if [[ "$GLM53_ADAPTIVE_K" =~ ^[[:space:]]*([eE][mM][aA]|[oO][nN]|1)[[:space:]]*$ ]]; then
+                capture_sizes="$(python3 -S -c '
+import sys
+mode, raw, tokens, seqs = sys.argv[1:]
+sizes = {1, 2, 4, 8, 16, 24, 32}
+if mode.strip().lower() in ("ema", "on", "1"):
+    decode_query_len = int(tokens) + 1
+    ks = {int(x) for x in raw.split(",") if x.strip()}
+    lens = {k + 1 for k in ks if 0 < k + 1 <= decode_query_len}
+    lens.add(decode_query_len)
+    sizes.update(n * q for n in range(1, int(seqs) + 1) for q in lens)
+print(" ".join(map(str, sorted(sizes))))
+' "${GLM53_ADAPTIVE_K:-off}" "${GLM53_ADAPTIVE_K_SET:-2,4,7}" "${DFLASH_TOKENS:-7}" "${MAX_NUM_SEQS:-4}")" || return 2
             fi
-            ;;
-    esac
-fi
+        else
+            capture_sizes="1 2 3 4 6 8 12"
+        fi
+        EXTRA_ARGS="${EXTRA_ARGS:+$EXTRA_ARGS }--cudagraph-capture-sizes $capture_sizes"
+    fi
+}
 # 1 = fused exl3_moe (decode). 0 restores the unique-expert LinearEXL3 loop.
 EXL3_FUSED_MOE="${EXL3_FUSED_MOE:-1}"
 # 1 = GPU row tiles for fat experts (prefill). 0 = LinearEXL3 fallback.
 # Tile (P2a) and TEMP_ROWS=1024 (P2b) both lost at MNBT=1024 — leave 128.
 EXL3_MOE_ROW_TILE="${EXL3_MOE_ROW_TILE:-0}"
-# Fused exl3_moe temp rows/expert. 1024 was slower than 128+fallback (P2b).
-EXL3_TEMP_ROWS_FUSED="${EXL3_TEMP_ROWS_FUSED:-128}"
+# E3 grouped fat-expert prefill (overlay/exl3_fat_moe.cu), the TP4 default, as on
+# start.sh / start-tp3.sh. It must reach every rank: overlay/exl3.py treats a missing
+# EXL3_FAT_GROUPED as off, so docker -e forwards it. Measured 2026-09-27 on 4 Sparks,
+# 1M ctx: cold prefill 1,316 / 1,761 / 1,940 -> 1,772 / 2,422 / 2,733 tok/s at
+# 8K / 32K / 100K with EXL3_TEMP_ROWS_FUSED=32; decode unchanged. 0 = E2 tier.
+EXL3_FAT_GROUPED="${EXL3_FAT_GROUPED:-1}"
+# Fused exl3_moe temp rows/expert; experts above it are "fat". E3 wants 32
+# (>= MAX_NUM_SEQS x (DFLASH_TOKENS+1)), E2 wants 256, as on start.sh. Explicit wins.
+if [ "${EXL3_FAT_GROUPED}" != "0" ]; then
+    EXL3_TEMP_ROWS_FUSED="${EXL3_TEMP_ROWS_FUSED:-32}"
+else
+    EXL3_TEMP_ROWS_FUSED="${EXL3_TEMP_ROWS_FUSED:-256}"
+fi
 # Sorted routing tier; higher tiers imply it even when this is 0.
 EXL3_FAT_SORTED="${EXL3_FAT_SORTED:-0}"
 # E1 batched tier: persistent scratch + combined gate/up; implies SORTED=1.
@@ -351,8 +429,16 @@ GLM53_FAIR_PREFILL_MAX_CHUNKS="${GLM53_FAIR_PREFILL_MAX_CHUNKS:-1}"
 # when UNSET: an explicitly empty value is an operator error and
 # validate_numeric_config rejects it rather than guessing a serving mode.
 GLM53_INDEXER_WORKSPACE="${GLM53_INDEXER_WORKSPACE-stock}"
-# Opt-in larger draft KV pages; no weight or cache precision changes.
-GLM53_DRAFT_KV_COMPACT="${GLM53_DRAFT_KV_COMPACT-0}"
+# Larger draft KV pages; no weight or cache precision changes. Default ON for
+# the DFlash drafter (the default spec method), OFF for mtp/none. Like
+# GLM53_INDEXER_WORKSPACE, the default applies only when UNSET: an explicit 0
+# opts out, and an explicitly empty value is an operator error that
+# validate_numeric_config rejects rather than guessing a serving mode.
+if [ "$SPEC_METHOD" = "dflash" ]; then
+    GLM53_DRAFT_KV_COMPACT="${GLM53_DRAFT_KV_COMPACT-1}"
+else
+    GLM53_DRAFT_KV_COMPACT="${GLM53_DRAFT_KV_COMPACT-0}"
+fi
 # SpinCondition reader busy-loop window. "stock" preserves vLLM's 1 s default;
 # 1..1000 selects milliseconds. The frozen TP=2 sweep selected 16 ms.
 GLM53_SPINWAIT_MS="${GLM53_SPINWAIT_MS-stock}"
@@ -360,6 +446,15 @@ GLM53_SPINWAIT_MS="${GLM53_SPINWAIT_MS-stock}"
 # #223 mitigation for #128/#159). 0 = stock backend, byte-identical; 64 = slice
 # the final call into <=64 query rows on every rank. Restart to apply.
 VLLM_SM120_SPARSE_MLA_SLICE_TOKENS="${VLLM_SM120_SPARSE_MLA_SLICE_TOKENS-0}"
+# Adaptive verification length (overlay/patch_adaptive_k.py). off = stock k every step.
+# Same knobs and defaults as start.sh; the capture-size list above follows it.
+GLM53_ADAPTIVE_K="${GLM53_ADAPTIVE_K-off}"
+GLM53_ADAPTIVE_K_SET="${GLM53_ADAPTIVE_K_SET-2,4,7}"
+GLM53_ADAPTIVE_K_ALPHA="${GLM53_ADAPTIVE_K_ALPHA-0.25}"
+GLM53_ADAPTIVE_K_MARGIN="${GLM53_ADAPTIVE_K_MARGIN-1.0}"
+GLM53_ADAPTIVE_K_MIN_STEPS="${GLM53_ADAPTIVE_K_MIN_STEPS-4}"
+GLM53_ADAPTIVE_K_SATURATE="${GLM53_ADAPTIVE_K_SATURATE-max}"
+GLM53_ADAPTIVE_K_HIST="${GLM53_ADAPTIVE_K_HIST-200}"
 # EngineCore stock timeout is 300s; mid-serve Triton/TileLang JIT on TP=2 can
 # exceed that without being a true hang. NCCL watchdog is still 600s.
 VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS="${VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS:-1800}"
@@ -405,7 +500,7 @@ TILELANG_CACHE_DIR="${TILELANG_CACHE_DIR:-/root/.tilelang/cache}"
 LOGDIR="$SCRIPT_DIR/logs"
 HEAD_SCRIPT="$SCRIPT_DIR/.glm53-exl3-tp4-head.inner.sh"
 WORKER_SCRIPT="$SCRIPT_DIR/.glm53-exl3-tp4-worker.inner.sh"
-EXPECTED_SHARDS="${EXPECTED_SHARDS:-120}"
+EXPECTED_SHARDS="${EXPECTED_SHARDS:-83}"
 
 # ------------------------------- helpers -----------------------------------
 log()  { printf '\033[1;36m[glm53-exl3-tp4]\033[0m %s\n' "$*"; }
@@ -532,7 +627,37 @@ _glm53_validate_retention_interval() {
     export "$name"
 }
 
+_glm53_validate_adaptive_k() {
+    local name value
+    if ! [[ "${GLM53_ADAPTIVE_K-off}" =~ ^[[:space:]]*([oO][fF][fF]|[eE][mM][aA]|[oO][nN]|0|1)[[:space:]]*$ ]]; then
+        echo "GLM53_ADAPTIVE_K must be off/0 or ema/on/1" >&2; return 2
+    fi
+    # Disabled policy knobs have no effect and require no interpreter.
+    [[ "${GLM53_ADAPTIVE_K-off}" =~ ^[[:space:]]*([eE][mM][aA]|[oO][nN]|1)[[:space:]]*$ ]] || return 0
+    for name in GLM53_ADAPTIVE_K_ALPHA GLM53_ADAPTIVE_K_MARGIN; do
+        value="${!name}"
+        if ! [[ "$value" =~ ^[[:space:]]*([0-9]+([.][0-9]*)?|[.][0-9]+)[[:space:]]*$ ]] \
+           || ! awk -v v="$value" -v n="$name" 'BEGIN { exit !(v+0 >= 0 && (n != "GLM53_ADAPTIVE_K_ALPHA" || (v+0 > 0 && v+0 <= 1))) }'; then
+            echo "$name must be a nonnegative decimal (ALPHA in (0,1])" >&2; return 2
+        fi
+    done
+    for name in GLM53_ADAPTIVE_K_MIN_STEPS GLM53_ADAPTIVE_K_HIST; do
+        value="${!name}"
+        if ! [[ "$value" =~ ^[[:space:]]*[0-9]+[[:space:]]*$ ]]; then
+            echo "$name must be a nonnegative integer" >&2; return 2
+        fi
+    done
+    if ! [[ "$GLM53_ADAPTIVE_K_SATURATE" =~ ^[[:space:]]*([mM][aA][xX]|[nN])[[:space:]]*$ ]]; then
+        echo "GLM53_ADAPTIVE_K_SATURATE must be max or n" >&2; return 2
+    fi
+    if ! [[ "$GLM53_ADAPTIVE_K_SET" =~ ^[[:space:]]*[0-9]+[[:space:]]*(,[[:space:]]*[0-9]+[[:space:]]*)*$ ]]; then
+        echo "GLM53_ADAPTIVE_K_SET must be comma-separated nonnegative integers" >&2; return 2
+    fi
+    _glm53_canonical_positive_int DFLASH_TOKENS "$DFLASH_TOKENS" 8388608 || return
+}
+
 validate_numeric_config() {
+    _glm53_validate_adaptive_k || return
     if ! [[ "$GPU_MEM_UTIL" =~ ^(0([.][0-9]+)?|[.][0-9]+|1([.]0+)?)$ ]] \
        || ! awk -v u="$GPU_MEM_UTIL" 'BEGIN { exit !(u > 0 && u <= 1) }'; then
         echo "GPU_MEM_UTIL must be greater than 0 and at most 1 (got: $GPU_MEM_UTIL)" >&2
@@ -541,6 +666,14 @@ validate_numeric_config() {
     _glm53_canonical_positive_int MAX_MODEL_LEN "$MAX_MODEL_LEN" 1000000 || return
     _glm53_canonical_positive_int MAX_NUM_SEQS "$MAX_NUM_SEQS" 4096 || return
     _glm53_canonical_positive_int MAX_NUM_BATCHED_TOKENS "$MAX_NUM_BATCHED_TOKENS" 8388608 || return
+    _glm53_validate_enum GLM53_LOAD_CLONE "${GLM53_LOAD_CLONE-1}" 0 1 || return
+    local load_prefetch="${GLM53_LOAD_PREFETCH-0}"
+    if ! [[ "$load_prefetch" =~ ^0*([0-9]|1[0-6])$ ]]; then
+        echo "GLM53_LOAD_PREFETCH must be a base-10 integer between 0 and 16" >&2
+        return 2
+    fi
+    while [ "${load_prefetch#0}" != "$load_prefetch" ]; do load_prefetch="${load_prefetch#0}"; done
+    GLM53_LOAD_PREFETCH="${load_prefetch:-0}"
     _glm53_validate_enum GLM53_INDEXER_WORKSPACE "${GLM53_INDEXER_WORKSPACE-stock}" \
         stock rightsize || return
     _glm53_validate_enum GLM53_DRAFT_KV_COMPACT "${GLM53_DRAFT_KV_COMPACT-0}" 0 1 || return
@@ -559,8 +692,34 @@ validate_numeric_config() {
         echo "GLM53_APC_RETENTION_INTERVAL_SWA requires SPEC_METHOD=dflash (got: $SPEC_METHOD)" >&2
         return 2
     fi
+    # The template treats medium as max, so do not advertise it as a level.
+    if [ -n "${GLM53_DEFAULT_REASONING_EFFORT-}" ]; then
+        _glm53_validate_enum GLM53_DEFAULT_REASONING_EFFORT \
+            "$GLM53_DEFAULT_REASONING_EFFORT" low high max || return
+    fi
+    if [ "${GLM53_DENSE_EXL3-0}" = "1" ]; then
+        # start-tp4.sh is the experimental launcher and does not stage
+        # overlay/patch_dense_exl3.py or its GLM53_DENSE_EXL3 wiring.
+        echo "GLM53_DENSE_EXL3=1 is not wired on start-tp4.sh — serve dense EXL3 with start.sh (TP=2)" >&2
+        return 2
+    fi
 }
 # GLM53 numeric config guard (end)
+
+validate_loadclone_artifacts() {
+    [ -s "$LOADCLONE_PATCH_HOST" ] || { echo "loader patch missing: $LOADCLONE_PATCH_HOST" >&2; return 2; }
+    command -v python3 >/dev/null 2>&1 || { echo "python3 is required for loader artifact validation" >&2; return 2; }
+    python3 - "$LOADCLONE_PATCH_HOST" <<'PY' || return 2
+import ast
+import pathlib
+import sys
+path = pathlib.Path(sys.argv[1])
+source = path.read_text()
+if "[glm53-loadclone:v2]" not in source or source.rstrip().splitlines()[-1] != "    main()":
+    raise SystemExit("loader overlay identity/footer missing")
+ast.parse(source, filename=str(path))
+PY
+}
 
 banner() {
     local label="${1:-start-tp4.sh}"
@@ -804,8 +963,11 @@ preflight() {
     [ -f "$PERGROUP_PATCH_HOST" ] || die "$PERGROUP_PATCH_HOST missing"
     [ -f "$XGRAMMAR_PATCH_HOST" ] || die "$XGRAMMAR_PATCH_HOST missing"
     [ -f "$KPOOL_TAIL_PATCH_HOST" ] || die "$KPOOL_TAIL_PATCH_HOST missing"
+    [ -f "$KPOOL_SEED_PATCH_HOST" ] || die "$KPOOL_SEED_PATCH_HOST missing"
     [ -f "$SPINWAIT_PATCH_HOST" ] || die "$SPINWAIT_PATCH_HOST missing"
+    [ -f "$LOADCLONE_PATCH_HOST" ] || die "$LOADCLONE_PATCH_HOST missing"
     [ -f "$SPARSE_SLICE_PATCH_HOST" ] || die "$SPARSE_SLICE_PATCH_HOST missing"
+    [ -f "$ADAPTIVE_K_PATCH_HOST" ] || die "$ADAPTIVE_K_PATCH_HOST missing"
     [ -f "$SCRIPT_DIR/overlay/patch_ablit.py" ] || die "$SCRIPT_DIR/overlay/patch_ablit.py missing"
     [ -f "$SCRIPT_DIR/overlay/ablit_runtime.py" ] || die "$SCRIPT_DIR/overlay/ablit_runtime.py missing"
     [ -f "$SCRIPT_DIR/ablit/LAYER_MAP.json" ] || die "$SCRIPT_DIR/ablit/LAYER_MAP.json missing"
@@ -963,6 +1125,49 @@ ship_image_to_worker() {
     docker save "$IMAGE" | worker_ssh_n "$r" docker load
 }
 
+# Pull $IMAGE without letting a different published recipe replace a local
+# image whose stamp already matches this repo. The local tag is held, the
+# pull is adopted only when its stamp matches too (same recipe, newer
+# layers), and a mismatch restores the hold. No rebuild. SKIP_BUILD=1 and a
+# missing or already-different local stamp keep the plain pull.
+# Sets PULL_KEPT_LOCAL=1 when the local tag was restored.
+pull_image_keeping_repo_stamp() {
+    local wanted="$1"
+    local have="${2-}"
+    PULL_KEPT_LOCAL=0
+    if [ "${SKIP_BUILD:-0}" = "1" ] || [ -z "$have" ] || [ "$have" != "$wanted" ]; then
+        pull_image
+        return 0
+    fi
+    local hold="glm53-recipe-hold-$$-${RANDOM}"
+    local keep_id="" pulled_id="" pulled_stamp=""
+    docker tag "$IMAGE" "$hold" || die "could not hold ${IMAGE} before pull"
+    keep_id="$(docker image inspect -f '{{.Id}}' "$hold" 2>/dev/null || true)"
+    login_ghcr_if_token
+    log "pulling ${IMAGE} (local recipe ${have:0:12} held until the pulled stamp is checked) ..."
+    if ! docker pull "$IMAGE"; then
+        docker tag "$hold" "$IMAGE" >/dev/null 2>&1 || true
+        docker rmi "$hold" >/dev/null 2>&1 || true
+        die "docker pull ${IMAGE} failed.
+  :exl3-instanttensor is a public GHCR package — check network / disk.
+  If you still get 401/403: echo YOUR_PAT | docker login ghcr.io -u YOUR_GITHUB_USER --password-stdin
+  Overlay rebuild: BUILD=1 ./start.sh. Recipe-stamp drift also rebuilds; SKIP_BUILD=1 keeps GHCR."
+    fi
+    pulled_stamp="$(image_recipe_stamp)"
+    pulled_id="$(docker image inspect -f '{{.Id}}' "$IMAGE" 2>/dev/null || true)"
+    if [ "$pulled_stamp" = "$wanted" ]; then
+        docker rmi "$hold" >/dev/null 2>&1 || true
+        return 0
+    fi
+    docker tag "$hold" "$IMAGE" || die "could not restore ${IMAGE} after rejecting a mismatched pull"
+    docker rmi "$hold" >/dev/null 2>&1 || true
+    if [ -n "$pulled_id" ] && [ "$pulled_id" != "$keep_id" ]; then
+        docker rmi "$pulled_id" >/dev/null 2>&1 || true
+    fi
+    PULL_KEPT_LOCAL=1
+    warn "pulled ${IMAGE} recipe ${pulled_stamp:0:12} != repo ${wanted:0:12} — kept the local image"
+}
+
 ensure_image() {
     mkdir -p "$LOGDIR"
     local head_ok=0 worker_ok=0 head_key="" worker_key=""
@@ -1006,7 +1211,7 @@ ensure_image() {
         worker_ok=0
     elif image_from_registry && [ "$skip_pull" != "1" ]; then
         local before_key="$head_key"
-        pull_image
+        pull_image_keeping_repo_stamp "$wanted_stamp" "$have_stamp"
         head_key="$(local_image_key || true)"
         head_ok=1
         if [ "$head_key" != "$before_key" ]; then
@@ -1037,7 +1242,7 @@ ensure_image() {
             if images_match "$head_key" "$worker_key"; then
                 continue
             fi
-            if image_from_registry && [ "$skip_pull" != "1" ] && [ "${BUILD:-0}" != "1" ]; then
+            if image_from_registry && [ "$skip_pull" != "1" ] && [ "${BUILD:-0}" != "1" ] && [ "${PULL_KEPT_LOCAL:-0}" != "1" ]; then
                 if pull_image_on_worker "$r"; then
                     worker_key="$(worker_image_key "$r" || true)"
                     if images_match "$head_key" "$worker_key"; then
@@ -1076,9 +1281,9 @@ ensure_image() {
 }
 
 # ---------------------------- weight download ------------------------------
-# Use an already-complete local tree (primary or upstream fallback). If the
-# durable Mia-AiLab mirror is still filling / 404s, keep serving from the
-# brandonmusic cache folder without a second 164 GiB pull.
+# Use an already-complete local tree (primary, or MODEL_FALLBACK when that
+# id differs). A partial primary cache can adopt the fallback folder
+# without a second ~164 GiB pull.
 adopt_complete_weights() {
     local have
     have="$(count_shards "$MODEL_PATH")"
@@ -1216,7 +1421,7 @@ download_only() {
 # ensure_refs_main), not on MODEL_REVISION: the marker lives inside each
 # synced repo folder, so a MODEL / revision switch re-syncs automatically.
 # Without it, every ./start.sh pays a full size+mtime re-verification walk
-# over ~164 GiB / 120 shards on both ends for zero bytes of difference
+# over ~164 GiB / 83 shards on both ends for zero bytes of difference
 # (issue #22, item 2). FORCE_SYNC=1 bypasses the marker; deleting the
 # marker file on the worker has the same effect.
 sync_repo_marker_rev() {
@@ -1275,6 +1480,7 @@ ARGS=(
     --tensor-parallel-size "${TP}"
     --nnodes "${NNODES}"
     --node-rank 0
+    --enable-prompt-tokens-details
     --master-addr "${HEAD_IP}"
     --master-port "${MASTER_PORT}"
     --distributed-executor-backend mp
@@ -1307,6 +1513,9 @@ elif [ "${MTP_TOKENS:-0}" != "0" ]; then
 fi
 if [ -n "${CHAT_TEMPLATE:-}" ] && [ -f "${CHAT_TEMPLATE}" ]; then
     ARGS+=(--chat-template "${CHAT_TEMPLATE}")
+fi
+if [ -n "${GLM53_DEFAULT_REASONING_EFFORT:-}" ]; then
+    ARGS+=(--default-chat-template-kwargs "{\"reasoning_effort\":\"${GLM53_DEFAULT_REASONING_EFFORT}\"}")
 fi
 if [ "${LANGUAGE_MODEL_ONLY:-0}" = "1" ]; then
     ARGS+=(--language-model-only)
@@ -1353,11 +1562,21 @@ fi
 if [ -f /opt/glm53/patch_kpool_tail_slotmap.py ]; then
     python3 /opt/glm53/patch_kpool_tail_slotmap.py
 fi
+if [ -f /opt/glm53/patch_kpool_tail_seed_stride.py ]; then
+    python3 /opt/glm53/patch_kpool_tail_seed_stride.py
+fi
 if [ -f /opt/glm53/patch_spinwait.py ]; then
     python3 /opt/glm53/patch_spinwait.py
 fi
+if [ -f /opt/glm53/patch_loadclone.py ]; then
+    python3 /opt/glm53/patch_loadclone.py
+fi
 if [ -f /opt/glm53/patch_sparse_mla_slice.py ]; then
     python3 /opt/glm53/patch_sparse_mla_slice.py
+fi
+# Adaptive verification is patched only for an explicit enabled mode.
+if [[ "${GLM53_ADAPTIVE_K:-off}" =~ ^[[:space:]]*([eE][mM][aA]|[oO][nN]|1)[[:space:]]*$ ]] && [ -f /opt/glm53/patch_adaptive_k.py ]; then
+    python3 /opt/glm53/patch_adaptive_k.py
 fi
 if [ -f /opt/glm53/patch_indexer_workspace.py ]; then
     python3 /opt/glm53/patch_indexer_workspace.py
@@ -1386,6 +1605,7 @@ ARGS=(
     --tensor-parallel-size "${TP}"
     --nnodes "${NNODES}"
     --node-rank "${NODE_RANK}"
+    --enable-prompt-tokens-details
     --master-addr "${HEAD_IP}"
     --master-port "${MASTER_PORT}"
     --distributed-executor-backend mp
@@ -1419,6 +1639,9 @@ elif [ "${MTP_TOKENS:-0}" != "0" ]; then
 fi
 if [ -n "${CHAT_TEMPLATE:-}" ] && [ -f "${CHAT_TEMPLATE}" ]; then
     ARGS+=(--chat-template "${CHAT_TEMPLATE}")
+fi
+if [ -n "${GLM53_DEFAULT_REASONING_EFFORT:-}" ]; then
+    ARGS+=(--default-chat-template-kwargs "{\"reasoning_effort\":\"${GLM53_DEFAULT_REASONING_EFFORT}\"}")
 fi
 if [ "${LANGUAGE_MODEL_ONLY:-0}" = "1" ]; then
     ARGS+=(--language-model-only)
@@ -1463,11 +1686,21 @@ fi
 if [ -f /opt/glm53/patch_kpool_tail_slotmap.py ]; then
     python3 /opt/glm53/patch_kpool_tail_slotmap.py
 fi
+if [ -f /opt/glm53/patch_kpool_tail_seed_stride.py ]; then
+    python3 /opt/glm53/patch_kpool_tail_seed_stride.py
+fi
 if [ -f /opt/glm53/patch_spinwait.py ]; then
     python3 /opt/glm53/patch_spinwait.py
 fi
+if [ -f /opt/glm53/patch_loadclone.py ]; then
+    python3 /opt/glm53/patch_loadclone.py
+fi
 if [ -f /opt/glm53/patch_sparse_mla_slice.py ]; then
     python3 /opt/glm53/patch_sparse_mla_slice.py
+fi
+# Adaptive verification is patched only for an explicit enabled mode.
+if [[ "${GLM53_ADAPTIVE_K:-off}" =~ ^[[:space:]]*([eE][mM][aA]|[oO][nN]|1)[[:space:]]*$ ]] && [ -f /opt/glm53/patch_adaptive_k.py ]; then
+    python3 /opt/glm53/patch_adaptive_k.py
 fi
 if [ -f /opt/glm53/patch_indexer_workspace.py ]; then
     python3 /opt/glm53/patch_indexer_workspace.py
@@ -1503,8 +1736,11 @@ _tp4_scp_runtime() {
     scp -q -o BatchMode=yes "$MAMBA_STATE_PATCH_HOST" "${ssh_t}:/tmp/patch_mamba_align_state_free.py"
     scp -q -o BatchMode=yes "$XGRAMMAR_PATCH_HOST" "${ssh_t}:/tmp/patch_xgrammar_termination.py"
     scp -q -o BatchMode=yes "$KPOOL_TAIL_PATCH_HOST" "${ssh_t}:/tmp/patch_kpool_tail_slotmap.py"
+    scp -q -o BatchMode=yes "$KPOOL_SEED_PATCH_HOST" "${ssh_t}:/tmp/patch_kpool_tail_seed_stride.py"
     scp -q -o BatchMode=yes "$SPINWAIT_PATCH_HOST" "${ssh_t}:/tmp/patch_spinwait.py"
+    scp -q -o BatchMode=yes "$LOADCLONE_PATCH_HOST" "${ssh_t}:/tmp/patch_loadclone.py"
     scp -q -o BatchMode=yes "$SPARSE_SLICE_PATCH_HOST" "${ssh_t}:/tmp/patch_sparse_mla_slice.py"
+    scp -q -o BatchMode=yes "$ADAPTIVE_K_PATCH_HOST" "${ssh_t}:/tmp/patch_adaptive_k.py"
     worker_ssh_n "$r" "rm -rf /tmp/glm53-ablit"
     scp -q -r -o BatchMode=yes "$SCRIPT_DIR/ablit" "${ssh_t}:/tmp/glm53-ablit"
     scp -q -o BatchMode=yes "$SCRIPT_DIR/overlay/ablit_runtime.py" "${ssh_t}:/tmp/glm53-ablit_runtime.py"
@@ -1542,9 +1778,13 @@ launch_cluster() {
     [ -f "$XGRAMMAR_PATCH_HOST" ] || die "missing $XGRAMMAR_PATCH_HOST"
     scp -q -o BatchMode=yes "$XGRAMMAR_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_xgrammar_termination.py"
     [ -f "$KPOOL_TAIL_PATCH_HOST" ] || die "missing $KPOOL_TAIL_PATCH_HOST"
+    [ -f "$KPOOL_SEED_PATCH_HOST" ] || die "missing $KPOOL_SEED_PATCH_HOST"
     scp -q -o BatchMode=yes "$KPOOL_TAIL_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_kpool_tail_slotmap.py"
+    scp -q -o BatchMode=yes "$KPOOL_SEED_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_kpool_tail_seed_stride.py"
     [ -f "$SPINWAIT_PATCH_HOST" ] || die "missing $SPINWAIT_PATCH_HOST"
     scp -q -o BatchMode=yes "$SPINWAIT_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_spinwait.py"
+    [ -f "$LOADCLONE_PATCH_HOST" ] || die "missing $LOADCLONE_PATCH_HOST"
+    scp -q -o BatchMode=yes "$LOADCLONE_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_loadclone.py"
     [ -f "$SPARSE_SLICE_PATCH_HOST" ] || die "missing $SPARSE_SLICE_PATCH_HOST"
     scp -q -o BatchMode=yes "$SPARSE_SLICE_PATCH_HOST" "${WORKER_SSH}:/tmp/patch_sparse_mla_slice.py"
 
@@ -1580,6 +1820,14 @@ TP4_SKIP_OLD_SCP
         -e "GLM53_DRAFT_KV_COMPACT=$GLM53_DRAFT_KV_COMPACT"
         -e "GLM53_SPINWAIT_MS=$GLM53_SPINWAIT_MS"
         -e "VLLM_SM120_SPARSE_MLA_SLICE_TOKENS=$VLLM_SM120_SPARSE_MLA_SLICE_TOKENS"
+        -e "GLM53_ADAPTIVE_K=$GLM53_ADAPTIVE_K"
+        -e "GLM53_ADAPTIVE_K_SET=$GLM53_ADAPTIVE_K_SET"
+        -e "GLM53_ADAPTIVE_K_ALPHA=$GLM53_ADAPTIVE_K_ALPHA"
+        -e "GLM53_ADAPTIVE_K_MARGIN=$GLM53_ADAPTIVE_K_MARGIN"
+        -e "GLM53_ADAPTIVE_K_MIN_STEPS=$GLM53_ADAPTIVE_K_MIN_STEPS"
+        -e "GLM53_ADAPTIVE_K_SATURATE=$GLM53_ADAPTIVE_K_SATURATE"
+        -e "GLM53_ADAPTIVE_K_HIST=$GLM53_ADAPTIVE_K_HIST"
+        -e "GLM53_DEFAULT_REASONING_EFFORT=${GLM53_DEFAULT_REASONING_EFFORT-}"
         -e "TRITON_CACHE_DIR=$TRITON_CACHE_DIR"
         -e "TILELANG_CACHE_DIR=$TILELANG_CACHE_DIR"
         -e "VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=$VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS"
@@ -1631,11 +1879,14 @@ TP4_SKIP_OLD_SCP
     for v in SERVED_MODEL_NAME PORT TP NNODES HEAD_IP MASTER_PORT QUANTIZATION \
              MAX_MODEL_LEN GPU_MEM_UTIL MAX_NUM_SEQS MAX_NUM_BATCHED_TOKENS \
              KV_CACHE_DTYPE LOAD_FORMAT PREFIX_MATCH_UNIT MTP_TOKENS SPEC_METHOD DFLASH_TOKENS DFLASH_MODEL_DIR \
+             GLM53_LOAD_CLONE GLM53_LOAD_PREFETCH \
              DFLASH_DRAFT_TP \
              LANGUAGE_MODEL_ONLY SKIP_MM_PROFILING \
-             LIMIT_MM CHAT_TEMPLATE ENFORCE_EAGER EXL3_FUSED_MOE EXL3_MOE_ROW_TILE EXL3_TEMP_ROWS_FUSED EXL3_FAT_SORTED EXL3_FAT_BATCHED EXL3_FAT_KERNEL MODEL_DIR EXTRA_ARGS \
+             LIMIT_MM CHAT_TEMPLATE ENFORCE_EAGER EXL3_FUSED_MOE EXL3_MOE_ROW_TILE EXL3_TEMP_ROWS_FUSED EXL3_FAT_SORTED EXL3_FAT_BATCHED EXL3_FAT_KERNEL EXL3_FAT_GROUPED MODEL_DIR EXTRA_ARGS \
              ABLIT ABLIT_METHOD ABLIT_DIRECTION ABLIT_LAYERS ABLIT_ALPHA ABLIT_INCLUDE_MTP \
-             VLLM_SM120_SPARSE_MLA_SLICE_TOKENS; do
+             VLLM_SM120_SPARSE_MLA_SLICE_TOKENS \
+             GLM53_ADAPTIVE_K GLM53_ADAPTIVE_K_SET GLM53_ADAPTIVE_K_ALPHA GLM53_ADAPTIVE_K_MARGIN \
+             GLM53_ADAPTIVE_K_MIN_STEPS GLM53_ADAPTIVE_K_SATURATE GLM53_ADAPTIVE_K_HIST; do
         serve_env+=" -e $v='${!v:-}'"
     done
     # VLLM_API_KEY is read by the head (rank 0) API server for bearer auth; the
@@ -1679,8 +1930,11 @@ TP4_SKIP_OLD_SCP
             -v '/tmp/patch_mamba_align_state_free.py:/opt/glm53/patch_mamba_align_state_free.py:ro' \
             -v '/tmp/patch_xgrammar_termination.py:/opt/glm53/patch_xgrammar_termination.py:ro' \
             -v '/tmp/patch_kpool_tail_slotmap.py:/opt/glm53/patch_kpool_tail_slotmap.py:ro' \
+            -v '/tmp/patch_kpool_tail_seed_stride.py:/opt/glm53/patch_kpool_tail_seed_stride.py:ro' \
             -v '/tmp/patch_spinwait.py:/opt/glm53/patch_spinwait.py:ro' \
+            -v '/tmp/patch_loadclone.py:/opt/glm53/patch_loadclone.py:ro' \
             -v '/tmp/patch_sparse_mla_slice.py:/opt/glm53/patch_sparse_mla_slice.py:ro' \
+            -v '/tmp/patch_adaptive_k.py:/opt/glm53/patch_adaptive_k.py:ro' \
             -v '/tmp/glm53-ablit:/opt/glm53/ablit:ro' \
             -v '/tmp/glm53-ablit_runtime.py:/opt/glm53/ablit_runtime.py:ro' \
             -v '/tmp/patch_ablit.py:/opt/glm53/patch_ablit.py:ro' \
@@ -1717,8 +1971,11 @@ TP4_SKIP_OLD_SCP
         -v "$MAMBA_STATE_PATCH_HOST:/opt/glm53/patch_mamba_align_state_free.py:ro" \
         -v "$XGRAMMAR_PATCH_HOST:/opt/glm53/patch_xgrammar_termination.py:ro" \
         -v "$KPOOL_TAIL_PATCH_HOST:/opt/glm53/patch_kpool_tail_slotmap.py:ro" \
+        -v "$KPOOL_SEED_PATCH_HOST:/opt/glm53/patch_kpool_tail_seed_stride.py:ro" \
         -v "$SPINWAIT_PATCH_HOST:/opt/glm53/patch_spinwait.py:ro" \
+        -v "$LOADCLONE_PATCH_HOST:/opt/glm53/patch_loadclone.py:ro" \
         -v "$SPARSE_SLICE_PATCH_HOST:/opt/glm53/patch_sparse_mla_slice.py:ro" \
+        -v "$ADAPTIVE_K_PATCH_HOST:/opt/glm53/patch_adaptive_k.py:ro" \
         -v "$SCRIPT_DIR/ablit:/opt/glm53/ablit:ro" \
         -v "$SCRIPT_DIR/overlay/ablit_runtime.py:/opt/glm53/ablit_runtime.py:ro" \
         -v "$SCRIPT_DIR/overlay/patch_ablit.py:/opt/glm53/patch_ablit.py:ro" \
@@ -1738,6 +1995,8 @@ TP4_SKIP_OLD_SCP
         -e MAX_NUM_BATCHED_TOKENS="$MAX_NUM_BATCHED_TOKENS" \
         -e KV_CACHE_DTYPE="$KV_CACHE_DTYPE" \
         -e LOAD_FORMAT="${LOAD_FORMAT:-}" \
+        -e GLM53_LOAD_CLONE="$GLM53_LOAD_CLONE" \
+        -e GLM53_LOAD_PREFETCH="$GLM53_LOAD_PREFETCH" \
         -e PREFIX_MATCH_UNIT="${PREFIX_MATCH_UNIT:-}" \
         -e MTP_TOKENS="$MTP_TOKENS" \
         -e SPEC_METHOD="$SPEC_METHOD" \
@@ -1755,6 +2014,7 @@ TP4_SKIP_OLD_SCP
         -e EXL3_FAT_SORTED="$EXL3_FAT_SORTED" \
         -e EXL3_FAT_BATCHED="$EXL3_FAT_BATCHED" \
         -e EXL3_FAT_KERNEL="$EXL3_FAT_KERNEL" \
+        -e EXL3_FAT_GROUPED="$EXL3_FAT_GROUPED" \
         -e ABLIT="$ABLIT" \
         -e ABLIT_METHOD="$ABLIT_METHOD" \
         -e ABLIT_DIRECTION="$ABLIT_DIRECTION" \
@@ -1839,14 +2099,31 @@ post_ready_warmup() {
     [ -f "$SCRIPT_DIR/scripts/boot-shape-warmup.sh" ] \
         || { warn "boot-shape-warmup.sh missing — skipping"; return 0; }
     log "post-ready DFlash2/sampler warmup (nonfatal; timeout ${GLM53_WARMUP_REQ_TIMEOUT}s/req) ..."
+    local rc=0
     GLM53_WARMUP_MAX_CONCURRENCY="$MAX_NUM_SEQS" \
     GLM53_WARMUP_REQ_TIMEOUT="$GLM53_WARMUP_REQ_TIMEOUT" \
     GLM53_WARMUP_DFLASH_K="${DFLASH_TOKENS:-7}" \
     GLM53_WARMUP_TRITON_CACHE_DIR="$TRITON_HOST_CACHE" \
     GLM53_WARMUP_BEARER="${VLLM_API_KEY:-}" \
+    GLM53_WARMUP_CANARY="${GLM53_WARMUP_CANARY:-1}" \
         bash "$SCRIPT_DIR/scripts/boot-shape-warmup.sh" \
             "http://127.0.0.1:${PORT}" "$SERVED_MODEL_NAME" \
-        || warn "boot shape warmup incomplete — uncovered shapes may JIT mid-serve on TP=4"
+        || rc=$?
+    if [ "$rc" = "3" ]; then
+        # Degenerate-engine canary: /health is green but the engine generates
+        # garbage or accepted none of its drafts (#249). Keep the evidence, then
+        # take the engine off the port: a client must not reach an engine we
+        # just judged broken. Teardown is best-effort — its result never
+        # replaces the verdict, and this message claims only that a shutdown
+        # was attempted.
+        collect_failure_logs 2>/dev/null || true
+        local stop_rc=0
+        local teardown="shutdown attempted"
+        stop || stop_rc=$?
+        [ "$stop_rc" = "0" ] || teardown="shutdown attempt failed (rc=${stop_rc}; containers may still be up)"
+        die "engine failed the post-ready correctness canary (degenerate output / zero DFlash acceptance); logs in $LOGDIR/; ${teardown} — start again (a later boot is usually fine); GLM53_WARMUP_CANARY=0 skips the check"
+    fi
+    [ "$rc" = "0" ] || warn "boot shape warmup incomplete — uncovered shapes may JIT mid-serve on TP=4"
 }
 
 collect_failure_logs() {
@@ -1910,7 +2187,7 @@ start() {
         log "DFlash2 load path (in-container): ${DFLASH_MODEL_DIR}"
     fi
     log "model load path (in-container): ${MODEL_DIR}"
-    log "config: image=${IMAGE} tp=${TP} nnodes=${NNODES} quant=${QUANTIZATION} spec=${SPEC_METHOD} mtp=${MTP_TOKENS} dflash_k=${DFLASH_TOKENS} max-len=${MAX_MODEL_LEN} gpu-util=${GPU_MEM_UTIL} kv=${KV_CACHE_DTYPE} lm-only=${LANGUAGE_MODEL_ONLY} port=${PORT}"
+    log "config: image=${IMAGE} tp=${TP} nnodes=${NNODES} quant=${QUANTIZATION} spec=${SPEC_METHOD} mtp=${MTP_TOKENS} dflash_k=${DFLASH_TOKENS} max-len=${MAX_MODEL_LEN} gpu-util=${GPU_MEM_UTIL} kv=${KV_CACHE_DTYPE} lm-only=${LANGUAGE_MODEL_ONLY} port=${PORT} fat_kernel=${EXL3_FAT_KERNEL} fat_grouped=${EXL3_FAT_GROUPED} temp_rows=${EXL3_TEMP_ROWS_FUSED} mnbt=${MAX_NUM_BATCHED_TOKENS}"
 
     launch_cluster
     if wait_for_health; then
@@ -1984,7 +2261,7 @@ logs() {
 main() {
     local cmd="${1:-start}"
     case "$cmd" in
-        start|restart) validate_numeric_config ;;
+        start|restart) validate_numeric_config; configure_capture_sizes; validate_loadclone_artifacts ;;
     esac
     case "$cmd" in
         stop)     banner stop.sh ;;

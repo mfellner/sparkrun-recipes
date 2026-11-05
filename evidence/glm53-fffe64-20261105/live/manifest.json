@@ -1,0 +1,27 @@
+{
+  "collected_at_local": "2026-11-05T22:55:51+01:00",
+  "collection_type": "read-only live evidence; brief API smoke only",
+  "job_id": "sparkrun_58201f8c57f8af18_f50636d19f88",
+  "cluster": "spark-pair2",
+  "head": "192.168.178.47",
+  "worker": "192.168.178.70",
+  "serving_revision": "fffe64fc093f65fa8f033957e16b744dc266c2ec",
+  "model_revision": "024db9f7e9871e8efdf21538ba55af7442be3cd5",
+  "draft_revision": "dc77ff1c99eeb2df044ee3d4f0094eb033fee410",
+  "runtime_image": "ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:447114ee77d14c9b4732ee23978ada2a0ee9027868a231d6fd42700a8b25be1d",
+  "local_container_image_id_both_hosts": "sha256:ef9f5013c41adf93a5171abb809283be0f202b88fd14098e4434337715614c62",
+  "container_started_at": "2026-11-05T21:21:55Z",
+  "tp": 2,
+  "pp": 1,
+  "advertised_configured_max_model_len": 850000,
+  "850k_context_measured": false,
+  "api_smoke": {"direct": {"serial": "pass", "concurrent": "3/3 pass"}, "proxy": {"serial": "pass", "concurrent": "3/3 pass"}},
+  "known_limitations": [
+    "No request near 850,000 tokens was made; 850k is configured/advertised only, not measured capacity.",
+    "At 2026-11-05 21:46:45, dgx01 kernel journal recorded a memory-cgroup OOM kill of python3. The affected cgroup ID does not match the live rank0 container ID; cause/ownership is not attributed. The event is retained as a caution and post-ready stability is not cleanly certified.",
+    "Only a short 1+3 request smoke per path was run; no stress, sustained load, throughput, or performance claim.",
+    "Recipe/API configure the container process as root, use host networking, and expose unauthenticated HTTP. Private-LAN/trusted-network boundary applies.",
+    "Post-ready gate transcript is not independently captured as a distinct artifact. Startup logs plus post-collection chat prove basic serving, not the entire gate.",
+    "The current capture stores bounded kernel journal matches rather than complete journal output. Window: 2026-11-05 21:21:00 through 21:55:00 local host time."
+  ]
+}

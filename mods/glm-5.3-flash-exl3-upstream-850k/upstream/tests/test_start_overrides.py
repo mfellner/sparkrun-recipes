@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -98,6 +100,42 @@ def test_default_reasoning_effort_caller_override_is_setness_aware() -> None:
     assert _run_preamble(
         env_file, {"GLM53_DEFAULT_REASONING_EFFORT": ""}, probe
     ) == "EFFORT=[]"
+
+
+@pytest.mark.parametrize("launcher,topology_env", [("start-tp3.sh", ".env.tp3"),
+                                                    ("start-tp4.sh", ".env.tp4")])
+def test_default_reasoning_effort_precedence_on_tp3_tp4(launcher: str, topology_env: str) -> None:
+    """caller export > .env.tpX > shared .env, setness-aware, as on start.sh.
+
+    A .env copied from .env.example always carries the knob (empty), so a
+    launcher that does not capture the caller loses its export silently."""
+    source = (ROOT / launcher).read_text()
+    marker = "# ----------------------------- configuration -------------------------------"
+    preamble, separator, _rest = source.partition(marker)
+    assert separator, f"{launcher} configuration marker is missing"
+    probe = '\nprintf "EFFORT=[%s]\\n" "${GLM53_DEFAULT_REASONING_EFFORT-unset}"\n'
+
+    def run(shared: str, topology: str, caller: dict[str, str]) -> str:
+        with tempfile.TemporaryDirectory() as raw_tmp:
+            tmp = Path(raw_tmp)
+            script = tmp / launcher
+            script.write_text(preamble + probe)
+            (tmp / ".env").write_text(shared)
+            (tmp / topology_env).write_text(topology)
+            env = {"PATH": "/usr/bin:/bin", "HOME": str(tmp), "USER": "glm53", **caller}
+            return subprocess.run(["bash", str(script)], check=True, capture_output=True,
+                                  text=True, env=env).stdout.strip().splitlines()[-1]
+
+    example_line = "GLM53_DEFAULT_REASONING_EFFORT=\n"  # as shipped in .env.example
+    assert run(example_line, "", {}) == "EFFORT=[]"
+    assert run("GLM53_DEFAULT_REASONING_EFFORT=high\n", "", {}) == "EFFORT=[high]"
+    assert run("GLM53_DEFAULT_REASONING_EFFORT=high\n",
+               "GLM53_DEFAULT_REASONING_EFFORT=max\n", {}) == "EFFORT=[max]"
+    effort = "GLM53_DEFAULT_REASONING_EFFORT"
+    assert run(example_line, "", {effort: "low"}) == "EFFORT=[low]"
+    assert run("GLM53_DEFAULT_REASONING_EFFORT=high\n",
+               "GLM53_DEFAULT_REASONING_EFFORT=max\n", {effort: "low"}) == "EFFORT=[low]"
+    assert run("GLM53_DEFAULT_REASONING_EFFORT=high\n", "", {effort: ""}) == "EFFORT=[]"
 
 
 def test_indexer_workspace_caller_capture_is_setness_aware() -> None:

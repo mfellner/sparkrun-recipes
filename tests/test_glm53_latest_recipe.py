@@ -1895,6 +1895,55 @@ def test_detect_secrets_verifier_rejects_duplicate_findings_and_any_stderr(
     assert duplicated["sha256"] != original["sha256"]
 
 
+def test_detect_secrets_scan_scope_excludes_git_but_keeps_tracked_and_untracked(
+    tmp_path: Path,
+) -> None:
+    executable = shutil.which("detect-secrets")
+    if executable is None:
+        pytest.skip("detect-secrets 1.5.0 is supplied by the reproducible gate")
+    root = tmp_path / "fixture-root"
+    (root / ".git").mkdir(parents=True)
+    import hashlib
+    git_secret, tracked_secret, untracked_secret = (
+        hashlib.sha256(value).hexdigest()
+        for value in (b"fixture git", b"fixture tracked", b"fixture untracked")
+    )
+    (root / ".git" / "private.txt").write_text(f"secret = '{git_secret}'\n")
+    tracked = root / "tracked.txt"
+    untracked = root / "untracked.txt"
+    tracked.write_text(f"secret = '{tracked_secret}'\n")
+    untracked.write_text(f"secret = '{untracked_secret}'\n")
+    subprocess.run(["git", "init", "-q", str(root)], check=True)
+    subprocess.run(["git", "-C", str(root), "add", "tracked.txt"], check=True)
+
+    result = subprocess.run(
+        [executable, "scan", "--all-files", "--no-verify",
+         "--exclude-files", r"^\.git/", "."],
+        cwd=root,
+        text=True, capture_output=True, timeout=180,
+    )
+    assert result.returncode == 0, result.stderr
+    document = json.loads(result.stdout)
+    candidates = {Path(row["filename"]).name for row in
+                  (finding for values in document["results"].values() for finding in values)}
+    assert "tracked.txt" in candidates
+    assert "untracked.txt" in candidates
+    assert "private.txt" not in candidates
+
+
+def test_verifier_combines_baseline_excludes_with_root_git(tmp_path: Path) -> None:
+    verifier = runpy.run_path(str(ROOT / "scripts/verify_detect_secrets.py"))
+    pattern = r"(^|/)(\.secrets\.baseline$|\.secrets\.occurrences\.json$|\.pytest_cache/|__pycache__/|\.ruff_cache/|\.mypy_cache/)"
+    baseline = {"filters_used": [{"path": "detect_secrets.filters.regex.should_exclude_file", "pattern": [pattern]}]}
+    combined = verifier["combined_exclude_pattern"](baseline)
+    import re
+    matcher = re.compile(combined)
+    for path in (".secrets.baseline", "nested/.secrets.occurrences.json", ".pytest_cache/x", "a/__pycache__/x", "a/.ruff_cache/x", "a/.mypy_cache/x", ".git/config"):
+        assert matcher.search(path), path
+    assert not matcher.search("nested/.git/config")
+    assert not matcher.search("tracked.txt")
+
+
 def test_detect_secrets_baseline_is_reviewed_and_reproducible() -> None:
     verifier = ROOT / "scripts/verify_detect_secrets.py"
     baseline = ROOT / ".secrets.baseline"

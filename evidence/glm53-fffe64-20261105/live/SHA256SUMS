@@ -1,0 +1,11 @@
+082c3000a8d783a90b18dd0e80b98f9f2aa77dd72ae688d827150a3de3f36a1c  ./README.md
+5d38c77b6fb556678f7260e6a739133332ffcad3eede386f90a1b52a1f5d20dc  ./api/smoke-results.jsonl
+0cbb6da22975898a57730b689a3a453b17c4b4914be13e81cefea04defbed8d8  ./api/smoke.py
+ef2733b496fd3d8ee6d5f26d07a22a01081b94bf48ce1b85db161f9a551147a5  ./hosts/rank0.txt
+ae02835e0f86c65663f20133b72ccf89a81f6f5bdb10dd65a1017077ee4bad59  ./hosts/rank1.txt
+32dc2f8fc270fb643113b087bcb83607bbf44805b4b82f29f4ce7516a475ca46  ./manifest.json
+6bba06cca571a87e983edab703ffd488c64c47a1b18e788afab93a4f2bc47b92  ./metadata/cluster-status.json
+c3a98915cbb92efefe6a2891db03a1a1089f73c35e33ae10c7afa480a0f30ff9  ./metadata/effective-recipe.json
+761dd5c1c1144413076bd98ab1e5da36f5e4f939a42bec8ce3312fc07cdce0af  ./metadata/runtime-logs.txt
+7ad3ded751e3c2ac886c9b0de1e49ee07cfcd8bd9667782f6a3d0f93a1e77a9a  ./test_verify_mutations.py
+dc128217852441c52d05197a1ee62c347780e45f36c920acb61445bec266e3b0  ./verify.py

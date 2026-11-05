@@ -95,10 +95,15 @@ docker run --rm --network none --cpus 4 --memory 8g --memory-swap 8g \
   --entrypoint bash "$COOP_IMAGE" /src/build.sh /upstream /work
 ```
 
-The expected `cooperative_moe.so` digest is
-`aa3fe5e9387c7e0d42d685fb2ca8a5fb959ad956600236baac078a9076c17a1c`.
-`prepare_profile.py` enforces this and the stock/runtime source digests. If a
-clean rebuild differs, preserve the build log and stop.
+The build emits `build-manifest.json` beside the library. CUDA 13's
+`--frandom-seed` and fixed build environment remove avoidable variance, but an
+exact `cooperative_moe.so` hash is not required across CUDA or host-toolchain
+updates. `prepare_profile.py` verifies the pinned ExLlamaV3 commit, combined
+input-tree digest, repository native/runtime source hashes, SM121a target and
+compiler provenance. It also checks that the artifact matches the per-build
+digest recorded in its manifest; that digest is not a pre-recorded allowlist.
+Preserve the build log and manifest with the artifact; the both-GPU gate below
+validates the resulting machine code.
 
 ## 4. Generate the overlay and deploy identical artifacts to both nodes
 
@@ -109,6 +114,7 @@ host's vLLM cache at `/root/.cache/vllm`.
 ```bash
 mkdir -p "$COOP_HEAD_STAGE"
 install -m 644 "$COOP_RUN/build/cooperative_moe.so" \
+  "$COOP_RUN/build/build-manifest.json" \
   "$COOP_REPO/extensions/cooperative_moe/runtime.py" "$COOP_HEAD_STAGE/"
 python3 "$COOP_REPO/extensions/cooperative_moe/prepare_profile.py" \
   --stock "$COOP_REPO/overlay/exl3.py" \
@@ -120,10 +126,11 @@ install -m 644 "$COOP_REPO/extensions/cooperative_moe/test_cuda_integration.py" 
 
 ssh -o BatchMode=yes "$COOP_WORKER" "mkdir -p '$COOP_WORKER_STAGE'"
 scp "$COOP_HEAD_STAGE/cooperative_moe.so" "$COOP_HEAD_STAGE/runtime.py" \
-  "$COOP_HEAD_STAGE/exl3-cooperative.py" "$COOP_HEAD_STAGE/test_cuda_integration.py" \
-  "$COOP_HEAD_STAGE/test_exl3_overlay.py" "$COOP_WORKER:$COOP_WORKER_STAGE/"
-(cd "$COOP_HEAD_STAGE" && sha256sum cooperative_moe.so runtime.py exl3-cooperative.py \
-  test_cuda_integration.py test_exl3_overlay.py) > "$COOP_RUN/SHA256SUMS"
+  "$COOP_HEAD_STAGE/build-manifest.json" "$COOP_HEAD_STAGE/exl3-cooperative.py" \
+  "$COOP_HEAD_STAGE/test_cuda_integration.py" "$COOP_HEAD_STAGE/test_exl3_overlay.py" \
+  "$COOP_WORKER:$COOP_WORKER_STAGE/"
+(cd "$COOP_HEAD_STAGE" && sha256sum cooperative_moe.so runtime.py build-manifest.json \
+  exl3-cooperative.py test_cuda_integration.py test_exl3_overlay.py) > "$COOP_RUN/SHA256SUMS"
 scp "$COOP_RUN/SHA256SUMS" "$COOP_WORKER:$COOP_WORKER_STAGE/SHA256SUMS"
 ssh -o BatchMode=yes "$COOP_WORKER" "cd '$COOP_WORKER_STAGE' && sha256sum -c SHA256SUMS"
 ```
@@ -204,8 +211,8 @@ the explicit activation message.
 
 ```bash
 sha256sum "$COOP_HEAD_STAGE/exl3-cooperative.py"
-docker logs "$COOP_HEAD_CONTAINER" 2>&1 | grep -F 'Fixed-shape cooperative MoE enabled'
-ssh -o BatchMode=yes "$COOP_WORKER" "docker logs '$COOP_WORKER_CONTAINER' 2>&1 | grep -F 'Fixed-shape cooperative MoE enabled'"
+docker logs "$COOP_HEAD_CONTAINER" 2>&1 | grep -F 'Fixed-shape cooperative MoE wrappers installed'
+ssh -o BatchMode=yes "$COOP_WORKER" "docker logs '$COOP_WORKER_CONTAINER' 2>&1 | grep -F 'Fixed-shape cooperative MoE wrappers installed'"
 docker exec "$COOP_HEAD_CONTAINER" sha256sum /opt/glm53/exl3.py /usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py
 curl --max-time 10 -fsS "http://127.0.0.1:$COOP_PORT/health"
 ```
@@ -236,10 +243,10 @@ deletion.
 
 ## Validation status of this procedure
 
-Host-side tests, the pinned native rebuild, launcher overlay wiring, and
-command syntax have been checked. The packaged GPU gate passed on this head
-(18 cases, peak-normalized vs stock fused; E3 still resolved grouped; rows 40
-stayed stock). A two-node opt-in start **has** been executed; live geometry-1
-decode numbers and rollback are in
-[cooperative-moe-handoff.md](cooperative-moe-handoff.md). Worker-node GPU gate
-and sparkDash prose ×2 are still open.
+Host-side tests, source-manifest validation, launcher overlay wiring, and
+command syntax have been checked. The current source-built artifact passed the
+48-check numerical/CUDA-graph gate and bounded memcheck on both GPUs; E3 stayed
+grouped and rows 40 stayed stock. A two-node opt-in start and matched geometry-1
+serving comparison have also been executed. Results and rollback details are in
+[cooperative-moe-handoff.md](cooperative-moe-handoff.md) and
+[cooperative-moe.md](cooperative-moe.md).

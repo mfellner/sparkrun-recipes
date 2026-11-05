@@ -1,7 +1,6 @@
 """Regression: required native init must run under python -O (no assert)."""
 
 import ctypes
-import hashlib
 import importlib.util
 import sys
 import tempfile
@@ -64,7 +63,6 @@ def main():
             ctypes, "CDLL", FakeCDLL
         ):
             spec.loader.exec_module(adapter)
-            adapter.SHA256 = hashlib.sha256(so.read_bytes()).hexdigest()
             launch = adapter.CoopLaunch("cuda:0", tmp, geometry=1)
     names = [c[0] if isinstance(c, tuple) else c for c in calls]
     if "abi" not in names or "info" not in names:

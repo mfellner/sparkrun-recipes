@@ -1,0 +1,624 @@
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:58626 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37000 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37010 - "GET /health HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37020 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /api/v0/models HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /api/tags HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /server_info HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /get_server_info HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /health HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /v1/stats HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:43322 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=339 contention=0 prefill_tokens={'chatcmpl-95212f933596c755-a4191974': 19} reserved_s=0.000 accounted_s=0.304 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37026 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=345 contention=0 prefill_tokens={'chatcmpl-810207ad1016ad93-855a94c8': 19, 'chatcmpl-a5d369eae3d2483e-978496f1': 19, 'chatcmpl-bf5f012bc27a9af3-a3c96d51': 19} reserved_s=0.000 accounted_s=0.235 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37072 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37040 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37056 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=352 contention=0 prefill_tokens={'chatcmpl-b4629bcdd4d6215e-8fa2fbe2': 19} reserved_s=0.000 accounted_s=0.192 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:41868 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:41866 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=358 contention=0 prefill_tokens={'chatcmpl-ab7616953c0e8f27-80faa66c': 19, 'chatcmpl-a06adf6ac590013b-88a9b61f': 19, 'chatcmpl-bb6ca6d360aeadf0-8f979296': 19} reserved_s=0.000 accounted_s=0.238 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:41878 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:41866 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:41892 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:52:48 [loggers.py:310] Engine 000: Avg prompt throughput: 15.2 tokens/s, Avg generation throughput: 12.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:52:48 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 5.07, Accepted throughput: 0.08 tokens/s, Drafted throughput: 0.14 tokens/s, Accepted: 114 tokens, Drafted: 196 tokens, Per-position acceptance rate: 1.000, 0.857, 0.857, 0.643, 0.357, 0.214, 0.143, Avg Draft acceptance rate: 58.2%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:52:58 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=365 contention=0 prefill_tokens={'chatcmpl-81b6b344079db30d-9fcd89c6': 17} reserved_s=0.000 accounted_s=0.188 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:55488 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /api/v0/models HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /api/tags HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /server_info HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /get_server_info HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /health HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /v1/stats HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:08 [loggers.py:310] Engine 000: Avg prompt throughput: 1.7 tokens/s, Avg generation throughput: 2.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:08 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 4.60, Accepted throughput: 0.90 tokens/s, Drafted throughput: 1.75 tokens/s, Accepted: 18 tokens, Drafted: 35 tokens, Per-position acceptance rate: 1.000, 1.000, 0.600, 0.400, 0.200, 0.200, 0.200, Avg Draft acceptance rate: 51.4%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=373 contention=0 prefill_tokens={'chatcmpl-9af1036341e52511-a7727262': 19} reserved_s=0.000 accounted_s=0.198 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:42164 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:42158 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=400 contention=0 prefill_tokens={'chatcmpl-86fe1644f73d3f75-9f2a930e': 19, 'chatcmpl-adbcd758aa527df0-a9c74664': 19, 'chatcmpl-85c99d4f95188acd-b1448594': 19} reserved_s=0.000 accounted_s=0.210 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:18 [loggers.py:310] Engine 000: Avg prompt throughput: 7.6 tokens/s, Avg generation throughput: 11.6 tokens/s, Running: 3 reqs, Waiting: 0 reqs, GPU KV cache usage: 19.0%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:18 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 3.73, Accepted throughput: 8.20 tokens/s, Drafted throughput: 21.00 tokens/s, Accepted: 82 tokens, Drafted: 210 tokens, Per-position acceptance rate: 0.800, 0.633, 0.500, 0.400, 0.233, 0.100, 0.067, Avg Draft acceptance rate: 39.0%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:42192 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:42208 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:42176 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=439 contention=0 prefill_tokens={'chatcmpl-915085479a47c5bb-bf2b3c39': 19} reserved_s=0.000 accounted_s=0.209 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:28 [loggers.py:310] Engine 000: Avg prompt throughput: 1.9 tokens/s, Avg generation throughput: 39.2 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 6.7%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:28 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 3.48, Accepted throughput: 28.30 tokens/s, Drafted throughput: 79.79 tokens/s, Accepted: 283 tokens, Drafted: 798 tokens, Per-position acceptance rate: 0.851, 0.623, 0.456, 0.237, 0.132, 0.105, 0.079, Avg Draft acceptance rate: 35.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:42218 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=483 contention=0 prefill_tokens={'chatcmpl-8fd3c6076243507a-8cf1c0c9': 19} reserved_s=0.000 accounted_s=0.203 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=485 contention=1 prefill_tokens={'chatcmpl-9c6e60dedb8b3131-9d902306': 19} reserved_s=0.228 accounted_s=0.364 credit=0.179 timing=host_busy_proxy
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=487 contention=1 prefill_tokens={'chatcmpl-b36846a37705e16b-ab7bd447': 19} reserved_s=0.327 accounted_s=0.248 credit=0.052 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:52676 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:52664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:42218 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:38 [loggers.py:310] Engine 000: Avg prompt throughput: 5.7 tokens/s, Avg generation throughput: 31.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:38 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 3.58, Accepted throughput: 23.50 tokens/s, Drafted throughput: 63.69 tokens/s, Accepted: 235 tokens, Drafted: 637 tokens, Per-position acceptance rate: 0.824, 0.637, 0.484, 0.275, 0.176, 0.110, 0.077, Avg Draft acceptance rate: 36.9%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37276 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:48 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=526 contention=0 prefill_tokens={'chatcmpl-aaf9da2298eb4115-96951ece': 19} reserved_s=0.000 accounted_s=0.192 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37288 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=557 contention=0 prefill_tokens={'chatcmpl-9c9f05f339d72f2d-a5c3052e': 19, 'chatcmpl-8a3f31095de2445f-8ddde30f': 19, 'chatcmpl-8540e4eebabb031d-928fc5bc': 19} reserved_s=0.000 accounted_s=0.231 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:58 [loggers.py:310] Engine 000: Avg prompt throughput: 7.6 tokens/s, Avg generation throughput: 29.9 tokens/s, Running: 3 reqs, Waiting: 0 reqs, GPU KV cache usage: 19.6%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:53:58 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 3.36, Accepted throughput: 10.40 tokens/s, Drafted throughput: 30.80 tokens/s, Accepted: 208 tokens, Drafted: 616 tokens, Per-position acceptance rate: 0.795, 0.557, 0.409, 0.307, 0.170, 0.080, 0.045, Avg Draft acceptance rate: 33.8%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37332 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /api/v0/models HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /api/tags HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /server_info HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /get_server_info HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /health HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /v1/stats HTTP/1.1" 404 Not Found
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37304 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:37302 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=613 contention=0 prefill_tokens={'chatcmpl-95f51286f63dfc4d-875afc4d': 19} reserved_s=0.000 accounted_s=0.221 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:54:08 [loggers.py:310] Engine 000: Avg prompt throughput: 1.9 tokens/s, Avg generation throughput: 31.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 6.7%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:54:08 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 3.22, Accepted throughput: 21.50 tokens/s, Drafted throughput: 67.90 tokens/s, Accepted: 215 tokens, Drafted: 679 tokens, Per-position acceptance rate: 0.773, 0.536, 0.402, 0.237, 0.134, 0.082, 0.052, Avg Draft acceptance rate: 31.7%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:52844 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (EngineCore pid=559) [glm53-decode-floor] completed_step=659 contention=0 prefill_tokens={'chatcmpl-82b3f0f3e1dc155d-ae48bac9': 19, 'chatcmpl-b8b398f203ef2353-92c417c6': 19, 'chatcmpl-b39e6ae21b50b579-8ee5d219': 19} reserved_s=0.000 accounted_s=0.218 credit=0.000 timing=host_busy_proxy
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:60952 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:52844 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:60950 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     192.168.178.47:50682 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:54:18 [loggers.py:310] Engine 000: Avg prompt throughput: 5.7 tokens/s, Avg generation throughput: 28.5 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 12.5%
+[192.168.178.47/node_0] (APIServer pid=254) INFO 11-05 21:54:18 [metrics.py:120] SpecDecoding metrics: Mean acceptance length: 3.71, Accepted throughput: 20.90 tokens/s, Drafted throughput: 53.90 tokens/s, Accepted: 209 tokens, Drafted: 539 tokens, Per-position acceptance rate: 0.805, 0.675, 0.519, 0.390, 0.195, 0.091, 0.039, Avg Draft acceptance rate: 38.8%
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53566 - "GET /v1/models HTTP/1.1" 200 OK
+[192.168.178.47/node_0] (APIServer pid=254) INFO:     127.0.0.1:53576 - "GET /metrics HTTP/1.1" 200 OK
+[192.168.178.70/node_1] INFO 11-05 21:23:11 [model.py:679] Resolved architecture: Glm5NextForConditionalGeneration
+[192.168.178.70/node_1] INFO 11-05 21:23:11 [model.py:1973] Using max model len 850000
+[192.168.178.70/node_1] glm53: video placeholders aligned to encoder grid_t (Glm5Next→glm46v)
+[192.168.178.70/node_1] INFO 11-05 21:23:14 [cache.py:282] Using fp8 data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+[192.168.178.70/node_1] INFO 11-05 21:23:14 [arg_utils.py:2168] Inferred data_parallel_rank 0 from node_rank 1
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [model.py:679] Resolved architecture: DFlash2DraftModel
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [model.py:1973] Using max model len 1048576
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [speculative.py:1256] Overriding draft model max model len from 1048576 to 850000
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [scheduler.py:242] Chunked prefill is enabled with max_num_batched_tokens=7168.
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [config.py:605] Mamba cache mode is set to 'align' for Glm5NextForConditionalGeneration by default when prefix caching is enabled
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [vllm.py:1319] Auto-enabling VLLM_USE_BREAKABLE_CUDAGRAPH=1. Set VLLM_USE_BREAKABLE_CUDAGRAPH=0 to opt out.
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[192.168.178.70/node_1] WARNING 11-05 21:23:19 [vllm.py:1849] max_num_scheduled_tokens is set to 7168 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+[192.168.178.70/node_1] INFO 11-05 21:23:19 [serve.py:216] Launching vLLM (v0.1.dev20051+g487ecf187) headless multiproc executor, with head node address 192.168.178.47:25000 for torch.distributed process group.
+[192.168.178.70/node_1] glm53: video placeholders aligned to encoder grid_t (Glm5Next→glm46v)
+[192.168.178.70/node_1] (Worker pid=553) INFO 11-05 21:23:25 [parallel_state.py:1638] world_size=2 rank=1 local_rank=0 distributed_init_method=tcp://192.168.178.47:25000 backend=nccl
+[192.168.178.70/node_1] (Worker pid=553) WARNING 11-05 21:23:28 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.1 not supported, communicator is not available.
+[192.168.178.70/node_1] (Worker pid=553) WARNING 11-05 21:23:28 [custom_all_reduce.py:254] Custom collectives are disabled because this multi-node group does not support MNNVL multicast.
+[192.168.178.70/node_1] (Worker pid=553) INFO 11-05 21:23:29 [parallel_state.py:1982] rank 1 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 1, EP rank 1, EPLB rank N/A
+[192.168.178.70/node_1] (Worker pid=553) INFO 11-05 21:23:29 [gpu_worker.py:386] Using V2 Model Runner
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:29 [model_runner.py:353] Loading model from scratch...
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [cuda.py:595] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [mm_encoder_attention.py:375] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:23:30 [vllm.py:1849] max_num_scheduled_tokens is set to 7168 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [cuda.py:536] Using FLASHINFER_MLA_SPARSE_SM120 attention backend out of potential backends: ['FLASHINFER_MLA_SPARSE_SM120'].
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [mla_attention.py:475] Using fp8_ds_mla KV cache format for FLASHINFER_MLA_SPARSE_SM120 backend.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:23:30 [mla_attention.py:551] Sparse MLA impl has no dense-MHA prefill path; using the top-k MQA path only.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [deep_gemm.py:191] deep_gemm not found in site-packages, trying vendored vllm.third_party.deep_gemm
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [deep_gemm.py:136] DeepGEMM E8M0 enabled on current platform.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:30 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:31 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:31 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:31 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:32 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:32 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:32 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:32 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:23:33 [weight_utils.py:1412] [glm53-cold-load-uma] page=4 KiB MemFree=27.6 GiB MemAvailable=28.8 GiB cuda_free=27.6 GiB dropped_caches=False -> max_free_mem_usage=0.50 buffer_size=4.00 GiB
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [default_loader.py:430] Loading weights took 46.64 seconds
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:577] exl3 e2 diag schema=2 configured_tier=grouped effective_tier=grouped tier_reason=grouped_ok shared_suh=1 shared_suh_layers=1/1 sym_exl3_moe=1 sym_fat_gemm=1 sym_fat_gemm_scatter=1 sym_fat_moe=1 grouped_eligible=1 grouped_calls=0 grouped_scratch_bytes=0 cap=12.1 cap_ok=1 tp_rank=1 tp_size=2 prefill_layer_calls=0 thin_calls=0 row_tile_calls=0 fallback_calls=grouped=0,kernel=0,batched=0,sorted=0,legacy=0 fallback_reasons=none fat_expert_runs=0 direct_calls=0 scatter_calls=0 fat_layers=0 fat_expert_slots=0 max_rows=0 fused_temps_allocs=0 fused_temps_bytes=0 fat_scratch_allocs=0 fat_scratch_bytes=0 fat_scratch_peak_bytes=0
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:19 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [exl3.py:3235] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=288 hidden=4096 intermediate_local=1024 fused_moe=exl3_moe concurrency=6 (no BF16 expert reconstruct at load)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [eagle3_utils.py:28] Using Eagle3 auxiliary layers from config: (6, 15, 25, 34, 43)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [cuda.py:536] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [flash_attn.py:867] Using FlashAttention version 2
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:20 [weight_utils.py:1412] [glm53-cold-load-uma] page=4 KiB MemFree=21.8 GiB MemAvailable=23.1 GiB cuda_free=21.8 GiB dropped_caches=False -> max_free_mem_usage=0.50 buffer_size=4.00 GiB
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:26 [default_loader.py:430] Loading weights took 6.41 seconds
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:24:26 [speculator.py:191] Draft model DFlash2Qwen3ForCausalLM does not support external multimodal embeddings. Embeddings from the target model will not be passed to the drafter; using text-only draft inputs instead.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:27 [model_runner.py:374] Model loading took 82.05 GiB and 57.520645 seconds
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:27 [interface.py:635] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:27 [interface.py:926] Setting attention block size to 3584 tokens to ensure that attention page size is >= mamba page size.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:27 [interface.py:950] Padding mamba page size by 0.35% to ensure that mamba page size and attention page size are exactly equal.
+[192.168.178.70/node_1] INFO 11-05 21:24:27 [torch_utils.py:262] Reducing Torch threads from 20 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) /usr/local/lib/python3.12/dist-packages/triton/language/core.py:2284: UserWarning: tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.
+[192.168.178.70/node_1] (Worker_TP1 pid=553)   warn("tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.")
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:31 [exl3.py:180] [glm53-e3-executed] grouped_calls=1 fat_expert_runs=8 configured_tier=grouped effective_tier=grouped
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:35 [gpu_worker.py:492] Initial free memory 111.15 GiB, reserved 14.0 GiB memory for KV Cache as specified by kv_cache_memory_bytes config and skipped memory profiling. This does not respect the gpu_memory_utilization config. Only use kv_cache_memory_bytes config when you want manual control of KV cache memory size. If OOM'ed, check the difference of initial free memory between the current run and the previous run where kv_cache_memory_bytes is suggested and update it correspondingly.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:35 [indexer.py:751] [glm53-indexer-workspace] rightsize: compress_ratio=4 max_num_seqs=4 max_num_batched_tokens=7168 -> 850008 entries (stock 34000000, ~4173.1 MiB reclaimed at 132 B/entry)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:35 [indexer.py:845] DSA indexer decode path: use_flattening=True supports_varlen=False (next_n=8, use_fp4_indexer_cache=False)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:35 [indexer.py:970] [glm53-indexer-workspace] builder: compress_ratio=4 workspace=850008 entries (legal max 850008, stock 34000000)
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:35 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:37 [spec_decode_rejection_warmup.py:64] Warming up spec-decode rejection sampler kernels (vocab=154880, num_spec=7, dtype_pairs=[('torch.bfloat16', 'torch.float32'), ('torch.float32', 'torch.float32'), ('torch.bfloat16', 'torch.bfloat16'), ('torch.float32', 'torch.bfloat16')], block_verify=False).
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:39 [kernel_warmup.py:95] Warming up ll_bf16 router GEMM kernels for shapes: ((4096, 288),).
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:40 [kernel_warmup.py:170] Skipping FlashInfer autotune because it is disabled.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:24:41 [breakable_cudagraph.py:288] Breakable CUDA graph enabled
+[192.168.178.70/node_1] (Worker_TP1 pid=553) /usr/local/lib/python3.12/dist-packages/triton/language/core.py:2284: UserWarning: tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.
+[192.168.178.70/node_1] (Worker_TP1 pid=553)   warn("tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.")
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:25:31 [speculator.py:137] Capturing model for DFlash2 speculator...
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:26:04 [model_runner.py:1012] Graph capturing finished in 84 secs, took 6.04 GiB
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:26:12 [jit_monitor.py:79] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) INFO 11-05 21:26:12 [torch_utils.py:262] Reducing Torch threads from 20 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:26:29 [jit_monitor.py:135] Triton kernel JIT compilation during inference: _compute_local_logits_stats_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:26:29 [jit_monitor.py:135] Triton kernel JIT compilation during inference: _rejection_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:26:29 [jit_monitor.py:135] Triton kernel JIT compilation during inference: _resample_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:26:34 [jit_monitor.py:135] Triton kernel JIT compilation during inference: _prepare_dflash_inputs_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:26:34 [jit_monitor.py:135] Triton kernel JIT compilation during inference: _kpool_tail_seed_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:26:35 [jit_monitor.py:135] TileLang JIT compilation during inference: mhc_pre_big_fuse_with_norm_tilelang. This causes a latency spike; consider extending warmup to cover this shape/config.
+[192.168.178.70/node_1] (Worker_TP1 pid=553) WARNING 11-05 21:27:31 [jit_monitor.py:135] Triton kernel JIT compilation during inference: _topk_topp_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.

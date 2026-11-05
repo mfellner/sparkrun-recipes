@@ -107,9 +107,9 @@ def composed_contracts() -> list[tuple[str, str, list[str], list[str]]]:
     floor = script("scheduler_decode_floor")
     adaptive = script("adaptive_k")
     scheduler = "v1/core/sched/scheduler.py"
-    add(scheduler, "fair scheduler v5",
-        [floor["IMPORT_NEW"], floor["_helper_text"]()] + [new for new, old, label in floor["V5_PAIRS"]],
-        [old for new, old, label in floor["V5_PAIRS"]])
+    add(scheduler, "fair scheduler v7",
+        [floor["IMPORT_NEW"], floor["_helper_text"]()] + [new for new, old, label in floor["V7_PAIRS"]],
+        [old for new, old, label in floor["V7_PAIRS"]])
     edits(scheduler, "Mamba chunk alignment", script("mamba_align_chunking")["EDITS"])
     add(scheduler, "adaptive-k",
         [adaptive[k] for k in ("SCHED_HELPER", "OBS_NEW", "UPD_NEW", "SCHED_K_NEW")],
@@ -122,8 +122,11 @@ def composed_contracts() -> list[tuple[str, str, list[str], list[str]]]:
     coordinator = "v1/core/kv_cache_coordinator.py"
     # Latest hybrid boundary stage preserves INIT_NEW but replaces MIN_NEW's
     # verify preamble. Retention reuses BASE_HELPER and the plain os import.
+    hybrid_required = [text for _, text in hybrid["REQUIRED_ONCE"]]
+    for _, old, new in hybrid["FINE_EDITS"]:
+        hybrid_required = [text.replace(old, new) for text in hybrid_required]
     add(coordinator, "hybrid APC boundary/replay",
-        [hybrid["IMPORT_NEW"]] + [text for _, text in hybrid["REQUIRED_ONCE"]],
+        [hybrid["IMPORT_NEW"]] + hybrid_required + [new for _, old, new in hybrid["FINE_EDITS"]],
         [text for _, text in hybrid["SUPERSEDED"]] + [hybrid["LOG_OLD"], hybrid["INIT_OLD"]])
     add(coordinator, "per-group retention",
         [group[k] for k in ("RETENTION_HELPER", "DFLASH_PRIOR_HELPER", "INIT_FINAL",
@@ -180,6 +183,22 @@ def composed_contracts() -> list[tuple[str, str, list[str], list[str]]]:
         add(str(default[path_key]), "omitted-only output default", [default[prefix + "NEW"]], [default[prefix + "OLD"]])
     cache = script("cache_reset")
     add("entrypoints/openai/api_server.py", "cache reset opt-in", [cache["DEV_NEW"]], [cache["DEV_OLD"]])
+
+    cold = script("cold_load_uma")
+    clone = script("loadclone")
+    add("model_executor/model_loader/weight_utils.py", "cold-load and loader composition",
+        [cold["HELPER"], cold["NEW_IT_OPEN"], clone["HELPERS"], clone["NEW_LOOP"], clone["_wrapper"]()],
+        [clone["LOOP"]])
+    skip = script("skip_cudagraph_profile")
+    add("v1/worker/gpu_worker.py", "cudagraph estimate gate", [skip["NEW"]], [skip["OLD"]])
+    seed = script("kpool_tail_seed_stride")
+    add("models/glm5next/nvidia/ops/kpool_compress.py", "kpool tail stride", [seed["PATCHED"]], [seed["ANCHOR"]])
+    warm = script("indexer_warmup_range")
+    add("v1/attention/backends/mla/indexer.py", "indexer warmup range", [warm["PATCHED"]], [warm["ANCHOR"]])
+    dflash = script("dflash2_exl3")
+    add("model_executor/models/qwen3_dflash.py", "dflash2 EXL3 compatibility",
+        [dflash["QUANT_PREFIX_SHIFT_NEW"], dflash["FUSED_KV_NEW"]],
+        [dflash["QUANT_PREFIX_SHIFT_OLD"], dflash["FUSED_KV_OLD"]])
 
     result = []
     for path, (labels, required, forbidden) in rows.items():
@@ -277,6 +296,12 @@ def verify_runtime(site: Path, *, payload_root: Path = Path("/opt/glm53"),
             failures.append(f"E3 marker: {exc}")
     if not source.is_file() or not target.is_file() or source.read_bytes() != target.read_bytes():
         failures.append("dense-fp8: EXL3 overlay bytes are not installed exactly")
+    draft_source = payload_root / "qwen3_dflash2.py"
+    draft_target = site / "model_executor/models/qwen3_dflash2.py"
+    if (not draft_source.is_file() or not draft_target.is_file()
+            or draft_source.read_bytes() != draft_target.read_bytes()
+            or draft_source.read_bytes() != (OVERLAY / "qwen3_dflash2.py").read_bytes()):
+        failures.append("dflash2: draft overlay bytes are not installed exactly")
     if os.environ.get("GLM53_DENSE_FP8", "off").strip().lower() not in ("", "off", "0", "no", "none"):
         failures.append("dense-fp8: immutable profile must remain off")
     kda = site / "models/glm5next/nvidia/kda.py"

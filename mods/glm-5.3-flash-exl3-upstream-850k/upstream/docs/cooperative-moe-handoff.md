@@ -57,11 +57,16 @@ Pins (`extensions/cooperative_moe/prepare_profile.py`):
 | `runtime.py` original geo1 adapter | `71111c230c2519d473cc77f215703fbb12b1be2659cde66aa166c98ea3952fc6` |
 | generated overlay (stock + footer) | `5f28f5543629043117c7506cd3cf47cc8fa66fcd1153ddf67c696bf3e5484c4d` |
 
-The rows above are the C1 deployment (2026-09-16). The generator's source pin has
-since moved to `849e25882ab7901fbdd7227990a4f125809e1f79288ce6506311b6e6a53e6fb2`
-(thin-decode + KDA large-M BF16 TP2/TP3 additions to `overlay/exl3.py`, inert
-with those flags unset): regenerate the overlay with `prepare_profile.py`
-before the next deploy.
+The rows above describe the historical C1 deployment (2026-09-16), not the
+current build acceptance policy. The TP2 generator now pins stock overlay
+`da7dd6540d402f53d8a1af0f17eac5570ec37041bd2e1029017bea4ed44f87e4`,
+the ExLlamaV3 commit and combined source tree, and each native/runtime source
+hash. It deliberately does not pin the complete ELF: CUDA/host toolchain
+updates may change it. `build-manifest.json` carries compiler provenance, and
+runtime validates ABI/layout/occupancy. Regenerate from current
+`overlay/exl3.py`; an older generated overlay lacks the dense loader. TP3
+remains for ordinary packs only. This source compatibility review is not a new
+GPU qualification of the combined dense/cooperative profile.
 
 The overlay footer `run_path`s `/root/.cache/vllm/cooperative_moe/runtime.py`.
 Changing geometry is a `runtime.py` copy to **both** caches plus restart. It
@@ -69,8 +74,8 @@ does not require regenerating the overlay or rebuilding the `.so` (all three
 geometries are already in the binary). `prepare_profile.py` will refuse a
 `runtime.py` whose digest is not the pinned `ADAPTER_SHA`.
 
-`start.sh` accepts the cooperative footer if the stock `Exl3Config` closer
-`        )` is still in the body (guards a truncated copy).
+`start.sh` requires the `Exl3LinearMethod` identity and the stock `Exl3Config`
+closer `        )` in the generated overlay; these guards reject stale or truncated copies.
 
 ## Why the first boot looked like “no benefit”
 
@@ -114,15 +119,18 @@ was not rerun.
 
 ```bash
 curl -fsS --max-time 8 http://127.0.0.1:8888/health
-docker logs glm53-exl3-head 2>&1 | grep -F 'Fixed-shape cooperative MoE enabled'
+docker logs glm53-exl3-head 2>&1 | grep -F 'Fixed-shape cooperative MoE wrappers installed'
 ssh -o BatchMode=yes zurih@10.0.0.2 \
-  "docker logs glm53-exl3-worker 2>&1 | grep -F 'Fixed-shape cooperative MoE enabled'"
+  "docker logs glm53-exl3-worker 2>&1 | grep -F 'Fixed-shape cooperative MoE wrappers installed'"
 sha256sum ~/.cache/vllm-glm53-flash/cooperative_moe/runtime.py \
-          ~/.cache/vllm-glm53-flash/cooperative_moe/cooperative_moe.so
+          ~/.cache/vllm-glm53-flash/cooperative_moe/cooperative_moe.so \
+          ~/.cache/vllm-glm53-flash/cooperative_moe/build-manifest.json
 ```
 
-Wanted: `geometry=1 (A-wide/B-wide)` on **both** ranks, C1 runtime digest
-`9427f6a6…`, `.so` digest `aa3fe5e9…`. Original geo1 adapter was `71111c23…`.
+Wanted: `geometry=1 (A-wide/B-wide)` on **both** ranks, a
+`build-manifest.json` accepted by the current generator, and identical staged
+files between head and worker. The historical C1 digests above identify the
+old measured deployment; a new source-built ELF may have a different digest.
 
 Re-bench:
 

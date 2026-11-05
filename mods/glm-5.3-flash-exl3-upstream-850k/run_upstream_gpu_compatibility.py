@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Run unchanged upstream GPU checks with a narrow stale-static-check adapter.
+"""Run upstream GPU checks with an additional local runtime verifier.
 
-Only _check_dflash2's obsolete literal compact-KV assertions are replaced in
-memory. All its other imports/assertions and upstream main/GPU routines remain
-unchanged. No vendored file is written. Source drift fails closed.
+The current upstream compact-KV assertions are retained verbatim; the local
+runtime verifier is inserted immediately after them. No vendored file is
+written. Source drift fails closed.
 """
 import importlib.util
 import inspect
@@ -12,11 +12,11 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parent
-OBSOLETE = '''    assert "compact_block = 64" in kv
+CURRENT_SEAM = '''    assert "compact_block = _glm53_draft_block_size(" in kv
     assert "page_size_padded=mla_page" in kv
     assert "padded slot-share block=%d" in kv
-    assert "s.block_size != 64 or s.page_size_padded != mla_page" in kv
-    standalone = kv.split("PADDED SLOT-SHARE:")[1].split("draft_uniform")[0]
+    assert "s.block_size <= 0 or s.block_size % 64" in kv
+    standalone = kv.split("# Layer i shares MLA tensor i")[1].split("draft_uniform")[0]
     assert "compact_block" in standalone
     assert "page_size_padded=mla_page" in standalone
     assert "new_draft_specs = dict(draft_specs)" not in standalone
@@ -24,9 +24,9 @@ OBSOLETE = '''    assert "compact_block = 64" in kv
 
 
 def adapt_dflash_check(source):
-    if source.count(OBSOLETE) != 1:
+    if source.count(CURRENT_SEAM) != 1:
         raise ValueError("upstream DFlash assertion seam drifted; review adapter")
-    return source.replace(OBSOLETE, "    _check_current_draft_kv()\n", 1)
+    return source.replace(CURRENT_SEAM, CURRENT_SEAM + "    _check_current_draft_kv()\n", 1)
 
 
 def load(name, path):
